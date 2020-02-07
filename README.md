@@ -1,1 +1,1 @@
-# Tipitaka-Pali-Projector
+# Tipitaka-Pali-Projector TPP
