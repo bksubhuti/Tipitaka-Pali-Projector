@@ -28,219 +28,22 @@
     }
   </style>
   <script>
-
     function menu_on_off() {
       if (document.getElementById('menu').style.visibility == '') {
         document.getElementById('menu').style.visibility = 'hidden';
       } else {
         document.getElementById('menu').style.visibility = '';
       }
-    }
+    }       
 
-    //BILINGUAL PALI LOADER SETTING
-    function viewBilingual(n) {
-      var view_val = document.getElementById(n).value;
-      document.write.innerHTML = localStorage.setItem(n, view_val);
-      if (document.getElementById('view_left').value != 'Roman') {
-        document.write.innerHTML = localStorage.setItem("popupword", 1);    // popupword
-        document.getElementById('listparagraph').checked = false;
-        document.getElementById('popupword').checked = true;
-
-        document.getElementById('showbottom').checked = false;
-        document.getElementById('showtop').checked = true;
-      }
-    if (n == 'view_left') {
-        window.location.reload();
-      }    
-    } //fnc viewBilingual click on label
-
-    //DICT MODE SETTING
-
-
-    function chooseLookUpMode(n) {
-      //var val = document.getElementById(n).checked;
-      if (n == 'listparagraph') {
-        document.write.innerHTML = localStorage.setItem("popupword", 0);    // listparagraph
-        document.getElementById('listparagraph').checked = true;
-        document.getElementById('popupword').checked = false;
-        if (document.getElementById('view_left').value != 'Roman') {
-          document.write.innerHTML = localStorage.setItem("popupword", 1);    // popupword
-          document.getElementById('listparagraph').checked = false;
-          document.getElementById('popupword').checked = true;
-        }
-      } else {
-        document.write.innerHTML = localStorage.setItem("popupword", 1);    // popupword
-        document.getElementById('listparagraph').checked = false;
-        document.getElementById('popupword').checked = true;
-      }
-
-    }// fnc chooseLookUpMode_checkbox used for directly click on checkbox
-  
-
-    function chooseShowWindow(n) {
-      if (n == 'showtop') {
-        document.write.innerHTML = localStorage.setItem("topbottom", "top");    // showtop
-        document.getElementById('showtop').checked = true;
-        document.getElementById('showbottom').checked = false;
-      } else {
-        document.write.innerHTML = localStorage.setItem("topbottom", "bottom");    // showbottom
-        document.getElementById('showtop').checked = false;
-        document.getElementById('showbottom').checked = true;
-      }
-
-    }
-
-    function chooseDivHeight() {
-      var divheight = document.getElementById('divheight').value;
-      document.write.innerHTML = localStorage.setItem("divheight", divheight); 
-      document.getElementById('showdivheight').innerHTML = 'Height=' + divheight + ' %';
-    }
-
-    // fnc chooseLookUpMode_checkbox used for directly click on checkbox
-  
-  
-    function Search_Suggest() {
-      var n = document.getElementById("Sr_Suggest").checked;
-      if (n) {
-        document.write.innerHTML  = localStorage.setItem('Sr_Suggest', 1);
-      } else {
-        document.write.innerHTML  = localStorage.setItem('Sr_Suggest', 0);
-      }
-    }
-  
-  
-    function choosePaliNote(n) { 
-      if (n == 'Pali_note1') { 
-        document.write.innerHTML  = localStorage.setItem('Pali_note', 'inline');
-        document.getElementById('Pali_note1').checked = true;
-        document.getElementById('Pali_note2').checked = false;
-      } else { 
-        document.write.innerHTML  = localStorage.setItem('Pali_note', 'none');
-        document.getElementById('Pali_note2').checked = true;
-        document.getElementById('Pali_note1').checked = false;
-      } 
-    }
-  
-    function autoReloadPaliNote() {
-      var load_Pali_note = localStorage.getItem('Pali_note');
-      if (load_Pali_note == 'inline') {
-        document.getElementById('Pali_note1').checked = "true"; 
-        document.getElementById('Pali_note2').checked = "";
-      } else {                                  
-        document.getElementById('Pali_note2').checked = "true"; 
-        document.getElementById('Pali_note1').checked = "";
-      } 
-    }// fnc autoReloadDictMode
-  
-    function autoReloadDictMode(n) {
-      var loadshow = localStorage.getItem(n);
-      var lastshow = document.getElementsByName(n);
-      if (loadshow == 1) {
-        lastshow[0].checked = "true";
-      } else {
-        lastshow[0].checked = "";
-      }
-    }// fnc autoReloadDictMode
-
-    //DICTIONARY LOADER SETTING
-    function enableDictionary(n) {
-      var lasthide = document.getElementsByName(n);
-      var lasthidecheck = lasthide[0].checked;
-      if (!lasthidecheck) {
-        lasthide[0].checked = "true";
-        document.write.innerHTML = localStorage.setItem(n, 1);
-      } else {
-        lasthide[0].checked = "";
-        document.write.innerHTML = localStorage.setItem(n, 0);
-      }
-
-    } //fnc enableDictionary click on label
-
-    function enableDictionary_checkbox(n) {
-      var lasthide = document.getElementsByName(n);
-      var lasthidecheck = lasthide[0].checked;
-      if (lasthidecheck) {
-        lasthide[0].checked = "true";
-        document.write.innerHTML = localStorage.setItem(n, 1);
-      } else {
-        lasthide[0].checked = "";
-        document.write.innerHTML = localStorage.setItem(n, 0);
-      }
-
-    }// fnc enableDictionary_checkbox used for directly click on checkbox
-
-    function enableDictionary_select(n) {
-      var lastselect = document.getElementsByName(n);
-      var lastselectvalue = lastselect[0].value;
-      document.write.innerHTML = localStorage.setItem(n, lastselectvalue);
-      //sort all select
-      var val =
-        localStorage.getItem('hpe1') + 'hpe1' + '@' + localStorage.getItem('hpe2') + 'hpe2' + '@' +
-        localStorage.getItem('hpe3') + 'hpe3' + '@' + localStorage.getItem('hpe4') + 'hpe4' + '@' +
-        localStorage.getItem('hpv1') + 'hpv1' + '@' + localStorage.getItem('hpv2') + 'hpv2' + '@' +
-        localStorage.getItem('hpv3') + 'hpv3' + '@' +
-        localStorage.getItem('hpm1') + 'hpm1' + '@' + localStorage.getItem('hpm2') + 'hpm2' + '@' +
-        localStorage.getItem('hpm3') + 'hpm3' + '@' + localStorage.getItem('hpm4') + 'hpm4' + '@' +
-        localStorage.getItem('hpd1') + 'hpd1' + '@' +
-        localStorage.getItem('hpg1') + 'hpg1' + '@' +
-        localStorage.getItem('hpc1') + 'hpc1' + '@' + localStorage.getItem('hpc2') + 'hpc2';
-      var ary = val.split('@');
-
-      ary.sort();
-
-      var inc = 0;
-      for (var i in ary) {
-        if (ary[i] != '') {
-          var val = parseInt(ary[i].substring(0, 3));
-          var name = ary[i].substring(3);
-          if (val != 0) {
-            inc = inc + 10;
-            val = inc;
-          }
-          val = '000' + val;
-          val = val.slice(-3);
-          document.write.innerHTML = localStorage.setItem(name, val);
-
-          var lastselect = document.getElementsByName(name);
-          lastselect[0].value = val;
-        }
-      }
-    }// fnc enableDictionary_select used for directly select  
-  
-    function speech() {
-      var speech_repeat = document.getElementById('speech_repeat').value;
-      document.write.innerHTML = localStorage.setItem("speech_repeat", speech_repeat);
-    
-      var speech_speed = document.getElementById('speech_speed').value;
-      document.write.innerHTML = localStorage.setItem("speech_speed", speech_speed);
-      document.getElementById('speed').innerHTML = 'Speed=' + speech_speed;
-    }
-
-    function autoReloadEnabledDict(n) {
-      var loadhide = localStorage.getItem(n);
-      var lasthide = document.getElementsByName(n);
-      if (loadhide == 1) {
-        lasthide[0].checked = "true";
-      } else {
-        lasthide[0].checked = "";
-      }
-    }// fnc autoReloadEnabledDict
-
-    function autoReloadSelectedDict(n) {
-      var loadselect = localStorage.getItem(n);
-      if (loadselect == null) {
-        loadselect = '000';
-        document.write.innerHTML = localStorage.setItem(n, loadselect);
-      }
-      lastselect = document.getElementsByName(n);
-      lastselect[0].value = loadselect;
-    }// fnc autoReloadSelectedDict
-  
-   function LoadNotesImages() {
+    function LoadNotesImages() {
       var ary = window.location.toString().split('.htm');
       var t_no = ary[0].slice(-1);
-      if (t_no == 'x') { t_no = 1; } 
-      var ary_t = [];    
+      if (t_no == 'x') {
+        t_no = 1; 
+      }
+
+      var ary_t = [];
       ary_t[1]=[0,  5,  8, 14];
       ary_t[2]=[0,  3,  3,  5];
       ary_t[3]=[0,  3,  4,  3];
@@ -248,32 +51,171 @@
       ary_t[5]=[0, 11, 11, 11];
       ary_t[6]=[0, 21, 28,  2];
       ary_t[7]=[0, 13,  7, 18];
-      ary_t[8]=[0,  0, 68,  0]; 
-     
+      ary_t[8]=[0,  0, 68,  0];
+
       for (var i=1; i<=3; i++) {
         for (var j=1; j<=ary_t[t_no][i]; j++) {
           var tno = t_no + i.toString() + ('0' + j.toString()).substr(-2);
-      if (tno == '8203') { tno = '8303';}
-      if (tno == '8204') { tno = '8304';}
-      if (tno == '8205') { tno = '8305';}
-      
+          if (tno == '8203') { tno = '8303';}
+          if (tno == '8204') { tno = '8304';}
+          if (tno == '8205') { tno = '8305';}
+
           var note = localStorage.getItem('note' + tno);
           var note_id = 'notes_' + tno;
-      
+
           if (!note) {
              document.getElementById(note_id).style.visibility = 'hidden;';
           } else {
              document.getElementById(note_id).style.visibility = '';
           }
+        }
+      }
     }
+
+    var Dicts = [];
+    Dicts['pc1'] = 'PC1: [10,530 entries - 675 KB] Pali-Zh Suttacentral Offline 2016';
+    Dicts['pc2'] = 'PC2: [20,113 entries - 5.25 MB] Pali-Zh 12 in 1 @2018';
+    Dicts['pd1'] = 'PD1: [3,607 entries - 400 KB] Pali-Indonesian Suttacentral Offline 2016';
+    Dicts['pe1'] = 'PE1: [23,850 entries - 1.34 MB ] Pali-English Suttacentral Offline 2016';
+    Dicts['pe2'] = 'PE2: [20,968 entries - 1.10 MB] Pali-English Extracted From Digital Pali Reader (DPR)';
+    Dicts['pe3'] = 'PE3: [16,274 entries - 6.91 MB] Pali-English Dictionary (PTS)';
+    Dicts['pe4'] = 'PE4: [381,754 entries - 37.1 MB] Pali English Declension Dict @DPR 2018';
+    Dicts['pg1'] = 'PG1: [22,729 entries - 1.27 MB] Pali-Germany Suttacentral Offline 2016';
+    Dicts['pm1'] = 'PM1: [153,527 entries - 37.8 MB] Pali Word Grammar @2018';
+    Dicts['pm2'] = 'PM2: [153,527 entries - 23.9 MB] Tipitaka Pali Myanmar @2018';
+    Dicts['pm3'] = 'PM3: [58,095 entries - 7.01 MB] Pali Myanmar Dictionary @U Hau Sein 2018';
+    Dicts['pm4'] = 'PM4: [1,882 entries - 441 KB] Pali Roots Dictionary @2018';
+    Dicts['pv1'] = 'PV1: [17,423 entries - 902 KB] Pali Viet Dictionary Bản dịch của ngài Bửu Chơn';
+    Dicts['pv2'] = 'PV2: [3,827 entries - 214 KB] Pali Viet Abhidhamma Terms - ngài Tịnh Sự (phần ghi chú thuật ngữ)';
+    Dicts['pv3'] = 'PV3: [914 entries - 253 KB] Pali Viet Vinaya Terms Từ điển các thuật ngữ về luật do tỳ khưu Giác Nguyên sưu tầm.';
+    
+    function DictionaryMoveOption(source, destination) {   // source move to dist. 
+      try { 
+        for(var i=0; i<source.options.length; i++){ 
+          if(source.options[i].selected){ 
+            var e = source.options[i];  
+
+            destination.options.add(new Option(e.text, e.value)); 
+            source.remove(i);  
+          } 
+        } 
+        DictionaryRenew();
+      } catch(e) {
+      } 
     } 
+
+    function DictionaryChangePos(obj, index) { 
+      if(index==-1){ 
+        if (obj.selectedIndex>0){ 
+          //obj.options(obj.selectedIndex).swapNode(obj.options(obj.selectedIndex-1)) //swapNode on at IE
+          obj.insertBefore(obj.options[obj.selectedIndex], obj.options[obj.selectedIndex - 1]); 
+        } 
+      }else if(index==1){ 
+        if (obj.selectedIndex<obj.options.length-1){ 
+          //obj.options(obj.selectedIndex).swapNode(obj.options(obj.selectedIndex+1)) //swapNode at IE
+          obj.insertBefore(obj.options[obj.selectedIndex + 1], obj.options[obj.selectedIndex]);  
+        } 
+      } 
+      DictionaryRenew();
     }
 
-  
-  
+    function DictionaryRenew() {
+      var e = document.form1.DictionaryEnable;
+      document.getElementById('EnableCount').innerHTML = e.options.length;
+      for(var i=0; i<e.options.length; i++){ 
+        val = e.options[i].value; 
+        inc = (i + 1) * 10;
+        inc = ('000' + inc).slice(-3);
+        document.write.innerHTML  = localStorage.setItem('h' + val, inc); 
+      } 
 
+
+      var e = document.form1.DictionaryDisable;
+      document.getElementById('DisableCount').innerHTML = e.options.length;
+      var val_disable = '';
+
+      j = e.options.length-1;   // remove all options  
+      for(var i=j; 0<=i; i--) { 
+        val = e.options[i].value;
+        val_disable = val_disable + val + ';';
+        document.write.innerHTML  = localStorage.setItem('h' + val, '000'); 
+        e.remove(i);
+      } 
+
+      for(i in Dicts) {   // add options by Dicts order
+        if (val_disable.indexOf(i) != -1) { 
+          e.options.add(new Option(Dicts[i], i));  
+        }
+      }
+    }
+
+    function ChooseSelect(key) {
+      val = document.getElementById(key).value;
+      document.write.innerHTML = localStorage.setItem(key, val);
+
+      if (key == 'view_left') {
+        window.location.reload();
+      }
+    } 
+
+    function ChooseRadio(key) {
+      val = document.getElementById(key).value;
+      if (key.indexOf('Pali_note') != -1) {
+        if (key == 'Pali_note1') {
+          document.write.innerHTML  = localStorage.setItem('Pali_note', 'inline');
+        } else {
+          document.write.innerHTML  = localStorage.setItem('Pali_note', 'none');
+        }
+      }
+
+      if (key.indexOf('popupword') != -1) {
+        document.write.innerHTML  = localStorage.setItem('popupword', val);
+      }
+
+      if (key.indexOf('show') != -1) {
+        document.write.innerHTML  = localStorage.setItem('topbottom', val);
+      }
+    }
+
+
+    function ChooseCheckbox(key) {
+      chk = document.getElementById(key).checked;
+      if (key.indexOf('Sr_Suggest') != -1) {
+        if (chk == true) {
+          document.write.innerHTML  = localStorage.setItem('Sr_Suggest', 1);
+        } else {
+          document.write.innerHTML  = localStorage.setItem('Sr_Suggest', 0);
+        }
+      }
+
+      if (key.indexOf('enablefuzzyinword') != -1) {
+        if (chk == true) {
+          document.write.innerHTML  = localStorage.setItem('enablefuzzyinword', 1);
+        } else {
+          document.write.innerHTML  = localStorage.setItem('enablefuzzyinword', 0);
+        }
+      }
+
+      if (key.indexOf('ree1') != -1) {
+        if (chk == true) {
+          document.write.innerHTML  = localStorage.setItem('ree1', 1);
+        } else {
+          document.write.innerHTML  = localStorage.setItem('ree1', 0);
+        }
+      }
+    }
+
+    function ChooseRange(key) {
+      var val = document.getElementById(key).value;
+      document.write.innerHTML = localStorage.setItem(key, val);
+      if (key.indexOf('divheight') != -1) {
+        document.getElementById('showdivheight').innerHTML = 'Height=' + val + ' %';
+      } else {
+        document.getElementById('showspeed').innerHTML = 'Speed=' + val;
+      }
+      document.write.innerHTML  = localStorage.setItem(key, val);
+    }
   </script>
-
 </head>
 
 <body style="margin-top:0.0pt;margin-right:0in;margin-bottom:0in;margin-left:0in;margin-bottom:0pt;font-size:12.0pt;line-height:200%;font-family:Palatino, sans-serif;" bgcolor="#ffffc0">
@@ -293,102 +235,173 @@
         document.write.innerHTML = localStorage.setItem("view_left", view_left);
       }
       document.getElementById('view_left').value = view_left;
-    
+
       // View Right
       var view_right = localStorage.getItem("view_right");
       if (!view_right) {
         view_right = 'Space';
         document.write.innerHTML = localStorage.setItem("view_right", view_right);
       }
-      document.getElementById('view_right').value = view_right; 
-    //===========================================================================
+      document.getElementById('view_right').value = view_right;
 
-  
+      // Pali_note
       var Pali_note = localStorage.getItem("Pali_note");
       if (!Pali_note) {
         Pali_note = 'none';
         document.write.innerHTML = localStorage.setItem("Pali_note", Pali_note);
-      } 
-      autoReloadPaliNote();
-   
-
-      
-      var n = localStorage.getItem("Sr_Suggest");
-      if (n) {
-        document.write.innerHTML = localStorage.setItem("Sr_Suggest", 1);
-        document.getElementById("Sr_Suggest").checked = true;
+        document.getElementById('Pali_note2').checked = true;
       } else {
-        document.write.innerHTML = localStorage.setItem("Sr_Suggest", 0);
-        document.getElementById("Sr_Suggest").checked = '';
+        if (Pali_note == 'inline') {
+          document.getElementById('Pali_note1').checked = true;
+        } else {
+          document.getElementById('Pali_note2').checked = true;
+        }
       }
-    
-      // popupword listparagraph 
+
+      // Sr_Suggest
+      var Sr_Suggest = localStorage.getItem("Sr_Suggest");
+      if (!Sr_Suggest) {
+        Sr_Suggest = '1';
+        document.write.innerHTML = localStorage.setItem("Sr_Suggest", Sr_Suggest);
+        document.getElementById('Sr_Suggest').checked = true;
+      } else {
+        document.getElementById('Sr_Suggest').checked = false;
+      }
+
+      //Lookup & Display Mode
       var popupword = localStorage.getItem("popupword");
       if (!popupword) {
-        popupword = 1;
+        popupword = '1';
         document.write.innerHTML = localStorage.setItem("popupword", popupword);
-      }
-      if (popupword == 0) {
-        document.write.innerHTML = localStorage.setItem("popupword", 0);    // listparagraph
-        document.getElementById('listparagraph').checked = true;
-        document.getElementById('popupword').checked = false;
+        document.getElementById('popupwordOn').checked = true;
       } else {
-        document.write.innerHTML = localStorage.setItem("popupword", 1);    // popupword
-        document.getElementById('listparagraph').checked = false;
-        document.getElementById('popupword').checked = true;
+        if (popupword == '1') {
+          document.getElementById('popupwordOn').checked = true;
+        } else {
+          document.getElementById('popupwordOff').checked = true;
+        }
       }
-      autoReloadDictMode("listparagraph");
-      autoReloadDictMode("popupword");
-      autoReloadDictMode("enablefuzzyinword");   
 
+      //Fuzzy InWord(beta)
+      var enablefuzzyinword = localStorage.getItem("enablefuzzyinword");
+      if (!enablefuzzyinword) {
+        enablefuzzyinword = '1';
+        document.write.innerHTML = localStorage.setItem("enablefuzzyinword", enablefuzzyinword);
+        document.getElementById('enablefuzzyinword').checked = true;
+      } else {
+        document.getElementById('enablefuzzyinword').checked = false;
+      }
+
+      //Show Window
       var topbottom = localStorage.getItem("topbottom");
-      if (topbottom != "bottom") {
-        topbottom = 'top';
+      if (!topbottom) {
+        topbottom = 'bottom';
         document.write.innerHTML = localStorage.setItem("topbottom", topbottom);
-      }
-      if (topbottom == 'top') {
-        document.write.innerHTML = localStorage.setItem("topbottom", "top"); 
-        document.getElementById('showtop').checked = true;
-        document.getElementById('showbottom').checked = false;
-      } else {
-        document.write.innerHTML = localStorage.setItem("topbottom", "bottom");
-        document.getElementById('showtop').checked = false;
         document.getElementById('showbottom').checked = true;
+      } else {
+        if (topbottom == 'bottom') {
+          document.getElementById('showbottom').checked = true;
+        } else {
+          document.getElementById('showtop').checked = true;
+        }
       }
 
+      //Div Height
       var divheight = localStorage.getItem("divheight");
       if (!divheight) {
         divheight = '35';
         document.write.innerHTML = localStorage.setItem("divheight", divheight);
+        document.getElementById('divheight').value = divheight;
       }
       document.getElementById('showdivheight').innerHTML = 'Height=' + divheight + ' %';
-    
-      //hee1
-      autoReloadEnabledDict("hee1"); 
+
+      // PALI DICTIONARIES
+      setdefault = '1';   // set defaut Pali dictionary = pe4
+      for (i in Dicts) {
+        var val = localStorage.getItem("h" + i);
+        if (!val) {
+          val = '000';
+        }
+        if (val != '000') {
+          setdefault = '0'
+        }
+      }
+      if (setdefault == '1') {
+         document.write.innerHTML = localStorage.setItem('hpe4', '010');
+      }
+
+
+      var e_enable = document.getElementById('DictionaryEnable');
+      var e_disable = document.getElementById('DictionaryDisable');
+
+      for(var i=(e_enable.length -1); 0<=i; i--) { // remove all options  
+        e_enable.remove(i);
+      } 
+      for(var i=(e_disable.length -1); 0<=i; i--) { // remove all options  
+        e_disable.remove(i);
+      } 
+
+      e_enable_options = '';
+      for(i in Dicts) {   // add options by Dicts order
+        var val = localStorage.getItem("h" + i);
+        if (!val) {
+          val = '000';
+        }
+
+        if (val == '000') {
+          e_disable.options.add(new Option(Dicts[i], i)); 
+        } else { 
+          e_enable_options = e_enable_options + val + i + '@';
+        } 
+      } 
+      var ary = e_enable_options.split('@'); // put enabled options
+      ary.sort(); 
+      var inc = 0;
+      for (var i in ary) {
+        if (ary[i] != '') { 
+          v2 = ary[i].slice(-3);    // key 
+
+          e_enable.options.add(new Option(Dicts[v2], v2));
+
+          inc = inc +10;
+          v1 = '000' + inc;
+          v1 = v1.slice(-3);
+          document.write.innerHTML = localStorage.setItem('h' + v2, v1);
+        } 
+      } 
+      document.getElementById('EnableCount').innerHTML = document.form1.DictionaryEnable.options.length;
+      document.getElementById('DisableCount').innerHTML = document.form1.DictionaryDisable.options.length;
+
+      // English Dictionary
+      var ree1 = localStorage.getItem("ree1");
+      if (!ree1) {
+        ree1 = '0';
+        document.write.innerHTML = localStorage.setItem("ree1", ree1);
+        document.getElementById('ree1').checked = false;
+      } else {
+        if (ree1 == '1') {
+          document.getElementById('ree1').checked = true;
+        } else {
+          document.getElementById('ree1').checked = false;
+        }
+      }
+
+      // Speech Repeat
       var speech_repeat = localStorage.getItem("speech_repeat");
       if (!speech_repeat) {
-        speech_repeat = 0;
+        speech_repeat = '1';
         document.write.innerHTML = localStorage.setItem("speech_repeat", speech_repeat);
       }
       document.getElementById('speech_repeat').value = speech_repeat;
+
+      // Speed
       var speech_speed = localStorage.getItem("speech_speed");
       if (!speech_speed) {
-        speech_speed = 1;
+        speech_speed = '1';
         document.write.innerHTML = localStorage.setItem("speech_speed", speech_speed);
+        document.getElementById('speech_speed').value = speech_speed;
       }
-      document.getElementById('speech_speed').value = speech_speed;
-      document.getElementById('speed').innerHTML = 'Speed=' + speech_speed;  
-
-      autoReloadSelectedDict("hpe1"); autoReloadSelectedDict("hpe2"); autoReloadSelectedDict("hpe3"); autoReloadSelectedDict("hpe4");
-      autoReloadSelectedDict("hpv1"); autoReloadSelectedDict("hpv2"); autoReloadSelectedDict("hpv3");
-      autoReloadSelectedDict("hpd1"); autoReloadSelectedDict("hpg1");
-      autoReloadSelectedDict("hpm1"); autoReloadSelectedDict("hpm2"); autoReloadSelectedDict("hpm3"); autoReloadSelectedDict("hpm4");
-      autoReloadSelectedDict("hpc1"); autoReloadSelectedDict("hpc2"); 
-    
-    LoadNotesImages();
-    
-  
-    
+      document.getElementById('showspeed').innerHTML = 'Speed=' + speech_speed;
     }
   </script>
 
@@ -399,63 +412,61 @@
           <a href="index.htm" id="asoka"><img src="images/asoka.png"></a>
         </td>
         <td align="center" width="60%">
-          <h3 style='margin-top:0pt;color:brown;'><strong>Pāḷi Tipiṭaka Projector</strong>  - 20200202 (SG)</h3>
+          <h3 style='margin-top:0pt;color:brown;'>
+            <strong>Pāḷi Tipiṭaka Projector</strong>  - 20200208 (SG)
+          </h3>
+
           <span align="center" style="color:blue;">
-      
             <a id="reset" href="../02_RESET_Tipitaka_Projector.htm">
-      <img src="images/reset.png">&nbsp;&nbsp;Reset&nbsp;&nbsp;&nbsp;</a>
-      
-            <a href="help_en.htm" id="help_en"><img src="images/help.png">&nbsp;&nbsp;Help&nbsp;&nbsp;&nbsp;</a>
-      
-      <!--
-      <a href="index_export.htm" id="export"><img src="images/b_ftext.png">&nbsp;&nbsp;Export&nbsp;&nbsp;&nbsp;</a>
-      -->
-      
-        <a href="search.htm" id="search"><img src="images/search.png">&nbsp;&nbsp;Search&nbsp;&nbsp;&nbsp;</a>
-      
-      
+              <img src="images/reset.png">&nbsp;&nbsp;Reset&nbsp;&nbsp;&nbsp;
+            </a>
+
+            <a href="help_en.htm" id="help_en">
+              <img src="images/help.png">&nbsp;&nbsp;Help&nbsp;&nbsp;&nbsp;
+            </a>
+
+            <a href="search.htm" id="search">
+              <img src="images/search.png">&nbsp;&nbsp;Search&nbsp;&nbsp;&nbsp;
+            </a>
+
             <hr color="#b2b2b2" width="50%">
-          </span> 
+          </span>
+
           <table border="0">
             <tr>
-              <td width="50%" align="center"> 
+              <td width="50%" align="center">
                 Left<br>
-                <select name="view_left" id="view_left" onchange='viewBilingual("view_left")'>
-                <option value="Roman">Roman</option>
-                <option value="Myanmar">Myanmar</option>
-                <option value="Sinhala">Sinhala</option>
-                <option value="Thai">Thai</option>
-                <option value="Devanagari">Devanagari</option>
-                </select> 
+                <select name="view_left" id="view_left" onChange='ChooseSelect("view_left")'>
+                  <option value="Roman">Roman</option>
+                  <option value="Myanmar">Myanmar</option>
+                  <option value="Sinhala">Sinhala</option>
+                  <option value="Thai">Thai</option>
+                  <option value="Devanagari">Devanagari</option>
+                </select>
               </td>
-              <td width="50%" align="center"> 
-                 Right<br>
-                <select name="view_right" id="view_right" onchange='viewBilingual("view_right")'>
-                <option value="Space"></option>
-                <option value="Roman">Roman</option>
-                <option value="Myanmar">Myanmar</option>
-                <option value="Sinhala">Sinhala</option>
-                <option value="Thai">Thai</option>
-                <option value="Devanagari">Devanagari</option>
-                <option value="My_Note">My Notes</option>
-                <option value="PTS_TBT">Buddhist Texts</option>
-                <option value="PTS_YHS">Tw. Yuan Hen Si</option>
-                <option value="PTS_CCC">Tw. CCC</option>
-                </select> 
+              <td width="50%" align="center">
+                Right<br>
+                <select name="view_right" id="view_right" onChange='ChooseSelect("view_right")'>
+                  <option value="Space"></option>
+                  <option value="Roman">Roman</option>
+                  <option value="Myanmar">Myanmar</option>
+                  <option value="Sinhala">Sinhala</option>
+                  <option value="Thai">Thai</option>
+                  <option value="Devanagari">Devanagari</option>
+                  <option value="My_Note">My Notes</option>
+                </select>
               </td>
             </tr>
-          </table> 
-      <!--
-
-        -->
-           
+          </table>
         </td>
         <td align="center" width="20%" valign="bottom">
-      Chaṭṭha Saṅgāyana Tipiṭaka
+          Chaṭṭha Saṅgāyana Tipiṭaka
         </td>
       </tr>
     </tbody>
-  </table>  <table align="left" bgcolor="#ffffc0" border="0" cellpadding="3" width="100%">
+  </table>
+
+  <table align="left" bgcolor="#ffffc0" border="0" cellpadding="3" width="100%">
     <tbody>
       <tr>
         <td width="5%"></td>
@@ -541,316 +552,116 @@
     </tbody>
   </table>
 
+
 <div id="menu" style="z-index:9;visibility:hidden;display:scroll;position:fixed;scroll;
-    overflow-y:scroll;max-height:100%;width:90%;align:center;top:0px;left:0px;
-    padding:18px;margin-left:5%;margin-right:5%;background:#F7DBD0;color:black;
-    border:1px dashed orange;border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;-o-border-radius:10px;">
-    
-    <div align="left" style="padding:8px;border: 1px dashed blue;"> 
-    <strong>Display Note</strong>
-      <input style="color:red;" id="Pali_note1" type="checkbox" name="Pali_note1" onclick='choosePaliNote("Pali_note1")' /></input>
-      <label for="Pali_note1" onclick='choosePaliNote("Pali_note1")'>inline Display</label>
-    
-      <input style="color:red;" id="Pali_note2" type="checkbox" name="Pali_note2" onclick='choosePaliNote("Pali_note2")' /></input>
-      <label for="Pali_note2" onclick='choosePaliNote("Pali_note2")'>none Display</label>
-    </div>
-  
-    <div align="left" style="padding:8px;border: 1px dashed blue;">       
-      <input style="color:red;" id="Sr_Suggest" type="checkbox" name="Sr_Suggest" onclick='Search_Suggest()' /></input>
-      <label for="Sr_Suggest" onclick='Search_Suggest()'>Search Suggestion</label>
-    </div>
-  
-    <strong>DICTIONARY LOOKUP - SETTING</strong>
-    <!---BOX 3 DICTIONARY LOADER, CHECK TO ENABLE--->
-    
-    <div align="left" style="padding:8px;border: 1px dashed blue;">
-      <strong>Lookup & Display Mode</strong><br>
+  overflow-y:scroll;max-height:100%;width:90%;align:center;top:0px;left:0px;
+  padding:18px;margin-left:5%;margin-right:5%;background:#F7DBD0;color:black;
+  border:1px dashed orange;border-radius:10px;-moz-border-radius:10px;
+  -webkit-border-radius:10px;-o-border-radius:10px;">
 
-      <input style="color:red;" id="listparagraph" type="checkbox" name="listparagraph" onclick='chooseLookUpMode("listparagraph")' /></input>
-      <label for="listparagraph" onclick='chooseLookUpMode("listparagraph")'>List paragraph</label>
+  <strong>DISPLAY NOTE</strong>
+  <div align="left" style="padding:8px;border: 1px dashed blue;">
+    <input name="palinote" id="Pali_note1" type="radio" onclick='ChooseRadio("Pali_note1")'>
+    <label for="Pali_note1">Inline Display</label>
 
-      <input style="color:red;" id="popupword" type="checkbox" name="popupword" onclick='chooseLookUpMode("popupword")' /></input>
-      <label for="popupword" onclick='chooseLookUpMode("popupword")'>Pop-up singleWord (default)</label>
+    <input name="palinote" id="Pali_note2" type="radio" onclick='ChooseRadio("Pali_note2")'>
+    <label for="Pali_note2">None Display (Default)</label>
+    <br>
 
-      <input style="color:red;" id="enablefuzzyinword" type="checkbox" name="enablefuzzyinword" onclick='enableDictionary_checkbox("enablefuzzyinword")' /></input>
-      <label for="enablefuzzyinword" onclick='enableDictionary("enablefuzzyinword")'>Enable fuzzy inWord(beta) [for advanced pāḷi learner only]</label><br>
+    <input id="Sr_Suggest" type="checkbox" name="Sr_Suggest" onclick='ChooseCheckbox("Sr_Suggest")' /></input>
+    <label for="Sr_Suggest" onclick='ChooseCheckbox("Sr_Suggest")'>Search Suggestion</label>
+  </div><br>
 
+  <strong>DICTIONARY LOOKUP - SETTING</strong>
+  <div align="left" style="padding:8px;border: 1px dashed blue;">
+    <strong style="color:green;">Lookup & Display Mode</strong><br>
 
-      <strong>Show Windows</strong><br>
-      <input style="color:red;" id="showbottom" type="checkbox" name="showbottom" onclick='chooseShowWindow("showbottom")' /></input>
-      <label for="showbottom" onclick='chooseLookUpMode("showbottom")'>Bottom</label>
+    <input name="popupword" id="popupwordOff" value="0" type="radio" onclick='ChooseRadio("popupwordOff")'>
+    <label for="popupwordOff">List Paragraph</label>
 
-      <input style="color:red;" id="showtop" type="checkbox" name="showtop" onclick='chooseShowWindow("showtop")' /></input>
-      <label for="showtop" onclick='chooseLookUpMode("showtop")'>Top (default)</label>
+    <input name="popupword" id="popupwordOn" value="1" type="radio" onclick='ChooseRadio("popupwordOn")'>
+    <label for="popupwordOn">Pop-Up SingleWord (Default)</label>
+    <br>
 
-      ,&nbsp;&nbsp;<label id="showdivheight" style="color:red;">Height=35%</label>
-      <input type="range" min=10 max=50 step=5 value="35" name="divheight" id="divheight" onChange="chooseDivHeight()" style="background:gray;"> 
-    </div>
+    <strong style="color:green;">Fuzzy InWord(beta)</strong>
+    <br>
+    <input id="enablefuzzyinword" type="checkbox" name="enablefuzzyinword" onclick='ChooseRadio("enablefuzzyinword")' /></input>
+    <label for="enablefuzzyinword" onclick='ChooseCheckbox("enablefuzzyinword")'>For Advanced Pāḷi Learner Only</label>
+    <br>
 
-    <strong>Dictionary-In-Use Loader | Check to Enable</strong>
+    <strong style="color:green;">Show Window</strong>
+    <br>
+    <input name="showwindow" id="showtop" value="top" type="radio" onclick='ChooseRadio("showtop")'>
+    <label for="showtop" onclick='ChooseRadio("showtop")'>Top</label>
 
-    <div style="padding:8px;border: 1px dashed brown;">
-      <strong>English Dictionaries</strong><br>
-      <input style="color:red;" id="ree1" type="checkbox" name="hee1" onclick='enableDictionary_checkbox("hee1")' />
-      <label for="ree1" onclick='enableDictionary("hee1")'>WN: [148,730 entries - 23.2 MB] Word-Net Eng-Eng dictionary</label>
-      &nbsp;&nbsp;<label style="color:red;">Speech Repeat=</label>
-      <select name="speech_repeat" id="speech_repeat" onchange='speech()'>
-          <option value="0">Off</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-      </select>
-      ,&nbsp;&nbsp;<label id="speed" style="color:red;">Speed=</label>
-      <input type="range" min=0.5 max=1.5 step=0.1 value="1" name="speech_speed" id="speech_speed" onChange="speech()" style="background:gray;">
-    </div>
+    <input name="showwindow" id="showbottom" value="bottom" type="radio" onclick='ChooseRadio("showbottom")'>
+    <label for="showbottom" onclick='ChooseRadio("showbottom")'>Bottom (Default)</label>
+    ,&nbsp;&nbsp;
 
-    <div style="padding:8px;border: 1px dashed brown;">
-      <strong>Pali-English Dictionaries</strong><br>
-      <select name="hpe1" id="hpe1" onchange='enableDictionary_select("hpe1")'>
-      <option value="000">Off</option><option value="005">5</option><option value="010">10</option>
-      <option value="015">15</option><option value="020">20</option><option value="025">25</option>
-      <option value="030">30</option><option value="035">35</option><option value="040">40</option>
-      <option value="045">45</option><option value="050">50</option><option value="055">55</option>
-      <option value="060">60</option><option value="065">65</option><option value="070">70</option>
-      <option value="075">75</option><option value="080">80</option><option value="085">85</option>
-      <option value="090">90</option><option value="095">95</option><option value="100">100</option>
-      <option value="105">105</option><option value="110">110</option><option value="115">115</option>
-      <option value="120">120</option><option value="125">125</option><option value="130">130</option>
-      <option value="135">135</option><option value="140">140</option><option value="145">145</option>
-      <option value="150">150</option>
-      </select>
-      <label> PE1: [23,850 entries - 1.34 MB ] Pali-English Suttacentral Offline 2016 </label><br>
+    <label id="showdivheight" style="color:red;">Height=35%</label>
+    <input type="range" min=10 max=50 step=5 name="divheight" id="divheight" onChange="ChooseRange('divheight')" style="background:gray;">
+  </div>
+  <br>
 
-    <select name="hpe2" id="hpe2" onchange='enableDictionary_select("hpe2")'>
-      <option value="000">Off</option><option value="005">5</option><option value="010">10</option>
-      <option value="015">15</option><option value="020">20</option><option value="025">25</option>
-      <option value="030">30</option><option value="035">35</option><option value="040">40</option>
-      <option value="045">45</option><option value="050">50</option><option value="055">55</option>
-      <option value="060">60</option><option value="065">65</option><option value="070">70</option>
-      <option value="075">75</option><option value="080">80</option><option value="085">85</option>
-      <option value="090">90</option><option value="095">95</option><option value="100">100</option>
-      <option value="105">105</option><option value="110">110</option><option value="115">115</option>
-      <option value="120">120</option><option value="125">125</option><option value="130">130</option>
-      <option value="135">135</option><option value="140">140</option><option value="145">145</option>
-      <option value="150">150</option>
-      </select>
-      <label> PE2: [20,968 entries - 1.10 MB] Pali-English Extracted From Digital Pali Reader (DPR)</label><br>
+  <strong>DICTIONARIES</strong>
+  <div style="padding:8px;border: 1px dashed brown;">
+    <table border="0" width="100%" cellspacing="0" cellpadding="0">
+      <form method="post" name="form1" action="" style="text-align:center;">
+      <tr>
+        <td colspan="2" align="left">
+          <strong style="color:green;">Enabled Pali Dictionaries</strong>
+        </td>
+      </tr>
 
-    <select name="hpe3" id="hpe3" onchange='enableDictionary_select("hpe3")'>
-      <option value="000">Off</option><option value="005">5</option><option value="010">10</option>
-      <option value="015">15</option><option value="020">20</option><option value="025">25</option>
-      <option value="030">30</option><option value="035">35</option><option value="040">40</option>
-      <option value="045">45</option><option value="050">50</option><option value="055">55</option>
-      <option value="060">60</option><option value="065">65</option><option value="070">70</option>
-      <option value="075">75</option><option value="080">80</option><option value="085">85</option>
-      <option value="090">90</option><option value="095">95</option><option value="100">100</option>
-      <option value="105">105</option><option value="110">110</option><option value="115">115</option>
-      <option value="120">120</option><option value="125">125</option><option value="130">130</option>
-      <option value="135">135</option><option value="140">140</option><option value="145">145</option>
-      <option value="150">150</option>
-      </select>
-      <label> PE3: [16,274 entries - 6.91 MB] Pali-English Dictionary (PTS)</label><br>
+      <tr>
+        <td valign="top" width="10%">
+          <input type="button" value="Up" style="width:60pt;" onclick="DictionaryChangePos(DictionaryEnable,-1)"/>
+          <br>
+          <input type="button" value="Down" style="width:60pt;" onclick="DictionaryChangePos(DictionaryEnable,1)"/>
+          <br><br>
+          <input type="button" value="Remove" style="width:60pt;" onclick="DictionaryMoveOption(document.form1.DictionaryEnable, document.form1.DictionaryDisable)"/>
+        </td>
+        <td valign="top" width="90%" align="left">
+          <select style="width:90%;font-size:12pt;line-height:175%;" multiple name="DictionaryEnable" id="DictionaryEnable" size="7" ondblclick="DictionaryMoveOption(document.form1.DictionaryEnable, document.form1.DictionaryDisable)">
+          </select>
+          <span id="EnableCount" style="font-size:10pt;color:gray;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="left">
+          <strong style="color:green;">Disabled Pali Dictionaries</strong>
+        </td>
+      </tr>
 
-    <select name="hpe4" id="hpe4" onchange='enableDictionary_select("hpe4")'>
-      <option value="000">Off</option><option value="005">5</option><option value="010">10</option>
-      <option value="015">15</option><option value="020">20</option><option value="025">25</option>
-      <option value="030">30</option><option value="035">35</option><option value="040">40</option>
-      <option value="045">45</option><option value="050">50</option><option value="055">55</option>
-      <option value="060">60</option><option value="065">65</option><option value="070">70</option>
-      <option value="075">75</option><option value="080">80</option><option value="085">85</option>
-      <option value="090">90</option><option value="095">95</option><option value="100">100</option>
-      <option value="105">105</option><option value="110">110</option><option value="115">115</option>
-      <option value="120">120</option><option value="125">125</option><option value="130">130</option>
-      <option value="135">135</option><option value="140">140</option><option value="145">145</option>
-      <option value="150">150</option>
-      </select>
-      <label> PE4: [381,754 entries - 37.1 MB] Pali English Declension Dict @DPR 2018</label><br>
-    </div>
+      <tr>
+        <td valign="top">
+          <input type="button" value="Add" style="width:60pt;" onclick="DictionaryMoveOption(document.form1.DictionaryDisable, document.form1.DictionaryEnable)"/>
+        </td>
+        <td valign="top" align="left">
+          <select style="width:90%;font-size:12pt;line-height:175%;" multiple name="DictionaryDisable" id="DictionaryDisable" size="7" ondblclick="DictionaryMoveOption(document.form1.DictionaryDisable, document.form1.DictionaryEnable)">
+          </select>
+          <span id="DisableCount" style="font-size:10pt;color:gray;"></span>
+        </td>
+      </tr>
+     </form>
+    </table>
 
-    <div style="padding:8px;border: 1px dashed brown;">
-      <strong>Pali-Vietnamese Dictionaries</strong><br>
+    <strong style="color:green;">English Dictionary</strong>
+    <br>
+    <input name="ree1" id="ree1" type="checkbox" onclick='ChooseCheckbox("ree1")' /></input>
+    <label for="ree1">WN: [148,730 entries - 23.2 MB] Word-Net Eng-Eng dictionary</label>
+    &nbsp;&nbsp;
 
-    <select name="hpv1" id="hpv1" onchange='enableDictionary_select("hpv1")'>
-      <option value="000">Off</option><option value="005">5</option><option value="010">10</option>
-      <option value="015">15</option><option value="020">20</option><option value="025">25</option>
-      <option value="030">30</option><option value="035">35</option><option value="040">40</option>
-      <option value="045">45</option><option value="050">50</option><option value="055">55</option>
-      <option value="060">60</option><option value="065">65</option><option value="070">70</option>
-      <option value="075">75</option><option value="080">80</option><option value="085">85</option>
-      <option value="090">90</option><option value="095">95</option><option value="100">100</option>
-      <option value="105">105</option><option value="110">110</option><option value="115">115</option>
-      <option value="120">120</option><option value="125">125</option><option value="130">130</option>
-      <option value="135">135</option><option value="140">140</option><option value="145">145</option>
-      <option value="150">150</option>
-      </select>
-    <label> PV1: [17,423 entries - 902 KB] Pali Viet Dictionary  Bản dịch của ngài Bửu Chơn </label><br>
-
-    <select name="hpv2" id="hpv2" onchange='enableDictionary_select("hpv2")'>
-      <option value="000">Off</option><option value="005">5</option><option value="010">10</option>
-      <option value="015">15</option><option value="020">20</option><option value="025">25</option>
-      <option value="030">30</option><option value="035">35</option><option value="040">40</option>
-      <option value="045">45</option><option value="050">50</option><option value="055">55</option>
-      <option value="060">60</option><option value="065">65</option><option value="070">70</option>
-      <option value="075">75</option><option value="080">80</option><option value="085">85</option>
-      <option value="090">90</option><option value="095">95</option><option value="100">100</option>
-      <option value="105">105</option><option value="110">110</option><option value="115">115</option>
-      <option value="120">120</option><option value="125">125</option><option value="130">130</option>
-      <option value="135">135</option><option value="140">140</option><option value="145">145</option>
-      <option value="150">150</option>
-      </select>
-    <label> PV2: [3,827 entries -  214 KB] Pali Viet Abhidhamma Terms - ngài Tịnh Sự (phần ghi chú thuật ngữ)</label><br>
-
-    <select name="hpv3" id="hpv3" onchange='enableDictionary_select("hpv3")'>
-      <option value="000">Off</option><option value="005">5</option><option value="010">10</option>
-      <option value="015">15</option><option value="020">20</option><option value="025">25</option>
-      <option value="030">30</option><option value="035">35</option><option value="040">40</option>
-      <option value="045">45</option><option value="050">50</option><option value="055">55</option>
-      <option value="060">60</option><option value="065">65</option><option value="070">70</option>
-      <option value="075">75</option><option value="080">80</option><option value="085">85</option>
-      <option value="090">90</option><option value="095">95</option><option value="100">100</option>
-      <option value="105">105</option><option value="110">110</option><option value="115">115</option>
-      <option value="120">120</option><option value="125">125</option><option value="130">130</option>
-      <option value="135">135</option><option value="140">140</option><option value="145">145</option>
-      <option value="150">150</option>
-      </select>
-      <label> PV3: [914 entries - 253 KB] Pali Viet Vinaya Terms  Từ điển các thuật ngữ về luật do tỳ khưu Giác Nguyên sưu tầm. </label>
-    </div>
-
-    <div style="padding:8px;border: 1px dashed brown;">
-      <strong>Pali-Myanmar Dictionaries</strong><br>
-
-      <select name="hpm1" id="hpm1" onchange='enableDictionary_select("hpm1")'>
-      <option value="000">Off</option><option value="005">5</option><option value="010">10</option>
-      <option value="015">15</option><option value="020">20</option><option value="025">25</option>
-      <option value="030">30</option><option value="035">35</option><option value="040">40</option>
-      <option value="045">45</option><option value="050">50</option><option value="055">55</option>
-      <option value="060">60</option><option value="065">65</option><option value="070">70</option>
-      <option value="075">75</option><option value="080">80</option><option value="085">85</option>
-      <option value="090">90</option><option value="095">95</option><option value="100">100</option>
-      <option value="105">105</option><option value="110">110</option><option value="115">115</option>
-      <option value="120">120</option><option value="125">125</option><option value="130">130</option>
-      <option value="135">135</option><option value="140">140</option><option value="145">145</option>
-      <option value="150">150</option>
-      </select>
-      <label> PM1: [153,527 entries - 37.8 MB] Pali Word Grammar @2018</label><br>
-
-   <select name="hpm2" id="hpm2" onchange='enableDictionary_select("hpm2")'>
-      <option value="000">Off</option><option value="005">5</option><option value="010">10</option>
-      <option value="015">15</option><option value="020">20</option><option value="025">25</option>
-      <option value="030">30</option><option value="035">35</option><option value="040">40</option>
-      <option value="045">45</option><option value="050">50</option><option value="055">55</option>
-      <option value="060">60</option><option value="065">65</option><option value="070">70</option>
-      <option value="075">75</option><option value="080">80</option><option value="085">85</option>
-      <option value="090">90</option><option value="095">95</option><option value="100">100</option>
-      <option value="105">105</option><option value="110">110</option><option value="115">115</option>
-      <option value="120">120</option><option value="125">125</option><option value="130">130</option>
-      <option value="135">135</option><option value="140">140</option><option value="145">145</option>
-      <option value="150">150</option>
-      </select>
-      <label> PM2: [153,527 entries - 23.9 MB] Tipitaka Pali Myanmar @2018</label><br>
-
-   <select name="hpm3" id="hpm3" onchange='enableDictionary_select("hpm3")'>
-      <option value="000">Off</option><option value="005">5</option><option value="010">10</option>
-      <option value="015">15</option><option value="020">20</option><option value="025">25</option>
-      <option value="030">30</option><option value="035">35</option><option value="040">40</option>
-      <option value="045">45</option><option value="050">50</option><option value="055">55</option>
-      <option value="060">60</option><option value="065">65</option><option value="070">70</option>
-      <option value="075">75</option><option value="080">80</option><option value="085">85</option>
-      <option value="090">90</option><option value="095">95</option><option value="100">100</option>
-      <option value="105">105</option><option value="110">110</option><option value="115">115</option>
-      <option value="120">120</option><option value="125">125</option><option value="130">130</option>
-      <option value="135">135</option><option value="140">140</option><option value="145">145</option>
-      <option value="150">150</option>
-      </select>
-      <label> PM3: [58,095 entries - 7.01 MB] Pali Myanmar Dictionary @U Hau Sein 2018</label><br>
-
-   <select name="hpm4" id="hpm4" onchange='enableDictionary_select("hpm4")'>
-      <option value="000">Off</option><option value="005">5</option><option value="010">10</option>
-      <option value="015">15</option><option value="020">20</option><option value="025">25</option>
-      <option value="030">30</option><option value="035">35</option><option value="040">40</option>
-      <option value="045">45</option><option value="050">50</option><option value="055">55</option>
-      <option value="060">60</option><option value="065">65</option><option value="070">70</option>
-      <option value="075">75</option><option value="080">80</option><option value="085">85</option>
-      <option value="090">90</option><option value="095">95</option><option value="100">100</option>
-      <option value="105">105</option><option value="110">110</option><option value="115">115</option>
-      <option value="120">120</option><option value="125">125</option><option value="130">130</option>
-      <option value="135">135</option><option value="140">140</option><option value="145">145</option>
-      <option value="150">150</option>
-      </select>
-      <label> PM4: [1,882 entries - 441 KB] Pali Roots Dictionary @2018</label>
-    </div>
-
-    <div style="padding:8px;border: 1px dashed brown;">
-      <strong>Pali-Indonesian Dictionaries</strong><br>
-
-      <select name="hpd1" id="hpd1" onchange='enableDictionary_select("hpd1")'>
-      <option value="000">Off</option><option value="005">5</option><option value="010">10</option>
-      <option value="015">15</option><option value="020">20</option><option value="025">25</option>
-      <option value="030">30</option><option value="035">35</option><option value="040">40</option>
-      <option value="045">45</option><option value="050">50</option><option value="055">55</option>
-      <option value="060">60</option><option value="065">65</option><option value="070">70</option>
-      <option value="075">75</option><option value="080">80</option><option value="085">85</option>
-      <option value="090">90</option><option value="095">95</option><option value="100">100</option>
-      <option value="105">105</option><option value="110">110</option><option value="115">115</option>
-      <option value="120">120</option><option value="125">125</option><option value="130">130</option>
-      <option value="135">135</option><option value="140">140</option><option value="145">145</option>
-      <option value="150">150</option>
-      </select>
-      <label> PD1: [3,607 entries - 400 KB] Pali-Indonesian Suttacentral Offline 2016 </label>
-    </div>
-
-    <div style="padding:8px;border: 1px dashed brown;">
-      <strong>Pali-Germany Dictionaries</strong><br>
-
-      <select name="hpg1" id="hpdg1" onchange='enableDictionary_select("hpg1")'>
-      <option value="000">Off</option><option value="005">5</option><option value="010">10</option>
-      <option value="015">15</option><option value="020">20</option><option value="025">25</option>
-      <option value="030">30</option><option value="035">35</option><option value="040">40</option>
-      <option value="045">45</option><option value="050">50</option><option value="055">55</option>
-      <option value="060">60</option><option value="065">65</option><option value="070">70</option>
-      <option value="075">75</option><option value="080">80</option><option value="085">85</option>
-      <option value="090">90</option><option value="095">95</option><option value="100">100</option>
-      <option value="105">105</option><option value="110">110</option><option value="115">115</option>
-      <option value="120">120</option><option value="125">125</option><option value="130">130</option>
-      <option value="135">135</option><option value="140">140</option><option value="145">145</option>
-      <option value="150">150</option>
-      </select>
-      <label> PG1: [22,729 entries - 1.27 MB] Pali-Germany Suttacentral Offline 2016 </label>
-    </div>
-
-    <div style="padding:8px;border: 1px dashed brown;">
-      <strong>Pali-TW Chinese Dictionaries</strong><br>
-
-      <select name="hpc1" id="hpc1" onchange='enableDictionary_select("hpc1")'>
-      <option value="000">Off</option><option value="005">5</option><option value="010">10</option>
-      <option value="015">15</option><option value="020">20</option><option value="025">25</option>
-      <option value="030">30</option><option value="035">35</option><option value="040">40</option>
-      <option value="045">45</option><option value="050">50</option><option value="055">55</option>
-      <option value="060">60</option><option value="065">65</option><option value="070">70</option>
-      <option value="075">75</option><option value="080">80</option><option value="085">85</option>
-      <option value="090">90</option><option value="095">95</option><option value="100">100</option>
-      <option value="105">105</option><option value="110">110</option><option value="115">115</option>
-      <option value="120">120</option><option value="125">125</option><option value="130">130</option>
-      <option value="135">135</option><option value="140">140</option><option value="145">145</option>
-      <option value="150">150</option>
-      </select>
-      <label> PC1: [10,530 entries -  675 KB] Pali-Zh Suttacentral Offline 2016 </label><br>
-
-      <select name="hpc2" id="hpc2" onchange='enableDictionary_select("hpc2")'>
-      <option value="000">Off</option><option value="005">5</option><option value="010">10</option>
-      <option value="015">15</option><option value="020">20</option><option value="025">25</option>
-      <option value="030">30</option><option value="035">35</option><option value="040">40</option>
-      <option value="045">45</option><option value="050">50</option><option value="055">55</option>
-      <option value="060">60</option><option value="065">65</option><option value="070">70</option>
-      <option value="075">75</option><option value="080">80</option><option value="085">85</option>
-      <option value="090">90</option><option value="095">95</option><option value="100">100</option>
-      <option value="105">105</option><option value="110">110</option><option value="115">115</option>
-      <option value="120">120</option><option value="125">125</option><option value="130">130</option>
-      <option value="135">135</option><option value="140">140</option><option value="145">145</option>
-      <option value="150">150</option>
-      </select>
-      <label> PC2: [20,113 entries -  5.25 MB] Pali-Zh 12 in 1 @2018</label>
+    <label style="color:red;">Speech Repeat=</label>
+    <select name="speech_repeat" id="speech_repeat" onChange="ChooseSelect('speech_repeat');">
+        <option value="0">Off</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    ,&nbsp;&nbsp;
+    <label id="showspeed" style="color:red;">Speed=</label>
+    <input type="range" min=0.5 max=1.5 step=0.1 name="speech_speed" id="speech_speed" onChange="ChooseRange('speech_speed')" style="background:gray;">
   </div>
   <br><br>
 </div>
