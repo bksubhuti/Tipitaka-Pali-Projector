@@ -14,7 +14,6 @@ $.ajaxSetup({
 cache: true
 });
 
-
 //var dict_in_use = 0; //count dict in use
 var word;
 var parawith_percent;
@@ -23,7 +22,6 @@ var parawith_percent;
 */
 var keepChars = /[^a-zA-Zāīūṇṅñṃṁḷḍṭáàảãạăắằẳẵặâấầẩẫậóòỏõọôốồổỗộơớờởỡợéèẻẽẹêếềểễệúùủũụưứừửữựíìỉĩịýỳỷỹỵđ]/;
 //var rex = /([a-zA-Zāīūṇṅñṃṁḷḍṭáàảãạăắằẳẵặâấầẩẫậóòỏõọôốồổỗộơớờởỡợéèẻẽẹêếềểễệúùủũụưứừửữựíìỉĩịýỳỷỹỵđ]+)/gim; //add <span> to click for buttom para
-
 
 /*
 @ CHANGE DEFAULT CSS TEXT SIZE
@@ -37,7 +35,6 @@ var load_size_left = localStorage.getItem('size_left');
 var load_size_right = localStorage.getItem('size_right');
 
 var bg_color = localStorage.getItem('bg_color');
-
 
 $(window).on('load', function () {
 
@@ -119,7 +116,6 @@ $(".m1").css("line-height", writeline_heightright);
 $(":input#size_right").attr('value', load_size_right);
 }
 
-
 });
 
 /*
@@ -165,7 +161,6 @@ $(".m1").css("width", width_m1 + '%');
 }
 //else {} use css default r1 85%, m1 15% (15% for empty place to click)
 
-
 }//change textSize function
 
 /*
@@ -181,7 +176,6 @@ if ((color =="#f3ddb6") || (color =="#fff8dc")) {$(".r1").css("color","black"); 
 } else {$(".r1").css("color","#FFF2CC"); $(".m1").css("color","#FFF2CC"); }
 
 document.write.innerHTML = localStorage.setItem('bg_color', color);
-
 
 var font_color = {
 '#f3ddb6':['#000000'],
@@ -221,12 +215,10 @@ $(".b1").css("color", b1_color[color]);
 
 }//change backgroundColor function
 
-
 /*
 @ DICTIONARY VARIABLES AND PERFORM LOADING
 * MOVED TO loader.js to make it load dictionary data load in all browser?
 */
-
 
 //remove small floating button
 function smallrm() {
@@ -235,7 +227,6 @@ function smallrm() {
 var popupfixdel = document.getElementsByTagName("popupfix");
 for (var p = 0; p < popupfixdel.length; p++) { popupfixdel[p].innerHTML = ""; }
 }
-
 
 var voca_lowercase = "";
 var t = '';
@@ -307,8 +298,6 @@ document.write.innerHTML = localStorage.setItem('enablefuzzyinword', 1);
 }
 }//func enableFuzzy
 
-
-
 function word_click() {
 
 /*
@@ -367,7 +356,6 @@ return t;
 
 }//function word_click
 
-
 var para_text2 = "";
 /*
 @ DICTIONARY MODE (SHOW MEANINGS FOR WHOLE PARAGRAPH | SINGLE WORD)
@@ -390,7 +378,6 @@ $(".r1").not(".eachwmean").one("click", function () {
 $('popupfix').html(''); //delete old value first
 //$('popupfix').html('') is still reserve the place for next click, .remove() is not
 
-
 writemefinal = "";//reset
 known_totalword_parag = 0;
 
@@ -398,8 +385,6 @@ para_text = $(this).text();//get text
 para_text2 = para_text;
 
 breakParagraph2Word(para_text);//send to function to break them
-
-
 
 /*
 @ TO SCROLL THE TEXT UP TO THE LATEST CLICKED PARAGRAPH, WE HAVE 2 RELEVENT SOLUTIONS HERE.
@@ -446,9 +431,6 @@ $('#showfloatingpara').bind('click', function () { fp();});
 
 });
 
-
-
-
 /* Option function, now disabled
 @ After viewed the, class r11 can be click to popup meanings again, but only one word popup
 @ $(".r11").not(".eachwmean").bind('click', function () {});
@@ -478,8 +460,6 @@ $("popupfix").bind('click', function () {
 $(this).html('');// remove word popupfix
 });
 
-
-
 $(".click2delpara").bind('click', function () {
 //scroll(scroll_up.left,scroll_up.top);
 
@@ -497,7 +477,6 @@ $('popupfixbottom_del').remove();
 //$(this).text("Show again");
 //$(this).attr("class","showagain");
 });
-
 
 $(".m1").bind('click', function () {
 //scroll(scroll_up.left,scroll_up.top);
@@ -550,7 +529,6 @@ lookupCoordinator(t, 0);//$changecolor = $ns % 2; /
 
 });
 
-
 $(".m1").bind('click', function () {
 //scroll(scroll_up.left,scroll_up.top);
 //window.location.assign("#"+pclicktime);//scroll up to the latest clicked para
@@ -562,24 +540,20 @@ $("popupfix").html('');
 
 });
 
-
 } //End else for popup mode
 
 }); //Onload
-
 
 var all_better_meaning = "";
 var all_guess_meaning = "";
 var final_display_meaning = "";
 var better_meaning_grammar = "";
 
-
 var voca_lowercase = t.toLowerCase();
 
 var cee1; var m_ee1 = ""; var m_ee1s = "";
 
 found_count = 0;
-
 
 /*
 @ Function breakParagraph2Word to break paragraph text in to word by word
@@ -603,14 +577,12 @@ lookupCoordinator(p_words, 0);
 } //for loop
 } //function breakParagraph2Word
 
-
 /*
 @ Function lookupDict to search each dictionary STARTS
 @ lookupDict (dictarr,voca,guess_meaning,better_meaning,dictname);
 @ For example: lookupEachDict(pv1,t,"m_pv1","u_pv1","PV1","specialoption");
 @ specialoption: optional. Use this parameter to tell the app to apply a custom fon/function etc  to display your dictionary.
 */
-
 
 function lookupEachDict(dictarr, voca, guess_meaning, better_meaning, dictname, specialoption) {
 
@@ -692,16 +664,12 @@ if (foundsthing==1) {found_count++;foundsthing="";}
 
 }
 
-
-
-
 /*
 @ FUZZY IN WORD SEARCH / WORD-BREAK FUNCTION/ OTHER GUESSING methods
 @ THERE ARE A LOT OF THINGS TO DO FOR THIS
 */
 
 if (better_meaning_grammar.length < 1) {
-
 
 //@ Try 3
 //  look up pali ending with =a, so check whole word but ending with a
@@ -731,8 +699,6 @@ if ((dsd_deep_a.length < 1) && (fuzzySearchinword == 1)) {
 var gotsomething;
 var gotsomething_wbank;
 
-
-
 for (var r = 0; r < wlen; r++) {
 if (r == 0) {
 wr = wo.substring(0, wlen);
@@ -740,7 +706,6 @@ wr = wo.substring(0, wlen);
 wr = wo.substring(0, wlen - r);
 }
 var w1 = wr.length;
-
 
 //FUZZY ORDER:  > wordbreakdata > itself a again
 
@@ -775,7 +740,7 @@ wbreak = wbreak + "<font color='grey'><strong>" + wr + "</strong></font>" + "/<i
 
 dsd_deep += "<i><font color='brown'><strong>" + wr + "<font color='blue'><sup>("+ (Number(i)+1) +")</sup></font>" + "</strong></font></i>" + " --> " + "<font color='orange'><i><strong>" + ary[i] + "</strong></i></font></i>" + ": " + dictarr[ary[i]] + "<br>";
 
-wbreak = wbreak + "<font color='grey'><strong>" + wr + "<font color='blue'><sup><sup>("+ (Number(i)+1) +")</sup></sup></font>" + "</strong></font>" + "/<i>" + ary[i] + "</i>/" + " - ";	
+wbreak = wbreak + "<font color='grey'><strong>" + wr + "<font color='blue'><sup><sup>("+ (Number(i)+1) +")</sup></sup></font>" + "</strong></font>" + "/<i>" + ary[i] + "</i>/" + " - ";
 
 }
 
@@ -785,8 +750,7 @@ gotsomething = 1;
 }//word not empty
 }//for
 }//have in breakdata
-	
-	
+
 /*
 @ Try 5(2nd try in fuzzy) - dictionary itself
 */
@@ -869,7 +833,6 @@ specialoption = "";//unset special custom option after use for a particular dict
 all_better_meaning = all_better_meaning + better_meaning + better_meaning_grammar;
 all_guess_meaning = all_guess_meaning + guess_meaning;
 
-
 }//Function lookupDict ENDs
 
 /*
@@ -915,8 +878,6 @@ m_ee1 = m_ee1s;
 
 }
 
-
-
 //CHANGE THE ORDER OF DISPLAY: BETTER MEANING>THIS ORDER>GUESS MEANING
 //You can change the display name here also, for examle PE1 to whatever you name it.
 // Call look up function for your dictionary here
@@ -941,14 +902,12 @@ if (hpv2 == 1) { lookupEachDict(pv2, voca_lowercase, "m_pv2", "u_pv2", "PV2"); }
 
 if (hpv3 == 1) { lookupEachDict(pv3, voca_lowercase, "m_pv3", "u_pv3", "PV3"); }
 
-
 //if (hpm1 == 1) { lookupEachDict(pm1, voca_lowercase, "m_pm1", "u_pm1", "PM1", "ZawgyiFont"); }
 
 if (hpd1 == 1) { lookupEachDict(pd1, voca_lowercase, "m_pd1", "u_pd1", "PD1"); }
 if (hpg1 == 1) { lookupEachDict(pg1, voca_lowercase, "m_pg1", "u_pg1", "PG1"); }
 
 if (hpc1 == 1) { lookupEachDict(pc1, voca_lowercase, "m_pc1", "u_pc1", "PC1"); }
-
 
 /*
 @ RESULT AND ORDER OF MEANINGS
@@ -967,12 +926,10 @@ final_display_meaning += '<br><span style="text-size:2pt;color:grey;">Function f
 
 }
 
-
 writeme = "";//reset writeme
 writeme = word_ + "<font color='grey'> [known " + found_count + "" + "|" + dict_in_use + " dictionaries]</font>" + " " + final_display_meaning;
 
 if (found_count > 0) { known_totalword_parag++; }
-
 
 //If popup single word
 if (listMode == 0) {
@@ -1015,11 +972,9 @@ popupfixdel[0].innerHTML = smallpopup_dualtop;
 
 }//look up function ends
 
-
 /*
 @ function popup rolling paragraph
 */
-
 
 function fp() {
 
@@ -1039,7 +994,6 @@ function fp() {
 
 parawith_percent = "<popupfixbottom><popupfixbottom_del><div id=\"pid\" style=\"align:left;color:#FFF2CC;overflow-y: scroll;max-height:50%;padding:15px;position:fixed;bottom:0%;left:0%;right:0%;font-family: DejaVuSansCondensed;font-size:x-large; text-align:justify;font-weight:bold;background:#F7DBD0;border:2px solid orange;border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;-o-border-radius:4px;\" >" + "<span align=\"left\" style=\" font-family:DejaVuSansCondensed;color:#1f3763;font-weight:bold;\">" + "<span style='text-size:1pt;color:orange;margin-top:-10%;'><sup><sup><c> X </c></sup></sup></span>" + para_text + "</span><span style='color:grey;'>" + knownwp_short + "</span></font><br></div></popupfixbottom_del></popupfixbottom>";
 
-
 var popupfixdel = document.getElementsByTagName("popupfixbottom");
 //for (var p = 0; p < popupfixdel.length; p++) { popupfixdel[p].innerHTML = ""; }
 
@@ -1049,7 +1003,6 @@ popupfixdel[0].innerHTML = parawith_percent;
 //document.write.innerHTML = localStorage.setItem(floatingpara_no_str,n);
 
 } //end function
-
 
 /*
 @ ADDITIONAL FUNCTIONS
@@ -1121,8 +1074,8 @@ In addition, the reference data, including information on parallels, is not an
 
 */
 
-//Retrieved from: sc-offline-2016-11-30/sc/js/compiled.js. [Suttacentral Offline Website (2016)] 
-// Suttacentral's toMyanmar have 2 bugs : 
+//Retrieved from: sc-offline-2016-11-30/sc/js/compiled.js. [Suttacentral Offline Website (2016)]
+// Suttacentral's toMyanmar have 2 bugs :
 // 	1. whene there are 2 vowels connected togeter.
 //  2. where the ṃ is in the words(not at ending).
 //function toMyanmar(k) { k = k.toLowerCase() + " "; var m = { a: "အ", i: "ဣ", u: "ဥ", "ā": "အာ", "ī": "ဤ", "ū": "ဦ", e: "ဧ", o: "ဩ" }; var l = { i: "ိ", "ī": "ီ", u: "ု", "ū": "ူ", e: "ေ", "ṃ": "ံ", k: "က", kh: "ခ", g: "ဂ", gh: "ဃ", "ṅ": "င", c: "စ", ch: "ဆ", j: "ဇ", jh: "ဈ", "ñ": "ဉ", "ṭ": "ဋ", "ṭh": "ဌ", "ḍ": "ဍ", "ḍh": "ဎ", "ṇ": "ဏ", t: "တ", th: "ထ", d: "ဒ", dh: "ဓ", n: "န", p: "ပ", ph: "ဖ", b: "ဗ", bh: "ဘ", m: "မ", y: "ယ", r: "ရ", l: "လ", "ḷ": "ဠ", v: "ဝ", s: "သ", h: "ဟ" }; var a = { k: "က", g: "ဂ", "ṅ": "င", c: "စ", j: "ဇ", "ñ": "ဉ", "ṭ": "ဋ", "ḍ": "ဍ", "ṇ": "ဏ", t: "တ", d: "ဒ", n: "န", p: "ပ", b: "ဗ", m: "မ", y: "ယ", r: "ရ", l: "လ", "ḷ": "ဠ", v: "ဝ", s: "သ", h: "ဟ" }; var n = { kh: "1", g: "1", d: "1", dh: "1", p: "1", v: "1" }; var j, f, e, d, c; var b = ""; var g = 0; k = k.replace(/\&quot;/g, "`"); var h = false; while (g < k.length) { j = k.charAt(g - 2); f = k.charAt(g - 1); e = k.charAt(g); d = k.charAt(g + 1); c = k.charAt(g + 2); if (m[e]) { if (g == 0 || f == "a") { b += m[e] } else { if (e == "ā") { if (n[h]) { b += "ါ" } else { b += "ာ" } } else { if (e == "o") { if (n[h]) { b += "ေါ" } else { b += "ော" } } else { if (e != "a") { b += l[e] } } } } g++; h = false } else { if (l[e + d] && d == "h") { b += l[e + d]; if (c != "y" && !h) { h = e + d } if (a[c]) { b += "္" } g += 2 } else { if (l[e] && e != "a") { b += l[e]; g++; if (d != "y" && !h) { h = e } if (a[d] && e != "ṃ") { b += "္" } } else { if (!l[e]) { b += e; g++; if (m[d]) { if (m[d + c]) { b += m[d + c]; g += 2 } else { b += m[d]; g++ } } h = false } else { h = false; g++ } } } } } b = b.replace(/ဉ္ဉ/g, "ည"); b = b.replace(/္ယ/g, "ျ"); b = b.replace(/္ရ/g, "ြ"); b = b.replace(/္ဝ/g, "ွ"); b = b.replace(/္ဟ/g, "ှ"); b = b.replace(/သ္သ/g, "ဿ"); b = b.replace(/င္/g, "င်္"); pmm = b.slice(0, -1); return b.slice(0, -1) }
@@ -1138,7 +1091,6 @@ function toDevar(l) { l = l.toLowerCase() + " "; var m = { a: " अ", i: " इ",
 //Retrieved from: sc-offline-2016-11-30/sc/js/compiled.js. [Suttacentral Offline Website (2016)]
 // modify errers @ 20180516
 function toThai(m) { m = m.toLowerCase() + " "; var n = { a: "1", "ā": "1", i: "1", "ī": "1", "iṃ": "1", u: "1", "ū": "1", e: "2", o: "2" }; var j = { a: "อ", "ā": "า", i: "ิ", "ī": "ี", "iṃ": "ึ", u: "ุ", "ū": "ู", e: "เ", o: "โ", "ṃ": "ํ", k: "ก", kh: "ข", g: "ค", gh: "ฆ", "ṅ": "ง", c: "จ", ch: "ฉ", j: "ช", jh: "ฌ", "ñ": "ญ", "ṭ": "ฏ", "ṭh": "ฐ", "ḍ": "ฑ", "ḍh": "ฒ", "ṇ": "ณ", t: "ต", th: "ถ", d: "ท", dh: "ธ", n: "น", p: "ป", ph: "ผ", b: "พ", bh: "ภ", m: "ม", y: "ย", r: "ร", l: "ล", "ḷ": "ฬ", v: "ว", s: "ส", h: "ห" }; var a = { k: "1", g: "1", "ṅ": "1", c: "1", j: "1", "ñ": "1", "ṭ": "1", "ḍ": "1", "ṇ": "1", t: "1", d: "1", n: "1", p: "1", b: "1", m: "1", y: "1", r: "1", l: "1", "ḷ": "1", v: "1", s: "1", h: "1" }; var l, h, g, f, e, d, b; var c = ""; var k = 0; m = m.replace(/\&quot;/g, "`"); while (k < m.length) { l = m.charAt(k - 2); h = m.charAt(k - 1); g = m.charAt(k); f = m.charAt(k + 1); e = m.charAt(k + 2); d = m.charAt(k + 3); b = m.charAt(k + 4); if (n[g]) { if (g == "o" || g == "e") { c += j[g] + j.a; k++ } else { if (k == 0) { c += j.a } if (g == "i" && f == "ṃ") { c += j[g + f]; k++ } else { if (g != "a") { c += j[g] } } k++ } } else { if (j[g + f] && f == "h") { if (e == "o" || e == "e") { c += j[e]; k++ } c += j[g + f]; if (a[e]) { c += "ฺ" } k = k + 2 } else { if (j[g] && g != "a") { if (f == "o" || f == "e") { c += j[f]; k++ } c += j[g]; if (a[f] && g != "ṃ") { c += "ฺ" } k++ } else { if (!j[g]) { c += g; if (a[h] || (h == "h" && a[l])) { c += "ฺ" } k++; if (f == "o" || f == "e") { c += j[f]; k++ } if (n[f]) { c += j.a } } else { k++ } } } } } if (a[g]) { c += "ฺ" } c = c.replace(/\`+/g, '"'); pthai = c.slice(0, -1); return c.slice(0, -1); };
-
 
 /*
 @ Converter callers:
@@ -1290,7 +1242,6 @@ function encodingConverter_example(text_in) {//code here }
 @ Hide loading message
 @ Reference https://css-tricks.com/snippets/jquery/display-loading-graphic-until-page-fully-loaded/
 */
-
 
 //$.holdReady('hold'); //hold ready
 

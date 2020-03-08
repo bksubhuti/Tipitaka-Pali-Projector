@@ -1,7 +1,7 @@
 /*
 Pali - Germany Dictionary
 
-Source: Dictionary database is adapted from from pi2de-maindata-v1.2.js from SuttaCentral Offline (2016). 
+Source: Dictionary database is adapted from from pi2de-maindata-v1.2.js from SuttaCentral Offline (2016).
 There is a license file in its main folder stated as bellow
 
 SuttaCentral Copyright
@@ -1201,7 +1201,7 @@ var pg1 = {
 'ajjhesanā':['(f) (dringende) Bitte'],
 'ajjhesati':['erbitten, verlangen (bes Dhamma Unterweisung bzw Rezitation)'],
 'ajjhesita':['(PP von) ajjhesati'],
-' ajjhiṭṭha':['(PP von) ajjhesati'],
+'ajjhiṭṭha':['(PP von) ajjhesati'],
 'ajjheti':['sich sorgen'],
 'ajjhiṭṭha':['(PP von) ajjhesati'],
 'ajjhobhavati':['überwinden, überwältigen'],
@@ -4916,7 +4916,7 @@ var pg1 = {
 'babbaja':['(m) (Bot) Indisches Krähenfußgras, Fingerhirse (Eleusine Indica)'],
 'babbajapādukā':['(f) aus Gras gefertigter Schuh'],
 'babbu':['(m) (Zool) Zibetkatze, Palmkatze (Viverra ichneumon)'],
-' babbuka':['(m) (Zool) Zibetkatze, Palmkatze (Viverra ichneumon)'],
+'babbuka':['(m) (Zool) Zibetkatze, Palmkatze (Viverra ichneumon)'],
 'badara':['(n) (Frucht) Indische Pflaume, Jujuba (Zizyphus mauritania)'],
 'badaramissa':['(Adj) mit Jujuba(-Saft) gemischt'],
 'badarayūsa':['(m) Jujuba-Saft'],
@@ -7632,7 +7632,7 @@ var pg1 = {
 'gabbhakaraṇa':['(n) Schwängerung'],
 'gabbhamala':['(n Anat) Kindspech (Mekonium)'],
 'gabbhapariharaṇa':['(n) ritueller Schutz des Fötus'],
-' gabbhaparihāra':['(m) ritueller Schutz des Fötus'],
+'gabbhaparihāra':['(m) ritueller Schutz des Fötus'],
 'gabbhapātana':['(n) Abtreibung'],
 'gabbhara':['(n) Höhle, Höhlung'],
 'gabbhaseyyā':['(f) Mutterschoß'],
@@ -9233,8 +9233,8 @@ var pg1 = {
 'kaḷebara':['(m n) 1. Körper; 2. Leiche, Leichnam'],
 'kaḷevara':['(n) Körper, Leiche, toter Körper'],
 'kaḷimbaka':['Markierung (od) Zeichen um die Naht-Zwischenräume beim Nähen gleichmäßig zu bekommen'],
-' kaḷimbha':['Markierung (od) Zeichen um die Naht-Zwischenräume beim Nähen gleichmäßig zu bekommen'],
-' kaḷimbhaka':['Markierung (od) Zeichen um die Naht-Zwischenräume beim Nähen gleichmäßig zu bekommen'],
+'kaḷimbha':['Markierung (od) Zeichen um die Naht-Zwischenräume beim Nähen gleichmäßig zu bekommen'],
+'kaḷimbhaka':['Markierung (od) Zeichen um die Naht-Zwischenräume beim Nähen gleichmäßig zu bekommen'],
 'kaḷīra':['(n) 1. (Bambus, Kokospalme) Wipfelspross; 2. essbarer Bambusspross'],
 'kaḷopī':['(f) 1. Gefäß, Behälter, Behältnis, Topf, Korb'],
 'kaḷopīhattha':['(Adj) mit einem Topf in der Hand'],
@@ -10168,7 +10168,7 @@ var pg1 = {
 'kākolūka':['(m) Krähen und Eulen'],
 'kākoravasadda':['Geräusch von Krähen, Krähengekrächz'],
 'kākuḍḍepaka':['(m) Krähenverscheucher; Junge unter fünfzehn Jahren'],
-' kākuṭṭepaka':['(m) Krähenverscheucher; Junge unter fünfzehn Jahren'],
+'kākuṭṭepaka':['(m) Krähenverscheucher; Junge unter fünfzehn Jahren'],
 'kāḷa':['(Adj) dunkel, schwarz, schwarzblau'],
 'kāḷadaṇḍa':['(m) schwarzer Stock ((Epitheton der Boten des) Yama)'],
 'kāḷaloha':['(n) Eisen(-erz)'],
@@ -11072,7 +11072,7 @@ var pg1 = {
 'kuṇḍalin':['(Adj) 1. Ohrringe tragend; 2. geringelt'],
 'kuṇḍikā':['(f) Krug, Wassertopf'],
 'kuṇin':['(m) Krüppel'],
-' kuṇī':['(m) Krüppel'],
+'kuṇī':['(m) Krüppel'],
 'kuṇṭha':['1: (Adj) 1. schlaff, lahm; 2. stumpf; 3. verstümmelt, 2: (m) Krüppel'],
 'kunda':['(m Bot) Jasminart (Jasminum pubescens)'],
 'kunnadī':['(f) Flüsschen'],
@@ -12173,7 +12173,7 @@ var pg1 = {
 'miyyati':['sterben'],
 'mīḷha':['(n) Urin'],
 'mīḷhakā':['Jauchegrube'],
-' mīḷhakūpa':['Jauchegrube'],
+'mīḷhakūpa':['Jauchegrube'],
 'mīyati':['→ miyyati (Pass von) marati sterben'],
 'moca':['(m Bot) Banane (Musa ornata (od) Musa paradisiaca)'],
 'mocana':['(n) 1. Befreien; 2. Entlassen, Freigeben; 3. Fließenlassen'],
@@ -13469,7 +13469,7 @@ var pg1 = {
 'odātakasiṇa':['(n Meditationsart) Weißkasiṇa'],
 'odātavaṇṇa':['(Adj) hellfarbig'],
 'odātavasana':['(Adj) (Buddh Laienanhänger) weißgekleidet'],
-' odātavattha':['(Adj) (Buddh Laienanhänger) weißgekleidet'],
+'odātavattha':['(Adj) (Buddh Laienanhänger) weißgekleidet'],
 'odhāniva':['(n) Behälter'],
 'odhastapatoda':['(Adj) mit schräg eingestecktem Treibstachel'],
 'odhi':['(m) 1. Grenze, Grenzpunkt; 2. Rand; 3. Termin; 4. Anteil'],
@@ -20222,7 +20222,7 @@ var pg1 = {
 'ukkusa':['(m) Fischadler'],
 'ukkuṭika':['(Adj) 1. (Fußabdruck) nur Ferse und Zehen zeigend; 2. (Art des bewegungslosen Hockens); 3. auf den Zehenspitzen (bzw) auf den Fersen (od) in der Hocke („Entengang“) gehend'],
 'ukkuṭikāgamana':['(n Asket) Gehen nur auf den Zehenspitzen (od) auf den Fersen'],
-' padhāna':['(n Asket) Gehen nur auf den Zehenspitzen (od) auf den Fersen'],
+'padhāna':['(n Asket) Gehen nur auf den Zehenspitzen (od) auf den Fersen'],
 'ukkuṭikanisīdana':['(Vin) besondere (unerlaubte) Art zu sitzen (Hocken, Kauern)'],
 'ukkuṭṭhi':['(f) Aufschrei, Ausruf'],
 'ukkuṭeti':['(Denom Jur Vin) ein abgeschlossenes Verfahren wieder aufnehmen'],

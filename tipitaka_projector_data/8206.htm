@@ -1,644 +1,734 @@
 <!DOCTYPE HTML PUBLIC 'http://www.w3.org/TR/html4/loose.dtd'>
 <html>
 <head>
-	<title>Dīghanikāya (pu-vi)</title>
-	<meta http-equiv='content-type' content='text/html; charset=UTF-8'> 
-	<link rel="TIPITAKA PROJECTOR ICON" href="images/favico.ico" />
-	<link rel="stylesheet" type="text/css" href="dictionary/projector_style.css" />
-	<link rel="stylesheet" type="text/css" href="dictionary/z_projector_style.css" />
+  <title>Dīghanikāya (pu-vi)</title>
+  <meta http-equiv='content-type' content='text/html; charset=UTF-8'> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="TIPITAKA PROJECTOR ICON" href="images/favico.ico" />
+  <link rel="stylesheet" type="text/css" href="js/index_style.css" />
+  <link rel="stylesheet" type="text/css" href="js/index_style2.css" />
+  <style>
+    *{
+      margin:0;
+      padding:0;
+    }
+    #ResizeDrag{
+      position:absolute;
+      right:0px;
+      bottom:-10px;
+      cursor:nw-resize;
+      overflow:hidden;
+      float:right;
+      z-index:3;
+    } 
+
+    #ResizeRight{
+      width:10px;
+      height:100%;
+      background:#f00;
+      position:absolute;
+      right:0;
+      top:0;
+      cursor: e-resize;
+      overflow:hidden;
+      filter:alpha(opacity:0);
+      opacity:0;
+      z-index:3;
+    }
+    #ResizeBottom{
+      width:100%;
+      height:10px;
+      background:#f00;
+      position:absolute;
+      left:0;
+      bottom:0;
+      cursor:n-resize;
+      overflow:hidden;
+      filter:alpha(opacity: 0;);
+      opacity: 0;
+      z-index:3;
+    }
+    #ResizeLeft{
+      width:10px;
+      height:100%;
+      background:#f00;
+      position:absolute;
+      left:0;
+      top:0;
+      cursor: e-resize;
+      overflow:hidden;
+      filter:alpha(opacity:0);
+      opacity:0;
+      z-index:3;
+    }
+    #divDragIcon{
+      cursor:move;
+      overflow:hidden;
+    }
+  </style>
+
+  <script>
+    function change_tab(id) {
+      document.write = localStorage.setItem('main_content', id);
+      for (var i =1; i<=5; i++) { 
+        document.getElementById("page" + i +"_desc").style.display = "none";
+          document.getElementById("page" + i).className="notselected";
+      }  
+      document.getElementById(id).className="selected";
+      document.getElementById(id + "_desc").style.display = "inline";
+
+      if (id == "page2") {    // declension 
+        document.getElementById('DictionaryKey').style.display = 'none';
+        document.getElementById('GoDictionary').style.display = 'none';
+        document.getElementById('DeclensionKey').style.display = 'inline';
+        document.getElementById('GoDeclension').style.display = 'inline';
+
+        var val = document.getElementById('DeclensionKey').value.trim();
+        document.getElementById('DeclensionKey').value = val;
+        
+        DeclensionSearch();
+        DeclensionTable(val);
+        // document.getElementById('DeclensionKey').focus();
+      } else {
+        document.getElementById('DictionaryKey').style.display = 'inline';
+        document.getElementById('GoDictionary').style.display = 'inline';
+        document.getElementById('DeclensionKey').style.display = 'none';
+        document.getElementById('GoDeclension').style.display = 'none';
+      }
+
+      if (id == "page4") {    // TOC
+        PaliHistoryList();
+      }
+      if (id == "page5") {    // history
+        DictHistoryList();
+      }
+     }
+  </script>
 </head>
 
-<body style='margin-top:0.0pt;margin-right:0in;margin-bottom:0in;margin-left:0in;margin-bottom:0pt;'> 
+<body style='background-color: black; margin-top:0.0pt;margin-right:0in;margin-bottom:0in;margin-left:0in;margin-bottom:0pt;'>
+    <div id="main_div">
 
-<!---add dictionary function--->
-<div id="loader"></div>
-<script src="dictionary/jquery-3.3.1.min.js"></script>
-<script src="dictionary/stlookup_jquery.js"></script>
-<script src="dictionary/z_stfunction.js"></script>
-<script src="dictionary/z_stfunction1.js"></script>
-<script src="dictionary/z_stfunction2.js"></script>
-<script src="dictionary/z_stfunction3.js"></script>
-<script src="dictionary/z_stfunction4.js"></script>
-<script src="dictionary/z_tipitaka_Maps.js"></script>
-<script src="dictionary/z_Sr_Search.js"></script>
-<popupfix></popupfix>
-<!---End of add dictionary function--->
+      <li class="selected" id="page1" onclick="change_tab(this.id);">
+        <span onClick="paliGoBack()">&nbsp;<img src="images/redo.png">&nbsp;</span>&nbsp;&nbsp;
+        Dictionary
+        <input type="textbox" style="max-width:85%;width:85pt;display:inline;" id="DictionaryKey" name="DictionaryKey">
+        <input type="button" value="Go" onClick="DictionaryKeyGo();" id="GoDictionary">
+      </li>
 
-<div id="BookTip" class='BookTip'></div> 
+      <li class="notselected" id="page2" onclick="change_tab(this.id);">
+        Declension
+        <input type="textbox" style="max-width:85%;width:85pt;display:none;" id="DeclensionKey" name="DeclensionKey" onKeyup="DeclensionSearch();">
+        <input type="button" value="Go" onClick="DictionaryKeyGo();" id="GoDeclension" style="display:none;">
+      </li>
 
-<div id="selectx" style='font-family:Tahoma;visibility:hidden;display:scroll;position:fixed;width:100%;top:0px;right:0px;background-color:#ffffc0;overflow-y:scroll;max-height:80%;'>
-<br>
-<table border=0 width=100% cellspacing="0" cellpadding="1">
-	<tr bgcolor='#ffffc0'>
-		<td align='center'>
-			<div class='div_border'>
-				<label style="color:brown;">Left text</label><br>
-				<select name="bg_color" id="size_left" onchange="textSize('size_left')">   
-					<option value="0.6"> x 0.6</option>
-					<option value="0.7"> x 0.7</option>
-					<option value="0.8"> x 0.8</option>
-					<option value="0.9"> x 0.9</option>
-					<option value="1.0"> x 1.0</option>
-					<option value="1.1"> x 1.1</option>
-					<option value="1.2"> x 1.2</option>
-					<option value="1.3"> x 1.3</option>
-					<option value="1.4"> x 1.4</option>
-					<option value="1.5"> x 1.5</option>
-					<option value="1.6"> x 1.6</option>
-					<option value="1.7"> x 1.7</option>
-					<option value="1.8"> x 1.8</option>
-					<option value="1.9"> x 1.9</option>
-					<option value="2.0"> x 2.0</option>
-					<option value="2.2"> x 2.2</option>
-					<option value="2.4"> x 2.4</option>
-					<option value="2.6"> x 2.6</option>
-					<option value="2.8"> x 2.8</option>
-					<option value="3.0"> x 3.0</option>
-				</select>
-				&nbsp;&nbsp;&nbsp;
-				<select name="bg_color" id="font_left" onchange="textFont('font_left')"> 
-					<option value="DejaVuSansCondensed">DejaVuSansCondensed</option> 
-					<option value="Calibri">Calibri</option>
-					<option value="Calibri Light">Calibri Light</option>
-					<option value="Palatino Linotype">Palatino Linotype</option>
-					<option value="Tahoma">Tahoma</option>
-					<option value="Times New Roman">Times New Roman</option>
-					<option value="Verdana">Verdana</option>
-				</select>
-			</div>
-		</td>
-		<td align='center'> 
-			<div class='div_border'> 
-				<label style="color:brown;">Background color</label><br>
-				<select name="bg_color" id="bg_color" onchange="back_color('bg_color');"> 
-					<option value="#f3ddb6" style="background:#f3ddb6;color:#000000;"> Classic Reader</option> 
-					<option value="#fff8dc" style="background:#fff8dc;color:#000000;"> CornSilk</option>
-					<option value="#1f3763" style="background:#1f3763;color:#fffffe;"> Blue sky </option>
-					<option value="#000001" style="background:#000001;color:#ffffff;"> Night 1 </option>
-					<option value="#121212" style="background:#121212;color:#b0b0b0;"> Night 2 </option>
-					<option value="#010101" style="background:#010101;color:#937811;"> Night 3 </option>
-					<option value="#1e1e1e" style="background:#1e1e1e;color:#628754;"> Night 4 </option>
-					<option value="#090c11" style="background:#090c11;color:#2d3d4a;"> Night 5 </option>
-					<option value="#3c3c3c" style="background:#3c3c3c;color:#cecece;"> Dawn 1 </option>
-					<option value="#5a5a5a" style="background:#5a5a5a;color:#cacaca;"> Dawn 2 </option>
-					<option value="#d7d4cd" style="background:#d7d4cd;color:#626262;"> Dawn 3 </option>
-					<option value="#e0e0e0" style="background:#e0e0e0;color:#202020;"> Day 1 </option>
-					<option value="#f0f0f0" style="background:#f0f0f0;color:#008000;"> Day 2 </option>
-					<option value="#fefefe" style="background:#fefefe;color:#000000;"> Day 3 </option>
-					<option value="#d8cbab" style="background:#d8cbab;color:#000001;"> Evening 1 </option>
-					<option value="#e2bdb4" style="background:#e2bdb4;color:#010101;"> Evening 2 </option>
-				</select>
-			</div>
-		</td>
-		<td align='center'> 
-			<div class='div_border'>  
-				<label style="color:brown;">Right text</label><br>
-				<select name="bg_color" id="size_right" onchange="textSize('size_right')">  
-					<option value="0.6"> x 0.6</option>
-					<option value="0.7"> x 0.7</option>
-					<option value="0.8"> x 0.8</option>
-					<option value="0.9"> x 0.9</option>
-					<option value="1.0"> x 1.0</option>
-					<option value="1.1"> x 1.1</option>
-					<option value="1.2"> x 1.2</option>
-					<option value="1.3"> x 1.3</option>
-					<option value="1.4"> x 1.4</option>
-					<option value="1.5"> x 1.5</option>
-					<option value="1.6"> x 1.6</option>
-					<option value="1.7"> x 1.7</option>
-					<option value="1.8"> x 1.8</option>
-					<option value="1.9"> x 1.9</option>
-					<option value="2.0"> x 2.0</option>
-					<option value="2.2"> x 2.2</option>
-					<option value="2.4"> x 2.4</option>
-					<option value="2.6"> x 2.6</option>
-					<option value="2.8"> x 2.8</option>
-					<option value="3.0"> x 3.0</option>
-				</select>
-				&nbsp;&nbsp;&nbsp;
-				<select name="bg_color" id="font_right" onchange="textFont('font_right')"> 
-					<option value="DejaVuSansCondensed">DejaVuSansCondensed</option> 
-					<option value="Calibri">Calibri</option>
-					<option value="Calibri Light">Calibri Light</option>
-					<option value="Palatino Linotype">Palatino Linotype</option>
-					<option value="Tahoma">Tahoma</option>
-					<option value="Times New Roman">Times New Roman</option>
-					<option value="Verdana">Verdana</option>
-				</select>
-			</div>
-		</td>
-		<td width="10%"> 
-		</td>
-	</tr>
+      <li class="notselected" id="page3" onclick="change_tab(this.id);">Paragraph</li> 
+      <li class="notselected" id="page4" onclick="change_tab(this.id);">TOC</li>
+      <li class="notselected" id="page5" onclick="change_tab(this.id);">Misc.</li>   
+      <li class="notselected" id="Pali1" title="Mūla"><span style="color:blue;" onClick="MATurlGo('1')"><img src="images/m.png" title="Mūla"></span></li>
+      <li class="notselected" id="Pali2" title="Aṭṭhakathā"><span style="color:blue;" onClick="MATurlGo('2')"><img src="images/a.png" title="Aṭṭhakathā"></span></li>
+      <li class="notselected" id="Pali3" title="Ṭīkā"><span style="color:blue;" onClick="MATurlGo('3')"><img src="images/t.png" title="Ṭīkā"></li>
+
+      <li class="notselected" onClick="window.location.href='preferences.htm'" title="Preferences">
+        <img src="images/s_process.png" width="25" style="display:scroll;position:relative;top:8px;left:2px;"></li>
+      <li class="notselected" onClick="window.location.href='search.htm'" title="Seach">
+        <img src="images/search.png" width="25" style="display:scroll;position:relative;top:8px;left:2px;"></li>
+      <li class="notselected" onClick="window.location.href='index8.htm'" title="Home">
+        <img src="images/home.png" width="25" width="25" style="display:scroll;position:relative;top:5px;left:2px;"></li> 
+      <span id="message" style="font-size:10pt;" title="Id=Id-No. Para=Paragraph No. M=Myanmar PageNo. P=PTS PageNo."></span>
+      
+      <div id="TmpDictionary" style="display:inline;margin-left:10px; margin-top: 5px;">
+      </div>  
+      <div style="display:inline;margin-left:10px; margin-top: 50px; width:100%;">
+        <div id="iPad" style="display:inline">
+          <select id="iPadDirection" onchange="iPadDirection()">   
+            <option value="NW">Top-Left</option>
+            <option value="NE">Top-Right</option>
+            <option value="SE">Bottom-Right</option>
+            <option value="SW">Bottom-Left</option>
+          </select>
+          <span id="iPadW">W</span>
+          <select id="iPadWidth" onchange="iPadWidth()">
+            <option value=""></option>   
+          </select>
+          <span id="iPadH">H</span>
+          <select id="iPadHeight" onchange="iPadHeight()">   
+            <option value=""></option>   
+          </select>
+        </div>
+        
+        <div id="PC" style="display:inline">
+          <div id="divDragIcon" style="z-index:3;float:right;overflow:hidden;position:static;top:10px;right:0px;width:25px;height:25px;"><h2><img src="images/drag.png"></h2></div> 
+          <div id="ResizeDrag"><img src="images/resize.png" width="35"></div>
+        </div>
+    </div>
+
+      <div id="ResizeRight"></div>  
+      <div id="ResizeBottom"></div>   
+
+      <div id="main_content" style="overflow-y:scroll;padding-top:5px;height:160px;width:100%;">  
+        <div id="page1_desc" class="pages" style="max-height: 80%;height: 80%;overflow-y: scroll;">
+        </div>
+
+        <div id="page2_desc" class="pages2" style="display:none;padding-top: 1px;overflow-x:auto;overflow-y: auto;width:100%;">
+          <img src="images/s_info.png" onMouseover="document.getElementById('info').style.display='inline';" onMouseout="document.getElementById('info').style.display='none';">
+          <span id="info" style="display:none;font-size:10pt;"><br>Velthuis Pali Letters,<br>Wildcard Search, Ex:*sa, *sa*</span>
+          
+          <select id="DeclensionTips2" class="DeclensionSelect" onChange="DeclensionShow('FromTips2');document.getElementById('page2_desc').scrollIntoView();" >
+          </select>
+
+          <div id='DeclensionResult' class="DeclensionResult"></div><br>
+        </div> 
+
+        <div id="page3_desc" class="pages" style="display:none;overflow-y:none;"> 
+          <div id='ParagraphDictionary'> 
+          </div>
+        </div>
+        <input type="hidden" id="ParagraphWords" value="">
+
+        <div id="page4_desc" class="pages2" style="display:none;align:center;">
+          <div class="page4" style="line-height: 250%;"> 
+            <select name="Toc" id="Toc" onchange="goToc();">
+            	<option value="0">Sīlakkhandhavaggasutta</option>
+            	<option value="1">__Saṃgāyanassa pucchā vissajjanā</option>
+            	<option value="2">Brahmajālasutta</option>
+            	<option value="3">____Anusandhe</option>
+            	<option value="4">____Paṭhama anusandhe</option>
+            	<option value="5">____Dutiya anusandhe</option>
+            	<option value="6">____Tatiya anusandhe</option>
+            	<option value="7">____Suttanidesanā</option>
+            	<option value="8">Sāmaññaphalasutta</option>
+            	<option value="9">____Ajātasattu</option>
+            	<option value="10">____Charājīvaka</option>
+            	<option value="11">____Ajātasattu</option>
+            	<option value="12">____Ajātasatta</option>
+            	<option value="13">____Pūraṇakassapa ayūvāda</option>
+            	<option value="14">____Pūraṇakassapavāda</option>
+            	<option value="15">____Makkhaligosāla ayūvāda</option>
+            	<option value="16">____Makkhaligosālavāda</option>
+            	<option value="17">____Ajitakesakambalavāda</option>
+            	<option value="18">____Ajitakesakambala</option>
+            	<option value="19">____Pakudhakaccāyanavāda</option>
+            	<option value="20">____Pakudhakaccāyanavāda</option>
+            	<option value="21">____Nigaṇṭhanāṭaputtavāda</option>
+            	<option value="22">____Nigaṇṭhavāda</option>
+            	<option value="23">____Siñcaññavāda</option>
+            	<option value="24">____Titthiayūvāda</option>
+            	<option value="25">____Ambaṭṭhasutta</option>
+            	<option value="26">____Soṇadaṇḍasutta</option>
+            	<option value="27">____Kūṭadantasutta</option>
+            	<option value="28">____Mahālisutta</option>
+            	<option value="29">____Jāliyasutta</option>
+            	<option value="30">____Mahāsīhanādasutta</option>
+            	<option value="31">____Poṭṭhapādasutta</option>
+            	<option value="32">____Subhasutta</option>
+            	<option value="33">____Kevaṭṭasutta</option>
+            	<option value="34">____Lohiccasutta</option>
+            	<option value="35">____Tevijjasutta</option>
+            	<option value="36">____Mahāpadānasutta</option>
+            	<option value="37">____Mahānidānasutta</option>
+            	<option value="38">____Mahāparinibbānasutta</option>
+            	<option value="39">____Jarāsutta</option>
+            	<option value="40">____Attadīpa dhammadesanā</option>
+            	<option value="41">____Catumahāpadesa</option>
+            	<option value="42">____Saṃvega</option>
+            	<option value="43">____Mahāsudassanasutta</option>
+            	<option value="44">____Parinibbānasutta</option>
+            	<option value="45">____Janavasabhasutta</option>
+            	<option value="46">____Mahāgovindasutta</option>
+            	<option value="47">____Mahāsamayasutta</option>
+            	<option value="48">____Sakkapañhasutta</option>
+            	<option value="49">____Mahāsatipaṭṭhānasutta</option>
+            	<option value="50">____Pāyāsisutta</option>
+            	<option value="51">____Udumbarikasutta</option>
+            	<option value="52">____Cakkavattisutta</option>
+            	<option value="53">____Aggaññasutta</option>
+            	<option value="54">____Pāsādikasutta</option>
+            	<option value="55">____Lakkhaṇasutta</option>
+            	<option value="56">____Siṅgālasutta</option>
+            	<option value="57">____Āṭānāṭiyasutta</option>
+            	<option value="58">____Saṅgītisutta</option>
+            	<option value="59">____Dasuttarasutta</option>
+            </select>
+            <span id="page4break1"></span>
+
+            <input name="Reference" id="Pgnum" value="0" type="radio" checked>
+            <label for="Pgnum" >Page...</label>
+            <input name="Reference" id="Prnum" value="1" type="radio">
+            <label for="Prnum" >Paragraph...</label>
+            <span id="page4break2"></span>
+
+            <input name="Reference" id="PTS" value="2" type="radio">
+            <label for="PTS" >PTS No...</label> 
+            <input type="Textbox" name="PageNo" id="PageNo" value="" style="font-size:11pt;width:100%;max-width:40pt;" onBlur="goUrl()">
+            <br> 
+
+            <div style="line-height: 110%;">
+              <div onClick="document.getElementById('QuickJumpTipsShow').style.display='inline';" style="color:blue;">
+                <img src="images/s_info.png">Tips
+              </div>
+              <div id="QuickJumpTipsShow" onClick="this.style.display='none'" style="color:#440000;font-size:11pt;display:none;">[sn1 99]= Jump to sn1 Paragraph 99,<br>[sn1 m99]= Jump to sn1 Myanmar Page 99,<br>[sn1 p99] or [sn1 pts99]= Jump to sn1 PTS Page 99.<br>
+              </div>
+            </div>
+            Quick Jump
+            <input type="Textbox" name="QuickJump" id="QuickJump" value="" style="font-size:11pt;width:100%;max-width:60pt;" onBlur="QuickJump()" onKeyup="QuickJumpTips()">
+              <input id="QuickJumpNewTab" type="checkbox" value="0"></input>
+              <label for="QuickJumpNewTab">Open at New Tab</label><br>
+            <span id="QuickJumpTips" style="color:#440000;"></span>
+          </div>
+          <span id="page4break3"></span>
+
+          <div class="page4"> 
+            <img src='images/b_browse.png'>History
+            <span id='palihistory' style="font-size:10pt;color:blue;"></span>&nbsp;&nbsp;
+          </div>
+        </div>
+
+        <div id="page5_desc" class="pages2" style="display:none;">
+          <div class="page5"> 
+            <img src='images/b_browse.png'>Dictionary History
+            <span id='dicthistory' style="font-size:11pt;color:blue;"></span>&nbsp;&nbsp;
+          </div> 
+          <span id="page5break1"></span>
+
+          <div class="page5"> 
+            <img src='images/b_ftext.png' width="24">Copy Text
+            &nbsp;
+            <span id="copystart" onClick="CopyExport(1)" style="font-size:10pt;color:blue">
+              <img src="images/change.png" width="22">&nbsp;Start Selection
+              <input type="hidden" id="copy1" value="">
+            </span> 
+            <span id="copyunformat" onClick="CopyExport(2)" style="display:none;font-size:10pt;color:blue">
+              <img src="images/b_sbrowse.png" width="22">&nbsp;UnFormat TXT
+              <input type="hidden" id="copy2" value="">
+              <input type="hidden" id="copystatus" value="stop">
+            </span> 
+            <span id="copyformat" onClick="CopyExport(3)" style="display:none;font-size:10pt;color:blue">
+              <img src="images/b_report.png" width="22">&nbsp;Format HTML
+              <input type="hidden" id="copy3" value="">
+            </span> 
+            <span id="copycancel" onClick="CopyExport(0)" style="display:none;font-size:10pt;color:blue">
+              <img src="images/s_cancel.png" width="22">&nbsp;Cancel
+            </span>
+            <br>
+            <textarea id='CopyText' style='width:95%;max-width:95%;max-height:95%; height:70%;overflow:hidden;resize:none;'></textarea>
+          </div>
+          <span id="page5break2"></span>
+
+          <div class="page5"> 
+            <img src='images/b_edit.png' width="24">My Note
+            <br>
+            <input type="hidden" id="mynote1" value="">
+            <input type="hidden" id="mynoteids" value="">
+            <input type="hidden" id="mynotetags" value="">
+            <input type="hidden" id="mynoteolds" value="">
+
+            <span id="mynote5" onClick="MyNoteExport(5)" style="font-size:12pt;color:blue">
+              <img src="images/add_point_on.png" width="22">Edit 5 Lines.
+            </span>
+            <span id="mynotesave" onClick="MyNoteExport(1)" style="display:none;font-size:12pt;color:blue">
+              <img src="images/save.png" width="22">Save
+            </span> 
+            <br>
+
+            <span id="mynote10" onClick="MyNoteExport(10)" style="font-size:12pt;color:blue">
+              <img src="images/add_point_on.png" width="22">Edit 10 Lines.
+            </span>
+            <span id="mynotecancel" onClick="MyNoteExport(0)" style="display:none;font-size:12pt;color:blue">
+              <br><img src="images/s_cancel.png" width="22">&nbsp;Cancel
+            </span>
+            <br>
+
+            <span id="mynote20" onClick="MyNoteExport(20)" style="font-size:12pt;color:blue">
+              <img src="images/add_point_on.png" width="22">Edit 20 Lines.
+            </span>
+          </div> 
+        </div>
+      </div> 
+    </div>   
+
+  <div id="main_td2" class="main_td2">
+    <div id="loader" style="z-index: auto;"></div>
+<table id="main_table" bgcolor="#010101" width=100% border=0 align="left" cellspacing=3 cellpadding=7 style="padding-left: 15px;">
+<tr><td class='r1' id='p1' onClick='Get(1)'></td><td class='m1' id='m1' onClick='Get(1)'></td></tr>
+<tr><td class='r1' id='p2' onClick='Get(2)'></td><td class='m1' id='m2' onClick='Get(2)'></td></tr>
+<tr><td class='r1' id='p3' onClick='Get(3)'></td><td class='m1' id='m3' onClick='Get(3)'></td></tr>
+<tr><td class='r1' id='p4' onClick='Get(4)'></td><td class='m1' id='m4' onClick='Get(4)'></td></tr>
+<tr><td class='r1' id='p5' onClick='Get(5)'></td><td class='m1' id='m5' onClick='Get(5)'></td></tr>
+<tr><td class='r1' id='p6' onClick='Get(6)'></td><td class='m1' id='m6' onClick='Get(6)'></td></tr>
+<tr><td class='r1' id='p7' onClick='Get(7)'></td><td class='m1' id='m7' onClick='Get(7)'></td></tr>
+<tr><td class='r1' id='p8' onClick='Get(8)'></td><td class='m1' id='m8' onClick='Get(8)'></td></tr>
+<tr><td class='r1' id='p9' onClick='Get(9)'></td><td class='m1' id='m9' onClick='Get(9)'></td></tr>
+<tr><td class='r1' id='p10' onClick='Get(10)'></td><td class='m1' id='m10' onClick='Get(10)'></td></tr>
+<tr><td class='r1' id='p11' onClick='Get(11)'></td><td class='m1' id='m11' onClick='Get(11)'></td></tr>
+<tr><td class='r1' id='p12' onClick='Get(12)'></td><td class='m1' id='m12' onClick='Get(12)'></td></tr>
+<tr><td class='r1' id='p13' onClick='Get(13)'></td><td class='m1' id='m13' onClick='Get(13)'></td></tr>
+<tr><td class='r1' id='p14' onClick='Get(14)'></td><td class='m1' id='m14' onClick='Get(14)'></td></tr>
+<tr><td class='r1' id='p15' onClick='Get(15)'></td><td class='m1' id='m15' onClick='Get(15)'></td></tr>
+<tr><td class='r1' id='p16' onClick='Get(16)'></td><td class='m1' id='m16' onClick='Get(16)'></td></tr>
+<tr><td class='r1' id='p17' onClick='Get(17)'></td><td class='m1' id='m17' onClick='Get(17)'></td></tr>
+<tr><td class='r1' id='p18' onClick='Get(18)'></td><td class='m1' id='m18' onClick='Get(18)'></td></tr>
+<tr><td class='r1' id='p19' onClick='Get(19)'></td><td class='m1' id='m19' onClick='Get(19)'></td></tr>
+<tr><td class='r1' id='p20' onClick='Get(20)'></td><td class='m1' id='m20' onClick='Get(20)'></td></tr>
+<tr><td class='r1' id='p21' onClick='Get(21)'></td><td class='m1' id='m21' onClick='Get(21)'></td></tr>
+<tr><td class='r1' id='p22' onClick='Get(22)'></td><td class='m1' id='m22' onClick='Get(22)'></td></tr>
+<tr><td class='r1' id='p23' onClick='Get(23)'></td><td class='m1' id='m23' onClick='Get(23)'></td></tr>
+<tr><td class='r1' id='p24' onClick='Get(24)'></td><td class='m1' id='m24' onClick='Get(24)'></td></tr>
+<tr><td class='r1' id='p25' onClick='Get(25)'></td><td class='m1' id='m25' onClick='Get(25)'></td></tr>
+<tr><td class='r1' id='p26' onClick='Get(26)'></td><td class='m1' id='m26' onClick='Get(26)'></td></tr>
+<tr><td class='r1' id='p27' onClick='Get(27)'></td><td class='m1' id='m27' onClick='Get(27)'></td></tr>
+<tr><td class='r1' id='p28' onClick='Get(28)'></td><td class='m1' id='m28' onClick='Get(28)'></td></tr>
+<tr><td class='r1' id='p29' onClick='Get(29)'></td><td class='m1' id='m29' onClick='Get(29)'></td></tr>
+<tr><td class='r1' id='p30' onClick='Get(30)'></td><td class='m1' id='m30' onClick='Get(30)'></td></tr>
+<tr><td class='r1' id='p31' onClick='Get(31)'></td><td class='m1' id='m31' onClick='Get(31)'></td></tr>
+<tr><td class='r1' id='p32' onClick='Get(32)'></td><td class='m1' id='m32' onClick='Get(32)'></td></tr>
+<tr><td class='r1' id='p33' onClick='Get(33)'></td><td class='m1' id='m33' onClick='Get(33)'></td></tr>
+<tr><td class='r1' id='p34' onClick='Get(34)'></td><td class='m1' id='m34' onClick='Get(34)'></td></tr>
+<tr><td class='r1' id='p35' onClick='Get(35)'></td><td class='m1' id='m35' onClick='Get(35)'></td></tr>
+<tr><td class='r1' id='p36' onClick='Get(36)'></td><td class='m1' id='m36' onClick='Get(36)'></td></tr>
+<tr><td class='r1' id='p37' onClick='Get(37)'></td><td class='m1' id='m37' onClick='Get(37)'></td></tr>
+<tr><td class='r1' id='p38' onClick='Get(38)'></td><td class='m1' id='m38' onClick='Get(38)'></td></tr>
+<tr><td class='r1' id='p39' onClick='Get(39)'></td><td class='m1' id='m39' onClick='Get(39)'></td></tr>
+<tr><td class='r1' id='p40' onClick='Get(40)'></td><td class='m1' id='m40' onClick='Get(40)'></td></tr>
+<tr><td class='r1' id='p41' onClick='Get(41)'></td><td class='m1' id='m41' onClick='Get(41)'></td></tr>
+<tr><td class='r1' id='p42' onClick='Get(42)'></td><td class='m1' id='m42' onClick='Get(42)'></td></tr>
+<tr><td class='r1' id='p43' onClick='Get(43)'></td><td class='m1' id='m43' onClick='Get(43)'></td></tr>
+<tr><td class='r1' id='p44' onClick='Get(44)'></td><td class='m1' id='m44' onClick='Get(44)'></td></tr>
+<tr><td class='r1' id='p45' onClick='Get(45)'></td><td class='m1' id='m45' onClick='Get(45)'></td></tr>
+<tr><td class='r1' id='p46' onClick='Get(46)'></td><td class='m1' id='m46' onClick='Get(46)'></td></tr>
+<tr><td class='r1' id='p47' onClick='Get(47)'></td><td class='m1' id='m47' onClick='Get(47)'></td></tr>
+<tr><td class='r1' id='p48' onClick='Get(48)'></td><td class='m1' id='m48' onClick='Get(48)'></td></tr>
+<tr><td class='r1' id='p49' onClick='Get(49)'></td><td class='m1' id='m49' onClick='Get(49)'></td></tr>
+<tr><td class='r1' id='p50' onClick='Get(50)'></td><td class='m1' id='m50' onClick='Get(50)'></td></tr>
+<tr><td class='r1' id='p51' onClick='Get(51)'></td><td class='m1' id='m51' onClick='Get(51)'></td></tr>
+<tr><td class='r1' id='p52' onClick='Get(52)'></td><td class='m1' id='m52' onClick='Get(52)'></td></tr>
+<tr><td class='r1' id='p53' onClick='Get(53)'></td><td class='m1' id='m53' onClick='Get(53)'></td></tr>
+<tr><td class='r1' id='p54' onClick='Get(54)'></td><td class='m1' id='m54' onClick='Get(54)'></td></tr>
+<tr><td class='r1' id='p55' onClick='Get(55)'></td><td class='m1' id='m55' onClick='Get(55)'></td></tr>
+<tr><td class='r1' id='p56' onClick='Get(56)'></td><td class='m1' id='m56' onClick='Get(56)'></td></tr>
+<tr><td class='r1' id='p57' onClick='Get(57)'></td><td class='m1' id='m57' onClick='Get(57)'></td></tr>
+<tr><td class='r1' id='p58' onClick='Get(58)'></td><td class='m1' id='m58' onClick='Get(58)'></td></tr>
+<tr><td class='r1' id='p59' onClick='Get(59)'></td><td class='m1' id='m59' onClick='Get(59)'></td></tr>
+<tr><td class='r1' id='p60' onClick='Get(60)'></td><td class='m1' id='m60' onClick='Get(60)'></td></tr>
+<tr><td class='r1' id='p61' onClick='Get(61)'></td><td class='m1' id='m61' onClick='Get(61)'></td></tr>
+<tr><td class='r1' id='p62' onClick='Get(62)'></td><td class='m1' id='m62' onClick='Get(62)'></td></tr>
+<tr><td class='r1' id='p63' onClick='Get(63)'></td><td class='m1' id='m63' onClick='Get(63)'></td></tr>
+<tr><td class='r1' id='p64' onClick='Get(64)'></td><td class='m1' id='m64' onClick='Get(64)'></td></tr>
+<tr><td class='r1' id='p65' onClick='Get(65)'></td><td class='m1' id='m65' onClick='Get(65)'></td></tr>
+<tr><td class='r1' id='p66' onClick='Get(66)'></td><td class='m1' id='m66' onClick='Get(66)'></td></tr>
+<tr><td class='r1' id='p67' onClick='Get(67)'></td><td class='m1' id='m67' onClick='Get(67)'></td></tr>
+<tr><td class='r1' id='p68' onClick='Get(68)'></td><td class='m1' id='m68' onClick='Get(68)'></td></tr>
+<tr><td class='r1' id='p69' onClick='Get(69)'></td><td class='m1' id='m69' onClick='Get(69)'></td></tr>
+<tr><td class='r1' id='p70' onClick='Get(70)'></td><td class='m1' id='m70' onClick='Get(70)'></td></tr>
+<tr><td class='r1' id='p71' onClick='Get(71)'></td><td class='m1' id='m71' onClick='Get(71)'></td></tr>
+<tr><td class='r1' id='p72' onClick='Get(72)'></td><td class='m1' id='m72' onClick='Get(72)'></td></tr>
+<tr><td class='r1' id='p73' onClick='Get(73)'></td><td class='m1' id='m73' onClick='Get(73)'></td></tr>
+<tr><td class='r1' id='p74' onClick='Get(74)'></td><td class='m1' id='m74' onClick='Get(74)'></td></tr>
+<tr><td class='r1' id='p75' onClick='Get(75)'></td><td class='m1' id='m75' onClick='Get(75)'></td></tr>
+<tr><td class='r1' id='p76' onClick='Get(76)'></td><td class='m1' id='m76' onClick='Get(76)'></td></tr>
+<tr><td class='r1' id='p77' onClick='Get(77)'></td><td class='m1' id='m77' onClick='Get(77)'></td></tr>
+<tr><td class='r1' id='p78' onClick='Get(78)'></td><td class='m1' id='m78' onClick='Get(78)'></td></tr>
+<tr><td class='r1' id='p79' onClick='Get(79)'></td><td class='m1' id='m79' onClick='Get(79)'></td></tr>
+<tr><td class='r1' id='p80' onClick='Get(80)'></td><td class='m1' id='m80' onClick='Get(80)'></td></tr>
+<tr><td class='r1' id='p81' onClick='Get(81)'></td><td class='m1' id='m81' onClick='Get(81)'></td></tr>
+<tr><td class='r1' id='p82' onClick='Get(82)'></td><td class='m1' id='m82' onClick='Get(82)'></td></tr>
+<tr><td class='r1' id='p83' onClick='Get(83)'></td><td class='m1' id='m83' onClick='Get(83)'></td></tr>
+<tr><td class='r1' id='p84' onClick='Get(84)'></td><td class='m1' id='m84' onClick='Get(84)'></td></tr>
+<tr><td class='r1' id='p85' onClick='Get(85)'></td><td class='m1' id='m85' onClick='Get(85)'></td></tr>
+<tr><td class='r1' id='p86' onClick='Get(86)'></td><td class='m1' id='m86' onClick='Get(86)'></td></tr>
+<tr><td class='r1' id='p87' onClick='Get(87)'></td><td class='m1' id='m87' onClick='Get(87)'></td></tr>
+<tr><td class='r1' id='p88' onClick='Get(88)'></td><td class='m1' id='m88' onClick='Get(88)'></td></tr>
+<tr><td class='r1' id='p89' onClick='Get(89)'></td><td class='m1' id='m89' onClick='Get(89)'></td></tr>
+<tr><td class='r1' id='p90' onClick='Get(90)'></td><td class='m1' id='m90' onClick='Get(90)'></td></tr>
+<tr><td class='r1' id='p91' onClick='Get(91)'></td><td class='m1' id='m91' onClick='Get(91)'></td></tr>
+<tr><td class='r1' id='p92' onClick='Get(92)'></td><td class='m1' id='m92' onClick='Get(92)'></td></tr>
+<tr><td class='r1' id='p93' onClick='Get(93)'></td><td class='m1' id='m93' onClick='Get(93)'></td></tr>
+<tr><td class='r1' id='p94' onClick='Get(94)'></td><td class='m1' id='m94' onClick='Get(94)'></td></tr>
+<tr><td class='r1' id='p95' onClick='Get(95)'></td><td class='m1' id='m95' onClick='Get(95)'></td></tr>
+<tr><td class='r1' id='p96' onClick='Get(96)'></td><td class='m1' id='m96' onClick='Get(96)'></td></tr>
+<tr><td class='r1' id='p97' onClick='Get(97)'></td><td class='m1' id='m97' onClick='Get(97)'></td></tr>
+<tr><td class='r1' id='p98' onClick='Get(98)'></td><td class='m1' id='m98' onClick='Get(98)'></td></tr>
+<tr><td class='r1' id='p99' onClick='Get(99)'></td><td class='m1' id='m99' onClick='Get(99)'></td></tr>
+<tr><td class='r1' id='p100' onClick='Get(100)'></td><td class='m1' id='m100' onClick='Get(100)'></td></tr>
+<tr><td class='r1' id='p101' onClick='Get(101)'></td><td class='m1' id='m101' onClick='Get(101)'></td></tr>
+<tr><td class='r1' id='p102' onClick='Get(102)'></td><td class='m1' id='m102' onClick='Get(102)'></td></tr>
+<tr><td class='r1' id='p103' onClick='Get(103)'></td><td class='m1' id='m103' onClick='Get(103)'></td></tr>
+<tr><td class='r1' id='p104' onClick='Get(104)'></td><td class='m1' id='m104' onClick='Get(104)'></td></tr>
+<tr><td class='r1' id='p105' onClick='Get(105)'></td><td class='m1' id='m105' onClick='Get(105)'></td></tr>
+<tr><td class='r1' id='p106' onClick='Get(106)'></td><td class='m1' id='m106' onClick='Get(106)'></td></tr>
+<tr><td class='r1' id='p107' onClick='Get(107)'></td><td class='m1' id='m107' onClick='Get(107)'></td></tr>
+<tr><td class='r1' id='p108' onClick='Get(108)'></td><td class='m1' id='m108' onClick='Get(108)'></td></tr>
+<tr><td class='r1' id='p109' onClick='Get(109)'></td><td class='m1' id='m109' onClick='Get(109)'></td></tr>
+<tr><td class='r1' id='p110' onClick='Get(110)'></td><td class='m1' id='m110' onClick='Get(110)'></td></tr>
+<tr><td class='r1' id='p111' onClick='Get(111)'></td><td class='m1' id='m111' onClick='Get(111)'></td></tr>
+<tr><td class='r1' id='p112' onClick='Get(112)'></td><td class='m1' id='m112' onClick='Get(112)'></td></tr>
+<tr><td class='r1' id='p113' onClick='Get(113)'></td><td class='m1' id='m113' onClick='Get(113)'></td></tr>
+<tr><td class='r1' id='p114' onClick='Get(114)'></td><td class='m1' id='m114' onClick='Get(114)'></td></tr>
+<tr><td class='r1' id='p115' onClick='Get(115)'></td><td class='m1' id='m115' onClick='Get(115)'></td></tr>
+<tr><td class='r1' id='p116' onClick='Get(116)'></td><td class='m1' id='m116' onClick='Get(116)'></td></tr>
+<tr><td class='r1' id='p117' onClick='Get(117)'></td><td class='m1' id='m117' onClick='Get(117)'></td></tr>
+<tr><td class='r1' id='p118' onClick='Get(118)'></td><td class='m1' id='m118' onClick='Get(118)'></td></tr>
+<tr><td class='r1' id='p119' onClick='Get(119)'></td><td class='m1' id='m119' onClick='Get(119)'></td></tr>
+<tr><td class='r1' id='p120' onClick='Get(120)'></td><td class='m1' id='m120' onClick='Get(120)'></td></tr>
+<tr><td class='r1' id='p121' onClick='Get(121)'></td><td class='m1' id='m121' onClick='Get(121)'></td></tr>
+<tr><td class='r1' id='p122' onClick='Get(122)'></td><td class='m1' id='m122' onClick='Get(122)'></td></tr>
+<tr><td class='r1' id='p123' onClick='Get(123)'></td><td class='m1' id='m123' onClick='Get(123)'></td></tr>
+<tr><td class='r1' id='p124' onClick='Get(124)'></td><td class='m1' id='m124' onClick='Get(124)'></td></tr>
+<tr><td class='r1' id='p125' onClick='Get(125)'></td><td class='m1' id='m125' onClick='Get(125)'></td></tr>
+<tr><td class='r1' id='p126' onClick='Get(126)'></td><td class='m1' id='m126' onClick='Get(126)'></td></tr>
+<tr><td class='r1' id='p127' onClick='Get(127)'></td><td class='m1' id='m127' onClick='Get(127)'></td></tr>
+<tr><td class='r1' id='p128' onClick='Get(128)'></td><td class='m1' id='m128' onClick='Get(128)'></td></tr>
+<tr><td class='r1' id='p129' onClick='Get(129)'></td><td class='m1' id='m129' onClick='Get(129)'></td></tr>
+<tr><td class='r1' id='p130' onClick='Get(130)'></td><td class='m1' id='m130' onClick='Get(130)'></td></tr>
+<tr><td class='r1' id='p131' onClick='Get(131)'></td><td class='m1' id='m131' onClick='Get(131)'></td></tr>
+<tr><td class='r1' id='p132' onClick='Get(132)'></td><td class='m1' id='m132' onClick='Get(132)'></td></tr>
+<tr><td class='r1' id='p133' onClick='Get(133)'></td><td class='m1' id='m133' onClick='Get(133)'></td></tr>
+<tr><td class='r1' id='p134' onClick='Get(134)'></td><td class='m1' id='m134' onClick='Get(134)'></td></tr>
+<tr><td class='r1' id='p135' onClick='Get(135)'></td><td class='m1' id='m135' onClick='Get(135)'></td></tr>
+<tr><td class='r1' id='p136' onClick='Get(136)'></td><td class='m1' id='m136' onClick='Get(136)'></td></tr>
+<tr><td class='r1' id='p137' onClick='Get(137)'></td><td class='m1' id='m137' onClick='Get(137)'></td></tr>
+<tr><td class='r1' id='p138' onClick='Get(138)'></td><td class='m1' id='m138' onClick='Get(138)'></td></tr>
+<tr><td class='r1' id='p139' onClick='Get(139)'></td><td class='m1' id='m139' onClick='Get(139)'></td></tr>
+<tr><td class='r1' id='p140' onClick='Get(140)'></td><td class='m1' id='m140' onClick='Get(140)'></td></tr>
+<tr><td class='r1' id='p141' onClick='Get(141)'></td><td class='m1' id='m141' onClick='Get(141)'></td></tr>
+<tr><td class='r1' id='p142' onClick='Get(142)'></td><td class='m1' id='m142' onClick='Get(142)'></td></tr>
+<tr><td class='r1' id='p143' onClick='Get(143)'></td><td class='m1' id='m143' onClick='Get(143)'></td></tr>
+<tr><td class='r1' id='p144' onClick='Get(144)'></td><td class='m1' id='m144' onClick='Get(144)'></td></tr>
+<tr><td class='r1' id='p145' onClick='Get(145)'></td><td class='m1' id='m145' onClick='Get(145)'></td></tr>
+<tr><td class='r1' id='p146' onClick='Get(146)'></td><td class='m1' id='m146' onClick='Get(146)'></td></tr>
+<tr><td class='r1' id='p147' onClick='Get(147)'></td><td class='m1' id='m147' onClick='Get(147)'></td></tr>
+<tr><td class='r1' id='p148' onClick='Get(148)'></td><td class='m1' id='m148' onClick='Get(148)'></td></tr>
+<tr><td class='r1' id='p149' onClick='Get(149)'></td><td class='m1' id='m149' onClick='Get(149)'></td></tr>
+<tr><td class='r1' id='p150' onClick='Get(150)'></td><td class='m1' id='m150' onClick='Get(150)'></td></tr>
+<tr><td class='r1' id='p151' onClick='Get(151)'></td><td class='m1' id='m151' onClick='Get(151)'></td></tr>
+<tr><td class='r1' id='p152' onClick='Get(152)'></td><td class='m1' id='m152' onClick='Get(152)'></td></tr>
+<tr><td class='r1' id='p153' onClick='Get(153)'></td><td class='m1' id='m153' onClick='Get(153)'></td></tr>
+<tr><td class='r1' id='p154' onClick='Get(154)'></td><td class='m1' id='m154' onClick='Get(154)'></td></tr>
+<tr><td class='r1' id='p155' onClick='Get(155)'></td><td class='m1' id='m155' onClick='Get(155)'></td></tr>
+<tr><td class='r1' id='p156' onClick='Get(156)'></td><td class='m1' id='m156' onClick='Get(156)'></td></tr>
+<tr><td class='r1' id='p157' onClick='Get(157)'></td><td class='m1' id='m157' onClick='Get(157)'></td></tr>
+<tr><td class='r1' id='p158' onClick='Get(158)'></td><td class='m1' id='m158' onClick='Get(158)'></td></tr>
+<tr><td class='r1' id='p159' onClick='Get(159)'></td><td class='m1' id='m159' onClick='Get(159)'></td></tr>
+<tr><td class='r1' id='p160' onClick='Get(160)'></td><td class='m1' id='m160' onClick='Get(160)'></td></tr>
+<tr><td class='r1' id='p161' onClick='Get(161)'></td><td class='m1' id='m161' onClick='Get(161)'></td></tr>
+<tr><td class='r1' id='p162' onClick='Get(162)'></td><td class='m1' id='m162' onClick='Get(162)'></td></tr>
+<tr><td class='r1' id='p163' onClick='Get(163)'></td><td class='m1' id='m163' onClick='Get(163)'></td></tr>
+<tr><td class='r1' id='p164' onClick='Get(164)'></td><td class='m1' id='m164' onClick='Get(164)'></td></tr>
+<tr><td class='r1' id='p165' onClick='Get(165)'></td><td class='m1' id='m165' onClick='Get(165)'></td></tr>
+<tr><td class='r1' id='p166' onClick='Get(166)'></td><td class='m1' id='m166' onClick='Get(166)'></td></tr>
+<tr><td class='r1' id='p167' onClick='Get(167)'></td><td class='m1' id='m167' onClick='Get(167)'></td></tr>
+<tr><td class='r1' id='p168' onClick='Get(168)'></td><td class='m1' id='m168' onClick='Get(168)'></td></tr>
+<tr><td class='r1' id='p169' onClick='Get(169)'></td><td class='m1' id='m169' onClick='Get(169)'></td></tr>
+<tr><td class='r1' id='p170' onClick='Get(170)'></td><td class='m1' id='m170' onClick='Get(170)'></td></tr>
+<tr><td class='r1' id='p171' onClick='Get(171)'></td><td class='m1' id='m171' onClick='Get(171)'></td></tr>
+<tr><td class='r1' id='p172' onClick='Get(172)'></td><td class='m1' id='m172' onClick='Get(172)'></td></tr>
+<tr><td class='r1' id='p173' onClick='Get(173)'></td><td class='m1' id='m173' onClick='Get(173)'></td></tr>
+<tr><td class='r1' id='p174' onClick='Get(174)'></td><td class='m1' id='m174' onClick='Get(174)'></td></tr>
+<tr><td class='r1' id='p175' onClick='Get(175)'></td><td class='m1' id='m175' onClick='Get(175)'></td></tr>
+<tr><td class='r1' id='p176' onClick='Get(176)'></td><td class='m1' id='m176' onClick='Get(176)'></td></tr>
+<tr><td class='r1' id='p177' onClick='Get(177)'></td><td class='m1' id='m177' onClick='Get(177)'></td></tr>
+<tr><td class='r1' id='p178' onClick='Get(178)'></td><td class='m1' id='m178' onClick='Get(178)'></td></tr>
+<tr><td class='r1' id='p179' onClick='Get(179)'></td><td class='m1' id='m179' onClick='Get(179)'></td></tr>
+<tr><td class='r1' id='p180' onClick='Get(180)'></td><td class='m1' id='m180' onClick='Get(180)'></td></tr>
+<tr><td class='r1' id='p181' onClick='Get(181)'></td><td class='m1' id='m181' onClick='Get(181)'></td></tr>
+<tr><td class='r1' id='p182' onClick='Get(182)'></td><td class='m1' id='m182' onClick='Get(182)'></td></tr>
+<tr><td class='r1' id='p183' onClick='Get(183)'></td><td class='m1' id='m183' onClick='Get(183)'></td></tr>
+<tr><td class='r1' id='p184' onClick='Get(184)'></td><td class='m1' id='m184' onClick='Get(184)'></td></tr>
+<tr><td class='r1' id='p185' onClick='Get(185)'></td><td class='m1' id='m185' onClick='Get(185)'></td></tr>
+<tr><td class='r1' id='p186' onClick='Get(186)'></td><td class='m1' id='m186' onClick='Get(186)'></td></tr>
+<tr><td class='r1' id='p187' onClick='Get(187)'></td><td class='m1' id='m187' onClick='Get(187)'></td></tr>
+<tr><td class='r1' id='p188' onClick='Get(188)'></td><td class='m1' id='m188' onClick='Get(188)'></td></tr>
+<tr><td class='r1' id='p189' onClick='Get(189)'></td><td class='m1' id='m189' onClick='Get(189)'></td></tr>
+<tr><td class='r1' id='p190' onClick='Get(190)'></td><td class='m1' id='m190' onClick='Get(190)'></td></tr>
+<tr><td class='r1' id='p191' onClick='Get(191)'></td><td class='m1' id='m191' onClick='Get(191)'></td></tr>
+<tr><td class='r1' id='p192' onClick='Get(192)'></td><td class='m1' id='m192' onClick='Get(192)'></td></tr>
+<tr><td class='r1' id='p193' onClick='Get(193)'></td><td class='m1' id='m193' onClick='Get(193)'></td></tr>
+<tr><td class='r1' id='p194' onClick='Get(194)'></td><td class='m1' id='m194' onClick='Get(194)'></td></tr>
+<tr><td class='r1' id='p195' onClick='Get(195)'></td><td class='m1' id='m195' onClick='Get(195)'></td></tr>
+<tr><td class='r1' id='p196' onClick='Get(196)'></td><td class='m1' id='m196' onClick='Get(196)'></td></tr>
+<tr><td class='r1' id='p197' onClick='Get(197)'></td><td class='m1' id='m197' onClick='Get(197)'></td></tr>
+<tr><td class='r1' id='p198' onClick='Get(198)'></td><td class='m1' id='m198' onClick='Get(198)'></td></tr>
+<tr><td class='r1' id='p199' onClick='Get(199)'></td><td class='m1' id='m199' onClick='Get(199)'></td></tr>
+<tr><td class='r1' id='p200' onClick='Get(200)'></td><td class='m1' id='m200' onClick='Get(200)'></td></tr>
+<tr><td class='r1' id='p201' onClick='Get(201)'></td><td class='m1' id='m201' onClick='Get(201)'></td></tr>
+<tr><td class='r1' id='p202' onClick='Get(202)'></td><td class='m1' id='m202' onClick='Get(202)'></td></tr>
+<tr><td class='r1' id='p203' onClick='Get(203)'></td><td class='m1' id='m203' onClick='Get(203)'></td></tr>
+<tr><td class='r1' id='p204' onClick='Get(204)'></td><td class='m1' id='m204' onClick='Get(204)'></td></tr>
+<tr><td class='r1' id='p205' onClick='Get(205)'></td><td class='m1' id='m205' onClick='Get(205)'></td></tr>
+<tr><td class='r1' id='p206' onClick='Get(206)'></td><td class='m1' id='m206' onClick='Get(206)'></td></tr>
+<tr><td class='r1' id='p207' onClick='Get(207)'></td><td class='m1' id='m207' onClick='Get(207)'></td></tr>
+<tr><td class='r1' id='p208' onClick='Get(208)'></td><td class='m1' id='m208' onClick='Get(208)'></td></tr>
+<tr><td class='r1' id='p209' onClick='Get(209)'></td><td class='m1' id='m209' onClick='Get(209)'></td></tr>
+<tr><td class='r1' id='p210' onClick='Get(210)'></td><td class='m1' id='m210' onClick='Get(210)'></td></tr>
+<tr><td class='r1' id='p211' onClick='Get(211)'></td><td class='m1' id='m211' onClick='Get(211)'></td></tr>
+<tr><td class='r1' id='p212' onClick='Get(212)'></td><td class='m1' id='m212' onClick='Get(212)'></td></tr>
+<tr><td class='r1' id='p213' onClick='Get(213)'></td><td class='m1' id='m213' onClick='Get(213)'></td></tr>
+<tr><td class='r1' id='p214' onClick='Get(214)'></td><td class='m1' id='m214' onClick='Get(214)'></td></tr>
+<tr><td class='r1' id='p215' onClick='Get(215)'></td><td class='m1' id='m215' onClick='Get(215)'></td></tr>
+<tr><td class='r1' id='p216' onClick='Get(216)'></td><td class='m1' id='m216' onClick='Get(216)'></td></tr>
+<tr><td class='r1' id='p217' onClick='Get(217)'></td><td class='m1' id='m217' onClick='Get(217)'></td></tr>
+<tr><td class='r1' id='p218' onClick='Get(218)'></td><td class='m1' id='m218' onClick='Get(218)'></td></tr>
+<tr><td class='r1' id='p219' onClick='Get(219)'></td><td class='m1' id='m219' onClick='Get(219)'></td></tr>
+<tr><td class='r1' id='p220' onClick='Get(220)'></td><td class='m1' id='m220' onClick='Get(220)'></td></tr>
+<tr><td class='r1' id='p221' onClick='Get(221)'></td><td class='m1' id='m221' onClick='Get(221)'></td></tr>
+<tr><td class='r1' id='p222' onClick='Get(222)'></td><td class='m1' id='m222' onClick='Get(222)'></td></tr>
+<tr><td class='r1' id='p223' onClick='Get(223)'></td><td class='m1' id='m223' onClick='Get(223)'></td></tr>
+<tr><td class='r1' id='p224' onClick='Get(224)'></td><td class='m1' id='m224' onClick='Get(224)'></td></tr>
+<tr><td class='r1' id='p225' onClick='Get(225)'></td><td class='m1' id='m225' onClick='Get(225)'></td></tr>
+<tr><td class='r1' id='p226' onClick='Get(226)'></td><td class='m1' id='m226' onClick='Get(226)'></td></tr>
+<tr><td class='r1' id='p227' onClick='Get(227)'></td><td class='m1' id='m227' onClick='Get(227)'></td></tr>
+<tr><td class='r1' id='p228' onClick='Get(228)'></td><td class='m1' id='m228' onClick='Get(228)'></td></tr>
+<tr><td class='r1' id='p229' onClick='Get(229)'></td><td class='m1' id='m229' onClick='Get(229)'></td></tr>
+<tr><td class='r1' id='p230' onClick='Get(230)'></td><td class='m1' id='m230' onClick='Get(230)'></td></tr>
+<tr><td class='r1' id='p231' onClick='Get(231)'></td><td class='m1' id='m231' onClick='Get(231)'></td></tr>
+<tr><td class='r1' id='p232' onClick='Get(232)'></td><td class='m1' id='m232' onClick='Get(232)'></td></tr>
+<tr><td class='r1' id='p233' onClick='Get(233)'></td><td class='m1' id='m233' onClick='Get(233)'></td></tr>
+<tr><td class='r1' id='p234' onClick='Get(234)'></td><td class='m1' id='m234' onClick='Get(234)'></td></tr>
+<tr><td class='r1' id='p235' onClick='Get(235)'></td><td class='m1' id='m235' onClick='Get(235)'></td></tr>
+<tr><td class='r1' id='p236' onClick='Get(236)'></td><td class='m1' id='m236' onClick='Get(236)'></td></tr>
+<tr><td class='r1' id='p237' onClick='Get(237)'></td><td class='m1' id='m237' onClick='Get(237)'></td></tr>
+<tr><td class='r1' id='p238' onClick='Get(238)'></td><td class='m1' id='m238' onClick='Get(238)'></td></tr>
+<tr><td class='r1' id='p239' onClick='Get(239)'></td><td class='m1' id='m239' onClick='Get(239)'></td></tr>
+<tr><td class='r1' id='p240' onClick='Get(240)'></td><td class='m1' id='m240' onClick='Get(240)'></td></tr>
+<tr><td class='r1' id='p241' onClick='Get(241)'></td><td class='m1' id='m241' onClick='Get(241)'></td></tr>
+<tr><td class='r1' id='p242' onClick='Get(242)'></td><td class='m1' id='m242' onClick='Get(242)'></td></tr>
+<tr><td class='r1' id='p243' onClick='Get(243)'></td><td class='m1' id='m243' onClick='Get(243)'></td></tr>
+<tr><td class='r1' id='p244' onClick='Get(244)'></td><td class='m1' id='m244' onClick='Get(244)'></td></tr>
+<tr><td class='r1' id='p245' onClick='Get(245)'></td><td class='m1' id='m245' onClick='Get(245)'></td></tr>
+<tr><td class='r1' id='p246' onClick='Get(246)'></td><td class='m1' id='m246' onClick='Get(246)'></td></tr>
+<tr><td class='r1' id='p247' onClick='Get(247)'></td><td class='m1' id='m247' onClick='Get(247)'></td></tr>
+<tr><td class='r1' id='p248' onClick='Get(248)'></td><td class='m1' id='m248' onClick='Get(248)'></td></tr>
+<tr><td class='r1' id='p249' onClick='Get(249)'></td><td class='m1' id='m249' onClick='Get(249)'></td></tr>
+<tr><td class='r1' id='p250' onClick='Get(250)'></td><td class='m1' id='m250' onClick='Get(250)'></td></tr>
+<tr><td class='r1' id='p251' onClick='Get(251)'></td><td class='m1' id='m251' onClick='Get(251)'></td></tr>
+<tr><td class='r1' id='p252' onClick='Get(252)'></td><td class='m1' id='m252' onClick='Get(252)'></td></tr>
+<tr><td class='r1' id='p253' onClick='Get(253)'></td><td class='m1' id='m253' onClick='Get(253)'></td></tr>
+<tr><td class='r1' id='p254' onClick='Get(254)'></td><td class='m1' id='m254' onClick='Get(254)'></td></tr>
+<tr><td class='r1' id='p255' onClick='Get(255)'></td><td class='m1' id='m255' onClick='Get(255)'></td></tr>
+<tr><td class='r1' id='p256' onClick='Get(256)'></td><td class='m1' id='m256' onClick='Get(256)'></td></tr>
+<tr><td class='r1' id='p257' onClick='Get(257)'></td><td class='m1' id='m257' onClick='Get(257)'></td></tr>
+<tr><td class='r1' id='p258' onClick='Get(258)'></td><td class='m1' id='m258' onClick='Get(258)'></td></tr>
+<tr><td class='r1' id='p259' onClick='Get(259)'></td><td class='m1' id='m259' onClick='Get(259)'></td></tr>
+<tr><td class='r1' id='p260' onClick='Get(260)'></td><td class='m1' id='m260' onClick='Get(260)'></td></tr>
+<tr><td class='r1' id='p261' onClick='Get(261)'></td><td class='m1' id='m261' onClick='Get(261)'></td></tr>
+<tr><td class='r1' id='p262' onClick='Get(262)'></td><td class='m1' id='m262' onClick='Get(262)'></td></tr>
+<tr><td class='r1' id='p263' onClick='Get(263)'></td><td class='m1' id='m263' onClick='Get(263)'></td></tr>
+<tr><td class='r1' id='p264' onClick='Get(264)'></td><td class='m1' id='m264' onClick='Get(264)'></td></tr>
+<tr><td class='r1' id='p265' onClick='Get(265)'></td><td class='m1' id='m265' onClick='Get(265)'></td></tr>
+<tr><td class='r1' id='p266' onClick='Get(266)'></td><td class='m1' id='m266' onClick='Get(266)'></td></tr>
+<tr><td class='r1' id='p267' onClick='Get(267)'></td><td class='m1' id='m267' onClick='Get(267)'></td></tr>
+<tr><td class='r1' id='p268' onClick='Get(268)'></td><td class='m1' id='m268' onClick='Get(268)'></td></tr>
+<tr><td class='r1' id='p269' onClick='Get(269)'></td><td class='m1' id='m269' onClick='Get(269)'></td></tr>
+<tr><td class='r1' id='p270' onClick='Get(270)'></td><td class='m1' id='m270' onClick='Get(270)'></td></tr>
+<tr><td class='r1' id='p271' onClick='Get(271)'></td><td class='m1' id='m271' onClick='Get(271)'></td></tr>
+<tr><td class='r1' id='p272' onClick='Get(272)'></td><td class='m1' id='m272' onClick='Get(272)'></td></tr>
+<tr><td class='r1' id='p273' onClick='Get(273)'></td><td class='m1' id='m273' onClick='Get(273)'></td></tr>
+<tr><td class='r1' id='p274' onClick='Get(274)'></td><td class='m1' id='m274' onClick='Get(274)'></td></tr>
+<tr><td class='r1' id='p275' onClick='Get(275)'></td><td class='m1' id='m275' onClick='Get(275)'></td></tr>
+<tr><td class='r1' id='p276' onClick='Get(276)'></td><td class='m1' id='m276' onClick='Get(276)'></td></tr>
+<tr><td class='r1' id='p277' onClick='Get(277)'></td><td class='m1' id='m277' onClick='Get(277)'></td></tr>
+<tr><td class='r1' id='p278' onClick='Get(278)'></td><td class='m1' id='m278' onClick='Get(278)'></td></tr>
+<tr><td class='r1' id='p279' onClick='Get(279)'></td><td class='m1' id='m279' onClick='Get(279)'></td></tr>
+<tr><td class='r1' id='p280' onClick='Get(280)'></td><td class='m1' id='m280' onClick='Get(280)'></td></tr>
+<tr><td class='r1' id='p281' onClick='Get(281)'></td><td class='m1' id='m281' onClick='Get(281)'></td></tr>
+<tr><td class='r1' id='p282' onClick='Get(282)'></td><td class='m1' id='m282' onClick='Get(282)'></td></tr>
+<tr><td class='r1' id='p283' onClick='Get(283)'></td><td class='m1' id='m283' onClick='Get(283)'></td></tr>
+<tr><td class='r1' id='p284' onClick='Get(284)'></td><td class='m1' id='m284' onClick='Get(284)'></td></tr>
+<tr><td class='r1' id='p285' onClick='Get(285)'></td><td class='m1' id='m285' onClick='Get(285)'></td></tr>
+<tr><td class='r1' id='p286' onClick='Get(286)'></td><td class='m1' id='m286' onClick='Get(286)'></td></tr>
+<tr><td class='r1' id='p287' onClick='Get(287)'></td><td class='m1' id='m287' onClick='Get(287)'></td></tr>
+<tr><td class='r1' id='p288' onClick='Get(288)'></td><td class='m1' id='m288' onClick='Get(288)'></td></tr>
+<tr><td class='r1' id='p289' onClick='Get(289)'></td><td class='m1' id='m289' onClick='Get(289)'></td></tr>
+<tr><td class='r1' id='p290' onClick='Get(290)'></td><td class='m1' id='m290' onClick='Get(290)'></td></tr>
+<tr><td class='r1' id='p291' onClick='Get(291)'></td><td class='m1' id='m291' onClick='Get(291)'></td></tr>
+<tr><td class='r1' id='p292' onClick='Get(292)'></td><td class='m1' id='m292' onClick='Get(292)'></td></tr>
+<tr><td class='r1' id='p293' onClick='Get(293)'></td><td class='m1' id='m293' onClick='Get(293)'></td></tr>
+<tr><td class='r1' id='p294' onClick='Get(294)'></td><td class='m1' id='m294' onClick='Get(294)'></td></tr>
+<tr><td class='r1' id='p295' onClick='Get(295)'></td><td class='m1' id='m295' onClick='Get(295)'></td></tr>
+<tr><td class='r1' id='p296' onClick='Get(296)'></td><td class='m1' id='m296' onClick='Get(296)'></td></tr>
+<tr><td class='r1' id='p297' onClick='Get(297)'></td><td class='m1' id='m297' onClick='Get(297)'></td></tr>
+<tr><td class='r1' id='p298' onClick='Get(298)'></td><td class='m1' id='m298' onClick='Get(298)'></td></tr>
+<tr><td class='r1' id='p299' onClick='Get(299)'></td><td class='m1' id='m299' onClick='Get(299)'></td></tr>
+<tr><td class='r1' id='p300' onClick='Get(300)'></td><td class='m1' id='m300' onClick='Get(300)'></td></tr>
+<tr><td class='r1' id='p301' onClick='Get(301)'></td><td class='m1' id='m301' onClick='Get(301)'></td></tr>
+<tr><td class='r1' id='p302' onClick='Get(302)'></td><td class='m1' id='m302' onClick='Get(302)'></td></tr>
+<tr><td class='r1' id='p303' onClick='Get(303)'></td><td class='m1' id='m303' onClick='Get(303)'></td></tr>
+<tr><td class='r1' id='p304' onClick='Get(304)'></td><td class='m1' id='m304' onClick='Get(304)'></td></tr>
+<tr><td class='r1' id='p305' onClick='Get(305)'></td><td class='m1' id='m305' onClick='Get(305)'></td></tr>
+<tr><td class='r1' id='p306' onClick='Get(306)'></td><td class='m1' id='m306' onClick='Get(306)'></td></tr>
+<tr><td class='r1' id='p307' onClick='Get(307)'></td><td class='m1' id='m307' onClick='Get(307)'></td></tr>
+<tr><td class='r1' id='p308' onClick='Get(308)'></td><td class='m1' id='m308' onClick='Get(308)'></td></tr>
+<tr><td class='r1' id='p309' onClick='Get(309)'></td><td class='m1' id='m309' onClick='Get(309)'></td></tr>
+<tr><td class='r1' id='p310' onClick='Get(310)'></td><td class='m1' id='m310' onClick='Get(310)'></td></tr>
+<tr><td class='r1' id='p311' onClick='Get(311)'></td><td class='m1' id='m311' onClick='Get(311)'></td></tr>
+<tr><td class='r1' id='p312' onClick='Get(312)'></td><td class='m1' id='m312' onClick='Get(312)'></td></tr>
+<tr><td class='r1' id='p313' onClick='Get(313)'></td><td class='m1' id='m313' onClick='Get(313)'></td></tr>
+<tr><td class='r1' id='p314' onClick='Get(314)'></td><td class='m1' id='m314' onClick='Get(314)'></td></tr>
+<tr><td class='r1' id='p315' onClick='Get(315)'></td><td class='m1' id='m315' onClick='Get(315)'></td></tr>
+<tr><td class='r1' id='p316' onClick='Get(316)'></td><td class='m1' id='m316' onClick='Get(316)'></td></tr>
+<tr><td class='r1' id='p317' onClick='Get(317)'></td><td class='m1' id='m317' onClick='Get(317)'></td></tr>
+<tr><td class='r1' id='p318' onClick='Get(318)'></td><td class='m1' id='m318' onClick='Get(318)'></td></tr>
+<tr><td class='r1' id='p319' onClick='Get(319)'></td><td class='m1' id='m319' onClick='Get(319)'></td></tr>
+<tr><td class='r1' id='p320' onClick='Get(320)'></td><td class='m1' id='m320' onClick='Get(320)'></td></tr>
+<tr><td class='r1' id='p321' onClick='Get(321)'></td><td class='m1' id='m321' onClick='Get(321)'></td></tr>
+<tr><td class='r1' id='p322' onClick='Get(322)'></td><td class='m1' id='m322' onClick='Get(322)'></td></tr>
+<tr><td class='r1' id='p323' onClick='Get(323)'></td><td class='m1' id='m323' onClick='Get(323)'></td></tr>
+<tr><td class='r1' id='p324' onClick='Get(324)'></td><td class='m1' id='m324' onClick='Get(324)'></td></tr>
+<tr><td class='r1' id='p325' onClick='Get(325)'></td><td class='m1' id='m325' onClick='Get(325)'></td></tr>
+<tr><td class='r1' id='p326' onClick='Get(326)'></td><td class='m1' id='m326' onClick='Get(326)'></td></tr>
+<tr><td class='r1' id='p327' onClick='Get(327)'></td><td class='m1' id='m327' onClick='Get(327)'></td></tr>
+<tr><td class='r1' id='p328' onClick='Get(328)'></td><td class='m1' id='m328' onClick='Get(328)'></td></tr>
+<tr><td class='r1' id='p329' onClick='Get(329)'></td><td class='m1' id='m329' onClick='Get(329)'></td></tr>
+<tr><td class='r1' id='p330' onClick='Get(330)'></td><td class='m1' id='m330' onClick='Get(330)'></td></tr>
+<tr><td class='r1' id='p331' onClick='Get(331)'></td><td class='m1' id='m331' onClick='Get(331)'></td></tr>
+<tr><td class='r1' id='p332' onClick='Get(332)'></td><td class='m1' id='m332' onClick='Get(332)'></td></tr>
+<tr><td class='r1' id='p333' onClick='Get(333)'></td><td class='m1' id='m333' onClick='Get(333)'></td></tr>
+<tr><td class='r1' id='p334' onClick='Get(334)'></td><td class='m1' id='m334' onClick='Get(334)'></td></tr>
+<tr><td class='r1' id='p335' onClick='Get(335)'></td><td class='m1' id='m335' onClick='Get(335)'></td></tr>
+<tr><td class='r1' id='p336' onClick='Get(336)'></td><td class='m1' id='m336' onClick='Get(336)'></td></tr>
+<tr><td class='r1' id='p337' onClick='Get(337)'></td><td class='m1' id='m337' onClick='Get(337)'></td></tr>
+<tr><td class='r1' id='p338' onClick='Get(338)'></td><td class='m1' id='m338' onClick='Get(338)'></td></tr>
+<tr><td class='r1' id='p339' onClick='Get(339)'></td><td class='m1' id='m339' onClick='Get(339)'></td></tr>
+<tr><td class='r1' id='p340' onClick='Get(340)'></td><td class='m1' id='m340' onClick='Get(340)'></td></tr>
+<tr><td class='r1' id='p341' onClick='Get(341)'></td><td class='m1' id='m341' onClick='Get(341)'></td></tr>
+<tr><td class='r1' id='p342' onClick='Get(342)'></td><td class='m1' id='m342' onClick='Get(342)'></td></tr>
+<tr><td class='r1' id='p343' onClick='Get(343)'></td><td class='m1' id='m343' onClick='Get(343)'></td></tr>
+<tr><td class='r1' id='p344' onClick='Get(344)'></td><td class='m1' id='m344' onClick='Get(344)'></td></tr>
+<tr><td class='r1' id='p345' onClick='Get(345)'></td><td class='m1' id='m345' onClick='Get(345)'></td></tr>
+<tr><td class='r1' id='p346' onClick='Get(346)'></td><td class='m1' id='m346' onClick='Get(346)'></td></tr>
+<tr><td class='r1' id='p347' onClick='Get(347)'></td><td class='m1' id='m347' onClick='Get(347)'></td></tr>
+<tr><td class='r1' id='p348' onClick='Get(348)'></td><td class='m1' id='m348' onClick='Get(348)'></td></tr>
+<tr><td class='r1' id='p349' onClick='Get(349)'></td><td class='m1' id='m349' onClick='Get(349)'></td></tr>
 </table>
+  </div>
 
-<table border=0 width=100% cellspacing="0" cellpadding="1">
-	<tr bgcolor='#ffffc0'>
-		<td align='center' valign='top' onClick='ChangeLookupMode()'>
-			<div class='div_border'>
-				<img src='images/change.png'>Lookup<br><label id='LookupMode'></label><br><br>
-			</div>
-		</td>
-		<td align="center">   
-			<div class='div_border'> 
-				<input name="Reference" id="Pgnum" value="0" type="radio" checked>
-				<label for="Pgnum" >Page...</label>
-				<input name="Reference" id="Prnum" value="1" type="radio">
-				<label for="Prnum" >Paragraph...</label>
-				<input name="Reference" id="PTS" value="2" type="radio">
-				<label for="PTS" >PTS No...</label><br><br>
-				<input type="Textbox" name="PageNo"  id="PageNo" value="" style="font-size:11pt;" size=5>
-				<input type="submit" name="button1" onClick="goUrl()" value="Submit" style="font-size: 10pt;">
-			</div>
-		</td>
-		<td align='center'>  
-			<div class='div_border'> 
-				<label style='color:brown;'>Pāḷi - English Dictionary <span style="font-size:8pt;">(Velthuis)</span></label><br><br>
-				<input type="TextBox" size="20" id="Dict_key" name="Dict_key" onKeyup="Dict_search();"  onBlur="Dict_search();">
-			</div>
-		</td> 
-	</tr>
-</table>
-
-<table border=0 width=100% cellspacing='0' cellpadding='1'>
-	<tr bgcolor='#ffffc0'>
-		<td align='center' valign='top'>
-			<div class='div_border'>
-				<img src='images/b_ftext.png'>&nbsp;<label style='color:brown'>Copy Text</label><br>
-				<textarea id='Copy_Text' cols='15' rows='1' style='overflow:hidden;resize:none;' onFocus='Copy_Text()' ></textarea>
-			</div>
-		</td>
-		<td align='center'>
-			<div class='div_border'>
-				<select name="Toc" id="Toc" onchange="goToc();">
-					<option value="0" style="color:#ff0000">Sīlakkhandhavaggasutta</option>
-					<option value="1" style="color:#0000ff">__Saṃgāyanassa pucchā vissajjanā</option>
-					<option value="2" style="color:#ff0000">Brahmajālasutta</option>
-					<option value="3" style="color:#0000ff">____Anusandhe</option>
-					<option value="4" style="color:#0000ff">____Paṭhama anusandhe</option>
-					<option value="5" style="color:#0000ff">____Dutiya anusandhe</option>
-					<option value="6" style="color:#0000ff">____Tatiya anusandhe</option>
-					<option value="7" style="color:#0000ff">____Suttanidesanā</option>
-					<option value="8" style="color:#ff0000">Sāmaññaphalasutta</option>
-					<option value="9" style="color:#0000ff">____Ajātasattu</option>
-					<option value="10" style="color:#0000ff">____Charājīvaka</option>
-					<option value="11" style="color:#0000ff">____Ajātasattu</option>
-					<option value="12" style="color:#0000ff">____Ajātasatta</option>
-					<option value="13" style="color:#0000ff">____Pūraṇakassapa ayūvāda</option>
-					<option value="14" style="color:#0000ff">____Pūraṇakassapavāda</option>
-					<option value="15" style="color:#0000ff">____Makkhaligosāla ayūvāda</option>
-					<option value="16" style="color:#0000ff">____Makkhaligosālavāda</option>
-					<option value="17" style="color:#0000ff">____Ajitakesakambalavāda</option>
-					<option value="18" style="color:#0000ff">____Ajitakesakambala</option>
-					<option value="19" style="color:#0000ff">____Pakudhakaccāyanavāda</option>
-					<option value="20" style="color:#0000ff">____Pakudhakaccāyanavāda</option>
-					<option value="21" style="color:#0000ff">____Nigaṇṭhanāṭaputtavāda</option>
-					<option value="22" style="color:#0000ff">____Nigaṇṭhavāda</option>
-					<option value="23" style="color:#0000ff">____Siñcaññavāda</option>
-					<option value="24" style="color:#0000ff">____Titthiayūvāda</option>
-					<option value="25" style="color:#0000ff">____Ambaṭṭhasutta</option>
-					<option value="26" style="color:#0000ff">____Soṇadaṇḍasutta</option>
-					<option value="27" style="color:#0000ff">____Kūṭadantasutta</option>
-					<option value="28" style="color:#0000ff">____Mahālisutta</option>
-					<option value="29" style="color:#0000ff">____Jāliyasutta</option>
-					<option value="30" style="color:#0000ff">____Mahāsīhanādasutta</option>
-					<option value="31" style="color:#0000ff">____Poṭṭhapādasutta</option>
-					<option value="32" style="color:#0000ff">____Subhasutta</option>
-					<option value="33" style="color:#0000ff">____Kevaṭṭasutta</option>
-					<option value="34" style="color:#0000ff">____Lohiccasutta</option>
-					<option value="35" style="color:#0000ff">____Tevijjasutta</option>
-					<option value="36" style="color:#0000ff">____Mahāpadānasutta</option>
-					<option value="37" style="color:#0000ff">____Mahānidānasutta</option>
-					<option value="38" style="color:#0000ff">____Mahāparinibbānasutta</option>
-					<option value="39" style="color:#0000ff">____Jarāsutta</option>
-					<option value="40" style="color:#0000ff">____Attadīpa dhammadesanā</option>
-					<option value="41" style="color:#0000ff">____Catumahāpadesa</option>
-					<option value="42" style="color:#0000ff">____Saṃvega</option>
-					<option value="43" style="color:#0000ff">____Mahāsudassanasutta</option>
-					<option value="44" style="color:#0000ff">____Parinibbānasutta</option>
-					<option value="45" style="color:#0000ff">____Janavasabhasutta</option>
-					<option value="46" style="color:#0000ff">____Mahāgovindasutta</option>
-					<option value="47" style="color:#0000ff">____Mahāsamayasutta</option>
-					<option value="48" style="color:#0000ff">____Sakkapañhasutta</option>
-					<option value="49" style="color:#0000ff">____Mahāsatipaṭṭhānasutta</option>
-					<option value="50" style="color:#0000ff">____Pāyāsisutta</option>
-					<option value="51" style="color:#0000ff">____Udumbarikasutta</option>
-					<option value="52" style="color:#0000ff">____Cakkavattisutta</option>
-					<option value="53" style="color:#0000ff">____Aggaññasutta</option>
-					<option value="54" style="color:#0000ff">____Pāsādikasutta</option>
-					<option value="55" style="color:#0000ff">____Lakkhaṇasutta</option>
-					<option value="56" style="color:#0000ff">____Siṅgālasutta</option>
-					<option value="57" style="color:#0000ff">____Āṭānāṭiyasutta</option>
-					<option value="58" style="color:#0000ff">____Saṅgītisutta</option>
-					<option value="59" style="color:#0000ff">____Dasuttarasutta</option>
-			</select><br><br>
-			</div>
-		</td>
-		<td align='center' valign='top' onclick="window.location.href='index8.htm';">
-			<div class='div_border'>
-				<img src='images/home.png'><br>Home<br>
-			</div>
-		</td>
-	</tr>
-</table>
-<table border=0 width=100% cellspacing='0' cellpadding='1'>
-	<tr bgcolor='#ffffc0'>
-		<td width='25%' align='center' valign='top'>
-			<div class='div_border'>
-				<a href='#' onClick='History_Open()' style='color:blue;'><img src='images/b_browse.png'>History<a><br><span id='history'><br></span>
-			</div>
-		</td>
-		<td width='60%' onClick='sel_off()' valign='top'>
-			<span id='Dict_result'></span>
-		</td>
-		<td width='15%' align='left' valign='top'>
-			<span id='Dict_Tips'></span>
-		</td>
-	</tr>
-</table>
-</div>
-<table bgcolor="#010101" width=100% border=0 align="left" cellspacing=5 cellpadding=5 onClick="sel_off()">
-	<tr><td class='r1' id='p1' onClick='Get("1")'></td><td class='m1' id='m1'></td></tr>
-	<tr><td class='r1' id='p2' onClick='Get("2")'></td><td class='m1' id='m2'></td></tr>
-	<tr><td class='r1' id='p3' onClick='Get("3")'></td><td class='m1' id='m3'></td></tr>
-	<tr><td class='r1' id='p4' onClick='Get("4")'></td><td class='m1' id='m4'></td></tr>
-	<tr><td class='r1' id='p5' onClick='Get("5")'></td><td class='m1' id='m5'></td></tr>
-	<tr><td class='r1' id='p6' onClick='Get("6")'></td><td class='m1' id='m6'></td></tr>
-	<tr><td class='r1' id='p7' onClick='Get("7")'></td><td class='m1' id='m7'></td></tr>
-	<tr><td class='r1' id='p8' onClick='Get("8")'></td><td class='m1' id='m8'></td></tr>
-	<tr><td class='r1' id='p9' onClick='Get("9")'></td><td class='m1' id='m9'></td></tr>
-	<tr><td class='r1' id='p10' onClick='Get("10")'></td><td class='m1' id='m10'></td></tr>
-	<tr><td class='r1' id='p11' onClick='Get("11")'></td><td class='m1' id='m11'></td></tr>
-	<tr><td class='r1' id='p12' onClick='Get("12")'></td><td class='m1' id='m12'></td></tr>
-	<tr><td class='r1' id='p13' onClick='Get("13")'></td><td class='m1' id='m13'></td></tr>
-	<tr><td class='r1' id='p14' onClick='Get("14")'></td><td class='m1' id='m14'></td></tr>
-	<tr><td class='r1' id='p15' onClick='Get("15")'></td><td class='m1' id='m15'></td></tr>
-	<tr><td class='r1' id='p16' onClick='Get("16")'></td><td class='m1' id='m16'></td></tr>
-	<tr><td class='r1' id='p17' onClick='Get("17")'></td><td class='m1' id='m17'></td></tr>
-	<tr><td class='r1' id='p18' onClick='Get("18")'></td><td class='m1' id='m18'></td></tr>
-	<tr><td class='r1' id='p19' onClick='Get("19")'></td><td class='m1' id='m19'></td></tr>
-	<tr><td class='r1' id='p20' onClick='Get("20")'></td><td class='m1' id='m20'></td></tr>
-	<tr><td class='r1' id='p21' onClick='Get("21")'></td><td class='m1' id='m21'></td></tr>
-	<tr><td class='r1' id='p22' onClick='Get("22")'></td><td class='m1' id='m22'></td></tr>
-	<tr><td class='r1' id='p23' onClick='Get("23")'></td><td class='m1' id='m23'></td></tr>
-	<tr><td class='r1' id='p24' onClick='Get("24")'></td><td class='m1' id='m24'></td></tr>
-	<tr><td class='r1' id='p25' onClick='Get("25")'></td><td class='m1' id='m25'></td></tr>
-	<tr><td class='r1' id='p26' onClick='Get("26")'></td><td class='m1' id='m26'></td></tr>
-	<tr><td class='r1' id='p27' onClick='Get("27")'></td><td class='m1' id='m27'></td></tr>
-	<tr><td class='r1' id='p28' onClick='Get("28")'></td><td class='m1' id='m28'></td></tr>
-	<tr><td class='r1' id='p29' onClick='Get("29")'></td><td class='m1' id='m29'></td></tr>
-	<tr><td class='r1' id='p30' onClick='Get("30")'></td><td class='m1' id='m30'></td></tr>
-	<tr><td class='r1' id='p31' onClick='Get("31")'></td><td class='m1' id='m31'></td></tr>
-	<tr><td class='r1' id='p32' onClick='Get("32")'></td><td class='m1' id='m32'></td></tr>
-	<tr><td class='r1' id='p33' onClick='Get("33")'></td><td class='m1' id='m33'></td></tr>
-	<tr><td class='r1' id='p34' onClick='Get("34")'></td><td class='m1' id='m34'></td></tr>
-	<tr><td class='r1' id='p35' onClick='Get("35")'></td><td class='m1' id='m35'></td></tr>
-	<tr><td class='r1' id='p36' onClick='Get("36")'></td><td class='m1' id='m36'></td></tr>
-	<tr><td class='r1' id='p37' onClick='Get("37")'></td><td class='m1' id='m37'></td></tr>
-	<tr><td class='r1' id='p38' onClick='Get("38")'></td><td class='m1' id='m38'></td></tr>
-	<tr><td class='r1' id='p39' onClick='Get("39")'></td><td class='m1' id='m39'></td></tr>
-	<tr><td class='r1' id='p40' onClick='Get("40")'></td><td class='m1' id='m40'></td></tr>
-	<tr><td class='r1' id='p41' onClick='Get("41")'></td><td class='m1' id='m41'></td></tr>
-	<tr><td class='r1' id='p42' onClick='Get("42")'></td><td class='m1' id='m42'></td></tr>
-	<tr><td class='r1' id='p43' onClick='Get("43")'></td><td class='m1' id='m43'></td></tr>
-	<tr><td class='r1' id='p44' onClick='Get("44")'></td><td class='m1' id='m44'></td></tr>
-	<tr><td class='r1' id='p45' onClick='Get("45")'></td><td class='m1' id='m45'></td></tr>
-	<tr><td class='r1' id='p46' onClick='Get("46")'></td><td class='m1' id='m46'></td></tr>
-	<tr><td class='r1' id='p47' onClick='Get("47")'></td><td class='m1' id='m47'></td></tr>
-	<tr><td class='r1' id='p48' onClick='Get("48")'></td><td class='m1' id='m48'></td></tr>
-	<tr><td class='r1' id='p49' onClick='Get("49")'></td><td class='m1' id='m49'></td></tr>
-	<tr><td class='r1' id='p50' onClick='Get("50")'></td><td class='m1' id='m50'></td></tr>
-	<tr><td class='r1' id='p51' onClick='Get("51")'></td><td class='m1' id='m51'></td></tr>
-	<tr><td class='r1' id='p52' onClick='Get("52")'></td><td class='m1' id='m52'></td></tr>
-	<tr><td class='r1' id='p53' onClick='Get("53")'></td><td class='m1' id='m53'></td></tr>
-	<tr><td class='r1' id='p54' onClick='Get("54")'></td><td class='m1' id='m54'></td></tr>
-	<tr><td class='r1' id='p55' onClick='Get("55")'></td><td class='m1' id='m55'></td></tr>
-	<tr><td class='r1' id='p56' onClick='Get("56")'></td><td class='m1' id='m56'></td></tr>
-	<tr><td class='r1' id='p57' onClick='Get("57")'></td><td class='m1' id='m57'></td></tr>
-	<tr><td class='r1' id='p58' onClick='Get("58")'></td><td class='m1' id='m58'></td></tr>
-	<tr><td class='r1' id='p59' onClick='Get("59")'></td><td class='m1' id='m59'></td></tr>
-	<tr><td class='r1' id='p60' onClick='Get("60")'></td><td class='m1' id='m60'></td></tr>
-	<tr><td class='r1' id='p61' onClick='Get("61")'></td><td class='m1' id='m61'></td></tr>
-	<tr><td class='r1' id='p62' onClick='Get("62")'></td><td class='m1' id='m62'></td></tr>
-	<tr><td class='r1' id='p63' onClick='Get("63")'></td><td class='m1' id='m63'></td></tr>
-	<tr><td class='r1' id='p64' onClick='Get("64")'></td><td class='m1' id='m64'></td></tr>
-	<tr><td class='r1' id='p65' onClick='Get("65")'></td><td class='m1' id='m65'></td></tr>
-	<tr><td class='r1' id='p66' onClick='Get("66")'></td><td class='m1' id='m66'></td></tr>
-	<tr><td class='r1' id='p67' onClick='Get("67")'></td><td class='m1' id='m67'></td></tr>
-	<tr><td class='r1' id='p68' onClick='Get("68")'></td><td class='m1' id='m68'></td></tr>
-	<tr><td class='r1' id='p69' onClick='Get("69")'></td><td class='m1' id='m69'></td></tr>
-	<tr><td class='r1' id='p70' onClick='Get("70")'></td><td class='m1' id='m70'></td></tr>
-	<tr><td class='r1' id='p71' onClick='Get("71")'></td><td class='m1' id='m71'></td></tr>
-	<tr><td class='r1' id='p72' onClick='Get("72")'></td><td class='m1' id='m72'></td></tr>
-	<tr><td class='r1' id='p73' onClick='Get("73")'></td><td class='m1' id='m73'></td></tr>
-	<tr><td class='r1' id='p74' onClick='Get("74")'></td><td class='m1' id='m74'></td></tr>
-	<tr><td class='r1' id='p75' onClick='Get("75")'></td><td class='m1' id='m75'></td></tr>
-	<tr><td class='r1' id='p76' onClick='Get("76")'></td><td class='m1' id='m76'></td></tr>
-	<tr><td class='r1' id='p77' onClick='Get("77")'></td><td class='m1' id='m77'></td></tr>
-	<tr><td class='r1' id='p78' onClick='Get("78")'></td><td class='m1' id='m78'></td></tr>
-	<tr><td class='r1' id='p79' onClick='Get("79")'></td><td class='m1' id='m79'></td></tr>
-	<tr><td class='r1' id='p80' onClick='Get("80")'></td><td class='m1' id='m80'></td></tr>
-	<tr><td class='r1' id='p81' onClick='Get("81")'></td><td class='m1' id='m81'></td></tr>
-	<tr><td class='r1' id='p82' onClick='Get("82")'></td><td class='m1' id='m82'></td></tr>
-	<tr><td class='r1' id='p83' onClick='Get("83")'></td><td class='m1' id='m83'></td></tr>
-	<tr><td class='r1' id='p84' onClick='Get("84")'></td><td class='m1' id='m84'></td></tr>
-	<tr><td class='r1' id='p85' onClick='Get("85")'></td><td class='m1' id='m85'></td></tr>
-	<tr><td class='r1' id='p86' onClick='Get("86")'></td><td class='m1' id='m86'></td></tr>
-	<tr><td class='r1' id='p87' onClick='Get("87")'></td><td class='m1' id='m87'></td></tr>
-	<tr><td class='r1' id='p88' onClick='Get("88")'></td><td class='m1' id='m88'></td></tr>
-	<tr><td class='r1' id='p89' onClick='Get("89")'></td><td class='m1' id='m89'></td></tr>
-	<tr><td class='r1' id='p90' onClick='Get("90")'></td><td class='m1' id='m90'></td></tr>
-	<tr><td class='r1' id='p91' onClick='Get("91")'></td><td class='m1' id='m91'></td></tr>
-	<tr><td class='r1' id='p92' onClick='Get("92")'></td><td class='m1' id='m92'></td></tr>
-	<tr><td class='r1' id='p93' onClick='Get("93")'></td><td class='m1' id='m93'></td></tr>
-	<tr><td class='r1' id='p94' onClick='Get("94")'></td><td class='m1' id='m94'></td></tr>
-	<tr><td class='r1' id='p95' onClick='Get("95")'></td><td class='m1' id='m95'></td></tr>
-	<tr><td class='r1' id='p96' onClick='Get("96")'></td><td class='m1' id='m96'></td></tr>
-	<tr><td class='r1' id='p97' onClick='Get("97")'></td><td class='m1' id='m97'></td></tr>
-	<tr><td class='r1' id='p98' onClick='Get("98")'></td><td class='m1' id='m98'></td></tr>
-	<tr><td class='r1' id='p99' onClick='Get("99")'></td><td class='m1' id='m99'></td></tr>
-	<tr><td class='r1' id='p100' onClick='Get("100")'></td><td class='m1' id='m100'></td></tr>
-	<tr><td class='r1' id='p101' onClick='Get("101")'></td><td class='m1' id='m101'></td></tr>
-	<tr><td class='r1' id='p102' onClick='Get("102")'></td><td class='m1' id='m102'></td></tr>
-	<tr><td class='r1' id='p103' onClick='Get("103")'></td><td class='m1' id='m103'></td></tr>
-	<tr><td class='r1' id='p104' onClick='Get("104")'></td><td class='m1' id='m104'></td></tr>
-	<tr><td class='r1' id='p105' onClick='Get("105")'></td><td class='m1' id='m105'></td></tr>
-	<tr><td class='r1' id='p106' onClick='Get("106")'></td><td class='m1' id='m106'></td></tr>
-	<tr><td class='r1' id='p107' onClick='Get("107")'></td><td class='m1' id='m107'></td></tr>
-	<tr><td class='r1' id='p108' onClick='Get("108")'></td><td class='m1' id='m108'></td></tr>
-	<tr><td class='r1' id='p109' onClick='Get("109")'></td><td class='m1' id='m109'></td></tr>
-	<tr><td class='r1' id='p110' onClick='Get("110")'></td><td class='m1' id='m110'></td></tr>
-	<tr><td class='r1' id='p111' onClick='Get("111")'></td><td class='m1' id='m111'></td></tr>
-	<tr><td class='r1' id='p112' onClick='Get("112")'></td><td class='m1' id='m112'></td></tr>
-	<tr><td class='r1' id='p113' onClick='Get("113")'></td><td class='m1' id='m113'></td></tr>
-	<tr><td class='r1' id='p114' onClick='Get("114")'></td><td class='m1' id='m114'></td></tr>
-	<tr><td class='r1' id='p115' onClick='Get("115")'></td><td class='m1' id='m115'></td></tr>
-	<tr><td class='r1' id='p116' onClick='Get("116")'></td><td class='m1' id='m116'></td></tr>
-	<tr><td class='r1' id='p117' onClick='Get("117")'></td><td class='m1' id='m117'></td></tr>
-	<tr><td class='r1' id='p118' onClick='Get("118")'></td><td class='m1' id='m118'></td></tr>
-	<tr><td class='r1' id='p119' onClick='Get("119")'></td><td class='m1' id='m119'></td></tr>
-	<tr><td class='r1' id='p120' onClick='Get("120")'></td><td class='m1' id='m120'></td></tr>
-	<tr><td class='r1' id='p121' onClick='Get("121")'></td><td class='m1' id='m121'></td></tr>
-	<tr><td class='r1' id='p122' onClick='Get("122")'></td><td class='m1' id='m122'></td></tr>
-	<tr><td class='r1' id='p123' onClick='Get("123")'></td><td class='m1' id='m123'></td></tr>
-	<tr><td class='r1' id='p124' onClick='Get("124")'></td><td class='m1' id='m124'></td></tr>
-	<tr><td class='r1' id='p125' onClick='Get("125")'></td><td class='m1' id='m125'></td></tr>
-	<tr><td class='r1' id='p126' onClick='Get("126")'></td><td class='m1' id='m126'></td></tr>
-	<tr><td class='r1' id='p127' onClick='Get("127")'></td><td class='m1' id='m127'></td></tr>
-	<tr><td class='r1' id='p128' onClick='Get("128")'></td><td class='m1' id='m128'></td></tr>
-	<tr><td class='r1' id='p129' onClick='Get("129")'></td><td class='m1' id='m129'></td></tr>
-	<tr><td class='r1' id='p130' onClick='Get("130")'></td><td class='m1' id='m130'></td></tr>
-	<tr><td class='r1' id='p131' onClick='Get("131")'></td><td class='m1' id='m131'></td></tr>
-	<tr><td class='r1' id='p132' onClick='Get("132")'></td><td class='m1' id='m132'></td></tr>
-	<tr><td class='r1' id='p133' onClick='Get("133")'></td><td class='m1' id='m133'></td></tr>
-	<tr><td class='r1' id='p134' onClick='Get("134")'></td><td class='m1' id='m134'></td></tr>
-	<tr><td class='r1' id='p135' onClick='Get("135")'></td><td class='m1' id='m135'></td></tr>
-	<tr><td class='r1' id='p136' onClick='Get("136")'></td><td class='m1' id='m136'></td></tr>
-	<tr><td class='r1' id='p137' onClick='Get("137")'></td><td class='m1' id='m137'></td></tr>
-	<tr><td class='r1' id='p138' onClick='Get("138")'></td><td class='m1' id='m138'></td></tr>
-	<tr><td class='r1' id='p139' onClick='Get("139")'></td><td class='m1' id='m139'></td></tr>
-	<tr><td class='r1' id='p140' onClick='Get("140")'></td><td class='m1' id='m140'></td></tr>
-	<tr><td class='r1' id='p141' onClick='Get("141")'></td><td class='m1' id='m141'></td></tr>
-	<tr><td class='r1' id='p142' onClick='Get("142")'></td><td class='m1' id='m142'></td></tr>
-	<tr><td class='r1' id='p143' onClick='Get("143")'></td><td class='m1' id='m143'></td></tr>
-	<tr><td class='r1' id='p144' onClick='Get("144")'></td><td class='m1' id='m144'></td></tr>
-	<tr><td class='r1' id='p145' onClick='Get("145")'></td><td class='m1' id='m145'></td></tr>
-	<tr><td class='r1' id='p146' onClick='Get("146")'></td><td class='m1' id='m146'></td></tr>
-	<tr><td class='r1' id='p147' onClick='Get("147")'></td><td class='m1' id='m147'></td></tr>
-	<tr><td class='r1' id='p148' onClick='Get("148")'></td><td class='m1' id='m148'></td></tr>
-	<tr><td class='r1' id='p149' onClick='Get("149")'></td><td class='m1' id='m149'></td></tr>
-	<tr><td class='r1' id='p150' onClick='Get("150")'></td><td class='m1' id='m150'></td></tr>
-	<tr><td class='r1' id='p151' onClick='Get("151")'></td><td class='m1' id='m151'></td></tr>
-	<tr><td class='r1' id='p152' onClick='Get("152")'></td><td class='m1' id='m152'></td></tr>
-	<tr><td class='r1' id='p153' onClick='Get("153")'></td><td class='m1' id='m153'></td></tr>
-	<tr><td class='r1' id='p154' onClick='Get("154")'></td><td class='m1' id='m154'></td></tr>
-	<tr><td class='r1' id='p155' onClick='Get("155")'></td><td class='m1' id='m155'></td></tr>
-	<tr><td class='r1' id='p156' onClick='Get("156")'></td><td class='m1' id='m156'></td></tr>
-	<tr><td class='r1' id='p157' onClick='Get("157")'></td><td class='m1' id='m157'></td></tr>
-	<tr><td class='r1' id='p158' onClick='Get("158")'></td><td class='m1' id='m158'></td></tr>
-	<tr><td class='r1' id='p159' onClick='Get("159")'></td><td class='m1' id='m159'></td></tr>
-	<tr><td class='r1' id='p160' onClick='Get("160")'></td><td class='m1' id='m160'></td></tr>
-	<tr><td class='r1' id='p161' onClick='Get("161")'></td><td class='m1' id='m161'></td></tr>
-	<tr><td class='r1' id='p162' onClick='Get("162")'></td><td class='m1' id='m162'></td></tr>
-	<tr><td class='r1' id='p163' onClick='Get("163")'></td><td class='m1' id='m163'></td></tr>
-	<tr><td class='r1' id='p164' onClick='Get("164")'></td><td class='m1' id='m164'></td></tr>
-	<tr><td class='r1' id='p165' onClick='Get("165")'></td><td class='m1' id='m165'></td></tr>
-	<tr><td class='r1' id='p166' onClick='Get("166")'></td><td class='m1' id='m166'></td></tr>
-	<tr><td class='r1' id='p167' onClick='Get("167")'></td><td class='m1' id='m167'></td></tr>
-	<tr><td class='r1' id='p168' onClick='Get("168")'></td><td class='m1' id='m168'></td></tr>
-	<tr><td class='r1' id='p169' onClick='Get("169")'></td><td class='m1' id='m169'></td></tr>
-	<tr><td class='r1' id='p170' onClick='Get("170")'></td><td class='m1' id='m170'></td></tr>
-	<tr><td class='r1' id='p171' onClick='Get("171")'></td><td class='m1' id='m171'></td></tr>
-	<tr><td class='r1' id='p172' onClick='Get("172")'></td><td class='m1' id='m172'></td></tr>
-	<tr><td class='r1' id='p173' onClick='Get("173")'></td><td class='m1' id='m173'></td></tr>
-	<tr><td class='r1' id='p174' onClick='Get("174")'></td><td class='m1' id='m174'></td></tr>
-	<tr><td class='r1' id='p175' onClick='Get("175")'></td><td class='m1' id='m175'></td></tr>
-	<tr><td class='r1' id='p176' onClick='Get("176")'></td><td class='m1' id='m176'></td></tr>
-	<tr><td class='r1' id='p177' onClick='Get("177")'></td><td class='m1' id='m177'></td></tr>
-	<tr><td class='r1' id='p178' onClick='Get("178")'></td><td class='m1' id='m178'></td></tr>
-	<tr><td class='r1' id='p179' onClick='Get("179")'></td><td class='m1' id='m179'></td></tr>
-	<tr><td class='r1' id='p180' onClick='Get("180")'></td><td class='m1' id='m180'></td></tr>
-	<tr><td class='r1' id='p181' onClick='Get("181")'></td><td class='m1' id='m181'></td></tr>
-	<tr><td class='r1' id='p182' onClick='Get("182")'></td><td class='m1' id='m182'></td></tr>
-	<tr><td class='r1' id='p183' onClick='Get("183")'></td><td class='m1' id='m183'></td></tr>
-	<tr><td class='r1' id='p184' onClick='Get("184")'></td><td class='m1' id='m184'></td></tr>
-	<tr><td class='r1' id='p185' onClick='Get("185")'></td><td class='m1' id='m185'></td></tr>
-	<tr><td class='r1' id='p186' onClick='Get("186")'></td><td class='m1' id='m186'></td></tr>
-	<tr><td class='r1' id='p187' onClick='Get("187")'></td><td class='m1' id='m187'></td></tr>
-	<tr><td class='r1' id='p188' onClick='Get("188")'></td><td class='m1' id='m188'></td></tr>
-	<tr><td class='r1' id='p189' onClick='Get("189")'></td><td class='m1' id='m189'></td></tr>
-	<tr><td class='r1' id='p190' onClick='Get("190")'></td><td class='m1' id='m190'></td></tr>
-	<tr><td class='r1' id='p191' onClick='Get("191")'></td><td class='m1' id='m191'></td></tr>
-	<tr><td class='r1' id='p192' onClick='Get("192")'></td><td class='m1' id='m192'></td></tr>
-	<tr><td class='r1' id='p193' onClick='Get("193")'></td><td class='m1' id='m193'></td></tr>
-	<tr><td class='r1' id='p194' onClick='Get("194")'></td><td class='m1' id='m194'></td></tr>
-	<tr><td class='r1' id='p195' onClick='Get("195")'></td><td class='m1' id='m195'></td></tr>
-	<tr><td class='r1' id='p196' onClick='Get("196")'></td><td class='m1' id='m196'></td></tr>
-	<tr><td class='r1' id='p197' onClick='Get("197")'></td><td class='m1' id='m197'></td></tr>
-	<tr><td class='r1' id='p198' onClick='Get("198")'></td><td class='m1' id='m198'></td></tr>
-	<tr><td class='r1' id='p199' onClick='Get("199")'></td><td class='m1' id='m199'></td></tr>
-	<tr><td class='r1' id='p200' onClick='Get("200")'></td><td class='m1' id='m200'></td></tr>
-	<tr><td class='r1' id='p201' onClick='Get("201")'></td><td class='m1' id='m201'></td></tr>
-	<tr><td class='r1' id='p202' onClick='Get("202")'></td><td class='m1' id='m202'></td></tr>
-	<tr><td class='r1' id='p203' onClick='Get("203")'></td><td class='m1' id='m203'></td></tr>
-	<tr><td class='r1' id='p204' onClick='Get("204")'></td><td class='m1' id='m204'></td></tr>
-	<tr><td class='r1' id='p205' onClick='Get("205")'></td><td class='m1' id='m205'></td></tr>
-	<tr><td class='r1' id='p206' onClick='Get("206")'></td><td class='m1' id='m206'></td></tr>
-	<tr><td class='r1' id='p207' onClick='Get("207")'></td><td class='m1' id='m207'></td></tr>
-	<tr><td class='r1' id='p208' onClick='Get("208")'></td><td class='m1' id='m208'></td></tr>
-	<tr><td class='r1' id='p209' onClick='Get("209")'></td><td class='m1' id='m209'></td></tr>
-	<tr><td class='r1' id='p210' onClick='Get("210")'></td><td class='m1' id='m210'></td></tr>
-	<tr><td class='r1' id='p211' onClick='Get("211")'></td><td class='m1' id='m211'></td></tr>
-	<tr><td class='r1' id='p212' onClick='Get("212")'></td><td class='m1' id='m212'></td></tr>
-	<tr><td class='r1' id='p213' onClick='Get("213")'></td><td class='m1' id='m213'></td></tr>
-	<tr><td class='r1' id='p214' onClick='Get("214")'></td><td class='m1' id='m214'></td></tr>
-	<tr><td class='r1' id='p215' onClick='Get("215")'></td><td class='m1' id='m215'></td></tr>
-	<tr><td class='r1' id='p216' onClick='Get("216")'></td><td class='m1' id='m216'></td></tr>
-	<tr><td class='r1' id='p217' onClick='Get("217")'></td><td class='m1' id='m217'></td></tr>
-	<tr><td class='r1' id='p218' onClick='Get("218")'></td><td class='m1' id='m218'></td></tr>
-	<tr><td class='r1' id='p219' onClick='Get("219")'></td><td class='m1' id='m219'></td></tr>
-	<tr><td class='r1' id='p220' onClick='Get("220")'></td><td class='m1' id='m220'></td></tr>
-	<tr><td class='r1' id='p221' onClick='Get("221")'></td><td class='m1' id='m221'></td></tr>
-	<tr><td class='r1' id='p222' onClick='Get("222")'></td><td class='m1' id='m222'></td></tr>
-	<tr><td class='r1' id='p223' onClick='Get("223")'></td><td class='m1' id='m223'></td></tr>
-	<tr><td class='r1' id='p224' onClick='Get("224")'></td><td class='m1' id='m224'></td></tr>
-	<tr><td class='r1' id='p225' onClick='Get("225")'></td><td class='m1' id='m225'></td></tr>
-	<tr><td class='r1' id='p226' onClick='Get("226")'></td><td class='m1' id='m226'></td></tr>
-	<tr><td class='r1' id='p227' onClick='Get("227")'></td><td class='m1' id='m227'></td></tr>
-	<tr><td class='r1' id='p228' onClick='Get("228")'></td><td class='m1' id='m228'></td></tr>
-	<tr><td class='r1' id='p229' onClick='Get("229")'></td><td class='m1' id='m229'></td></tr>
-	<tr><td class='r1' id='p230' onClick='Get("230")'></td><td class='m1' id='m230'></td></tr>
-	<tr><td class='r1' id='p231' onClick='Get("231")'></td><td class='m1' id='m231'></td></tr>
-	<tr><td class='r1' id='p232' onClick='Get("232")'></td><td class='m1' id='m232'></td></tr>
-	<tr><td class='r1' id='p233' onClick='Get("233")'></td><td class='m1' id='m233'></td></tr>
-	<tr><td class='r1' id='p234' onClick='Get("234")'></td><td class='m1' id='m234'></td></tr>
-	<tr><td class='r1' id='p235' onClick='Get("235")'></td><td class='m1' id='m235'></td></tr>
-	<tr><td class='r1' id='p236' onClick='Get("236")'></td><td class='m1' id='m236'></td></tr>
-	<tr><td class='r1' id='p237' onClick='Get("237")'></td><td class='m1' id='m237'></td></tr>
-	<tr><td class='r1' id='p238' onClick='Get("238")'></td><td class='m1' id='m238'></td></tr>
-	<tr><td class='r1' id='p239' onClick='Get("239")'></td><td class='m1' id='m239'></td></tr>
-	<tr><td class='r1' id='p240' onClick='Get("240")'></td><td class='m1' id='m240'></td></tr>
-	<tr><td class='r1' id='p241' onClick='Get("241")'></td><td class='m1' id='m241'></td></tr>
-	<tr><td class='r1' id='p242' onClick='Get("242")'></td><td class='m1' id='m242'></td></tr>
-	<tr><td class='r1' id='p243' onClick='Get("243")'></td><td class='m1' id='m243'></td></tr>
-	<tr><td class='r1' id='p244' onClick='Get("244")'></td><td class='m1' id='m244'></td></tr>
-	<tr><td class='r1' id='p245' onClick='Get("245")'></td><td class='m1' id='m245'></td></tr>
-	<tr><td class='r1' id='p246' onClick='Get("246")'></td><td class='m1' id='m246'></td></tr>
-	<tr><td class='r1' id='p247' onClick='Get("247")'></td><td class='m1' id='m247'></td></tr>
-	<tr><td class='r1' id='p248' onClick='Get("248")'></td><td class='m1' id='m248'></td></tr>
-	<tr><td class='r1' id='p249' onClick='Get("249")'></td><td class='m1' id='m249'></td></tr>
-	<tr><td class='r1' id='p250' onClick='Get("250")'></td><td class='m1' id='m250'></td></tr>
-	<tr><td class='r1' id='p251' onClick='Get("251")'></td><td class='m1' id='m251'></td></tr>
-	<tr><td class='r1' id='p252' onClick='Get("252")'></td><td class='m1' id='m252'></td></tr>
-	<tr><td class='r1' id='p253' onClick='Get("253")'></td><td class='m1' id='m253'></td></tr>
-	<tr><td class='r1' id='p254' onClick='Get("254")'></td><td class='m1' id='m254'></td></tr>
-	<tr><td class='r1' id='p255' onClick='Get("255")'></td><td class='m1' id='m255'></td></tr>
-	<tr><td class='r1' id='p256' onClick='Get("256")'></td><td class='m1' id='m256'></td></tr>
-	<tr><td class='r1' id='p257' onClick='Get("257")'></td><td class='m1' id='m257'></td></tr>
-	<tr><td class='r1' id='p258' onClick='Get("258")'></td><td class='m1' id='m258'></td></tr>
-	<tr><td class='r1' id='p259' onClick='Get("259")'></td><td class='m1' id='m259'></td></tr>
-	<tr><td class='r1' id='p260' onClick='Get("260")'></td><td class='m1' id='m260'></td></tr>
-	<tr><td class='r1' id='p261' onClick='Get("261")'></td><td class='m1' id='m261'></td></tr>
-	<tr><td class='r1' id='p262' onClick='Get("262")'></td><td class='m1' id='m262'></td></tr>
-	<tr><td class='r1' id='p263' onClick='Get("263")'></td><td class='m1' id='m263'></td></tr>
-	<tr><td class='r1' id='p264' onClick='Get("264")'></td><td class='m1' id='m264'></td></tr>
-	<tr><td class='r1' id='p265' onClick='Get("265")'></td><td class='m1' id='m265'></td></tr>
-	<tr><td class='r1' id='p266' onClick='Get("266")'></td><td class='m1' id='m266'></td></tr>
-	<tr><td class='r1' id='p267' onClick='Get("267")'></td><td class='m1' id='m267'></td></tr>
-	<tr><td class='r1' id='p268' onClick='Get("268")'></td><td class='m1' id='m268'></td></tr>
-	<tr><td class='r1' id='p269' onClick='Get("269")'></td><td class='m1' id='m269'></td></tr>
-	<tr><td class='r1' id='p270' onClick='Get("270")'></td><td class='m1' id='m270'></td></tr>
-	<tr><td class='r1' id='p271' onClick='Get("271")'></td><td class='m1' id='m271'></td></tr>
-	<tr><td class='r1' id='p272' onClick='Get("272")'></td><td class='m1' id='m272'></td></tr>
-	<tr><td class='r1' id='p273' onClick='Get("273")'></td><td class='m1' id='m273'></td></tr>
-	<tr><td class='r1' id='p274' onClick='Get("274")'></td><td class='m1' id='m274'></td></tr>
-	<tr><td class='r1' id='p275' onClick='Get("275")'></td><td class='m1' id='m275'></td></tr>
-	<tr><td class='r1' id='p276' onClick='Get("276")'></td><td class='m1' id='m276'></td></tr>
-	<tr><td class='r1' id='p277' onClick='Get("277")'></td><td class='m1' id='m277'></td></tr>
-	<tr><td class='r1' id='p278' onClick='Get("278")'></td><td class='m1' id='m278'></td></tr>
-	<tr><td class='r1' id='p279' onClick='Get("279")'></td><td class='m1' id='m279'></td></tr>
-	<tr><td class='r1' id='p280' onClick='Get("280")'></td><td class='m1' id='m280'></td></tr>
-	<tr><td class='r1' id='p281' onClick='Get("281")'></td><td class='m1' id='m281'></td></tr>
-	<tr><td class='r1' id='p282' onClick='Get("282")'></td><td class='m1' id='m282'></td></tr>
-	<tr><td class='r1' id='p283' onClick='Get("283")'></td><td class='m1' id='m283'></td></tr>
-	<tr><td class='r1' id='p284' onClick='Get("284")'></td><td class='m1' id='m284'></td></tr>
-	<tr><td class='r1' id='p285' onClick='Get("285")'></td><td class='m1' id='m285'></td></tr>
-	<tr><td class='r1' id='p286' onClick='Get("286")'></td><td class='m1' id='m286'></td></tr>
-	<tr><td class='r1' id='p287' onClick='Get("287")'></td><td class='m1' id='m287'></td></tr>
-	<tr><td class='r1' id='p288' onClick='Get("288")'></td><td class='m1' id='m288'></td></tr>
-	<tr><td class='r1' id='p289' onClick='Get("289")'></td><td class='m1' id='m289'></td></tr>
-	<tr><td class='r1' id='p290' onClick='Get("290")'></td><td class='m1' id='m290'></td></tr>
-	<tr><td class='r1' id='p291' onClick='Get("291")'></td><td class='m1' id='m291'></td></tr>
-	<tr><td class='r1' id='p292' onClick='Get("292")'></td><td class='m1' id='m292'></td></tr>
-	<tr><td class='r1' id='p293' onClick='Get("293")'></td><td class='m1' id='m293'></td></tr>
-	<tr><td class='r1' id='p294' onClick='Get("294")'></td><td class='m1' id='m294'></td></tr>
-	<tr><td class='r1' id='p295' onClick='Get("295")'></td><td class='m1' id='m295'></td></tr>
-	<tr><td class='r1' id='p296' onClick='Get("296")'></td><td class='m1' id='m296'></td></tr>
-	<tr><td class='r1' id='p297' onClick='Get("297")'></td><td class='m1' id='m297'></td></tr>
-	<tr><td class='r1' id='p298' onClick='Get("298")'></td><td class='m1' id='m298'></td></tr>
-	<tr><td class='r1' id='p299' onClick='Get("299")'></td><td class='m1' id='m299'></td></tr>
-	<tr><td class='r1' id='p300' onClick='Get("300")'></td><td class='m1' id='m300'></td></tr>
-	<tr><td class='r1' id='p301' onClick='Get("301")'></td><td class='m1' id='m301'></td></tr>
-	<tr><td class='r1' id='p302' onClick='Get("302")'></td><td class='m1' id='m302'></td></tr>
-	<tr><td class='r1' id='p303' onClick='Get("303")'></td><td class='m1' id='m303'></td></tr>
-	<tr><td class='r1' id='p304' onClick='Get("304")'></td><td class='m1' id='m304'></td></tr>
-	<tr><td class='r1' id='p305' onClick='Get("305")'></td><td class='m1' id='m305'></td></tr>
-	<tr><td class='r1' id='p306' onClick='Get("306")'></td><td class='m1' id='m306'></td></tr>
-	<tr><td class='r1' id='p307' onClick='Get("307")'></td><td class='m1' id='m307'></td></tr>
-	<tr><td class='r1' id='p308' onClick='Get("308")'></td><td class='m1' id='m308'></td></tr>
-	<tr><td class='r1' id='p309' onClick='Get("309")'></td><td class='m1' id='m309'></td></tr>
-	<tr><td class='r1' id='p310' onClick='Get("310")'></td><td class='m1' id='m310'></td></tr>
-	<tr><td class='r1' id='p311' onClick='Get("311")'></td><td class='m1' id='m311'></td></tr>
-	<tr><td class='r1' id='p312' onClick='Get("312")'></td><td class='m1' id='m312'></td></tr>
-	<tr><td class='r1' id='p313' onClick='Get("313")'></td><td class='m1' id='m313'></td></tr>
-	<tr><td class='r1' id='p314' onClick='Get("314")'></td><td class='m1' id='m314'></td></tr>
-	<tr><td class='r1' id='p315' onClick='Get("315")'></td><td class='m1' id='m315'></td></tr>
-	<tr><td class='r1' id='p316' onClick='Get("316")'></td><td class='m1' id='m316'></td></tr>
-	<tr><td class='r1' id='p317' onClick='Get("317")'></td><td class='m1' id='m317'></td></tr>
-	<tr><td class='r1' id='p318' onClick='Get("318")'></td><td class='m1' id='m318'></td></tr>
-	<tr><td class='r1' id='p319' onClick='Get("319")'></td><td class='m1' id='m319'></td></tr>
-	<tr><td class='r1' id='p320' onClick='Get("320")'></td><td class='m1' id='m320'></td></tr>
-	<tr><td class='r1' id='p321' onClick='Get("321")'></td><td class='m1' id='m321'></td></tr>
-	<tr><td class='r1' id='p322' onClick='Get("322")'></td><td class='m1' id='m322'></td></tr>
-	<tr><td class='r1' id='p323' onClick='Get("323")'></td><td class='m1' id='m323'></td></tr>
-	<tr><td class='r1' id='p324' onClick='Get("324")'></td><td class='m1' id='m324'></td></tr>
-	<tr><td class='r1' id='p325' onClick='Get("325")'></td><td class='m1' id='m325'></td></tr>
-	<tr><td class='r1' id='p326' onClick='Get("326")'></td><td class='m1' id='m326'></td></tr>
-	<tr><td class='r1' id='p327' onClick='Get("327")'></td><td class='m1' id='m327'></td></tr>
-	<tr><td class='r1' id='p328' onClick='Get("328")'></td><td class='m1' id='m328'></td></tr>
-	<tr><td class='r1' id='p329' onClick='Get("329")'></td><td class='m1' id='m329'></td></tr>
-	<tr><td class='r1' id='p330' onClick='Get("330")'></td><td class='m1' id='m330'></td></tr>
-	<tr><td class='r1' id='p331' onClick='Get("331")'></td><td class='m1' id='m331'></td></tr>
-	<tr><td class='r1' id='p332' onClick='Get("332")'></td><td class='m1' id='m332'></td></tr>
-	<tr><td class='r1' id='p333' onClick='Get("333")'></td><td class='m1' id='m333'></td></tr>
-	<tr><td class='r1' id='p334' onClick='Get("334")'></td><td class='m1' id='m334'></td></tr>
-	<tr><td class='r1' id='p335' onClick='Get("335")'></td><td class='m1' id='m335'></td></tr>
-	<tr><td class='r1' id='p336' onClick='Get("336")'></td><td class='m1' id='m336'></td></tr>
-	<tr><td class='r1' id='p337' onClick='Get("337")'></td><td class='m1' id='m337'></td></tr>
-	<tr><td class='r1' id='p338' onClick='Get("338")'></td><td class='m1' id='m338'></td></tr>
-	<tr><td class='r1' id='p339' onClick='Get("339")'></td><td class='m1' id='m339'></td></tr>
-	<tr><td class='r1' id='p340' onClick='Get("340")'></td><td class='m1' id='m340'></td></tr>
-	<tr><td class='r1' id='p341' onClick='Get("341")'></td><td class='m1' id='m341'></td></tr>
-	<tr><td class='r1' id='p342' onClick='Get("342")'></td><td class='m1' id='m342'></td></tr>
-	<tr><td class='r1' id='p343' onClick='Get("343")'></td><td class='m1' id='m343'></td></tr>
-	<tr><td class='r1' id='p344' onClick='Get("344")'></td><td class='m1' id='m344'></td></tr>
-	<tr><td class='r1' id='p345' onClick='Get("345")'></td><td class='m1' id='m345'></td></tr>
-	<tr><td class='r1' id='p346' onClick='Get("346")'></td><td class='m1' id='m346'></td></tr>
-	<tr><td class='r1' id='p347' onClick='Get("347")'></td><td class='m1' id='m347'></td></tr>
-	<tr><td class='r1' id='p348' onClick='Get("348")'></td><td class='m1' id='m348'></td></tr>
-	<tr><td class='r1' id='p349' onClick='Get("349")'></td><td class='m1' id='m349'></td></tr>
-</table>
-
-<img style="display:scroll;position:fixed;top:60px;right:20px;" border="0" src="images/top_small.png" onClick="sel_on_off();Dict_Declension('');BookTipOut();"/>
-
-<span id="my_note" style="display:scroll;position:fixed;bottom:0px;left:0px;right:0px;width:100%;height:200px;visibility:hidden;z-index:990;">
-	<table border="0" cellpadding="2" cellspacing="0" width=100%">
-		<tr><td align="center" valign="middle">
-			<br>
-			<label onClick="Note_Cancel()" style="font-size:12pt;font-family:Tahoma;color:red;">&nbsp;&nbsp;
-			<img src="images/s_cancel.png" border="0">Cancel</label>&nbsp;&nbsp;&nbsp;&nbsp;
-			<label onClick="Note_Save()" style="font-size:12pt;font-family:Tahoma;color:red;">&nbsp;&nbsp;
-			<img src="images/save.png" border="0">Save</label><br><br>
-			<textarea name="note_data" id="note_data" style="font-size:14.0pt;line-height:180%;width:99%;height:130px;color:#000000;background-color:#e0ffff;"></textarea>
-		</td></tr>
-	</table>
-</span>
-<div id="Sr_Div" style="display:fixed;position:fixed;top:110px;right:0px;visibility:hidden;z-index:990;
-    max-height:90px;width:100px;align:center;
-    padding:3px;margin-left:1%;margin-right:1%;background:#F7DBD0;color:black;
-    border:1px dashed orange;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;-o-border-radius:3px;">
-	<p align="center">
-		<img src="images/b_drop.png" width="20" height="20" onClick="Sr_Go('0')">
-		<br>
-		<img src="images/b_prevpage.png" width="25" height="40" onClick="Sr_Go('1')">
-&nbsp;
-		<img src="images/b_nextpage.png" width="25" height="40" onClick="Sr_Go('2')">
-		<br>
-		<span id="Sr_Now">0</span>
-		&nbsp;/&nbsp;
-		<span id="Sr_Next">999</span>
-	</p>
-</div>
-<popupfixbottom></popupfixbottom>
+  <div id="Sr_Div" style="display:scroll;position:fixed;top:110px;right:0px;visibility:hidden;z-index:99;max-height:90px;width:100px;text-align: center;padding:3px;margin-left:1%;margin-right:1%;background:#F7DBD0;color:black;border:1px dashed orange;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;-o-border-radius:3px;">
+      <img src="images/b_drop.png" width="20" height="20" onClick="Sr_Go('0')">
+      <br>
+      <img src="images/b_prevpage.png" width="25" height="40" onClick="Sr_Go('1')">
+      &nbsp;
+      <img src="images/b_nextpage.png" width="25" height="40" onClick="Sr_Go('2')">
+      <br>
+      <span id="Sr_Now">0</span>
+      &nbsp;/&nbsp;
+      <span id="Sr_Next">999</span>
+  </div>
+     
+  <popupfixbottom></popupfixbottom>
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery_stlookup.js"></script>
+  <script src="js/function0_main.js"></script>
+  <script src="js/function0_main_content.js"></script>
+  <script src="js/function1_dictionary.js"></script>
+  <script src="js/function2_declension.js"></script>
+  <script src="js/function3_paragraph.js"></script>
+  <script src="js/function4_TOC.js"></script>
+  <script src="js/function5_copy.js"></script>
+  <script src="js/function5_history.js"></script>
+  <script src="js/function5_mynote.js"></script>
+  <script src="js/z_tipitaka_Maps.js"></script>
+  <script src="js/z_search_navigator.js"></script>  
+  <popupfix></popupfix>
+  <!---End of add dictionary function--->
 </body>
 </html>

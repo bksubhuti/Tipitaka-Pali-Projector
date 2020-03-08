@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>RESET - Tipiṭaka Projector</title>
+  <title>RESET - Tipiṭaka Pāḷi Projector</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <link rel="TIPITAKA PROJECTOR ICON" href="tipitaka_projector_data/favico.ico">
   <script>
@@ -11,61 +11,10 @@
       var askcf = confirm("It helps to refresh the Pāḷi Tipiṭaka Projector to its original settings.\nConfirm to proceed?");
       if (askcf == true) {
 
-        document.write.innerHTML = localStorage.removeItem("viewr_m");
-        document.write.innerHTML = localStorage.removeItem("viewr_t");
-        document.write.innerHTML = localStorage.removeItem("viewr_s");
-        document.write.innerHTML = localStorage.removeItem("viewr_d");
-
-        document.write.innerHTML = localStorage.removeItem("listparagraph");
-        document.write.innerHTML = localStorage.removeItem("popupword");
-        document.write.innerHTML = localStorage.removeItem("enablefuzzyinword");
-
-        document.write.innerHTML = localStorage.removeItem("size_left");
-        document.write.innerHTML = localStorage.removeItem("size_right");
-        document.write.innerHTML = localStorage.removeItem("bg_color");
-
-        document.write.innerHTML = localStorage.removeItem("hev1");
-        document.write.innerHTML = localStorage.removeItem("hee1");
-
-
-        document.write.innerHTML = localStorage.removeItem("hpe1");
-        document.write.innerHTML = localStorage.removeItem("hpe2");
-        
-        document.write.innerHTML = localStorage.removeItem("hpe3");
-        document.write.innerHTML = localStorage.removeItem("hpe3s");
-        document.write.innerHTML = localStorage.removeItem("hpe4");
-        document.write.innerHTML = localStorage.removeItem("hpe5");
-        document.write.innerHTML = localStorage.removeItem("hpe6");
-        document.write.innerHTML = localStorage.removeItem("hpe6s");
-
-        document.write.innerHTML = localStorage.removeItem("hpv1");
-        document.write.innerHTML = localStorage.removeItem("hpv2");
-        document.write.innerHTML = localStorage.removeItem("hpv3");
-
-        document.write.innerHTML = localStorage.removeItem("hpd1");
-        document.write.innerHTML = localStorage.removeItem("hpg1");
-        document.write.innerHTML = localStorage.removeItem("hpj1");
-        document.write.innerHTML = localStorage.removeItem("hpj2");
-
-        document.write.innerHTML = localStorage.removeItem("hpm1");
-        document.write.innerHTML = localStorage.removeItem("hpm2");
-        document.write.innerHTML = localStorage.removeItem("hpm3");
-        document.write.innerHTML = localStorage.removeItem("hpm4");
-
-        document.write.innerHTML = localStorage.removeItem("hpc1");
-        document.write.innerHTML = localStorage.removeItem("hpc2");
-        document.write.innerHTML = localStorage.removeItem("hpc3");
-        document.write.innerHTML = localStorage.removeItem("hpc4");
-        document.write.innerHTML = localStorage.removeItem("hpc5");
-        document.write.innerHTML = localStorage.removeItem("hpc6");
-
-        document.write.innerHTML = localStorage.removeItem("hpc7");
-        document.write.innerHTML = localStorage.removeItem("hpc8");
-        document.write.innerHTML = localStorage.removeItem("hpc9");
-        document.write.innerHTML = localStorage.removeItem("hpc10");
-        document.write.innerHTML = localStorage.removeItem("hpc11");
-
-        //alert("Done!");
+        for (i in localStorage) {
+          document.write.innerHTML = localStorage.setItem(i, '');
+          document.write.innerHTML = localStorage.removeItem(i);
+        } 
 
         window.location.assign("tipitaka_projector_data/index.htm");
 
@@ -82,7 +31,7 @@
   <br>
 
   <p align="center">
-    <input style="font-size:3em;background-color:green;color:white;" type="button" value="RESET PALI TIPITAKA PROJECTOR " onclick="reFresh()"
+    <input style="font-size:3em;background-color:green;color:white;" type="button" value="RESET  TIPITAKA PALI PROJECTOR " onclick="reFresh()"
     />
   </p>
   <br>

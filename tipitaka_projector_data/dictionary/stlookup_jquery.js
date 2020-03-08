@@ -31,14 +31,12 @@ var deleChars = /[\[\]01234567890.,-;\"\’\?_]/;
 var checkloadeddata = "";
 var loader = document.getElementById("loader");
 
-
 //Display random message:
 
 //var loadmsgarr = new Array('<strong><p>"vayadhammā saṅkhārā appamādena sampādethā"</strong><br> <i>~  mahāparinibbāna sutta (pr.218) ~</i></p>', '<strong><p>"vayadhammā saṅkhārā appamādena sampādethā"</strong><br> <i>~  mahāparinibbāna sutta (pr.218) ~</i></p>', '<strong><p>"vayadhammā saṅkhārā appamādena sampādethā"</strong><br> <i>~  mahāparinibbāna sutta (pr.218) ~</i></p>');
 //var rdom = Math.floor(((Math.random()) * (loadmsgarr.length)));
 //var loadmsg = loadmsgarr[rdom];
 //Display random message:
-
 
 //function print time
 var cDate ='';
@@ -76,7 +74,7 @@ to add:
 var ee1 = ""; //The dictionary code must be always declared before loading the script
 //var path = window.location.pathname();
 var hee1 = localStorage.getItem("hee1"); //Check setting: enabled this dictionary or not
-if ((hee1 == 1)) { dict_in_use++; $.getScript("dictionary/wn-Eng-Eng-Dictionary_WordNet_3.0_.js")};  
+if ((hee1 == 1)) { dict_in_use++; $.getScript("dictionary/wn-Eng-Eng-Dictionary_WordNet_3.0_.js")};
 
 var wordbreakdata = "";
 
@@ -119,7 +117,7 @@ $.getScript("dictionary/000_wordbreakdata_Pali_Pali_grammar_Dictionary_extract_D
 * pc1 dictionary file: pc1_Pali_Zh_sc2016_pi2zh-maindata-v1.js
 * pc2 dictionary file: pc2_Pali-Zh_12_in_1@2018.js
 ***************************************/
- 
+
 var pc1 = ''; var pc2 = '';
 var pd1 = '';
 var pe1 = ''; var pe2 = ''; var pe3 = ''; var pe4 = '';
@@ -165,10 +163,10 @@ for (var i in ary) {
 	if ( name == 'hpv2') {$.getScript("dictionary/pv2_Pali_Viet_Abhi-Terms_by_ngaiTinhSu_Stardict.js"); }
 	if ( name == 'hpv3') {$.getScript("dictionary/pv3_Pali_Viet_Vinaya-Terms_by_VenGiacNguyenBhikkhu.js"); }
   }
-}  
+}
 if ((hee1 == 1)) { ary_dict[0] = 'hee1';}	// English - English Dictionary
 
-$.getScript("dictionary/PE5_Pali_Grammar_Dict_@DPR_2018.js"); 
+$.getScript("dictionary/PE5_Pali_Grammar_Dict_@DPR_2018.js");
 
 //remove small floating button
 function smallrm() {
@@ -273,7 +271,6 @@ t = sel_object.toString().trim(); //get word directly if currently having select
 //direction can be: left right backward forward
 //how far: can be character word paragraph line ...
 //https://developer.mozilla.org/en-US/docs/Web/API/Selection/modify
- 
 
 //sel_object.modify("move","forward","character");
 //alert(sel_object.toString().trim());
@@ -281,20 +278,17 @@ t = sel_object.toString().trim(); //get word directly if currently having select
 //sel_object.modify("move","backward","character");
 //sel_object.modify("extend","forward","word");
 
-
 sel_object.modify("move","right","character");
 //alert(sel_object.toString().trim());
 sel_object.modify("move","left","word");
 //alert(sel_object.toString().trim());
 sel_object.modify("extend","right","word");//extend = extend selection
 t = sel_object.toString().trim();
- 
-
 
 if (view_left != 'Roman') {
 	var id = parseInt(localStorage.getItem('tr_id'));
-	var data = P_HTM[id];	
-	
+	var data = P_HTM[id];
+
 	var reg1 = /\ /g;
 	data = data.replace(reg1, '*');
 	var reg1 = /\./g;
@@ -308,73 +302,72 @@ if (view_left != 'Roman') {
 	var reg1 = /\’/g;
 	data = data.replace(reg1, '*');
 	var ary = data.split('*');
-	
+
 	for (var i in ary) {
 		switch (view_left) {
 			case 'Myanmar' :
 				if (toMyanmar(ary[i]).trim() == t) {
-					t = ary[i].trim(); 
+					t = ary[i].trim();
 					break;
 				}
 			case 'Sinhala' :
 				if (toSinhala(ary[i]).trim() == t) {
-					t = ary[i].trim(); 
+					t = ary[i].trim();
 					break;
 				}
 			case 'Thai' :
 				if (toThai(ary[i]).trim() == t) {
-					t = ary[i].trim(); 
+					t = ary[i].trim();
 					break;
 				}
-			case 'Devanagari' : 
+			case 'Devanagari' :
 				if (toDevar(ary[i]).trim() == t) {
-					t = ary[i].trim(); 
+					t = ary[i].trim();
 					break;
-				} 
+				}
 		}
 	}
-}	
-
+}
 
 sel_object = "";
 }
 
-t = t.toLowerCase();  
+t = t.toLowerCase();
 
   /* Remove @begining: like "Katha... */
-  var te = t.substring(0, 1); 
+  var te = t.substring(0, 1);
   var f = keepChars.test(te); //chars is not included in var keepChars, it will be removed
-  if (f) { 
+  if (f) {
     t = t.substring(1, t.length);
     //2 times to remove punctuation.
-    var te = t.substring(0, 1); 
+    var te = t.substring(0, 1);
 	var f = keepChars.test(te);
-    if (f) { 
+    if (f) {
 	  t = t.substring(1, t.length);
 	}
   }
-  
+
   /* Remove @ending: like: kiṃ’’? (3 times)*/
-  var te = t.substring(0, 1); 
+  var te = t.substring(0, 1);
   var f = keepChars.test(te); //chars is not included in var keepChars, it will be removed
-  if (f) { 
+  if (f) {
     t = t.substring(1, t.length);
     //2 times to remove punctuation.
-    var te = t.substring(0, 1); 
+    var te = t.substring(0, 1);
 	var f = keepChars.test(te);
-    if (f) { 
+    if (f) {
 	  t = t.substring(1, t.length);
 	}
   }
-  
+
   for (var i=1; i<=10; i++) {
-    var te = t.substring(0, 1); 
+    var te = t.substring(0, 1);
     var f = deleChars.test(te); //chars is not included in var keepChars, it will be removed
-    if (f) { 
+    if (f) {
       t = t.substring(1, t.length);
     }
   }
-  t = t.trim(); 
+  t = t.trim();
 
   //for (var i=1; i<=10; i++) {
   //	var te = t.substr(t.length-1);
@@ -385,16 +378,16 @@ t = t.toLowerCase();
  // 		break;
   //	}
   //}
-  //t = t.trim(); 
+  //t = t.trim();
 
   if (t.length > 512) { t=t.substring(0, 512);}
-  
+
   var tdict = t;
-  var n = tdict.indexOf(' '); 
+  var n = tdict.indexOf(' ');
   if (n != -1) {
 	tdict = tdict.substring(0, n);
   }
-  
+
   for (i=0; i<=5; i++) {
     var n = tdict.length - 1;
     var f = tdict.substr(n, 1);
@@ -402,11 +395,10 @@ t = t.toLowerCase();
       tdict = tdict.substr(0, n);
     }
   }
-  
+
   document.getElementById("Dict_key").value = tdict;
-  document.write.innerHTML = localStorage.setItem('Dict_key', tdict);  
-  
-  
+  document.write.innerHTML = localStorage.setItem('Dict_key', tdict);
+
 return t;
 
 }//function word_click
@@ -427,41 +419,40 @@ listMode = 1;
 //var isListMode = localStorage.getItem("listparagraph");
 
 //Check setting list para/single popup
-var isPopupMode = localStorage.getItem("popupword");	// popupword=0=Paragrph mode,  popupword=0=Single mode, 
+var isPopupMode = localStorage.getItem("popupword");	// popupword=0=Paragrph mode,  popupword=0=Single mode,
 if (isPopupMode == 1) { listMode = 0; }
 
 $(window).on('load', function () {
 
 	if (listMode == 1) {
-		
+
 		//List whole paragraph
 		$(".r1").not(".eachwmean").one("click", function () {
-		
+
 			$('popupfix').html(''); //delete old value first
 			//$('popupfix').html('') is still reserve the place for next click, .remove() is not
 
 			writemefinal = "";//reset
 			known_totalword_parag = 0;
-			
+
 			para_text = $(this).text();//get text
 			if ($(".note").css("display") == 'none') {		// remove [..]
 				var ary = para_text.split('[');
 				var dat = '';
 				for (var i in ary) {
 					var idx = ary[i].indexOf(']');
-					if (idx == -1) {	
-						dat = dat + ary[i];				
+					if (idx == -1) {
+						dat = dat + ary[i];
 					} else {
-						dat = dat + ary[i].substring(idx+1);	
+						dat = dat + ary[i].substring(idx+1);
 					}
 				}
 				para_text = dat;
 			}
 			para_text2 = para_text;
-			
-			
+
 			breakParagraph2Word(para_text);//send to function to break them
-			
+
 			/*
 			@ TO SCROLL THE TEXT UP TO THE LATEST CLICKED PARAGRAPH, WE HAVE 2 RELEVENT SOLUTIONS HERE.
 			@ 1. USING x= $(this).position(); //return object x.left and x.top; then //scroll(x.left ,x.top); but this has disadvantage that when the definitions are removed the relative position will be also changed, may lead to incorrect position.
@@ -513,7 +504,7 @@ $(window).on('load', function () {
 				$('#showfloatingpara').bind('click', function () { fp();});
 
 			});
-			
+
 			/* Option function, now disabled
 			@ After viewed the, class r11 can be click to popup meanings again, but only one word popup
 			@ $(".r11").not(".eachwmean").bind('click', function () {});
@@ -630,6 +621,9 @@ $(window).on('load', function () {
 
 	} //End else for popup mode
 
+	//var elmnt = document.getElementById('p' + '100');
+	//elmnt.scrollIntoView();
+
 }); //Onload
 
 var all_better_meaning = "";
@@ -674,7 +668,6 @@ function breakParagraph2Word(breakintoword) {
 */
 
 function lookupEachDict(dictarr, voca, guess_meaning, better_meaning, dictname, specialoption) {
-
 
 this.dictarr = dictarr;
 this.voca = voca;
@@ -962,7 +955,7 @@ all_guess_meaning = "";
 found_count = 0;
 var dualmode = dual;
 
-t = texttolook; 
+t = texttolook;
 
 var word = t;
 var totalword = 0;
@@ -1043,10 +1036,10 @@ for (var i = 1; i<ary_dict.length; i++) {
 */
 
 var word_ = "<font color='brown'><b style='font-size:120%'> <a name=\"" + word + "\" title=\"" + word + "\" >"
-if (view_left== 'Myanmar') {		 
-	word = toMyanmar(word);          
-}                                    
-if (view_left == 'Sinhala') {        
+if (view_left== 'Myanmar') {
+	word = toMyanmar(word); 
+}                           
+if (view_left == 'Sinhala') {
 	word = toSinhala(word);
 }
 if (view_left == 'Thai') {
@@ -1081,7 +1074,6 @@ writeme = writeme + "&nbsp;&nbsp;"
 writeme = writeme + "<a href=\"javascript:void(0)\" onClick=\"Changedivheight(3);\" style=\"color:gray\">&nbsp;▁&nbsp;</a>";
 writeme = writeme + "&nbsp;&nbsp;";
 
-
 writeme = writeme + final_display_meaning;
 
 if (found_count > 0) { known_totalword_parag++; }
@@ -1104,7 +1096,7 @@ popupfixdel[0].innerHTML = smallpopup;
 @ Call speak synthesis if English dictionary has meanings
 */
 if ((letspeak ==1) && ((localStorage.getItem("speech_repeat") != '0'))) {
-  for (var idx=1; idx<=localStorage.getItem("speech_repeat"); idx++) { 
+  for (var idx=1; idx<=localStorage.getItem("speech_repeat"); idx++) {
 	speakSynthesis(voca_lowercase);//repeat 2 times
   }
 }
@@ -1167,7 +1159,6 @@ function fp() {
 //para_text_click = para_text2.replace(rex,"<span>"+"$1"+"</span>");
 
 parawith_percent = "<popupfixbottom><popupfixbottom_del><div id=\"pid\" style=\"align:left;color:#FFF2CC;overflow-y: scroll;max-height:50%;padding:15px;position:fixed;bottom:0%;left:0%;right:0%;font-family: DejaVuSansCondensed;font-size:x-large; text-align:justify;font-weight:bold;background:#F7DBD0;border:2px solid orange;border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;-o-border-radius:4px;\" >" + "<span align=\"left\" style=\" font-family:DejaVuSansCondensed;color:#1f3763;font-weight:bold;\">" + "<span style='text-size:1pt;color:orange;margin-top:-10%;'><sup><sup><c> X </c></sup></sup></span>" + para_text + "</span><span style='color:grey;'>" + knownwp_short + "</span></font><br></div></popupfixbottom_del></popupfixbottom>";
-
 
 var popupfixdel = document.getElementsByTagName("popupfixbottom");
 //for (var p = 0; p < popupfixdel.length; p++) { popupfixdel[p].innerHTML = ""; }
@@ -1409,26 +1400,26 @@ textout[p].innerHTML = psri;
 
 function Changedivheight(direction) {
 	divheight = parseInt(localStorage.getItem("divheight"));
-	if (direction == '0') { 
+	if (direction == '0') {
 		divheight = 50;
-	} 
+	}
 
-	if (direction == '1') { 
-		divheight = divheight + 5; 
+	if (direction == '1') {
+		divheight = divheight + 5;
 		if (50 < divheight) {
 			divheight = 50;
 		}
-	} 
-	if (direction == '2') { 
+	}
+	if (direction == '2') {
 		divheight = divheight - 5;
 		if (divheight < 10) {
 			divheight = 10;
 		}
-	} 
-	if (direction == '3') { 
+	}
+	if (direction == '3') {
 		divheight = 10;
-	} 
-    document.write.innerHTML = localStorage.setItem("divheight", divheight); 
+	}
+    document.write.innerHTML = localStorage.setItem("divheight", divheight);
     document.getElementById('pid').style.maxheight = divheight + "%";
 }
 

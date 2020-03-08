@@ -2,10 +2,13 @@
 <html>
 
 <head>
-  <title>Pāḷi Tipiṭaka Projector</title>
+  <title>Tipiṭaka Pāḷi Projector(TPP)</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <link rel="TIPITAKA PROJECTOR ICON" href="images/favico.ico">
   <style>
+    body {
+      cursor:pointer;
+    }
     .tinysetting {
       text-align: center;
       font-size: small;
@@ -26,394 +29,97 @@
       color: #0000ff;
       text-decoration: none;
     }
-  </style>
-  <script>
-    function menu_on_off() {
-      if (document.getElementById('menu').style.visibility == '') {
-        document.getElementById('menu').style.visibility = 'hidden';
-      } else {
-        document.getElementById('menu').style.visibility = '';
-      }
-    }       
-
-    function LoadNotesImages() {
-      var ary = window.location.toString().split('.htm');
-      var t_no = ary[0].slice(-1);
-      if (t_no == 'x') {
-        t_no = 1; 
-      }
-
-      var ary_t = [];
-      ary_t[1]=[0,  5,  8, 14];
-      ary_t[2]=[0,  3,  3,  5];
-      ary_t[3]=[0,  3,  4,  3];
-      ary_t[4]=[0,  5,  5,  5];
-      ary_t[5]=[0, 11, 11, 11];
-      ary_t[6]=[0, 21, 28,  2];
-      ary_t[7]=[0, 13,  7, 18];
-      ary_t[8]=[0,  0, 68,  0];
-
-      for (var i=1; i<=3; i++) {
-        for (var j=1; j<=ary_t[t_no][i]; j++) {
-          var tno = t_no + i.toString() + ('0' + j.toString()).substr(-2);
-          if (tno == '8203') { tno = '8303';}
-          if (tno == '8204') { tno = '8304';}
-          if (tno == '8205') { tno = '8305';}
-
-          var note = localStorage.getItem('note' + tno);
-          var note_id = 'notes_' + tno;
-
-          if (!note) {
-             document.getElementById(note_id).style.visibility = 'hidden;';
-          } else {
-             document.getElementById(note_id).style.visibility = '';
-          }
-        }
-      }
+    /* Style the tab */
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+      border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px; 
+      width: 450px;
     }
 
-    var Dicts = [];
-    Dicts['pc1'] = 'PC1: [10,530 entries - 675 KB] Pali-Zh Suttacentral Offline 2016';
-    Dicts['pc2'] = 'PC2: [20,113 entries - 5.25 MB] Pali-Zh 12 in 1 @2018';
-    Dicts['pd1'] = 'PD1: [3,607 entries - 400 KB] Pali-Indonesian Suttacentral Offline 2016';
-    Dicts['pe1'] = 'PE1: [23,850 entries - 1.34 MB ] Pali-English Suttacentral Offline 2016';
-    Dicts['pe2'] = 'PE2: [20,968 entries - 1.10 MB] Pali-English Extracted From Digital Pali Reader (DPR)';
-    Dicts['pe3'] = 'PE3: [16,274 entries - 6.91 MB] Pali-English Dictionary (PTS)';
-    Dicts['pe4'] = 'PE4: [381,754 entries - 37.1 MB] Pali English Declension Dict @DPR 2018';
-    Dicts['pg1'] = 'PG1: [22,729 entries - 1.27 MB] Pali-Germany Suttacentral Offline 2016';
-    Dicts['pm1'] = 'PM1: [153,527 entries - 37.8 MB] Pali Word Grammar @2018';
-    Dicts['pm2'] = 'PM2: [153,527 entries - 23.9 MB] Tipitaka Pali Myanmar @2018';
-    Dicts['pm3'] = 'PM3: [58,095 entries - 7.01 MB] Pali Myanmar Dictionary @U Hau Sein 2018';
-    Dicts['pm4'] = 'PM4: [1,882 entries - 441 KB] Pali Roots Dictionary @2018';
-    Dicts['pv1'] = 'PV1: [17,423 entries - 902 KB] Pali Viet Dictionary Bản dịch của ngài Bửu Chơn';
-    Dicts['pv2'] = 'PV2: [3,827 entries - 214 KB] Pali Viet Abhidhamma Terms - ngài Tịnh Sự (phần ghi chú thuật ngữ)';
-    Dicts['pv3'] = 'PV3: [914 entries - 253 KB] Pali Viet Vinaya Terms Từ điển các thuật ngữ về luật do tỳ khưu Giác Nguyên sưu tầm.';
+    /* Style the buttons inside the tab */
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 24px;
+      width: 150px;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+      background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      -webkit-animation: fadeEffect 1s;
+      animation: fadeEffect 1s;
+      background-color: #ffe0b0;
+      line-height: 250%;
+      font-size:30px;
+      min-height: 620px;
+    }
+
+    /* Fade in tabs */
+    @-webkit-keyframes fadeEffect {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes fadeEffect {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
     
-    function DictionaryMoveOption(source, destination) {   // source move to dist. 
-      try { 
-        for(var i=0; i<source.options.length; i++){ 
-          if(source.options[i].selected){ 
-            var e = source.options[i];  
-
-            destination.options.add(new Option(e.text, e.value)); 
-            source.remove(i);  
-          } 
-        } 
-        DictionaryRenew();
-      } catch(e) {
-      } 
-    } 
-
-    function DictionaryChangePos(obj, index) { 
-      if(index==-1){ 
-        if (obj.selectedIndex>0){ 
-          //obj.options(obj.selectedIndex).swapNode(obj.options(obj.selectedIndex-1)) //swapNode on at IE
-          obj.insertBefore(obj.options[obj.selectedIndex], obj.options[obj.selectedIndex - 1]); 
-        } 
-      }else if(index==1){ 
-        if (obj.selectedIndex<obj.options.length-1){ 
-          //obj.options(obj.selectedIndex).swapNode(obj.options(obj.selectedIndex+1)) //swapNode at IE
-          obj.insertBefore(obj.options[obj.selectedIndex + 1], obj.options[obj.selectedIndex]);  
-        } 
-      } 
-      DictionaryRenew();
+    .trr1 {
+      height: 60px;
+      background-color:#dfd090;
     }
 
-    function DictionaryRenew() {
-      var e = document.form1.DictionaryEnable;
-      document.getElementById('EnableCount').innerHTML = e.options.length;
-      for(var i=0; i<e.options.length; i++){ 
-        val = e.options[i].value; 
-        inc = (i + 1) * 10;
-        inc = ('000' + inc).slice(-3);
-        document.write.innerHTML  = localStorage.setItem('h' + val, inc); 
-      } 
-
-
-      var e = document.form1.DictionaryDisable;
-      document.getElementById('DisableCount').innerHTML = e.options.length;
-      var val_disable = '';
-
-      j = e.options.length-1;   // remove all options  
-      for(var i=j; 0<=i; i--) { 
-        val = e.options[i].value;
-        val_disable = val_disable + val + ';';
-        document.write.innerHTML  = localStorage.setItem('h' + val, '000'); 
-        e.remove(i);
-      } 
-
-      for(i in Dicts) {   // add options by Dicts order
-        if (val_disable.indexOf(i) != -1) { 
-          e.options.add(new Option(Dicts[i], i));  
-        }
-      }
+    .tdr1 {
+      background-color: #dfd090;
+      color:blue;
     }
 
-    function ChooseSelect(key) {
-      val = document.getElementById(key).value;
-      document.write.innerHTML = localStorage.setItem(key, val);
-
-      if (key == 'view_left') {
-        window.location.reload();
-      }
-    } 
-
-    function ChooseRadio(key) {
-      val = document.getElementById(key).value;
-      if (key.indexOf('Pali_note') != -1) {
-        if (key == 'Pali_note1') {
-          document.write.innerHTML  = localStorage.setItem('Pali_note', 'inline');
-        } else {
-          document.write.innerHTML  = localStorage.setItem('Pali_note', 'none');
-        }
-      }
-
-      if (key.indexOf('popupword') != -1) {
-        document.write.innerHTML  = localStorage.setItem('popupword', val);
-      }
-
-      if (key.indexOf('show') != -1) {
-        document.write.innerHTML  = localStorage.setItem('topbottom', val);
-      }
+    .tdrx {
+      background-color: #ccc;
+      color:#880000;
     }
 
+  </style>
 
-    function ChooseCheckbox(key) {
-      chk = document.getElementById(key).checked;
-      if (key.indexOf('Sr_Suggest') != -1) {
-        if (chk == true) {
-          document.write.innerHTML  = localStorage.setItem('Sr_Suggest', 1);
-        } else {
-          document.write.innerHTML  = localStorage.setItem('Sr_Suggest', 0);
-        }
-      }
-
-      if (key.indexOf('enablefuzzyinword') != -1) {
-        if (chk == true) {
-          document.write.innerHTML  = localStorage.setItem('enablefuzzyinword', 1);
-        } else {
-          document.write.innerHTML  = localStorage.setItem('enablefuzzyinword', 0);
-        }
-      }
-
-      if (key.indexOf('ree1') != -1) {
-        if (chk == true) {
-          document.write.innerHTML  = localStorage.setItem('ree1', 1);
-        } else {
-          document.write.innerHTML  = localStorage.setItem('ree1', 0);
-        }
-      }
-    }
-
-    function ChooseRange(key) {
-      var val = document.getElementById(key).value;
-      document.write.innerHTML = localStorage.setItem(key, val);
-      if (key.indexOf('divheight') != -1) {
-        document.getElementById('showdivheight').innerHTML = 'Height=' + val + ' %';
-      } else {
-        document.getElementById('showspeed').innerHTML = 'Speed=' + val;
-      }
-      document.write.innerHTML  = localStorage.setItem(key, val);
-    }
-  </script>
+  <SCRIPT language=JavaScript>
+    function sbar(st){st.style.backgroundColor='#cDcDcD';}
+    function cbar(st){st.style.backgroundColor='';}
+  </SCRIPT>
 </head>
 
 <body style="margin-top:0.0pt;margin-right:0in;margin-bottom:0in;margin-left:0in;margin-bottom:0pt;font-size:12.0pt;line-height:200%;font-family:Palatino, sans-serif;" bgcolor="#ffffc0">
-  <!---add dictionary function--->
-  <div id="loader"></div>
-  <script src="dictionary/jquery-3.3.1.min.js"></script>
-  <script src="dictionary/index_jquery.js"></script>
-  <popupfix></popupfix>
-  <!---End of add dictionary function--->
 
-  <script>
-    window.onload = function () {
-      // View Left
-      var view_left = localStorage.getItem("view_left");
-      if (!view_left) {
-        view_left = 'Roman';
-        document.write.innerHTML = localStorage.setItem("view_left", view_left);
-      }
-      document.getElementById('view_left').value = view_left;
-
-      // View Right
-      var view_right = localStorage.getItem("view_right");
-      if (!view_right) {
-        view_right = 'Space';
-        document.write.innerHTML = localStorage.setItem("view_right", view_right);
-      }
-      document.getElementById('view_right').value = view_right;
-
-      // Pali_note
-      var Pali_note = localStorage.getItem("Pali_note");
-      if (!Pali_note) {
-        Pali_note = 'none';
-        document.write.innerHTML = localStorage.setItem("Pali_note", Pali_note);
-        document.getElementById('Pali_note2').checked = true;
-      } else {
-        if (Pali_note == 'inline') {
-          document.getElementById('Pali_note1').checked = true;
-        } else {
-          document.getElementById('Pali_note2').checked = true;
-        }
-      }
-
-      // Sr_Suggest
-      var Sr_Suggest = localStorage.getItem("Sr_Suggest");
-      if (!Sr_Suggest) {
-        Sr_Suggest = '1';
-        document.write.innerHTML = localStorage.setItem("Sr_Suggest", Sr_Suggest);
-        document.getElementById('Sr_Suggest').checked = true;
-      } else {
-        document.getElementById('Sr_Suggest').checked = false;
-      }
-
-      //Lookup & Display Mode
-      var popupword = localStorage.getItem("popupword");
-      if (!popupword) {
-        popupword = '1';
-        document.write.innerHTML = localStorage.setItem("popupword", popupword);
-        document.getElementById('popupwordOn').checked = true;
-      } else {
-        if (popupword == '1') {
-          document.getElementById('popupwordOn').checked = true;
-        } else {
-          document.getElementById('popupwordOff').checked = true;
-        }
-      }
-
-      //Fuzzy InWord(beta)
-      var enablefuzzyinword = localStorage.getItem("enablefuzzyinword");
-      if (!enablefuzzyinword) {
-        enablefuzzyinword = '1';
-        document.write.innerHTML = localStorage.setItem("enablefuzzyinword", enablefuzzyinword);
-        document.getElementById('enablefuzzyinword').checked = true;
-      } else {
-        document.getElementById('enablefuzzyinword').checked = false;
-      }
-
-      //Show Window
-      var topbottom = localStorage.getItem("topbottom");
-      if (!topbottom) {
-        topbottom = 'bottom';
-        document.write.innerHTML = localStorage.setItem("topbottom", topbottom);
-        document.getElementById('showbottom').checked = true;
-      } else {
-        if (topbottom == 'bottom') {
-          document.getElementById('showbottom').checked = true;
-        } else {
-          document.getElementById('showtop').checked = true;
-        }
-      }
-
-      //Div Height
-      var divheight = localStorage.getItem("divheight");
-      if (!divheight) {
-        divheight = '35';
-        document.write.innerHTML = localStorage.setItem("divheight", divheight);
-        document.getElementById('divheight').value = divheight;
-      }
-      document.getElementById('showdivheight').innerHTML = 'Height=' + divheight + ' %';
-
-      // PALI DICTIONARIES
-      setdefault = '1';   // set defaut Pali dictionary = pe4
-      for (i in Dicts) {
-        var val = localStorage.getItem("h" + i);
-        if (!val) {
-          val = '000';
-        }
-        if (val != '000') {
-          setdefault = '0'
-        }
-      }
-      if (setdefault == '1') {
-         document.write.innerHTML = localStorage.setItem('hpe4', '010');
-      }
-
-
-      var e_enable = document.getElementById('DictionaryEnable');
-      var e_disable = document.getElementById('DictionaryDisable');
-
-      for(var i=(e_enable.length -1); 0<=i; i--) { // remove all options  
-        e_enable.remove(i);
-      } 
-      for(var i=(e_disable.length -1); 0<=i; i--) { // remove all options  
-        e_disable.remove(i);
-      } 
-
-      e_enable_options = '';
-      for(i in Dicts) {   // add options by Dicts order
-        var val = localStorage.getItem("h" + i);
-        if (!val) {
-          val = '000';
-        }
-
-        if (val == '000') {
-          e_disable.options.add(new Option(Dicts[i], i)); 
-        } else { 
-          e_enable_options = e_enable_options + val + i + '@';
-        } 
-      } 
-      var ary = e_enable_options.split('@'); // put enabled options
-      ary.sort(); 
-      var inc = 0;
-      for (var i in ary) {
-        if (ary[i] != '') { 
-          v2 = ary[i].slice(-3);    // key 
-
-          e_enable.options.add(new Option(Dicts[v2], v2));
-
-          inc = inc +10;
-          v1 = '000' + inc;
-          v1 = v1.slice(-3);
-          document.write.innerHTML = localStorage.setItem('h' + v2, v1);
-        } 
-      } 
-      document.getElementById('EnableCount').innerHTML = document.form1.DictionaryEnable.options.length;
-      document.getElementById('DisableCount').innerHTML = document.form1.DictionaryDisable.options.length;
-
-      // English Dictionary
-      var ree1 = localStorage.getItem("ree1");
-      if (!ree1) {
-        ree1 = '0';
-        document.write.innerHTML = localStorage.setItem("ree1", ree1);
-        document.getElementById('ree1').checked = false;
-      } else {
-        if (ree1 == '1') {
-          document.getElementById('ree1').checked = true;
-        } else {
-          document.getElementById('ree1').checked = false;
-        }
-      }
-
-      // Speech Repeat
-      var speech_repeat = localStorage.getItem("speech_repeat");
-      if (!speech_repeat) {
-        speech_repeat = '1';
-        document.write.innerHTML = localStorage.setItem("speech_repeat", speech_repeat);
-      }
-      document.getElementById('speech_repeat').value = speech_repeat;
-
-      // Speed
-      var speech_speed = localStorage.getItem("speech_speed");
-      if (!speech_speed) {
-        speech_speed = '1';
-        document.write.innerHTML = localStorage.setItem("speech_speed", speech_speed);
-        document.getElementById('speech_speed').value = speech_speed;
-      }
-      document.getElementById('showspeed').innerHTML = 'Speed=' + speech_speed;
-    }
-  </script>
 
   <table align="center" bgcolor="#ffffc0" border="0" width="100%">
     <tbody>
       <tr>
-        <td align="right" valign="center" width="20%">
+        <td align="center" valign="center" width="25%">
+          Chaṭṭha Saṅgāyana Tipiṭaka
           <a href="index.htm" id="asoka"><img src="images/asoka.png"></a>
         </td>
-        <td align="center" width="60%">
+        <td align="center" width="50%">
           <h3 style='margin-top:0pt;color:brown;'>
-            <strong>Pāḷi Tipiṭaka Projector</strong>  - 20200208 (SG)
+            <strong>Tipiṭaka Pāḷi Projector</strong>  - <span id="Ymd">20200330</span> (SG)
           </h3>
 
           <span align="center" style="color:blue;">
@@ -421,60 +127,151 @@
               <img src="images/reset.png">&nbsp;&nbsp;Reset&nbsp;&nbsp;&nbsp;
             </a>
 
+            <span id="prefer" onClick="window.location='preferences.htm'">
+              <img src="images/s_process.png">&nbsp;&nbsp;Preferences&nbsp;&nbsp;&nbsp;
+            </span>
+
+            <hr color="#b2b2b2" width="50%">
             <a href="help_en.htm" id="help_en">
               <img src="images/help.png">&nbsp;&nbsp;Help&nbsp;&nbsp;&nbsp;
-            </a>
+            </a>            
 
             <a href="search.htm" id="search">
               <img src="images/search.png">&nbsp;&nbsp;Search&nbsp;&nbsp;&nbsp;
             </a>
-
-            <hr color="#b2b2b2" width="50%">
           </span>
-
-          <table border="0">
-            <tr>
-              <td width="50%" align="center">
-                Left<br>
-                <select name="view_left" id="view_left" onChange='ChooseSelect("view_left")'>
-                  <option value="Roman">Roman</option>
-                  <option value="Myanmar">Myanmar</option>
-                  <option value="Sinhala">Sinhala</option>
-                  <option value="Thai">Thai</option>
-                  <option value="Devanagari">Devanagari</option>
-                </select>
-              </td>
-              <td width="50%" align="center">
-                Right<br>
-                <select name="view_right" id="view_right" onChange='ChooseSelect("view_right")'>
-                  <option value="Space"></option>
-                  <option value="Roman">Roman</option>
-                  <option value="Myanmar">Myanmar</option>
-                  <option value="Sinhala">Sinhala</option>
-                  <option value="Thai">Thai</option>
-                  <option value="Devanagari">Devanagari</option>
-                  <option value="My_Note">My Notes</option>
-                </select>
-              </td>
-            </tr>
-          </table>
         </td>
-        <td align="center" width="20%" valign="bottom">
-          Chaṭṭha Saṅgāyana Tipiṭaka
+        <td width="25%" valign="bottom">
+          <div style="line-height: 110%;">
+            Quick Jump
+            <br><br>
+          
+            <input type="Textbox" name="QuickJump" id="QuickJump" value="" style="font-size:11pt;width:100%;max-width:60pt;" onBlur="QuickJump()" onKeyup="QuickJumpTips()">
+
+            <div onClick="document.getElementById('QuickJumpTipsShow').style.display='inline';" style="display:inline; color:blue;">
+              <img src="images/s_info.png">Tips
+              </div>
+              <div id="QuickJumpTipsShow" onClick="this.style.display='none'" style="color:#440000;font-size:10pt;display:none;"><br>[mn 33.11]= Jump to mn Sutta no 33 Paragraph 11,<br>[mn1 99]= Jump to mn1 Paragraph 99,<br>[mn1 m99]= Jump to mn1 Myanmar Page 99,<br>[mn1 p99] or [mn1 pts99]= Jump to mn1 PTS Page 99.<br>
+              </div>
+            </div>
+            <input id="QuickJumpNewTab" type="checkbox" value="0"></input>
+            <label for="QuickJumpNewTab">Open at New Tab</label><br>
+            <span id="QuickJumpTips" style="color:#440000;"></span>
+          </div>
         </td>
       </tr>
     </tbody>
   </table>
 
-  <table align="left" bgcolor="#ffffc0" border="0" cellpadding="3" width="100%">
+  <span id="Gen1"></span>  <table id="iPad" align="left" bgcolor="#ffffc0" border="0" cellpadding="3" width="100%" style="font-size:14pt;line-height: 200%;display:none">
+    <tr>
+      <td width="1%">.</td>
+      <td width="34%" valign="top">
+      </td>
+      <td width="64%" valign="top" align="left">
+        <div class="tab">
+          <button class="tablinks" onclick="PrefTab(event, 'Mula')" id="defaultOpen">Mūla</button>
+          <button class="tablinks" onclick="PrefTab(event, 'Atthakatha')">Aṭṭhakathā</button>
+          <button class="tablinks" onclick="PrefTab(event, 'Tika')">Ṭīkā</button>
+        </div>
+      </td>
+      <td width="1%">.</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td valign="top">
+        <table border="0" width="100%" style="font-size:30px;line-height: 250%;">
+            <tr class="trr1">
+              <td class="tdrx">
+                <img src="images/top_small.png" width="25">&nbsp;Vinayapiṭaka
+              </td>
+            </tr>
+            <tr class="trr1">
+              <td class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index2.htm'">
+                <img src="images/top_small.png" width="25">&nbsp;Dīghanikāya
+              </td>
+            </tr>
+            <tr class="trr1">
+              <td class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index3.htm'">
+                <img src="images/top_small.png" width="25">Majjhimanikāya</a>
+              </td>
+            </tr>
+            <tr class="trr1">
+              <td class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index4.htm'">
+                <img src="images/top_small.png" width="25">aṃyuttanikāya</a>
+              </td>
+            </tr>
+            <tr class="trr1">
+              <td class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index5.htm'">
+                <img src="images/top_small.png" width="25">Aṅguttaranikāya</a>
+              </td>
+            </tr>
+            <tr class="trr1">
+              <td class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index6.htm'">
+                <img src="images/top_small.png" width="25">Khuddakanikāya</a>
+              </td>
+            </tr>
+            <tr class="trr1">
+              <td class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index7.htm'">
+                <img src="images/top_small.png" width="25">Abhidhammapiṭaka</a>
+              </td>
+            </tr>
+            <tr class="trr1">
+              <td class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index8.htm'">
+                <img src="images/top_small.png" width="25">Añña</a>
+              </td>
+            </tr>
+          </tr>
+        </table>
+      </td>
+      <td valign="top" align="left">
+        <div id="Mula" class="tabcontent">
+          1 <a href="1101.htm">Pārājika&nbsp;Pāḷi</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1101" onClick="location.href='export.htm?id=1101'" style="display:none;"></a><br>
+          2 <a href="1102.htm">Pācittiya&nbsp;Pāḷi</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1102" onClick="location.href='export.htm?id=1102'" style="display:none;"></a><br>
+          3 <a href="1103.htm">Mahāvagga&nbsp;Pāḷi</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1103" onClick="location.href='export.htm?id=1103'" style="display:none;"></a><br>
+          4 <a href="1104.htm">Cūḷavagga&nbsp;Pāḷi</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1104" onClick="location.href='export.htm?id=1104'" style="display:none;"></a><br>
+          5 <a href="1105.htm">Parivāra&nbsp;Pāḷi</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1105" onClick="location.href='export.htm?id=1105'" style="display:none;"></a><br>
+        </div>
+        <div id="Atthakatha" class="tabcontent">
+          1 <a href="1201.htm">Pārājika&nbsp;Aṭṭhakathā-1</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1201" onClick="location.href='export.htm?id=1201'" style="display:none;"></a><br>
+          2 <a href="1202.htm">Pārājika&nbsp;Aṭṭhakathā-2</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1202" onClick="location.href='export.htm?id=1202'" style="display:none;"></a><br>
+          3 <a href="1203.htm">Pācittiya&nbsp;Aṭṭhakathā</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1203" onClick="location.href='export.htm?id=1203'" style="display:none;"></a><br>
+          4 <a href="1204.htm">Mahāvagga&nbsp;Aṭṭhakathā</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1204" onClick="location.href='export.htm?id=1204'" style="display:none;"></a><br>
+          5 <a href="1205.htm">Cūḷavagga&nbsp;Aṭṭhakathā</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1205" onClick="location.href='export.htm?id=1205'" style="display:none;"></a><br>
+          6 <a href="1206.htm">Parivāra&nbsp;Aṭṭhakathā</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1206" onClick="location.href='export.htm?id=1206'" style="display:none;"></a><br>
+          7 <a href="1207.htm">Kaṅkhāvitaraṇi&nbsp;Aṭṭhakathā</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1207" onClick="location.href='export.htm?id=1207'" style="display:none;"></a><br>
+          8 <a href="1208.htm">Vinayasaṅgaha&nbsp;Aṭṭhakathā</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1208" onClick="location.href='export.htm?id=1208'" style="display:none;"></a><br>
+        </div>
+        <div id="Tika" class="tabcontent">
+          1 <a href="1301.htm">Sāratthadīpanī&nbsp;Ṭīkā-1</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1301" onClick="location.href='export.htm?id=1301'" style="display:none;"></a><br>
+          2 <a href="1302.htm">Sāratthadīpanī&nbsp;Ṭīkā-2</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1302" onClick="location.href='export.htm?id=1302'" style="display:none;"></a><br>
+          3 <a href="1303.htm">Sāratthadīpanī&nbsp;Ṭīkā-3</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1303" onClick="location.href='export.htm?id=1303'" style="display:none;"></a><br>
+          4 <a href="1304.htm">Vajirabuddhi&nbsp;Ṭīkā</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1304" onClick="location.href='export.htm?id=1304'" style="display:none;"></a><br>
+          5 <a href="1305.htm">Vimativinodanī&nbsp;Ṭīkā-1</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1305" onClick="location.href='export.htm?id=1305'" style="display:none;"></a><br>
+          6 <a href="1306.htm">Vimativinodanī&nbsp;Ṭīkā-2</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1306" onClick="location.href='export.htm?id=1306'" style="display:none;"></a><br>
+          7 <a href="1307.htm">Vinayālaṅkāra&nbsp;Ṭīkā-1</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1307" onClick="location.href='export.htm?id=1307'" style="display:none;"></a><br>
+          8 <a href="1308.htm">Vinayālaṅkāra&nbsp;Ṭīkā-2</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1308" onClick="location.href='export.htm?id=1308'" style="display:none;"></a><br>
+          9 <a href="1309.htm">Kaṅkhāvitaraṇī-Purāṇa-Abhinava&nbsp;Ṭīkā</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1309" onClick="location.href='export.htm?id=1309'" style="display:none;"></a><br>
+          10 <a href="1310.htm">Vinayavinicchaya-uttaravinicchayo</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1310" onClick="location.href='export.htm?id=1310'" style="display:none;"></a><br>
+          11 <a href="1311.htm">Vinayavinicchaya&nbsp;Ṭīkā-1</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1311" onClick="location.href='export.htm?id=1311'" style="display:none;"></a><br>
+          12 <a href="1312.htm">Vinayavinicchaya&nbsp;Ṭīkā-2</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1312" onClick="location.href='export.htm?id=1312'" style="display:none;"></a><br>
+          13 <a href="1313.htm">Pācityādiyojanāpāḷi</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1313" onClick="location.href='export.htm?id=1313'" style="display:none;"></a><br>
+          14 <a href="1314.htm">Khuddasikkhā-mūlasikkhā</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="iPad_1314" onClick="location.href='export.htm?id=1314'" style="display:none;"></a><br>
+        </div> 
+      </td>
+      <td></td>
+    </tr>
+  </table>
+  
+  <table id="PC" align="left" bgcolor="#ffffc0" border="0" cellpadding="3" width="100%" style="font-size:14pt;line-height: 200%;display:none">
     <tbody>
       <tr>
-        <td width="5%"></td>
-        <td align="center" width="15%"></td>
-        <td width="25%">Mūla</td>
-        <td width="25%">Aṭṭhakathā</td>
-        <td width="25%">Ṭīkā</td>
-        <td width="5%"></td>
+        <td width="1%"></td>
+        <td align="center" width="16%"></td>
+        <td width="24%">Mūla</td>
+        <td width="28%">Aṭṭhakathā</td>
+        <td width="30%">Ṭīkā</td>
+        <td width="1%"></td>
       </tr>
       <tr>
         <td align="center" valign="top"></td>
@@ -491,158 +288,136 @@
           </ul>
         </td>
         <td bgcolor="#ffe0b0" valign="top">
-          1 <a href="1101.htm">Pārājika&nbsp;Pāḷi</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1101" onClick="location.href='index_export.htm?id=1101'" style="visibility:hidden;"><br>
-          2 <a href="1102.htm">Pācittiya&nbsp;Pāḷi</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1102" onClick="location.href='index_export.htm?id=1102'" style="visibility:hidden;"><br>
-          3 <a href="1103.htm">Mahāvagga&nbsp;Pāḷi</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1103" onClick="location.href='index_export.htm?id=1103'" style="visibility:hidden;"><br>
-          4 <a href="1104.htm">Cūḷavagga&nbsp;Pāḷi</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1104" onClick="location.href='index_export.htm?id=1104'" style="visibility:hidden;"><br>
-          5 <a href="1105.htm">Parivāra&nbsp;Pāḷi</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1105" onClick="location.href='index_export.htm?id=1105'" style="visibility:hidden;"><br>
+          1 <a href="1101.htm">Pārājika&nbsp;Pāḷi</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1101" onClick="location.href='export.htm?id=1101'" style="display:none;"></a><br>
+          2 <a href="1102.htm">Pācittiya&nbsp;Pāḷi</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1102" onClick="location.href='export.htm?id=1102'" style="display:none;"></a><br>
+          3 <a href="1103.htm">Mahāvagga&nbsp;Pāḷi</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1103" onClick="location.href='export.htm?id=1103'" style="display:none;"></a><br>
+          4 <a href="1104.htm">Cūḷavagga&nbsp;Pāḷi</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1104" onClick="location.href='export.htm?id=1104'" style="display:none;"></a><br>
+          5 <a href="1105.htm">Parivāra&nbsp;Pāḷi</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1105" onClick="location.href='export.htm?id=1105'" style="display:none;"></a><br>
         </td>
         <td bgcolor="#ffe0b0" valign="top">
-          1 <a href="1201.htm">Pārājika&nbsp;Aṭṭhakathā-1</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1201" onClick="location.href='index_export.htm?id=1201'" style="visibility:hidden;"><br>
-          2 <a href="1202.htm">Pārājika&nbsp;Aṭṭhakathā-2</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1202" onClick="location.href='index_export.htm?id=1202'" style="visibility:hidden;"><br>
-          3 <a href="1203.htm">Pācittiya&nbsp;Aṭṭhakathā</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1203" onClick="location.href='index_export.htm?id=1203'" style="visibility:hidden;"><br>
-          4 <a href="1204.htm">Mahāvagga&nbsp;Aṭṭhakathā</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1204" onClick="location.href='index_export.htm?id=1204'" style="visibility:hidden;"><br>
-          5 <a href="1205.htm">Cūḷavagga&nbsp;Aṭṭhakathā</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1205" onClick="location.href='index_export.htm?id=1205'" style="visibility:hidden;"><br>
-          6 <a href="1206.htm">Parivāra&nbsp;Aṭṭhakathā</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1206" onClick="location.href='index_export.htm?id=1206'" style="visibility:hidden;"><br>
-          7 <a href="1207.htm">Kaṅkhāvitaraṇi&nbsp;Aṭṭhakathā</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1207" onClick="location.href='index_export.htm?id=1207'" style="visibility:hidden;"><br>
-          8 <a href="1208.htm">Vinayasaṅgaha&nbsp;Aṭṭhakathā</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1208" onClick="location.href='index_export.htm?id=1208'" style="visibility:hidden;"><br>
+          1 <a href="1201.htm">Pārājika&nbsp;Aṭṭhakathā-1</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1201" onClick="location.href='export.htm?id=1201'" style="display:none;"></a><br>
+          2 <a href="1202.htm">Pārājika&nbsp;Aṭṭhakathā-2</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1202" onClick="location.href='export.htm?id=1202'" style="display:none;"></a><br>
+          3 <a href="1203.htm">Pācittiya&nbsp;Aṭṭhakathā</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1203" onClick="location.href='export.htm?id=1203'" style="display:none;"></a><br>
+          4 <a href="1204.htm">Mahāvagga&nbsp;Aṭṭhakathā</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1204" onClick="location.href='export.htm?id=1204'" style="display:none;"></a><br>
+          5 <a href="1205.htm">Cūḷavagga&nbsp;Aṭṭhakathā</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1205" onClick="location.href='export.htm?id=1205'" style="display:none;"></a><br>
+          6 <a href="1206.htm">Parivāra&nbsp;Aṭṭhakathā</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1206" onClick="location.href='export.htm?id=1206'" style="display:none;"></a><br>
+          7 <a href="1207.htm">Kaṅkhāvitaraṇi&nbsp;Aṭṭhakathā</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1207" onClick="location.href='export.htm?id=1207'" style="display:none;"></a><br>
+          8 <a href="1208.htm">Vinayasaṅgaha&nbsp;Aṭṭhakathā</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1208" onClick="location.href='export.htm?id=1208'" style="display:none;"></a><br>
         </td>
         <td bgcolor="#ffe0b0" valign="top">
-          1 <a href="1301.htm">Sāratthadīpanī&nbsp;Ṭīkā-1</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1301" onClick="location.href='index_export.htm?id=1301'" style="visibility:hidden;"><br>
-          2 <a href="1302.htm">Sāratthadīpanī&nbsp;Ṭīkā-2</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1302" onClick="location.href='index_export.htm?id=1302'" style="visibility:hidden;"><br>
-          3 <a href="1303.htm">Sāratthadīpanī&nbsp;Ṭīkā-3</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1303" onClick="location.href='index_export.htm?id=1303'" style="visibility:hidden;"><br>
-          4 <a href="1304.htm">Vajirabuddhi&nbsp;Ṭīkā</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1304" onClick="location.href='index_export.htm?id=1304'" style="visibility:hidden;"><br>
-          5 <a href="1305.htm">Vimativinodanī&nbsp;Ṭīkā-1</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1305" onClick="location.href='index_export.htm?id=1305'" style="visibility:hidden;"><br>
-          6 <a href="1306.htm">Vimativinodanī&nbsp;Ṭīkā-2</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1306" onClick="location.href='index_export.htm?id=1306'" style="visibility:hidden;"><br>
-          7 <a href="1307.htm">Vinayālaṅkāra&nbsp;Ṭīkā-1</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1307" onClick="location.href='index_export.htm?id=1307'" style="visibility:hidden;"><br>
-          8 <a href="1308.htm">Vinayālaṅkāra&nbsp;Ṭīkā-2</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1308" onClick="location.href='index_export.htm?id=1308'" style="visibility:hidden;"><br>
-          9 <a href="1309.htm">Kaṅkhāvitaraṇī-Purāṇa-Abhinava&nbsp;Ṭīkā</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1309" onClick="location.href='index_export.htm?id=1309'" style="visibility:hidden;"><br>
-          10 <a href="1310.htm">Vinayavinicchaya-uttaravinicchayo</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1310" onClick="location.href='index_export.htm?id=1310'" style="visibility:hidden;"><br>
-          11 <a href="1311.htm">Vinayavinicchaya&nbsp;Ṭīkā-1</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1311" onClick="location.href='index_export.htm?id=1311'" style="visibility:hidden;"><br>
-          12 <a href="1312.htm">Vinayavinicchaya&nbsp;Ṭīkā-2</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1312" onClick="location.href='index_export.htm?id=1312'" style="visibility:hidden;"><br>
-          13 <a href="1313.htm">Pācityādiyojanāpāḷi</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1313" onClick="location.href='index_export.htm?id=1313'" style="visibility:hidden;"><br>
-          14 <a href="1314.htm">Khuddasikkhā-mūlasikkhā</a>&nbsp;&nbsp;<img src="images/b_comment.png" id="notes_1314" onClick="location.href='index_export.htm?id=1314'" style="visibility:hidden;"><br>
+          1 <a href="1301.htm">Sāratthadīpanī&nbsp;Ṭīkā-1</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1301" onClick="location.href='export.htm?id=1301'" style="display:none;"></a><br>
+          2 <a href="1302.htm">Sāratthadīpanī&nbsp;Ṭīkā-2</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1302" onClick="location.href='export.htm?id=1302'" style="display:none;"></a><br>
+          3 <a href="1303.htm">Sāratthadīpanī&nbsp;Ṭīkā-3</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1303" onClick="location.href='export.htm?id=1303'" style="display:none;"></a><br>
+          4 <a href="1304.htm">Vajirabuddhi&nbsp;Ṭīkā</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1304" onClick="location.href='export.htm?id=1304'" style="display:none;"></a><br>
+          5 <a href="1305.htm">Vimativinodanī&nbsp;Ṭīkā-1</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1305" onClick="location.href='export.htm?id=1305'" style="display:none;"></a><br>
+          6 <a href="1306.htm">Vimativinodanī&nbsp;Ṭīkā-2</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1306" onClick="location.href='export.htm?id=1306'" style="display:none;"></a><br>
+          7 <a href="1307.htm">Vinayālaṅkāra&nbsp;Ṭīkā-1</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1307" onClick="location.href='export.htm?id=1307'" style="display:none;"></a><br>
+          8 <a href="1308.htm">Vinayālaṅkāra&nbsp;Ṭīkā-2</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1308" onClick="location.href='export.htm?id=1308'" style="display:none;"></a><br>
+          9 <a href="1309.htm">Kaṅkhāvitaraṇī-Purāṇa-Abhinava&nbsp;Ṭīkā</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1309" onClick="location.href='export.htm?id=1309'" style="display:none;"></a><br>
+          10 <a href="1310.htm">Vinayavinicchaya-uttaravinicchayo</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1310" onClick="location.href='export.htm?id=1310'" style="display:none;"></a><br>
+          11 <a href="1311.htm">Vinayavinicchaya&nbsp;Ṭīkā-1</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1311" onClick="location.href='export.htm?id=1311'" style="display:none;"></a><br>
+          12 <a href="1312.htm">Vinayavinicchaya&nbsp;Ṭīkā-2</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1312" onClick="location.href='export.htm?id=1312'" style="display:none;"></a><br>
+          13 <a href="1313.htm">Pācityādiyojanāpāḷi</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1313" onClick="location.href='export.htm?id=1313'" style="display:none;"></a><br>
+          14 <a href="1314.htm">Khuddasikkhā-mūlasikkhā</a>&nbsp;&nbsp;<a href="#"><img src="images/b_comment.png" id="notes_1314" onClick="location.href='export.htm?id=1314'" style="display:none;"></a><br>
         </td>
         <td></td>
       </tr>
     </tbody>
   </table>
 
+<span id="Gen2"></span>
 
-<div id="menu" style="z-index:9;visibility:hidden;display:scroll;position:fixed;scroll;
-  overflow-y:scroll;max-height:100%;width:90%;align:center;top:0px;left:0px;
-  padding:18px;margin-left:5%;margin-right:5%;background:#F7DBD0;color:black;
-  border:1px dashed orange;border-radius:10px;-moz-border-radius:10px;
-  -webkit-border-radius:10px;-o-border-radius:10px;">
+<!---add dictionary function--->
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery_index.js"></script>
+<script src="js/z_tipitaka_Maps.js"></script>
+<script src="js/pali_sutta_no.js"></script>
+<script src="js/function4_TOC.js"></script>
+<popupfix></popupfix>
 
-  <strong>DISPLAY NOTE</strong>
-  <div align="left" style="padding:8px;border: 1px dashed blue;">
-    <input name="palinote" id="Pali_note1" type="radio" onclick='ChooseRadio("Pali_note1")'>
-    <label for="Pali_note1">Inline Display</label>
+<script>
+  function PrefTab(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+  // Get the element with id="defaultOpen" and click on it
+  document.getElementById("defaultOpen").click();
+</script>
+  
 
-    <input name="palinote" id="Pali_note2" type="radio" onclick='ChooseRadio("Pali_note2")'>
-    <label for="Pali_note2">None Display (Default)</label>
-    <br>
+<script>
+  var ary = window.location.toString().split('.htm');
+  var t_no = ary[0].slice(-1);
+  if (t_no == 'x') {
+    t_no = 1; 
+  }
 
-    <input id="Sr_Suggest" type="checkbox" name="Sr_Suggest" onclick='ChooseCheckbox("Sr_Suggest")' /></input>
-    <label for="Sr_Suggest" onclick='ChooseCheckbox("Sr_Suggest")'>Search Suggestion</label>
-  </div><br>
+  var ary_t = [];
+  ary_t[1]=[0,  5,  8, 14];
+  ary_t[2]=[0,  3,  3,  5];
+  ary_t[3]=[0,  3,  4,  3];
+  ary_t[4]=[0,  5,  5,  5];
+  ary_t[5]=[0, 11, 11, 11];
+  ary_t[6]=[0, 21, 28,  2];
+  ary_t[7]=[0, 13,  7, 18];
+  ary_t[8]=[0,  0, 68,  0];
 
-  <strong>DICTIONARY LOOKUP - SETTING</strong>
-  <div align="left" style="padding:8px;border: 1px dashed blue;">
-    <strong style="color:green;">Lookup & Display Mode</strong><br>
+  ary_local = [];
+  notex = '';
+  for (i =0; i<localStorage.length; i++) {
+    k1 = localStorage.key(i);
+    if (('n1000'<k1) && (k1<'n8999')) {
+      notex = notex + k1 + ';';
+      //ary_local[k1.substring(1, 4)] = '1';
+    }
+  }
+  ary = notex.split(';');
+  for (i in ary) {
+    k1 = ary[i].substring(1, 5);
+    ary_local[k1] = '1';
+  } 
+    
 
-    <input name="popupword" id="popupwordOff" value="0" type="radio" onclick='ChooseRadio("popupwordOff")'>
-    <label for="popupwordOff">List Paragraph</label>
+  for (var i=1; i<=3; i++) {
+    for (var j=1; j<=ary_t[t_no][i]; j++) {
+      var tno = t_no + i.toString() + ('0' + j.toString()).substr(-2);
+      if (tno == '8203') { tno = '8303';}
+      if (tno == '8204') { tno = '8304';}
+      if (tno == '8205') { tno = '8305';}
 
-    <input name="popupword" id="popupwordOn" value="1" type="radio" onclick='ChooseRadio("popupwordOn")'>
-    <label for="popupwordOn">Pop-Up SingleWord (Default)</label>
-    <br>
+      if (ary_local[tno] == '1') {
+        document.getElementById('iPad_' + tno).style.display = 'inline';
+        document.getElementById('notes_' + tno).style.display = 'inline';
+      } else {
+        document.getElementById('iPad_' + tno).style.visibility = 'none';
+        document.getElementById('notes_' + tno).style.visibility = 'none';
+      }
+    }
+  }
+</script>
 
-    <strong style="color:green;">Fuzzy InWord(beta)</strong>
-    <br>
-    <input id="enablefuzzyinword" type="checkbox" name="enablefuzzyinword" onclick='ChooseRadio("enablefuzzyinword")' /></input>
-    <label for="enablefuzzyinword" onclick='ChooseCheckbox("enablefuzzyinword")'>For Advanced Pāḷi Learner Only</label>
-    <br>
+<script>
+  mode = localStorage.getItem('contentmode');
+  if (!mode) {
+    mode = 'PC';
+    document.write = localStorage.setItem('contentmode', mode);
+  }
+  if (mode == 'PC') {
+    document.getElementById('PC').style.display = 'inline';
+    document.getElementById('iPad').style.display = 'none';
+  } else {
+    document.getElementById('PC').style.display = 'none';
+    document.getElementById('iPad').style.display = 'inline';
+  }
+</script>
 
-    <strong style="color:green;">Show Window</strong>
-    <br>
-    <input name="showwindow" id="showtop" value="top" type="radio" onclick='ChooseRadio("showtop")'>
-    <label for="showtop" onclick='ChooseRadio("showtop")'>Top</label>
-
-    <input name="showwindow" id="showbottom" value="bottom" type="radio" onclick='ChooseRadio("showbottom")'>
-    <label for="showbottom" onclick='ChooseRadio("showbottom")'>Bottom (Default)</label>
-    ,&nbsp;&nbsp;
-
-    <label id="showdivheight" style="color:red;">Height=35%</label>
-    <input type="range" min=10 max=50 step=5 name="divheight" id="divheight" onChange="ChooseRange('divheight')" style="background:gray;">
-  </div>
-  <br>
-
-  <strong>DICTIONARIES</strong>
-  <div style="padding:8px;border: 1px dashed brown;">
-    <table border="0" width="100%" cellspacing="0" cellpadding="0">
-      <form method="post" name="form1" action="" style="text-align:center;">
-      <tr>
-        <td colspan="2" align="left">
-          <strong style="color:green;">Enabled Pali Dictionaries</strong>
-        </td>
-      </tr>
-
-      <tr>
-        <td valign="top" width="10%">
-          <input type="button" value="Up" style="width:60pt;" onclick="DictionaryChangePos(DictionaryEnable,-1)"/>
-          <br>
-          <input type="button" value="Down" style="width:60pt;" onclick="DictionaryChangePos(DictionaryEnable,1)"/>
-          <br><br>
-          <input type="button" value="Remove" style="width:60pt;" onclick="DictionaryMoveOption(document.form1.DictionaryEnable, document.form1.DictionaryDisable)"/>
-        </td>
-        <td valign="top" width="90%" align="left">
-          <select style="width:90%;font-size:12pt;line-height:175%;" multiple name="DictionaryEnable" id="DictionaryEnable" size="7" ondblclick="DictionaryMoveOption(document.form1.DictionaryEnable, document.form1.DictionaryDisable)">
-          </select>
-          <span id="EnableCount" style="font-size:10pt;color:gray;"></span>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2" align="left">
-          <strong style="color:green;">Disabled Pali Dictionaries</strong>
-        </td>
-      </tr>
-
-      <tr>
-        <td valign="top">
-          <input type="button" value="Add" style="width:60pt;" onclick="DictionaryMoveOption(document.form1.DictionaryDisable, document.form1.DictionaryEnable)"/>
-        </td>
-        <td valign="top" align="left">
-          <select style="width:90%;font-size:12pt;line-height:175%;" multiple name="DictionaryDisable" id="DictionaryDisable" size="7" ondblclick="DictionaryMoveOption(document.form1.DictionaryDisable, document.form1.DictionaryEnable)">
-          </select>
-          <span id="DisableCount" style="font-size:10pt;color:gray;"></span>
-        </td>
-      </tr>
-     </form>
-    </table>
-
-    <strong style="color:green;">English Dictionary</strong>
-    <br>
-    <input name="ree1" id="ree1" type="checkbox" onclick='ChooseCheckbox("ree1")' /></input>
-    <label for="ree1">WN: [148,730 entries - 23.2 MB] Word-Net Eng-Eng dictionary</label>
-    &nbsp;&nbsp;
-
-    <label style="color:red;">Speech Repeat=</label>
-    <select name="speech_repeat" id="speech_repeat" onChange="ChooseSelect('speech_repeat');">
-        <option value="0">Off</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-    </select>
-    ,&nbsp;&nbsp;
-    <label id="showspeed" style="color:red;">Speed=</label>
-    <input type="range" min=0.5 max=1.5 step=0.1 name="speech_speed" id="speech_speed" onChange="ChooseRange('speech_speed')" style="background:gray;">
-  </div>
-  <br><br>
-</div>
-
-<img style="display:scroll;position:fixed;top:60px;right:20px;z-index:999;" border="0" src="images/top_small.png" onClick="menu_on_off();"/>
-
-<br><br>
 </body></html>

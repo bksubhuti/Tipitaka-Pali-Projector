@@ -1,5 +1,5 @@
-/* static - don't move these */ 
- 
+/* static - don't move these */
+
 .div_selectx {
   font-family:Tahoma;visibility:hidden;display:scroll;position:fixed;width:100%;height:220px;top:0px;right:0px;background-color:#ffffc0;overflow-y:scroll;max-height:50%;
 }
@@ -18,17 +18,17 @@ p {
   margin-top: 0in; margin-bottom: 0.5cm;
 }
 /*.note {color:#880000}*/
-.BookTip {  
-  position: absolute; display: none;  
-  z-index: 9900000; outline: none;  
+.BookTip {
+  position: absolute; display: none;
+  z-index: 9900000; outline: none;
   font-size:13pt;
-  padding:5px;margin-left:0%;margin-right:0%;background:#F7DBD0;color:black; 
+  padding:5px;margin-left:0%;margin-right:0%;background:#F7DBD0;color:black;
   border:1px dashed orange;border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;-o-border-radius:10px;
 }
-  
+
 .font10 {
  font-size:10pt;
-} 
+}
 
 /*  */
 .b1	{ font-size: 24pt; text-indent: 2em;}

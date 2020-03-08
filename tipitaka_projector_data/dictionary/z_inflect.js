@@ -2,7 +2,7 @@
 //
 // GNU General Public License version 2.0 (GPLv2)
 // https://sourceforge.net/projects/digitalpali/
-// Related links https://pali.sirimangalo.org/ 
+// Related links https://pali.sirimangalo.org/
 
 		//ilectGroup#InflectInfo = InflectInfoDesc,NounMascSubGroup,NounNeutSubGroup,NounFemSubGroup
 
@@ -1498,7 +1498,6 @@
 		iV['md.opt.yh']['1st'] = [];
 		iV['md.opt.yh']['1st'][0] = ['eyyaṃ'];
 		iV['md.opt.yh']['1st'][1] = ['eyyāmase'];
-
 
 		iVI['abhijānāti'] = [];
 		iVI['abhijānāti']['abhijānāti'] = [];
@@ -3256,7 +3255,6 @@
 		iVI['hoti']['huveyya']['65535'] = [];
 		iVI['hoti']['huveyya']['65535']['3rd'] = [];
 		iVI['hoti']['huveyya']['65535']['3rd']['0'] = ['huveyya'];
-
 
 		iNI['idaṃ'] = [];
 		iNI['idaṃ']['m'] = [];

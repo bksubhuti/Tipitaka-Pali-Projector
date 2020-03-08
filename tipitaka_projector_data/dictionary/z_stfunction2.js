@@ -9,46 +9,46 @@ function ChangeLookupMode() {
 		document.write.innerHTML = localStorage.setItem('popupword', 1);
 		document.getElementById('LookupMode').innerHTML = 'Pop-up singleWord';
 	}
-	window.location.reload();  
-} 
-
-function goUrl() { 
-	var p1 = document.getElementsByName('Reference'); 
-	var val = parseInt(document.getElementById('PageNo').value);
-	var url;
-	
-	var old = '@' + localStorage.getItem('history'); 
-	var today = new Date();
-	var date = ('0' + (today.getMonth() + 1)).slice(-2) + "-" + ('0' + today.getDate()).slice(-2)  + " "+ ('0' + today.getHours()).slice(-2)  + ":"+ ('0' + today.getMinutes()).slice(-2)  + ":"+ ('0' + today.getSeconds()).slice(-2);   
-	
-	if (p1[1].checked == true) {	// Paragraph 
-		url = '#' + P_Par[val];  
-		 
-		document.write.innerHTML = localStorage.setItem('history', date + '_' + html_file + url + old);
-	} else {	// Myanmar Page or PTS Page  
-		var url = '';
-		if (p1[0].checked == true) { 	// Myanmar Page
-			url = '#M' + html_no + '_' + val; 
-		} else { 						// PTS Page
-			url = '#P' + html_no + '_' + val; 
-		}  
-		
-		document.write.innerHTML = localStorage.setItem('history', date + '_' + html_file + url + old); 
-	} 
-	sel_off();
-	window.location = url; 
+	window.location.reload();
 }
 
-function goToc() { 
-	var val = document.getElementById('Toc').value;  
-	var url = '#' + P_Toc[val]; 
-	
+function goUrl() {
+	var p1 = document.getElementsByName('Reference');
+	var val = parseInt(document.getElementById('PageNo').value);
+	var url;
+
 	var old = '@' + localStorage.getItem('history');
 	var today = new Date();
-	var date = ('0' + (today.getMonth() + 1)).slice(-2) + "-" + ('0' + today.getDate()).slice(-2)  + " "+ ('0' + today.getHours()).slice(-2)  + ":"+ ('0' + today.getMinutes()).slice(-2)  + ":"+ ('0' + today.getSeconds()).slice(-2); 
-	
+	var date = ('0' + (today.getMonth() + 1)).slice(-2) + "-" + ('0' + today.getDate()).slice(-2)  + " "+ ('0' + today.getHours()).slice(-2)  + ":"+ ('0' + today.getMinutes()).slice(-2)  + ":"+ ('0' + today.getSeconds()).slice(-2);
+
+	if (p1[1].checked == true) {	// Paragraph
+		url = '#' + P_Par[val];
+
+		document.write.innerHTML = localStorage.setItem('history', date + '_' + html_file + url + old);
+	} else {	// Myanmar Page or PTS Page
+		var url = '';
+		if (p1[0].checked == true) { 	// Myanmar Page
+			url = '#M' + html_no + '_' + val;
+		} else { 						// PTS Page
+			url = '#P' + html_no + '_' + val;
+		}
+
+		document.write.innerHTML = localStorage.setItem('history', date + '_' + html_file + url + old);
+	}
+	sel_off();
+	window.location = url;
+}
+
+function goToc() {
+	var val = document.getElementById('Toc').value;
+	var url = '#' + P_Toc[val];
+
+	var old = '@' + localStorage.getItem('history');
+	var today = new Date();
+	var date = ('0' + (today.getMonth() + 1)).slice(-2) + "-" + ('0' + today.getDate()).slice(-2)  + " "+ ('0' + today.getHours()).slice(-2)  + ":"+ ('0' + today.getMinutes()).slice(-2)  + ":"+ ('0' + today.getSeconds()).slice(-2);
+
 	document.write.innerHTML = localStorage.setItem('history', date + "_" + html_file + url + old) ;
-	
+
 	sel_off();
 	window.location = url;
 }
@@ -60,8 +60,8 @@ function GetKeys(ary, dname, key, ret_key) {
 	var tag = '@';	// english dictionary;
 	if (dname != 'ee1') {	//pali dictionary;
 		tag = '!';
-	} 
-	
+	}
+
 	var result = '#';
 	var key_len = key.length;
 	for (var i in ary) {
@@ -73,22 +73,22 @@ function GetKeys(ary, dname, key, ret_key) {
 				break;
 			}
 		}
-	} 
+	}
 	return (result.trim());
 }
 
 function GetValues(ary, dname, key) {
-	this.ary = ary; 
+	this.ary = ary;
 	var meaning_from_dict = "" + ary[key];
 	if (meaning_from_dict != "undefined") {
-		if (dname.indexOf('pm') != -1) {	//myanmar class="ZawgyiFont" 
+		if (dname.indexOf('pm') != -1) {	//myanmar class="ZawgyiFont"
 			return ('<b>' + dname + '</b><br><span class="ZawgyiFont">' + meaning_from_dict + '</span><br>');
 		} else {
 			return ('<b>' + dname + '</b><br>' + meaning_from_dict + '<br>');
 		}
 	} else {
 		return ('');
-	} 
+	}
 }
 
 function Dict_Show(key) {
@@ -111,18 +111,18 @@ function Dict_Show(key) {
 		if (ary_dict[i] == 'hpv1') {get_data = get_data + GetValues(pv1, d_name, key);}
 		if (ary_dict[i] == 'hpv2') {get_data = get_data + GetValues(pv2, d_name, key);}
 		if (ary_dict[i] == 'hpv3') {get_data = get_data + GetValues(pv3, d_name, key);}
-	} 	
+	} 
 	Dict_Declension(key);
 	document.getElementById("Dict_result").innerHTML = '<span style="color:red;font-size:14pt;">' + key + '</span><br>' + get_data + '<hr>' + document.getElementById("Dict_result").innerHTML;
-	
+
 }
 
-function Dict_search() { 
+function Dict_search() {
 	dict_records = 0;
-	var key = toUniRegEx(document.getElementById('Dict_key').value.trim().toLowerCase()); 
-	document.getElementById('Dict_key').value = key;   
-	
-	if ( 0 < key.length ) {   
+	var key = toUniRegEx(document.getElementById('Dict_key').value.trim().toLowerCase());
+	document.getElementById('Dict_key').value = key;
+
+	if ( 0 < key.length ) {
 		var get_keys = '';
 		for (var i = 0; i<ary_dict.length; i++) {
 			var d_name = ary_dict[i].substring(1);
@@ -142,56 +142,55 @@ function Dict_search() {
 			if (ary_dict[i] == 'hpv1') {get_keys = get_keys + GetKeys(pv1, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hpv2') {get_keys = get_keys + GetKeys(pv2, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hpv3') {get_keys = get_keys + GetKeys(pv3, d_name, key, get_keys);}
-		} 
-		
+		}
+
 		get_keys = get_keys.replace(/\#\#/g, '#');
 		var ary = get_keys.split('#');
-		ary.sort(); 
-		get_keys = ''; 
+		ary.sort();
+		get_keys = '';
 		for (var i = 0; i<ary.length; i++) {
 			if (ary[i] != '') {
 				switch (view_left) {
 					case 'Roman' :
-						get_keys = get_keys + '<label onClick="Dict_Show(\'' + ary[i].substring(1) + '\')" style="Color:blue;">' + ary[i].substring(1) + '</label><br>'; 
+						get_keys = get_keys + '<label onClick="Dict_Show(\'' + ary[i].substring(1) + '\')" style="Color:blue;">' + ary[i].substring(1) + '</label><br>';
 						break;
-					case 'Myanmar' : 
+					case 'Myanmar' :
 						get_keys = get_keys + '<label onClick="Dict_Show(\'' + ary[i].substring(1) + '\')" style="Color:blue;">' + toMyanmar(ary[i].substring(1)) + '</label><br>';
 						break;
-					case 'Sinhala' : 
+					case 'Sinhala' :
 						get_keys = get_keys + '<label onClick="Dict_Show(\'' + ary[i].substring(1) + '\')" style="Color:blue;">' + toSinhala(ary[i].substring(1)) + '</label><br>';
 						break;
-					case 'Thai' : 
+					case 'Thai' :
 						get_keys = get_keys + '<label onClick="Dict_Show(\'' + ary[i].substring(1) + '\')" style="Color:blue;">' + toThai(ary[i].substring(1)) + '</label><br>';
 						break;
-					case 'Devanagari' : 
+					case 'Devanagari' :
 						get_keys = get_keys + '<label onClick="Dict_Show(\'' + ary[i].substring(1) + '\')" style="Color:blue;">' + toDevar(ary[i].substring(1)) + '</label><br>';
 						break;
 				}
-			}  
-		} 
-		if (200 < dict_records) { 
-			document.getElementById('Dict_Tips').innerHTML = get_keys + '<br>.. More 200 Records..'; 
-		} else {
-			document.getElementById('Dict_Tips').innerHTML = get_keys; 
+			}
 		}
-	} 
+		if (200 < dict_records) {
+			document.getElementById('Dict_Tips').innerHTML = get_keys + '<br>.. More 200 Records..';
+		} else {
+			document.getElementById('Dict_Tips').innerHTML = get_keys;
+		}
+	}
 }
 
-
-function Dict_Declension(val) { 
+function Dict_Declension(val) {
 	if (val == '') {		// from Click of .r1
-		var key = localStorage.getItem('Dict_key'); 
+		var key = localStorage.getItem('Dict_key');
 	} else {
-		var key = val; 
-	} 
- 
+		var key = val;
+	}
+
 	//Search the conjugate directly.
-	var outx =  conjugate(key, 'x', 'x');  
-	if (outx != undefined) { 
-		outx = outx + '<hr>'; 
+	var outx =  conjugate(key, 'x', 'x');
+	if (outx != undefined) {
+		outx = outx + '<hr>';
 	} else {
 		outx = '';
-	} 
+	}
 	//Search from wordbreakdata
 	var outy = "";
 	var key2 = wordbreakdata[key];
@@ -201,25 +200,25 @@ function Dict_Declension(val) {
 		for (var idx in ary) {
 			if (ary[idx] != '') {
 				var outz = conjugate(ary[idx], 'x', 'x');
-				//add red color for key word 
+				//add red color for key word
 				var aryz = outz.split(key);
 				outz = '';
-				for (idz=0; idz<aryz.length; idz++) { 
+				for (idz=0; idz<aryz.length; idz++) {
 					var s1 = aryz[idz+1];
 					if (s1 != undefined) {
 						s1 = s1.substring(0, 1);
 					} else {
 						s1 = 'a';
 					}
-					if ('abcdefghijklmnopqrstuvwxyzāīūṅñṭḍṇḷṃ'.indexOf(s1) == -1) { 
+					if ('abcdefghijklmnopqrstuvwxyzāīūṅñṭḍṇḷṃ'.indexOf(s1) == -1) {
 						outz = outz + aryz[idz] + '<span style="color:red;font-weight:900;">' + key + '</span>';
-					} else {  
-						outz = outz + aryz[idz] + key; 
-					} 
-				}   
-				outy = outy + outz + '<hr>'; 
+					} else {
+						outz = outz + aryz[idz] + key;
+					}
+				}
+				outy = outy + outz + '<hr>';
 			}
 		}
-	} 
-	document.getElementById("Dict_result").innerHTML = outx + outy;  
+	}
+	document.getElementById("Dict_result").innerHTML = outx + outy;
 }

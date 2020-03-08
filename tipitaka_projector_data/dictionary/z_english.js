@@ -2,7 +2,7 @@
 //
 // GNU General Public License version 2.0 (GPLv2)
 // https://sourceforge.net/projects/digitalpali/
-// Related links https://pali.sirimangalo.org/ 
+// Related links https://pali.sirimangalo.org/
 
 var EXPORTED_SYMBOLS = ["yt"];
 

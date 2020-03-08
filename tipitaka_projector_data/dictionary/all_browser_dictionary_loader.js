@@ -5,8 +5,6 @@
 @ Functions: to load dictionaries
 */
 
-
-
 //Display random message:
 var loader = document.getElementById("loader");
 
@@ -18,10 +16,8 @@ var loadmsg = '<strong><p>"vayadhammā saṅkhārā appamādena sampādethā"</s
 
 loader.innerHTML = '<div align="center" style="position:fixed;background:orange;border:2px solid white;top:35%;left:3%;right:3%;font-size:x-large;box-shadow:  -8px -2px 8px 8px white, -8px 8px 8px 8px #D9D9D9, 8px 12px 12px 12px white;"">' + loadmsg + '<hr><i>loading data...</i></div>';
 
-
 var dict_in_use = 0; //count dict in use
 var loaddictary = [];
-
 
 /******** English Dictionary ***********
 * English dictionary (to support non-english speakers)
@@ -44,7 +40,6 @@ if ((hee1 == 1)) { dict_in_use++; loaddictary.push('<script src="dictionary/wn-E
 var wordbreakdata = "";
 var pe1 = ""; var pe2 = "";
 
-
 /******** Auto including wordbreakdata *********
 * THIS DATA FILE IS VERY IMPORTANT (It helps to recognize compound words)
 * wordbreakdata dictionary file: pe0_grammar_wordbreakdata_Pali_English_Dictionary_extract_DPR_2018.js
@@ -58,7 +53,6 @@ if ((hpe1 == 1)) { dict_in_use++; loaddictary.push('<script src="dictionary/pe1_
 //DPR DICTIONARY
 var hpe2 = localStorage.getItem("hpe2");
 if ((hpe2 == 1)) { dict_in_use++; loaddictary.push('<script src="dictionary/pe2_Pali_English_Dictionary_extract_DPR_2018.js"></script>'); }
-
 
 /******** Pali Viet Dictionary *********
 * pv1 dictionary file: pv1_Pali_Viet_Dictionary_by_ngaiBuuChon_stardict.js
@@ -100,7 +94,6 @@ if ((hpg1 == 1)) { dict_in_use++; loaddictary.push('<script src="dictionary/pg1_
 var pc1 = "";
 var hpc1 = localStorage.getItem("hpc1");
 if ((hpc1 == 1)) { dict_in_use++; loaddictary.push('<script src="dictionary/pc1_Pali_Zh_sc2016_pi2zh-maindata-v1.js"></script>'); }
-
 
 var writejs = loaddictary.toString();
 writejs = writejs.replace(/,/g,'');

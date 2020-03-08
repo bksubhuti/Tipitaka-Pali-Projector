@@ -5,16 +5,16 @@ function textSize(side) {
 	this.side = side;
 	var form = '#' + side;
 	form = ":input" + form; //select :input#id
-	var textratio = $(form).prop('value');  
+	var textratio = $(form).prop('value');
 
 	document.write.innerHTML = localStorage.setItem(side, textratio);
 
 	var p24 = parseInt(textratio * 24);
 	var p30 = parseInt(textratio * 30);
 	var p33 = parseInt(textratio * 33);
-	var p36 = parseInt(textratio * 36); 
+	var p36 = parseInt(textratio * 36);
 
-	if (view_left == 'Roman') { 
+	if (view_left == 'Roman') {
 	  var h24 = parseInt(p24 * 1.4);
 	  var h30 = parseInt(p30 * 1.4);
 	  var h33 = parseInt(p33 * 1.4);
@@ -23,9 +23,9 @@ function textSize(side) {
 		var h24 = parseInt(p24 * 1.8);
 		var h30 = parseInt(p30 * 1.8);
 		var h33 = parseInt(p33 * 1.8);
-		var h36 = parseInt(p36 * 1.8); 
-	} 
-	if (side == 'size_left') {	 
+		var h36 = parseInt(p36 * 1.8);
+	}
+	if (side == 'size_left') {
 		$(".b1").css("font-size",	p24 + "pt");
 		$(".b2").css("font-size",	p33 + "pt");
 		$(".c3").css("font-size",	p24 + "pt");
@@ -72,7 +72,7 @@ function textSize(side) {
 		$(".m_sc").css("font-size",	p24 + "pt");
 		$(".m_sd").css("font-size",	p24 + "pt");
 		$(".m_te").css("font-size",	p24 + "pt");
-		$(".m_uf").css("font-size",	p24 + "pt"); 
+		$(".m_uf").css("font-size",	p24 + "pt");
 
 		$(".m_b1").css("line-height",	h24 + "pt");
 		$(".m_b2").css("line-height",	h33 + "pt");
@@ -90,10 +90,10 @@ function textSize(side) {
 		$(".m_te").css("line-height", 	h24 + "pt");
 		$(".m_uf").css("line-height", 	h24 + "pt");
 	}
-	
+
 	if (view_right != 'x') {
 		var r1 = Number($(':input#size_left').prop('value'));
-		var m1 = Number($(':input#size_right').prop('value')); 
+		var m1 = Number($(':input#size_right').prop('value'));
 		var width_r1 = parseInt(100 * r1 / (r1 + m1));
 		var width_m1 = parseInt(100 * m1 / (r1 + m1));
 
@@ -102,13 +102,12 @@ function textSize(side) {
 	} else {
 		$(".r1").css("width", '85%');
 		$(".m1").css("width", '15%');
-		
+
 	}
 	//document.write.innerHTML = localStorage.setItem(side, font_family);
 	//else {} use css default r1 85%, m1 15% (15% for empty place to click)
- 
-}//change textSize function
 
+}//change textSize function
 
 /*
 @ Change textFont function
@@ -120,13 +119,12 @@ function textFont(side) {
 
 	document.write.innerHTML = localStorage.setItem(side, font_family);
 
-	if (side == 'font_left') { 
-	$(".r1").css("font-family", font_family); 
+	if (side == 'font_left') {
+	$(".r1").css("font-family", font_family);
 	} else {
-	$(".m1").css("font-family", font_family); 
-	}  
+	$(".m1").css("font-family", font_family);
+	}
 }//change textFont function
-
 
 /*
 @ Change backgroundColor function
@@ -136,7 +134,7 @@ function back_color(color) {
 	form = ":input" + form; //select :input#id
 	var color = $(form).prop('value');
 
-	document.write.innerHTML = localStorage.setItem('bg_color', color);  
+	document.write.innerHTML = localStorage.setItem('bg_color', color);
 	$('table').css("background", color);
 
 	var font_color = {
@@ -175,6 +173,6 @@ function back_color(color) {
 	'#e2bdb4':['brown']}
 	$(".r1").css("color", font_color[color]);
 	$(".m1").css("color", font_color[color]);
-	$(".bld").css("color", bld_color[color]); 
+	$(".bld").css("color", bld_color[color]);
 }//change backgroundColor function
- 
+

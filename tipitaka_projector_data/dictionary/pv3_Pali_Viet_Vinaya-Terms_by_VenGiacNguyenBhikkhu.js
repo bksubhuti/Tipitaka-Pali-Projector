@@ -10,7 +10,7 @@ author=Bhikkhu Giác Nguyên
 description=convert to StarDict by KhoaBT btkhoa@yahoo.com
 date=2010.05.07
 sametypesequence=m
- 
+
 @ Reference information:
 Related information  PV3:
 THUẬT NGỮ LUẬT TẠNG PĀLI
