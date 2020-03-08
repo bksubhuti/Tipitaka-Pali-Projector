@@ -1,0 +1,20 @@
+M_SCT = [];
+
+M_SCT[6] = "Pairs";
+M_SCT[8] = "Mind precedes all mental states.";
+M_SCT[9] = "Mind is their chief; they are all mind-wrought.";
+M_SCT[10] = "If with an impure mind a person speaks or acts suffering follows him like the wheel that follows the foot of the ox.";
+M_SCT[12] = "Mind precedes all mental states.";
+M_SCT[13] = "Mind is their chief; they are all mind-wrought.";
+M_SCT[14] = "If with a pure mind a person speaks or acts happiness follows him like his never-departing shadow.";
+M_SCT[16] = "''He abused me, he struck me, he overpowered me, he robbed me.''";
+M_SCT[17] = "Those who harbor such thoughts do not still their hatred.";
+M_SCT[19] = "''He abused me, he struck me, he overpowered me, he robbed me.''";
+M_SCT[20] = "Those who do not harbor such thoughts still their hatred.";
+M_SCT[22] = "Hatred is never appeased by hatred in this world.";
+M_SCT[23] = "By non-hatred alone is hatred appeased. This is a law eternal.";
+M_SCT[25] = "There are those who do not realize that one day we all must die.";
+M_SCT[26] = "But those who do realize this settle their quarrels.";
+M_SCT[74] = "2. Heedfulness";
+M_SCT[76] = "Heedfulness is the path to the Deathless. Heedlessness is the path to death.";
+M_SCT[77] = "The heedful die not. The heedless are as if dead already.";

@@ -1,0 +1,26 @@
+<HTML>
+
+
+<!script>
+
+var cx_file = 0;
+var file = "MyFile.txt"
+//**********
+// read file
+//**********
+var flag = '0';
+var rawFile = new XMLHttpRequest();
+var data;
+rawFile.open("GET", file, false);
+									rawFile.onreadystatechange = function () {
+										if (rawFile.readyState === 4) {
+											if (rawFile.status === 200 || rawFile.status == 0) {
+												var data = rawFile.responseText;
+		}
+	}
+}																								rawFile.send(null);
+									//*****************
+									// end read file
+									//*****************
+
+</HTML>

@@ -1,0 +1,437 @@
+<!DOCTYPE html PUBLIC "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<title>TPP NotFound</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link rel="TIPITAKA PROJECTOR ICON" href="images/favico.ico">
+	<style>
+	    .tinysetting {
+			text-align: center;
+			font-size: small;
+			color: red;
+	    }
+
+	    a:hover {
+			color: #0000ff;
+			text-decoration: none;
+	    }
+
+	    a:visited {
+			color: #0000ff;
+			text-decoration: none;
+	    }
+
+	    a:link {
+			color: #0000ff;
+			text-decoration: none;
+	    }
+	</style>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<SCRIPT language=JavaScript>
+	function sbar(st){st.style.backgroundColor='#cDcDcD';}
+	function cbar(st){st.style.backgroundColor='';}
+</SCRIPT>
+
+<script> 
+	var ary = 'hpc1;hpc2;hpd1;hpe1;hpe2;hpe3;hpe4;hpe6;hpg1;hpv3;hpm1;hpm2;hpm3;hpm4;hpv1;hpv2'.split(';');
+	flag = '0';
+	for (i in ary) {
+		if (localStorage.getItem(ary[i]) == undefined) { 
+			document.write.innerHTML = localStorage.setItem(ary[i], '000');
+		} else {
+			flag = '1';
+		}	
+	}
+	if (flag == '0') {
+		document.write.innerHTML = localStorage.setItem('hpe2', '010');	
+		document.write.innerHTML = localStorage.setItem('hpe4', '020');	
+	}
+	//wordbreakdata//pali into Subject.
+	$.getScript("dictionary/000_wordbreakdata_Pali_Pali_grammar_Dictionary_extract_DPR_2018.js");  
+
+	dicts = ''; 
+	cx_found = [];
+	foundSort = [];
+	cx_notfound = [];
+	notfoundSort = [];
+	dictCount  = 0;
+	for (var i in ary) {
+		var val = localStorage.getItem(ary[i]);
+		var name = ary[i];
+		if ((val != undefined) && ('000' < val)) {
+			dicts = dicts + name + ', ';
+			dictCount = dictCount +1;
+			if ( name == 'hpc1') {$.getScript("dictionary/pc1_Pali_Zh_sc2016_pi2zh-maindata-v1.js"); }
+			if ( name == 'hpc2') {$.getScript("dictionary/pc2_Pali_Zh_12_in_1@2018.js"); }
+			if ( name == 'hpd1') {$.getScript("dictionary/pd1_Pali_Indo_sc2016_pi2id-maindata-v1.js"); }
+			if ( name == 'hpe1') {$.getScript("dictionary/pe1_Pali_English_sc2016_pi2en-maindata-v1.2.js"); }
+			if ( name == 'hpe2') {$.getScript("dictionary/pe2_Pali_English_Dictionary_extract_DPR_2018.js"); }
+			if ( name == 'hpe3') {$.getScript("dictionary/pe3_Pali_English_Dictionary_by_PaliTextSociety.js"); }
+			if ( name == 'hpe4') {$.getScript("dictionary/pe4_Pali_English_Declension_Dict_@DPR_2018.js"); }
+			if ( name == 'hpe6') {$.getScript("dictionary/pe6_Pali_Proper_Names_G_P_Malalasekera@2018.js"); }
+			if ( name == 'hpg1') {$.getScript("dictionary/pg1_Pali_Germany_sc2016_pi2de-maindata-v1.2.js"); }
+			if ( name == 'hpm1') {$.getScript("dictionary/pm1_Pali_Word_Grammar_@2018.js"); }
+			if ( name == 'hpm2') {$.getScript("dictionary/pm2_Tipitaka_Pali_Myanmar_@2018.js"); }
+			if ( name == 'hpm3') {$.getScript("dictionary/pm3_Pali_Myanmar_Dictionary_@U_Hau_Sein_2018.js"); }
+			if ( name == 'hpm4') {$.getScript("dictionary/pm4_Pali_Roots_Dictionary_@2018.js"); }
+			if ( name == 'hpv1') {$.getScript("dictionary/pv1_Pali_Viet_Dictionary_by_ngaiBuuChon_stardict.js"); }
+			if ( name == 'hpv2') {$.getScript("dictionary/pv2_Pali_Viet_Abhi-Terms_by_ngaiTinhSu_Stardict.js"); }
+			if ( name == 'hpv3') {$.getScript("dictionary/pv3_Pali_Viet_Vinaya-Terms_by_VenGiacNguyenBhikkhu.js"); }
+		}
+	}  
+
+	function toUni(input) {
+		if(!input || input == '') return input;
+		
+		var nigahita = 'ṃ'; 
+		var Nigahita = 'Ṃ'; 
+
+		input = input.replace(/aa/g, 'ā').replace(/ii/g, 'ī').replace(/uu/g, 'ū').replace(/\.t/g, 'ṭ').replace(/\.d/g, 'ḍ').replace(/\"nk/g, 'ṅk').replace(/\"ng/g, 'ṅg').replace(/\.n/g, 'ṇ').replace(/\.m/g, nigahita).replace(/\u1E41/g, nigahita).replace(/\~n/g, 'ñ').replace(/\.l/g, 'ḷ').replace(/AA/g, 'Ā').replace(/II/g, 'Ī').replace(/UU/g, 'Ū').replace(/\.T/g, 'Ṭ').replace(/\.D/g, 'Ḍ').replace(/\"N/g, 'Ṅ').replace(/\.N/g, 'Ṇ').replace(/\.M/g, Nigahita).replace(/\~N/g, 'Ñ').replace(/\.L/g, 'Ḷ').replace(/\.ll/g,'ḹ').replace(/\.r/g,'ṛ').replace(/\.rr/g,'ṝ').replace(/\.s/g,'ṣ').replace(/"s/g,'ś').replace(/\.h/g,'ḥ');
+			
+		return input;
+	}
+
+	function GetValues(ary, dname, key) {
+		this.ary = ary;
+		var meaning_from_dict = "" + ary[key];
+		if (meaning_from_dict != "undefined") {
+			if (dname.indexOf('pm') != -1) {	//myanmar class="ZawgyiFont"
+				return ('<span class="ZawgyiFont">' + meaning_from_dict + '</span><br>');
+			} else {
+				return (meaning_from_dict + '<br>');
+			}
+		} else {
+			return ('');
+		}
+	}
+
+	function GetAnki() {
+		var ary_dict = (', ' + dicts).split(', ');
+		
+		anki = '';
+		for (v1 in foundSort) {		
+			ary = foundSort[v1].split('\t');
+			key = ary[1];
+			console.log(key + '\n');
+
+			var get_data = '';	
+			for (var i = 1; i<=dictCount; i++) {
+				var d_name = ary_dict[i].substring(1);
+				console.log(d_name + '\n');
+				if (ary_dict[i] == 'hee1') {get_data = get_data + GetValues(ee1, d_name, key);}
+				if (ary_dict[i] == 'hpc1') {get_data = get_data + GetValues(pc1, d_name, key);}
+				if (ary_dict[i] == 'hpc2') {get_data = get_data + GetValues(pc2, d_name, key);}
+				if (ary_dict[i] == 'hpd1') {get_data = get_data + GetValues(pd1, d_name, key);}
+				if (ary_dict[i] == 'hpe1') {get_data = get_data + GetValues(pe1, d_name, key);}
+				if (ary_dict[i] == 'hpe2') {get_data = get_data + GetValues(pe2, d_name, key);}
+				if (ary_dict[i] == 'hpe3') {get_data = get_data + GetValues(pe3, d_name, key);}
+				if (ary_dict[i] == 'hpe4') {get_data = get_data + GetValues(pe4, d_name, key);}
+				if (ary_dict[i] == 'hpe6') {get_data = get_data + GetValues(pe6, d_name, key);}
+				if (ary_dict[i] == 'hpg1') {get_data = get_data + GetValues(pg1, d_name, key);}
+				if (ary_dict[i] == 'hpm1') {get_data = get_data + GetValues(pm1, d_name, key);}
+				if (ary_dict[i] == 'hpm2') {get_data = get_data + GetValues(pm2, d_name, key);}
+				if (ary_dict[i] == 'hpm3') {get_data = get_data + GetValues(pm3, d_name, key);}
+				if (ary_dict[i] == 'hpm4') {get_data = get_data + GetValues(pm4, d_name, key);}
+				if (ary_dict[i] == 'hpv1') {get_data = get_data + GetValues(pv1, d_name, key);}
+				if (ary_dict[i] == 'hpv2') {get_data = get_data + GetValues(pv2, d_name, key);}
+				if (ary_dict[i] == 'hpv3') {get_data = get_data + GetValues(pv3, d_name, key);}
+				if (ary_dict[i] == 'hse1') {get_data = get_data + GetValues(se1, d_name, key);}
+			} 
+			if (get_data != '') {		// directly search found
+				ret = ret + '<b style="color:#440000;">' + key + '</b><br>';
+				ret = ret + get_data + '</br>';
+			} else {	// use declension table searching again
+				declension = wordbreakdata[key];
+				if (declension != undefined) {
+					for (var i = 0; i<ary_dict.length; i++) {
+						var d_name = ary_dict[i].substring(1);					
+						if (ary_dict[i] == 'hee1') {get_data = get_data + GetValues(ee1, d_name, declension);}
+						if (ary_dict[i] == 'hpc1') {get_data = get_data + GetValues(pc1, d_name, declension);}
+						if (ary_dict[i] == 'hpc2') {get_data = get_data + GetValues(pc2, d_name, declension);}
+						if (ary_dict[i] == 'hpd1') {get_data = get_data + GetValues(pd1, d_name, declension);}
+						if (ary_dict[i] == 'hpe1') {get_data = get_data + GetValues(pe1, d_name, declension);}
+						if (ary_dict[i] == 'hpe2') {get_data = get_data + GetValues(pe2, d_name, declension);}
+						if (ary_dict[i] == 'hpe3') {get_data = get_data + GetValues(pe3, d_name, declension);}
+						if (ary_dict[i] == 'hpe4') {get_data = get_data + GetValues(pe4, d_name, declension);}
+						if (ary_dict[i] == 'hpe6') {get_data = get_data + GetValues(pe6, d_name, declension);}
+						if (ary_dict[i] == 'hpg1') {get_data = get_data + GetValues(pg1, d_name, declension);}
+						if (ary_dict[i] == 'hpm1') {get_data = get_data + GetValues(pm1, d_name, declension);}
+						if (ary_dict[i] == 'hpm2') {get_data = get_data + GetValues(pm2, d_name, declension);}
+						if (ary_dict[i] == 'hpm3') {get_data = get_data + GetValues(pm3, d_name, declension);}
+						if (ary_dict[i] == 'hpm4') {get_data = get_data + GetValues(pm4, d_name, declension);}
+						if (ary_dict[i] == 'hpv1') {get_data = get_data + GetValues(pv1, d_name, declension);}
+						if (ary_dict[i] == 'hpv2') {get_data = get_data + GetValues(pv2, d_name, declension);}
+						if (ary_dict[i] == 'hpv3') {get_data = get_data + GetValues(pv3, d_name, declension);}
+						if (ary_dict[i] == 'hse1') {get_data = get_data + GetValues(se1, d_name, declension);}
+					} 
+				}	
+				if (get_data != '') {	// declension search found
+					ret = ret + get_data + ' ';
+				}
+			}
+			if (get_data != '') {
+				get_data = get_data.replace(/\t/g, '');
+				get_data = get_data.replace(/\n/g, '');
+				anki = anki + key + '\t' + get_data + '\n';
+			}
+		}
+		document.getElementById('Anki').value = anki;
+	}	
+
+	function CheckDictionaryValue(ary, dname, key) {
+		this.ary = ary; 
+
+		if (ary[key] != undefined) {
+			cx_found[key] = cx_found[key] + 1;
+			//anki[key] = ary[key];
+			return (dname);
+		} else {
+			if (wordbreakdata[key] != undefined) {
+				cx_found[key] = cx_found[key] + 1;
+			//anki[key] = ary[key];
+				return (dname);
+			} else{
+				return ('0');
+			}	
+		}
+	}
+
+	function CheckDictionary(key) {
+		get_data = '0';
+
+		if (cx_found[key] == undefined) {
+			cx_found[key] = 0;
+		}
+		if (cx_notfound[key] == undefined) {
+			cx_notfound[key] = 0;
+		}
+
+		if ((localStorage.getItem('hpc1') != '000') && (get_data == '0')) {get_data = CheckDictionaryValue(pc1, 'hpc1', key);}
+		if ((localStorage.getItem('hpc2') != '000') && (get_data == '0')) {get_data = CheckDictionaryValue(pc2, 'hpc2', key);}
+		if ((localStorage.getItem('hpd1') != '000') && (get_data == '0')) {get_data = CheckDictionaryValue(pd1, 'hpd1', key);}
+		if ((localStorage.getItem('hpe1') != '000') && (get_data == '0')) {get_data = CheckDictionaryValue(pe1, 'hpe1', key);}
+		if ((localStorage.getItem('hpe2') != '000') && (get_data == '0')) {get_data = CheckDictionaryValue(pe2, 'hpe2', key);}
+		if ((localStorage.getItem('hpe3') != '000') && (get_data == '0')) {get_data = CheckDictionaryValue(pe3, 'hpe3', key);}
+		if ((localStorage.getItem('hpe4') != '000') && (get_data == '0')) {get_data = CheckDictionaryValue(pe4, 'hpe4', key);}
+		if ((localStorage.getItem('hpe6') != '000') && (get_data == '0')) {get_data = CheckDictionaryValue(pe6, 'hpe4', key);}
+		if ((localStorage.getItem('hpg1') != '000') && (get_data == '0')) {get_data = CheckDictionaryValue(pg1, 'hpg1', key);}
+		if ((localStorage.getItem('hpm1') != '000') && (get_data == '0')) {get_data = CheckDictionaryValue(pm1, 'hpm1', key);}
+		if ((localStorage.getItem('hpm2') != '000') && (get_data == '0')) {get_data = CheckDictionaryValue(pm2, 'hpm2', key);}
+		if ((localStorage.getItem('hpm3') != '000') && (get_data == '0')) {get_data = CheckDictionaryValue(pm3, 'hpm3', key);}
+		if ((localStorage.getItem('hpm4') != '000') && (get_data == '0')) {get_data = CheckDictionaryValue(pm4, 'hpm4', key);}
+		if ((localStorage.getItem('hpv1') != '000') && (get_data == '0')) {get_data = CheckDictionaryValue(pv1, 'hpv1', key);}
+		if ((localStorage.getItem('hpv2') != '000') && (get_data == '0')) {get_data = CheckDictionaryValue(pv2, 'hpv2', key);}
+		if ((localStorage.getItem('hpv3') != '000') && (get_data == '0')) {get_data = CheckDictionaryValue(pv3, 'hpv3', key);}
+		//alert(get_data + ' ' +key);
+
+		if (get_data == '0') {
+			cx_notfound[key] = cx_notfound[key] + 1;
+		}
+		return(get_data);
+	}
+
+	function Process() {    
+		pali = toUni(document.getElementById('key').value.trim().toLowerCase());
+		document.getElementById('key').value = pali + ' ';
+
+		document.getElementById('found').value = '';
+		document.getElementById('foundSort').value = '';
+		document.getElementById('notfound').value = '';
+		document.getElementById('notfoundSort').value = '';
+
+		var Str_Pali = 'abcdefghijklmnopqrstuvwxyzāīūṅñṭḍṇḷṃABCDEFGHIJKLMNOPQRSTUVWXYZĀĪŪṄÑṬḌHṆḶṂ';
+
+		cx_notfound = [];
+		cx_found = [];
+
+		found = [];
+		//out_html = '';
+		var key = '';
+		var lenx = pali.length;
+		for (i=0; i<=lenx; i++) {
+			c1 = pali.substr(i, 1);
+			if (Str_Pali.indexOf(c1) != -1) {
+				key = key + c1;
+			} else {
+				if (key != '') {
+					ret = CheckDictionary(key);
+				}	
+				key = '';
+			}	
+		}
+		if (key != '') {
+			ret = CheckDictionary(key);
+		}	
+		//document.getElementById('out').innerHTML = out_html;
+
+		foundSort = [];
+		out = '';
+		count1 = 0;
+		word1 = 0;
+		for (i in cx_found) {
+			if (cx_found[i] != 0) {
+				out = out + i + '\t' + cx_found[i] + '\n';
+				count1 = count1 +1;
+				word1 = word1 +cx_found[i];
+
+				v1 = 999999 - parseInt(cx_found[i])
+				v1 = ('' + '000000' + v1).slice(-6);
+				v1 = v1 +'\t' + i + '\t' + cx_found[i];
+				foundSort.push(v1);
+			}
+			//console.log('V  ' + i + '  ' + cx_found[i] + '\n');
+		}
+		document.getElementById('found').value = out;
+
+		out = '';
+		foundSort.sort();
+		for (i in foundSort) {
+
+			ary = foundSort[i].split('\t');
+			out = out + ary[1] + '\t' + ary[2] + '\n';
+			//console.log('S  ' + i + '  ' + foundSort[i] + '\n');
+		}
+		document.getElementById('foundSort').value = out;
+
+		//
+		notfoundSort = [];
+		out = '';
+		count2 = 0;
+		word2 = 0;
+		for (i in cx_notfound) {
+			if (cx_notfound[i] != 0) {
+				out = out + i + '\t' + cx_notfound[i] + '\n';
+				count2 = count2 +1;
+				word2 = word2 + cx_notfound[i];
+
+				v1 = 999999 - parseInt(cx_notfound[i])
+				v1 = ('' + '000000' + v1).slice(-6);
+				v1 = v1 +'\t' + i + '\t' + cx_notfound[i];
+				notfoundSort.push(v1);
+			}
+			//console.log('X  ' + i + '  ' + cx_notfound[i] + '\n');
+		}
+		document.getElementById('notfound').value = out;
+
+		document.getElementById('msg1').innerHTML = 'Total Found :<b>' + word1 + '</b> ,&nbsp;&nbsp;Words:<b>' + count1 + '</b>&nbsp;&nbsp;<b style="color:red;">' + parseInt(count1/(count1+count2)*10000)/100 + '%</b>';
+		document.getElementById('msg2').innerHTML = 'Total Not Found :<b>' + word2 + '</b> ,&nbsp;&nbsp;Words:<b>' + count2 + '</b>&nbsp;&nbsp;<b style="color:red;">' + parseInt(count2/(count1+count2)*10000)/100 + '%</b>';
+
+		out = '';
+		notfoundSort.sort();
+		for (i in notfoundSort) {
+
+			ary = notfoundSort[i].split('\t');
+			out = out + ary[1] + '\t' + ary[2] + '\n';
+			//console.log('S  ' + i + '  ' + notfoundSort[i] + '\n');
+		}
+		document.getElementById('notfoundSort').value = out;
+
+	}
+
+
+	$(window).on('load', function () {
+		//document.getElementById('msg').innerHTML = 'Loading...';
+		document.getElementById('dictList').innerHTML = 'Analysis in [<span style="color:#880000">' + dicts + '</span>] ' + dictCount + ' Dictionaries.' 
+	});	
+
+	$(document).ready(function () {
+		$('#loader').fadeOut(500);//give extra 2 seconds for data ready
+		document.getElementById('msg').innerHTML = 'Ready';
+		//document.getElementById('msg').innerHTML = 'Ready';
+	});
+</script>
+
+</head>
+
+<body style="margin-top:0.0pt;margin-right:0in;margin-bottom:0in;margin-left:0in;margin-bottom:0pt;font-size:12.0pt;line-height:150%;font-family:Palatino, sans-serif;cursor: pointer;" bgcolor="#ffffc0"> 
+
+	<table align="center" bgcolor="#ffffc0" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:11pt;">
+	<tbody>
+		<tr>
+			<td width="1%"></td>
+			<td align="right" valign="top" width="14%">
+				<br><br>
+				<a href="index.htm" valign="top">
+					<img src="images/asoka.png">
+				</a>
+			</td>
+			<td align="center" width="70%">
+				<span style='line-height:120%;color:brown;font-size:15pt;'><b>Tipiṭaka Pāḷi Projector</b></span> - 20200225 (SG)
+
+				<hr width="50%">
+				<span id="dictList"></span>&nbsp;&nbsp;
+				<br>
+
+				<textarea name="key" id="key" style="dfont-size:10.0pt;line-height:120%;width:95%;height:120pt;background-color:#ffff88;"></textarea>
+				<input type="submit" value="  Go  " onClick="Process();">
+
+				<span id="msg"></span> 
+
+			</td>
+			<td align="center" width="14%" valign="top">
+				<br><br><br><br>
+				<span align="center" style="color:blue;"><a href="index.htm"><img src="images/home.png"> Home </a>
+				<br></span>Words not Found in Pali Dictionaries
+			</td>
+			<td width="1%"></td>
+		</tr>
+	</tbody>
+	</table>	
+
+	<table align="center" bgcolor="#ffffc0" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:11pt;">
+	<tbody>
+		<tr>
+			<td align="center">  
+				<img src="images/s_okay.png">Found in Dictionary
+			</td>
+			<td align="center">  
+				<img src="images/s_okay.png">Sort by Frequency
+			</td>
+			<td align="center">  
+				<span onClick="GetAnki();" style="color:blue;font-weight: 900;"><img src="images/b_sbrowse.png">Click to Export Anki</span>
+			</td>
+			<td align="center">  
+				<img src="images/b_drop.png">Not Found in Dictionary
+			</td>
+			<td align="center">  
+				<img src="images/b_drop.png">Sort by Frequency
+			</td>
+		</tr>
+		<tr>
+			<td align="center" colspan="2">  
+				<span id="msg1"></span>
+			</td>
+			<td></td>
+			<td align="center" colspan="2">  
+				<span id="msg2"></span>
+			</td>
+		</tr>
+		<tr>
+			<td align="left" width="20%" valign="top">  
+				<textarea name="found" id="found" style="display:inline;font-size:11.0pt;line-height:130%;width:100%;max-width:99%;height:300pt;background-color:#ffff88;"></textarea> 
+				<br>
+			</td>
+			<td align="left" width="20%" valign="top">  
+				<textarea name="foundSort" id="foundSort" style="display:inline;font-size:11.0pt;line-height:130%;width:100%;max-width:99%;height:300pt;background-color:#ffff88;"></textarea> 
+				<br> 
+			</td>
+			<td align="left" width="20%" valign="top">  
+				<textarea name="Anki" id="Anki" style="display:inline;font-size:11.0pt;line-height:130%;width:100%;max-width:99%;height:300pt;background-color:#777777;"></textarea> 
+				<br> 
+			</td>
+			<td align="left" width="20%" valign="top">  
+				<textarea name="notfound" id="notfound" style="display:inline;font-size:11.0pt;line-height:130%;width:100%;max-width:99%;height:300pt;background-color:#88ffff;"></textarea>
+				<br>
+			</td>
+
+			<td align="left" width="20%" valign="top">  
+				<textarea name="notfoundSort" id="notfoundSort" style="display:inline;font-size:11.0pt;line-height:130%;width:100%;max-width:99%;height:300pt;background-color:#88ffff;"></textarea>
+				<br> 
+			</td>
+		</tr>
+	</tbody>
+	</table> 
+ 
+</body></html>
