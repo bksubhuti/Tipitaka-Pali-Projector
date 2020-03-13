@@ -1,4 +1,4 @@
-﻿/*
+/*
 @ Pali Tipitaka Projector v180601
 @ Last Modified: 20180630
 @ Filename: stlookup_jquery.js
