@@ -77,6 +77,7 @@ function goUrl() {
 			//alert(tr[i].innerHTML + '  ' + url);
 			if (tr[i].innerHTML.indexOf(url) != -1) {
 				document.getElementById('p' + (i +1)).scrollIntoView();
+				//Message(i);
 				GetTrId(i);
 				break;
 			}
@@ -281,3 +282,7 @@ function QuickJumpTips() {
 }
 
 
+function SetupToc() {
+    const options = TOC_Dropdown_Items.map((item, index) => `<option value="${index}">${item}</option>`);
+    document.getElementById('Toc').innerHTML = options;
+}
