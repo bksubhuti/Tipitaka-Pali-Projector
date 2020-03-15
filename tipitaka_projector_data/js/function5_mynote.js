@@ -45,21 +45,22 @@ function MyNoteExport(key) { 	// 0=cancel, 1=save, lines=5-10-20
 	}
 
 	if (key == '1') {	//save 
-		flag = '1'; 
-
 		var ary1 = document.getElementById('mynoteids').value.split(';');
 		var ary2 = document.getElementById('mynotetags').value.split('{!@!}');
 		var ary3 = document.getElementById('mynoteolds').value.split('{!@!}'); 
 		for (i=0; i<ary1.length; i++) {
 			if (ary1[i] != '') {
 				M_LOC[ary1[i]] = document.getElementById('notes' + ary1[i]).value.trim(); 
+
 				if (M_LOC[ary1[i]] == '') {
 					if (view_right == 'MyNote') {
 	     				document.write = localStorage.removeItem('n' + html_no +'_' + ary1[i]);
 					} 
+					ary3[i] = ary3[i].replace('<>', '');
 					document.getElementById('m' + ary1[i]).innerHTML = ary3[i];
 				} else {
-					document.getElementById('m' + ary1[i]).innerHTML = ary2[i] +  M_LOC[ary1[i]] + '</p>';
+					ary2[i] = ary2[i].replace('<>', '');
+					document.getElementById('m' + ary1[i]).innerHTML = ary2[i] +  M_LOC[ary1[i]]+ '</p>';
 					document.write = localStorage.setItem('n' + html_no +'_' + ary1[i] , M_LOC[ary1[i]]); 
 				}
 			}
@@ -67,20 +68,22 @@ function MyNoteExport(key) { 	// 0=cancel, 1=save, lines=5-10-20
  	} 
 
 	if (key <='1') {	//save & cancel 
-		var ary1 = document.getElementById('mynoteids').value.split(';');
-		var ary2 = document.getElementById('mynotetags').value.split('{!@!}');
-		var ary3 = document.getElementById('mynoteolds').value.split('{!@!}');
-		for (i=0; i<ary1.length; i++) {
-			if (ary1[i] != '') {
-				if ((M_LOC[ary1[i]] == '') || (M_LOC[ary1[i]] == undefined)) {
-     				document.write = localStorage.removeItem('n' + html_no +'_' + ary1[i]);
-					document.getElementById('m' + ary1[i]).innerHTML = ary3[i];
-				} else {
-					document.getElementById('m' + ary1[i]).innerHTML = ary2[i] +  M_LOC[ary1[i]] + '</p>';
-					document.write = localStorage.setItem('n' + html_no +'_' + ary1[i] , M_LOC[ary1[i]]); 
-				}
-			}	
-		}   
+		if (key == '0') {
+			var ary1 = document.getElementById('mynoteids').value.split(';');
+			var ary2 = document.getElementById('mynotetags').value.split('{!@!}');
+			var ary3 = document.getElementById('mynoteolds').value.split('{!@!}');
+			for (i=0; i<ary1.length; i++) {
+				if (ary1[i] != '') {
+					if ((M_LOC[ary1[i]] == '') || (M_LOC[ary1[i]] == undefined)) {
+						document.write = localStorage.removeItem('n' + html_no +'_' + ary1[i]);
+						document.getElementById('m' + ary1[i]).innerHTML = ary3[i];
+					} else {
+						document.getElementById('m' + ary1[i]).innerHTML = ary2[i] +  M_LOC[ary1[i]] + '</p>';
+						document.write = localStorage.setItem('n' + html_no +'_' + ary1[i] , M_LOC[ary1[i]]); 
+					}
+				}	
+			}   
+		}	
 
 		document.getElementById('mynote1').value = '';
 		document.getElementById('mynoteids').value = '';

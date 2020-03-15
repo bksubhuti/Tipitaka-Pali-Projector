@@ -27,17 +27,13 @@ var deleChars = /[\[\]01234567890.,-;\"\’\?_]/;
 
 /*
 @ Display random message while loading
-*/
-var checkloadeddata = "";
+*/ 
 var loader = document.getElementById("loader");
 
 loader.innerHTML = '<div align="center" style="z-index:9999;position:fixed;background:orange;border:2px solid white;top:35%;left:3%;right:3%;font-size:x-large;box-shadow:  -8px -2px 8px 8px white, -8px 8px 8px 8px #D9D9D9, 8px 12px 12px 12px white;"">' + '<strong><p>"vayadhammā saṅkhārā appamādena sampādethā"</strong><br> <i>~  mahāparinibbāna sutta (par.218) ~</i></p>' + '<hr><i>Starting...</i></div>';
 
 var divheight = localStorage.getItem("divheight");
 
-/*
-@ DICTIONARY VARIABLES AND PERFORM LOADING
-*/
 
 /******** English Dictionary ***********
 * English dictionary (to support non-english speakers)
@@ -45,20 +41,18 @@ to add:
 * ee1 dictionary file: ee1_Eng_Eng_Dictionary_WordNet_3.0.js
 ***************************************/
 var ee1 = ""; //The dictionary code must be always declared before loading the script
-//var path = window.location.pathname();
 var hee1 = localStorage.getItem("hee1"); //Check setting: enabled this dictionary or not
 if ((hee1 == 1)) { 
 	dict_in_use++; 
 	$.getScript("dictionary/ee1_Eng_Eng_Dictionary_WordNet_3.0_.js")
 };
 
-var wordbreakdata = "";
-
 /******** Auto including wordbreakdata *********
 * THIS DATA FILE IS VERY IMPORTANT (It helps to recognize compound words)
 * wordbreakdata dictionary file: pe0_grammar_wordbreakdata_Pali_English_Dictionary_extract_DPR_2018.js
 * wordbreakdata dictionary file: wordbreakdata_Pali_Pali_grammar_Dictionary_extract_DPR_2018.js
 ***************************************/
+var wordbreakdata = "";
 $.getScript("dictionary/000_wordbreakdata_Pali_Pali_grammar_Dictionary_extract_DPR_2018.js");
 
 var pc1 = ''; var pc2 = '';
@@ -69,7 +63,17 @@ var pm1 = ''; var pm2 = ''; var pm3 = ''; var pm4 = '';
 var pv1 = ''; var pv2 = ''; var pv3 = '';
 var se1 = '';
 
-var ary_dict = '                '.split(' ');
+/*
+var Kpc1 = ''; var Kpc2 = '';
+var Kpd1 = '';
+var Kpe1 = ''; var Kpe2 = ''; var Kpe3 = ''; var Kpe4 = ''; var Kpe5 = ''; var Kpe6 = '';
+var Kpg1 = '';
+var Kpm1 = ''; var Kpm2 = ''; var Kpm3 = ''; var Kpm4 = '';
+var Kpv1 = ''; var Kpv2 = ''; var Kpv3 = '';
+var Kse1 = '';
+*/
+
+var ary_dict = ';'.repeat(17).split(';');
 
 var val =
   localStorage.getItem('hpc1') + 'hpc1' + '@' + 
@@ -79,6 +83,7 @@ var val =
   localStorage.getItem('hpe2') + 'hpe2' + '@' +
   localStorage.getItem('hpe3') + 'hpe3' + '@' + 
   localStorage.getItem('hpe4') + 'hpe4' + '@' +
+  localStorage.getItem('hpe5') + 'hpe5' + '@' +
   localStorage.getItem('hpe6') + 'hpe6' + '@' +
   localStorage.getItem('hpg1') + 'hpg1' + '@' +
   localStorage.getItem('hpm1') + 'hpm1' + '@' + 
@@ -122,6 +127,7 @@ for (var i in ary) {
 
 		dict_in_use++;
 		ary_dict[dict_in_use] = name;
+		
 		if ( name == 'hpc1') {$.getScript("dictionary/pc1_Pali_Zh_sc2016_pi2zh-maindata-v1.js"); }
 		if ( name == 'hpc2') {$.getScript("dictionary/pc2_Pali_Zh_12_in_1@2018.js"); }
 		if ( name == 'hpd1') {$.getScript("dictionary/pd1_Pali_Indo_sc2016_pi2id-maindata-v1.js"); }
@@ -129,6 +135,7 @@ for (var i in ary) {
 		if ( name == 'hpe2') {$.getScript("dictionary/pe2_Pali_English_Dictionary_extract_DPR_2018.js"); }
 		if ( name == 'hpe3') {$.getScript("dictionary/pe3_Pali_English_Dictionary_by_PaliTextSociety.js"); }
 		if ( name == 'hpe4') {$.getScript("dictionary/pe4_Pali_English_Declension_Dict_@DPR_2018.js"); }
+		if ( name == 'hpe5') {$.getScript("dictionary/pe5_Pali_Grammar_Dictionary@DPR_2018.js"); }
 		if ( name == 'hpe6') {$.getScript("dictionary/pe6_Pali_Proper_Names_G_P_Malalasekera@2018.js"); }
 		if ( name == 'hpg1') {$.getScript("dictionary/pg1_Pali_Germany_sc2016_pi2de-maindata-v1.2.js"); }
 		if ( name == 'hpm1') {$.getScript("dictionary/pm1_Pali_Word_Grammar_@2018.js"); }
@@ -139,61 +146,25 @@ for (var i in ary) {
 		if ( name == 'hpv2') {$.getScript("dictionary/pv2_Pali_Viet_Abhi-Terms_by_ngaiTinhSu_Stardict.js"); }
 		if ( name == 'hpv3') {$.getScript("dictionary/pv3_Pali_Viet_Vinaya-Terms_by_VenGiacNguyenBhikkhu.js"); }
 		if ( name == 'hse1') {$.getScript("dictionary/se1_A_Sanskrit_English_Dictionary_Monier_Williams@1899.js"); }
+		
 	} else {
 		aryTemp[v0] = '0';
 	}
 }
 document.getElementById('TmpDictionary').innerHTML = tmpDictionary;
 
+/*
 if (dict_in_use == 0) {		//pe4
 	dict_in_use = 1;
 	$.getScript("dictionary/pe4_Pali_English_Declension_Dict_@DPR_2018.js");
 	ary_dict[dict_in_use] = 'hpe4';
 	document.write = localStorage.setItem('hpe4', '010'); 
 }
-
+*/
 
 if ((hee1 == 1)) { 
 	ary_dict[0] = 'hee1';
 }	// English - English Dictionary
-
-$.getScript("dictionary/pe5_Pali_Grammar_Dict_@DPR_2018.js");
-
-
-var voca_lowercase = "";
-var t = '';
-var writeme = "";
-var writemefinal = "";
-
-var para_text = "";
-var para_text_click = "";
-var scroll_up = "";
-var totalword_parag;
-var found_count = 0;
-var known_totalword_parag = 0;
-var pclicktime = "";
-var singlewordclicktime = "";
-var knownwp_nolink = '';
-var knownwp = '';
-
-var dualtext = '   Dual-[yes]';
-var dualclick = 1;
-
-
-/*
-@ Fuzzy Mode: Try fuzzy-in-word search or not
-@ It is not reliable yet. Sometimes it splits word wrongly
-@ Can switch enable/disable anytime onclick
-*/
-
-var fuzzySearchinword; //value depending on user setting from the index files
-var getsettingfuzzy = localStorage.getItem("enablefuzzyinword");
-if (!(getsettingfuzzy)) { 
-	fuzzySearchinword = 0; 
-} else { 
-	fuzzySearchinword = getsettingfuzzy; 
-}
-
 
 function word_click() {
 	/*
@@ -310,10 +281,9 @@ function word_click() {
 		}
 	}
 
-	t = t.replace(/\,/g, ' ').replace(/\-/g, ' ').replace(/\./g, ' ').replace(/\;/g, ' ').replace(/\‘/g, ' ').replace(/\’/g, ' ').replace(/\  /g, ' ').replace(/\ \ /g, ' ');
+	t = t.replace(/\(/g, ' ').replace(/\)/g, ' ').replace(/\[/g, ' ').replace(/\]/g, ' ').replace(/\,/g, ' ').replace(/\-/g, ' ').replace(/\./g, ' ').replace(/\;/g, ' ').replace(/\‘/g, ' ').replace(/\’/g, ' ').replace(/\  /g, ' ').replace(/\ \ /g, ' ');
 
 	t = t.trim(); 
-	//console.log('--'+ t + '--'+t.length);
 
 	if (t.length > 512) { 
 		t = t.substring(0, 512);
@@ -333,7 +303,6 @@ function word_click() {
 		}
 	} 
 
-	//
 	pos = (t + ' ').indexOf(' ');
 	k1 = t.substring(0, pos);
 
@@ -370,306 +339,15 @@ function word_click() {
 	document.write = localStorage.setItem('DictionaryKey', tdict); 
 	document.getElementById("DeclensionKey").value = tdict;
 	document.write = localStorage.setItem('DeclensionKey', tdict); 
-	//console.log(t);
+
 	return t; 
 }//function word_click
-
-//function closepopup to close the top poup in dual mode
-function closepopup() {
-	$("popupfix").html('');
-	window.location.assign("#" + singlewordclicktime);//return to the last word entry
-}
-
-var para_text2 = "";
-/*
-@ DICTIONARY MODE (SHOW MEANINGS FOR WHOLE PARAGRAPH | SINGLE WORD)
-@ Default Dictionary mode is listing paragraph
-*/
-
-
-//$(window).on('load', function () {  
-// move to function0_main.js 
-//}); //Onload
-
-var all_better_meaning = "";
-var all_guess_meaning = "";
-var final_display_meaning = "";
-var better_meaning_grammar = "";
-
-var voca_lowercase = t.toLowerCase();
-
-var cee1; var m_ee1 = ""; var m_ee1s = "";
-
-found_count = 0;
-	/*
-	@ Function breakParagraph2Word to break paragraph text in to word by word
-	*/
-	function breakParagraph2Word(breakintoword) {
-		var para_text = breakintoword;
-
-		var regex_r = new RegExp("[^a-zA-Zāīūṇṅñṃṁḷḍṭáàảãạăắằẳẵặâấầẩẫậóòỏõọôốồổỗộơớờởỡợéèẻẽẹêếềểễệúùủũụưứừửữựíìỉĩịýỳỷỹỵđ]", "gi"); //VIET TOTAL 67 SPECIAL CHARS áàảãạăắằẳẵặâấầẩẫậóòỏõọôốồổỗộơớờởỡợéèẻẽẹêếềểễệúùủũụưứừửữựíìỉĩịýỳỷỹỵđ
-		var para_text_wordarr = para_text.split(regex_r);
-		totalword_parag = 0;
-		for (var i = 0; i < para_text_wordarr.length; i++) {
-			var word1 = para_text_wordarr[i];
-			if (word1.length > 0) {
-				var p_word = para_text_wordarr[i];
-				var p_words = p_word.toLowerCase();
-				if ((p_words != 'pg') &&  (p_words != 'pts')) {
-					totalword_parag += 1;
-					lookupCoordinator(p_words, 0);
-				}
-			}
-		} //for loop
-	} //function breakParagraph2Word
-
-/*
-@ Function lookupDict to search each dictionary STARTS
-@ lookupDict (dictarr,voca,guess_meaning,better_meaning,dictname);
-@ For example: lookupEachDict(pv1,t,"m_pv1","u_pv1","PV1","specialoption");
-@ specialoption: optional. Use this parameter to tell the app to apply a custom fon/function etc  to display your dictionary.
-*/
-
-function lookupEachDict(dictarr, voca, guess_meaning, better_meaning, dictname, specialoption) {
-	this.dictarr = dictarr;
-	this.voca = voca;
-	this.guess_meaning = guess_meaning;
-	this.better_meaning = better_meaning;
-	this.dictname = dictname;
-	this.specialoption = specialoption; //optional to apply custom font like ZawgyiFont/or spercific function; default = apply DejavuSansCondensed
-
-	//Refresh meanings
-	guess_meaning = "";
-	better_meaning = "";
-	better_meaning_grammar = "";
-
-	// DICTIONARY HAS THIS WORD; EXACTLY FOUND  MEANINGS
-	//@ Try 1
-	var meaning_from_dict = "" + dictarr[voca];
-	if (meaning_from_dict != "undefined") {
-		better_meaning = "<br><font color='#004400'><strong style='font-size:110%'>" + aryAbbr[dictname] + ": </strong></font>" + "<font color='#004400'>" + meaning_from_dict + "</font><span>";
-		found_count++;
-		guess_meaning = "";
-	}
-	//EXACTLY FOUND MEANINGS FINISHED
-
-	//TRY TO GUESS MEANINGS/OR USE GRAMMAR BASE WORD BANK  IF NO EXACTLY FOUND
-	if ((meaning_from_dict == "undefined") && (cee1 == "undefined")) {
-		//var tinword = "<font color='grey'>[fuzzy-notSure] </font><font color='brown'><strong>" + voca + ": </strong></font> ?~ ";
-		var tinword = "<font color='grey'>[fuzzy] </font><font color='brown'><strong>" + voca + ": </strong></font> ?~ ";
-		var wo = voca;
-		var wlen = voca.length;
-		var isFoundInDictionary = "";
-		var wr = "";
-		var new_voca_by_wordbreakdata = "";
-		var w_a = "";
-
-		var dsd_deep = "";
-		var wbreak = "";
-		var dsd_deep_a = "";
-		var wbreak_a = "";
-		var wbreak_grammar = "";
-
-		var wnow = "";
-
-		/*
-		@ Try 2
-		@ Now using breakbank to search for the current dictionary
-		@ If false = dsd_deep_a.length < 1 then try other methods.
-		@
-		*/
-
-		var foundsthing ="";
-		new_voca_by_wordbreakdata = "" + wordbreakdata[wo];
-		if (!(new_voca_by_wordbreakdata == "undefined")) {
-			//try to search with new voca
-			new_voca_by_wordbreakdata = new_voca_by_wordbreakdata.trim() + "@_@";
-			var ary = new_voca_by_wordbreakdata.split("@_@");
-			for (i in ary) {
-				if (ary[i] != "" ) {
-					isFoundInDictionary = "" + dictarr[ary[i]];
-					if (!(isFoundInDictionary == "undefined")) {
-					foundsthing = 1;
-
-					if (i==0){
-						wbreak_grammar = "<font color='grey'>: [d] </font><font color='brown'><strong>" + wo + "</strong></font> => <font color='blue'><strong>" + ary[i] + "</strong></font>";
-						better_meaning_grammar += "<br><font color='green'><strong style='font-size:110%'>" + aryAbbr[dictname] + wbreak_grammar + ": </strong></font>" + "<font color='green'>" + dictarr[ary[i]] + "</font>";
-					} else {
-						wbreak_grammar = "<font color='grey'>"+"<span style='visibility:hidden;'>"+aryAbbr[dictname]+":</span>"+" [d] </font><font color='brown'><strong>" + wo + "</strong></font>"+"<font color='grey'><sup>("+ (Number(i)+1) +")</sup></font>"+" => <font color='blue'><strong>" + ary[i] + "</strong></font>";
-						better_meaning_grammar += "<br><font color='green'><strong style='font-size:110%'>" + wbreak_grammar + ": </strong></font>" + "<font color='green'>" + dictarr[ary[i]] + "</font>";
-
-						}
-
-					} //Break bank has meanings
-				}
-			}
-
-		if (foundsthing==1) {found_count++;foundsthing="";}
-
-		}
-		/*
-		@ FUZZY IN WORD SEARCH / WORD-BREAK FUNCTION/ OTHER GUESSING methods
-		@ THERE ARE A LOT OF THINGS TO DO FOR THIS
-		*/
-		if (better_meaning_grammar.length < 1) {
-			//@ Try 3
-			//  look up pali ending with =a, so check whole word but ending with a
-
-			if (wlen > 1) {
-			w_a = wo.substring(0, (wlen - 1)) + "a";
-
-			isFoundInDictionary = "" + dictarr[w_a];
-
-			if (!(isFoundInDictionary == "undefined")) {
-				wbreak_a += "<font color='grey'><strong>[a] </strong></font><font color='brown'><strong>" + wo + "</strong></font> = <font color='blue'><strong>" + w_a + "</strong></font><br>";
-
-				dsd_deep_a = "<i><font color='brown'><strong>" + w_a + "</strong></font></i><font color='blue'> " + ": " + dictarr[w_a] + "</font>" + "<br>";
-				tinword = "<strong> --> <u>Try in word</u> </strong>";
-				found_count++;
-			}
-		} //end if wlen >1 so can add a
-		// ENDING returns no result then try fuzzy search
-		/*
-		@ FUZZY WORD-BREAK
-		*/
-		//if ((dsd_deep_a.length < 1) && (fuzzySearchinword == 1)) {
-		if (dsd_deep_a.length < 1) {
-			var gotsomething;
-			var gotsomething_wbank;
-
-			for (var r = 0; r < wlen; r++) {
-				if (r == 0) {
-					wr = wo.substring(0, wlen);
-				} else {
-					wr = wo.substring(0, wlen - r);
-				}
-				var w1 = wr.length;
-
-				//FUZZY ORDER:  > wordbreakdata > itself a again
-
-				//current word = wr, len of word = w1
-
-				//khandhavaggo = (check) khandha+ { (check)vaggo if failed => (check)vagga}
-				gotsomething = 0;
-				gotsomething_wbank = 0;
-				/*
-				@ Try 4(1st try in fuzzy) - wordbreakdata
-				*/
-
-				new_voca_by_wordbreakdata = "" + wordbreakdata[wr];
-				if (!(new_voca_by_wordbreakdata == "undefined")) {
-					new_voca_by_wordbreakdata = new_voca_by_wordbreakdata.trim() + "@_@";
-
-					var ary = new_voca_by_wordbreakdata.split("@_@");
-					for (i in ary) {
-						if (ary[i] != "" ) {
-
-						var isFuzzyCurrentDictFound = "" + dictarr[ary[i]];
-						//w1>2 to remove the short word case like long a etc
-
-						if ((!(isFuzzyCurrentDictFound == "undefined")) && (w1 > 2)) {
-							if(i==0){
-								dsd_deep += "<i><font color='brown'><strong>" + wr + "</strong></font></i>" + " --> " + "<font color='orange'><i><strong>" + ary[i] + "</strong></i></font></i>" + ": " + dictarr[ary[i]] + "<br>";
-
-								wbreak = wbreak + "<font color='grey'><strong>" + wr + "</strong></font>" + "/<i>" + ary[i] + "</i>/" + " - ";
-							} else {
-								dsd_deep += "<i><font color='brown'><strong>" + wr + "<font color='blue'><sup>("+ (Number(i)+1) +")</sup></font>" + "</strong></font></i>" + " --> " + "<font color='orange'><i><strong>" + ary[i] + "</strong></i></font></i>" + ": " + dictarr[ary[i]] + "<br>";
-
-								wbreak = wbreak + "<font color='grey'><strong>" + wr + "<font color='blue'><sup><sup>("+ (Number(i)+1) +")</sup></sup></font>" + "</strong></font>" + "/<i>" + ary[i] + "</i>/" + " - ";
-
-								}
-
-							gotsomething = 1;
-
-						}//have meaning
-					}//word not empty
-				}//for
-			}//have in breakdata
-			/*
-			@ Try 5(2nd try in fuzzy) - dictionary itself
-			*/
-
-			var isFuzzyCurrentDictFound = "" + dictarr[wr];
-			if ((!(isFuzzyCurrentDictFound == "undefined")) && (w1 > 2)) {
-				wbreak = wbreak + "<font color='grey'><strong>" + wr + "</strong></font>" + " - ";
-				gotsomething = 1;
-			}
-			/*
-			@ Try 6 (3rd try in fuzzy) - Ending with a again
-			@ Future to do: //var isU = wo.charAt(wlen-1); check u/i etc...
-			*/
-			wr_a = wo.substring(0, (wlen - 1)) + "a";
-			var isFoundInDictionary = "" + dictarr[wr_a];
-
-			if ((!(isFoundInDictionary == "undefined")) && (w1 > 2)) {
-				//Try again with a
-				dsd_deep += "<i><font color='brown'><strong>" + wr_a + "</strong></font></i>" + ": " + dictarr[wr_a] + "<br>";
-				wbreak = wbreak + "<font color='grey'><strong>" + wr_a + "</strong></font>" + " - ";
-
-				gotsomething = 1;
-			}
-
-			if (gotsomething == 1) {
-				wnow = wo.substring(wr.length, wo.length);
-				wo = wnow;
-				wlen = wnow.length;
-				r = -1;
-			}
-
-			if (w1 == 1) {
-				wnow = wo.substring(1, wo.length);
-				wlen = wnow.length;
-				wo = wnow;
-				r = -1;
-			}
-
-		} //end for loop DEEP PALI SEARCH
-	} //End ENDING returns no result then try fuzzy search
-} //End in case new_voca_by_wordbreakdata false try other methods
-
-	if (dsd_deep.length > 0) {
-		wbreak = wbreak.substring(0, (wbreak.length) - 2); //remove last -space
-
-		dsd_deep = dsd_deep.substring(0, (dsd_deep.length) - 4); //remove last <br>
-		guess_meaning = "<br><font color='green'><b style='font-size:110%'>" + aryAbbr[dictname] + ": </b></font>" + wbreak_a + dsd_deep_a + tinword + "<font color='black'>" + wbreak + "</font>" + "<br>" + "<font color='black'>" + dsd_deep + "</font>";
-	} else if (dsd_deep_a.length > 0) {
-		better_meaning = "<br><font color='green'><b style='font-size:110%'>" + aryAbbr[dictname] + ": </b></font>" + wbreak_a + dsd_deep_a;
-		} else {
-			guess_meaning = "";
-		}
-	}	// END TRY TO GUESS MEANINGS IF NO EXACTLY FOUND
-
-	//APPLY SPECIAL CUSTOM FONT FOR A SPECIFIC DICTIONARY
-	// Style for class ZawgyiFont (or your custom special font) can be declared in the projector_style.css
-	//Can also use custom function for your dictionary, or can use a function for dictionary
-
-	if (specialoption == 'ZawgyiFont') {
-		if (better_meaning.length > 0) {
-			better_meaning = '<span class="ZawgyiFont">' + better_meaning + '</span>';  //use custom font
-			//better_meaning = encodingConverter_example(better_meaning);//use function to unicode
-		}
-		if (better_meaning_grammar.length > 0) {
-			better_meaning_grammar = '<span class="ZawgyiFont">' + better_meaning_grammar + '</span>';
-			//better_meaning_grammar = encodingConverter_example(better_meaning_grammar);
-		}
-		if (guess_meaning.length > 0) {
-			guess_meaning = '<span class="ZawgyiFont">' + guess_meaning + '</span>';
-			//guess_meaning = encodingConverter_example(guess_meaning);
-		}
-			specialoption = "";//unset special custom option after use for a particular dictionary. Otherwise, all following definitions shall be affected
-	}
-
-	all_better_meaning = all_better_meaning + better_meaning + better_meaning_grammar;
-	all_guess_meaning = all_guess_meaning + guess_meaning;
-
-}//Function lookupDict ENDs
-
+  
 /*
 SPEECH SYNTHESIS FUNCTION
 Note: on Android, tested with Firefox Nightly (Developer version) and Chrome only.
 @ Reference: https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis
 */
-
 function speakSynthesis (sayme) {
 	if (localStorage.getItem("speech_repeat") != '0') {
 		this.sayme = sayme;
@@ -677,7 +355,6 @@ function speakSynthesis (sayme) {
 		var synthCall = window.speechSynthesis;
 		var speakThis = new SpeechSynthesisUtterance(sayme);
 
-		//options for volume etc...
 		speakThis.lang ='en-GB';
 		speakThis.pitch = 1;
 		speakThis.rate = localStorage.getItem("speech_speed"); //speak quickly or slowly
@@ -686,183 +363,6 @@ function speakSynthesis (sayme) {
 		synthCall.speak(speakThis);
 	}
 }//end function speakSynthesis(sayme)
-
-/*
-@ Function lookupCoordinator
-*/
-function lookupCoordinator(texttolook, dual) {
-
-	m_ee = ""; //refresh En meanings
-	final_display_meaning = ""; //Refresh new definitions each click time
-	all_better_meaning = "";
-	all_guess_meaning = "";
-	found_count = 0;
-	var dualmode = dual;
-
-	t = texttolook;
-
-	var word = t;
-	var totalword = 0;
-	var o_r = 0;
-	var knownw = 0;
-	var voca_lowercase = t.toLowerCase();
-
-	var wordb = voca_lowercase;
-	var letspeak = 0;
-
-	//WN helps to recognise English words, stop word breaking when it is an English word.
-	cee1 = "" + ee1[voca_lowercase];
-	alert
-	if (hee1 == 1) {
-		if (cee1 != "undefined") {
-
-		//allow speak synthesis
-		letspeak = 1;
-
-		m_ee1 = "<br><font color='green'><b style='font-size:110%'>💯WN: </b></font>" + cee1+"<br>";
-
-		found_count++;
-	}
-	if (cee1 == "undefined") {
-		var ends = voca_lowercase.charAt(voca_lowercase.length-1);
-		if (ends =="s") {
-			var newen =  voca_lowercase.substring(0,voca_lowercase.length-1);
-			var cee1s = "" + ee1[newen];
-			if (cee1s != "undefined") {
-				//allow speak synthesis
-				letspeak = 1;
-
-				m_ee1s = "<br><font color='green'><b style='font-size:110%'>WN: </b></font>"+newen+"(s)"+"<i> => </i><font color='brown'><strong>" + newen + "</strong></font>"+ cee1s+"<br>";
-				m_ee1 = m_ee1s;
-			}
-		} else {
-			m_ee1 = ""; 
-		}
-	}
-
-}
-
-	//CHANGE THE ORDER OF DISPLAY: BETTER MEANING>THIS ORDER>GUESS MEANING
-	//You can change the display name here also, for examle PE1 to whatever you name it.
-	// Call look up function for your dictionary here
-
-	//if (hpm2 == 1) { lookupEachDict(pm2, voca_lowercase, "m_pm2", "u_pm2", "PM2", "ZawgyiFont"); }
-	/*
-	@ The last parameter "ZawgyiFont" is used to tell the app to apply special custom font for this specific dictionary
-	@ It will add a class to the definitions of this dictionary. So custom styles can be applied for it.
-	@ To use this: find line: APPLY SPECIAL CUSTOM FONT FOR A SPECIFIC DICTIONARY and add your codes
-	@ And also need to declare your class's style for the custom class in the projector_style.css
-	*/
-	//if (hpe1 == 1) { lookupEachDict(pe1, voca_lowercase, "m_pe1", "u_pe1", "PE1"); }
-	//if (hpm1 == 1) { lookupEachDict(pm1, voca_lowercase, "m_pm1", "u_pm1", "PM1", "ZawgyiFont"); }
-
-	for (var i = 1; i<ary_dict.length; i++) {
-		var d_name = ary_dict[i].substring(1);
-		if ((ary_dict[i] == 'hpc1') && (aryTemp[d_name] == '1')) {lookupEachDict(pc1, voca_lowercase, "m_" + d_name , "u_" + d_name, d_name);}
-		if ((ary_dict[i] == 'hpc2') && (aryTemp[d_name] == '1')) {lookupEachDict(pc2, voca_lowercase, "m_" + d_name , "u_" + d_name, d_name);}
-		if ((ary_dict[i] == 'hpd1') && (aryTemp[d_name] == '1')) {lookupEachDict(pd1, voca_lowercase, "m_" + d_name , "u_" + d_name, d_name);}
-		if ((ary_dict[i] == 'hpe1') && (aryTemp[d_name] == '1')) {lookupEachDict(pe1, voca_lowercase, "m_" + d_name , "u_" + d_name, d_name);}
-		if ((ary_dict[i] == 'hpe2') && (aryTemp[d_name] == '1')) {lookupEachDict(pe2, voca_lowercase, "m_" + d_name , "u_" + d_name, d_name);}
-		if ((ary_dict[i] == 'hpe3') && (aryTemp[d_name] == '1')) {lookupEachDict(pe3, voca_lowercase, "m_" + d_name , "u_" + d_name, d_name);}
-		if ((ary_dict[i] == 'hpe4') && (aryTemp[d_name] == '1')) {lookupEachDict(pe4, voca_lowercase, "m_" + d_name , "u_" + d_name, d_name);}
-		if ((ary_dict[i] == 'hpe6') && (aryTemp[d_name] == '1')) {lookupEachDict(pe6, voca_lowercase, "m_" + d_name , "u_" + d_name, d_name);}
-		if ((ary_dict[i] == 'hpg1') && (aryTemp[d_name] == '1')) {lookupEachDict(pg1, voca_lowercase, "m_" + d_name , "u_" + d_name, d_name);}
-		if ((ary_dict[i] == 'hpm1') && (aryTemp[d_name] == '1')) {lookupEachDict(pm1, voca_lowercase, "m_" + d_name , "u_" + d_name, d_name, "ZawgyiFont");}
-		if ((ary_dict[i] == 'hpm2') && (aryTemp[d_name] == '1')) {lookupEachDict(pm2, voca_lowercase, "m_" + d_name , "u_" + d_name, d_name, "ZawgyiFont");}
-		if ((ary_dict[i] == 'hpm3') && (aryTemp[d_name] == '1')) {lookupEachDict(pm3, voca_lowercase, "m_" + d_name , "u_" + d_name, d_name, "ZawgyiFont");}
-		if ((ary_dict[i] == 'hpm4') && (aryTemp[d_name] == '1')) {lookupEachDict(pm4, voca_lowercase, "m_" + d_name , "u_" + d_name, d_name, "ZawgyiFont");}
-		if ((ary_dict[i] == 'hpv1') && (aryTemp[d_name] == '1')) {lookupEachDict(pv1, voca_lowercase, "m_" + d_name , "u_" + d_name, d_name);}
-		if ((ary_dict[i] == 'hpv2') && (aryTemp[d_name] == '1')) {lookupEachDict(pv2, voca_lowercase, "m_" + d_name , "u_" + d_name, d_name);}
-		if ((ary_dict[i] == 'hpv3') && (aryTemp[d_name] == '1')) {lookupEachDict(pv3, voca_lowercase, "m_" + d_name , "u_" + d_name, d_name);}
-		if ((ary_dict[i] == 'hse1') && (aryTemp[d_name] == '1')) {lookupEachDict(se1, voca_lowercase, "m_" + d_name , "u_" + d_name, d_name);}
-	}
-
-	/*
-	@ RESULT AND ORDER OF MEANINGS
-	*/
-
-	var word_ = "<font color='brown'><b style='font-size:120%'> <a name=\"" + word + "\" title=\"" + word + "\" >"
-	if (view_left== 'Myanmar') {
-		word = toMyanmar(word); 
-	}                           
-	if (view_left == 'Sinhala') {
-		word = toSinhala(word);
-	}
-	if (view_left == 'Thai') {
-		word = toThai(word);
-	}
-	if (view_left == 'Devanagari') {
-		word = toDevar(word);
-	}
-	word_ = word_ + word + "</a></b></font>";
-
-	final_display_meaning = m_ee1 + all_better_meaning + all_guess_meaning;
-
-	/*
-	@ If found = 0, and fuzzySearchinword ==0. Tell user current setting Fuzzy-[NO]
-	*/
-	if ((final_display_meaning.length < 1) && (fuzzySearchinword == 0)) {
-		final_display_meaning += '<br><span style="text-size:2pt;color:grey;">Function fuzzy inWord(beta) was disabled.</span>';
-	}
-
-	writeme = "";//reset writeme divtopbottom
-	//writeme = word_ + "<font color='grey'> [known " + found_count + "" + "|" + dict_in_use + " dictionaries]</font>";
-	writeme = word_;
-	writeme = writeme + final_display_meaning;
-
-	if (found_count > 0) { 
-		known_totalword_parag++; 
-	}
-
-	//If popup single word
-	//var popupfixdel = document.getElementsByTagName("popupfix");
-	//for (var p = 0; p < popupfixdel.length; p++) { 
-	//	popupfixdel[p].innerHTML = ""; 
-	//}
-	/*
-	@ Thanks for the scrolling explaination at (overflow-y: scroll;max-height:50%;) at isherwood https://stackoverflow.com/a/18894650
-	*/
-	//var smallpopup = "<popupfix><popupfix_del>";
-	//smallpopup = smallpopup + "<div id=\"pid\" style=\"align:center;overflow-y: scroll;height:10%;padding:15px;position:fixed;top:0%;left:0;right:0%;font-family: DejaVuSansCondensed;font-size:large; text-align:justify;font-weight:bold;background: #F7DBD0;border:1px solid orange;border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;-o-border-radius:10px;\" >";
-	//smallpopup = smallpopup + "<span align=\"left\" style=\" font-family:DejaVuSansCondensed;font-weight:normal;margin-top:0px;margin-bottom:0px; \">" + writeme + "</span><br></div></popupfix_del></popupfix>";
-	document.getElementById('page1_desc').innerHTML = writeme;
-
-	val = localStorage.getItem('history');
-	if ((val == null) || (val == undefined)) {
-		val = '';
-	}
-	val = val.replace('-', '');
-	val = val.replace('.', '');
-	val = val.replace(writeme + '{!@@!}', '');
-	val = writeme + '{!@@!}' + val;
-
-	document.write = localStorage.setItem('history', val);
-
-	//alert(document.getElementById('page2').style.display);
-	if (localStorage.getItem('main_content') == 'page3') {
-		ParagraphAnalysis();
-	} else {
-		if (localStorage.getItem('main_content') == 'page2') {
-			change_tab('page2');
-		} else {
-			change_tab('page1');
-		}
-	}	
-
-	//var popupfixdel = document.getElementsByTagName("popupfix");
-	//popupfixdel[0].innerHTML = smallpopup;
-
-	/*
-	@ Call speak synthesis if English dictionary has meanings
-	*/
-	if ((letspeak ==1) && ((localStorage.getItem("speech_repeat") != '0'))) {
-		for (var idx=1; idx<=localStorage.getItem("speech_repeat"); idx++) {
-			speakSynthesis(voca_lowercase);//repeat 2 times
-		}
-	}
-
-
-}//look up function ends
 
 /*
 @ ADDITIONAL FUNCTIONS
@@ -1091,14 +591,6 @@ function viewSri() {
 		textout[p].innerHTML = psri;
 	}
 }
-
-/*
-//Custom function to apply for a particular dictionary
-
-function encodingConverter_example(text_in) {//code here }
-
-*/
-
 /*
 @ Hide loading message
 @ Reference https://css-tricks.com/snippets/jquery/display-loading-graphic-until-page-fully-loaded/

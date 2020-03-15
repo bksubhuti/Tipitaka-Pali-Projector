@@ -71,7 +71,8 @@
 		if (localStorage.getItem('hpe2') != '000') {get_data = get_data + GetValues(pe2, 'hpe2', key);}
 		if (localStorage.getItem('hpe3') != '000') {get_data = get_data + GetValues(pe3, 'hpe3', key);}
 		if (localStorage.getItem('hpe4') != '000') {get_data = get_data + GetValues(pe4, 'hpe4', key);}
-		if (localStorage.getItem('hpe6') != '000') {get_data = get_data + GetValues(pe6, 'hpe4', key);}
+		if (localStorage.getItem('hpe5') != '000') {get_data = get_data + GetValues(pe5, 'hpe5', key);}
+		if (localStorage.getItem('hpe6') != '000') {get_data = get_data + GetValues(pe6, 'hpe6', key);}
 		if (localStorage.getItem('hpg1') != '000') {get_data = get_data + GetValues(pg1, 'hpg1', key);}
 		if (localStorage.getItem('hpm1') != '000') {get_data = get_data + GetValues(pm1, 'hpm1', key);}
 		if (localStorage.getItem('hpm2') != '000') {get_data = get_data + GetValues(pm2, 'hpm2', key);}
@@ -94,7 +95,7 @@
 	}
 
 
-	var ary = 'hpc1;hpc2;hpd1;hpe1;hpe2;hpe3;hpe4;hpe6;hpg1;hpv3;hpm1;hpm2;hpm3;hpm4;hpv1;hpv2'.split(';');
+	var ary = 'hpc1;hpc2;hpd1;hpe1;hpe2;hpe3;hpe4;hpe5;hpe6;hpg1;hpv3;hpm1;hpm2;hpm3;hpm4;hpv1;hpv2'.split(';');
 	flag = '0';
 	for (i in ary) {
 		if (localStorage.getItem(ary[i]) == undefined) { 
@@ -113,6 +114,7 @@
 		localStorage.getItem('hpe2') + 'hpe2' + '@' +
 		localStorage.getItem('hpe3') + 'hpe3' + '@' + 
 		localStorage.getItem('hpe4') + 'hpe4' + '@' +
+		localStorage.getItem('hpe5') + 'hpe5' + '@' +
 		localStorage.getItem('hpe6') + 'hpe6' + '@' +
 		localStorage.getItem('hpv1') + 'hpv1' + '@' + 
 		localStorage.getItem('hpv2') + 'hpv2' + '@' +
@@ -142,6 +144,7 @@
 			if ( name == 'hpe2') {$.getScript("dictionary/pe2_Pali_English_Dictionary_extract_DPR_2018.js"); }
 			if ( name == 'hpe3') {$.getScript("dictionary/pe3_Pali_English_Dictionary_by_PaliTextSociety.js"); }
 			if ( name == 'hpe4') {$.getScript("dictionary/pe4_Pali_English_Declension_Dict_@DPR_2018.js"); }
+			if ( name == 'hpe5') {$.getScript("dictionary/pe5_Pali_Grammar_Dictionary@DPR_2018.js"); }
 			if ( name == 'hpe6') {$.getScript("dictionary/pe6_Pali_Proper_Names_G_P_Malalasekera@2018.js"); }
 			if ( name == 'hpg1') {$.getScript("dictionary/pg1_Pali_Germany_sc2016_pi2de-maindata-v1.2.js"); }
 			if ( name == 'hpm1') {$.getScript("dictionary/pm1_Pali_Word_Grammar_@2018.js"); }
@@ -425,11 +428,12 @@
 				</a>
 			</td>
 			<td align="center" width="62%">
-				<span style='line-height:120%;color:brown;font-size:15pt;'><b>Tipiṭaka Pāḷi Projector</b></span> - 20200220 (SG)
+				<span style='line-height:120%;color:brown;font-size:15pt;'><b>Tipiṭaka Pāḷi Projector</b></span> - 20200330 (TG)
 
 				<hr width="50%">
 				Pāḷi Word&nbsp;
-				<input type="textbox" name="key" id="key" style="font-size:12pt;width:100%;max-width:280px;" onblur="Keyin()" value=""> 
+				<input type="textbox" name="key" id="key" style="font-size:12pt;width:100%;max-width:280px;" onblur="Keyin()" value="">
+				<input type="button" value="Go">
 				<br>
 				<input id="sort" type="checkbox" onchange="Keyin()"></input>
 				<label for="sort">Sort by Score</label>

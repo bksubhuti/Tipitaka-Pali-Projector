@@ -1,0 +1,501 @@
+<!DOCTYPE html PUBLIC "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+  <title>TPP Anlysis 2.1</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="TIPITAKA PROJECTOR ICON" href="images/favico.ico">
+  <style>
+    .tinysetting {
+		text-align: center;
+		font-size: small;
+		color: red;
+    }
+
+    a:hover {
+		color: #0000ff;
+		text-decoration: none;
+    }
+
+    a:visited {
+		color: #0000ff;
+		text-decoration: none;
+    }
+
+    a:link {
+		color: #0000ff;
+		text-decoration: none;
+    }
+  </style>
+
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<SCRIPT language=JavaScript>
+		function sbar(st){st.style.backgroundColor='#cDcDcD';}
+		function cbar(st){st.style.backgroundColor='';}
+	</SCRIPT>
+
+	<script>
+
+	function toUni(input) {
+		if(!input || input == '') return input;
+		
+		var nigahita = 'ṃ'; 
+		var Nigahita = 'Ṃ'; 
+
+		input = input.replace(/aa/g, 'ā').replace(/ii/g, 'ī').replace(/uu/g, 'ū').replace(/\.t/g, 'ṭ').replace(/\.d/g, 'ḍ').replace(/\"nk/g, 'ṅk').replace(/\"ng/g, 'ṅg').replace(/\.n/g, 'ṇ').replace(/\.m/g, nigahita).replace(/\u1E41/g, nigahita).replace(/\~n/g, 'ñ').replace(/\.l/g, 'ḷ').replace(/AA/g, 'Ā').replace(/II/g, 'Ī').replace(/UU/g, 'Ū').replace(/\.T/g, 'Ṭ').replace(/\.D/g, 'Ḍ').replace(/\"N/g, 'Ṅ').replace(/\.N/g, 'Ṇ').replace(/\.M/g, Nigahita).replace(/\~N/g, 'Ñ').replace(/\.L/g, 'Ḷ').replace(/\.ll/g,'ḹ').replace(/\.r/g,'ṛ').replace(/\.rr/g,'ṝ').replace(/\.s/g,'ṣ').replace(/"s/g,'ś').replace(/\.h/g,'ḥ');
+			
+		return input;
+	}
+
+	function GetValues(ary, dname, key) {
+		this.ary = ary;
+		var meaning_from_dict = "" + ary[key];
+		if (meaning_from_dict != "undefined") {
+			if (dname.indexOf('pm') != -1) {	//myanmar class="ZawgyiFont"
+				return ('<span style="color:#888888">' + localStorage.getItem('i' + dname.substring(1)) + ': </span><span class="ZawgyiFont">' + meaning_from_dict + '</span><br>');
+			} else {
+				return ('<span style="color:#888888">' + localStorage.getItem('i' + dname.substring(1)) + ': </span>' + meaning_from_dict + '<br>');
+			}
+		} else {
+			return ('');
+		}
+	}
+  
+	function PutDictionary(key) {
+		get_data = '';
+		//if (localStorage.getItem('hee1') != '000') {get_data = get_data + GetValues(ee1, 'hee1', key);}
+		if (localStorage.getItem('hpc1') != '000') {get_data = get_data + GetValues(pc1, 'hpc1', key);}
+		if (localStorage.getItem('hpc2') != '000') {get_data = get_data + GetValues(pc2, 'hpc2', key);}
+		if (localStorage.getItem('hpd1') != '000') {get_data = get_data + GetValues(pd1, 'hpd1', key);}
+		if (localStorage.getItem('hpe1') != '000') {get_data = get_data + GetValues(pe1, 'hpe1', key);}
+		if (localStorage.getItem('hpe2') != '000') {get_data = get_data + GetValues(pe2, 'hpe2', key);}
+		if (localStorage.getItem('hpe3') != '000') {get_data = get_data + GetValues(pe3, 'hpe3', key);}
+		if (localStorage.getItem('hpe4') != '000') {get_data = get_data + GetValues(pe4, 'hpe4', key);}
+		if (localStorage.getItem('hpe5') != '000') {get_data = get_data + GetValues(pe5, 'hpe5', key);}
+		if (localStorage.getItem('hpe6') != '000') {get_data = get_data + GetValues(pe6, 'hpe6', key);}
+		if (localStorage.getItem('hpg1') != '000') {get_data = get_data + GetValues(pg1, 'hpg1', key);}
+		if (localStorage.getItem('hpm1') != '000') {get_data = get_data + GetValues(pm1, 'hpm1', key);}
+		if (localStorage.getItem('hpm2') != '000') {get_data = get_data + GetValues(pm2, 'hpm2', key);}
+		if (localStorage.getItem('hpm3') != '000') {get_data = get_data + GetValues(pm3, 'hpm3', key);}
+		if (localStorage.getItem('hpm4') != '000') {get_data = get_data + GetValues(pm4, 'hpm4', key);}
+		if (localStorage.getItem('hpv1') != '000') {get_data = get_data + GetValues(pv1, 'hpv1', key);}
+		if (localStorage.getItem('hpv2') != '000') {get_data = get_data + GetValues(pv2, 'hpv2', key);}
+		if (localStorage.getItem('hpv3') != '000') {get_data = get_data + GetValues(pv3, 'hpv3', key);}
+		return(get_data);
+	}
+
+	function Put(val) {
+		ret = PutDictionary(val);
+		if (ret != '') {
+			document.getElementById('msg').innerHTML = ret;
+		} else {
+			ret = PutDictionary(wordbreakdata[val]);			// index into array 
+			document.getElementById('msg').innerHTML = ret;
+		}
+	}
+
+
+	var ary = 'hpc1;hpc2;hpd1;hpe1;hpe2;hpe3;hpe4;hpe5;hpe6;hpg1;hpv3;hpm1;hpm2;hpm3;hpm4;hpv1;hpv2'.split(';');
+	flag = '0';
+	for (i in ary) {
+		if (localStorage.getItem(ary[i]) == undefined) { 
+			document.write.innerHTML = localStorage.setItem(ary[i], '000');
+		} else {
+			flag = '1';
+		}	
+	}
+	if (flag == '0') {
+		document.write.innerHTML = localStorage.setItem('hpe2', '010');	
+		document.write.innerHTML = localStorage.setItem('hpe4', '020');	
+	}
+ 
+	var val =
+		localStorage.getItem('hpc1') + 'hpc1' + '@' + 
+		localStorage.getItem('hpc2') + 'hpc2' + '@' +
+		localStorage.getItem('hpd1') + 'hpd1' + '@' +
+		localStorage.getItem('hpe1') + 'hpe1' + '@' + 
+		localStorage.getItem('hpe2') + 'hpe2' + '@' +
+		localStorage.getItem('hpe3') + 'hpe3' + '@' + 
+		localStorage.getItem('hpe4') + 'hpe4' + '@' +
+		localStorage.getItem('hpe5') + 'hpe5' + '@' +
+		localStorage.getItem('hpe6') + 'hpe6' + '@' +
+		localStorage.getItem('hpg1') + 'hpg1' + '@' +
+		localStorage.getItem('hpm1') + 'hpm1' + '@' + 
+		localStorage.getItem('hpm2') + 'hpm2' + '@' +
+		localStorage.getItem('hpm3') + 'hpm3' + '@' + 
+		localStorage.getItem('hpm4') + 'hpm4' + '@' +
+		localStorage.getItem('hpv1') + 'hpv1' + '@' + 
+		localStorage.getItem('hpv2') + 'hpv2' + '@' +
+		localStorage.getItem('hpv3') + 'hpv3';
+	var ary = val.split('@');
+
+	dicts = '';
+	dictCount  = 0;
+	for (var i in ary) {
+		var val = ary[i].substring(0, 3);
+		var name = ary[i].substring(3);
+		if (val != '000') {
+			dicts = dicts + name + ', ';
+			dictCount = dictCount +1;
+			if ( name == 'hpc1') {$.getScript("dictionary/pc1_Pali_Zh_sc2016_pi2zh-maindata-v1.js"); }
+			if ( name == 'hpc2') {$.getScript("dictionary/pc2_Pali_Zh_12_in_1@2018.js"); }
+			if ( name == 'hpd1') {$.getScript("dictionary/pd1_Pali_Indo_sc2016_pi2id-maindata-v1.js"); }
+			if ( name == 'hpe1') {$.getScript("dictionary/pe1_Pali_English_sc2016_pi2en-maindata-v1.2.js"); }
+			if ( name == 'hpe2') {$.getScript("dictionary/pe2_Pali_English_Dictionary_extract_DPR_2018.js"); }
+			if ( name == 'hpe3') {$.getScript("dictionary/pe3_Pali_English_Dictionary_by_PaliTextSociety.js"); }
+			if ( name == 'hpe4') {$.getScript("dictionary/pe4_Pali_English_Declension_Dict_@DPR_2018.js"); }
+			if ( name == 'hpe5') {$.getScript("dictionary/pe5_Pali_Grammar_Dictionary@DPR_2018.js"); }
+			if ( name == 'hpe6') {$.getScript("dictionary/pe6_Pali_Proper_Names_G_P_Malalasekera@2018.js"); }
+			if ( name == 'hpg1') {$.getScript("dictionary/pg1_Pali_Germany_sc2016_pi2de-maindata-v1.2.js"); }
+			if ( name == 'hpe6') {$.getScript("dictionary/pe6_Pali_Proper_Names_G_P_Malalasekera@2018.js"); }
+			if ( name == 'hpm1') {$.getScript("dictionary/pm1_Pali_Word_Grammar_@2018.js"); }
+			if ( name == 'hpm2') {$.getScript("dictionary/pm2_Tipitaka_Pali_Myanmar_@2018.js"); }
+			if ( name == 'hpm3') {$.getScript("dictionary/pm3_Pali_Myanmar_Dictionary_@U_Hau_Sein_2018.js"); }
+			if ( name == 'hpm4') {$.getScript("dictionary/pm4_Pali_Roots_Dictionary_@2018.js"); }
+			if ( name == 'hpv1') {$.getScript("dictionary/pv1_Pali_Viet_Dictionary_by_ngaiBuuChon_stardict.js"); }
+			if ( name == 'hpv2') {$.getScript("dictionary/pv2_Pali_Viet_Abhi-Terms_by_ngaiTinhSu_Stardict.js"); }
+			if ( name == 'hpv3') {$.getScript("dictionary/pv3_Pali_Viet_Vinaya-Terms_by_VenGiacNguyenBhikkhu.js"); }
+		}
+	}  
+	//pe5
+	//$.getScript("dictionary/pe5_Pali_Grammar_Dict_@DPR_2018.js");						//declension 
+	//wordbreakdata//pali into Subject.
+	$.getScript("dictionary/000_wordbreakdata_Pali_Pali_grammar_Dictionary_extract_DPR_2018.js");	
+
+	$(window).on('load', function () {
+		var ref = window.location.href;
+		var ary = ref.split('?k=');
+		if (1 < ary.length) {
+			document.getElementById('key').value = decodeURI(ary[1]);
+			document.getElementById('key').focus();		
+		}
+		document.getElementById('dictList').innerHTML = 'Analysis in [<span style="color:#880000">' + dicts + '</span>] Dictionaries.'
+	});	
+
+
+	function Keyin() { 
+		if (document.getElementById('Velthuis').checked == true) {
+			pali = toUni(document.getElementById('key').value.trim().toLowerCase());
+		} else {
+			pali = document.getElementById('key').value.trim().toLowerCase();
+		}
+        document.getElementById('key').value = pali;
+        document.getElementById('out').value = pali;
+
+		//========================================
+		// start Analysis 2.1 data
+		//========================================
+        var lenx = pali.length;
+        out = '';
+        for (i=0; i<pali.length; i++) {
+            out = out + '@' + pali[i];
+        }
+
+		word = out; 
+		var reg1 = /\ṁ/g;
+		word = word.replace(reg1, 'ṃ');
+
+		var reg1 = /\k\@\h/g;
+		word = word.replace(reg1, 'kh');
+		var reg1 = /\g\@\h/g;
+		word = word.replace(reg1, 'gh');
+		var reg1 = /\c\@\h/g;
+		word = word.replace(reg1, 'ch');
+		var reg1 = /\j\@\h/g;
+		word = word.replace(reg1, 'jh');
+		var reg1 = /\ṭ\@\h/g;
+		word = word.replace(reg1, 'ṭh');
+		var reg1 = /\ḍ\@\h/g;
+		word = word.replace(reg1, 'ḍh');
+		var reg1 = /\t\@\h/g;
+		word = word.replace(reg1, 'th');
+		var reg1 = /\d\@\h/g;
+		word = word.replace(reg1, 'dh');
+		var reg1 = /\p\@\h/g;
+		word = word.replace(reg1, 'ph');
+		var reg1 = /\b\@\h/g;
+        word = word.replace(reg1, 'bh');
+		var reg1 = /\@\ṃ/g;
+		word = word.replace(reg1, 'ṃ');
+		var reg1 = /\@\@/g;
+		word = word.replace(reg1, '@');
+
+		v1 = word.substring(0, 1);
+		if (v1 == '@') {
+			word = word.substring(1);
+        } 
+
+		var aryX2 = word.split('@');
+		lenX2 = aryX2.length;
+		lenX2_1 = lenX2 -1;
+		for (i=0; i<(lenX2_1); i++) {
+			v1 = aryX2[i+1].substring(0, 1); 
+			if ( v1 == 'ṃ') {
+				aryX2[i] = aryX2[i] + 'ṃ';
+				aryX2[i+1] = aryX2[i+1].substring(1);
+			}
+		}  
+		aryX2[lenX2] = ' ';
+		aryX2[lenX2 +1] = ' ';
+		//========================================
+		// end Analysis 2.1 data
+		//========================================
+
+		//========================================
+		// start Analysis 2.0 data
+		//========================================
+		word = pali;
+
+		var reg1 = /\a/g;
+		word = word.replace(reg1, 'a*');
+		var reg1 = /\a/g;
+		word = word.replace(reg1, 'a*');
+		var reg1 = /\ā/g;
+		word = word.replace(reg1, 'ā*');
+		var reg1 = /\i/g;
+		word = word.replace(reg1, 'i*');
+		var reg1 = /\ī/g;
+		word = word.replace(reg1, 'ī*');
+		var reg1 = /\u/g;
+		word = word.replace(reg1, 'u*');
+		var reg1 = /\ū/g;
+		word = word.replace(reg1, 'ū*');
+		var reg1 = /\e/g;
+		word = word.replace(reg1, 'e*');
+		var reg1 = /\o/g;
+		word = word.replace(reg1, 'o*');
+		var reg1 = /\*\*/g;
+		word = word.replace(reg1, '*');
+
+		v1 = word.slice(-1);
+		if (v1 == '*') {
+			word = word.substring(0, word.length-1);
+		}
+
+		var ary = word.split('*');
+		lenx = ary.length;
+		lenx_1 = lenx -1;
+		for (i=0; i<(lenx_1); i++) {
+			v1 = ary[i+1].substring(0, 1); 
+			if ( v1 == 'ṃ') {
+				ary[i] = ary[i] + 'ṃ';
+				ary[i+1] = ary[i+1].substring(1);
+			}
+		}  
+		ary[lenx] = ' ';
+		ary[lenx +1] = ' ';
+		//========================================
+		// end Analysis 2.0 data
+		//========================================
+		var word_used = '';
+
+			out_html = '';
+			out_html = out_html + '<span style="font-size:10pt;">Method 1 : Dictionaies <b>' + dicts + '</b></span>&nbsp;&nbsp;||&nbsp;&nbsp;';
+			out_html = out_html + '<span style="font-size:10pt;">Method 2 : 000_wordbreakdata_Pali_Pali_grammar_Dictionary_extract_DPR_2018.js</span>';
+			out_html = out_html + '<table border="1" width="100%" cellpadding="3" style="border-collapse:collapse;line-height:150%;font-size:12pt;">';
+
+			// method 1-----------------------------------------------
+			success = '0';
+			out_html = out_html + '<tr onMouseOver=sbar(this) onMouseOut=cbar(this)>';
+				out_html = out_html + '<td valign="top">'; 
+					out_html = out_html + 'Method 1 : <img src="images/s_okay.png"><span style="color:blue;font-size:10pt;">Search in Dictionaies</span>';
+				out_html = out_html + '</td>';
+					ret = PutDictionary(pali);
+					if (ret == '') {
+						out_html = out_html + '<td>';
+							out_html = out_html + 'Not Found!';
+						out_html = out_html + '</td>';
+						out_html = out_html + '<td align="right">';
+							out_html = out_html + '0';
+						out_html = out_html + '</td>';
+					} else {
+						out_html = out_html + '<td>';
+							out_html = out_html + ret;
+						out_html = out_html + '</td>';
+						out_html = out_html + '<td align="right">';
+							out_html = out_html + '100';
+						out_html = out_html + '</td>';
+						success = '1';
+					}	
+			out_html = out_html + '</tr>';
+
+			// method 2-----------------------------------------------
+			if (success == '0') {
+				out_html = out_html + '<tr onMouseOver=sbar(this) onMouseOut=cbar(this)>';
+					out_html = out_html + '<td valign="top">'; 
+						out_html = out_html + 'Method 2 : <img src="images/change.png"><span style="color:blue;font-size:10pt">Search in declension Table</span>';
+					out_html = out_html + '</td>';
+						ret = wordbreakdata[pali];			// index into array 
+						//alert(ret +'  '+ret2);
+						if (ret == undefined) {
+							out_html = out_html + '<td ">'; 
+								out_html = out_html + ret; 
+							out_html = out_html + '</td>';
+							out_html = out_html + '<td align="right">';
+								out_html = out_html + '0';
+							out_html = out_html + '</td>';
+						} else {  
+							declension = ret;
+							ret = PutDictionary(declension);
+							out_html = out_html + '<td ">'; 
+								out_html = out_html + '<b style="color:red;">' + declension + ' </b>[d] ' + pali + '<br>';
+								out_html = out_html + ret; 
+							out_html = out_html + '</td>';
+							out_html = out_html + '<td align="right">';
+								out_html = out_html + '100';
+							out_html = out_html + '</td>';
+							success = '1';
+						}	
+				out_html = out_html + '</tr>';
+			}	
+
+			// method 3-----------------------------------------------
+			//out_tr = out_tr + ret;
+			if (success == '0') {
+
+				out_tr = ''; 
+
+				out_tr = out_tr + '<tr onMouseOver=sbar(this) onMouseOut=cbar(this)>';
+					out_tr = out_tr + '<td valign="top" colspan="3">'; 
+						out_tr = out_tr + 'Method 3 : <span style="color:blue;font-size:10pt;">Assemble</span>';
+					out_tr = out_tr + '</td>';
+				out_tr = out_tr + '</tr>';
+
+				out_tr = out_tr + '<tr onMouseOver=sbar(this) onMouseOut=cbar(this)>';
+					out_tr = out_tr + '<td valign="top" colspan="3">'; 
+					//out_tr = out_tr + pali; 
+					out_tr = out_tr + '</td>';
+				out_tr = out_tr + '</tr>';
+
+				found = '';
+				out_tr = out_tr + '<tr onMouseOver=sbar(this) onMouseOut=cbar(this)>';
+					out_tr = out_tr + '<td valign="top" colspan="3" >'; 
+						start = 0;
+						end = lenx_1;
+						flax = 'run';
+						while (flax == 'run') {
+							v1 = ary[start].substr(0, 1);
+							v2 = ary[start].substr(1, 1);
+							if (v1 == v2) {
+								v1 = '<b style="color:white;background:black;">' + v1 + '</b>';
+								ary[start] = ary[start].substring(1);
+							} else {
+								v1 = '';
+							}
+
+							flag = '0';
+							while (flag == '0') {
+								key = '';
+								for (i=start; i<=end; i++) {
+									key = key + ary[i];
+								}
+
+								ret = PutDictionary(key);
+								if (ret != '') {
+									flag = '<img src="images/s_okay.png">';
+									break;
+								} else {
+									ret = wordbreakdata[key];			// index into array  
+									if (ret != undefined) {
+										ret = PutDictionary(ret);
+										flag = '<img src="images/change.png">';
+										break;
+									}
+								}
+								end = end -1;
+								if ((end <start) || (end < 0)) {
+									break;
+								}
+							}
+
+							if (flag != '0') {
+								out = '';
+								for (j=start; j<i; j++) {
+									out = out + ary[j];
+								}
+								word_used = word_used + v1 + out;
+								out_tr = out_tr + ' &nbsp;<b>' + flag + v1 + out + '</b>&nbsp;  ';
+								
+								found = found + '<img src="images/s_okay.png"><span style="color:#0000ff;font-size:15pt;">' + v1 + out + '</span>&nbsp;&nbsp;' + ret + '<br>';
+
+								start = i;
+								end = lenx_1;
+							} else {		// not found, move to next
+								out_tr = out_tr + '<b style="color:ff0000;">' + v1 + ary[start] + '</b>';
+
+								if ((ary[start] != '') && (ary[start] != ' ')) {
+									found = found + '<img src="images/s_cancel.png"><span style="font-size:15pt;color:red;">' + v1 + ary[start] + '</span><br><br>';
+								}	
+
+								start = start +1;
+								end = lenx_1;
+								if (end <start) {
+									flax = 'end';
+								}
+							}
+						}	
+					out_tr = out_tr + '</td>';
+				out_tr = out_tr + '</tr>';
+				out_html= out_html + out_tr;
+ 
+			}		
+			out_html = out_html + '</table>';
+
+			out_html = out_html + found;
+ 		
+			document.getElementById('out').innerHTML = out_html;
+	}
+</script>
+
+</head>
+
+<body style="margin-top:0.0pt;margin-right:0in;margin-bottom:0in;margin-left:0in;margin-bottom:0pt;font-size:12.0pt;line-height:150%;font-family:Palatino, sans-serif;cursor: pointer;" bgcolor="#ffffc0"> 
+
+	<table align="center" bgcolor="#ffffc0" border="0" width="100%" cellpadding="0" cellspacing="0">
+	<tbody>
+		<tr>
+			<td width="1%"></td>
+			<td align="right" valign="center" width="18%">
+				<a href="index.htm">
+					<img src="images/asoka.png">
+				</a>
+			</td>
+			<td align="center" width="62%">
+				<span style='line-height:120%;color:brown;font-size:15pt;'><b>Tipiṭaka Pāḷi Projector</b></span> - 20200330 (TG)
+
+				<hr width="50%">
+				Pāḷi Word 2.1&nbsp;
+				<input type="textbox" name="key" id="key" style="font-size:12pt;width:100%;max-width:280px;" onblur="Keyin()" value="">
+				<input type="button" value="Go">
+				<br>
+				<input id="Velthuis" type="checkbox" onchange="Keyin()"></input>
+				<label for="Velthuis"> Velthuis Pāḷi word</label>
+				&nbsp;&nbsp;||&nbsp;&nbsp;
+				<span style="color:blue;cursor:pointer;" onClick="document.getElementById('msg').innerHTML= '';document.getElementById('out').innerHTML= '';">Clear</span><br>
+				<span id="dictList"></span>
+			</td>
+			<td align="center" width="18%">
+				<span align="center" style="color:blue;"><a href="index.htm"><img src="images/home.png"> Home </a>
+				<br></span>Analysis 2.1 Pāḷi Word
+			</td>
+			<td width="1%"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td colspan="3" id="suggest" onClick="document.getElementById('msg').innerHTML='';" >  
+				<span id="msg" style="color:#440000;"></span>
+			</td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<td></td>
+			<td colspan="3" id="suggest">  
+				<span id="out" ></span> 
+			</td>
+			<td></td>
+		</tr>
+	</tbody>
+	</table> 
+ 
+</body></html>

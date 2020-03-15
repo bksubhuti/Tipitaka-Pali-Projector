@@ -20972,5 +20972,4 @@ var pe2 = {
 'horā':["hour. (f.)"],
 'horāpāṭhaka':["an astrologer. (m.)"],
 'horāyanta':["any device showing the time; a clock. (nt.)"],
-'horālocana':["a watch; a clock. (nt.)"]
-};
+'horālocana':["a watch; a clock. (nt.)"]};

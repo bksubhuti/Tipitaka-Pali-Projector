@@ -3865,5 +3865,4 @@ var pv2 = {
 'ṭhiti':['Sự duy trì, Sự duy trì'],
 'ṭhāna':['Sự kiện, một trường hợp; điều kiện'],
 'ṭhānakusalatā':['Thiện xảo về vị trí'],
-'This Javascript dictionary data':['has total about: 3855 vocabularies or non-empty lines. It was generated on 20180106 with add_stardict_to_preload_dictionary.php']
-};
+'This Javascript dictionary data':['has total about: 3855 vocabularies or non-empty lines. It was generated on 20180106 with add_stardict_to_preload_dictionary.php']};

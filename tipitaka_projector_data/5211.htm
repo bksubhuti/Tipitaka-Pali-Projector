@@ -7,103 +7,6 @@
   <link rel="TIPITAKA PROJECTOR ICON" href="images/favico.ico" />
   <link rel="stylesheet" type="text/css" href="js/index_style.css" />
   <link rel="stylesheet" type="text/css" href="js/index_style2.css" />
-  <style>
-    *{
-      margin:0;
-      padding:0;
-    }
-    #ResizeDrag{
-      position:absolute;
-      right:0px;
-      bottom:-10px;
-      cursor:nw-resize;
-      overflow:hidden;
-      float:right;
-      z-index:3;
-    } 
-
-    #ResizeRight{
-      width:10px;
-      height:100%;
-      background:#f00;
-      position:absolute;
-      right:0;
-      top:0;
-      cursor: e-resize;
-      overflow:hidden;
-      filter:alpha(opacity:0);
-      opacity:0;
-      z-index:3;
-    }
-    #ResizeBottom{
-      width:100%;
-      height:10px;
-      background:#f00;
-      position:absolute;
-      left:0;
-      bottom:0;
-      cursor:n-resize;
-      overflow:hidden;
-      filter:alpha(opacity: 0;);
-      opacity: 0;
-      z-index:3;
-    }
-    #ResizeLeft{
-      width:10px;
-      height:100%;
-      background:#f00;
-      position:absolute;
-      left:0;
-      top:0;
-      cursor: e-resize;
-      overflow:hidden;
-      filter:alpha(opacity:0);
-      opacity:0;
-      z-index:3;
-    }
-    #divDragIcon{
-      cursor:move;
-      overflow:hidden;
-    }
-  </style>
-
-  <script>
-    function change_tab(id) {
-      document.write = localStorage.setItem('main_content', id);
-      for (var i =1; i<=5; i++) { 
-        document.getElementById("page" + i +"_desc").style.display = "none";
-          document.getElementById("page" + i).className="notselected";
-      }  
-      document.getElementById(id).className="selected";
-      document.getElementById(id + "_desc").style.display = "inline";
-
-      if (id == "page2") {    // declension 
-        document.getElementById('DictionaryKey').style.display = 'none';
-        document.getElementById('GoDictionary').style.display = 'none';
-        document.getElementById('DeclensionKey').style.display = 'inline';
-        document.getElementById('GoDeclension').style.display = 'inline';
-
-        var val = document.getElementById('DeclensionKey').value.trim();
-        document.getElementById('DeclensionKey').value = val;
-        
-        DeclensionSearch();
-        DeclensionTable(val);
-        // document.getElementById('DeclensionKey').focus();
-      } else {
-        document.getElementById('DictionaryKey').style.display = 'inline';
-        document.getElementById('GoDictionary').style.display = 'inline';
-        document.getElementById('DeclensionKey').style.display = 'none';
-        document.getElementById('GoDeclension').style.display = 'none';
-      }
-
-      if (id == "page4") {    // TOC
-        PaliHistoryList();
-      }
-      if (id == "page5") {    // history
-        DictHistoryList();
-      }
-     }
-  </script>
 </head>
 
 <body style='background-color: black; margin-top:0.0pt;margin-right:0in;margin-bottom:0in;margin-left:0in;margin-bottom:0pt;'>
@@ -111,18 +14,18 @@
 
       <li class="selected" id="page1" onclick="change_tab(this.id);">
         <span onClick="paliGoBack()">&nbsp;<img src="images/redo.png">&nbsp;</span>&nbsp;&nbsp;
-        Dictionary
+        Dict.
         <input type="textbox" style="max-width:85%;width:85pt;display:inline;" id="DictionaryKey" name="DictionaryKey">
         <input type="button" value="Go" onClick="DictionaryKeyGo();" id="GoDictionary">
       </li>
 
       <li class="notselected" id="page2" onclick="change_tab(this.id);">
-        Declension
+        Decl.
         <input type="textbox" style="max-width:85%;width:85pt;display:none;" id="DeclensionKey" name="DeclensionKey" onKeyup="DeclensionSearch();">
         <input type="button" value="Go" onClick="DictionaryKeyGo();" id="GoDeclension" style="display:none;">
       </li>
 
-      <li class="notselected" id="page3" onclick="change_tab(this.id);">Paragraph</li> 
+      <li class="notselected" id="page3" onclick="change_tab(this.id);">Par.</li> 
       <li class="notselected" id="page4" onclick="change_tab(this.id);">TOC</li>
       <li class="notselected" id="page5" onclick="change_tab(this.id);">Misc.</li>   
       <li class="notselected" id="Pali1" title="Mūla"><span style="color:blue;" onClick="MATurlGo('1')"><img src="images/m.png" title="Mūla"></span></li>
@@ -168,16 +71,20 @@
 
       <div id="main_content" style="overflow-y:scroll;padding-top:5px;height:160px;width:100%;">  
         <div id="page1_desc" class="pages" style="max-height: 80%;height: 80%;overflow-y: scroll;">
+          Sukhi Hontu!
         </div>
 
         <div id="page2_desc" class="pages2" style="display:none;padding-top: 1px;overflow-x:auto;overflow-y: auto;width:100%;">
-          <img src="images/s_info.png" onMouseover="document.getElementById('info').style.display='inline';" onMouseout="document.getElementById('info').style.display='none';">
-          <span id="info" style="display:none;font-size:10pt;"><br>Velthuis Pali Letters,<br>Wildcard Search, Ex:*sa, *sa*</span>
           
-          <select id="DeclensionTips2" class="DeclensionSelect" onChange="DeclensionShow('FromTips2');document.getElementById('page2_desc').scrollIntoView();" >
-          </select>
+          <span id="DeclensionTips2" class="DeclensionSelect"></span>
 
           <div id='DeclensionResult' class="DeclensionResult"></div><br>
+          
+          <img src="images/s_info.png" onMouseover="document.getElementById('info').style.display='inline';" onMouseout="document.getElementById('info').style.display='none';">
+          <span id="info" style="display:none;font-size:11pt;">
+            Velthuis Pali Letters,&nbsp;&nbsp;Wildcard Search, Ex:*sa, *sa*
+          </span>
+          <br><br>
         </div> 
 
         <div id="page3_desc" class="pages" style="display:none;overflow-y:none;"> 
@@ -256,32 +163,53 @@
           <span id="page5break2"></span>
 
           <div class="page5"> 
-            <img src='images/b_edit.png' width="24">My Note
-            <br>
-            <input type="hidden" id="mynote1" value="">
-            <input type="hidden" id="mynoteids" value="">
-            <input type="hidden" id="mynotetags" value="">
-            <input type="hidden" id="mynoteolds" value="">
+            <table style="border-collapse:collapse;padding:5px;width:100%;height:100%; border:0px;">
+              <tr>
+                <td valign="top" width="50%">
+                  <input type="hidden" id="mynote1" value="">
+                  <input type="hidden" id="mynoteids" value="">
+                  <input type="hidden" id="mynotetags" value="">
+                  <input type="hidden" id="mynoteolds" value="">
 
-            <span id="mynote5" onClick="MyNoteExport(5)" style="font-size:12pt;color:blue">
-              <img src="images/add_point_on.png" width="22">Edit 5 Lines.
-            </span>
-            <span id="mynotesave" onClick="MyNoteExport(1)" style="display:none;font-size:12pt;color:blue">
-              <img src="images/save.png" width="22">Save
-            </span> 
-            <br>
+                  <span id="mynote5" onClick="MyNoteExport(5)" style="font-size:12pt;color:blue;margin-bottom:10px">
+                    <img src="images/add_point_on.png" width="22">Edit 5 Par.<br><br>
+                  </span>
+                  <span id="mynotesave" onClick="MyNoteExport(1)" style="display:none;font-size:12pt;color:blue">
+                    <img src="images/save.png" width="22">Save<br><br>
+                  </span>
 
-            <span id="mynote10" onClick="MyNoteExport(10)" style="font-size:12pt;color:blue">
-              <img src="images/add_point_on.png" width="22">Edit 10 Lines.
-            </span>
-            <span id="mynotecancel" onClick="MyNoteExport(0)" style="display:none;font-size:12pt;color:blue">
-              <br><img src="images/s_cancel.png" width="22">&nbsp;Cancel
-            </span>
-            <br>
+                  <span id="mynote10" onClick="MyNoteExport(10)" style="font-size:12pt;color:blue;margin-bottom:10px">
+                    <img src="images/add_point_on.png" width="22">Edit 10 Par.<br><br>
+                  </span>
+                  <span id="mynotecancel" onClick="MyNoteExport(0)" style="display:none;font-size:12pt;color:blue">
+                    <img src="images/s_cancel.png" width="22">&nbsp;Cancel
+                  </span>
 
-            <span id="mynote20" onClick="MyNoteExport(20)" style="font-size:12pt;color:blue">
-              <img src="images/add_point_on.png" width="22">Edit 20 Lines.
-            </span>
+                  <span id="mynote20" onClick="MyNoteExport(20)" style="font-size:12pt;color:blue">
+                    <img src="images/add_point_on.png" width="22">Edit 20 Par.
+                  </span>
+
+                </td>
+                <td valign="top" width="50%">
+                  <span onClick="AnkiAdd()" style="font-size:12pt;color:blue">
+                    <select id="AnkiDictionary">
+                    </select> 
+                    <img src="images/b_group.png" width="22">Add to Anki
+                  </span>
+                  <br><br>
+                  
+                  <span onClick="AnkiCopy()" style="font-size:12pt;color:blue">
+                    <img src="images/s_okay.png" width="22">Copy
+                  </span>
+                  <br><br>
+
+                  <span onClick="AnkiClear()" style="font-size:12pt;color:blue">
+                    <img src="images/b_drop.png" width="22">Clear
+                  </span> 
+                </td>
+              </tr>
+            </table>
+
           </div> 
         </div>
       </div> 
@@ -290,99 +218,99 @@
   <div id="main_td2" class="main_td2">
     <div id="loader" style="z-index: auto;"></div>
 <table id="main_table" bgcolor="#010101" width=100% border=0 align="left" cellspacing=3 cellpadding=7 style="padding-left: 15px;">
-<tr><td class='r1' id='p1' onClick='Get(1)'></td><td class='m1' id='m1' onClick='Get(1)'></td></tr>
-<tr><td class='r1' id='p2' onClick='Get(2)'></td><td class='m1' id='m2' onClick='Get(2)'></td></tr>
-<tr><td class='r1' id='p3' onClick='Get(3)'></td><td class='m1' id='m3' onClick='Get(3)'></td></tr>
-<tr><td class='r1' id='p4' onClick='Get(4)'></td><td class='m1' id='m4' onClick='Get(4)'></td></tr>
-<tr><td class='r1' id='p5' onClick='Get(5)'></td><td class='m1' id='m5' onClick='Get(5)'></td></tr>
-<tr><td class='r1' id='p6' onClick='Get(6)'></td><td class='m1' id='m6' onClick='Get(6)'></td></tr>
-<tr><td class='r1' id='p7' onClick='Get(7)'></td><td class='m1' id='m7' onClick='Get(7)'></td></tr>
-<tr><td class='r1' id='p8' onClick='Get(8)'></td><td class='m1' id='m8' onClick='Get(8)'></td></tr>
-<tr><td class='r1' id='p9' onClick='Get(9)'></td><td class='m1' id='m9' onClick='Get(9)'></td></tr>
-<tr><td class='r1' id='p10' onClick='Get(10)'></td><td class='m1' id='m10' onClick='Get(10)'></td></tr>
-<tr><td class='r1' id='p11' onClick='Get(11)'></td><td class='m1' id='m11' onClick='Get(11)'></td></tr>
-<tr><td class='r1' id='p12' onClick='Get(12)'></td><td class='m1' id='m12' onClick='Get(12)'></td></tr>
-<tr><td class='r1' id='p13' onClick='Get(13)'></td><td class='m1' id='m13' onClick='Get(13)'></td></tr>
-<tr><td class='r1' id='p14' onClick='Get(14)'></td><td class='m1' id='m14' onClick='Get(14)'></td></tr>
-<tr><td class='r1' id='p15' onClick='Get(15)'></td><td class='m1' id='m15' onClick='Get(15)'></td></tr>
-<tr><td class='r1' id='p16' onClick='Get(16)'></td><td class='m1' id='m16' onClick='Get(16)'></td></tr>
-<tr><td class='r1' id='p17' onClick='Get(17)'></td><td class='m1' id='m17' onClick='Get(17)'></td></tr>
-<tr><td class='r1' id='p18' onClick='Get(18)'></td><td class='m1' id='m18' onClick='Get(18)'></td></tr>
-<tr><td class='r1' id='p19' onClick='Get(19)'></td><td class='m1' id='m19' onClick='Get(19)'></td></tr>
-<tr><td class='r1' id='p20' onClick='Get(20)'></td><td class='m1' id='m20' onClick='Get(20)'></td></tr>
-<tr><td class='r1' id='p21' onClick='Get(21)'></td><td class='m1' id='m21' onClick='Get(21)'></td></tr>
-<tr><td class='r1' id='p22' onClick='Get(22)'></td><td class='m1' id='m22' onClick='Get(22)'></td></tr>
-<tr><td class='r1' id='p23' onClick='Get(23)'></td><td class='m1' id='m23' onClick='Get(23)'></td></tr>
-<tr><td class='r1' id='p24' onClick='Get(24)'></td><td class='m1' id='m24' onClick='Get(24)'></td></tr>
-<tr><td class='r1' id='p25' onClick='Get(25)'></td><td class='m1' id='m25' onClick='Get(25)'></td></tr>
-<tr><td class='r1' id='p26' onClick='Get(26)'></td><td class='m1' id='m26' onClick='Get(26)'></td></tr>
-<tr><td class='r1' id='p27' onClick='Get(27)'></td><td class='m1' id='m27' onClick='Get(27)'></td></tr>
-<tr><td class='r1' id='p28' onClick='Get(28)'></td><td class='m1' id='m28' onClick='Get(28)'></td></tr>
-<tr><td class='r1' id='p29' onClick='Get(29)'></td><td class='m1' id='m29' onClick='Get(29)'></td></tr>
-<tr><td class='r1' id='p30' onClick='Get(30)'></td><td class='m1' id='m30' onClick='Get(30)'></td></tr>
-<tr><td class='r1' id='p31' onClick='Get(31)'></td><td class='m1' id='m31' onClick='Get(31)'></td></tr>
-<tr><td class='r1' id='p32' onClick='Get(32)'></td><td class='m1' id='m32' onClick='Get(32)'></td></tr>
-<tr><td class='r1' id='p33' onClick='Get(33)'></td><td class='m1' id='m33' onClick='Get(33)'></td></tr>
-<tr><td class='r1' id='p34' onClick='Get(34)'></td><td class='m1' id='m34' onClick='Get(34)'></td></tr>
-<tr><td class='r1' id='p35' onClick='Get(35)'></td><td class='m1' id='m35' onClick='Get(35)'></td></tr>
-<tr><td class='r1' id='p36' onClick='Get(36)'></td><td class='m1' id='m36' onClick='Get(36)'></td></tr>
-<tr><td class='r1' id='p37' onClick='Get(37)'></td><td class='m1' id='m37' onClick='Get(37)'></td></tr>
-<tr><td class='r1' id='p38' onClick='Get(38)'></td><td class='m1' id='m38' onClick='Get(38)'></td></tr>
-<tr><td class='r1' id='p39' onClick='Get(39)'></td><td class='m1' id='m39' onClick='Get(39)'></td></tr>
-<tr><td class='r1' id='p40' onClick='Get(40)'></td><td class='m1' id='m40' onClick='Get(40)'></td></tr>
-<tr><td class='r1' id='p41' onClick='Get(41)'></td><td class='m1' id='m41' onClick='Get(41)'></td></tr>
-<tr><td class='r1' id='p42' onClick='Get(42)'></td><td class='m1' id='m42' onClick='Get(42)'></td></tr>
-<tr><td class='r1' id='p43' onClick='Get(43)'></td><td class='m1' id='m43' onClick='Get(43)'></td></tr>
-<tr><td class='r1' id='p44' onClick='Get(44)'></td><td class='m1' id='m44' onClick='Get(44)'></td></tr>
-<tr><td class='r1' id='p45' onClick='Get(45)'></td><td class='m1' id='m45' onClick='Get(45)'></td></tr>
-<tr><td class='r1' id='p46' onClick='Get(46)'></td><td class='m1' id='m46' onClick='Get(46)'></td></tr>
-<tr><td class='r1' id='p47' onClick='Get(47)'></td><td class='m1' id='m47' onClick='Get(47)'></td></tr>
-<tr><td class='r1' id='p48' onClick='Get(48)'></td><td class='m1' id='m48' onClick='Get(48)'></td></tr>
-<tr><td class='r1' id='p49' onClick='Get(49)'></td><td class='m1' id='m49' onClick='Get(49)'></td></tr>
-<tr><td class='r1' id='p50' onClick='Get(50)'></td><td class='m1' id='m50' onClick='Get(50)'></td></tr>
-<tr><td class='r1' id='p51' onClick='Get(51)'></td><td class='m1' id='m51' onClick='Get(51)'></td></tr>
-<tr><td class='r1' id='p52' onClick='Get(52)'></td><td class='m1' id='m52' onClick='Get(52)'></td></tr>
-<tr><td class='r1' id='p53' onClick='Get(53)'></td><td class='m1' id='m53' onClick='Get(53)'></td></tr>
-<tr><td class='r1' id='p54' onClick='Get(54)'></td><td class='m1' id='m54' onClick='Get(54)'></td></tr>
-<tr><td class='r1' id='p55' onClick='Get(55)'></td><td class='m1' id='m55' onClick='Get(55)'></td></tr>
-<tr><td class='r1' id='p56' onClick='Get(56)'></td><td class='m1' id='m56' onClick='Get(56)'></td></tr>
-<tr><td class='r1' id='p57' onClick='Get(57)'></td><td class='m1' id='m57' onClick='Get(57)'></td></tr>
-<tr><td class='r1' id='p58' onClick='Get(58)'></td><td class='m1' id='m58' onClick='Get(58)'></td></tr>
-<tr><td class='r1' id='p59' onClick='Get(59)'></td><td class='m1' id='m59' onClick='Get(59)'></td></tr>
-<tr><td class='r1' id='p60' onClick='Get(60)'></td><td class='m1' id='m60' onClick='Get(60)'></td></tr>
-<tr><td class='r1' id='p61' onClick='Get(61)'></td><td class='m1' id='m61' onClick='Get(61)'></td></tr>
-<tr><td class='r1' id='p62' onClick='Get(62)'></td><td class='m1' id='m62' onClick='Get(62)'></td></tr>
-<tr><td class='r1' id='p63' onClick='Get(63)'></td><td class='m1' id='m63' onClick='Get(63)'></td></tr>
-<tr><td class='r1' id='p64' onClick='Get(64)'></td><td class='m1' id='m64' onClick='Get(64)'></td></tr>
-<tr><td class='r1' id='p65' onClick='Get(65)'></td><td class='m1' id='m65' onClick='Get(65)'></td></tr>
-<tr><td class='r1' id='p66' onClick='Get(66)'></td><td class='m1' id='m66' onClick='Get(66)'></td></tr>
-<tr><td class='r1' id='p67' onClick='Get(67)'></td><td class='m1' id='m67' onClick='Get(67)'></td></tr>
-<tr><td class='r1' id='p68' onClick='Get(68)'></td><td class='m1' id='m68' onClick='Get(68)'></td></tr>
-<tr><td class='r1' id='p69' onClick='Get(69)'></td><td class='m1' id='m69' onClick='Get(69)'></td></tr>
-<tr><td class='r1' id='p70' onClick='Get(70)'></td><td class='m1' id='m70' onClick='Get(70)'></td></tr>
-<tr><td class='r1' id='p71' onClick='Get(71)'></td><td class='m1' id='m71' onClick='Get(71)'></td></tr>
-<tr><td class='r1' id='p72' onClick='Get(72)'></td><td class='m1' id='m72' onClick='Get(72)'></td></tr>
-<tr><td class='r1' id='p73' onClick='Get(73)'></td><td class='m1' id='m73' onClick='Get(73)'></td></tr>
-<tr><td class='r1' id='p74' onClick='Get(74)'></td><td class='m1' id='m74' onClick='Get(74)'></td></tr>
-<tr><td class='r1' id='p75' onClick='Get(75)'></td><td class='m1' id='m75' onClick='Get(75)'></td></tr>
-<tr><td class='r1' id='p76' onClick='Get(76)'></td><td class='m1' id='m76' onClick='Get(76)'></td></tr>
-<tr><td class='r1' id='p77' onClick='Get(77)'></td><td class='m1' id='m77' onClick='Get(77)'></td></tr>
-<tr><td class='r1' id='p78' onClick='Get(78)'></td><td class='m1' id='m78' onClick='Get(78)'></td></tr>
-<tr><td class='r1' id='p79' onClick='Get(79)'></td><td class='m1' id='m79' onClick='Get(79)'></td></tr>
-<tr><td class='r1' id='p80' onClick='Get(80)'></td><td class='m1' id='m80' onClick='Get(80)'></td></tr>
-<tr><td class='r1' id='p81' onClick='Get(81)'></td><td class='m1' id='m81' onClick='Get(81)'></td></tr>
-<tr><td class='r1' id='p82' onClick='Get(82)'></td><td class='m1' id='m82' onClick='Get(82)'></td></tr>
-<tr><td class='r1' id='p83' onClick='Get(83)'></td><td class='m1' id='m83' onClick='Get(83)'></td></tr>
-<tr><td class='r1' id='p84' onClick='Get(84)'></td><td class='m1' id='m84' onClick='Get(84)'></td></tr>
-<tr><td class='r1' id='p85' onClick='Get(85)'></td><td class='m1' id='m85' onClick='Get(85)'></td></tr>
-<tr><td class='r1' id='p86' onClick='Get(86)'></td><td class='m1' id='m86' onClick='Get(86)'></td></tr>
-<tr><td class='r1' id='p87' onClick='Get(87)'></td><td class='m1' id='m87' onClick='Get(87)'></td></tr>
-<tr><td class='r1' id='p88' onClick='Get(88)'></td><td class='m1' id='m88' onClick='Get(88)'></td></tr>
-<tr><td class='r1' id='p89' onClick='Get(89)'></td><td class='m1' id='m89' onClick='Get(89)'></td></tr>
-<tr><td class='r1' id='p90' onClick='Get(90)'></td><td class='m1' id='m90' onClick='Get(90)'></td></tr>
-<tr><td class='r1' id='p91' onClick='Get(91)'></td><td class='m1' id='m91' onClick='Get(91)'></td></tr>
-<tr><td class='r1' id='p92' onClick='Get(92)'></td><td class='m1' id='m92' onClick='Get(92)'></td></tr>
-<tr><td class='r1' id='p93' onClick='Get(93)'></td><td class='m1' id='m93' onClick='Get(93)'></td></tr>
+<tr><td class='r1' id='p1'></td><td class='m1' id='m1'></td></tr>
+<tr><td class='r1' id='p2'></td><td class='m1' id='m2'></td></tr>
+<tr><td class='r1' id='p3'></td><td class='m1' id='m3'></td></tr>
+<tr><td class='r1' id='p4'></td><td class='m1' id='m4'></td></tr>
+<tr><td class='r1' id='p5'></td><td class='m1' id='m5'></td></tr>
+<tr><td class='r1' id='p6'></td><td class='m1' id='m6'></td></tr>
+<tr><td class='r1' id='p7'></td><td class='m1' id='m7'></td></tr>
+<tr><td class='r1' id='p8'></td><td class='m1' id='m8'></td></tr>
+<tr><td class='r1' id='p9'></td><td class='m1' id='m9'></td></tr>
+<tr><td class='r1' id='p10'></td><td class='m1' id='m10'></td></tr>
+<tr><td class='r1' id='p11'></td><td class='m1' id='m11'></td></tr>
+<tr><td class='r1' id='p12'></td><td class='m1' id='m12'></td></tr>
+<tr><td class='r1' id='p13'></td><td class='m1' id='m13'></td></tr>
+<tr><td class='r1' id='p14'></td><td class='m1' id='m14'></td></tr>
+<tr><td class='r1' id='p15'></td><td class='m1' id='m15'></td></tr>
+<tr><td class='r1' id='p16'></td><td class='m1' id='m16'></td></tr>
+<tr><td class='r1' id='p17'></td><td class='m1' id='m17'></td></tr>
+<tr><td class='r1' id='p18'></td><td class='m1' id='m18'></td></tr>
+<tr><td class='r1' id='p19'></td><td class='m1' id='m19'></td></tr>
+<tr><td class='r1' id='p20'></td><td class='m1' id='m20'></td></tr>
+<tr><td class='r1' id='p21'></td><td class='m1' id='m21'></td></tr>
+<tr><td class='r1' id='p22'></td><td class='m1' id='m22'></td></tr>
+<tr><td class='r1' id='p23'></td><td class='m1' id='m23'></td></tr>
+<tr><td class='r1' id='p24'></td><td class='m1' id='m24'></td></tr>
+<tr><td class='r1' id='p25'></td><td class='m1' id='m25'></td></tr>
+<tr><td class='r1' id='p26'></td><td class='m1' id='m26'></td></tr>
+<tr><td class='r1' id='p27'></td><td class='m1' id='m27'></td></tr>
+<tr><td class='r1' id='p28'></td><td class='m1' id='m28'></td></tr>
+<tr><td class='r1' id='p29'></td><td class='m1' id='m29'></td></tr>
+<tr><td class='r1' id='p30'></td><td class='m1' id='m30'></td></tr>
+<tr><td class='r1' id='p31'></td><td class='m1' id='m31'></td></tr>
+<tr><td class='r1' id='p32'></td><td class='m1' id='m32'></td></tr>
+<tr><td class='r1' id='p33'></td><td class='m1' id='m33'></td></tr>
+<tr><td class='r1' id='p34'></td><td class='m1' id='m34'></td></tr>
+<tr><td class='r1' id='p35'></td><td class='m1' id='m35'></td></tr>
+<tr><td class='r1' id='p36'></td><td class='m1' id='m36'></td></tr>
+<tr><td class='r1' id='p37'></td><td class='m1' id='m37'></td></tr>
+<tr><td class='r1' id='p38'></td><td class='m1' id='m38'></td></tr>
+<tr><td class='r1' id='p39'></td><td class='m1' id='m39'></td></tr>
+<tr><td class='r1' id='p40'></td><td class='m1' id='m40'></td></tr>
+<tr><td class='r1' id='p41'></td><td class='m1' id='m41'></td></tr>
+<tr><td class='r1' id='p42'></td><td class='m1' id='m42'></td></tr>
+<tr><td class='r1' id='p43'></td><td class='m1' id='m43'></td></tr>
+<tr><td class='r1' id='p44'></td><td class='m1' id='m44'></td></tr>
+<tr><td class='r1' id='p45'></td><td class='m1' id='m45'></td></tr>
+<tr><td class='r1' id='p46'></td><td class='m1' id='m46'></td></tr>
+<tr><td class='r1' id='p47'></td><td class='m1' id='m47'></td></tr>
+<tr><td class='r1' id='p48'></td><td class='m1' id='m48'></td></tr>
+<tr><td class='r1' id='p49'></td><td class='m1' id='m49'></td></tr>
+<tr><td class='r1' id='p50'></td><td class='m1' id='m50'></td></tr>
+<tr><td class='r1' id='p51'></td><td class='m1' id='m51'></td></tr>
+<tr><td class='r1' id='p52'></td><td class='m1' id='m52'></td></tr>
+<tr><td class='r1' id='p53'></td><td class='m1' id='m53'></td></tr>
+<tr><td class='r1' id='p54'></td><td class='m1' id='m54'></td></tr>
+<tr><td class='r1' id='p55'></td><td class='m1' id='m55'></td></tr>
+<tr><td class='r1' id='p56'></td><td class='m1' id='m56'></td></tr>
+<tr><td class='r1' id='p57'></td><td class='m1' id='m57'></td></tr>
+<tr><td class='r1' id='p58'></td><td class='m1' id='m58'></td></tr>
+<tr><td class='r1' id='p59'></td><td class='m1' id='m59'></td></tr>
+<tr><td class='r1' id='p60'></td><td class='m1' id='m60'></td></tr>
+<tr><td class='r1' id='p61'></td><td class='m1' id='m61'></td></tr>
+<tr><td class='r1' id='p62'></td><td class='m1' id='m62'></td></tr>
+<tr><td class='r1' id='p63'></td><td class='m1' id='m63'></td></tr>
+<tr><td class='r1' id='p64'></td><td class='m1' id='m64'></td></tr>
+<tr><td class='r1' id='p65'></td><td class='m1' id='m65'></td></tr>
+<tr><td class='r1' id='p66'></td><td class='m1' id='m66'></td></tr>
+<tr><td class='r1' id='p67'></td><td class='m1' id='m67'></td></tr>
+<tr><td class='r1' id='p68'></td><td class='m1' id='m68'></td></tr>
+<tr><td class='r1' id='p69'></td><td class='m1' id='m69'></td></tr>
+<tr><td class='r1' id='p70'></td><td class='m1' id='m70'></td></tr>
+<tr><td class='r1' id='p71'></td><td class='m1' id='m71'></td></tr>
+<tr><td class='r1' id='p72'></td><td class='m1' id='m72'></td></tr>
+<tr><td class='r1' id='p73'></td><td class='m1' id='m73'></td></tr>
+<tr><td class='r1' id='p74'></td><td class='m1' id='m74'></td></tr>
+<tr><td class='r1' id='p75'></td><td class='m1' id='m75'></td></tr>
+<tr><td class='r1' id='p76'></td><td class='m1' id='m76'></td></tr>
+<tr><td class='r1' id='p77'></td><td class='m1' id='m77'></td></tr>
+<tr><td class='r1' id='p78'></td><td class='m1' id='m78'></td></tr>
+<tr><td class='r1' id='p79'></td><td class='m1' id='m79'></td></tr>
+<tr><td class='r1' id='p80'></td><td class='m1' id='m80'></td></tr>
+<tr><td class='r1' id='p81'></td><td class='m1' id='m81'></td></tr>
+<tr><td class='r1' id='p82'></td><td class='m1' id='m82'></td></tr>
+<tr><td class='r1' id='p83'></td><td class='m1' id='m83'></td></tr>
+<tr><td class='r1' id='p84'></td><td class='m1' id='m84'></td></tr>
+<tr><td class='r1' id='p85'></td><td class='m1' id='m85'></td></tr>
+<tr><td class='r1' id='p86'></td><td class='m1' id='m86'></td></tr>
+<tr><td class='r1' id='p87'></td><td class='m1' id='m87'></td></tr>
+<tr><td class='r1' id='p88'></td><td class='m1' id='m88'></td></tr>
+<tr><td class='r1' id='p89'></td><td class='m1' id='m89'></td></tr>
+<tr><td class='r1' id='p90'></td><td class='m1' id='m90'></td></tr>
+<tr><td class='r1' id='p91'></td><td class='m1' id='m91'></td></tr>
+<tr><td class='r1' id='p92'></td><td class='m1' id='m92'></td></tr>
+<tr><td class='r1' id='p93'></td><td class='m1' id='m93'></td></tr>
 </table>
   </div>
 
@@ -410,6 +338,7 @@
   <script src="js/function5_copy.js"></script>
   <script src="js/function5_history.js"></script>
   <script src="js/function5_mynote.js"></script>
+  <script src="js/function5_anki.js"></script>
   <script src="js/z_tipitaka_Maps.js"></script>
   <script src="js/z_search_navigator.js"></script>  
   <popupfix></popupfix>

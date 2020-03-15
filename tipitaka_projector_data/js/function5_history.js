@@ -26,24 +26,9 @@ function DictHistoryClear() {
 }
 
 function DictHistoryDisplay(val) {
-	file = val.substring(0,8);
-	pos = val.substring(8);
-
-	if (window.location.toString().indexOf(file) != -1) {		// same file
-		if (pos.indexOf('#') != -1) {	// directly jump
-			window.location = pos;
-		} else {	// myanmar or PTS page no jump
-			var tr = document.getElementsByClassName('r1');
-			for (var i=0; i<tr.length; i++) {
-				if (tr[i].innerHTML.indexOf(pos) != -1) {
-					document.getElementById('p' + (i +1)).scrollIntoView();
-					break;
-				}
-			}
-		}
-	} else {
-		location.href = file;
-	}
+	document.getElementById('DictionaryKey').value = val;
+	DictionaryKeyGo();
+	change_tab('page1');
 }
 
 function DictHistoryCopy() {

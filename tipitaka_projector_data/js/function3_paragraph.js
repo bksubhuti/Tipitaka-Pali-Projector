@@ -46,7 +46,7 @@ function ParagraphDictionary() {
 			var get_data = LookupTwoMethod(key, '');	//1 time directly lookup
 			if (get_data != '') {		//found in directly or declension table
 				ret = ret + get_data;
-				ret = ret + '<hr style="border: 1pt dashed gray;margin-top:10px;margin-bottom:10px;">';
+				// ret = ret + '<hr style="border: 1pt dashed gray;margin-top:10px;margin-bottom:10px;">';
 			} else {		// not found
 				if (key.slice(-1) == 'ṃ') {		// 2 time lookup
 					key2 = key.substring(0, key.length -1);
@@ -54,12 +54,12 @@ function ParagraphDictionary() {
 				}
 				if (get_data != '') {		//found in directly or declension table
 					ret = ret + get_data;
-					ret = ret + '<hr style="border: 1pt dashed gray;margin-top:10px;margin-bottom:10px;">';
+					//ret = ret + '<hr style="border: 1pt dashed gray;margin-top:10px;margin-bottom:10px;">';
 				} else {		// not found
 					ret = ret + '<div>';
 					ret = ret + '<b style="color:#ff0000;" id="G_' + key + '" onClick="OpenOnce(\'' + key + '\')">' + toTranslate(key) + '&nbsp;</b>&nbsp;&nbsp;';
 					ret = ret + WordAnalysis2(key) + '</div>';
-					ret = ret + '<hr style="border: 1pt dashed gray;margin-top:10px;margin-bottom:10px;">';
+					// ret = ret + '<hr style="border: 1pt dashed gray;margin-top:10px;margin-bottom:10px;">';
 				}	
 			}
 		}	
@@ -105,7 +105,7 @@ function LookupTwoMethod(key, tail) {
 function LookupDictionary(key) {
 	get_data = '';
 	for (var i = 0; i<ary_dict.length; i++) {
-		var d_name = ary_dict[i].substring(1);					
+		var d_name = ary_dict[i].substring(1);
 		if ((ary_dict[i] == 'hee1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(ee1, d_name, key);}
 		if ((ary_dict[i] == 'hpc1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pc1, d_name, key);}
 		if ((ary_dict[i] == 'hpc2') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pc2, d_name, key);}
@@ -114,6 +114,7 @@ function LookupDictionary(key) {
 		if ((ary_dict[i] == 'hpe2') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe2, d_name, key);}
 		if ((ary_dict[i] == 'hpe3') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe3, d_name, key);}
 		if ((ary_dict[i] == 'hpe4') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe4, d_name, key);}
+		if ((ary_dict[i] == 'hpe5') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe5, d_name, key);}
 		if ((ary_dict[i] == 'hpe6') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe6, d_name, key);}
 		if ((ary_dict[i] == 'hpg1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pg1, d_name, key);}
 		if ((ary_dict[i] == 'hpm1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pm1, d_name, key);}

@@ -36,6 +36,9 @@
       background-color: #f1f1f1;
       border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px; 
       width: 450px;
+      position:relative;
+      top:11px;
+      left: 1px;
     }
 
     /* Style the buttons inside the tab */
@@ -67,7 +70,7 @@
       padding: 6px 12px;
       -webkit-animation: fadeEffect 1s;
       animation: fadeEffect 1s;
-      background-color: #ffe0b0;
+      background-color: #ccc;
       line-height: 250%;
       font-size:30px;
       min-height: 620px;
@@ -83,24 +86,30 @@
       from {opacity: 0;}
       to {opacity: 1;}
     }
-    
-    .trr1 {
-      height: 60px;
-      background-color:#dfd090;
-    }
-
     .tdr1 {
       background-color: #dfd090;
       color:blue;
+      height: 54px;
+      font-size:32px;
+      margin-bottom:3px;
+      padding-top:22px;
+      position:relative;
+      left: 10px;
     }
-
     .tdrx {
       background-color: #ccc;
-      color:#880000;
+      color: #880000;
+      height: 54px;
+      font-size:32px;
+      margin-bottom:3px;
+      padding-top:22px;
+      position:relative;
+      left: 10px;
     }
 
   </style>
-
+  
+  <script src="js/index_initialize.js"></script>
   <SCRIPT language=JavaScript>
     function sbar(st){st.style.backgroundColor='#cDcDcD';}
     function cbar(st){st.style.backgroundColor='';}
@@ -108,50 +117,43 @@
 </head>
 
 <body style="margin-top:0.0pt;margin-right:0in;margin-bottom:0in;margin-left:0in;margin-bottom:0pt;font-size:12.0pt;line-height:200%;font-family:Palatino, sans-serif;" bgcolor="#ffffc0">
-
-
   <table align="center" bgcolor="#ffffc0" border="0" width="100%">
     <tbody>
       <tr>
-        <td align="center" valign="center" width="25%">
-          Chaṭṭha Saṅgāyana Tipiṭaka
+        <td align="right" valign="top" width="25%">
           <a href="index.htm" id="asoka"><img src="images/asoka.png"></a>
+          <br>
+          Chaṭṭha Saṅgāyana Tipiṭaka<br>
         </td>
-        <td align="center" width="50%">
-          <h3 style='margin-top:0pt;color:brown;'>
-            <strong>Tipiṭaka Pāḷi Projector</strong>  - <span id="Ymd">20200330</span> (SG)
+        <td align="center" valign="top" width="50%">
+          <h3 style='margin-top:0pt;color:brown;font-size:24px;'>
+            <strong>Tipiṭaka Pāḷi Projector</strong>  - <span id="Ymd">20200320</span> (TG)
           </h3>
-
-          <span align="center" style="color:blue;">
+          <span align="center" style="color:blue;font-size:20px">
             <a id="reset" href="../02_RESET_Tipitaka_Projector.htm">
               <img src="images/reset.png">&nbsp;&nbsp;Reset&nbsp;&nbsp;&nbsp;
             </a>
-
             <span id="prefer" onClick="window.location='preferences.htm'">
               <img src="images/s_process.png">&nbsp;&nbsp;Preferences&nbsp;&nbsp;&nbsp;
             </span>
-
             <hr color="#b2b2b2" width="50%">
             <a href="help_en.htm" id="help_en">
               <img src="images/help.png">&nbsp;&nbsp;Help&nbsp;&nbsp;&nbsp;
             </a>            
-
             <a href="search.htm" id="search">
               <img src="images/search.png">&nbsp;&nbsp;Search&nbsp;&nbsp;&nbsp;
             </a>
           </span>
         </td>
         <td width="25%" valign="bottom">
-          <div style="line-height: 110%;">
+          <div style="line-height: 110%;font-size:18px;">
             Quick Jump
-            <br><br>
-          
-            <input type="Textbox" name="QuickJump" id="QuickJump" value="" style="font-size:11pt;width:100%;max-width:60pt;" onBlur="QuickJump()" onKeyup="QuickJumpTips()">
-
+            <br>
+            <input type="Textbox" name="QuickJump" id="QuickJump" value="" style="width:100%;max-width:60pt;" onBlur="QuickJump()" onKeyup="QuickJumpTips()">
             <div onClick="document.getElementById('QuickJumpTipsShow').style.display='inline';" style="display:inline; color:blue;">
               <img src="images/s_info.png">Tips
               </div>
-              <div id="QuickJumpTipsShow" onClick="this.style.display='none'" style="color:#440000;font-size:10pt;display:none;"><br>[mn 33.11]= Jump to mn Sutta no 33 Paragraph 11,<br>[mn1 99]= Jump to mn1 Paragraph 99,<br>[mn1 m99]= Jump to mn1 Myanmar Page 99,<br>[mn1 p99] or [mn1 pts99]= Jump to mn1 PTS Page 99.<br>
+              <div id="QuickJumpTipsShow" onClick="this.style.display='none'" style="color:#440000;font-size:12px;display:none;"><br>[mn 33.11]= Jump to mn Sutta no 33 Paragraph 11,<br>[mn1 99]= Jump to mn1 Paragraph 99,<br>[mn1 m99]= Jump to mn1 Myanmar Page 99,<br>[mn1 p99] or [mn1 pts99]= Jump to mn1 PTS Page 99.<br>
               </div>
             </div>
             <input id="QuickJumpNewTab" type="checkbox" value="0"></input>
@@ -163,7 +165,8 @@
     </tbody>
   </table>
 
-  <span id="Gen1"></span>  <table id="iPad" align="left" bgcolor="#ffffc0" border="0" cellpadding="3" width="100%" style="font-size:14pt;line-height: 200%;display:none">
+<!--START-->
+  <table id="iPad" align="left" bgcolor="#ffffc0" border="0" cellpadding="3" width="100%" style="font-size:14pt;line-height: 200%;display:none">
     <tr>
       <td width="1%">.</td>
       <td width="34%" valign="top">
@@ -180,49 +183,30 @@
     <tr>
       <td></td>
       <td valign="top">
-        <table border="0" width="100%" style="font-size:30px;line-height: 250%;">
-            <tr class="trr1">
-              <td class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index.htm'">
-                <img src="images/top_small.png" width="25">Vinayapiṭaka</a>
-              </td>
-            </tr>
-            <tr class="trr1">
-              <td class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index2.htm'">
-                <img src="images/top_small.png" width="25">Dīghanikāya</a>
-              </td>
-            </tr>
-            <tr class="trr1">
-              <td class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index3.htm'">
-                <img src="images/top_small.png" width="25">Majjhimanikāya</a>
-              </td>
-            </tr>
-            <tr class="trr1">
-              <td class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index4.htm'">
-                <img src="images/top_small.png" width="25">Saṃyuttanikāya</a>
-              </td>
-            </tr>
-            <tr class="trr1">
-              <td class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index5.htm'">
-                <img src="images/top_small.png" width="25">Aṅguttaranikāya</a>
-              </td>
-            </tr>
-            <tr class="trr1">
-              <td class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index6.htm'">
-                <img src="images/top_small.png" width="25">Khuddakanikāya</a>
-              </td>
-            </tr>
-            <tr class="trr1">
-              <td class="tdrx">
-                <img src="images/top_small.png" width="25">&nbsp;Abhidhammapiṭaka
-              </td>
-            </tr>
-            <tr class="trr1">
-              <td class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index8.htm'">
-                <img src="images/top_small.png" width="25">Añña</a>
-              </td>
-            </tr>
-          </tr>
-        </table>
+        <div class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index.htm'">
+          <img src="images/top_small.png" width="25">Vinayapiṭaka
+        </div>
+        <div class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index2.htm'">
+          <img src="images/top_small.png" width="25">Dīghanikāya
+        </div>
+        <div class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index3.htm'">
+          <img src="images/top_small.png" width="25">Majjhimanikāya
+        </div>
+        <div class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index4.htm'">
+          <img src="images/top_small.png" width="25">Saṃyuttanikāya
+        </div>
+        <div class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index5.htm'">
+          <img src="images/top_small.png" width="25">Aṅguttaranikāya
+        </div>
+        <div class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index6.htm'">
+          <img src="images/top_small.png" width="25">Khuddakanikāya</a>
+        </div>
+        <div class="tdrx" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index7.htm'">
+          <img src="images/top_small.png" width="25">Abhidhammapiṭaka
+        </div>
+        <div class="tdr1" onMouseOver=sbar(this) onMouseOut=cbar(this) onclick="window.location='index8.htm'">
+          <img src="images/top_small.png" width="25">Añña</a>
+        </div>  
       </td>
       <td valign="top" align="left">
         <div id="Mula" class="tabcontent">
@@ -354,7 +338,7 @@
   </table>
 
 
-<span id="Gen2"></span>
+<!--END-->
 
 <!---add dictionary function--->
 <script src="js/jquery-3.3.1.min.js"></script>

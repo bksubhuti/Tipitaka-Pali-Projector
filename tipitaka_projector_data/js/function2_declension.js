@@ -40,14 +40,14 @@ function GetKeys(ary, dname, key, ret_key) {
 	return (result.trim());
 }
 
-function GetValues(ary, dname, key) {
-	this.ary = ary;
-	var meaning_from_dict = "" + ary[key];
+function GetValues(aryVal, dname, key) {
+	this.aryVal = aryVal;
+	var meaning_from_dict = "" + aryVal[key];
 	if (meaning_from_dict != "undefined") {
 		if (dname.indexOf('pm') != -1) {	//myanmar class="ZawgyiFont"
-			return ('<bstyle="color:#777777">[' + aryAbbr[dname] + ']</b>&nbsp;<span class="ZawgyiFont">' + meaning_from_dict + '</span><br>');
+			return ('<div class="DictionaryClass" style="' + DictionaryBackground + '"><b style="color:#777777">[' + aryAbbr[dname] + ']</b>&nbsp;<span class="ZawgyiFont">' + meaning_from_dict + '</span></div>');
 		} else {
-			return ('<b style="color:#777777">[' + aryAbbr[dname] + ']</b>&nbsp;' + meaning_from_dict + '<br>');
+			return ('<div class="DictionaryClass" style="' + DictionaryBackground + '"><b style="color:#777777">[' + aryAbbr[dname] + ']</b>&nbsp;' + meaning_from_dict + '</div>');
 		}
 	} else {
 		return ('');
@@ -55,11 +55,8 @@ function GetValues(ary, dname, key) {
 }
 
 function DeclensionShow(key) {
-	if (key == 'FromTips2') {
-		key = document.getElementById('DeclensionTips2').value;
-	}
-
 	var get_data = LookupDictionary(key); 
+	console.log(key);
 	
 	DeclensionTable(key);
 	document.getElementById("DeclensionResult").innerHTML = document.getElementById("DeclensionResult").innerHTML + get_data;
@@ -82,6 +79,7 @@ function DeclensionSearch() {
 			if (ary_dict[i] == 'hpe2') {get_keys = get_keys + GetKeys(pe2, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hpe3') {get_keys = get_keys + GetKeys(pe3, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hpe4') {get_keys = get_keys + GetKeys(pe4, d_name, key, get_keys);}
+			if (ary_dict[i] == 'hpe5') {get_keys = get_keys + GetKeys(pe5, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hpe6') {get_keys = get_keys + GetKeys(pe6, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hpg1') {get_keys = get_keys + GetKeys(pg1, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hpm1') {get_keys = get_keys + GetKeys(pm1, d_name, key, get_keys);}
@@ -94,26 +92,19 @@ function DeclensionSearch() {
 			if (ary_dict[i] == 'hse1') {get_keys = get_keys + GetKeys(se1, d_name, key, get_keys);}
 		}
 
-		e = document.getElementById('DeclensionTips2');
-		$('#DeclensionTips2').children().remove().end();
-
 		get_keys = get_keys.replace(/\#\#/g, '#');
 		var ary = get_keys.split('#');
 		ary.sort();
-		lenx = Math.min(100, ary.length);
-		cx = 0;
+		lenx = Math.min(200, ary.length);
+		out = '';
 		for (var i = 1; i<lenx; i++) {
 			if (ary[i] != '') {
-				e.options.add(new Option(toTranslate(ary[i].substring(1)), ary[i].substring(1)));
-				cx = cx +1;
+				out = out + '<span onClick="DeclensionShow(\'' + ary[i].substring(1) +'\');document.getElementById(\'DeclensionResult\').scrollIntoView();">' + '. ' + toTranslate(ary[i].substring(1)) + '</span><br>';
 			}
 		}
-		if (cx <= '1') {
-			e.style.display = "none";
-		} else {
-			e.style.display = "inline";
-		}
 		//alert(lenx);
+		document.getElementById('DeclensionTips2').innerHTML = out;
+		document.getElementById('DeclensionTips2').scrollIntoView();
 
 	}
 

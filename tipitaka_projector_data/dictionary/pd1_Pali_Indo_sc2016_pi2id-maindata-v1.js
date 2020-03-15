@@ -3992,5 +3992,4 @@ var pd1 = {
 'hadayaṃgama':['(hadaya+ṃgama)  berkenan di hati; '],
 'hadayavatthu':['(hadaya+vatthu)   nt. landasan hati, landasan batin.'],
 'heṭṭhimātala':['(heṭṭhimā+tala)   lapisan terbawah.'],
-'heraññikaphalaka':['(heraññika+phalaka)  m. nt. bilah/papan/meja sang penukar mata uang.']
-};
+'heraññikaphalaka':['(heraññika+phalaka)  m. nt. bilah/papan/meja sang penukar mata uang.']};

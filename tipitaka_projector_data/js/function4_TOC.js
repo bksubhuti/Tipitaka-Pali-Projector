@@ -77,8 +77,7 @@ function goUrl() {
 			//alert(tr[i].innerHTML + '  ' + url);
 			if (tr[i].innerHTML.indexOf(url) != -1) {
 				document.getElementById('p' + (i +1)).scrollIntoView();
-				//Message(i);
-				Get(i);
+				GetTrId(i);
 				break;
 			}
 		}

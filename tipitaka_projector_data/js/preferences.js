@@ -23,6 +23,7 @@ function RestorePreferences() {
     def['hpe2'] = '@';
     def['hpe3'] = '@';
     def['hpe4'] = '@';
+    def['hpe5'] = '@';
     def['hpe6'] = '@';
     def['hpg1'] = '@';
     def['hpm1'] = '@';
@@ -40,6 +41,7 @@ function RestorePreferences() {
     def['ipe2'] = '@';
     def['ipe3'] = '@';
     def['ipe4'] = '@';
+    def['ipe5'] = '@';
     def['ipe6'] = '@';
     def['ipg1'] = '@';
     def['ipm1'] = '@';
@@ -109,6 +111,7 @@ function RestorePreferences() {
     Dicts['pe2'] = 'PE2: [20,968 entries - 1.10 MB] Pali English Extracted From Digital Pali Reader (DPR)';
     Dicts['pe3'] = 'PE3: [16,274 entries - 6.91 MB] Pali English Dictionary (PTS)';
     Dicts['pe4'] = 'PE4: [381,754 entries - 37.1 MB] Pali English Declension Dict @DPR 2018';
+    Dicts['pe5'] = 'PE5: [330,972entries - 14.5 MB] Pali Grammar Dictionary@DPR 2018';
     Dicts['pe6'] = 'PE6: [5,775 entries - 4,0 MB] Pali Proper Names G P Malalasekera@2018';
     Dicts['pg1'] = 'PG1: [22,729 entries - 1.27 MB] Pali Germany Suttacentral Offline 2016';
     Dicts['pm1'] = 'PM1: [153,527 entries - 37.8 MB] Pali Word Grammar @2018';
@@ -197,7 +200,6 @@ function toGetAbbr(val) { // 0= from disabled, 1 = from enabled
         v1 = val;
     }
     document.getElementById('Abbreviated').value = v1;
-
 }
 
 function toSaveAbbr() { // 0= from disabled, 1 = from enabled
@@ -215,10 +217,6 @@ function toSaveAbbr() { // 0= from disabled, 1 = from enabled
 function ChooseSelect(key) {
     val = document.getElementById(key).value;
     document.write = localStorage.setItem(key, val);
-
-    // if (key == 'view_left') {
-        // window.location.reload();
-    // }
 
     if (key == 'contentfontname') {
         document.getElementById('showfontnamesize').innerHTML = val + ' ' + document.getElementById('contentfontsize').value + 'pt';
@@ -360,6 +358,7 @@ function SavePreferences() {
     def['hpe2'] = '';
     def['hpe3'] = '';
     def['hpe4'] = '';
+    def['hpe5'] = '';
     def['hpe6'] = '';
     def['hpg1'] = '';
     def['hpm1'] = '';
@@ -378,6 +377,7 @@ function SavePreferences() {
     def['ipe2'] = '';
     def['ipe3'] = '';
     def['ipe4'] = '';
+    def['ipe5'] = '';
     def['ipe6'] = '';
     def['ipg1'] = '';
     def['ipm1'] = '';
@@ -416,38 +416,21 @@ function SavePreferences() {
         }
     }
     document.getElementById('preferences').value = dat;
-    //document.getElementById('preferences').style.display = 'inline';
 
     var blob = new Blob([dat], {type: "text/plain;charset=utf-8"});
     saveAs(blob, 'preferences.txt');
-
-    //var newwin = window.open('', 'SavePreferences', 'width=300,height=300');
-    //dat = dat.replace(/\\n/g, '<br><br>');
-    //newwin.document.write(dat);
 } 
 
 
 window.onload = function () {
     // View Left
     var size_left = localStorage.getItem("size_left");
-    if (!size_left) {
-        size_left = '1.0';
-        document.write = localStorage.setItem("size_left", size_left);
-    }
     document.getElementById('size_left').value = size_left;
 
     var font_left = localStorage.getItem("font_left");
-    if (!font_left) {
-        font_left = 'DejaVuSansCondensed';
-        document.write = localStorage.setItem("font_left", font_left);
-    }
     document.getElementById('font_left').value = font_left;
 
     var view_left = localStorage.getItem("view_left");
-    if (!view_left) {
-        view_left = 'Roman';
-        document.write = localStorage.setItem("view_left", view_left);
-    }
     document.getElementById('view_left').value = view_left;
     if (view_left == 'Myanmar') {
         if ((font_left != 'Myanmar Text') && (font_left != 'Pyidaungsu')) {
@@ -458,18 +441,10 @@ window.onload = function () {
 
     // Background Color
     var bg_color = localStorage.getItem("bg_color");
-    if (!bg_color) {
-        bg_color = '#f3ddb6';
-        document.write = localStorage.setItem("bg_color", bg_color);
-    }
     document.getElementById('bg_color').value = bg_color;
 
     // Left - Right Width Ratio
     var width_left = localStorage.getItem("width_left");
-    if (!width_left) {
-        width_left = '50';
-        document.write = localStorage.setItem("width_left", width_left);
-    }
     document.write = localStorage.setItem("width_right", (100 - Number(width_left)));
     document.getElementById('divwidth').value = width_left;
     document.getElementById('width_left').innerHTML = width_left + ' %';
@@ -477,17 +452,9 @@ window.onload = function () {
 
     // View Right
     var view_right = localStorage.getItem("view_right");
-    if (!view_right) {
-        view_right = 'Space';
-        document.write = localStorage.setItem("view_right", view_right);
-    }
     document.getElementById('view_right').value = view_right;
 
     var font_right = localStorage.getItem("font_right");
-    if (!font_right) {
-        font_right = 'DejaVuSansCondensed';
-        document.write = localStorage.setItem("font_right", font_right);
-    }
     document.getElementById('font_right').value = font_right;
     if (view_right == 'Myanmar') {
         if ((font_right != 'Myanmar Text') && (font_right != 'Pyidaungsu')) {
@@ -497,92 +464,53 @@ window.onload = function () {
     }  
 
     var size_right = localStorage.getItem("size_right");
-    if (!size_right) {
-        size_right = '1.0';
-        document.write = localStorage.setItem("size_right", size_right);
-    }
     document.getElementById('size_right').value = size_right;
 
     // Pali_note
     var Pali_note = localStorage.getItem("Pali_note");
-    if (!Pali_note) {
-        Pali_note = 'none';
-        document.write = localStorage.setItem("Pali_note", Pali_note);
-        document.getElementById('Pali_note2').checked = true;
+    if (Pali_note == 'inline') {
+    document.getElementById('Pali_note1').checked = true;
     } else {
-        if (Pali_note == 'inline') {
-        document.getElementById('Pali_note1').checked = true;
-        } else {
-        document.getElementById('Pali_note2').checked = true;
-        }
+    document.getElementById('Pali_note2').checked = true;
     }
 
     //--------------------------------------------------------------------------------
     // Start of Panel
     //--------------------------------------------------------------------------------
     // Panel Position
-    var contentposition = localStorage.getItem("contentposition");
-    if (!contentposition) {
-        contentposition = '0';
-        document.write = localStorage.setItem("contentposition", contentposition);
+    var contentposition = localStorage.getItem("contentposition");      // 0=moveable, 1=fixed
+    var contentdisplay = localStorage.getItem("contentdisplay");        // 0=onclick, 1=always
+    if (contentposition == '0') {
         document.getElementById('positionfloat').checked = true;
     } else {
-        if (contentposition == '0') {
-        document.getElementById('positionfloat').checked = true;
-        } else {
         document.getElementById('positionfixed').checked = true;
-        }
-    }  
-    if (contentposition == '1') {
+
         contentdisplay = '1';
-        document.write = localStorage.setItem("contentdisplay", contentdisplay);
+        document.write = localStorage.setItem("contentdisplay", '1');
         document.getElementById('displayalways').checked = true;
-    } else {  
-        // Panel Display
-        var contentdisplay = localStorage.getItem("contentdisplay");
-        if (!contentdisplay) {
-        contentdisplay = '0';
-        document.write = localStorage.setItem("contentdisplay", contentdisplay);
+    }
+    // Panel Display
+    if (contentdisplay == '0') {
         document.getElementById('displayclick').checked = true;
-        } else {
-        if (contentdisplay == '0') {
-            document.getElementById('displayclick').checked = true;
-        } else {
-            document.getElementById('displayalways').checked = true;
-        }
-        }
-    } 
-  
+    } else {
+        document.getElementById('displayalways').checked = true;
+    }
     // panel position & size
     var main_top = localStorage.getItem("main_top");
-    if (!main_top) {
-        main_top = '0px';
-        document.write = localStorage.setItem("main_top", main_top); 
-    } 
     document.getElementById('main_top').innerHTML = main_top;
 
     var main_left = localStorage.getItem("main_left");
-    if (!main_left) {
-        main_left = '0px';
-        document.write = localStorage.setItem("main_left", main_left); 
-    } 
     document.getElementById('main_left').innerHTML = main_left;
 
     var main_width = localStorage.getItem("main_width");
-    if (!main_width) {
-        main_width = '99%';
-        if (contentposition == '1') {
-        main_width = '25%';
-        }
-        document.write = localStorage.setItem("main_width", main_width); 
-    } 
     document.getElementById('main_width').innerHTML = main_width; 
 
     var main_height = localStorage.getItem("main_height");
-    if (!main_height) {
-        main_height = '200px';
-        if (contentposition == '1') {   // left fixed
-        main_height = '100%';
+    if (_init == '1') {
+        if (contentposition == '0') {       // floating
+            main_height = '200px';
+        } else {
+            main_height = '100%';
         }
         document.write = localStorage.setItem("main_height", main_height); 
     } 
@@ -590,77 +518,37 @@ window.onload = function () {
 
     // Panel mode
     var contentmode = localStorage.getItem("contentmode");
-    if (!contentmode) {
-        contentmode = 'PC';
-        document.write = localStorage.setItem("contentmode", contentmode);
-        document.getElementById('modepc').checked = true;
+    if (contentmode == 'PC') {
+    document.getElementById('modepc').checked = true;
     } else {
-        if (contentmode == 'PC') {
-        document.getElementById('modepc').checked = true;
-        } else {
-        document.getElementById('modeipad').checked = true;
-        }
-    }  
+    document.getElementById('modeipad').checked = true;
+    }
     
     // Panel Font Family
     var contentfontname = localStorage.getItem("contentfontname");
-    if (!contentfontname) {
-        contentfontname = 'DejaVuSansCondensed';
-        document.write = localStorage.setItem("contentfontname", contentfontname);
-    }  
     document.getElementById('contentfontname').value = contentfontname;
 
     // Panel Font Size
     var contentfontsize = localStorage.getItem("contentfontsize");
-    if (!contentfontsize) {
-        contentfontsize = '12';
-        document.write = localStorage.setItem("contentfontsize", contentfontsize);
-    }  
     document.getElementById('contentfontsize').value = contentfontsize;
-
-
     // Panel Background
     var colorR = localStorage.getItem("contentbackgroundR");
-    if (!colorR) {
-        colorR = '192';
-        document.write = localStorage.setItem("contentbackgroundR", colorR); 
-    }
     document.getElementById('colorR').value = colorR;
     // Panel Background
     var colorG = localStorage.getItem("contentbackgroundG");
-    if (!colorG) {
-        colorG = '255';
-        document.write = localStorage.setItem("contentbackgroundG", colorG); 
-    }
     document.getElementById('colorG').value = colorG;
     // Panel Background
     var colorB = localStorage.getItem("contentbackgroundB");
-    if (!colorB) {
-        colorB = '192';
-        document.write = localStorage.setItem("contentbackgroundB", colorB); 
-    }
     document.getElementById('colorB').value = colorB;
 
     // Panel FontColor
     var fontcolorR = localStorage.getItem("contentfontcolorR");
-    if (!fontcolorR) {
-        fontcolorR = '0';
-        document.write = localStorage.setItem("contentfontcolorR", fontcolorR); 
-    }
     document.getElementById('fontcolorR').value = fontcolorR;
     // Panel FontColor
     var fontcolorG = localStorage.getItem("contentfontcolorG");
-    if (!fontcolorG) {
-        fontcolorG = '0';
-        document.write = localStorage.setItem("contentfontcolorG", fontcolorG); 
-    }
     document.getElementById('fontcolorG').value = fontcolorG;
     // Panel FontColor
     var fontcolorB = localStorage.getItem("contentfontcolorB");
-    if (!fontcolorB) {
-        fontcolorB = '0';
-        document.write = localStorage.setItem("contentfontcolorB", fontcolorB); 
-    }
     document.getElementById('fontcolorB').value = fontcolorB;
     
 
@@ -692,22 +580,9 @@ window.onload = function () {
     //--------------------------------------------------------------------------------
     //End of Panel
     //--------------------------------------------------------------------------------
+    var ary = 'ipc1;ipc2;ipd1;ipe1;ipe2;ipe3;ipe4;ipe5;ipe6;ipg1;ipm1;ipm2;ipm3;ipm4;ipv1;ipv2;ipv3;ise1';
 
     // PALI DICTIONARIES
-    setdefault = '1';   // set defaut Pali dictionary = pe4
-    for (i in Dicts) {
-        var val = localStorage.getItem("h" + i);
-        if (!val) {
-        val = '000';
-        }
-        if (val != '000') {
-        setdefault = '0'
-        }
-    }
-    if (setdefault == '1') {
-        document.write = localStorage.setItem('hpe4', '010');
-    }
-
     var e_enable = document.getElementById('DictionaryEnable');
     var e_disable = document.getElementById('DictionaryDisable');
 
@@ -763,33 +638,18 @@ window.onload = function () {
     document.getElementById('DisableCount').innerHTML = document.form1.DictionaryDisable.options.length;
 
     // English Dictionary
-    var hee1 = localStorage.getItem("hee1");
-    if (!hee1) {
-        hee1 = '0';
-        document.write = localStorage.setItem("hee1", hee1);
-        document.getElementById('hee1').checked = false;
+    var hee1 = localStorage.getItem("hee1"); 
+    if (hee1 == '1') {
+    document.getElementById('hee1').checked = true;
     } else {
-        if (hee1 == '1') {
-        document.getElementById('hee1').checked = true;
-        } else {
-        document.getElementById('hee1').checked = false;
-        }
-    }
+    document.getElementById('hee1').checked = false;
+    } 
 
     // Speech Repeat
     var speech_repeat = localStorage.getItem("speech_repeat");
-    if (!speech_repeat) {
-        speech_repeat = '1';
-        document.write = localStorage.setItem("speech_repeat", speech_repeat);
-    }
     document.getElementById('speech_repeat').value = speech_repeat;
 
     // Speed
     var speech_speed = localStorage.getItem("speech_speed");
-    if (!speech_speed) {
-        speech_speed = '1';
-        document.write = localStorage.setItem("speech_speed", speech_speed);
-        document.getElementById('speech_speed').value = speech_speed;
-    }
     document.getElementById('showspeed').innerHTML = 'Speed=' + speech_speed;
 }

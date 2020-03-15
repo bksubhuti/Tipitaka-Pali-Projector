@@ -71,6 +71,7 @@
 		if (localStorage.getItem('hpe2') != '000') {get_data = get_data + GetValues(pe2, 'hpe2', key);}
 		if (localStorage.getItem('hpe3') != '000') {get_data = get_data + GetValues(pe3, 'hpe3', key);}
 		if (localStorage.getItem('hpe4') != '000') {get_data = get_data + GetValues(pe4, 'hpe4', key);}
+		if (localStorage.getItem('hpe5') != '000') {get_data = get_data + GetValues(pe5, 'hpe5', key);}
 		if (localStorage.getItem('hpe6') != '000') {get_data = get_data + GetValues(pe6, 'hpe6', key);}
 		if (localStorage.getItem('hpg1') != '000') {get_data = get_data + GetValues(pg1, 'hpg1', key);}
 		if (localStorage.getItem('hpm1') != '000') {get_data = get_data + GetValues(pm1, 'hpm1', key);}
@@ -109,22 +110,22 @@
 	}
  
 	var val =
+		localStorage.getItem('hpc1') + 'hpc1' + '@' + 
+		localStorage.getItem('hpc2') + 'hpc2' + '@' +
+		localStorage.getItem('hpd1') + 'hpd1' + '@' +
 		localStorage.getItem('hpe1') + 'hpe1' + '@' + 
 		localStorage.getItem('hpe2') + 'hpe2' + '@' +
 		localStorage.getItem('hpe3') + 'hpe3' + '@' + 
 		localStorage.getItem('hpe4') + 'hpe4' + '@' +
-		localStorage.getItem('hpe6') + 'hpe4' + '@' +
-		localStorage.getItem('hpv1') + 'hpv1' + '@' + 
-		localStorage.getItem('hpv2') + 'hpv2' + '@' +
-		localStorage.getItem('hpv3') + 'hpv3' + '@' +
+		localStorage.getItem('hpe6') + 'hpe6' + '@' +
+		localStorage.getItem('hpg1') + 'hpg1' + '@' +
 		localStorage.getItem('hpm1') + 'hpm1' + '@' + 
 		localStorage.getItem('hpm2') + 'hpm2' + '@' +
 		localStorage.getItem('hpm3') + 'hpm3' + '@' + 
 		localStorage.getItem('hpm4') + 'hpm4' + '@' +
-		localStorage.getItem('hpd1') + 'hpd1' + '@' +
-		localStorage.getItem('hpg1') + 'hpg1' + '@' +
-		localStorage.getItem('hpc1') + 'hpc1' + '@' + 
-		localStorage.getItem('hpc2') + 'hpc2';
+		localStorage.getItem('hpv1') + 'hpv1' + '@' + 
+		localStorage.getItem('hpv2') + 'hpv2' + '@' +
+		localStorage.getItem('hpv3') + 'hpv3';
 	var ary = val.split('@');
 
 	dicts = '';
@@ -142,6 +143,8 @@
 			if ( name == 'hpe2') {$.getScript("dictionary/pe2_Pali_English_Dictionary_extract_DPR_2018.js"); }
 			if ( name == 'hpe3') {$.getScript("dictionary/pe3_Pali_English_Dictionary_by_PaliTextSociety.js"); }
 			if ( name == 'hpe4') {$.getScript("dictionary/pe4_Pali_English_Declension_Dict_@DPR_2018.js"); }
+			if ( name == 'hpe5') {$.getScript("dictionary/pe5_Pali_Grammar_Dictionary@DPR_2018.js"); }
+			if ( name == 'hpe6') {$.getScript("dictionary/pe6_Pali_Proper_Names_G_P_Malalasekera@2018.js"); }
 			if ( name == 'hpg1') {$.getScript("dictionary/pg1_Pali_Germany_sc2016_pi2de-maindata-v1.2.js"); }
 			if ( name == 'hpe6') {$.getScript("dictionary/pe6_Pali_Proper_Names_G_P_Malalasekera@2018.js"); }
 			if ( name == 'hpm1') {$.getScript("dictionary/pm1_Pali_Word_Grammar_@2018.js"); }
@@ -220,16 +223,9 @@
 				ary[i] = ary[i] + 'ṃ';
 				ary[i+1] = ary[i+1].substring(1);
 			}
-			//console.log(ary[i] + '   ');
 		}  
 		ary[lenx] = ' ';
 		ary[lenx +1] = ' ';
-		//console.log('word=' + word);
-		//console.log('lenx=' + lenx);
-		//console.log('lenx-1=' + lenx_1);
-		//console.log('ary=' + ary.legnth);
-		//console.log('\n');
-
 		
 			out_html = '';
 			out_html = out_html + '<span style="font-size:10pt;">Method 1 : Dictionaies <b>' + dicts + '</b></span>&nbsp;&nbsp;||&nbsp;&nbsp;';
@@ -316,10 +312,8 @@
 						end = lenx_1;
 						flax = 'run';
 						while (flax == 'run') {
-							//console.log('start=' + start);
 							v1 = ary[start].substr(0, 1);
 							v2 = ary[start].substr(1, 1);
-							//console.log(ary[start] + '  ' +v1 +'  ' +v2);
 							if (v1 == v2) {
 								v1 = '<b style="color:white;background:black;">' + v1 + '</b>';
 								ary[start] = ary[start].substring(1);
@@ -333,7 +327,6 @@
 								for (i=start; i<=end; i++) {
 									key = key + ary[i];
 								}
-								console.log('key=' + key);
 								//out_tr = out_tr + end +' ' + key + ',  ';
 
 								ret = PutDictionary(key);
@@ -365,9 +358,7 @@
 
 								start = i;
 								end = lenx_1;
-								//console.log('found next : start=' + start + ', end=' + end);
 							} else {		// not found, move to next
-								//console.log(i + '  ' + key + '  ' + ary[i]);
 								out_tr = out_tr + '<b style="color:ff0000;">' + v1 + ary[start] + '</b>';
 
 								if ((ary[start] != '') && (ary[start] != ' ')) {
@@ -376,7 +367,6 @@
 
 								start = start +1;
 								end = lenx_1;
-								//console.log('not found next : start=' + start + ', end=' + end);
 								if (end <start) {
 									flax = 'end';
 								}
@@ -409,11 +399,12 @@
 				</a>
 			</td>
 			<td align="center" width="62%">
-				<span style='line-height:120%;color:brown;font-size:15pt;'><b>Tipiṭaka Pāḷi Projector</b></span> - 20200220 (SG)
+				<span style='line-height:120%;color:brown;font-size:15pt;'><b>Tipiṭaka Pāḷi Projector</b></span> - 20200330 (TG)
 
 				<hr width="50%">
-				Pāḷi Word&nbsp;
-				<input type="textbox" name="key" id="key" style="font-size:12pt;width:100%;max-width:280px;" onblur="Keyin()" value=""> 
+				Pāḷi Word 2.0&nbsp;
+				<input type="textbox" name="key" id="key" style="font-size:12pt;width:100%;max-width:280px;" onblur="Keyin()" value="">
+				<input type="button" value="Go">
 				<br>
 				<input id="Velthuis" type="checkbox" onchange="Keyin()"></input>
 				<label for="Velthuis"> Velthuis Pāḷi word</label>

@@ -935,5 +935,4 @@ var pv3 = {
 'āvāsikavatta':['Những bổn phận của tỷ kheo thường trụ tại một trú xứ.'],
 'āyoga':['Tọa cụ làm từ nhiều lớp vải xếp chồng nhau. Tỷ kheo vô bệnh không được dùng loại tọa cụ này. Và tỷ kheo cũng không được dùng Tăng Già Lê để lót ngồi.'],
 'āḷinda':['Thềm nhà. Thềm trong thì gọi là Āḷinda, thềm ba hay hiên ngoài gọi là Osāraka).'],
-'ḍāka':['Rau cải nói chung, còn tươi hay đã được nấu chín.']
-};
+'ḍāka':['Rau cải nói chung, còn tươi hay đã được nấu chín.']};

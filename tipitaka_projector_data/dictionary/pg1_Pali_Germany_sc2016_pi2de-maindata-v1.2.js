@@ -22781,5 +22781,4 @@ var pg1 = {
 'yūthapati':['(m) [WPD] Hirte; [PTSD] Leittier'],
 'yūthikā':['(f) (Bot) Nadelblütiger Jasmin (Jasminum auriculatum)'],
 'yv’āssa':['[yo+assa] (Nom Sg m von) ya'],
-'yv’āyaṃ':['[yo+ayaṃ] (Nom Sg m von) ya]']
-};
+'yv’āyaṃ':['[yo+ayaṃ] (Nom Sg m von) ya]']};

@@ -19,6 +19,15 @@ function TmpDictionarySave(id) {
 		aryTemp[id] = '1';
 	} else {
 		aryTemp[id] = '0';
+	}
+
+	var p1 = localStorage.getItem('main_content')
+	if (p1 == 'page1') {
+		DictionaryKeyGo();
+		change_tab(p1);
+	} 
+	if (p1 == 'page3') {
+		ParagraphAnalysis()
 	} 
 }
 
@@ -39,12 +48,23 @@ function DictionaryGo() {
 		if (get_data != '') {		//found in directly or declension table
 			DictionaryRet = DictionaryRet + get_data;
 		} else {		// not found
-			DictionaryRet = DictionaryRet + '<div class="page3Result" style="' + page3ResultStyle + '">';
+			DictionaryRet = DictionaryRet + '<div class="DictionaryClass" style="' + DictionaryBackground + '">';
 			DictionaryRet = DictionaryRet + '<b style="color:#ff0000;" id="G_' + key + '" onClick="OpenOnce(\'' + key + '\')">' + toTranslate(key) + '&nbsp;</b>&nbsp;&nbsp;';
 			DictionaryRet = DictionaryRet + WordAnalysis2(key) + '</div>';
 		}	
 	}
 	document.getElementById('page1_desc').innerHTML = DictionaryRet;
+
+	// put in history
+	val = localStorage.getItem('history');
+	if ((val == null) || (val == undefined)) {
+		val = '';
+	}
+	val = val.replace('-', '');
+	val = val.replace('.', '');
+	val = val.replace(DictionaryRet + '{!@@!}', '');
+	val = DictionaryRet + '{!@@!}' + val;
+	document.write = localStorage.setItem('history', val);
 }
 
 function DictionaryKeyGo() {

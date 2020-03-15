@@ -9970,5 +9970,4 @@ var pv1 = {
 'ṭhāpaka':['a. người để hay gìn giữ.'],
 'ṭhāyaka':['a. người đứng dậy.'],
 'ṭhāyī':['a. đứng, đang tình trạng, bền vững, lâu dài.'],
-'ṭikā':['f. phụ chú.<b> --cāriya </b>m. người viết phụ chú.']
-};
+'ṭikā':['f. phụ chú.<b> --cāriya </b>m. người viết phụ chú.']};
