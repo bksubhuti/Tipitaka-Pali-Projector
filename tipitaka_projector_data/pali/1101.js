@@ -3222,7 +3222,7 @@ P_Tag[2483]='<p class="c3">&nbsp;*</p>*';
 
 var TOC_Dropdown_Items = [
     'Verañjakaṇḍaṃ',
-    '1. Pārājikakaṇḍaṃ----',
+    '1. Pārājikakaṇḍaṃ',
     '__1. Paṭhamapārājikaṃ',
     '____Sudinnabhāṇavāro',
     '____Makkaṭīvatthu',
