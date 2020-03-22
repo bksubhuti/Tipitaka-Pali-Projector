@@ -2,18 +2,18 @@
 
       <li class="selected" id="page1" onclick="change_tab(this.id);">
         <span onClick="paliGoBack()">&nbsp;<img src="images/redo.png">&nbsp;</span>&nbsp;&nbsp;
-        Dictionary
+        Dict.
         <input type="textbox" style="max-width:85%;width:85pt;display:inline;" id="DictionaryKey" name="DictionaryKey">
         <input type="button" value="Go" onClick="DictionaryKeyGo();" id="GoDictionary">
       </li>
 
       <li class="notselected" id="page2" onclick="change_tab(this.id);">
-        Declension
+        Decl.
         <input type="textbox" style="max-width:85%;width:85pt;display:none;" id="DeclensionKey" name="DeclensionKey" onKeyup="DeclensionSearch();">
         <input type="button" value="Go" onClick="DictionaryKeyGo();" id="GoDeclension" style="display:none;">
       </li>
 
-      <li class="notselected" id="page3" onclick="change_tab(this.id);">Paragraph</li> 
+      <li class="notselected" id="page3" onclick="change_tab(this.id);">Par.</li> 
       <li class="notselected" id="page4" onclick="change_tab(this.id);">TOC</li>
       <li class="notselected" id="page5" onclick="change_tab(this.id);">Misc.</li>   
       <li class="notselected" id="Pali1" title="Mūla"><span style="color:blue;" onClick="MATurlGo('1')"><img src="images/m.png" title="Mūla"></span></li>
@@ -59,16 +59,20 @@
 
       <div id="main_content" style="overflow-y:scroll;padding-top:5px;height:160px;width:100%;">  
         <div id="page1_desc" class="pages" style="max-height: 80%;height: 80%;overflow-y: scroll;">
+          Sukhi Hontu!
         </div>
 
         <div id="page2_desc" class="pages2" style="display:none;padding-top: 1px;overflow-x:auto;overflow-y: auto;width:100%;">
-          <img src="images/s_info.png" onMouseover="document.getElementById('info').style.display='inline';" onMouseout="document.getElementById('info').style.display='none';">
-          <span id="info" style="display:none;font-size:10pt;"><br>Velthuis Pali Letters,<br>Wildcard Search, Ex:*sa, *sa*</span>
           
-          <select id="DeclensionTips2" class="DeclensionSelect" onChange="DeclensionShow('FromTips2');document.getElementById('page2_desc').scrollIntoView();" >
-          </select>
+          <span id="DeclensionTips2" class="DeclensionSelect"></span>
 
           <div id='DeclensionResult' class="DeclensionResult"></div><br>
+          
+          <img src="images/s_info.png" onMouseover="document.getElementById('info').style.display='inline';" onMouseout="document.getElementById('info').style.display='none';">
+          <span id="info" style="display:none;font-size:11pt;">
+            Velthuis Pali Letters,&nbsp;&nbsp;Wildcard Search, Ex:*sa, *sa*
+          </span>
+          <br><br>
         </div> 
 
         <div id="page3_desc" class="pages" style="display:none;overflow-y:none;"> 
@@ -147,71 +151,54 @@
           <span id="page5break2"></span>
 
           <div class="page5"> 
-            <img src='images/b_edit.png' width="24">My Note
-            <br>
-            <input type="hidden" id="mynote1" value="">
-            <input type="hidden" id="mynoteids" value="">
-            <input type="hidden" id="mynotetags" value="">
-            <input type="hidden" id="mynoteolds" value="">
+            <table style="border-collapse:collapse;padding:5px;width:100%;height:100%; border:0px;">
+              <tr>
+                <td valign="top" width="50%">
+                  <input type="hidden" id="mynote1" value="">
+                  <input type="hidden" id="mynoteids" value="">
+                  <input type="hidden" id="mynotetags" value="">
+                  <input type="hidden" id="mynoteolds" value="">
 
-            <span id="mynote5" onClick="MyNoteExport(5)" style="font-size:12pt;color:blue">
-              <img src="images/add_point_on.png" width="22">Edit 5 Lines.
-            </span>
-            <span id="mynotesave" onClick="MyNoteExport(1)" style="display:none;font-size:12pt;color:blue">
-              <img src="images/save.png" width="22">Save
-            </span> 
-            <br>
+                  <span id="mynote5" onClick="MyNoteExport(5)" style="font-size:12pt;color:blue;margin-bottom:10px">
+                    <img src="images/add_point_on.png" width="22">Edit 5 Par.<br><br>
+                  </span>
+                  <span id="mynotesave" onClick="MyNoteExport(1)" style="display:none;font-size:12pt;color:blue">
+                    <img src="images/save.png" width="22">Save<br><br>
+                  </span>
 
-            <span id="mynote10" onClick="MyNoteExport(10)" style="font-size:12pt;color:blue">
-              <img src="images/add_point_on.png" width="22">Edit 10 Lines.
-            </span>
-            <span id="mynotecancel" onClick="MyNoteExport(0)" style="display:none;font-size:12pt;color:blue">
-              <br><img src="images/s_cancel.png" width="22">&nbsp;Cancel
-            </span>
-            <br>
+                  <span id="mynote10" onClick="MyNoteExport(10)" style="font-size:12pt;color:blue;margin-bottom:10px">
+                    <img src="images/add_point_on.png" width="22">Edit 10 Par.<br><br>
+                  </span>
+                  <span id="mynotecancel" onClick="MyNoteExport(0)" style="display:none;font-size:12pt;color:blue">
+                    <img src="images/s_cancel.png" width="22">&nbsp;Cancel
+                  </span>
 
-            <span id="mynote20" onClick="MyNoteExport(20)" style="font-size:12pt;color:blue">
-              <img src="images/add_point_on.png" width="22">Edit 20 Lines.
-            </span>
+                  <span id="mynote20" onClick="MyNoteExport(20)" style="font-size:12pt;color:blue">
+                    <img src="images/add_point_on.png" width="22">Edit 20 Par.
+                  </span>
+
+                </td>
+                <td valign="top" width="50%">
+                  <span onClick="AnkiAdd()" style="font-size:12pt;color:blue">
+                    <select id="AnkiDictionary">
+                    </select> 
+                    <img src="images/b_group.png" width="22">Add to Anki
+                  </span>
+                  <br><br>
+                  
+                  <span onClick="AnkiCopy()" style="font-size:12pt;color:blue">
+                    <img src="images/s_okay.png" width="22">Copy
+                  </span>
+                  <br><br>
+
+                  <span onClick="AnkiClear()" style="font-size:12pt;color:blue">
+                    <img src="images/b_drop.png" width="22">Clear
+                  </span> 
+                </td>
+              </tr>
+            </table>
+
           </div> 
         </div>
       </div> 
     </div>
-    
-    <script>
-    function change_tab(id) {
-      document.write = localStorage.setItem('main_content', id);
-      for (var i =1; i<=5; i++) { 
-        document.getElementById("page" + i +"_desc").style.display = "none";
-          document.getElementById("page" + i).className="notselected";
-      }  
-      document.getElementById(id).className="selected";
-      document.getElementById(id + "_desc").style.display = "inline";
-
-      if (id == "page2") {    // declension 
-        document.getElementById('DictionaryKey').style.display = 'none';
-        document.getElementById('GoDictionary').style.display = 'none';
-        document.getElementById('DeclensionKey').style.display = 'inline';
-        document.getElementById('GoDeclension').style.display = 'inline';
-
-        var val = document.getElementById('DeclensionKey').value.trim();
-        document.getElementById('DeclensionKey').value = val;
-        
-        DeclensionSearch();
-        DeclensionTable(val);
-        // document.getElementById('DeclensionKey').focus();
-      } else {
-        document.getElementById('DictionaryKey').style.display = 'inline';
-        document.getElementById('GoDictionary').style.display = 'inline';
-        document.getElementById('DeclensionKey').style.display = 'none';
-        document.getElementById('GoDeclension').style.display = 'none';
-      }
-
-      if (id == "page4") {    // TOC
-        PaliHistoryList();
-      }
-      if (id == "page5") {    // history
-        DictHistoryList();
-      }
-     }
-  </script>
