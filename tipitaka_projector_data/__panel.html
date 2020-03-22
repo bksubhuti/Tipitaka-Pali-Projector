@@ -1,5 +1,30 @@
 <div id="main_div">
+    <ul>
+    <!-- HOME -->
+    <li class="notselected" onClick="window.location.href='index.htm'" title="Home">
+        <img src="images/home.png" width="25" width="25" style="display:scroll;position:relative;top:5px;left:2px;">
+     </li> 
+     
+     <!-- SEARCH -->
+     <li class="notselected" onClick="window.location.href='search.htm'" title="Seach">
+        <img src="images/search.png" width="25" style="display:scroll;position:relative;top:8px;left:2px;">
+     </li>
+     
+     <!-- PREFERENCES -->
+     <li class="notselected" onClick="window.location.href='preferences.htm'" title="Preferences">
+        <img src="images/s_process.png" width="25" style="display:scroll;position:relative;top:8px;left:2px;">
+     </li>
+      
+      <!-- M/A/T Tabs -->
+      <li class="notselected" id="Pali1" title="Mūla"><span style="color:blue;" onClick="MATurlGo('1')"><img src="images/m.png" title="Mūla"></span></li>
+      <li class="notselected" id="Pali2" title="Aṭṭhakathā"><span style="color:blue;" onClick="MATurlGo('2')"><img src="images/a.png" title="Aṭṭhakathā"></span></li>
+      <li class="notselected" id="Pali3" title="Ṭīkā"><span style="color:blue;" onClick="MATurlGo('3')"><img src="images/t.png" title="Ṭīkā"></li>
 
+       <!-- TOC / NAV -->
+        <li class="notselected" id="page4" onclick="change_tab(this.id);">
+        NAV
+        </li>
+      </ul>
       <li class="selected" id="page1" onclick="change_tab(this.id);">
         <span onClick="paliGoBack()">&nbsp;<img src="images/redo.png">&nbsp;</span>&nbsp;&nbsp;
         Dict.
@@ -14,18 +39,13 @@
       </li>
 
       <li class="notselected" id="page3" onclick="change_tab(this.id);">Par.</li> 
-      <li class="notselected" id="page4" onclick="change_tab(this.id);">TOC</li>
+      
       <li class="notselected" id="page5" onclick="change_tab(this.id);">Misc.</li>   
-      <li class="notselected" id="Pali1" title="Mūla"><span style="color:blue;" onClick="MATurlGo('1')"><img src="images/m.png" title="Mūla"></span></li>
-      <li class="notselected" id="Pali2" title="Aṭṭhakathā"><span style="color:blue;" onClick="MATurlGo('2')"><img src="images/a.png" title="Aṭṭhakathā"></span></li>
-      <li class="notselected" id="Pali3" title="Ṭīkā"><span style="color:blue;" onClick="MATurlGo('3')"><img src="images/t.png" title="Ṭīkā"></li>
+      
 
-      <li class="notselected" onClick="window.location.href='preferences.htm'" title="Preferences">
-        <img src="images/s_process.png" width="25" style="display:scroll;position:relative;top:8px;left:2px;"></li>
-      <li class="notselected" onClick="window.location.href='search.htm'" title="Seach">
-        <img src="images/search.png" width="25" style="display:scroll;position:relative;top:8px;left:2px;"></li>
-      <li class="notselected" onClick="window.location.href='index.htm'" title="Home">
-        <img src="images/home.png" width="25" width="25" style="display:scroll;position:relative;top:5px;left:2px;"></li> 
+      
+      
+      
       <span id="message" style="font-size:10pt;" title="Id=Id-No. Para=Paragraph No. M=Myanmar PageNo. P=PTS PageNo."></span>
       
       <div id="TmpDictionary" style="display:inline;margin-left:10px; margin-top: 5px;">
