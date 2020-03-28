@@ -1,224 +1,468 @@
 <div id="main_div">
-    <ul>
+
+  <!-- These are the tabs styles, they should for now be here for easier editing but eventually moved to a .css file -->
+  <style>
+    @font-face {
+      font-family: 'Material Icons';
+      font-style: normal;
+      font-weight: 400;
+      src: url(./fonts/material/MaterialIcons-Regular.eot); /* For IE6-8 */
+      src: local('Material Icons'),
+      local('MaterialIcons-Regular'),
+      url(./fonts/material/MaterialIcons-Regular.woff2) format('woff2'),
+      url(./fonts/material/MaterialIcons-Regular.woff) format('woff'),
+      url(./fonts/material/MaterialIcons-Regular.ttf) format('truetype');
+    }
+
+    .material-icons {
+      font-family: 'Material Icons';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;  /* Preferred icon size */
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+
+      /* Support for all WebKit browsers. */
+      -webkit-font-smoothing: antialiased;
+      /* Support for Safari and Chrome. */
+      text-rendering: optimizeLegibility;
+
+      /* Support for Firefox. */
+      -moz-osx-font-smoothing: grayscale;
+
+      /* Support for IE. */
+      font-feature-settings: 'liga';
+    }
+    .first-nav {
+      margin-bottom: 5px;
+      padding-top: 5px;
+      line-height: 1;
+    }
+    .helpers > * {
+      display: none;
+    }
+    .tabs {
+      position: absolute;
+      z-index: 1000;
+      left: 5px;
+      right: 0;
+      height: 32px;
+    }
+    #main_div .tabs > li {
+      border: 2px solid #00000024;
+      padding: 0 10px;
+      line-height: 32px;
+      float: left;
+      border-bottom: 0;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      margin-right: 5px;
+      color: #555;
+      text-decoration: none;
+      font-size: 14px;
+      position: relative;
+      height: 30px;
+      user-select: none;
+      background-color: transparent;
+      font-weight: normal;
+      font-family: sans-serif;
+    }
+    #main_div .tabs > li.selected {
+      border-color: #777;
+      height: 32px;
+      background-color: #fafafa;
+      font-weight: bold;
+    }
+    .tab-content {
+      background-color: #fafafa;
+      border: 2px solid #777;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      padding: 10px;
+      margin-top: 32px;
+      float: left;
+      width: 100%;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+    #main_div li {
+
+    }
+    .grey-button {
+      box-shadow:inset 0px 1px 0px 0px #ffffff;
+      background: linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+      background-color: #ededed;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+      cursor:pointer;
+      color:#777;
+      line-height: 1;
+      text-decoration:none;
+      text-shadow:0px 1px 0px #ffffff;
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      overflow: hidden;
+      text-align: center;
+    }
+    .grey-button.letter {
+      line-height: 36px;
+      font-family: sans-serif;
+      font-size: 18px;
+    }
+    .grey-button.letter.selected {
+      font-weight: bold;
+    }
+    .grey-button i {
+      margin: 5px;
+    }
+    .grey-button span {
+      width: 24px;
+      height: 24px;
+      margin: 5px;
+      font-weight: bold;
+      display: inline-block;
+      line-height: 24px;
+      text-align: center;
+    }
+    .grey-button:hover {
+      background:linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+      background-color:#dfdfdf;
+    }
+    .grey-button:active {
+      position:relative;
+      top:1px;
+    }
+
+    .sep {
+      margin-left: 5px;
+      margin-right: 5px;
+      width: 1px;
+      display: inline-block;
+      height: 23px;
+      background: #aaa;
+      margin-bottom: 5px;
+    }
+    .generous-input {
+      font-size: 16px;
+      margin-left: 5px;
+      margin-right: 5px;
+      padding: 3px;
+    }
+    .input-label {
+      font-size: 14px;
+    }
+    .search-area {
+      display: flex;
+      margin-top: 5px;
+      align-items: center;
+    }
+    .search-area i {
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid #b3b3b3;
+      color: #515151;
+      width: 24px;
+      height: 24px;
+      overflow: hidden;
+      user-select: none;
+    }
+    .search-area i:hover {
+        border-color: #aaa;
+        color: #000;
+    }
+    .DictionaryClass {
+      background-color: rgba(176, 176, 176, 0.42) !important;
+    }
+    .helper.dict {
+      font-family: sans-serif;
+    }
+    .dictionary-item {
+      display: inline-block;
+      white-space: nowrap;
+    }
+    #TmpDictionary:after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+  </style>
+
+  
+  <div class="first-nav">
     <!-- HOME -->
-    <li class="notselected" onClick="window.location.href='index.htm'" title="Home">
-        <img src="images/home.png" width="25" width="25" style="display:scroll;position:relative;top:5px;left:2px;">
-     </li> 
-     
-     <!-- SEARCH -->
-     <li class="notselected" onClick="window.location.href='search.htm'" title="Seach">
-        <img src="images/search.png" width="25" style="display:scroll;position:relative;top:8px;left:2px;">
-     </li>
-     
-     <!-- PREFERENCES -->
-     <li class="notselected" onClick="window.location.href='preferences.htm'" title="Preferences">
-        <img src="images/s_process.png" width="25" style="display:scroll;position:relative;top:8px;left:2px;">
-     </li>
-      
-      <!-- M/A/T Tabs -->
-      <li class="notselected" id="Pali1" title="Mūla"><span style="color:blue;" onClick="MATurlGo('1')"><img src="images/m.png" title="Mūla"></span></li>
-      <li class="notselected" id="Pali2" title="Aṭṭhakathā"><span style="color:blue;" onClick="MATurlGo('2')"><img src="images/a.png" title="Aṭṭhakathā"></span></li>
-      <li class="notselected" id="Pali3" title="Ṭīkā"><span style="color:blue;" onClick="MATurlGo('3')"><img src="images/t.png" title="Ṭīkā"></li>
-
-       <!-- TOC / NAV -->
-        <li class="notselected" id="page4" onclick="change_tab(this.id);">
-        NAV
-        </li>
-      </ul>
-      <li class="selected" id="page1" onclick="change_tab(this.id);">
-        <span onClick="paliGoBack()">&nbsp;<img src="images/redo.png">&nbsp;</span>&nbsp;&nbsp;
-        Dict.
-        <input type="textbox" style="max-width:85%;width:85pt;display:inline;" id="DictionaryKey" name="DictionaryKey">
-        <input type="button" value="Go" onClick="DictionaryKeyGo();" id="GoDictionary">
-      </li>
-
-      <li class="notselected" id="page2" onclick="change_tab(this.id);">
-        Decl.
-        <input type="textbox" style="max-width:85%;width:85pt;display:none;" id="DeclensionKey" name="DeclensionKey" onKeyup="DeclensionSearch();">
-        <input type="button" value="Go" onClick="DictionaryKeyGo();" id="GoDeclension" style="display:none;">
-      </li>
-
-      <li class="notselected" id="page3" onclick="change_tab(this.id);">Par.</li> 
-      
-      <li class="notselected" id="page5" onclick="change_tab(this.id);">Misc.</li>   
-      
-
-      
-      
-      
-      <span id="message" style="font-size:10pt;" title="Id=Id-No. Para=Paragraph No. M=Myanmar PageNo. P=PTS PageNo."></span>
-      
-      <div id="TmpDictionary" style="display:inline;margin-left:10px; margin-top: 5px;">
-      </div>  
-      <div style="display:inline;margin-left:10px; margin-top: 50px; width:100%;">
-        <div id="iPad" style="display:inline">
-          <select id="iPadDirection" onchange="iPadDirection()">   
-            <option value="NW">Top-Left</option>
-            <option value="NE">Top-Right</option>
-            <option value="SE">Bottom-Right</option>
-            <option value="SW">Bottom-Left</option>
-          </select>
-          <span id="iPadW">W</span>
-          <select id="iPadWidth" onchange="iPadWidth()">
-            <option value=""></option>   
-          </select>
-          <span id="iPadH">H</span>
-          <select id="iPadHeight" onchange="iPadHeight()">   
-            <option value=""></option>   
-          </select>
-        </div>
-        
-        <div id="PC" style="display:inline">
-          <div id="divDragIcon" style="z-index:3;float:right;overflow:hidden;position:static;top:10px;right:0px;width:25px;height:25px;"><h2><img src="images/drag.png"></h2></div> 
-          <div id="ResizeDrag"><img src="images/resize.png" width="35"></div>
-        </div>
+    <div class="notselected grey-button" onClick="window.location.href='index.htm'" title="Home">
+      <i class="material-icons">home</i>
     </div>
 
-      <div id="ResizeRight"></div>  
-      <div id="ResizeBottom"></div>   
+    <!-- SEARCH -->
+    <div class="notselected grey-button" onClick="window.location.href='search.htm'" title="Seach">
+      <i class="material-icons">search</i>
+    </div>
 
-      <div id="main_content" style="overflow-y:scroll;padding-top:5px;height:160px;width:100%;">  
-        <div id="page1_desc" class="pages" style="max-height: 80%;height: 80%;overflow-y: scroll;">
-          Sukhi Hontu!
+    <!-- PREFERENCES -->
+    <div class="notselected grey-button" onClick="window.location.href='preferences.htm'" title="Preferences">
+      <i class="material-icons">settings</i>
+    </div>
+
+    <span class="sep"></span>
+
+    <div class="notselected grey-button letter" id="Pali1" title="Mūla" onClick="MATurlGo('1')">
+      M
+    </div>
+
+    <div class="notselected grey-button letter" id="Pali2" title="Aṭṭhakathā" onClick="MATurlGo('2')">
+      A
+    </div>
+
+    <div class="notselected grey-button letter" id="Pali3" title="Ṭīkā" onClick="MATurlGo('2')">
+      T
+    </div>
+
+  </div>
+
+  <div class="helper dict">
+
+    <span id="message" style="font-size:10pt;" title="Id=Id-No. Para=Paragraph No. M=Myanmar PageNo. P=PTS PageNo."></span>
+
+    <div id="TmpDictionary" style="display:inline;margin-left:10px; margin-top: 5px;">
+    </div>
+  </div>
+
+  <ul class="tabs">
+    <li class="selected" id="page1" onclick="onTabClick(this)" data-helper="dict">
+      Dict.
+    </li>
+
+    <li class="notselected" id="page2" onclick="onTabClick(this);" data-helper="decl">
+      Decl.
+    </li>
+
+    <li class="notselected" id="page3" onclick="onTabClick(this);">
+      Par.
+    </li>
+
+    <li class="notselected" id="page4" onclick="onTabClick(this);">
+      Nav.
+    </li>
+
+    <li class="notselected" id="page5" onclick="onTabClick(this);">
+      Misc.
+    </li>
+  </ul>
+
+    <script>
+    const onTabClick = (tab) => {
+      // hide all helpers
+      //
+      $('.helper').hide();
+
+      // show a helper associated with the tab
+      //
+      if (tab.dataset.helper) {
+        $(`.helper.${tab.dataset.helper}`).show();
+      }
+      change_tab(tab.id);
+    }
+    $('.helper.dict').show();
+  </script>
+  
+  <div class="tab-content">
+    <div class="helpers">
+      <div class="helper dict">
+        <div class="search-area">
+          <i onClick="paliGoBack()" class="material-icons">arrow_back</i>&nbsp;&nbsp;
+          <span class="input-label">Pāḷi</span>
+          <input type="textbox" class="generous-input" style="max-width:85%;width:85pt;display:inline;" id="DictionaryKey" name="DictionaryKey">
+          <input type="button" value="Go" onClick="DictionaryKeyGo();" id="GoDictionary">
         </div>
+      </div>
 
-        <div id="page2_desc" class="pages2" style="display:none;padding-top: 1px;overflow-x:auto;overflow-y: auto;width:100%;">
-          
-          <span id="DeclensionTips2" class="DeclensionSelect"></span>
 
-          <div id='DeclensionResult' class="DeclensionResult"></div><br>
-          
-          <img src="images/s_info.png" onMouseover="document.getElementById('info').style.display='inline';" onMouseout="document.getElementById('info').style.display='none';">
-          <span id="info" style="display:none;font-size:11pt;">
+      <div class="helper decl">
+        <input type="textbox" style="max-width:85%;width:85pt;display:none;" id="DeclensionKey" name="DeclensionKey" onKeyup="DeclensionSearch();">
+        <input type="button" value="Go" onClick="DictionaryKeyGo();" id="GoDeclension" style="display:none;">
+      </div>
+    </div>
+
+    <div id="main_content" style="overflow-y:scroll;padding-top:5px;height:160px;width:100%;">
+      <div id="page1_desc" class="pages" style="max-height: 80%;height: 80%;overflow-y: scroll;">
+        Sukhi Hontu!
+      </div>
+
+      <div id="page2_desc" class="pages2" style="display:none;padding-top: 1px;overflow-x:auto;overflow-y: auto;width:100%;">
+
+        <span id="DeclensionTips2" class="DeclensionSelect"></span>
+
+        <div id='DeclensionResult' class="DeclensionResult"></div><br>
+
+        <img src="images/s_info.png" onMouseover="document.getElementById('info').style.display='inline';" onMouseout="document.getElementById('info').style.display='none';">
+        <span id="info" style="display:none;font-size:11pt;">
             Velthuis Pali Letters,&nbsp;&nbsp;Wildcard Search, Ex:*sa, *sa*
           </span>
-          <br><br>
-        </div> 
+        <br><br>
+      </div>
 
-        <div id="page3_desc" class="pages" style="display:none;overflow-y:none;"> 
-          <div id='ParagraphDictionary'> 
-          </div>
+      <div id="page3_desc" class="pages" style="display:none;overflow-y:none;">
+        <div id='ParagraphDictionary'>
         </div>
-        <input type="hidden" id="ParagraphWords" value="">
+      </div>
+      <input type="hidden" id="ParagraphWords" value="">
 
-        <div id="page4_desc" class="pages2" style="display:none;align:center;">
-          <div class="page4" style="line-height: 250%;"> 
-            <select name="Toc" id="Toc" onchange="goToc();">
-            </select>
-            <span id="page4break1"></span>
+      <div id="page4_desc" class="pages2" style="display:none;align:center;">
+        <div class="page4" style="line-height: 250%;">
+          <select name="Toc" id="Toc" onchange="goToc();">
+          </select>
+          <span id="page4break1"></span>
 
-            <input name="Reference" id="Pgnum" value="0" type="radio" checked>
-            <label for="Pgnum" >Page...</label>
-            <input name="Reference" id="Prnum" value="1" type="radio">
-            <label for="Prnum" >Paragraph...</label>
-            <span id="page4break2"></span>
+          <input name="Reference" id="Pgnum" value="0" type="radio" checked>
+          <label for="Pgnum" >Page...</label>
+          <input name="Reference" id="Prnum" value="1" type="radio">
+          <label for="Prnum" >Paragraph...</label>
+          <span id="page4break2"></span>
 
-            <input name="Reference" id="PTS" value="2" type="radio">
-            <label for="PTS" >PTS No...</label> 
-            <input type="Textbox" name="PageNo" id="PageNo" value="" style="font-size:11pt;width:100%;max-width:40pt;" onBlur="goUrl()">
-            <br> 
+          <input name="Reference" id="PTS" value="2" type="radio">
+          <label for="PTS" >PTS No...</label>
+          <input type="Textbox" name="PageNo" id="PageNo" value="" style="font-size:11pt;width:100%;max-width:40pt;" onBlur="goUrl()">
+          <br>
 
-            <div style="line-height: 110%;">
-              <div onClick="document.getElementById('QuickJumpTipsShow').style.display='inline';" style="color:blue;">
-                <img src="images/s_info.png">Tips
-              </div>
-              <div id="QuickJumpTipsShow" onClick="this.style.display='none'" style="color:#440000;font-size:11pt;display:none;">[sn1 99]= Jump to sn1 Paragraph 99,<br>[sn1 m99]= Jump to sn1 Myanmar Page 99,<br>[sn1 p99] or [sn1 pts99]= Jump to sn1 PTS Page 99.<br>
-              </div>
+          <div style="line-height: 110%;">
+            <div onClick="document.getElementById('QuickJumpTipsShow').style.display='inline';" style="color:blue;">
+              <img src="images/s_info.png">Tips
             </div>
-            Quick Jump
-            <input type="Textbox" name="QuickJump" id="QuickJump" value="" style="font-size:11pt;width:100%;max-width:60pt;" onBlur="QuickJump()" onKeyup="QuickJumpTips()">
-              <input id="QuickJumpNewTab" type="checkbox" value="0"></input>
-              <label for="QuickJumpNewTab">Open at New Tab</label><br>
-            <span id="QuickJumpTips" style="color:#440000;"></span>
+            <div id="QuickJumpTipsShow" onClick="this.style.display='none'" style="color:#440000;font-size:11pt;display:none;">[sn1 99]= Jump to sn1 Paragraph 99,<br>[sn1 m99]= Jump to sn1 Myanmar Page 99,<br>[sn1 p99] or [sn1 pts99]= Jump to sn1 PTS Page 99.<br>
+            </div>
           </div>
-          <span id="page4break3"></span>
-
-          <div class="page4"> 
-            <img src='images/b_browse.png'>History
-            <span id='palihistory' style="font-size:10pt;color:blue;"></span>&nbsp;&nbsp;
-          </div>
+          Quick Jump
+          <input type="Textbox" name="QuickJump" id="QuickJump" value="" style="font-size:11pt;width:100%;max-width:60pt;" onBlur="QuickJump()" onKeyup="QuickJumpTips()">
+          <input id="QuickJumpNewTab" type="checkbox" value="0"></input>
+          <label for="QuickJumpNewTab">Open at New Tab</label><br>
+          <span id="QuickJumpTips" style="color:#440000;"></span>
         </div>
+        <span id="page4break3"></span>
 
-        <div id="page5_desc" class="pages2" style="display:none;">
-          <div class="page5"> 
-            <img src='images/b_browse.png'>Dictionary History
-            <span id='dicthistory' style="font-size:11pt;color:blue;"></span>&nbsp;&nbsp;
-          </div> 
-          <span id="page5break1"></span>
+        <div class="page4">
+          <img src='images/b_browse.png'>History
+          <span id='palihistory' style="font-size:10pt;color:blue;"></span>&nbsp;&nbsp;
+        </div>
+      </div>
 
-          <div class="page5"> 
-            <img src='images/b_ftext.png' width="24">Copy Text
-            &nbsp;
-            <span id="copystart" onClick="CopyExport(1)" style="font-size:10pt;color:blue">
+      <div id="page5_desc" class="pages2" style="display:none;">
+        <div class="page5">
+          <img src='images/b_browse.png'>Dictionary History
+          <span id='dicthistory' style="font-size:11pt;color:blue;"></span>&nbsp;&nbsp;
+        </div>
+        <span id="page5break1"></span>
+
+        <div class="page5">
+          <img src='images/b_ftext.png' width="24">Copy Text
+          &nbsp;
+          <span id="copystart" onClick="CopyExport(1)" style="font-size:10pt;color:blue">
               <img src="images/change.png" width="22">&nbsp;Start Selection
               <input type="hidden" id="copy1" value="">
-            </span> 
-            <span id="copyunformat" onClick="CopyExport(2)" style="display:none;font-size:10pt;color:blue">
+            </span>
+          <span id="copyunformat" onClick="CopyExport(2)" style="display:none;font-size:10pt;color:blue">
               <img src="images/b_sbrowse.png" width="22">&nbsp;UnFormat TXT
               <input type="hidden" id="copy2" value="">
               <input type="hidden" id="copystatus" value="stop">
-            </span> 
-            <span id="copyformat" onClick="CopyExport(3)" style="display:none;font-size:10pt;color:blue">
+            </span>
+          <span id="copyformat" onClick="CopyExport(3)" style="display:none;font-size:10pt;color:blue">
               <img src="images/b_report.png" width="22">&nbsp;Format HTML
               <input type="hidden" id="copy3" value="">
-            </span> 
-            <span id="copycancel" onClick="CopyExport(0)" style="display:none;font-size:10pt;color:blue">
+            </span>
+          <span id="copycancel" onClick="CopyExport(0)" style="display:none;font-size:10pt;color:blue">
               <img src="images/s_cancel.png" width="22">&nbsp;Cancel
             </span>
-            <br>
-            <textarea id='CopyText' style='width:95%;max-width:95%;max-height:95%; height:70%;overflow:hidden;resize:none;'></textarea>
-          </div>
-          <span id="page5break2"></span>
+          <br>
+          <textarea id='CopyText' style='width:95%;max-width:95%;max-height:95%; height:70%;overflow:hidden;resize:none;'></textarea>
+        </div>
+        <span id="page5break2"></span>
 
-          <div class="page5"> 
-            <table style="border-collapse:collapse;padding:5px;width:100%;height:100%; border:0px;">
-              <tr>
-                <td valign="top" width="50%">
-                  <input type="hidden" id="mynote1" value="">
-                  <input type="hidden" id="mynoteids" value="">
-                  <input type="hidden" id="mynotetags" value="">
-                  <input type="hidden" id="mynoteolds" value="">
+        <div class="page5">
+          <table style="border-collapse:collapse;padding:5px;width:100%;height:100%; border:0px;">
+            <tr>
+              <td valign="top" width="50%">
+                <input type="hidden" id="mynote1" value="">
+                <input type="hidden" id="mynoteids" value="">
+                <input type="hidden" id="mynotetags" value="">
+                <input type="hidden" id="mynoteolds" value="">
 
-                  <span id="mynote5" onClick="MyNoteExport(5)" style="font-size:12pt;color:blue;margin-bottom:10px">
+                <span id="mynote5" onClick="MyNoteExport(5)" style="font-size:12pt;color:blue;margin-bottom:10px">
                     <img src="images/add_point_on.png" width="22">Edit 5 Par.<br><br>
                   </span>
-                  <span id="mynotesave" onClick="MyNoteExport(1)" style="display:none;font-size:12pt;color:blue">
+                <span id="mynotesave" onClick="MyNoteExport(1)" style="display:none;font-size:12pt;color:blue">
                     <img src="images/save.png" width="22">Save<br><br>
                   </span>
 
-                  <span id="mynote10" onClick="MyNoteExport(10)" style="font-size:12pt;color:blue;margin-bottom:10px">
+                <span id="mynote10" onClick="MyNoteExport(10)" style="font-size:12pt;color:blue;margin-bottom:10px">
                     <img src="images/add_point_on.png" width="22">Edit 10 Par.<br><br>
                   </span>
-                  <span id="mynotecancel" onClick="MyNoteExport(0)" style="display:none;font-size:12pt;color:blue">
+                <span id="mynotecancel" onClick="MyNoteExport(0)" style="display:none;font-size:12pt;color:blue">
                     <img src="images/s_cancel.png" width="22">&nbsp;Cancel
                   </span>
 
-                  <span id="mynote20" onClick="MyNoteExport(20)" style="font-size:12pt;color:blue">
+                <span id="mynote20" onClick="MyNoteExport(20)" style="font-size:12pt;color:blue">
                     <img src="images/add_point_on.png" width="22">Edit 20 Par.
                   </span>
 
-                </td>
-                <td valign="top" width="50%">
+              </td>
+              <td valign="top" width="50%">
                   <span onClick="AnkiAdd()" style="font-size:12pt;color:blue">
                     <select id="AnkiDictionary">
-                    </select> 
+                    </select>
                     <img src="images/b_group.png" width="22">Add to Anki
                   </span>
-                  <br><br>
-                  
-                  <span onClick="AnkiCopy()" style="font-size:12pt;color:blue">
+                <br><br>
+
+                <span onClick="AnkiCopy()" style="font-size:12pt;color:blue">
                     <img src="images/s_okay.png" width="22">Copy
                   </span>
-                  <br><br>
+                <br><br>
 
-                  <span onClick="AnkiClear()" style="font-size:12pt;color:blue">
+                <span onClick="AnkiClear()" style="font-size:12pt;color:blue">
                     <img src="images/b_drop.png" width="22">Clear
-                  </span> 
-                </td>
-              </tr>
-            </table>
+                  </span>
+              </td>
+            </tr>
+          </table>
 
-          </div> 
         </div>
-      </div> 
+      </div>
     </div>
+  </div>
+
+
+  <div style="display:inline;margin-left:10px; margin-top: 50px; width:100%;">
+    <div id="iPad" style="display:inline">
+      <select id="iPadDirection" onchange="iPadDirection()">
+        <option value="NW">Top-Left</option>
+        <option value="NE">Top-Right</option>
+        <option value="SE">Bottom-Right</option>
+        <option value="SW">Bottom-Left</option>
+      </select>
+      <span id="iPadW">W</span>
+      <select id="iPadWidth" onchange="iPadWidth()">
+        <option value=""></option>
+      </select>
+      <span id="iPadH">H</span>
+      <select id="iPadHeight" onchange="iPadHeight()">
+        <option value=""></option>
+      </select>
+    </div>
+
+    <div id="PC" style="display:inline">
+      <div id="divDragIcon" style="z-index:3;float:right;overflow:hidden;position:static;top:10px;right:0px;width:25px;height:25px;"><h2><img src="images/drag.png"></h2></div>
+      <div id="ResizeDrag"><img src="images/resize.png" width="35"></div>
+    </div>
+  </div>
+
+  <div id="ResizeRight"></div>
+  <div id="ResizeBottom"></div>
+
+
+</div>
