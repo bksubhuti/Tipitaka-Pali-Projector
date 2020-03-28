@@ -122,8 +122,10 @@ for (var i in ary) {
 
 	//alert(name);
 	if ((val != '000') && (val != 'nul')) {
+		tmpDictionary += '<span class="dictionary-item">';
 		tmpDictionary = tmpDictionary + '<input id="j' + v0 + '" type="checkbox" onclick="TmpDictionarySave(\'' + v0 + '\');" checked></input>'; 
 		tmpDictionary = tmpDictionary + '<label for="j' + v0 + '" style="font-size:12pt;">&nbsp;' + aryAbbr[v0] + '&nbsp;</label>&nbsp;&nbsp;';
+		tmpDictionary += '</span>';
 
 		dict_in_use++;
 		ary_dict[dict_in_use] = name;
