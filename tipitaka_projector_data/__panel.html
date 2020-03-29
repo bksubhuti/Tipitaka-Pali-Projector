@@ -259,8 +259,9 @@
     <script>
     const onTabClick = (tab) => {
       // hide all helpers
-      //
-      $('.helper').hide();
+      //  For consistent UI, the temp dictionary listings and location will be shown all the time
+      // following line hides these
+      //$('.helper').hide();
 
       // show a helper associated with the tab
       //
