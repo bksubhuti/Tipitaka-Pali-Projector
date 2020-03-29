@@ -646,6 +646,10 @@
 			}
 			document.getElementById('Nikaya11').checked = true;
 		}
+
+
+		// add listener to go back when the escape key is pressed.
+		window.addEventListener("keyup", function(e){ if(e.keyCode == 27) history.back(); }, false);
   </script>
 
 </body></html>
