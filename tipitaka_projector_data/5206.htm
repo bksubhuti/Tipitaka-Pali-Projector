@@ -99,14 +99,14 @@
             </select>
             <span id="page4break1"></span>
 
-            <input name="Reference" id="Pgnum" value="0" type="radio" checked>
-            <label for="Pgnum" >Page...</label>
-            <input name="Reference" id="Prnum" value="1" type="radio">
-            <label for="Prnum" >Paragraph...</label>
+            <input name="Reference" id="Pgnum" value="0" type="radio"  onClick="goUrl()" checked>
+            <label for="Pgnum"  onClick="goUrl()">Page...</label>
+            <input name="Reference" id="Prnum" value="1" type="radio" onClick="goUrl()">
+            <label for="Prnum"  onClick="goUrl()">Paragraph...</label>
             <span id="page4break2"></span>
 
-            <input name="Reference" id="PTS" value="2" type="radio">
-            <label for="PTS" >PTS No...</label> 
+            <input name="Reference" id="PTS" value="2" type="radio" onClick="goUrl()">
+            <label for="PTS"  onClick="goUrl()">PTS No...</label> 
             <input type="Textbox" name="PageNo" id="PageNo" value="" style="font-size:11pt;width:100%;max-width:40pt;" onBlur="goUrl()">
             <br> 
 
@@ -133,13 +133,13 @@
 
         <div id="page5_desc" class="pages2" style="display:none;">
           <div class="page5"> 
-            <img src='images/b_browse.png'>Dictionary History
+            <img src='images/b_browse.png'>Dictionary
             <span id='dicthistory' style="font-size:11pt;color:blue;"></span>&nbsp;&nbsp;
           </div> 
           <span id="page5break1"></span>
 
           <div class="page5"> 
-            <img src='images/b_ftext.png' width="24">Copy Text
+            <img src='images/b_ftext.png' width="24">Copy
             &nbsp;
             <span id="copystart" onClick="CopyExport(1)" style="font-size:10pt;color:blue">
               <img src="images/change.png" width="22">&nbsp;Start Selection
@@ -525,16 +525,23 @@
 </table>
   </div>
 
-  <div id="Sr_Div" style="display:scroll;position:fixed;top:110px;right:0px;visibility:hidden;z-index:99;max-height:90px;width:100px;text-align: center;padding:3px;margin-left:1%;margin-right:1%;background:#F7DBD0;color:black;border:1px dashed orange;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;-o-border-radius:3px;">
-      <img src="images/b_drop.png" width="20" height="20" onClick="Sr_Go('0')">
+  <div id="Sr_Div" style="display:scroll;position:fixed;top:110px;right:0px;visibility:hidden;z-index:99;max-height:110px;width:100px;text-align: center;padding:3px;margin-left:1%;margin-right:1%;background:#F7DBD0;color:black;border:1px dashed orange;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;-o-border-radius:3px;">
+    <span onClick="Sr_Go('0')" style="font-size:8pt;">
+      <span onClick="Sr_Go('0')" style="font-size:8pt;">
+        <img src="images/b_drop.png" width="20" height="20" title="Close This">
+      </span>
       <br>
       <img src="images/b_prevpage.png" width="25" height="40" onClick="Sr_Go('1')">
-      &nbsp;
+      &nbsp;&nbsp;
       <img src="images/b_nextpage.png" width="25" height="40" onClick="Sr_Go('2')">
       <br>
       <span id="Sr_Now">0</span>
       &nbsp;/&nbsp;
       <span id="Sr_Next">999</span>
+      <br>
+      <span onClick="SrClear()" style="font-size:8pt;">
+        <img src="images/s_cancel.png" width="20" height="20" Title="Clear all">
+      </span>
   </div>
      
   <popupfixbottom></popupfixbottom>

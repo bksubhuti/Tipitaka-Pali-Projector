@@ -47,7 +47,7 @@ function AnkiAdd() {
                 var ret1 = AnkiSearch(key2);
             }    
             
-            out = key + '\t' + key2 + '\t' + ret1  + '\t' + out + '\n' + AnkiOld;
+            out = key + '\t' + out + '\t' + ret1  + '<br><br>' + key2 + '\n' + AnkiOld;
             document.write = localStorage.setItem('Anki', out);
         }
     }

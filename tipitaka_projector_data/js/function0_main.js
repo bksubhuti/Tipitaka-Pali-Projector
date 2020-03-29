@@ -224,7 +224,7 @@ function RedrawTable(w) {
 }
 
 function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
-	var tr_id = localStorage.getItem('tr_id');
+	var tr_id = localStorage.getItem('tr_id'); 
 	tr_id = parseInt(tr_id);
 
 	// tr_id convert into Myanmar paragraph no.
@@ -235,28 +235,29 @@ function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
 			if (v1<=  tr_id) {
 				break;
 			}
-		}
-	}
+		}	
+	} 	 
+	para = parseInt(para);
 
 	v1 = T_Maps[html_no][no];
-	var url = '';
-	if (v1.indexOf(',') == -1) {
-		url = v1;			// nnnn.htm 8 bytes
-	} else {
-		var ary = v1.split(',');
-		for (i = (ary.length-1); 0 <= i; i--) {
-			if (parseInt(T_Maps[ary[i]][5]) <= parseInt(para)) {
-				url = ary[i] ;
+	if (v1.length != 4) {		// multi volumn
+		var v2 = T_Mapx[html_no][no];
+		ary1 = v2.split(';');
+		for (i in ary1) {
+			ary2 = ary1[i].split('=');
+			p1 = parseInt(ary2[1]);
+			if (para <= p1) {
+				v1 = ary2[0];
 				break;
 			}
 		}
 	}
 
-	url = url + '.htm#R' + para;
-	//alert(url);
-	document.write = localStorage.setItem('history_pos', url);
-	PaliHistoryGoUrl(url);
-}
+	url = v1 + '.htm#R' + para;
+	document.write = localStorage.setItem('history_pos', url); 
+	PaliHistoryGoUrl(url); 
+}	
+
 
 /*
 @ CHANGE DEFAULT CSS BACKGROUND COLOR, FONT COLOR, TEXT SIZE

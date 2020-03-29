@@ -41,7 +41,7 @@ function goToc() {
 	var old = '@' + localStorage.getItem('palihistory');
 	var today = new Date();
 	var date = ('0' + (today.getMonth() + 1)).slice(-2) + ('0' + today.getDate()).slice(-2)  + " "+ ('0' + today.getHours()).slice(-2)  + ('0' + today.getMinutes()).slice(-2);
-	document.write = localStorage.setItem('palihistory', date + "_" + html_file + '#' + P_Toc[val] + old) ;	//	p=Id Number
+	document.write = localStorage.setItem('palihistory', date + "_" + html_no + '.htm#' + P_Toc[val] + old) ;	//	p=Id Number
 
 	window.location = '#' + P_Toc[val];	// P_Toc convert to Id
 	Message(P_Toc[val].substring(1));
@@ -58,18 +58,26 @@ function goUrl() {
 
 	if (p1[1].checked == true) {	
 		if (P_Par[val] !== undefined) 	{// Paragraph will convert into Id
-			document.write = localStorage.setItem('palihistory', date + '_' + html_file + '#' + P_Par[val]+ old);
+			document.write = localStorage.setItem('palihistory', date + '_' + html_no + '.htm#' + P_Par[val]+ old);
 			window.location = '#' + P_Par[val];
-			//Message(P_Par[val].substring(1));
-			Get(P_Par[val].substring(1));
-		}	
+			GetTrId(P_Par[val].substring(1));
+		} else {
+			lenx = parseInt(val);
+			for (var i=lenx; 0<i; i--) {
+				if (P_Par[i] != undefined) {
+					window.location = '#' + P_Par[i];
+					GetTrId(P_Par[i].substring(1));
+					break;
+				}
+			}
+		}
 	} else {	// Myanmar Page or PTS Page
 		var url = '';
 		if (p1[0].checked == true) { 	// Myanmar Page
-			document.write = localStorage.setItem('palihistory', date + '_' + html_file + '#M' + html_no + '_' + val + old);
+			document.write = localStorage.setItem('palihistory', date + '_' + html_no + '.htm#M' + html_no + '_' + val + old);
 			url = 'M' + html_no +'_' + val;
 		} else { 						// PTS Page
-			document.write = localStorage.setItem('palihistory', date + '_' + html_file + '#P' + html_no + '_' + val + old);
+			document.write = localStorage.setItem('palihistory', date + '_' + html_no + '.htm#P' + html_no + '_' + val + old);
 			url = 'P' + html_no +'_' + val;
 		} 
 		var tr = document.getElementsByClassName('r1');
@@ -77,7 +85,6 @@ function goUrl() {
 			//alert(tr[i].innerHTML + '  ' + url);
 			if (tr[i].innerHTML.indexOf(url) != -1) {
 				document.getElementById('p' + (i +1)).scrollIntoView();
-				//Message(i);
 				GetTrId(i);
 				break;
 			}
@@ -280,6 +287,7 @@ function QuickJumpTips() {
 
 	//document.getElementById('QuickJump').value = key + ' ';
 }
+
 
 
 function SetupToc() {

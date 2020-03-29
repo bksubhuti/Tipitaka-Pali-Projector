@@ -207,14 +207,14 @@ for (var idx in P_HTM) {
 	s2 = '';
 
 	for (var idy in pali) {
-		if (idy == 20) {
+		if (idy == 999) {
 			break;
 		}
 		//
 		pali[idy] = toTranslate(pali[idy]);
 		if (Sr_run == '1') {
 			for (var Sr_ndx in Sr_ary) {
-				pali[idy] = replacei(pali[idy], toTranslate(Sr_ary[Sr_ndx]), sub=> '<span class="Sr_note">' + toTranslate(Sr_ary[Sr_ndx]) + "</span>");
+				pali[idy] = replacei(pali[idy], toTranslate(Sr_ary[Sr_ndx]), sub=> '<span id="Sr' + idx + '" class="Sr_note">' + toTranslate(Sr_ary[Sr_ndx]) + "</span>");
 			}
 		}
 		s1 = s1 + pali[idy] + tags[idy];
@@ -229,6 +229,7 @@ for (var idx in P_HTM) {
 			s2 = s2 + pali2[idy] + tags2[idy];
 		}
 	}
+
 
 	if (view_right == 'MyNote') {
 		tmp = localStorage.getItem('n' + html_no + '_'+idx);
@@ -344,8 +345,8 @@ document.getElementById('main_content').style.height = (h - tx2 - tx + 20)+ "px"
 if (p == '0') {		// floating
 	RedrawTable(0);
 
-	$('.page4').css('height', '98%');
-	document.getElementById('page4break1').innerHTML = '<br>';
+//	$('.page4').css('height', '98%');
+//	document.getElementById('page4break1').innerHTML = '<br>';
 
 	$('.page5').css('height', '98%');
 } else {
@@ -357,8 +358,8 @@ if (p == '0') {		// floating
 	RedrawTable(parseInt(w));
 
 	//page4 TOC
-	$('.page4').css('width', '98%');
-	$('.page4').css('height', '48%');
+	$('.page4Top').css('width', '98%');
+	$('.page4Bottom').css('width', '98%');
 	document.getElementById('page4break1').innerHTML = '<br>';
 	document.getElementById('page4break2').innerHTML = '<br>';
 	document.getElementById('page4break3').innerHTML = '<br>';
@@ -493,13 +494,23 @@ if (localStorage.getItem('history_pos') != null) {
 					}
 				}
 			} else {			// R= from paragraph number to id
-				pos = '#para' + pos.substring(2);
-				window.location = pos;
+				var tr = document.getElementsByClassName('r1');					
+				lenx = parseInt(pos.substring(2));
+				for (var i=lenx; i<=tr.length; i++) {
+					if (P_Par[i] != undefined) {
+						window.location = '#' + P_Par[i];
+						GetTrId(P_Par[i].substring(1));
+						break;
+					}
+				}
+
+
 			}
-		}
-		document.write = localStorage.setItem('history_pos', '');
+		} 
+		document.write = localStorage.setItem('history_pos', ''); 
 	}
-}
+} 
+
 
 // Change Page4 TOC at none Roman Script
 if (view_left != 'Roman') {

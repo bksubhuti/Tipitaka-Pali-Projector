@@ -45,8 +45,7 @@ function ParagraphDictionary() {
 
 			var get_data = LookupTwoMethod(key, '');	//1 time directly lookup
 			if (get_data != '') {		//found in directly or declension table
-				ret = ret + get_data;
-				// ret = ret + '<hr style="border: 1pt dashed gray;margin-top:10px;margin-bottom:10px;">';
+				ret = ret + get_data + '<hr style="border: 1pt dashed gray;"><br>';
 			} else {		// not found
 				if (key.slice(-1) == 'ṃ') {		// 2 time lookup
 					key2 = key.substring(0, key.length -1);
@@ -54,13 +53,12 @@ function ParagraphDictionary() {
 				}
 				if (get_data != '') {		//found in directly or declension table
 					ret = ret + get_data;
-					//ret = ret + '<hr style="border: 1pt dashed gray;margin-top:10px;margin-bottom:10px;">';
 				} else {		// not found
 					ret = ret + '<div>';
 					ret = ret + '<b style="color:#ff0000;" id="G_' + key + '" onClick="OpenOnce(\'' + key + '\')">' + toTranslate(key) + '&nbsp;</b>&nbsp;&nbsp;';
 					ret = ret + WordAnalysis2(key) + '</div>';
-					// ret = ret + '<hr style="border: 1pt dashed gray;margin-top:10px;margin-bottom:10px;">';
 				}	
+				ret = ret + '<hr style="border: 1pt dashed gray;"><br>';
 			}
 		}	
 		// document.getElementById('page3_desc').innerHTML =  '<span style="font-size:11pt;">Found (' + word_hit + ' + ' + word_hit2 + ') / ' + aryParagraph.length + '&nbsp;(' + parseInt((word_hit + word_hit2)/ aryParagraph.length*100)+ '%)</span><br>' + ret + '<br><br><br>';
@@ -106,7 +104,7 @@ function LookupDictionary(key) {
 	get_data = '';
 	for (var i = 0; i<ary_dict.length; i++) {
 		var d_name = ary_dict[i].substring(1);
-		if ((ary_dict[i] == 'hee1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(ee1, d_name, key);}
+		if ((ary_dict[i] == 'hee1') && (hee1 == '1')) {get_data = get_data + GetValues(ee1, d_name, key);}
 		if ((ary_dict[i] == 'hpc1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pc1, d_name, key);}
 		if ((ary_dict[i] == 'hpc2') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pc2, d_name, key);}
 		if ((ary_dict[i] == 'hpd1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pd1, d_name, key);}

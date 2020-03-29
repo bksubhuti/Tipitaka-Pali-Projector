@@ -1,7 +1,7 @@
 function Sr_Go(val) {
 	if (val == '0') {
 		document.getElementById('Sr_Div').style.visibility = 'hidden';
-		document.write.innerHTML = localStorage.setItem('Sr_id'+ html_no, ''); 
+		document.write = localStorage.setItem('Sr_id'+ html_no, ''); 
 	} else {
 		var old = Number(document.getElementById('Sr_Now').innerHTML);
 		var last = Number(document.getElementById('Sr_Next').innerHTML);
@@ -18,10 +18,21 @@ function Sr_Go(val) {
 		}
 
 		var ary1 = localStorage.getItem('Sr_id'+ html_no).split(';');  
-		document.getElementById('p' + ary1[old]).scrollIntoView(); 
+		document.getElementById('Sr' + ary1[old]).scrollIntoView(); 
 		document.getElementById('Sr_Now').innerHTML = old;
 	} 
 } 
+
+
+function SrClear() {
+	document.getElementById('Sr_Div').style.visibility = 'hidden';
+    for (i in localStorage) {
+    	if (i.substring(0, 3) == 'Sr_') {
+      		document.write = localStorage.setItem(i, '');
+      		document.write = localStorage.removeItem(i);
+      	}	
+    } 
+}
 
 window.onload = function () { 
 	if (localStorage.getItem('Sr_id'+ html_no)) {
@@ -34,7 +45,7 @@ window.onload = function () {
 					break;
 				}
 			}
-			document.getElementById('p' + ary1[i]).scrollIntoView(); 
+			document.getElementById('Sr' + ary1[i]).scrollIntoView(); 
 			document.getElementById('Sr_Now').innerHTML = (Number(i));
 		}
 	}
