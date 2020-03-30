@@ -339,6 +339,15 @@
   
 
 <script>
+
+// If FileURIStrict is set to TRUE it crashes..
+// so I check to see if the variable is set upon a successful read.
+// 5 second delay is set here.
+window.setTimeout(checkFileUri, 5000);
+
+
+
+ 
   var ary = window.location.toString().split('.htm');
   var t_no = ary[0].slice(-1);
   if (t_no == 'x') {
@@ -387,9 +396,7 @@
       }
     }
   }
-</script>
 
-<script>
   mode = localStorage.getItem('contentmode');
   if (!mode) {
     mode = 'PC';
@@ -402,6 +409,40 @@
     document.getElementById('PC').style.display = 'none';
     document.getElementById('iPad').style.display = 'inline';
   }
+
+  // this code sets a session variable FILEURI to OK if it can open and read a file
+  file = 'tipitaka_projector_data/preferences.txt'; 
+    var rawFile = new XMLHttpRequest();
+   try{
+      rawFile.open('GET', file, false);
+    rawFile.onreadystatechange = function () {
+      if (rawFile.readyState === 4) {
+        if (rawFile.status === 200 || rawFile.status == 0) {
+              sessionStorage.setItem('FILEURI', 'OK'); 
+             //alert('WRITING FILEURI IS OK') ;
+              }
+        }
+      }
+      rawFile.send(null);
+    }//try
+    catch{
+      //do nothing.
+    }
+
+  function checkFileUri(){ 
+    //see if file uri is set to false. 
+    // The code here will be called after 5 seconds.
+    // code checks to see if the variable was set from a successful file read
+    
+    var myStatus= 'NOT-OKAY';
+    myStatus = sessionStorage.getItem('FILEURI'); 
+    //alert(myStatus);
+    if ( myStatus != 'OK') {
+      alert("It was detected that you have FileUriStrict set to True. \nTPP needs this set this to False.\nThe Tutorial Folder has a video on how to fix this.");
+    }
+  }
+  
+
 </script>
 
 </body></html>
