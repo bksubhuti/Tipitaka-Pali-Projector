@@ -1355,3 +1355,25 @@ P_Tag[1223]='<p class="b1">&nbsp;*<span class="font10"><a name="M6121_341"></a>[
 P_Tag[1224]='<p class="c3">&nbsp;*</p>*';
 P_Tag[1225]='<p class="b1">&nbsp;*</p>*';
 P_Tag[1226]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+    '1. Ariyasaccappakāsanapaṭhamabhūmi',
+    '____Tatthāyaṃ',//</a> uddānagāthā</option>
+    '____Tattha uddānagāthā',
+    '____Tattha uddānagāthā',
+    '____Tattha imā uddānagāthā',
+    '____Tatthimā uddānagāthā',
+    '2. Sāsanapaṭṭhānadutiyabhūmi',
+    '____Tatthimā uddānagāthā',
+    '3. Suttādhiṭṭhānatatiyabhūmi',
+    '____Tatthimā uddānagāthā',
+    '4. Suttavicayacatutthabhūmi',
+    '____Tatthāyaṃ uddānagāthā',
+    '5. Pañcamabhūmi',
+    '6. Suttatthasamuccayabhūmi',
+    '7. Hārasampātabhūmi',
+    '8. Suttavebhaṅgiyaṃ',
+    '____Tatthimā uddānagāthā'
+];
+   
+   SetupToc();

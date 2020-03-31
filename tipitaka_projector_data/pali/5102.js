@@ -598,3 +598,40 @@ P_Par[246]='p338';
 P_Tag[339]='<p class="b1">&nbsp;*<span class="note">*</span>*</p>*';
 P_Tag[340]='<p class="c3">&nbsp;*</p>*';
 P_Tag[341]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+    '__1. Paṭhamapaṇṇāsakaṃ',
+    '1. Kammakaraṇavaggo',
+    '____1. Vajjasuttaṃ',
+    '____2. Padhānasuttaṃ',
+    '____3. Tapanīyasuttaṃ',
+    '____4. Atapanīyasuttaṃ',
+    '____5. Upaññātasuttaṃ',
+    '____6. Saṃyojanasuttaṃ',
+    '____7. Kaṇhasuttaṃ',
+    '____8. Sukkasuttaṃ',
+    '____9. Cariyasuttaṃ',
+    '____10. Vassūpanāyikasuttaṃ',
+    '2. Adhikaraṇavaggo',
+    '3. Bālavaggo',
+    '4. Samacittavaggo',
+    '5. Parisavaggo',
+    '__2. Dutiyapaṇṇāsakaṃ',
+    '(6) 1. Puggalavaggo',
+    '(7) 2. Sukhavaggo',
+    '(8) 3. Sanimittavaggo',
+    '(9) 4. Dhammavaggo',
+    '(10) 5. Bālavaggo',
+    '__3. Tatiyapaṇṇāsakaṃ',
+    '(11) 1. Āsāduppajahavaggo',
+    '(12) 2. Āyācanavaggo',
+    '(13) 3. Dānavaggo',
+    '(14) 4. Santhāravaggo',
+    '(15) 5. Samāpattivaggo',
+    '1. Kodhapeyyālaṃ',
+    '2. Akusalapeyyālaṃ',
+    '3. Vinayapeyyālaṃ',
+    '4. Rāgapeyyālaṃ'
+     ];
+        
+        SetupToc();

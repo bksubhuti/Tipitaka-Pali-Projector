@@ -2734,3 +2734,25 @@ P_Tag[2941]='<p class="g8">&nbsp;*</p>*';
 P_Tag[2942]='<p class="c3">&nbsp;*</p>*';
 P_Tag[2943]='<p class="c3">&nbsp;*</p>*';
 P_Tag[2944]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+    '__1. Aṭṭhakavaggo',
+    '1. Kāmasuttaniddeso',
+    '2. Guhaṭṭhakasuttaniddeso',
+    '3. Duṭṭhaṭṭhakasuttaniddeso',
+    '4. Suddhaṭṭhakasuttaniddeso',
+    '5. Paramaṭṭhakasuttaniddeso',
+    '6. Jarāsuttaniddeso',
+    '7. Tissametteyyasuttaniddeso',
+    '8. Pasūrasuttaniddeso',
+    '9. Māgaṇḍiyasuttaniddeso',
+    '10. Purābhedasuttaniddeso',
+    '11. Kalahavivādasuttaniddeso',
+    '12. Cūḷaviyūhasuttaniddeso',
+    '13. Mahāviyūhasuttaniddeso',
+    '14. Tuvaṭṭakasuttaniddeso',
+    '15. Attadaṇḍasuttaniddeso',
+    '16. Sāriputtasuttaniddeso'
+     ];
+        
+        SetupToc();

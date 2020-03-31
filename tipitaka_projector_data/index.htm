@@ -411,7 +411,7 @@ window.setTimeout(checkFileUri, 5000);
   }
 
   // this code sets a session variable FILEURI to OK if it can open and read a file
-  file = 'tipitaka_projector_data/preferences.txt'; 
+  file = 'preferences.txt'; 
     var rawFile = new XMLHttpRequest();
    try{
       rawFile.open('GET', file, false);
@@ -420,7 +420,7 @@ window.setTimeout(checkFileUri, 5000);
         if (rawFile.status === 200 || rawFile.status == 0) {
               sessionStorage.setItem('FILEURI', 'OK'); 
              //alert('WRITING FILEURI IS OK') ;
-              }
+            }
         }
       }
       rawFile.send(null);

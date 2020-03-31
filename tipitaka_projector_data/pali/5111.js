@@ -943,3 +943,34 @@ P_Tag[247]='<p class="g5">&nbsp;*<span class="note">*</span>*</p>*';
 P_Tag[248]='<p class="g8">&nbsp;*<span class="note">*</span>*<span class="note">*</span>*</p>*';
 P_Tag[249]='<p class="c3">&nbsp;*</p>*';
 P_Tag[250]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+    '1. Nissayavaggo',
+    '____1. Kimatthiyasuttaṃ',
+    '____2. Cetanākaraṇīyasuttaṃ',
+    '____3. Paṭhamaupanisāsuttaṃ',
+    '____4. Dutiyaupanisāsuttaṃ',
+    '____5. Tatiyaupanisāsuttaṃ',
+    '____6. Byasanasuttaṃ',
+    '____7. Saññāsuttaṃ',
+    '____8. Manasikārasuttaṃ',
+    '____9. Saddhasuttaṃ',
+    '____10. Moranivāpasuttaṃ',
+    '2. Anussativaggo',
+    '____1. Paṭhamamahānāmasuttaṃ',
+    '____2. Dutiyamahānāmasuttaṃ',
+    '____3. Nandiyasuttaṃ',
+    '____4. Subhūtisuttaṃ',
+    '____5. Mettāsuttaṃ',
+    '____6. Aṭṭhakanāgarasuttaṃ',
+    '____7. Gopālasuttaṃ',
+    '____8. Paṭhamasamādhisuttaṃ',
+    '____9. Dutiyasamādhisuttaṃ',
+    '____10. Tatiyasamādhisuttaṃ',
+    '____11. Catutthasamādhisuttaṃ',
+    '3. Sāmaññavaggo',
+    '4. Rāgapeyyālaṃ'
+    ];
+        
+    SetupToc();
+    

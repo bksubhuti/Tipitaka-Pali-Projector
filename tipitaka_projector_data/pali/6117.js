@@ -2485,3 +2485,52 @@ P_Tag[2771]='<p class="g6">&nbsp;*<span class="note">*</span>*</p>*';
 P_Tag[2772]='<p class="g5">&nbsp;*</p>*';
 P_Tag[2773]='<p class="g8">&nbsp;*</p>*';
 P_Tag[2774]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+    '____Vatthugāthā',
+    '____1. Ajitamāṇavapucchā',
+    '____2. Tissametteyyamāṇavapucchā',
+    '____3. Puṇṇakamāṇavapucchā',
+    '____4. Mettagūmāṇavapucchā',
+    '____5. Dhotakamāṇavapucchā',
+    '____6. Upasīvamāṇavapucchā',
+    '____7. Nandamāṇavapucchā',
+    '____8. Hemakamāṇavapucchā',
+    '____9. Todeyyamāṇavapucchā',
+    '____10. Kappamāṇavapucchā',
+    '____11. Jatukaṇṇimāṇavapucchā',
+    '____12. Bhadrāvudhamāṇavapucchā',
+    '____13. Udayamāṇavapucchā',
+    '____14. Posālamāṇavapucchā',
+    '____15. Mogharājamāṇavapucchā',
+    '____16. Piṅgiyamāṇavapucchā',
+    '____17. Pārāyanatthutigāthā',
+    '____18. Pārāyanānugītigāthā',
+    'Pārāyanavagganiddeso',
+    '____1. Ajitamāṇavapucchāniddeso',
+    '____2. Tissametteyyamāṇavapucchāniddeso',
+    '____3. Puṇṇakamāṇavapucchāniddeso',
+    '____4. Mettagūmāṇavapucchāniddeso',
+    '____5. Dhotakamāṇavapucchāniddeso',
+    '____6. Upasīvamāṇavapucchāniddeso',
+    '____7. Nandamāṇavapucchāniddeso',
+    '____8. Hemakamāṇavapucchāniddeso',
+    '____9. Todeyyamāṇavapucchāniddeso',
+    '____10. Kappamāṇavapucchāniddeso',
+    '____11. Jatukaṇṇimāṇavapucchāniddeso',
+    '____12. Bhadrāvudhamāṇavapucchāniddeso',
+    '____13. Udayamāṇavapucchāniddeso',
+    '____14. Posālamāṇavapucchāniddeso',
+    '____15. Mogharājamāṇavapucchāniddeso',
+    '____16. Piṅgiyamāṇavapucchāniddeso',
+    '____17. Pārāyanatthutigāthāniddeso',
+    '____18. Pārāyanānugītigāthāniddeso',
+    'Khaggavisāṇasutto',
+    '__Khaggavisāṇasuttaniddeso',
+    '____Paṭhamavaggo',
+    '____Dutiyavaggo',
+    '____Tatiyavaggo',
+    '____Catutthavaggo'
+     ];
+        
+        SetupToc();

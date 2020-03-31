@@ -998,3 +998,35 @@ P_Tag[1418]='<p class="g6">&nbsp;*</p>*';
 P_Tag[1419]='<p class="g7">&nbsp;*</p>*';
 P_Tag[1420]='<p class="g8">&nbsp;*</p>*';
 P_Tag[1421]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+    '1. Yamakavaggo',
+    '2. Appamādavaggo',
+    '3. Cittavaggo',
+    '4. Pupphavaggo',
+    '5. Bālavaggo',
+    '6. Paṇḍitavaggo',
+    '7. Arahantavaggo',
+    '8. Sahassavaggo',
+    '9. Pāpavaggo',
+    '10. Daṇḍavaggo',
+    '11. Jarāvaggo',
+    '12. Attavaggo',
+    '13. Lokavaggo',
+    '14. Buddhavaggo',
+    '15. Sukhavaggo',
+    '16. Piyavaggo',
+    '17. Kodhavaggo',
+    '18. Malavaggo',
+    '19. Dhammaṭṭhavaggo',
+    '20. Maggavaggo',
+    '21. Pakiṇṇakavaggo',
+    '22. Nirayavaggo',
+    '23. Nāgavaggo',
+    '24. Taṇhāvaggo',
+    '25. Bhikkhuvaggo',
+    '26. Brāhmaṇavaggo'
+    ];
+        
+    SetupToc();
+    

@@ -1708,3 +1708,34 @@ P_Tag[1656]='<p class="b1">&nbsp;*<span class="bld">*</span>*<span class="bld">*
 P_Tag[1657]='<p class="c3">&nbsp;*</p>*';
 P_Tag[1658]='<p class="c3">&nbsp;*</p>*';
 P_Tag[1659]='<p class="c3">&nbsp;*</p>*';
+
+
+var TOC_Dropdown_Items = [
+    '____Ganthārambhakathāvaṇṇanā',
+    '__Bāhiranidānakathā',
+    '____Paṭhamamahāsaṅgītikathāvaṇṇanā',
+    '____Dutiyasaṅgītikathāvaṇṇanā',
+    '____Tatiyasaṅgītikathāvaṇṇanā',
+    '____Ācariyaparamparakathāvaṇṇanā',
+    '____Vinayānisaṃsakathāvaṇṇanā',
+    'Verañjakaṇḍavaṇṇanā',
+    '____Paṭhamajjhānakathā',
+    '____Dutiyajjhānakathā',
+    '____Tatiyajjhānakathā',
+    '____Catutthajjhānakathā',
+    '____Pubbenivāsakathā',
+    '____Dibbacakkhuñāṇakathā',
+    '____Āsavakkhayañāṇakathā',
+    '____Desanānumodanakathā',
+    '____Pasannākārakathā',
+    '____Saraṇagamanakathā',
+    '____Saraṇagamanaphalakathā',
+    '____Saraṇagamanasaṃkilesabhedakathā',
+    '____Upāsakattapaṭivedanākathā',
+    '____Dubbhikkhakathā',
+    '____Mahāmoggallānassa sīhanādakathā',
+    '____Vinayapaññattiyācanakathā',
+    '____Buddhāciṇṇakathā'
+    ];
+    
+    SetupToc();

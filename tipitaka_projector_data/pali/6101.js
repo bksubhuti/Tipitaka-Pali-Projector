@@ -239,3 +239,17 @@ P_Tag[283]='<p class="g5">&nbsp;*<span class="font10"><a name="P6101_9"></a>[PTS
 P_Tag[284]='<p class="g8">&nbsp;*<span class="note">*</span>*</p>*';
 P_Tag[285]='<p class="c3">&nbsp;*</p>*';
 P_Tag[286]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+    '1. Saraṇattayaṃ',
+    '2. Dasasikkhāpadaṃ',
+    '3. Dvattiṃsākāro',
+    '4. Kumārapañhā',
+    '5. Maṅgalasuttaṃ',
+    '6. Ratanasuttaṃ',
+    '7. Tirokuṭṭasuttaṃ',
+    '8. Nidhikaṇḍasuttaṃ',
+    '9. Mettasuttaṃ'
+    ];
+        
+    SetupToc();
