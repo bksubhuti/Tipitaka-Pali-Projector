@@ -404,3 +404,9 @@ P_Tag[498]='<p class="g5">&nbsp;*</p>*';
 P_Tag[499]='<p class="g6">&nbsp;*</p>*';
 P_Tag[500]='<p class="g7">&nbsp;*</p>*';
 P_Tag[501]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Telakaṭāhagāthā '
+	];
+    
+    SetupToc();

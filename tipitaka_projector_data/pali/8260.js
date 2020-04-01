@@ -1179,3 +1179,9 @@ P_Tag[1645]='<p class="g5">&nbsp;*</p>*';
 P_Tag[1646]='<p class="g8">&nbsp;*</p>*';
 P_Tag[1648]='<p class="g5">&nbsp;*</p>*';
 P_Tag[1649]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Jinacaritaya '
+	];
+    
+    SetupToc();

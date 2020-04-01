@@ -2037,3 +2037,45 @@ P_Tag[1670]='<p class="g8">&nbsp;*</p>*';
 P_Tag[1671]='<p class="g5">&nbsp;*</p>*';
 P_Tag[1672]='<p class="g8">&nbsp;*</p>*';
 P_Tag[1673]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Ganthārambhakathā',
+	'1. Divāseyyavinicchayakathā',
+	'2. Parikkhāravinicchayakathā',
+	'3. Bhesajjādikaraṇavinicchayakathā',
+	'4. Viññattivinicchayakathā',
+	'5. Kulasaṅgahavinicchayakathā',
+	'6. Macchamaṃsavinicchayakathā',
+	'7. Anāmāsavinicchayakathā',
+	'8. Adhiṭṭhānavikappanavinicchayakathā',
+	'9. Cīvaravippavāsavinicchayakathā',
+	'10. Bhaṇḍapaṭisāmanavinicchayakathā',
+	'11. Kayavikkayasamāpattivinicchayakathā',
+	'12. Rūpiyādipaṭiggahaṇavinicchayakathā',
+	'13. Dānalakkhaṇādivinicchayakathā',
+	'14. Pathavīkhaṇanavinicchayakathā',
+	'15. Bhūtagāmavinicchayakathā',
+	'16. Sahaseyyavinicchayakathā',
+	'17. Mañcapīṭhādisaṅghikasenāsanesu paṭipajjitabbavinicchayakathā',
+	'18. Kālikavinicchayakathā',
+	'19. Kappiyabhūmivinicchayakathā',
+	'20. Paṭiggahaṇavinicchayakathā',
+	'21. Pavāraṇāvinicchayakathā',
+	'22. Pabbajjāvinicchayakathā',
+	'23. Nissayavinicchayakathā',
+	'24. Sīmāvinicchayakathā',
+	'25. Uposathapavāraṇāvinicchayakathā',
+	'26. Vassūpanāyikavinicchayakathā',
+	'27. Upajjhāyādivattavinicchayakathā',
+	'28. Catupaccayabhājanīyavinicchayakathā',
+	'29. Kathinatthāravinicchayakathā',
+	'30. Garubhaṇḍavinicchayakathā',
+	'31. Codanādivinicchayakathā',
+	'32. Garukāpattivuṭṭhānavinicchayakathā',
+	'33. Kammākammavinicchayakathā',
+	'____Pakiṇṇakakaṇḍamātikā',
+	'34. Pakiṇṇakavinicchayakathā',
+	'____Nigamanakathā'
+	];
+    
+    SetupToc();

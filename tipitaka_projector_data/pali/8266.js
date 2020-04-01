@@ -64,3 +64,9 @@ P_Tag[80]='<p class="g5">&nbsp;*</p>*';
 P_Tag[81]='<p class="g6">&nbsp;*</p>*';
 P_Tag[82]='<p class="g7">&nbsp;*</p>*';
 P_Tag[83]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Saddabindu '
+	];
+    
+    SetupToc();

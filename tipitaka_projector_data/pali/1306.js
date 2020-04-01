@@ -1393,3 +1393,45 @@ P_Tag[1177]='<p class="c3">&nbsp;*</p>*';
 P_Tag[1178]='<p class="c3">&nbsp;*</p>*';
 P_Tag[1179]='<p class="c3">&nbsp;*</p>*';
 P_Tag[1180]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'____Muttahārādinayagāthā',
+	'____Sīhanivattananayagāthā',
+	'____Anotattodakāvattanayagāthā',
+	'____Catudīpacakkavattananayagāthā',
+	'____Abyapetacatupādaādiyamakagāthā',
+	'____Byapetacatupādaādiantayamakagāthā',
+	'__Ganthārambhakathāvaṇṇanā',
+	'1. Divāseyyavinicchayakathā',
+	'2. Parikkhāravinicchayakathā',
+	'3. Bhesajjādikaraṇavinicchayakathā',
+	'4. Viññattivinicchayakathā',
+	'5. Kulasaṅgahavinicchayakathā',
+	'6. Macchamaṃsavinicchayakathā',
+	'7. Anāmāsavinicchayakathā',
+	'8. Adhiṭṭhānavikappanavinicchayakathā',
+	'9. Cīvaravippavāsavinicchayakathā',
+	'10. Bhaṇḍapaṭisāmanavinicchayakathā',
+	'11. Kayavikkayasamāpattivinicchayakathā',
+	'12. Rūpiyādipaṭiggahaṇavinicchayakathā',
+	'13. Dānalakkhaṇādivinicchayakathā',
+	'____Vissāsaggāhalakkhaṇavinicchayakathā',
+	'____Lābhapariṇāmanavinicchayakathā',
+	'14. Pathavīkhaṇanavinicchayakathā',
+	'15. Bhūtagāmavinicchayakathā',
+	'16. Sahaseyyavinicchayakathā',
+	'17. Mañcapīṭhādisaṅghikasenāsanesupaṭipajjitabbavinicchayakathā',
+	'18. Kālikavinicchayakathā',
+	'19. Kappiyabhūmivinicchayakathā',
+	'20. Paṭiggahaṇavinicchayakathā',
+	'21. Pavāraṇāvinicchayakathā',
+	'22. Pabbajjāvinicchayakathā',
+	'__Upasampadāvinicchayakathā',
+	'23. Nissayavinicchayakathā',
+	'24. Sīmāvinicchayakathā',
+	'__Sīmābandhanavinicchayakathā',
+	'25. Uposathapavāraṇāvinicchayakathā',
+	'26. Vassūpanāyikavinicchayakathā'
+	];
+    
+    SetupToc();

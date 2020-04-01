@@ -281,3 +281,39 @@ P_Tag[246]='<p class="b1">&nbsp;*</p>*';
 P_Tag[247]='<p class="b1">&nbsp;*<span class="font10"><a name="M8216_506"></a>[Pg.506]</span>*</a>*</p>*';
 P_Tag[248]='<p class="b1">&nbsp;*</p>*';
 P_Tag[249]='<p class="b1">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'1. Hetupaccayo',
+	'2. Ārammaṇapaccayo',
+	'3. Adhipatipaccayo',
+	'4. Anantarapaccayo',
+	'5. Samanantarapaccayo',
+	'6. Sahajātapaccayo',
+	'7. Aññamaññapaccayo',
+	'8. Nissayapaccayo',
+	'9. Upanissayapaccayo',
+	'10. Purejātapaccayo',
+	'11. Pacchājātapaccayo',
+	'12. Āsevanapaccayo',
+	'13. Kammapaccayo',
+	'14. Vipākapaccayo',
+	'15. Āhārapaccayo',
+	'16. Indriyapaccayo',
+	'17. Jhānapaccayo',
+	'18. Maggapaccayo',
+	'19. Sampayuttapaccayo',
+	'20. Vippayuttapaccayo',
+	'21. Atthipaccayo',
+	'22. Natthipaccayo',
+	'____23. Vigatapaccayo',
+	'____24. Avigatapaccayo',
+	'Paccayasabhāgo',
+	'____Paccayaghaṭanānayo',
+	'____Pañcaviññāṇesu paccayaghaṭanānayo',
+	'____Ahetuka cittuppādesu paccayaghaṭanānayo',
+	'____Akusalacittuppādesu paccayaghaṭanānayo',
+	'____Cittuppādesu paccayaghaṭanānayo',
+	'____Rūpakalāpesu paccayaghaṭanānayo'
+	];
+    
+    SetupToc();

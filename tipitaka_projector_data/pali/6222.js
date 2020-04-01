@@ -2904,3 +2904,10 @@ P_Tag[3685]='<p class="g6">&nbsp;*</p>*';
 P_Tag[3686]='<p class="g8">&nbsp;*</p>*';
 P_Tag[3687]='<p class="c3">&nbsp;*</p>*';
 P_Tag[3688]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'__(Chaṭṭho bhāgo)',
+	'22. Mahānipāto'
+	];
+    
+    SetupToc();

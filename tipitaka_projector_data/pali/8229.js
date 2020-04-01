@@ -4873,3 +4873,48 @@ P_Tag[3483]='<p class="b1">&nbsp;*<span class="font10"><a name="M8229_315"></a>[
 P_Tag[3484]='<p class="c3">&nbsp;*</p>*';
 P_Tag[3485]='<p class="c3">&nbsp;*</p>*';
 P_Tag[3486]='<p class="c3">&nbsp;*<span class="bld">*</span>*</p>*';
+
+var TOC_Dropdown_Items = [
+	'____1. Sandhi',
+	'____2. Nāma',
+	'____3. Kāraka',
+	'____4. Samāsa',
+	'____5. Taddhita',
+	'____6. Ākhyāti',
+	'____7. Kibbidhāna',
+	'____8. Uṇādikappa',
+	'__Mahākaccāyanasaddāpāṭha',
+	'1. Sandhikappa',
+	'__Paṭhamakaṇḍa',
+	'____Dutiyakaṇḍa',
+	'____Tatiyakaṇḍa',
+	'____Catutthakaṇḍa',
+	'____Pañcamakaṇḍa',
+	'2. Nāmakappa',
+	'____Paṭhamakaṇḍa',
+	'____Dutiyakaṇḍa',
+	'____Tatiyakaṇḍa',
+	'____Catutthakaṇḍa',
+	'____Pañcamakaṇḍa',
+	'3. Kārakakappa',
+	'____Chaṭṭhakaṇḍa',
+	'4. Samāsakappa',
+	'____Sattamakaṇḍa',
+	'5. Taddhitakappa',
+	'____Aṭṭhamakaṇḍa',
+	'6. Ākhyātakappa',
+	'____Paṭhamakaṇḍa',
+	'____Dutiyakaṇḍa',
+	'____Tatiyakaṇḍa',
+	'____Catutthakaṇḍa',
+	'7. Kibbidhānakappa',
+	'____Paṭhamakaṇḍa',
+	'____Dutiyakaṇḍa',
+	'____Tatiyakaṇḍa',
+	'____Catutthakaṇḍa',
+	'____Pañcamakaṇḍa',
+	'8. Uṇādikappa',
+	'____Chaṭṭhakaṇḍa'
+	];
+    
+    SetupToc();

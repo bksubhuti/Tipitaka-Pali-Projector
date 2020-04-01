@@ -489,3 +489,9 @@ P_Tag[594]='<p class="g5">&nbsp;*<span class="font10"><a name="M8220_86"></a>[Pg
 P_Tag[595]='<p class="g6">&nbsp;*</p>*';
 P_Tag[596]='<p class="g7">&nbsp;*</p>*';
 P_Tag[597]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Suttavandanā'
+	];
+    
+    SetupToc();

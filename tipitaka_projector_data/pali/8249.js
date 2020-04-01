@@ -1565,3 +1565,27 @@ P_Tag[1844]='<p class="g5">&nbsp;*<span class="font10"><a name="M8249_598"></a>[
 P_Tag[1845]='<p class="g6">&nbsp;*</p>*';
 P_Tag[1846]='<p class="g7">&nbsp;*</p>*';
 P_Tag[1847]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'__Naradakkhadīpanī',
+	'Paṇāma',
+	'Naradakkhadīpakassa,',
+	'Matthanā',
+	'Āsīsa',
+	'Abhiyācaka',
+	'Paññā-niddesa',
+	'Cāritta-niddesa',
+	'Gharāvāsa-niddesa',
+	'Sādhujana-niddesa',
+	'____Tatīya sādhunara',
+	'____Catuttha sādhunara',
+	'Kāyakhamanīya-niddesa',
+	'Pakiṇṇaka-niddesa',
+	'Sīla-niddesa',
+	'Naradakkha thomanā āsīsa',
+	'____3. Gāthā',
+	'__Naradakkha thomanā āsīsa',
+	'____2. Gāthā'
+	];
+    
+    SetupToc();

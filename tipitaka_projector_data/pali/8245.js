@@ -717,3 +717,15 @@ P_Tag[873]='<p class="g5">&nbsp;*</p>*';
 P_Tag[874]='<p class="g6">&nbsp;*</p>*';
 P_Tag[875]='<p class="g7">&nbsp;*</p>*';
 P_Tag[876]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'1. Paṇḍitakaṇḍo',
+	'Sujanakaṇḍo',
+	'4. Bāladujjanakaṇḍo',
+	'4. Mittakaṇḍo',
+	'5. Itthikaṇḍo',
+	'6. Rājakaṇḍo',
+	'7. Pakiṇṇakakaṇḍo'
+	];
+    
+    SetupToc();

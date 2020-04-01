@@ -102,3 +102,25 @@ P_Tag[81]='<p class="g5">&nbsp;*</p>*';
 P_Tag[82]='<p class="c3">&nbsp;*</p>*';
 P_Tag[83]='<p class="c3">&nbsp;*</p>*';
 P_Tag[84]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Bhikkhunīpātimokkhavaṇṇanā',
+	'Pārājikakaṇḍaṃ',
+	'Saṅghādisesakaṇḍaṃ',
+	'____1. Ussayavādikāsikkhāpadavaṇṇanā',
+	'____2. Corivuṭṭhāpikāsikkhāpadavaṇṇanā',
+	'____3. Ekagāmantaragamanasikkhāpadavaṇṇanā',
+	'Nissaggiyakaṇḍaṃ',
+	'Pācittiyakaṇḍaṃ',
+	'____1. Paṭhamavaggavaṇṇanā',
+	'____2. Dutiyavaggavaṇṇanā',
+	'____3. Tatiyavaggavaṇṇanā',
+	'____4. Catutthavaggavaṇṇanā',
+	'____5. Pañcamavaggavaṇṇanā',
+	'____6. Chaṭṭhavaggavaṇṇanā',
+	'____8. Aṭṭhamavaggavaṇṇanā',
+	'____9. Navamavaggavaṇṇanā',
+	'____Samuṭṭhānavinicchayavaṇṇanā'
+	];
+    
+    SetupToc();

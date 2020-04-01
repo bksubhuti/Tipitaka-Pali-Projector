@@ -152,3 +152,34 @@ P_Par[456]='p96';
 P_Tag[97]='<p class="b1">&nbsp;*<span class="bld">*</span>*<span class="bld">*</span>*<span class="bld">*</span>*</p>*';
 P_Tag[98]='<p class="c3">&nbsp;*</p>*';
 P_Tag[99]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Dhātukathāpakaraṇa-mūlaṭīkā',
+	'____Ganthārambhavaṇṇanā',
+	'____1. Mātikāvaṇṇanā',
+	'____1. Nayamātikāvaṇṇanā',
+	'____2. Abbhantaramātikāvaṇṇanā',
+	'____3. Nayamukhamātikāvaṇṇanā',
+	'____4. Lakkhaṇamātikāvaṇṇanā',
+	'____5. Bāhiramātikāvaṇṇanā',
+	'____2. Niddesavaṇṇanā',
+	'__1. Paṭhamanayo saṅgahāsaṅgahapadavaṇṇanā',
+	'____1. Khandhapadavaṇṇanā',
+	'____Āyatanapadādivaṇṇanā',
+	'____6. Paṭiccasamuppādavaṇṇanā',
+	'____2. Dutiyanayo saṅgahitenaasaṅgahitapadavaṇṇanā',
+	'____3. Tatiyanayo asaṅgahitenasaṅgahitapadavaṇṇanā',
+	'____4. Catutthanayo saṅgahitenasaṅgahitapadavaṇṇanā',
+	'____5. Pañcamanayo asaṅgahitenaasaṅgahitapadavaṇṇanā',
+	'____6. Chaṭṭhanayo sampayogavippayogapadavaṇṇanā',
+	'____7. Sattamanayo sampayuttenavippayuttapadavaṇṇanā',
+	'____8. Aṭṭhamanayo vippayuttenasampayuttapadavaṇṇanā',
+	'____9. Navamanayo sampayuttenasampayuttapadavaṇṇanā',
+	'____10. Dasamanayo vippayuttenavippayuttapadavaṇṇanā',
+	'____11. Ekādasamanayo saṅgahitenasampayuttavippayuttapadavaṇṇanā',
+	'____12. Dvādasamanayo sampayuttenasaṅgahitāsaṅgahitapadavaṇṇanā',
+	'____13. Terasamanayo asaṅgahitenasampayuttavippayuttapadavaṇṇanā',
+	'____14. Cuddasamanayo vippayuttenasaṅgahitāsaṅgahitapadavaṇṇanā'
+	];
+    
+    SetupToc();

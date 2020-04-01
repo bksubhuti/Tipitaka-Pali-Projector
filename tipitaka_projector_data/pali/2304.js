@@ -1742,3 +1742,52 @@ P_Tag[1571]='<p class="c3">&nbsp;*</p>*';
 P_Tag[1572]='<p class="b1">&nbsp;*<span class="bld">*</span>*</p>*';
 P_Tag[1573]='<p class="c3">&nbsp;*</p>*';
 P_Tag[1574]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'____Paṭhamamahāsaṅgītikathāvaṇṇanā',
+	'1. Brahmajālasuttaṃ',
+	'____Paribbājakakathāvaṇṇanā',
+	'____Cūḷasīlavaṇṇanā',
+	'____Majjhimasīlavaṇṇanā',
+	'____Mahāsīlavaṇṇanā',
+	'____Pubbantakappikasassatavādavaṇṇanā',
+	'____Ekaccasassatavādavaṇṇanā',
+	'____Antānantavādavaṇṇanā',
+	'____Amarāvikkhepavādavaṇṇanā',
+	'____Adhiccasamuppannavādavaṇṇanā',
+	'____Aparantakappikavādavaṇṇanā',
+	'____Saññīvādavaṇṇanā',
+	'____Asaññīnevasaññīnāsaññīvādavaṇṇanā',
+	'____Ucchedavādavaṇṇanā',
+	'____Diṭṭhadhammanibbānavādavaṇṇanā',
+	'____Paritassitavipphanditavāravaṇṇanā',
+	'____Phassapaccayavāravaṇṇanā',
+	'____Diṭṭhigatikādhiṭṭhānavaṭṭakathāvaṇṇanā',
+	'____Vivaṭṭakathādivaṇṇanā',
+	'____Pakaraṇanayavaṇṇanā',
+	'____Soḷasahāravaṇṇanā',
+	'____Desanāhāravaṇṇanā',
+	'____Vicayahāravaṇṇanā',
+	'____Yuttihārasaṃvaṇṇanā',
+	'____Padaṭṭhānahāravaṇṇanā',
+	'____Lakkhaṇahāravaṇṇanā',
+	'____Catubyūhahāravaṇṇanā',
+	'____Āvattahāravaṇṇanā',
+	'____Vibhattihāravaṇṇanā',
+	'____Parivattanahāravaṇṇanā',
+	'____Vevacanahāravaṇṇanā',
+	'____Paññattihāravaṇṇanā',
+	'____Otaraṇahāravaṇṇanā',
+	'____Sodhanahāravaṇṇanā',
+	'____Adhiṭṭhānahāravaṇṇanā',
+	'____Parikkhārahāravaṇṇanā',
+	'____Samāropanahāravaṇṇanā',
+	'____Pañcavidhanayavaṇṇanā',
+	'____Nandiyāvaṭṭanayavaṇṇanā',
+	'____Tipukkhalanayavaṇṇanā',
+	'____Sīhavikkīḷitanayavaṇṇanā',
+	'____Disālocanaaṅkusanayadvayavaṇṇanā',
+	'____Sāsanapaṭṭhānavaṇṇanā'
+	];
+    
+    SetupToc();

@@ -378,3 +378,9 @@ P_Tag[361]='<p class="g5">&nbsp;*</p>*';
 P_Tag[362]='<p class="g6">&nbsp;*</p>*';
 P_Tag[363]='<p class="g7">&nbsp;*</p>*';
 P_Tag[364]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Hatthavanagallavihāra '
+	];
+    
+    SetupToc();

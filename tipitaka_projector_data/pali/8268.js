@@ -2257,3 +2257,9 @@ P_Tag[3053]='<p class="g8">&nbsp;*</p>*';
 P_Tag[3055]='<p class="g5">&nbsp;*</p>*';
 P_Tag[3056]='<p class="g8">&nbsp;*</p>*';
 P_Tag[3057]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Samantakūṭavaṇṇanā '
+	];
+    
+    SetupToc();

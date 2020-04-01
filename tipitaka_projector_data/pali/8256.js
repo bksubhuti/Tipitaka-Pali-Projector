@@ -1231,3 +1231,9 @@ P_Tag[1639]='<p class="g5">&nbsp;*</p>*';
 P_Tag[1640]='<p class="g6">&nbsp;*</p>*';
 P_Tag[1641]='<p class="g7">&nbsp;*</p>*';
 P_Tag[1642]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Dāṭhāvaṃso '
+	];
+    
+    SetupToc();

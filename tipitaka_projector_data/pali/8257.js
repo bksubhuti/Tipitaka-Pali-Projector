@@ -96,3 +96,9 @@ P_Tag[114]='<p class="g8">&nbsp;*</p>*';
 P_Tag[116]='<p class="g5">&nbsp;*</p>*';
 P_Tag[117]='<p class="g8">&nbsp;*</p>*';
 P_Tag[118]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Dhātupāṭha '
+	];
+    
+    SetupToc();

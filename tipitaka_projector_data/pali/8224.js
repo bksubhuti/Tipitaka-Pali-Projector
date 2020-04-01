@@ -2460,3 +2460,9 @@ P_Tag[2455]='<p class="g5">&nbsp;*</p>*';
 P_Tag[2456]='<p class="g8">&nbsp;*</p>*';
 P_Tag[2457]='<p class="g5">&nbsp;*</p>*';
 P_Tag[2458]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Buddhaguṇagāthāvalī'
+	];
+    
+    SetupToc();

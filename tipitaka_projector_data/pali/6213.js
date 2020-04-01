@@ -2610,3 +2610,51 @@ P_Par[657]='p2138';
 P_Tag[2139]='<p class="c3">&nbsp;*</p>*';
 P_Tag[2140]='<p class="c3">&nbsp;*</p>*';
 P_Tag[2141]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'__(Paṭhamo bhāgo)',
+	'____Nidānakathā',
+	'____Sumedhakathā',
+	'____Dīpaṅkaro buddho',
+	'____Koṇḍañño buddho',
+	'____Maṅgalo buddho',
+	'____Sumano buddho',
+	'____Revato buddho',
+	'____Sobhito buddho',
+	'____Anomadassī buddho',
+	'____Padumo buddho',
+	'____Nārado buddho',
+	'____Padumuttaro buddho',
+	'____Sumedho buddho',
+	'____Sujāto buddho',
+	'____Piyadassī buddho',
+	'____Atthadassī buddho',
+	'____Dhammadassī buddho',
+	'____Siddhattho buddho',
+	'____Tisso buddho',
+	'____Phusso buddho',
+	'____Vipassī buddho',
+	'____Sikhī buddho',
+	'____Vessabhū buddho',
+	'____Kakusandho buddho',
+	'____Koṇāgamano buddho',
+	'____Kassapo buddho',
+	'____Gotamo buddho',
+	'__Therāpadānaṃ',
+	'1. Buddhavaggo',
+	'____Abbhantaranidānavaṇṇanā',
+	'____1. Buddhaapadānavaṇṇanā',
+	'____2.Paccekabuddhaapadānavaṇṇanā',
+	'____3-1. Sāriputtattheraapadānavaṇṇanā',
+	'____3-2. Mahāmoggallānattheraapadānavaṇṇanā',
+	'____3-3. Mahākassapattheraapadānavaṇṇanā',
+	'____3-4. Anuruddhattheraapadānavaṇṇanā',
+	'____3-5. Puṇṇamantāṇiputtattheraapadānavaṇṇanā',
+	'____3-6. Upālittheraapadānavaṇṇanā',
+	'____3-7. Aññāsikoṇḍaññattheraapadānavaṇṇanā',
+	'____3-8. Piṇḍolabhāradvājattheraapadānavaṇṇanā',
+	'____3-9. Khadiravaniyattheraapadānavaṇṇanā',
+	'____3-10. Ānandattheraapadānavaṇṇanā'
+	];
+    
+    SetupToc();

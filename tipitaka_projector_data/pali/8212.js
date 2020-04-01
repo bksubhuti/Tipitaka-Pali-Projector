@@ -533,3 +533,39 @@ P_Tag[501]='<p class="b1">&nbsp;*<span class="font10"><a name="M8212_256"></a>[P
 P_Tag[502]='<p class="sc">&nbsp;*</p>*';
 P_Toc[30]='p502';
 P_Tag[503]='<p class="b1">&nbsp;*<span class="font10"><a name="M8212_260"></a>[Pg.260]</span>*</a>*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Aṭṭhakathā',
+	'____Saṃgāyanassa pucchā-vissajjanā',
+	'____Dutiyasannipāta',
+	'____Mahāpadānasutta aṭṭhakathā',
+	'____Pubbenivāsa',
+	'____Kappaparicchedavāra',
+	'____Āyuparicchedavāra',
+	'____Upaṭṭhākaparicchedavāra',
+	'____Mahāsāvaka cetī',
+	'____Cūḷagosiṅgasutta',
+	'____Sagāthāvaggasaṃyutta aṭṭhakathā',
+	'____Yakkhasaṃyutta',
+	'____Āḷavakasutta',
+	'____Mahāvaggasaṃyutta aṭṭhakathā',
+	'____Dasakaniddesa',
+	'____8. Sammappadhānavibhaṅga',
+	'____1. Suttantabhājanīyavaṇṇanā',
+	'____16. Ñāṇavibhaṅga',
+	'____10. Dasakaniddesavaṇṇanā',
+	'____Ekissā lokadhātuyā',
+	'____Jhānavibhaṅga',
+	'____Suttantabhājanīya',
+	'____Puggalapaññattiaṭṭhakathā',
+	'____Ekakaniddesa',
+	'____Asamayavimutta',
+	'____Kuppākuppaniddesa',
+	'____Sattakkhattuparama sotāpanna',
+	'____Sotāpanna adhippāyya',
+	'____Kolaṃ kola sotāpanna',
+	'____Ekabījī sotāpanna',
+	'____Sakadāgāminiddesa'
+	];
+    
+    SetupToc();

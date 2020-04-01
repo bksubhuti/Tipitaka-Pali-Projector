@@ -444,3 +444,9 @@ P_Tag[549]='<p class="g5">&nbsp;*</p>*';
 P_Tag[550]='<p class="g6">&nbsp;*</p>*';
 P_Tag[551]='<p class="g7">&nbsp;*</p>*';
 P_Tag[552]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Cāṇakyanītipāḷi'
+	];
+    
+    SetupToc();

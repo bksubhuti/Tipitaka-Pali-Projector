@@ -908,3 +908,45 @@ P_Tag[978]='<p class="gatha3">&nbsp;*</p>*';
 P_Tag[979]='<p class="gathalast">&nbsp;*</p>*';
 P_Tag[980]='<p class="centered">&nbsp;*</p>*';
 P_Tag[981]='<p class="centered">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Mahāvaṃsa-buddhaghosakathā',
+	'Jātidesavicāraṇā',
+	'Brāhmaṇakulavicāraṇā',
+	'Patañjalivādavicāraṇā',
+	'Kabbasatthavicāraṇā',
+	'Bāhusaccaguṇamakkhanaṃ',
+	'Mahāyānikanayavicāraṇā',
+	'Sāsanappavattikkamo',
+	'Abhayagirinikāyuppatti',
+	'Dhammarucinikāyuppatti',
+	'Piṭakattayassa potthakāropanaṃ',
+	'Adhammavāduppatti',
+	'Vetullavādassa paṭhamaniggaho',
+	'Sāgaliyanikāyuppatti',
+	'Vetullavādassa dutiyaniggaho',
+	'Vetullavādo',
+	'Mahāvihāranāsanaṃ',
+	'Jetavanavāsinikāyuppatti',
+	'Phāhiyamaddhānakkamakathā',
+	'Marammaraṭṭhikabhāvakathā',
+	'Dakkhiṇaindiyaraṭṭhikabhāvayutti',
+	'Ācariyabuddhaghosattherassa aṭṭhuppatti',
+	'Āyācanakāraṇaṃ',
+	'Visuddhimaggassa karaṇaṃ',
+	'Tannissayo',
+	'Takkaraṇappakāro',
+	'Vimuttimaggapakaraṇaṃ',
+	'Nissayaṭṭhakathāvibhāvanā',
+	'Porāṇavacanadassanaṃ',
+	'Vinayaṭṭhakathākaraṇaṃ',
+	'Āgamaṭṭhakathākaraṇaṃ',
+	'Abhidhammaṭṭhakathākaraṇaṃ',
+	'Kaṅkhāvitaraṇīaṭṭhakathākaraṇaṃ',
+	'Dhammapadaṭṭhakathākaraṇaṃ',
+	'Paramatthajotikāṭṭhakathākaraṇaṃ',
+	'Jātakaṭṭhakathākaraṇaṃ',
+	'Sakalalokapatthārakāraṇaṃ'
+	];
+    
+    SetupToc();

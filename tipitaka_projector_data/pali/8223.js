@@ -424,3 +424,9 @@ P_Tag[523]='<p class="g5">&nbsp;*</p>*';
 P_Tag[524]='<p class="g6">&nbsp;*</p>*';
 P_Tag[525]='<p class="g7">&nbsp;*</p>*';
 P_Tag[526]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Pajjamadhu'
+	];
+    
+    SetupToc();

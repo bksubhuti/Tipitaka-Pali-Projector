@@ -808,3 +808,38 @@ P_Tag[1022]='<p class="g5">&nbsp;*</p>*';
 P_Tag[1023]='<p class="g6">&nbsp;*</p>*';
 P_Tag[1024]='<p class="g7">&nbsp;*</p>*';
 P_Tag[1025]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Paṇāmadīpanīgāthā',
+	'Yogāvacarasampattidīpanīgāthā',
+	'Vatthuvisodhanīgāthā',
+	'Anaññasādhāraṇadīpanīgāthā',
+	'Abhinīhāradīpanīgāthā',
+	'Bodhisambhāradīpanīgāthā',
+	'Gabbhokkantidīpanīgāthā',
+	'Vijāyanamaṅgaladīpanīgāthā',
+	'Agāriyasampattidīpanīgāthā',
+	'Nekkhammajjhāsayadīpanīyamakagāthā',
+	'Pāduddhāravimhayadīpanīgāthā',
+	'Apunarāvattigamanadīpanīyamakagāthā',
+	'Dvipādabyāsayamakagāthā',
+	'Tipādabyāsayamakagāthā',
+	'Pādabyāsamahāyamakagāthā',
+	'Abyāpetādyantayamakagāthā',
+	'Paṭilomayamakagāthā',
+	'Ekaṭhānikādiyamakagāthā',
+	'Akkharuttarikayamakagāthā',
+	'Paheḷigāthā',
+	'Byāpetādiyamakagāthā',
+	'Mahāpadhānadīpanīgāthā',
+	'Māraparājayadīpanīgāthā',
+	'Abhisambodhidīpanīgāthā',
+	'Dhammacakkapavattanadīpanīgāthā',
+	'Pāṭihāriyadīpanīgāthā',
+	'Navaguṇadīpanīgāthā',
+	'Guṇadīpanīgāthā',
+	'Pūjānidhānadīpanīgāthā',
+	'Patthanādīpanīgāthā'
+	];
+    
+    SetupToc();

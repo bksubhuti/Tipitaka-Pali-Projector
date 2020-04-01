@@ -252,3 +252,35 @@ P_Tag[167]='<p class="g8">&nbsp;*</p>*';
 P_Tag[168]='<p class="g5">&nbsp;*</p>*';
 P_Tag[169]='<p class="g8">&nbsp;*</p>*';
 P_Tag[170]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Dhātukathā-aṭṭhakathā',
+	'1. Mātikāvaṇṇanā',
+	'____1. Nayamātikāvaṇṇanā',
+	'____2. Abbhantaramātikāvaṇṇanā',
+	'____3. Nayamukhamātikāvaṇṇanā',
+	'____4. Lakkhaṇamātikāvaṇṇanā',
+	'____5. Bāhiramātikāvaṇṇanā',
+	'2. Niddesavaṇṇanā',
+	'__1. Paṭhamanayo saṅgahāsaṅgahapadavaṇṇanā',
+	'____1. Khandhapadavaṇṇanā',
+	'____2. Āyatanapadādivaṇṇanā',
+	'____6. Paṭiccasamuppādavaṇṇanā',
+	'____7. Tikapadavaṇṇanā',
+	'__2. Dutiyanayo saṅgahitenaasaṅgahitapadavaṇṇanā',
+	'__3. Tatiyanayo asaṅgahitenasaṅgahitapadavaṇṇanā',
+	'__4. Catutthanayo saṅgahitenasaṅgahitapadavaṇṇanā',
+	'__5. Pañcamanayo asaṅgahitenaasaṅgahitapadavaṇṇanā',
+	'__6. Chaṭṭhanayo sampayogavippayogapadavaṇṇanā',
+	'__7. Sattamanayo sampayuttenavippayuttapadavaṇṇanā',
+	'__8. Aṭṭhamanayo vippayuttenasampayuttapadavaṇṇanā',
+	'__9. Navamanayo sampayuttenasampayuttapadavaṇṇanā',
+	'__10. Dasamanayo vippayuttenavippayuttapadavaṇṇanā',
+	'__11. Ekādasamanayo saṅgahitenasampayuttavippayuttapadavaṇṇanā',
+	'__12. Dvādasamanayo sampayuttenasaṅgahitāsaṅgahitapadavaṇṇanā',
+	'__13. Terasamanayo asaṅgahitenasampayuttavippayuttapadavaṇṇanā',
+	'__14. Cuddasamanayo vippayuttenasaṅgahitāsaṅgahitapadavaṇṇanā',
+	'__Nigamanakathā'
+	];
+    
+    SetupToc();

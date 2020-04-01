@@ -616,3 +616,19 @@ P_Tag[431]='<p class="ia">&nbsp;*</p>*';
 P_Tag[432]='<p class="ia">&nbsp;*<span class="paranum">*</span>*</p>*';
 P_Tag[433]='<p class="ia">&nbsp;*</p>*';
 P_Tag[434]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'1. Cittasaṅgahaanudīpanā',
+	'2. Cetasikasaṅgahaanudīpanā',
+	'3. Pakiṇṇakasaṅgahaanudīpanā',
+	'4. Vīthisaṅgahaanudīpanā',
+	'5. Vīthimuttasaṅgahaanudīpanā',
+	'6. Rūpasaṅgahaanudīpanā',
+	'7. Samuccayasaṅgahaanudīpanā',
+	'8. Paccayasaṅgahaanudīpanā',
+	'9. Kammaṭṭhānasaṅgahaanudīpanā',
+	'____Nigamagāthāsu.',
+	'____Dīpaniyā nigamagāthāsu.'
+	];
+    
+    SetupToc();

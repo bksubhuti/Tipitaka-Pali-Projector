@@ -1261,3 +1261,11 @@ P_Tag[1237]='<p class="g5">&nbsp;*</p>*';
 P_Tag[1238]='<p class="g6">&nbsp;*</p>*';
 P_Tag[1239]='<p class="g7">&nbsp;*</p>*';
 P_Tag[1240]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Milidaṭīkā',
+	'Pakiṇṇakathavivaraṇaṃ',
+	'____Saṃkhyāsarūpaṃ'
+	];
+    
+    SetupToc();

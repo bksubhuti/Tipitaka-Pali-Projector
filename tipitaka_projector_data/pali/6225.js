@@ -929,3 +929,33 @@ P_Tag[750]='<p class="g5">&nbsp;*</p>*';
 P_Tag[751]='<p class="g8">&nbsp;*</p>*';
 P_Tag[752]='<p class="c3">&nbsp;*</p>*';
 P_Tag[753]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Pārāyanavagganiddeso',
+	'____1. Ajitamāṇavasuttaniddesavaṇṇanā',
+	'____2. Tissametteyyamāṇavasuttaniddesavaṇṇanā',
+	'____3. Puṇṇakamāṇavasuttaniddesavaṇṇanā',
+	'____4. Mettagūmāṇavasuttaniddesavaṇṇanā',
+	'____5. Dhotakamāṇavasuttaniddesavaṇṇanā',
+	'____6. Upasīvamāṇavasuttaniddesavaṇṇanā',
+	'____7. Nandamāṇavasuttaniddesavaṇṇanā',
+	'____8. Hemakamāṇavasuttaniddesavaṇṇanā',
+	'____9. Todeyyamāṇavasuttaniddesavaṇṇanā',
+	'____10. Kappamāṇavasuttaniddesavaṇṇanā',
+	'____11. Jatukaṇṇimāṇavasuttaniddesavaṇṇanā',
+	'____12. Bhadrāvudhamāṇavasuttaniddesavaṇṇanā',
+	'____13. Udayamāṇavasuttaniddesavaṇṇanā',
+	'____14. Posālamāṇavasuttaniddesavaṇṇanā',
+	'____15. Mogharājamāṇavasuttaniddesavaṇṇanā',
+	'____16. Piṅgiyamāṇavasuttaniddesavaṇṇanā',
+	'____17. Pārāyanatthutigāthāniddesavaṇṇanā',
+	'____18. Pārāyanānugītigāthāniddesavaṇṇanā',
+	'Khaggavisāṇasuttaniddeso',
+	'__Khaggavisāṇasuttaniddesavaṇṇanā',
+	'____1. Paṭhamavaggavaṇṇanā',
+	'____3. Tatiyavaggavaṇṇanā',
+	'____4. Catutthavaggavaṇṇanā',
+	'____Nigamanakathā'
+	];
+    
+    SetupToc();

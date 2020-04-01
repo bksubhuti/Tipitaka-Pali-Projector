@@ -1367,3 +1367,52 @@ P_Tag[1068]='<p class="c3">&nbsp;*</p>*';
 P_Tag[1069]='<p class="c3">&nbsp;*</p>*';
 P_Tag[1070]='<p class="c3">&nbsp;*</p>*';
 P_Tag[1071]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'____(Dutiyo bhāgo)',
+	'3. Opammavaggo',
+	'____1. Kakacūpamasuttavaṇṇanā',
+	'____2. Alagaddūpamasuttavaṇṇanā',
+	'____3. Vammikasuttavaṇṇanā',
+	'____4. Rathavinītasuttavaṇṇanā',
+	'____Dhammagarubhāvavaṇṇanā',
+	'____Appicchatādivaṇṇanā',
+	'____Dvādasavidhasantosavaṇṇanā',
+	'____Tividhapavivekavaṇṇanā',
+	'____Pañcavidhasaṃsaggavaṇṇanā',
+	'____Gāhagāhakādivaṇṇanā',
+	'____Pañcalābhavaṇṇanā',
+	'____Cārikādivaṇṇanā',
+	'____Sattavisuddhipañhavaṇṇanā',
+	'____Sattarathavinītavaṇṇanā',
+	'____5. Nivāpasuttavaṇṇanā',
+	'____6. Pāsarāsisuttavaṇṇanā',
+	'____7. Cūḷahatthipadopamasuttavaṇṇanā',
+	'____8. Mahāhatthipadopamasuttavaṇṇanā',
+	'____9. Mahāsāropamasuttavaṇṇanā',
+	'____10. Cūḷasāropamasuttavaṇṇanā',
+	'4. Mahāyamakavaggo',
+	'____1. Cūḷagosiṅgasuttavaṇṇanā',
+	'____2. Mahāgosiṅgasuttavaṇṇanā',
+	'____3. Mahāgopālakasuttavaṇṇanā',
+	'____4. Cūḷagopālakasuttavaṇṇanā',
+	'____5. Cūḷasaccakasuttavaṇṇanā',
+	'____6. Mahāsaccakasutavaṇṇanā',
+	'____7. Cūḷataṇhāsaṅkhayasuttavaṇṇanā',
+	'____8. Mahātaṇhāsaṅkhayasuttavaṇṇanā',
+	'____9. Mahāassapurasuttavaṇṇanā',
+	'____10. Cūḷaassapurasuttavaṇṇanā',
+	'5. Cūḷayamakavaggo',
+	'____1. Sāleyyakasuttavaṇṇanā',
+	'____2. Verañjakasuttavaṇṇanā',
+	'____3. Mahāvedallasuttavaṇṇanā',
+	'____4. Cūḷavedallasuttavaṇṇanā',
+	'____5. Cūḷadhammasamādānasuttavaṇṇanā',
+	'____6. Mahādhammasamādānasuttavaṇṇanā',
+	'____7. Vīmaṃsakasuttavaṇṇanā',
+	'____8. Kosambiyasuttavaṇṇanā',
+	'____9. Brahmanimantanikasuttavaṇṇanā',
+	'____10. Māratajjanīyasuttavaṇṇanā'
+	];
+    
+    SetupToc();

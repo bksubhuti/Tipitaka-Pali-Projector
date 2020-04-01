@@ -1144,3 +1144,45 @@ P_Tag[844]='<p class="b1">&nbsp;*<span class="font10"><a name="M8240_256"></a>[P
 P_Tag[845]='<p class="b1">&nbsp;*</p>*';
 P_Tag[846]='<p class="b1">&nbsp;*</p>*';
 P_Tag[847]='<p class="b1">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'____Paṇāma',
+	'____Paṇāma',
+	'1. Sandhi kaṇḍa',
+	'__Saññā',
+	'__Sarasandhi',
+	'__Byañjanasandhi',
+	'__Niggahītasandhi',
+	'__Vomissaka sandhī',
+	'2. Nāmakaṇḍa',
+	'__Pulliṅga',
+	'__Itthiliṅga',
+	'__Napuṃsakaliṅga',
+	'__Pumitthiliṅga',
+	'__Pumanapuṃsakaliṅga',
+	'__Itthinapuṃsakaliṅga',
+	'__Sabbaliṅga',
+	'__Sabbanāma',
+	'__Saṅkhyā',
+	'__Aliṅga',
+	'__Upasagganipāta',
+	'3. Samāsakaṇḍa',
+	'__Samāsalakkhaṇādi',
+	'__Kammadhārayasamāsa',
+	'__Ubhe tappurisa samāsa',
+	'__Digusamāsa',
+	'__Suddhatappurisasamāsa',
+	'__Bahubbīhisamāsa',
+	'__Dvandasamāsa',
+	'__Abyayībhāvasamāsa',
+	'4. Taddhitakaṇḍa',
+	'__Apaccataddhita',
+	'__Saṃsaṭṭhādianekatthataddhita',
+	'__Visesataddhita',
+	'__Assatthitaddhita',
+	'__Saṅkhyātaddhita',
+	'__Bhāvataddhita',
+	'__Abyayataddhita'
+	];
+    
+    SetupToc();

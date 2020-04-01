@@ -1846,3 +1846,52 @@ P_Tag[2454]='<p class="g8">&nbsp;*</p>*';
 P_Tag[2455]='<p class="c3">&nbsp;*</p>*';
 P_Tag[2456]='<p class="c3">&nbsp;*</p>*';
 P_Tag[2457]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'____Paṇāmādikathā',
+	'Dhammasoṇḍakavaggo',
+	'__1. Dhammasoṇḍakassa vatthumhi ayamānupubbīkathā',
+	'__2. Migaluddakassa vatthumhi ayamānupubbikathā',
+	'__3. Tiṇṇaṃjanānaṃ vatthumhi ayamānupubbīkathā',
+	'__4. Buddheniyā vatthumhi ayamānupubbīkathā',
+	'__5. Ahituṇḍikassa vatthumhi ayamānupubbīkathā',
+	'__6. Saraṇattherassa vatthumhi ayamānupubbīkathā',
+	'__7. Vessāmittāya vatthumhi ayamānupubbīkathā',
+	'__8. Mahāmandhātuvatthumhi ayamānupubbīkathā',
+	'__9. Buddhavammavāṇijakavatthumhi ayamānupubbīkathā',
+	'__10. Rūpadeviyā vatthumhi ayamānupubbīkathā',
+	'Nandiyarājavaggo',
+	'__11. Nandiyarājassa vatthumhi ayamānupubbīkathā',
+	'__12. Aññataramanussassa vatthumhi ayamānupubbīkathā',
+	'__13. Visamalomakumārassa vatthumhi ayamānupubbīkathā',
+	'__14. Kañcanadeviyā vatthumhi ayamānupubbīkathā',
+	'__15. Byagghassa vatthumhi ayamānupubbīkathā',
+	'__16. Phalakakhaṇḍadinnassa vatthumhi ayamānupubbīkathā',
+	'__17. Corasahāyassa vatthumhi ayamānupubbīkathā',
+	'__18. Maruttabrāhmaṇassa vatthumhi ayamānupubbīkathā',
+	'__19. Pānīyadinnassa vatthumhi ayamānupubbīkathā',
+	'__20. Sahāyassa pariccattajīvitakassa vatthumhi ayamānupubbīkathā',
+	'Yakkhavañcitavaggo',
+	'__21. Yakkhavañcita vatthumhi ayamānupubbīkathā',
+	'__22. Micchadiṭṭhikassa vatthumhi ayamānupubbīkathā',
+	'__23. Pādapīṭhikāya vatthumhi ayamānupubbīkathā',
+	'__24. Uttarasāmaṇerassa vatthumhi ayamānupubbīkathā',
+	'__25. Kavīrapaṭṭana vatthumhi ayamānupubbīkathā',
+	'__26. Coraghātakavatthumhi ayamānupubbīkathā',
+	'__27. Saddhopāsakassa vatthumhi ayamānupubbīkathā',
+	'__28. Kapaṇassa vatthumhi ayamānupubbīkathā',
+	'__29. Devaputtassa vatthumhi ayamānupubbīkathā',
+	'__30. Sīvalittherassa vatthumhi ayamānupubbīkathā',
+	'Mahāsenavaggo',
+	'__31. Mahāsenarañño vatthumhi ayamānupubbīkathā',
+	'__32. Suvaṇṇatilakāya vatthumhi ayamānupubbīkathā',
+	'__33. Kapaṇāya vatthumhi ayamānupubbīkathā',
+	'__34. Indaguttattherassa vatthumhi ayamānupubbīkathā',
+	'__35. Sākhamālapūjikāya vatthumhi ayamānupubbīkathā',
+	'__36. Moriyabrahmaṇassa vatthumhi ayamānupubbīkathā',
+	'__37. Puttavatthumhi ayamānupubbīkathā',
+	'__38. Tebhātikamadhuvāṇijakānaṃ vatthumhi ayamānupubbīkathā',
+	'__40. Kuṇḍaliyā vatthumhi ayamānupubbīkathā'
+	];
+    
+    SetupToc();

@@ -921,3 +921,9 @@ P_Tag[1329]='<p class="g5">&nbsp;*</p>*';
 P_Tag[1330]='<p class="g8">&nbsp;*</p>*';
 P_Tag[1332]='<p class="g5">&nbsp;*<span class="font10"><a name="M8243_147"></a>[Pg.147]</span>*</a>*</p>*';
 P_Tag[1333]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Dhammanīti'
+	];
+    
+    SetupToc();

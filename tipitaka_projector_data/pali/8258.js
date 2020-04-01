@@ -497,3 +497,13 @@ P_Tag[488]='<p class="g6">&nbsp;*</p>*';
 P_Tag[489]='<p class="g7">&nbsp;*</p>*';
 P_Tag[490]='<p class="g8">&nbsp;*</p>*';
 P_Tag[491]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'1. Tathāgatassāgamanakathā',
+	'2. ',
+	'3. ',
+	'4. ',
+	'5. '
+	];
+    
+    SetupToc();

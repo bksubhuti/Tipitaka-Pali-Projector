@@ -2284,3 +2284,47 @@ P_Tag[2123]='<p class="g8">&nbsp;*</p>*';
 P_Tag[2124]='<p class="c3">&nbsp;*<span class="bld">*</span>*</p>*';
 P_Tag[2125]='<p class="b1">&nbsp;*</p>*';
 P_Tag[2126]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'1. Akittivaggo',
+	'____1. Akitticariyāvaṇṇanā',
+	'____2. Saṅkhabrāhmaṇacariyāvaṇṇanā',
+	'____3. Kururājacariyāvaṇṇanā',
+	'____4. Mahāsudassanacariyāvaṇṇanā',
+	'____5. Mahāgovindacariyāvaṇṇanā',
+	'____6. Nimirājacariyāvaṇṇanā',
+	'____7. Candakumāracariyāvaṇṇanā',
+	'____8. Sivirājacariyāvaṇṇanā',
+	'____9. Vessantaracariyāvaṇṇanā',
+	'____10. Sasapaṇḍitacariyāvaṇṇanā',
+	'2. Hatthināgavaggo',
+	'____1. Mātuposakacariyāvaṇṇanā',
+	'____2. Bhūridattacariyāvaṇṇanā',
+	'____3. Campeyyanāgacariyāvaṇṇanā',
+	'____4. Cūḷabodhicariyāvaṇṇanā',
+	'____5. Mahiṃsarājacariyāvaṇṇanā',
+	'____6. Rurumigarājacariyāvaṇṇanā',
+	'____7. Mātaṅgacariyāvaṇṇanā',
+	'____8. Dhammadevaputtacariyāvaṇṇanā',
+	'____9. Alīnasattucariyāvaṇṇanā',
+	'____10. Saṅkhapālacariyāvaṇṇanā',
+	'3. Yudhañjayavaggo',
+	'____1. Yudhañjayacariyāvaṇṇanā',
+	'____2. Somanassacariyāvaṇṇanā',
+	'____3. Ayogharacariyāvaṇṇanā',
+	'____4. Bhisacariyāvaṇṇanā',
+	'____5. Soṇapaṇḍitacariyāvaṇṇanā',
+	'____6. Temiyacariyāvaṇṇanā',
+	'____7. Kapirājacariyāvaṇṇanā',
+	'____8. Saccatāpasacariyāvaṇṇanā',
+	'____9. Vaṭṭapotakacariyāvaṇṇanā',
+	'____10. Maccharājacariyāvaṇṇanā',
+	'____11. Kaṇhadīpāyanacariyāvaṇṇanā',
+	'____12. Mahāsutasomacariyāvaṇṇanā',
+	'____13. Suvaṇṇasāmacariyāvaṇṇanā',
+	'____14. Ekarājacariyāvaṇṇanā',
+	'____15. Mahālomahaṃsacariyāvaṇṇanā',
+	'____Uddānagāthāvaṇṇanā'
+	];
+    
+    SetupToc();

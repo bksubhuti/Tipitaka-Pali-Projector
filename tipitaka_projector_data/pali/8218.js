@@ -686,3 +686,12 @@ P_Tag[842]='<p class="h9">&nbsp;*</p>*';
 P_Tag[843]='<p class="g5">&nbsp;*</p>*';
 P_Tag[844]='<p class="g8">&nbsp;*</p>*';
 P_Tag[845]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Mahāpaṇāmapāṭha',
+	'__(Buddhavandanā)',
+	'Tigumbacetiya thomanā',
+	'Vāsamālinīkya'
+	];
+    
+    SetupToc();

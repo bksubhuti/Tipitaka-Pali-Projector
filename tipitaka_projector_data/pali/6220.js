@@ -5318,3 +5318,17 @@ P_Tag[6735]='<p class="b1">&nbsp;*</p>*';
 P_Tag[6736]='<p class="g5">&nbsp;*</p>*';
 P_Tag[6737]='<p class="g8">&nbsp;*</p>*';
 P_Tag[6738]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'__Catuttho bhāgo',
+	'10. Dasakanipāto',
+	'11. Ekādasakanipāto',
+	'12. Dvādasakanipāto',
+	'13. Terasakanipāto',
+	'14. Pakiṇṇakanipāto',
+	'15. Vīsatinipāto',
+	'__(Pañcamo bhāgo)',
+	'16. Tiṃsanipāto'
+	];
+    
+    SetupToc();

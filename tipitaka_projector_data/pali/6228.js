@@ -1277,3 +1277,44 @@ P_Tag[1093]='<p class="g8">&nbsp;*</p>*';
 P_Tag[1094]='<p class="c3">&nbsp;*</p>*';
 P_Tag[1095]='<p class="c3">&nbsp;*</p>*';
 P_Tag[1096]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'1. Saṅgahavāravaṇṇanā',
+	'2. Uddesavāravaṇṇanā',
+	'3. Niddesavāravaṇṇanā',
+	'____Hārasaṅkhepo',
+	'____Nayasaṅkhepo',
+	'____Dvādasapadaṃ',
+	'4. Paṭiniddesavāravaṇṇanā',
+	'____1. Desanāhāravibhaṅgavaṇṇanā',
+	'____2. Vicayahāravibhaṅgavaṇṇanā',
+	'____3. Yuttihāravibhaṅgavaṇṇanā',
+	'____4. Padaṭṭhānahāravibhaṅgavaṇṇanā',
+	'____6. Catubyūhahāravibhaṅgavaṇṇanā',
+	'____9. Parivattanahāravibhaṅgavaṇṇanā',
+	'____10. Vevacanahāravibhaṅgavaṇṇanā',
+	'____11. Paññattihāravibhaṅgavaṇṇanā',
+	'____12. Otaraṇahāravibhaṅgavaṇṇanā',
+	'____13. Sodhanahāravibhaṅgavaṇṇanā',
+	'____14. Adhiṭṭhānahāravibhaṅgavaṇṇanā',
+	'____15. Parikkhārahāravibhaṅgavaṇṇanā',
+	'____16. Samāropanahāravibhaṅgavaṇṇanā',
+	'____1. Desanāhārasampātavaṇṇanā',
+	'____2. Vicayahārasampātavaṇṇanā',
+	'____3. Yuttihārasampātavaṇṇanā',
+	'____4. Padaṭṭhānahārasampātavaṇṇanā',
+	'____5. Lakkhaṇahārasampātavaṇṇanā',
+	'____6. Catubyūhahārasampātavaṇṇanā',
+	'____7. Āvaṭṭahārasampātavaṇṇanā',
+	'____8. Vibhattihārasampātavaṇṇanā',
+	'____9. Parivattanahārasampātavaṇṇanā',
+	'____10. Vevacanahārasampātavaṇṇanā',
+	'____11. Paññattihārasampātavaṇṇanā',
+	'____14. Adhiṭṭhānahārasampātavaṇṇanā',
+	'____Missakahārasampātavaṇṇanā',
+	'Nayasamuṭṭhānavāravaṇṇanā',
+	'Sāsanapaṭṭhānavāravaṇṇanā',
+	'____Nigamanakathā'
+	];
+    
+    SetupToc();

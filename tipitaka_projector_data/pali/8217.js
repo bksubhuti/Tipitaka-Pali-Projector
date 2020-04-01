@@ -946,3 +946,11 @@ P_Tag[978]='<p class="g5">&nbsp;*</p>*';
 P_Tag[979]='<p class="g8">&nbsp;*</p>*';
 P_Tag[980]='<p class="c3">&nbsp;*</p>*';
 P_Tag[981]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Namakkārapāḷi',
+	'Namakkāraṭīkā',
+	'____Nigamana'
+	];
+    
+    SetupToc();

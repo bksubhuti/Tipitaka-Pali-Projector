@@ -975,3 +975,23 @@ P_Tag[1344]='<p class="g5">&nbsp;*</p>*';
 P_Tag[1345]='<p class="g8">&nbsp;*</p>*';
 P_Tag[1346]='<p class="g5">&nbsp;*</p>*';
 P_Tag[1347]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Mātikā',
+	'____Kavidappaṇanīti',
+	'Ratanattayapaṇāma',
+	'Paṇḍitakaṇḍa',
+	'Sujanakaṇḍa',
+	'Bāladujjanakaṇḍa',
+	'Rājakaṇḍa',
+	'Nāyaka kaṇḍa',
+	'Puttakaṇḍa',
+	'Vejjācariya kaṇḍa',
+	'Dāsaka kaṇḍa',
+	'Itthikaṇḍa',
+	'Pakiṇṇakakaṇḍa',
+	'Kavidappaṇanīti',
+	'Paṇāma paṭiññā'
+	];
+    
+    SetupToc();

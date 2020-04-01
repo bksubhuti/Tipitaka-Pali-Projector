@@ -465,3 +465,14 @@ P_Tag[542]='<p class="g5">&nbsp;*<span class="font10"><a name="M8247_184"></a>[P
 P_Tag[543]='<p class="g6">&nbsp;*</p>*';
 P_Tag[544]='<p class="g7">&nbsp;*</p>*';
 P_Tag[545]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'____Paṭhamo bhāgo',
+	'Paṇāmagāthā',
+	'Sūrassatīnīti',
+	'__Sūrassatīnīti',
+	'____Dutiyo bhāgo',
+	'Cāṇakyanītilā gāthā'
+	];
+    
+    SetupToc();

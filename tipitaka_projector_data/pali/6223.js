@@ -4819,3 +4819,26 @@ P_Tag[6460]='<p class="b1">&nbsp;*</p>*';
 P_Tag[6461]='<p class="c3">&nbsp;*</p>*';
 P_Tag[6462]='<p class="c3">&nbsp;*</p>*';
 P_Tag[6463]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'__(Sattamo bhāgo)',
+	'22. Mahānipāto',
+	'____Nagarakaṇḍaṃ',
+	'____Uposathakaṇḍaṃ',
+	'____Garuḷakhaṇḍaṃ',
+	'____Kīḷanakaṇḍaṃ',
+	'____Nagarapavesanakaṇḍaṃ',
+	'____Mahāsattassa pariyesanakhaṇḍaṃ',
+	'____Micchākathā',
+	'____Jūjakapabbavaṇṇanā',
+	'____Cūḷavanavaṇṇanā',
+	'____Mahāvanavaṇṇanā',
+	'____Dārakapabbavaṇṇanā',
+	'____Maddīpabbavaṇṇanā',
+	'____Sakkapabbavaṇṇanā',
+	'____Mahārājapabbavaṇṇanā',
+	'____Chakhattiyakammavaṇṇanā',
+	'____Nagarakaṇḍavaṇṇanā'
+	];
+    
+    SetupToc();

@@ -5387,3 +5387,22 @@ P_Tag[3258]='<p class="g8">&nbsp;*</p>*';
 P_Tag[3260]='<p class="g5">&nbsp;*</p>*';
 P_Tag[3261]='<p class="g8">&nbsp;*</p>*';
 P_Tag[3262]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'____(1) Paṭhamo kaṇḍo (saññādi)',
+	'____(2) Dutiyo kaṇḍo (syādi)',
+	'____(3) Tatiyo kaṇḍo (samāso)',
+	'____(4) Catuttho kaṇḍo (ṇādi)',
+	'____(5) Pañcamo kaṇḍo (khādi)',
+	'____(6) Chaṭṭho kaṇḍo (tyādi)',
+	'____(7) Sattamo kaṇḍo (ṇvādi)',
+	'1. Paṭhamo saññādikaṇḍo',
+	'2. Dutiyo kaṇḍo (syādi)',
+	'(3) Tatiyo kaṇḍo (samāso)',
+	'4. Catuttho kaṇḍo (ṇādi)',
+	'5. Pañcamo kaṇḍo (khādi)',
+	'6. Chaṭṭho kaṇḍo (tyādi)',
+	'7. Sattamo kaṇḍo (ṇvādi)'
+	];
+    
+    SetupToc();

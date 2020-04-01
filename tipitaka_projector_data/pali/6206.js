@@ -1423,3 +1423,27 @@ P_Par[260]='p1153';
 P_Tag[1154]='<p class="c3">&nbsp;*</p>*';
 P_Tag[1155]='<p class="c3">&nbsp;*</p>*';
 P_Tag[1156]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'__(Paṭhamo bhāgo)',
+	'____Ganthārambhakathā',
+	'1. Uragavaggo',
+	'____1. Uragasuttavaṇṇanā',
+	'____2. Dhaniyasuttavaṇṇanā',
+	'____3. Khaggavisāṇasuttavaṇṇanā',
+	'____4. Kasibhāradvājasuttavaṇṇanā',
+	'____5. Cundasuttavaṇṇanā',
+	'____6. Parābhavasuttavaṇṇanā',
+	'____7. Aggikabhāradvājasuttavaṇṇanā',
+	'____8. Mettasuttavaṇṇanā',
+	'____9. Hemavatasuttavaṇṇanā',
+	'____10. Āḷavakasuttavaṇṇanā',
+	'____11. Vijayasuttavaṇṇanā',
+	'____12. Munisuttavaṇṇanā',
+	'2. Cūḷavaggo',
+	'____1. Ratanasuttavaṇṇanā',
+	'____2. Āmagandhasuttavaṇṇanā',
+	'____3. Hirisuttavaṇṇanā'
+	];
+    
+    SetupToc();

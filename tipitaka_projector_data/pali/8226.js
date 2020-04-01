@@ -992,3 +992,19 @@ P_Tag[967]='<p class="g5">&nbsp;*</p>*';
 P_Tag[968]='<p class="g8">&nbsp;*</p>*';
 P_Tag[969]='<p class="g5">&nbsp;*</p>*';
 P_Tag[970]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'____Tatrāyaṃmātikā –',
+	'1. Navaṭṭhānāgatasāsanavaṃsakathāmaggo',
+	'2. Sīhaḷadīpikasāsanavaṃsakathāmaggo',
+	'3. Suvaṇṇabhūmisāsanavaṃsakathāmaggo',
+	'4. Yonakaraṭṭhasāsanavaṃsakathāmaggo',
+	'5. Navavāsīraṭṭhasāsanavaṃsakathāmaggo',
+	'6. Aparantaraṭṭhasāsanavaṃsakathāmaggo',
+	'7. Kasmiragandhāraraṭṭhasāsanavaṃsakathāmaggo',
+	'8. Mahiṃsakaraṭṭhassāsanavaṃsakathāmaggo',
+	'9. Mahāraṭṭhasāsanavaṃsakathāmaggo',
+	'10. Cinaraṭṭhasāsanavaṃsakathāmaggo'
+	];
+    
+    SetupToc();

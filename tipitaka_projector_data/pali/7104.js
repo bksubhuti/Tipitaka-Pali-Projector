@@ -809,3 +809,30 @@ P_Tag[558]='<p class="b1">&nbsp;*</p>*';
 P_Tag[559]='<p class="b1">&nbsp;*</p>*';
 P_Tag[560]='<p class="c3">&nbsp;*</p>*';
 P_Tag[561]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Mātikā',
+	'____1. Ekakauddeso',
+	'____2. Dukauddeso',
+	'____3. Tikauddeso',
+	'____4. Catukkauddeso',
+	'____5. Pañcakauddeso',
+	'____6. Chakkauddeso',
+	'____7. Sattakauddeso',
+	'____8. Aṭṭhakauddeso',
+	'____9. Navakauddeso',
+	'____10. Dasakauddeso',
+	'Niddeso',
+	'____1. Ekakapuggalapaññatti',
+	'____2. Dukapuggalapaññatti',
+	'____3. Tikapuggalapaññatti',
+	'____4. Catukkapuggalapaññatti',
+	'____5. Pañcakapuggalapaññatti',
+	'____6. Chakkapuggalapaññatti',
+	'____7. Sattakapuggalapaññatti',
+	'____8. Aṭṭhakapuggalapaññatti',
+	'____9. Navakapuggalapaññatti',
+	'____10. Dasakapuggalapaññatti'
+	];
+    
+    SetupToc();

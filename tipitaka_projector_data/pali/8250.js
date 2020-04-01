@@ -1389,3 +1389,16 @@ P_Tag[1956]='<p class="g7">&nbsp;*</p>*';
 P_Tag[1957]='<p class="g8">&nbsp;*</p>*';
 P_Tag[1959]='<p class="g5">&nbsp;*<span class="font10"><a name="M8250_353"></a>[Pg.353]</span>*</a>*</p>*';
 P_Tag[1960]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'____Kāyapaccavekkhaṇā',
+	'____Paṇāmapaṭiñā',
+	'1. Buddhānussati niddesa',
+	'2. Maraṇassatiniddesa',
+	'3. Asubhabhāvanā niddesa',
+	'____4. Mettābhāvanāniddesa',
+	'Appamādāvaha pakiṇṇakaniddesa',
+	'Kāyapaccavekkhaṇā'
+	];
+    
+    SetupToc();

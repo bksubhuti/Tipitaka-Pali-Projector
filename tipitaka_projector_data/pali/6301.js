@@ -925,3 +925,39 @@ P_Toc[30]='p761';
 P_Tag[762]='<p class="b1">&nbsp;*<span class="bld">*</span>*<span class="font10"><a name="M6301_151"></a>[Pg.151]</span>*</a>*</p>*';
 P_Tag[763]='<p class="c3">&nbsp;*</p>*';
 P_Tag[764]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'1. Saṅgahavāravaṇṇanā',
+	'2. Uddesavāravaṇṇanā',
+	'3. Niddesavāravaṇṇanā',
+	'____Hārasaṅkhepavaṇṇanā',
+	'____Nayasaṅkhepavaṇṇanā',
+	'____Dvādasapadavaṇṇanā',
+	'4. Paṭiniddesavāravaṇṇanā',
+	'____1. Desanāhāravibhaṅgavaṇṇanā',
+	'____2. Vicayahāravibhaṅgavaṇṇanā',
+	'____3. Yuttihāravibhaṅgavaṇṇanā',
+	'____4. Padaṭṭhānahāravibhaṅgavaṇṇanā',
+	'____5. Lakkhaṇahāravibhaṅgavaṇṇanā',
+	'____6. Catubyūhahāravibhaṅgavaṇṇanā',
+	'____7. Āvaṭṭahāravibhaṅgavaṇṇanā',
+	'____8. Vibhattihāravibhaṅgavaṇṇanā',
+	'____9. Parivattanahāravibhaṅgavaṇṇanā',
+	'____10. Vevacanahāravibhaṅgavaṇṇanā',
+	'____11. Paññattihāravibhaṅgavaṇṇanā',
+	'____12. Otaraṇahāravibhaṅgavaṇṇanā',
+	'____13. Sodhanahāravibhaṅgavaṇṇanā',
+	'____14. Adhiṭṭhānahāravibhaṅgavaṇṇanā',
+	'____15. Parikkhārahāravibhaṅgavaṇṇanā',
+	'____16. Samāropanahāravibhaṅgavaṇṇanā',
+	'____1. Desanāhārasampātavaṇṇanā',
+	'____2. Vicayahārasampātavaṇṇanā',
+	'____3. Yuttihārasampātavaṇṇanā',
+	'____4. Padaṭṭhānahārasampātādivaṇṇanā',
+	'____Missakahārasampātavaṇṇanā',
+	'Nayasamuṭṭhānavāravaṇṇanā',
+	'Sāsanapaṭṭhānavāravaṇṇanā',
+	'____Nigamanakathāvaṇṇanā'
+	];
+    
+    SetupToc();

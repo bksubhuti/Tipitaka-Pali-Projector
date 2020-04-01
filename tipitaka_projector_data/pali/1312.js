@@ -3201,3 +3201,40 @@ P_Tag[1849]='<p class="b1">&nbsp;*<span class="bld">*</span>*<span class="bld">*
 P_Tag[1850]='<p class="c3">&nbsp;*</p>*';
 P_Tag[1851]='<p class="c3">&nbsp;*</p>*';
 P_Tag[1852]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Pāṭidesanīyakathāvaṇṇanā',
+	'Sekhiyakathāvaṇṇanā',
+	'Bhikkhunivibhaṅgo',
+	'Pārājikakathāvaṇṇanā',
+	'Saṅghādisesakathāvaṇṇanā',
+	'Nissaggiyakathāvaṇṇanā',
+	'Pācittiyakathāvaṇṇanā',
+	'Pāṭidesanīyakathāvaṇṇanā',
+	'Sikkhākaraṇīyakathāvaṇṇanā',
+	'__Khandhakakathā',
+	'Mahāvaggo',
+	'__Mahākhandhakakathā',
+	'Pabbajjākathāvaṇṇanā',
+	'Uposathakkhandhakakathāvaṇṇanā',
+	'Vassūpanāyikakkhandhakakathāvaṇṇanā',
+	'Pavāraṇakkhandhakakathāvaṇṇanā',
+	'Cammakkhandhakakathāvaṇṇanā',
+	'Bhesajjakkhandhakakathāvaṇṇanā',
+	'Kathinakkhandhakakathāvaṇṇanā',
+	'Cīvarakkhandhakakathāvaṇṇanā',
+	'Cūḷavaggo',
+	'Pārivāsikakkhandhakakathāvaṇṇanā',
+	'Samathakkhandhakakathāvaṇṇanā',
+	'Khuddakavatthukkhandhakakathāvaṇṇanā',
+	'Senāsanakkhandhakakathāvaṇṇanā',
+	'Vattakkhandhakakathāvaṇṇanā',
+	'Bhikkhunikkhandhakakathāvaṇṇanā',
+	'Catubbidhakammakathāvaṇṇanā',
+	'Kammavipattikathāvaṇṇanā',
+	'Pakiṇṇakavinicchayakathāvaṇṇanā',
+	'Kammaṭṭhānavibhāvanāvidhānakathāvaṇṇanā',
+	'____Nigamanakathāvaṇṇanā'
+	];
+    
+    SetupToc();

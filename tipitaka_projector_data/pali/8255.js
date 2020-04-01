@@ -747,3 +747,22 @@ P_Tag[706]='<p class="g8">&nbsp;*</p>*';
 P_Tag[707]='<p class="g5">&nbsp;*</p>*';
 P_Tag[708]='<p class="g8">&nbsp;*</p>*';
 P_Tag[709]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Thupavaṃso ',
+	'Abhinīhāra kathā',
+	'Cūḷāmaṇidussa thupadvayakathā',
+	'Dasathūpakathā',
+	'Dhātunidhāna kathā',
+	'Caturāsīti sahassa thūpakathā',
+	'Bodhi āgamanakathā',
+	'Yojanathūpa kathā',
+	'Tadatthadīpanatthaṃ ayamanupubbakathā',
+	'Mahiyaṅgana thūpakathā',
+	'Marīcavaṭṭi vihārakathā',
+	'Thūpasādhana lābhakathā',
+	'Thūpāramha kathā',
+	'Dhātugabba rūpavaṇṇanākathā'
+	];
+    
+    SetupToc();

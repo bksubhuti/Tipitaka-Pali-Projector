@@ -244,3 +244,9 @@ P_Tag[299]='<p class="g5">&nbsp;*</p>*';
 P_Tag[300]='<p class="g6">&nbsp;*</p>*';
 P_Tag[301]='<p class="g7">&nbsp;*</p>*';
 P_Tag[302]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Kamalāñjali'
+	];
+    
+    SetupToc();

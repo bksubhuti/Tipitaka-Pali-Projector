@@ -358,3 +358,9 @@ P_Tag[233]='<p class="c3">&nbsp;*</p>*';
 P_Tag[234]='<p class="c3">&nbsp;*</p>*';
 P_Tag[235]='<p class="c3">&nbsp;*</p>*';
 P_Tag[236]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	''
+	];
+    
+    SetupToc();

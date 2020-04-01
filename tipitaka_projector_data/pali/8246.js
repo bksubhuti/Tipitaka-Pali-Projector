@@ -229,3 +229,10 @@ P_Tag[263]='<p class="g5">&nbsp;*<span class="font10"><a name="M8246_167"></a>[P
 P_Tag[264]='<p class="g6">&nbsp;*</p>*';
 P_Tag[265]='<p class="g7">&nbsp;*</p>*';
 P_Tag[266]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Suttantanīti',
+	'Vasalasutta'
+	];
+    
+    SetupToc();

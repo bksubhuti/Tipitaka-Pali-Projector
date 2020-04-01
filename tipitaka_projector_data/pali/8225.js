@@ -161,3 +161,16 @@ P_Tag[149]='<p class="b1">&nbsp;*</p>*';
 P_Tag[150]='<p class="b1">&nbsp;*</p>*';
 P_Tag[151]='<p class="b1">&nbsp;*</p>*';
 P_Tag[152]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'1. Piṭakattayaparicchedo',
+	'2. Ganthakārakācariya-paricchedo',
+	'3. Ācariyānaṃ sañjātaṭṭhānaparicchedo',
+	'4. Āyāyakācariya-paricchedo',
+	'____Ka. buddhaghosācariya-ganthadīpanā',
+	'____Kha. buddhadattācariya-ganthadīpanā',
+	'____Ga. dhammapālācariyena-ganthadīpanā',
+	'5. Pakiṇṇaka-paricchedo'
+	];
+    
+    SetupToc();

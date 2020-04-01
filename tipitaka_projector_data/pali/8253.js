@@ -2097,3 +2097,9 @@ P_Tag[2610]='<p class="g5">&nbsp;*</p>*';
 P_Tag[2611]='<p class="g6">&nbsp;*</p>*';
 P_Tag[2612]='<p class="g7">&nbsp;*</p>*';
 P_Tag[2613]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Vessantarāgīti'
+	];
+    
+    SetupToc();

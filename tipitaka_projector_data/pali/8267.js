@@ -357,3 +357,17 @@ P_Tag[490]='<p class="g5">&nbsp;*</p>*';
 P_Tag[491]='<p class="g8">&nbsp;*</p>*';
 P_Tag[493]='<p class="g5">&nbsp;*</p>*';
 P_Tag[494]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Kaccāyana ',
+	'Tudādayo avuddhikā',
+	'Juhotyā’dayo ',
+	'Rudhādayo',
+	'Divādayo ',
+	'Svādayo ',
+	'Kiyādayo',
+	'Tanādayo ',
+	'____Sācariyānusiṭṭhā '
+	];
+    
+    SetupToc();

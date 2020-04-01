@@ -1035,3 +1035,13 @@ P_Tag[1280]='<p class="g5">&nbsp;*<span class="font10"><a name="M8244_112"></a>[
 P_Tag[1281]='<p class="g6">&nbsp;*</p>*';
 P_Tag[1282]='<p class="g7">&nbsp;*</p>*';
 P_Tag[1283]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Paṇḍitakathā',
+	'Sambhedakathā',
+	'Mittakathā',
+	'Nāyakakathā',
+	'Itthikathā'
+	];
+    
+    SetupToc();

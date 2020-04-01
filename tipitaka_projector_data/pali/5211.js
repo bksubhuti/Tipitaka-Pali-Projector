@@ -124,3 +124,9 @@ P_Tag[90]='<p class="g5">&nbsp;*</p>*';
 P_Tag[91]='<p class="g8">&nbsp;*</p>*';
 P_Tag[92]='<p class="c3">&nbsp;*</p>*';
 P_Tag[93]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	''
+	];
+    
+    SetupToc();

@@ -1703,3 +1703,9 @@ P_Tag[1700]='<p class="g5">&nbsp;*</p>*';
 P_Tag[1701]='<p class="g8">&nbsp;*</p>*';
 P_Tag[1702]='<p class="g5">&nbsp;*</p>*';
 P_Tag[1703]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Moggallāna '
+	];
+    
+    SetupToc();

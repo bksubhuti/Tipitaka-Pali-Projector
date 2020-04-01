@@ -2521,3 +2521,26 @@ P_Tag[2994]='<p class="g5">&nbsp;*</p>*';
 P_Tag[2995]='<p class="g8">&nbsp;*</p>*';
 P_Tag[2996]='<p class="c3">&nbsp;*</p>*';
 P_Tag[2997]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'__(Dutiyo bhāgo)',
+	'2. Dukanipāto',
+	'__1. Daḷhavaggo',
+	'__2. Santhavavaggo',
+	'__3. Kalyāṇavaggo',
+	'__4. Asadisavaggo',
+	'__5. Ruhakavaggo',
+	'__6. Nataṃdaḷhavaggo',
+	'__7. Bīraṇathambhavaggo',
+	'__8. Kāsāvavaggo',
+	'__9. Upāhanavaggo',
+	'__10. Siṅgālavaggo',
+	'3. Tikanipāto',
+	'__1. Saṅkappavaggo',
+	'__2. Padumavaggo',
+	'__3. Udapānavaggo',
+	'__4. Abbhantaravaggo',
+	'__5. Kumbhavaggo'
+	];
+    
+    SetupToc();

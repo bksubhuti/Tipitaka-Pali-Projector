@@ -490,3 +490,9 @@ P_Tag[302]='<p class="b1">&nbsp;*<a name="para140">*</a>*<a name="para140_an6">*
 P_Par[140]='p302';
 P_Tag[303]='<p class="c3">&nbsp;*</p>*';
 P_Tag[304]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	''
+	];
+    
+    SetupToc();

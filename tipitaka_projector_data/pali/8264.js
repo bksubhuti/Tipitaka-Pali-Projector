@@ -1642,3 +1642,9 @@ P_Tag[1637]='<p class="c3">&nbsp;*</p>*';
 P_Tag[1638]='<p class="c3">&nbsp;*</p>*';
 P_Tag[1639]='<p class="c3">&nbsp;*</p>*';
 P_Tag[1640]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Padamañjarī '
+	];
+    
+    SetupToc();

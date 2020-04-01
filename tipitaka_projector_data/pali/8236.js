@@ -2767,3 +2767,29 @@ P_Tag[3959]='<p class="g5">&nbsp;*<span class="bld">*</span>*</p>*';
 P_Tag[3960]='<p class="g8">&nbsp;*</p>*';
 P_Tag[3962]='<p class="g5">&nbsp;*<span class="bld">*</span>*</p>*';
 P_Tag[3963]='<p class="g8">&nbsp;*<span class="bld">*</span>*</p>*';
+
+var TOC_Dropdown_Items = [
+	'____Buddhappaṇāmo',
+	'____Dhammappaṇāmo',
+	'____Saṅghappaṇāmo',
+	'____Paṭiññā',
+	'____Paribhāsā',
+	'1. Saggakaṇḍa',
+	'2. Bhūkaṇḍa',
+	'__1. Bhūmivagga',
+	'2. Bhūkaṇḍa',
+	'__2. Puravagga',
+	'__3. Naravagga',
+	'__4. Catubbaṇṇavagga',
+	'__5. Araññavagga',
+	'__6. Araññādivagga',
+	'__7. Pātālavagga',
+	'3. Sāmaññakaṇḍa',
+	'__1. Visesyādhīnavagga',
+	'__2. Saṃkiṇṇavagga',
+	'__3. Anekatthavagga',
+	'3. Sāmaññakaṇḍa',
+	'__4. Abyayavagga'
+	];
+    
+    SetupToc();

@@ -3362,3 +3362,47 @@ P_Tag[4134]='<p class="g5">&nbsp;*</p>*';
 P_Tag[4135]='<p class="g8">&nbsp;*</p>*';
 P_Tag[4136]='<p class="c3">&nbsp;*</p>*';
 P_Tag[4137]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'____Bāhiranidānaṃ',
+	'__Abbhantaranidānaṃ',
+	'1. Ratanacaṅkamanakaṇḍavaṇṇanā',
+	'2. Sumedhapatthanākathāvaṇṇanā',
+	'3. Dīpaṅkarabuddhavaṃsavaṇṇanā',
+	'4. Koṇḍaññabuddhavaṃsavaṇṇanā',
+	'5. Maṅgalabuddhavaṃsavaṇṇanā',
+	'6. Sumanabuddhavaṃsavaṇṇanā',
+	'7. Revatabuddhavaṃsavaṇṇanā',
+	'8. Sobhitabuddhavaṃsavaṇṇanā',
+	'9. Anomadassībuddhavaṃsavaṇṇanā',
+	'10. Padumabuddhavaṃsavaṇṇanā',
+	'11. Nāradabuddhavaṃsavaṇṇanā',
+	'12. Padumuttarabuddhavaṃsavaṇṇanā',
+	'13. Sumedhabuddhavaṃsavaṇṇanā',
+	'14. Sujātabuddhavaṃsavaṇṇanā',
+	'15. Piyadassībuddhavaṃsavaṇṇanā',
+	'16. Atthadassībuddhavaṃsavaṇṇanā',
+	'17. Dhammadassībuddhavaṃsavaṇṇanā',
+	'18. Siddhatthabuddhavaṃsavaṇṇanā',
+	'19. Tissabuddhavaṃsavaṇṇanā',
+	'20. Phussabuddhavaṃsavaṇṇanā',
+	'21. Vipassībuddhavaṃsavaṇṇanā',
+	'22. Sikhībuddhavaṃsavaṇṇanā',
+	'23. Vessabhūbuddhavaṃsavaṇṇanā',
+	'24. Kakusandhabuddhavaṃsavaṇṇanā',
+	'25. Koṇāgamanabuddhavaṃsavaṇṇanā',
+	'26. Kassapabuddhavaṃsavaṇṇanā',
+	'27. Gotamabuddhavaṃsavaṇṇanā',
+	'____Dūrenidānakathā',
+	'____Avidūrenidānakathā',
+	'____Santikenidānakathā',
+	'28. Buddhapakiṇṇakakathā',
+	'____Vemattakathā',
+	'____Avijahitaṭṭhānakathā',
+	'____Sahajātapariccheda-nakkhattaparicchedakathā',
+	'____Sadhammatākathā',
+	'____Anantarāyikadhammakathā',
+	'____Nigamanakathā'
+	];
+    
+    SetupToc();

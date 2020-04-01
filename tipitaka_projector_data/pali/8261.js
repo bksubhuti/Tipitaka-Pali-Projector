@@ -7919,3 +7919,9 @@ P_Tag[9904]='<p class="g7">&nbsp;*</p>*';
 P_Tag[9905]='<p class="g8">&nbsp;*</p>*';
 P_Tag[9906]='<p class="b1">&nbsp;*</p>*';
 P_Tag[9907]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Jinavaṃsadīpaṃ '
+	];
+    
+    SetupToc();

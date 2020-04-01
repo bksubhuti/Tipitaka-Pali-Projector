@@ -224,3 +224,9 @@ P_Tag[240]='<p class="g7">&nbsp;*</p>*';
 P_Tag[241]='<p class="g8">&nbsp;*</p>*';
 P_Tag[242]='<p class="g5">&nbsp;*<span class="font10"><a name="M8242_208"></a>[Pg.208]</span>*</a>*</p>*';
 P_Tag[243]='<p class="g8">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'Nītimañjarī'
+	];
+    
+    SetupToc();

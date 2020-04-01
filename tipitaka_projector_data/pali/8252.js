@@ -438,3 +438,13 @@ P_Tag[430]='<p class="g5">&nbsp;*</p>*';
 P_Tag[431]='<p class="g6">&nbsp;*</p>*';
 P_Tag[432]='<p class="g5">&nbsp;*</p>*';
 P_Tag[433]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'1. Upasampadākaṇḍo',
+	'2. Kappavināsakaṇḍo',
+	'3. Nibbānakaṇḍo',
+	'4. Samasīsikaṇḍo',
+	'Pakiṇṇakakaṇḍo'
+	];
+    
+    SetupToc();

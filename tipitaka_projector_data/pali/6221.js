@@ -3836,3 +3836,13 @@ P_Tag[5076]='<p class="g5">&nbsp;*</p>*';
 P_Tag[5077]='<p class="g8">&nbsp;*</p>*';
 P_Tag[5078]='<p class="c3">&nbsp;*</p>*';
 P_Tag[5079]='<p class="c3">&nbsp;*</p>*';
+
+var TOC_Dropdown_Items = [
+	'17. Cattālīsanipāto',
+	'18. Paṇṇāsanipāto',
+	'19. Saṭṭhinipāto',
+	'20. Sattatinipāto',
+	'21. Asītinipāto'
+	];
+    
+    SetupToc();
