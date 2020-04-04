@@ -46,6 +46,9 @@ var pe1 = ""; var pe2 = "";
 ***************************************/
 loaddictary.push('<script src="dictionary/000_wordbreakdata_Pali_Pali_grammar_Dictionary_extract_DPR_2018.js"></script>');
 
+
+loaddictary.push('<script src="dictionary/dpr-breakup.js"></script>');
+
 //SuttaCentral Pali-English Dictionary
 var hpe1 = localStorage.getItem("hpe1");
 if ((hpe1 == 1)) { dict_in_use++; loaddictary.push('<script src="dictionary/pe1_Pali_English_sc2016_pi2en-maindata-v1.2.js"></script>'); }
@@ -97,5 +100,5 @@ if ((hpc1 == 1)) { dict_in_use++; loaddictary.push('<script src="dictionary/pc1_
 
 var writejs = loaddictary.toString();
 writejs = writejs.replace(/,/g,'');
-
+console.log(writejs);
 document.writeln(writejs);

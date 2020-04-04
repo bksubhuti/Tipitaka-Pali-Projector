@@ -50,7 +50,7 @@ function DictionaryGo() {
 		} else {		// not found
 			DictionaryRet = DictionaryRet + '<div class="DictionaryClass" style="' + DictionaryBackground + '">';
 			DictionaryRet = DictionaryRet + '<b style="color:#ff0000;" id="G_' + key + '" onClick="OpenOnce(\'' + key + '\')">' + toTranslate(key) + '&nbsp;</b>&nbsp;&nbsp;';
-			DictionaryRet = DictionaryRet + WordAnalysis2(key) + '</div>';
+			DictionaryRet = DictionaryRet + WordAnalysis3(key) + '</div>';
 		}	
 	}
 	document.getElementById('page1_desc').innerHTML = DictionaryRet;

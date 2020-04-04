@@ -56,7 +56,7 @@ function ParagraphDictionary() {
 				} else {		// not found
 					ret = ret + '<div>';
 					ret = ret + '<b style="color:#ff0000;" id="G_' + key + '" onClick="OpenOnce(\'' + key + '\')">' + toTranslate(key) + '&nbsp;</b>&nbsp;&nbsp;';
-					ret = ret + WordAnalysis2(key) + '</div>';
+					ret = ret + WordAnalysis3(key) + '</div>';
 				}	
 				ret = ret + '<hr style="border: 1pt dashed gray;"><br>';
 			}
@@ -125,6 +125,51 @@ function LookupDictionary(key) {
 		if ((ary_dict[i] == 'hse1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(se1, d_name, key);}
 	} 
 	return(get_data);
+}
+
+function WordAnalysis3(key) {
+	// the DPR word break up data is based on an algorithm ran on words (tokens) as directly used in the texts, so no
+	// additional processing is needed other than making the key lowercase
+	//
+	const entry = dprBreakup[key.toLowerCase()];
+	if (entry) {
+		// entries in the dprBreakup data look like this:
+		// dprBreakup['bhikkhu'] = 'bhikkhu (bhikkhu)';
+		//
+		// or this:
+		// dprBreakup['āyasmā'] = 'āyasmā (āya, āyasmant, āyasmanta)';
+		//
+		// or this:
+		//
+		// dprBreakup['asaṃkiliṭṭhaasaṃkilesiko'] = 'asaṃ-kiliṭṭhā-saṃkilesiko (asa, asā, kiliṭṭha, saṃkilesiko)';
+		//
+		// - The key of the dprBreakup object is the word being look up here (the "key" parameter of this function)
+		// - The format of the break up is as follows:
+		//   - the original word broken up with dashes (-) and the components of the breakup as dictionary entries in ()
+		//
+		const indexOfLeftBracket = entry.indexOf(' (');
+		const indexOfRightBracket = entry.indexOf(')');
+		const visualBreakup = entry.substring(0, );
+		const breakupWords = entry.substring(indexOfLeftBracket + 2, indexOfRightBracket).split(', ');
+
+		let result = `${entry}\n`;
+		let hasAtLeastOneResult = false;
+		for (const word of breakupWords) {
+			const lookupResult = LookupDictionary(word);
+			if (lookupResult) {
+				let lookupResultView = '<b style="font-size:13pt;">⮕</b>';
+				lookupResultView += `<span style="color:#0000ff;">${word}</span>&nbsp;&nbsp`;
+				lookupResultView += lookupResult;
+				hasAtLeastOneResult = true;
+				result += '<br>' + lookupResultView
+			}
+		}
+		if (hasAtLeastOneResult) {
+			return result;
+		}
+	}
+
+	return `<small style="display: block;">DPR breakup algo failed, using WordAnalysis2.</small>${WordAnalysis2(key)}`;
 }
 
 function WordAnalysis2(key) {

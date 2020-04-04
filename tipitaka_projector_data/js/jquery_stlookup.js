@@ -54,6 +54,7 @@ if ((hee1 == 1)) {
 ***************************************/
 var wordbreakdata = "";
 $.getScript("dictionary/000_wordbreakdata_Pali_Pali_grammar_Dictionary_extract_DPR_2018.js");
+$.getScript("dictionary/dpr-breakup.js");
 
 var pc1 = ''; var pc2 = '';
 var pd1 = '';

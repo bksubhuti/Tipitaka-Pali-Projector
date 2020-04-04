@@ -91,6 +91,7 @@ var wordbreakdata = "";
 * wordbreakdata dictionary file: wordbreakdata_Pali_Pali_grammar_Dictionary_extract_DPR_2018.js
 ***************************************/
 $.getScript("dictionary/000_wordbreakdata_Pali_Pali_grammar_Dictionary_extract_DPR_2018.js");
+$.getScript("dictionary/dpr-breakup.js");
 
 /******** Pali English Dictionary ******
 * pe1 dictionary file: pe1_Pali_English_sc2016_pi2en-maindata-v1.2.js
