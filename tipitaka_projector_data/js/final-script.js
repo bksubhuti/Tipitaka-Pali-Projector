@@ -21,7 +21,7 @@ $(".r1").click(function () {
 				change_tab('page2');
 			} else {
 				if (localStorage.getItem('main_content') == 'page3') {
-					//ParagraphAnalysis();
+					ParagraphAnalysis();
 					window.location= '#G_' + t;
 				}
 			}

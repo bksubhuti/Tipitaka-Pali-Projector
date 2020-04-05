@@ -13,7 +13,7 @@
     }
     // Background Color
     if (!localStorage.getItem("bg_color")) {
-        document.write = localStorage.setItem("bg_color", '#f3ddb6');
+        document.write = localStorage.setItem("bg_color", '#fefefe');
     }
     // Left - Right Frame's Width Ratio
     if (!localStorage.getItem("width_left")) {
@@ -95,7 +95,7 @@
     // Panel Position
     var _init = '0';
     if (!localStorage.getItem("contentposition")) {
-        document.write = localStorage.setItem("contentposition", '0');      // Floating
+        document.write = localStorage.setItem("contentposition", '1');      // Floating
         var _init = '1';
     }
     // Panel mode
@@ -104,7 +104,7 @@
     } 
     // Panel Display
     if (!localStorage.getItem("contentdisplay")) {
-        document.write = localStorage.setItem("contentdisplay", '0');       // onClick
+        document.write = localStorage.setItem("contentdisplay", '1');       // onClick
     } 
     // panel position & size
     if (!localStorage.getItem("main_top")) {
@@ -114,7 +114,7 @@
         document.write = localStorage.setItem("main_left", '0px'); 
     } 
     if (!localStorage.getItem("main_width")) {
-        document.write = localStorage.setItem("main_width", '99%'); 
+        document.write = localStorage.setItem("main_width", '300'); 
     } 
     if (!localStorage.getItem("main_height")) {
         document.write = localStorage.setItem("main_height", '200px'); 
@@ -129,15 +129,15 @@
     }  
     // Panel Background
     if (!localStorage.getItem("contentbackgroundR")) {
-        document.write = localStorage.setItem("contentbackgroundR", '192'); 
+        document.write = localStorage.setItem("contentbackgroundR", '245'); 
     }
     // Panel Background
     if (!localStorage.getItem("contentbackgroundG")) {
-        document.write = localStorage.setItem("contentbackgroundG", '255'); 
+        document.write = localStorage.setItem("contentbackgroundG", '245'); 
     }
     // Panel Background
     if (!localStorage.getItem("contentbackgroundB")) {
-        document.write = localStorage.setItem("contentbackgroundB", '192'); 
+        document.write = localStorage.setItem("contentbackgroundB", '245'); 
     }
     // Panel FontColor
     if (!localStorage.getItem("contentfontcolorR")) {
