@@ -4,7 +4,7 @@
 
 <head>
 
-  <title>Jātaka Pāḷi-2</title>
+  <title>Jātaka Pāḷi-1</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="TIPITAKA PROJECTOR ICON" href="images/favico.ico" />
@@ -30,10 +30,12 @@
         // both TD's need to have:
         //  onClick='Get(2483)'
         //
+        let rows = '';
         for (var i = start; i <= end; i++) {
             var row = "<tr><td class='r1' id='p" + i + "'></td><td class='m1' id='m" + i + "'></td></tr>";
-            $table.append($(row));
+            rows += row;
         }
+        document.getElementById('main_table').innerHTML = rows;
     </script>
 </div>
 

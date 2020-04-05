@@ -30,10 +30,12 @@
         // both TD's need to have:
         //  onClick='Get(2483)'
         //
+        let rows = '';
         for (var i = start; i <= end; i++) {
             var row = "<tr><td class='r1' id='p" + i + "'></td><td class='m1' id='m" + i + "'></td></tr>";
-            $table.append($(row));
+            rows += row;
         }
+        document.getElementById('main_table').innerHTML = rows;
     </script>
 </div>
 
