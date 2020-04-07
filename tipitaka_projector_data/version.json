@@ -1,5 +1,5 @@
 
 {
     "versionno": "0070",
-    "releasenotes": "DPR algo is there now"
+    "releasenotes": "DPR breakup algo and remote version checking are implemented "
 }

@@ -110,6 +110,7 @@
 						<button class="tablinks" onclick="PrefTab(event, 'Dictionaries')">Dictionaries</button>
 						<button class="tablinks" onclick="PrefTab(event, 'Panel')">Panel</button>
 						<button class="tablinks" onclick="PrefTab(event, 'SaveSettings')">Save-Settings</button>
+						<button class="tablinks" onclick="PrefTab(event, 'About')">About</button>
 					</div>
 					
 					<div id="General" class="tabcontent" style="display:inline;">
@@ -566,6 +567,27 @@
 							</table>
 						</div>
 					</div>
+					<div id="About" class="tabcontent" style="display:inline;">
+						<div style="margin-top:1%;line-height: 150%;padding:8px;background-color: #ccc; border: 2px solid #bbbba0;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
+								<table>
+									<tr>
+										<td>
+											<br>
+											Your Current Version is 68.
+											<br>  
+											<br>  
+											Check Repository for Latest Version:  <button type="button" id="btnGetVersion" onclick="getVersion()">Check Repo</button>
+											<br>
+											<br>
+		
+										</td>
+
+									</tr>
+	
+								</table><br>
+								
+						</div>
+					</div>
 				</div>	
 			</td>
 			<td width="10%" align="left" valign="top">
@@ -578,6 +600,8 @@
 	<script src="js/savefile.js"></script>
 		
 	<script>
+
+
 	function PrefTab(evt, cityName) {
 		var i, tabcontent, tablinks;
 		tabcontent = document.getElementsByClassName("tabcontent");
@@ -591,9 +615,46 @@
 		document.getElementById(cityName).style.display = "block";
 		evt.currentTarget.className += " active";
 	}
-	// Get the element with id="defaultOpen" and click on it
 	document.getElementById("defaultOpen").click();
+
+
 	</script>
-   
+
+
+<script>
+	function getVersion(){ 
+		file = 'https://raw.githubusercontent.com/bksubhuti/Tipitaka-Pali-Projector/master/tipitaka_projector_data/version.json'; 
+		var rawFile = new XMLHttpRequest();
+		try{
+			rawFile.open('GET', file, false);
+			rawFile.onreadystatechange = function () {
+			if (rawFile.readyState === 4) {
+				if (rawFile.status === 200 || rawFile.status == 0) {
+					var versiontxt = JSON.parse(rawFile.responseText) ;
+		
+					if (versiontxt.versionno == "0068"){
+					alert(versiontxt.versionno + 'version is up to date');
+					}
+					else{
+					alert( 'New version is: ' + versiontxt.versionno + '\n' +'New version has ' +versiontxt.releasenotes );
+					}
+					//alert('WRITING FILEURI IS OK') ;
+					}// status = 200
+				} //readystate =4
+			}//readystatechange
+			rawFile.send(null);
+		}//try
+		catch{
+			//do nothing.
+		}
+
+	}    //getVersion function
+	
+</script>
+	
+
+
+
 </body>
 </html> 
+
