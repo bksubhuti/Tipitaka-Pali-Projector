@@ -33,20 +33,3 @@ function SrClear() {
       	}	
     } 
 }
-
-window.onload = function () { 
-	if (localStorage.getItem('Sr_id'+ html_no)) {
-		
-		var ary1 = localStorage.getItem('Sr_id'+ html_no).split(';');  
-		var n = Number(location.search.split('n=')[1]);
-		if (0 < n) {
-			for (i in ary1) {
-				if (ary1[i] == n ) {
-					break;
-				}
-			}
-			document.getElementById('Sr' + ary1[i]).scrollIntoView(); 
-			document.getElementById('Sr_Now').innerHTML = (Number(i));
-		}
-	}
-} 
