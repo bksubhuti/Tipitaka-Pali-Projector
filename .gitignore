@@ -1,4 +1,4 @@
 # ignore all files starting with .fr
 .fr*
 .idea
-.vscode*
+.vsc*

@@ -235,7 +235,31 @@ function ChooseSelect(key) {
         document.write = localStorage.setItem('contentlineheight', val);
     }
 
+
+    // get the theme checkbox.. if checked then set the panel to the same color
+    if ( document.getElementById("theme").checked == true ){
+        
+        if (key == 'bg_color'){
+            // auto set the panel to the same color as a theme
+            var r= '';
+            var g= '';
+            var b= '';
+            if(val.length == 7){
+                r = parseInt(val.substr(1,2),16);
+                g = parseInt(val.substr(3,2),16);
+                b = parseInt(val.substr(5,2),16);   
+            }   
+
+            document.write = localStorage.setItem('contentbackgroundR', r);
+            document.write = localStorage.setItem('contentbackgroundG', g);
+            document.write = localStorage.setItem('contentbackgroundB', b);
+        }
+
+    }
+
 } 
+
+
 
 function ChooseRadio(key) {
     val = document.getElementById(key).value;
