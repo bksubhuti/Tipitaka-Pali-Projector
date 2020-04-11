@@ -210,8 +210,8 @@
 												<option value="#d8cbab" style="background-color:#d8cbab;color:#000001;"> Evening 1 </option>
 												<option value="#e2bdb4" style="background-color:#e2bdb4;color:#010101;"> Evening 2 </option>
 											</select>
-											<input type="checkbox" type=onoffswitch-checkbox id="theme" value="theme" onclick='ChooseCheckbox("theme")' checked  >
-											<label for="theme">Theme</label>
+											<input type="checkbox" type=onoffswitch-checkbox id="Themes"  onclick='ChooseCheckbox("Themes")' >
+											<label for="Themes">Themes</label>
 
 										</div> 
 									</td>
@@ -305,15 +305,15 @@
 											<input name="palinote" id="Pali_note1" type="radio" onclick='ChooseRadio("Pali_note1")'>
 											<label for="Pali_note1">Inline Display</label>
 											<input name="palinote" id="Pali_note2" type="radio" onclick='ChooseRadio("Pali_note2")'>
-											<label for="Pali_note2">None Display (Default)</label>
+											<label for="Pali_note2">No Display (Default)</label>
 											<br>
 											<strong style="color:#880000;">Show Page Numbers</strong>
 											<br>
 
-											<input name="Show_Numbers" id="Show_Numbers" type="radio" checked onclick='ChooseRadio("Show_Numbers")'>
-											<label for="Show_Numbers">Show Numbers</label>
-											<input name="Show_Numbers" id="Hide_Numbers" type="radio" onclick='ChooseRadio("Hide_Numbers")'>
-											<label for="Hide_Numbers">None Display</label>
+											<input name="Show_Numbers" id="Show_Numbers1" type="radio" onclick='ChooseRadio("Show_Numbers1")'>
+											<label for="Show_Numbers1">Show Numbers</label>
+											<input name="Show_Numbers" id="Hide_Numbers2" type="radio" onclick='ChooseRadio("Hide_Numbers2")'>
+											<label for="Hide_Numbers2">No Display</label>
 											<br>
 
 												
@@ -586,7 +586,7 @@
 									<tr>
 										<td>
 											<br>
-											Your Current Version is 68.
+											Your Current Version is: <div id="currentversion"> </div>
 											<br>  
 											<br>  
 											Check Repository for Latest Version:  <button type="button" id="btnGetVersion" onclick="getVersion()">Check Repo</button>
@@ -647,7 +647,7 @@
 				if (rawFile.status === 200 || rawFile.status == 0) {
 					var versiontxt = JSON.parse(rawFile.responseText) ;
 		
-					if (versiontxt.versionno == "0068"){
+					if (versiontxt.versionno == localStorage.getItem('versionno') ){
 						document.getElementById('versioninfo').innerHTML = '<b>Version is up to date</b>'; 
 					}
 					else{

@@ -1,4 +1,5 @@
 # ignore all files starting with .fr
 .fr*
 .idea
-.vsc*
+.vsco*
+.vscode/launch.json

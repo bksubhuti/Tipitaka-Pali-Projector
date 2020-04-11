@@ -262,6 +262,10 @@ if (localStorage.getItem('Pali_note') == 'none') {
 	$(".note").css("display", 'inline');
 }
 
+
+
+
+
 if (Sr_id != null) {
 	document.getElementById('Sr_Div').style.visibility = '';
 	document.getElementById('Sr_Next').innerHTML = Sr_id.split(';').length - 2;
@@ -571,6 +575,16 @@ for (i=1; i<=3; i++) {
 		}
 	}
 }
+
+if (localStorage.getItem('Show_Numbers') == 'true') {
+	$('.font10').show();
+}
+if (localStorage.getItem('Show_Numbers') == 'false') {
+	$('.font10').hide();
+}
+
+
+
 
 // ----
 // Panel Drag & Resize

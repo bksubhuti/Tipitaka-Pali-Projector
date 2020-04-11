@@ -155,3 +155,14 @@
     if (!localStorage.getItem("contentlineheight")) {
         document.write = localStorage.setItem("contentlineheight", '200'); 
     } 
+
+    // Show numbers checkbox
+    if (!localStorage.getItem("Show_Numbers") ) {
+        document.write = localStorage.setItem("Show_Numbers", 'true'); 
+    } 
+
+    // checkbox for Themes
+    if (!localStorage.getItem("Themes") ) {
+        document.write = localStorage.setItem("Themes", 'true'); 
+    } 
+

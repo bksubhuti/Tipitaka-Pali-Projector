@@ -65,6 +65,7 @@ function RestorePreferences() {
     def['view_right'] = '@';
     def['width_left'] = '@';
     def['width_right'] = '@'; 
+    def['Show_Numbers']='@';
 
     file = 'preferences.txt'; 
     var rawFile = new XMLHttpRequest();
@@ -237,7 +238,7 @@ function ChooseSelect(key) {
 
 
     // get the theme checkbox.. if checked then set the panel to the same color
-    if ( document.getElementById("theme").checked == true ){
+    if ( document.getElementById("Themes").checked == true ){
         
         if (key == 'bg_color'){
             // auto set the panel to the same color as a theme
@@ -271,6 +272,14 @@ function ChooseRadio(key) {
         }
     }
 
+    if (key == 'Show_Numbers1') {
+        document.write  = localStorage.setItem('Show_Numbers', 'true');
+    }
+    if (key == 'Hide_Numbers2') {   
+        document.write  = localStorage.setItem('Show_Numbers', 'false');
+    }
+
+
     if (key.indexOf('position') != -1) {
         document.write  = localStorage.setItem('contentposition', val);
     }
@@ -295,6 +304,15 @@ function ChooseCheckbox(key) {
         document.write  = localStorage.setItem('hee1', 0);
         }
     }
+
+    if (key.indexOf('Themes') != -1) {
+        if (chk == true) {
+             localStorage.setItem('Themes', 'true');
+        } else {
+             localStorage.setItem('Themes', 'false');
+            }
+    }
+    
 }
 
 function ChooseRange(key) {
@@ -426,6 +444,7 @@ function SavePreferences() {
     def['view_right'] = '';
     def['width_left'] = '';
     def['width_right'] = '';
+    def['Show_numbers']='';
 
     for (i in localStorage) {
         if (def[i] != null) {
@@ -467,6 +486,13 @@ window.onload = function () {
     var bg_color = localStorage.getItem("bg_color");
     document.getElementById('bg_color').value = bg_color;
 
+    // check to see if themes is set or not and load it.
+    if(localStorage.getItem('Themes')=='true'){
+        document.getElementById('Themes').checked = true;
+    }else {
+        document.getElementById('Themes').checked = false;
+    }
+
     // Left - Right Width Ratio
     var width_left = localStorage.getItem("width_left");
     document.write = localStorage.setItem("width_right", (100 - Number(width_left)));
@@ -497,6 +523,26 @@ window.onload = function () {
     } else {
     document.getElementById('Pali_note2').checked = true;
     }
+
+    
+    
+    if (localStorage.getItem('Show_Numbers') == 'true' ){
+        // set the radio button
+        document.getElementById('Show_Numbers1').checked = true;
+    }
+    else{
+        document.getElementById('Hide_Numbers2').checked = true;
+    }
+
+    
+    if ( localStorage.getItem('Themes') == 'true') {
+        document.getElementById('Themes').checked = true;
+    }
+    else{
+        document.getElementById('Themes').checked = false;
+    }
+
+
 
     //--------------------------------------------------------------------------------
     // Start of Panel
@@ -676,4 +722,33 @@ window.onload = function () {
     // Speed
     var speech_speed = localStorage.getItem("speech_speed");
     document.getElementById('showspeed').innerHTML = 'Speed=' + speech_speed;
+
+
+    // get the version number.. always do this last in case the file read fails it will 
+    // cause the function to crash.
+    file = 'version.json'; 
+    var rawFile = new XMLHttpRequest();
+    try{
+        rawFile.open('GET', file, false);
+        rawFile.onreadystatechange = function () {
+        if (rawFile.readyState === 4) {
+            if (rawFile.status === 200 || rawFile.status == 0) {
+                var versiontxt = JSON.parse(rawFile.responseText) ;
+    
+                document.getElementById('currentversion').innerHTML = '<b>' + versiontxt.versionno +'</b>'; 
+                localStorage.setItem('versionno', versiontxt.versionno)
+            } //readystate =200
+        }//readystate 4
+    } //readstaychange
+    rawFile.send(null);
+    }//try
+    catch{
+        //do nothing.
+    }
+
+
+
+
+
+
 }
