@@ -34,6 +34,12 @@ var keepChars = /[^a-zA-Zāīūṇṅñṃṁḷḍṭáàảãạăắằẳẵ
 var load_size_left = localStorage.getItem('size_left');
 var load_size_right = localStorage.getItem('size_right');
 
+// these are set in the preferences.
+var r1 = localStorage.getItem('r1');
+var m1 = localStorage.getItem('m1');
+var b1 = localStorage.getItem('b1');
+
+
 var bg_color = localStorage.getItem('bg_color');
 
 $(window).on('load', function () {
@@ -54,16 +60,18 @@ $(".m1").css("width", width_m1 + '%');
 
 }//else {},  use css default r1 85%, m1 15% (15% width for empty place to click on touch screen)
 
+//I'm leaving this code for now but hope to delete it soon.
 //background, default = #f3ddb6 sepia (named "Classic Reader" in htm content file)
 if (!(bg_color) || (bg_color == "#f3ddb6")) {   $("select#bg_color").val('#f3ddb6'); }
 if ((bg_color) && (bg_color != "#f3ddb6")) {
-if (bg_color == "#fff8dc") { $(".r1").css("color","black"); $(".m1").css("color","black") }
-else { $(".r1").css("color","#FFF2CC"); $(".m1").css("color","#FFF2CC");}
-$("table").css("background", bg_color);
-//$("select#bg_color option[value='abc']").attr('selected','selected');
-$("select#bg_color").val(bg_color);//reference https://stackoverflow.com/a/16979926
+    if (bg_color == "#fff8dc") { $(".r1").css("color","black"); $(".m1").css("color","black") }
+    else { $(".r1").css("color","#FFF2CC"); $(".m1").css("color","#FFF2CC");}
+    $("table").css("background", bg_color);
+    //$("select#bg_color option[value='abc']").attr('selected','selected');
+    $("select#bg_color").val(bg_color);//reference https://stackoverflow.com/a/16979926
 }
 
+/*  commented this code for now.. 
 var font_color = {
 '#f3ddb6':['#000000'],
 '#fff8dc':['#000000'],
@@ -99,6 +107,14 @@ var b1_color = {
 $(".r1").css("color", font_color[bg_color]);
 $(".m1").css("color", font_color[bg_color]);
 $(".b1").css("color", b1_color[bg_color]);
+*/
+
+// these are set in the preferences now.
+$(".r1").css("color",r1);
+$(".m1").css("color",m1);
+$(".b1").css("color",b1);
+
+
 
 if ((load_size_left) && (load_size_left != "25")) {
 var writeline_heightleft = Number(load_size_left) + 12; writeline_heightleft += 'pt';

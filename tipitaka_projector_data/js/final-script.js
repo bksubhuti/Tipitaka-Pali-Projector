@@ -439,6 +439,8 @@ g = parseInt(g * 0.8);
 b = parseInt(b * 0.8);
 DictionaryBackground = 'background-color:rgb(' + r + ',' + g + ',' + b + ')';
 
+
+
 r = localStorage.getItem('contentfontcolorR');
 if (!r) {
 	r = 0;
@@ -452,6 +454,13 @@ if (!b) {
 	b = 0;
 }
 document.getElementById('main_div').style.color= 'rgb(' + r + ',' + g + ',' + b + ')';
+
+
+// set the font color for the dictionary
+r1 = localStorage.getItem("r1");
+$('.dict').css('color', r1);
+$('li').css('color', r1);
+
 
 lineheight = localStorage.getItem('contentlineheight');
 if (!lineheight) {

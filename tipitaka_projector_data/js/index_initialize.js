@@ -13,7 +13,7 @@
     }
     // Background Color
     if (!localStorage.getItem("bg_color")) {
-        document.write = localStorage.setItem("bg_color", '#fefefe');
+        document.write = localStorage.setItem("bg_color", '#fff8dc');
     }
     // Left - Right Frame's Width Ratio
     if (!localStorage.getItem("width_left")) {
@@ -127,17 +127,18 @@
     if (!localStorage.getItem("contentfontsize")) {
         document.write = localStorage.setItem("contentfontsize", '12');
     }  
+
     // Panel Background
     if (!localStorage.getItem("contentbackgroundR")) {
-        document.write = localStorage.setItem("contentbackgroundR", '245'); 
+        document.write = localStorage.setItem("contentbackgroundR", '255'); 
     }
     // Panel Background
     if (!localStorage.getItem("contentbackgroundG")) {
-        document.write = localStorage.setItem("contentbackgroundG", '245'); 
+        document.write = localStorage.setItem("contentbackgroundG", '248'); 
     }
     // Panel Background
     if (!localStorage.getItem("contentbackgroundB")) {
-        document.write = localStorage.setItem("contentbackgroundB", '245'); 
+        document.write = localStorage.setItem("contentbackgroundB", '220'); 
     }
     // Panel FontColor
     if (!localStorage.getItem("contentfontcolorR")) {
