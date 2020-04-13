@@ -71,43 +71,6 @@ if ((bg_color) && (bg_color != "#f3ddb6")) {
     $("select#bg_color").val(bg_color);//reference https://stackoverflow.com/a/16979926
 }
 
-/*  commented this code for now.. 
-var font_color = {
-'#f3ddb6':['#000000'],
-'#fff8dc':['#000000'],
-'#1f3763':['#FFFFFE'],
-'#000001':['#FFFFFF'],
-'#121212':['#B0B0B0'],
-'#010101':['#937811'],
-'#090C11':['#2D3D4A'],
-'#3C3C3C':['#CECECE'],
-'#5A5A5A':['#CACACA'],
-'#D7D4CD':['#626262'],
-'#E0E0E0':['#202020'],
-'#F0F0F0':['#008000'],
-'#FEFEFE':['#000000'],
-'#D8CBAB':['#000001'],
-'#E2BDB4':['#010101']}
-var b1_color = {
-'#f3ddb6':['brown'],
-'#fff8dc':['brown'],
-'#1f3763':['#ffff00'],
-'#000001':['brown'],
-'#121212':['brown'],
-'#010101':['brown'],
-'#090C11':['brown'],
-'#3C3C3C':['brown'],
-'#5A5A5A':['brown'],
-'#D7D4CD':['brown'],
-'#E0E0E0':['brown'],
-'#F0F0F0':['brown'],
-'#FEFEFE':['brown'],
-'#D8CBAB':['brown'],
-'#E2BDB4':['brown']}
-$(".r1").css("color", font_color[bg_color]);
-$(".m1").css("color", font_color[bg_color]);
-$(".b1").css("color", b1_color[bg_color]);
-*/
 
 // these are set in the preferences now.
 $(".r1").css("color",r1);
@@ -192,7 +155,7 @@ if ((color =="#f3ddb6") || (color =="#fff8dc")) {$(".r1").css("color","black"); 
 } else {$(".r1").css("color","#FFF2CC"); $(".m1").css("color","#FFF2CC"); }
 
 document.write.innerHTML = localStorage.setItem('bg_color', color);
-
+/*
 var font_color = {
 '#f3ddb6':['#000000'],
 '#fff8dc':['#000000'],
@@ -225,9 +188,12 @@ var b1_color = {
 '#FEFEFE':['brown'],
 '#D8CBAB':['brown'],
 '#E2BDB4':['brown']}
-$(".r1").css("color", font_color[color]);
-$(".m1").css("color", font_color[color]);
-$(".b1").css("color", b1_color[color]);
+*/
+
+// table and variables set in pref
+$(".r1").css("color", r1);
+$(".m1").css("color", m1);
+$(".b1").css("color", b1);
 
 }//change backgroundColor function
 
@@ -1286,3 +1252,4 @@ $('#loader').fadeOut(); //give extra 2 seconds for data ready
 @ Dec 2017 - April 2018
 @ Pyin Oo Lwin, Mandalay, Myanmar
 ****/
+    
