@@ -303,7 +303,7 @@ function ChooseSelect(key) {
         $('h3').css('color', r1);
 
 
-
+        hideshowlogo();
 
 
 
@@ -571,6 +571,9 @@ window.onload = function () {
     $('h3').css('color', r1);
 
 
+
+    hideshowlogo();
+
     // Left - Right Width Ratio
     var width_left = localStorage.getItem("width_left");
     document.write = localStorage.setItem("width_right", (100 - Number(width_left)));
@@ -827,6 +830,36 @@ window.onload = function () {
 
 
 
+ 
 
+}
+
+function hideshowlogo(){
+    // hide or showt the logo
+    var r1 = localStorage.getItem('r1');
+    var bg_color = localStorage.getItem('bg_color');
+
+    $('#asoka2').hide();
+    $('#asoka1').show();
+
+    if ( (r1 == '#ffffff') || (r1 == '#fffffe')  || (r1 =='#b0b0b0') || bg_color == '#010101') { 
+        $('table#titletable a').css('color',r1);
+        $('#asoka1').hide() ;
+        $('#asoka2').show();
+    }
+}
+
+function enlarge()
+{
+    /*var ev = jQuery.Event("keypress");
+    ev.ctrlKey = false;
+    ev.which = 43;
+    $("container").trigger(ev);
+
+    */
+
+   $('body').animate({ 'zoom': 4.2 }, 150); 
+
+    alert('called');
 
 }
