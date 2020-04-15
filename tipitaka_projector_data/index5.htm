@@ -117,11 +117,12 @@
 </head>
 
 <body style="margin-top:0.0pt;margin-right:0in;margin-bottom:0in;margin-left:0in;margin-bottom:0pt;font-size:12.0pt;line-height:200%;font-family:Palatino, sans-serif;" bgcolor="#ffffc0">
-  <table align="center" bgcolor="#ffffc0" border="0" width="100%">
+  <table id=titletable align="center" bgcolor="#ffffc0" border="0" width="100%">
     <tbody>
       <tr>
         <td align="right" valign="top" width="25%">
-          <a href="index.htm" id="asoka"><img src="images/asoka.png"></a>
+          <a href="index.htm" id="asoka2"><img src="images/asoka2.png"></a>
+          <a href="index.htm" id="asoka1"><img src="images/asoka.png"></a>
           <br>
           Chaṭṭha Saṅgāyana Tipiṭaka<br>
         </td>
@@ -133,7 +134,8 @@
             <a id="reset" href="../02_RESET_Tipitaka_Projector.htm">
               <img src="images/reset.png">&nbsp;&nbsp;Reset&nbsp;&nbsp;&nbsp;
             </a>
-            <span id="prefer" onClick="window.location='preferences.htm'">
+            <span id="prefer">
+              <a href="preferences.htm" id="preferences">
               <img src="images/s_process.png">&nbsp;&nbsp;Preferences&nbsp;&nbsp;&nbsp;
             </span>
             <hr color="#b2b2b2" width="50%">
@@ -428,6 +430,26 @@
     document.getElementById('PC').style.display = 'none';
     document.getElementById('iPad').style.display = 'inline';
   }
+
+  window.onload = function () {
+    $('#asoka2').hide();
+
+    var r1 = localStorage.getItem('r1');
+    var bg_color = localStorage.getItem('bg_color');
+
+    // Background Color
+    $('table#titletable').css('background', localStorage.getItem('bg_color'));
+    $('table#titletable').css('color', r1);
+
+    if ( (r1 == '#ffffff') || (r1 == '#fffffe')  || (r1 =='#b0b0b0') || bg_color == '#010101') { 
+     $('table#titletable a').css('color',r1);
+     $('#asoka1').hide() ;
+     $('#asoka2').show();
+    }
+
+  
+  }
+
 </script>
 
 </body></html>
