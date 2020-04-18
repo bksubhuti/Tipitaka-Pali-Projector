@@ -354,7 +354,7 @@ window.addEventListener('resize', function() {
 
 tx = parseInt(document.getElementById('main_div').style.top);
 tx2 = document.getElementById('main_content').offsetTop;
-document.getElementById('main_content').style.height = (h - tx2 - tx + 20)+ "px";
+// document.getElementById('main_content').style.height = (h - tx2 - tx + 20)+ "px";
 
 if (p == '0') {		// floating
 	RedrawTable(0);
@@ -687,7 +687,7 @@ function doResizeBottom(ev){
 	document.write = localStorage.setItem('main_height', h);
 
 	tx2 = document.getElementById('main_content').offsetTop;
-	document.getElementById('main_content').style.height = (h - tx2 - tx + 20)+ "px";
+	// document.getElementById('main_content').style.height = (h - tx2 - tx + 20)+ "px";
 
 	RedrawTable(0);
 };
@@ -740,7 +740,7 @@ function doDrag(ev){
 	document.write = localStorage.setItem('main_height', h);
 
 	tx2 = document.getElementById('main_content').offsetTop;
-	document.getElementById('main_content').style.height = (h - tx2 - tx + 20)+ "px"
+	// document.getElementById('main_content').style.height = (h - tx2 - tx + 20)+ "px"
 
 	RedrawTable(w);
 };

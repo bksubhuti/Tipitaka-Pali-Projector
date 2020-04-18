@@ -139,7 +139,7 @@ function GetTrId(val) {
 
 	h = parseInt(document.getElementById('main_div').style.height) - Math.max(34, parseInt(document.getElementById('main_div').style.top) + parseInt(document.getElementById('main_content').offsetTop));
 
-	document.getElementById('main_content').style.height = h + "px"; 
+	// document.getElementById('main_content').style.height = h + "px";
 
 	Message(val);		// put message
 
@@ -216,7 +216,7 @@ function RedrawTable(w) {
 		document.getElementById('main_td2').style.left= w1 + "px";	
 		document.getElementById('main_td2').style.width= w2 + "px";	
 	}	 
-	document.getElementById('main_content').style.height = document.getElementById('main_div').style.height + "px"
+	// document.getElementById('main_content').style.height = document.getElementById('main_div').style.height + "px"
 }
 
 function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
@@ -598,7 +598,7 @@ $(window).on('load', function () {
 
 	tx = parseInt(document.getElementById('main_div').style.top);
 	tx2 = document.getElementById('main_content').offsetTop;
-	document.getElementById('main_content').style.height = (h - tx2 - tx + 20)+ "px";
+	// document.getElementById('main_content').style.height = (h - tx2 - tx + 20)+ "px";
 
 	if (p == '0') {		// floating
 		RedrawTable(0);
@@ -939,7 +939,7 @@ $(window).on('load', function () {
         document.write = localStorage.setItem('main_height', h);
 
 		tx2 = document.getElementById('main_content').offsetTop;
-		document.getElementById('main_content').style.height = (h - tx2 - tx + 20)+ "px"; 
+		// document.getElementById('main_content').style.height = (h - tx2 - tx + 20)+ "px";
 		
 		RedrawTable(0);
       };
@@ -992,7 +992,7 @@ $(window).on('load', function () {
 		document.write = localStorage.setItem('main_height', h);
 
 		tx2 = document.getElementById('main_content').offsetTop;
-		document.getElementById('main_content').style.height = (h - tx2 - tx + 20)+ "px"
+		// document.getElementById('main_content').style.height = (h - tx2 - tx + 20)+ "px"
 		
 		RedrawTable(w);
       };

@@ -36,7 +36,7 @@ function iPadHeight() {
 	tx = parseInt(document.getElementById('main_div').style.top);
 	tx2 = document.getElementById('main_content').offsetTop;
 	h2 = (h1 - (tx2 - tx) + 20);
-	document.getElementById('main_content').style.height = h2 + "px"; 
+	// document.getElementById('main_content').style.height = h2 + "px";
 
 	console.log(tx +'  '+h1+ '  ' + window.innerHeight);
 	if (window.innerHeight <= (tx + h1 + 25)) {

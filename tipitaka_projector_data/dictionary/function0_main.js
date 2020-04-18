@@ -579,10 +579,10 @@ $(window).on('load', function () {
 		h = localStorage.getItem('main_height');
 		if (!h) {
 			document.getElementById('main_div').style.height = '200px';
-			document.getElementById('main_content').style.height = '175px';
+			// document.getElementById('main_content').style.height = '175px';
 		} else {
 			document.getElementById('main_div').style.height = h + 'px';
-			document.getElementById('main_content').style.height = (h - 40) + 'px';
+			// document.getElementById('main_content').style.height = (h - 40) + 'px';
 		} 
 		//w = Number(Number(w)/ screen.width *100 + 1); 
 		RedrawTable(0);
@@ -604,7 +604,7 @@ $(window).on('load', function () {
 
 		h = window.innerHeight; 
 		document.getElementById('main_div').style.height = h + 'px';
-		document.getElementById('main_content').style.height = (h - 40) + 'px';
+		// document.getElementById('main_content').style.height = (h - 40) + 'px';
   
 		//w = Number(Number(w)/ screen.width *100 + 1); 
 		RedrawTable(parseInt(w));
@@ -821,7 +821,7 @@ $(window).on('load', function () {
 		}
 
         omain_div.style.height=h+"px";        
-		document.getElementById('main_content').style.height = (h - 40) + 'px';
+		// document.getElementById('main_content').style.height = (h - 40) + 'px';
 
         document.write.innerHTML = localStorage.setItem('main_height', h);
       };
@@ -881,7 +881,7 @@ $(window).on('load', function () {
 
         omain_div.style.width=w+"px";
         omain_div.style.height=h+"px";
-		document.getElementById('main_content').style.height = (h - 40) + 'px';
+		// document.getElementById('main_content').style.height = (h - 40) + 'px';
 
         document.write.innerHTML = localStorage.setItem('main_width', w);
         document.write.innerHTML = localStorage.setItem('main_height', h);

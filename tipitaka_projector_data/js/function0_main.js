@@ -138,7 +138,7 @@ function GetTrId(val) {
 
 	h = parseInt(document.getElementById('main_div').style.height) - Math.max(34, parseInt(document.getElementById('main_div').style.top) + parseInt(document.getElementById('main_content').offsetTop));
 
-	document.getElementById('main_content').style.height = h + "px";
+	// document.getElementById('main_content').style.height = h + "px";
 
 	Message(val);		// put message
 
@@ -216,7 +216,7 @@ function RedrawTable(w) {
 		document.getElementById('main_td2').style.left= w1 + "px";
 		document.getElementById('main_td2').style.width= w2 + "px";
 	}
-	document.getElementById('main_content').style.height = document.getElementById('main_div').style.height + "px"
+	// document.getElementById('main_content').style.height = document.getElementById('main_div').style.height + "px"
 
 	adjustTabContent();
 

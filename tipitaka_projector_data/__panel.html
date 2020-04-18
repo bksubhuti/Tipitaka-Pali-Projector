@@ -43,6 +43,12 @@
       padding-top: 5px;
       line-height: 1;
     }
+    .helpers {
+      position: sticky;
+      background: white;
+      top: 0;
+      padding-top: 10px;
+    }
     .helpers > * {
       display: none;
     }
@@ -83,13 +89,14 @@
       border: 2px solid #777;
       border-bottom-left-radius: 10px;
       border-bottom-right-radius: 10px;
-      padding: 10px;
       margin-top: 32px;
       float: left;
       width: 100%;
       box-sizing: border-box;
       font-family: sans-serif;
-      overflow: hidden;
+      overflow-y: scroll;
+      position: relative;
+      padding: 0 10px 10px;
     }
     #main_div li {
 
@@ -316,7 +323,7 @@
       </div>
     </div>
 
-    <div id="main_content" style="overflow-y:scroll;padding-top:5px;height:160px;width:100%;">
+    <div id="main_content" style="padding-top:5px; width:100%;">
       <div id="page1_desc" class="pages" style="max-height: 80%;height: 80%;overflow-y: scroll;">
         Sukhi Hontu!
       </div>
