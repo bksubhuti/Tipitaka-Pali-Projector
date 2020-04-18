@@ -340,7 +340,16 @@ document.getElementById('main_div').style.left = '' + l + 'px';
 document.getElementById('main_div').style.height = '' + h + 'px';
 document.getElementById('main_div').style.width = '' + w + 'px';
 
-document.getElementById('main_td2').style.width = (screen.width - w) + 'px';
+document.getElementById('main_td2').style.width = (document.body.getBoundingClientRect().width - w) + 'px';
+
+window.addEventListener('resize', function() {
+	// adjust main_td2 on window resize
+	//
+	const mtd2 = document.getElementById('main_td2');
+	const rect = mtd2.getBoundingClientRect();
+	const available = document.body.getBoundingClientRect().width - rect.x;
+	mtd2.style.width = `${available}px`;
+});
 
 tx = parseInt(document.getElementById('main_div').style.top);
 tx2 = document.getElementById('main_content').offsetTop;

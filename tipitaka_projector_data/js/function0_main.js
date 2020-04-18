@@ -194,12 +194,12 @@ function sel_on_off() {
 function RedrawTable(w) {
 	//sc = screen.width;
 	w1 = w;		//parseInt(w /screen.width * 100);
-	w2 = screen.width - w1 - 15; 	// class="main_td2" margin-left:15px;
+	w2 = document.body.getBoundingClientRect().width - w1 - 15; 	// class="main_td2" margin-left:15px;
 
 	if (localStorage.getItem('contentposition') == '0') {  // float panel
 		document.getElementById('main_td2').style.left = "0px";
 		document.getElementById('main_td2').style.top = "0px";
-		document.getElementById('main_td2').style.width = screen.width + "px";
+		document.getElementById('main_td2').style.width = document.body.getBoundingClientRect().width + "px";
 		document.getElementById('main_td2').style.height = window.innerHeight+ "px";
 		$('.main_td2').css('margin-left', '0px');
 
@@ -220,7 +220,7 @@ function RedrawTable(w) {
 
 
 
-	console.log(screen.width + '  ' + window.innerWidth +'  '+ main_div.style.width+ '  '+main_td2.style.width);
+	console.log(document.body.getBoundingClientRect().width + '  ' + window.innerWidth +'  '+ main_div.style.width+ '  '+main_td2.style.width);
 }
 
 function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika

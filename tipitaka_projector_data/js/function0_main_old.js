@@ -195,12 +195,12 @@ function sel_on_off() {
 function RedrawTable(w) {
 	//sc = screen.width;
 	w1 = w;		//parseInt(w /screen.width * 100);
-	w2 = screen.width - w1; 
+	w2 = document.body.getBoundingClientRect().width - w1;
 
 	if (localStorage.getItem('contentposition') == '0') {  // float panel
 		document.getElementById('main_td2').style.left = "0px";
 		document.getElementById('main_td2').style.top = "0px";
-		document.getElementById('main_td2').style.width = screen.width + "px";
+		document.getElementById('main_td2').style.width = document.body.getBoundingClientRect().width + "px";
 		document.getElementById('main_td2').style.height = window.innerHeight+ "px";
 		
 		w1 = parseInt(document.getElementById('main_div').style.width) + parseInt(document.getElementById('main_div').style.height);
@@ -594,7 +594,7 @@ $(window).on('load', function () {
 	document.getElementById('main_div').style.height = '' + h + 'px';
 	document.getElementById('main_div').style.width = '' + w + 'px';
 
-	document.getElementById('main_td2').style.width = (screen.width - w) + 'px';
+	document.getElementById('main_td2').style.width = (document.body.getBoundingClientRect().width - w) + 'px';
 
 	tx = parseInt(document.getElementById('main_div').style.top);
 	tx2 = document.getElementById('main_content').offsetTop;

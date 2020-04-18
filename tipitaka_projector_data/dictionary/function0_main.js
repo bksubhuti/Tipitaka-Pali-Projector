@@ -112,8 +112,8 @@ function sel_on_off() {
 }
 
 function RedrawTable(w) {
-	sc = screen.width;
-	w1 = parseInt(w /screen.width * 100 +1.5);
+	sc = document.body.getBoundingClientRect().width;
+	w1 = parseInt(w /document.body.getBoundingClientRect().width * 100 +1.5);
 	w2 = 99 - w1; 
 
 	document.getElementById('main_td1').style.width= w1 + "%";
