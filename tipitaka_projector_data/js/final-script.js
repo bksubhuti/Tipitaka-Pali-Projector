@@ -27,6 +27,14 @@ $(".r1").click(function () {
 			}
 		}
 	}
+
+	const currentTab = localStorage.getItem('main_content');
+
+	if (['page4', 'page5'].indexOf(currentTab) >= 0) {
+		// switch to dictionary
+		//
+		onTabClick(document.getElementById('page1'));
+	}
 });
 
 $(".m1").bind('click', function () {

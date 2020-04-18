@@ -186,7 +186,6 @@ function WordAnalysis3(key, fallBackToWordAnalysis2) {
 		}
 	}
 
-	console.log('www', fallBackToWordAnalysis2);
 	if (fallBackToWordAnalysis2) {
 		return WordAnalysis2(key);
 	} else {
