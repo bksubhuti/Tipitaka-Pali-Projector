@@ -56,7 +56,7 @@ function ParagraphDictionary() {
 				} else {		// not found
 					ret = ret + '<div>';
 					ret = ret + '<b style="color:#ff0000;" id="G_' + key + '" onClick="OpenOnce(\'' + key + '\')">' + toTranslate(key) + '&nbsp;</b>&nbsp;&nbsp;';
-					ret = ret + WordAnalysis3(key) + '</div>';
+					ret = ret + DoAnalysis(key) + '</div>';
 				}	
 				ret = ret + '<hr style="border: 1pt dashed gray;"><br>';
 			}
@@ -127,21 +127,32 @@ function LookupDictionary(key) {
 	return(get_data);
 }
 
-function WordAnalysis3(key) {
+function DoAnalysis(key) {
+	const algo = localStorage.getItem('tpp-breakup-algo') || 'auto';
+	if (algo === 'none') {
+		return '';
+	} else if (algo === 'tpp') {
+		return WordAnalysis2(key);
+	} else {
+		return WordAnalysis3(key, algo === 'auto');
+	}
+}
+
+function WordAnalysis3(key, fallBackToWordAnalysis2) {
 	// the DPR word break up data is based on an algorithm ran on words (tokens) as directly used in the texts, so no
 	// additional processing is needed other than making the key lowercase
 	//
 	const entry = dprBreakup[key.toLowerCase()];
 	if (entry) {
 		// entries in the dprBreakup data look like this:
-		// dprBreakup['bhikkhu'] = 'bhikkhu (bhikkhu)';
+		// 'bhikkhu':'bhikkhu (bhikkhu)',
 		//
 		// or this:
-		// dprBreakup['āyasmā'] = 'āyasmā (āya, āyasmant, āyasmanta)';
+		// 'āyasmā':'āyasmā (āya, āyasmant, āyasmanta)',
 		//
 		// or this:
 		//
-		// dprBreakup['asaṃkiliṭṭhaasaṃkilesiko'] = 'asaṃ-kiliṭṭhā-saṃkilesiko (asa, asā, kiliṭṭha, saṃkilesiko)';
+		// 'asaṃkiliṭṭhaasaṃkilesiko':'asaṃ-kiliṭṭhā-saṃkilesiko (asa, asā, kiliṭṭha, saṃkilesiko)',
 		//
 		// - The key of the dprBreakup object is the word being look up here (the "key" parameter of this function)
 		// - The format of the break up is as follows:
@@ -149,10 +160,16 @@ function WordAnalysis3(key) {
 		//
 		const indexOfLeftBracket = entry.indexOf(' (');
 		const indexOfRightBracket = entry.indexOf(')');
-		const visualBreakup = entry.substring(0, );
-		const breakupWords = entry.substring(indexOfLeftBracket + 2, indexOfRightBracket).split(', ');
+		let breakupWords = entry.substring(indexOfLeftBracket + 2, indexOfRightBracket).split(', ');
 
-		let result = `${entry}\n`;
+		// cleans up DPR-specific stuff
+		//
+		breakupWords = breakupWords.map(w => {
+			return w.replace('`', '');
+		});
+
+		const formattedWords = breakupWords.map(w => `<b style="color:#0000ff">${w}</b>`).join(' + ');
+		let result = `${entry.substr(0, indexOfLeftBracket)} (${formattedWords})\n`;
 		let hasAtLeastOneResult = false;
 		for (const word of breakupWords) {
 			const lookupResult = LookupDictionary(word);
@@ -169,7 +186,13 @@ function WordAnalysis3(key) {
 		}
 	}
 
-	return `<small style="display: block;">DPR breakup algo failed, using WordAnalysis2.</small>${WordAnalysis2(key)}`;
+	console.log('www', fallBackToWordAnalysis2);
+	if (fallBackToWordAnalysis2) {
+		return WordAnalysis2(key);
+	} else {
+		return '';
+	}
+
 }
 
 function WordAnalysis2(key) {

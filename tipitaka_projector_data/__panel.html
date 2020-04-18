@@ -282,6 +282,30 @@
           <input type="textbox" class="generous-input" style="max-width:85%;width:85pt;display:inline;" id="DictionaryKey" name="DictionaryKey">
           <input type="button" value="Go" onClick="DictionaryKeyGo();" id="GoDictionary">
         </div>
+        <div>
+            <span style="font-size: 13px">Algorithm:</span>
+            <select id="algorithm-selector" style="width: 120px;">
+                <option value="auto">Auto</option>
+                <option value="dpr">DPR</option>
+                <option value="tpp">TPP</option>
+                <option value="none">None</option>
+            </select>
+            <script>
+                // defaults to auto
+                //
+                const currentAlgo = localStorage.getItem('tpp-breakup-algo') || 'auto';
+                
+                const $algoSelect = $('#algorithm-selector');
+                $algoSelect.find('option').removeAttr('selected');
+                $algoSelect.find('option[value="' + currentAlgo + '"]').attr('selected', 'selected');
+                $algoSelect.on('change', function() {
+                  localStorage.setItem('tpp-breakup-algo', this.value);
+                  // refresh the dictionary lookup
+                  //
+                  DictionaryGo();
+                });
+            </script>
+        </div>
       </div>
 
 
