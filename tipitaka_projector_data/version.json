@@ -1,5 +1,5 @@
 
 {
-    "versionno": "0012",
-    "releasenotes": "color improvements to home page and logo change."
+    "versionno": "0014",
+    "releasenotes": "Algo selector, and wordwrap implemented for multiple instances, improvements to panel functions."
 }
