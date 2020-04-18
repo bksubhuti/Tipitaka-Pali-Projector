@@ -627,6 +627,8 @@ $(window).on('load', function () {
 		document.getElementById('page5break2').innerHTML = '<br>';
 
 		document.getElementById('divDragIcon').style.display = "none";
+
+		adjustTabContent();
 	}	
 
 	// 3. Left and Right width	p = localStorage.getItem('contentposition');

@@ -75,11 +75,11 @@
     #main_div .tabs > li.selected {
       border-color: #777;
       height: 32px;
-     /* background-color: #fafafa;*/
+      /* background-color: #fafafa;*/
       font-weight: bold;
     }
     .tab-content {
-     /* background-color: #fafafa;*/
+      /* background-color: #fafafa;*/
       border: 2px solid #777;
       border-bottom-left-radius: 10px;
       border-bottom-right-radius: 10px;
@@ -89,14 +89,15 @@
       width: 100%;
       box-sizing: border-box;
       font-family: sans-serif;
+      overflow: hidden;
     }
     #main_div li {
 
     }
     .grey-button {
       box-shadow:inset 0px 1px 0px 0px #ffffff;
-/*      background: linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
-      background-color: #ededed;*/
+      /*      background: linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+            background-color: #ededed;*/
       border-radius: 5px;
       border: 1px solid #aaa;
       cursor:pointer;
@@ -173,8 +174,8 @@
       user-select: none;
     }
     .search-area i:hover {
-        border-color: #aaa;
-        color: #000;
+      border-color: #aaa;
+      color: #000;
     }
     .DictionaryClass {
       background-color: rgba(176, 176, 176, 0.42) !important;
@@ -193,7 +194,7 @@
     }
   </style>
 
-  
+
   <div class="first-nav">
     <!-- HOME -->
     <div class="notselected grey-button" onClick="window.location.href='index.htm'" title="Home">
@@ -256,7 +257,7 @@
     </li>
   </ul>
 
-    <script>
+  <script>
     const onTabClick = (tab) => {
       // hide all helpers
       //  For consistent UI, the temp dictionary listings and location will be shown all the time
@@ -272,8 +273,8 @@
     }
     $('.helper.dict').show();
   </script>
-  
-  <div class="tab-content">
+
+  <div class="tab-content" id="tab-content">
     <div class="helpers">
       <div class="helper dict">
         <div class="search-area">
@@ -283,28 +284,28 @@
           <input type="button" value="Go" onClick="DictionaryKeyGo();" id="GoDictionary">
         </div>
         <div>
-            <span style="font-size: 13px">Algorithm:</span>
-            <select id="algorithm-selector" style="width: 120px;">
-                <option value="auto">Auto</option>
-                <option value="dpr">DPR</option>
-                <option value="tpp">TPP</option>
-                <option value="none">None</option>
-            </select>
-            <script>
-                // defaults to auto
-                //
-                const currentAlgo = localStorage.getItem('tpp-breakup-algo') || 'auto';
-                
-                const $algoSelect = $('#algorithm-selector');
-                $algoSelect.find('option').removeAttr('selected');
-                $algoSelect.find('option[value="' + currentAlgo + '"]').attr('selected', 'selected');
-                $algoSelect.on('change', function() {
-                  localStorage.setItem('tpp-breakup-algo', this.value);
-                  // refresh the dictionary lookup
-                  //
-                  DictionaryGo();
-                });
-            </script>
+          <span style="font-size: 13px">Algorithm:</span>
+          <select id="algorithm-selector" style="width: 120px;">
+            <option value="auto">Auto</option>
+            <option value="dpr">DPR</option>
+            <option value="tpp">TPP</option>
+            <option value="none">None</option>
+          </select>
+          <script>
+            // defaults to auto
+            //
+            const currentAlgo = localStorage.getItem('tpp-breakup-algo') || 'auto';
+
+            const $algoSelect = $('#algorithm-selector');
+            $algoSelect.find('option').removeAttr('selected');
+            $algoSelect.find('option[value="' + currentAlgo + '"]').attr('selected', 'selected');
+            $algoSelect.on('change', function() {
+              localStorage.setItem('tpp-breakup-algo', this.value);
+              // refresh the dictionary lookup
+              //
+              DictionaryGo();
+            });
+          </script>
         </div>
       </div>
 
@@ -480,8 +481,23 @@
       </select>
     </div>
 
+    <style>
+      #PC * {
+        user-select: none;
+        -moz-user-select: none;
+      }
+    </style>
+
     <div id="PC" style="display:inline">
-      <div id="divDragIcon" style="z-index:3;float:right;overflow:hidden;position:static;top:10px;right:0px;width:25px;height:25px;"><h2><img src="images/drag.png"></h2></div>
+      <div id="divDragIcon" style="
+        z-index:3;
+        overflow: hidden;
+        position: absolute;
+        bottom: 5px;
+        width: 24px;
+        height:24px;">
+        <img src="images/drag.png">
+      </div>
       <div id="ResizeDrag"><img src="images/resize.png" width="35"></div>
     </div>
   </div>
@@ -490,4 +506,18 @@
   <div id="ResizeBottom"></div>
 
 
+  <script>
+    var adjustTabContent = function adjustTabContent() {
+      setTimeout(function () {
+        const tc = document.getElementById('tab-content');
+        const md = document.getElementById('main_div');
+
+        const mainRect = md.getBoundingClientRect();
+        const contentRect = tc.getBoundingClientRect();
+
+        const availableHeight = mainRect.height - contentRect.top + mainRect.top - 42;
+        tc.style.height = `${availableHeight}px`;
+      }, 0);
+    };
+  </script>
 </div>

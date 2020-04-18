@@ -218,7 +218,7 @@ function RedrawTable(w) {
 	}
 	document.getElementById('main_content').style.height = document.getElementById('main_div').style.height + "px"
 
-
+	adjustTabContent();
 
 	console.log(document.body.getBoundingClientRect().width + '  ' + window.innerWidth +'  '+ main_div.style.width+ '  '+main_td2.style.width);
 }

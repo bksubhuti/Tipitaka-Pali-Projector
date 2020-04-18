@@ -339,6 +339,7 @@ document.getElementById('main_div').style.top = '' + t + 'px';
 document.getElementById('main_div').style.left = '' + l + 'px';
 document.getElementById('main_div').style.height = '' + h + 'px';
 document.getElementById('main_div').style.width = '' + w + 'px';
+adjustTabContent();
 
 document.getElementById('main_td2').style.width = (document.body.getBoundingClientRect().width - w) + 'px';
 
