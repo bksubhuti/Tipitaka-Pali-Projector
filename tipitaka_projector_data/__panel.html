@@ -199,8 +199,59 @@
       clear: both;
       display: table;
     }
+    header.panel-header {
+      height: 30px;
+      width: calc(100% + 10px);
+      display: flex;
+      font-family: sans-serif;
+      align-items: center;
+      border-bottom: 3px solid #777;
+      margin-left: -5px;
+      padding-left: 5px;
+      cursor: grab;
+      user-select: none;
+    }
+    header.panel-header * {
+      display: flex;
+    }
+    header.panel-header img {
+      margin-right: 5px;
+    }
   </style>
 
+  <header class="panel-header" id="panel-header">
+    <img src="images/dhammacakka.svg"height="22" width="22" />
+    <span>Tipiṭaka  Pāḷi Project</span>
+  </header>
+
+  <script>
+    var movePanel = false;
+    const panelHeader = document.getElementById('panel-header');
+    var onPanelMove = function(e) {
+      if (movePanel === false) {
+        return;
+      }
+
+      const mainDivBox = panelHeader.parentElement.getBoundingClientRect();
+      const box = panelHeader.parentElement.getBoundingClientRect();
+
+      const nextX = Math.min(window.innerWidth - mainDivBox.width, Math.max(0, e.movementX + box.x));
+      const nextY = Math.min(window.innerHeight - mainDivBox.height, Math.max(0, e.movementY + box.y));
+
+      panelHeader.parentElement.style.left = `${nextX}px`;
+      panelHeader.parentElement.style.top = `${nextY}px`;
+    };
+    document.addEventListener('mousemove', onPanelMove);
+    panelHeader.addEventListener('mousedown', function(e) {
+      movePanel = true;
+    });
+    document.addEventListener('mouseup', function() {
+      if (movePanel === true) {
+        movePanel = false;
+        document.body.removeEventListener('mousemove', onPanelMove);
+      }
+    });
+  </script>
 
   <div class="first-nav">
     <!-- HOME -->
