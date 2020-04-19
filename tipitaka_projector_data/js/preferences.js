@@ -352,6 +352,20 @@ function ChooseRadio(key) {
 
 
     if (key.indexOf('position') != -1) {
+
+
+
+        if (val == 1){ 
+        // left fixed will set Always (display)
+        // disable click to show
+        document.getElementById('displayclick').disabled = true;
+        document.getElementById('displayalways').checked = true;
+
+        }
+        else{
+            document.getElementById('displayclick').disabled = false;
+        }
+
         document.write  = localStorage.setItem('contentposition', val);
     }
 
@@ -639,6 +653,10 @@ window.onload = function () {
         contentdisplay = '1';
         document.write = localStorage.setItem("contentdisplay", '1');
         document.getElementById('displayalways').checked = true;
+        //disable the choice to show by click if left fixed.
+        document.getElementById('displayclick').disabled = true;
+
+
     }
     // Panel Display
     if (contentdisplay == '0') {
