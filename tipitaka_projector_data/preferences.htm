@@ -27,6 +27,12 @@
 	      text-decoration: none;
 	    }
 
+
+
+
+		}
+	
+
 	    a:link {
 	      color: #0000ff;
 	      text-decoration: none;
@@ -522,18 +528,19 @@
 					
 					<div id="SaveSettings" class="tabcontent" style="display:inline;">
 						<div style="margin-top:1%;line-height: 150%;padding:8px;background-color: #ccc; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
-							<a href="#" onClick="RestorePreferences()" id="prefer2">
-								<img src="images/change.png">Restore Setting from Preferences
-							</a>
+							 <br>
+							<button id="btnRestore"  onclick="RestorePreferences()"><img src="images/restorePref.png" width="50" height="50" border="0"><span style="font-size:20px;">Restore Prefs</span></button>
 							<br><br>
+							<br>
 
 							<table border="0" width="100%" cellpadding="0" cellspacing="0" id="TablePreference" style="line-height: 150%;">
 								<tr>
 									<td width="50%" valign="top" style="line-height: 150%;">
-										<a href="javascript:void(0)" onClick="SavePreferences()" id="prefer3">
-											<img src="images/save.png">Save Preferences
-										</a>
+										<button  id="btnSave"  onclick="SavePreferences()"><img src="images/savePref.png" width="50" height="50" border="0"><span style="font-size:20px;">  Save Prefs </button>
 										<br>
+										<br>
+										<br>
+
 										Step 1 :<br>
 										&nbsp;&nbsp;Save "preference.txt"
 										<br>

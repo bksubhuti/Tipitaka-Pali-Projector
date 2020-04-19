@@ -100,12 +100,18 @@ function RestorePreferences() {
                 document.write  = localStorage.setItem(i, def[i]);  
             }
             } 
+            // reload the values.
+
+            initPreferences();
             // window.location.reload();
         }
         }
     }
     rawFile.send(null);
-    }
+
+
+
+}// end restore..
 
     var Dicts = [];
     Dicts['pc1'] = 'PC1: [10,530 entries - 675 KB] Pali Zh Suttacentral Offline 2016';
@@ -551,6 +557,10 @@ function SavePreferences() {
 
 
 window.onload = function () {
+    initPreferences();
+}
+
+function initPreferences(){
     // View Left
     var size_left = localStorage.getItem("size_left");
     document.getElementById('size_left').value = size_left;
@@ -844,12 +854,6 @@ window.onload = function () {
     catch{
         //do nothing.
     }
-
-
-
-
- 
-
 }
 
 function hideshowlogo(){
