@@ -522,8 +522,12 @@
         const mainRect = md.getBoundingClientRect();
         const contentRect = tc.getBoundingClientRect();
 
-        const availableHeight = mainRect.height - contentRect.top + mainRect.top - 42;
-        tc.style.height = `${availableHeight}px`;
+        if (mainRect.width === 0 || mainRect.height === 0 || contentRect.height === 0 || contentRect.width === 0) {
+          setTimeout(function() { adjustTabContent(); }, 300);
+        } else {
+          const availableHeight = mainRect.height - contentRect.top + mainRect.top - 42;
+          tc.style.height = `${availableHeight}px`;
+        }
       }, 0);
     };
   </script>
