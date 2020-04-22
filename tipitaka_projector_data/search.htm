@@ -636,16 +636,14 @@
 			}
 		}
 
-		window.onload = function () {
-			// init check
-			for (x=1; x<=3; x++) {
-				for (y=1; y<=8; y++) {
-					var name1 = 'Nikaya' + y + x;
-					document.getElementById(name1).checked = false;
-				}
-			}
-			document.getElementById('Nikaya11').checked = true;
-		}
+window.onload = function () {
+			
+		// new code to have all boxes checked.. search is fast so why not?
+		// 
+		// maybe later we can save in local storage and check based on that.	
+		document.getElementById('All').checked = true;
+		choosePali('All');
+	}
 
 
 		// add listener to go back when the escape key is pressed.
