@@ -217,6 +217,28 @@
     header.panel-header img {
       margin-right: 5px;
     }
+
+    #ResizeLeft{
+      width:10px;
+      height:100%;
+      position:absolute;
+      left: -8px;
+      top:0;
+      cursor: e-resize;
+      overflow:hidden;
+      z-index:3;
+    }
+    #ResizeTop{
+      width:100%;
+      height:10px;
+      position:absolute;
+      left:0;
+      right: 0;
+      top: -8px;
+      cursor:n-resize;
+      overflow:hidden;
+      z-index:3;
+    }
   </style>
 
   <header class="panel-header" id="panel-header">
@@ -225,10 +247,17 @@
   </header>
 
   <script>
-    var movePanel = false;
+    var interfaceFlags = {
+      movePanel: false,
+      resizeLeft: false,
+      resizeTop: false
+    };
     const panelHeader = document.getElementById('panel-header');
+    const leftResizeArea = document.getElementById('ResizeLeft');
+    const topResizeArea = document.getElementById('ResizeTop');
+
     var onPanelMove = function(e) {
-      if (movePanel === false) {
+      if (interfaceFlags.movePanel === false) {
         return;
       }
 
@@ -241,16 +270,79 @@
       panelHeader.parentElement.style.left = `${nextX}px`;
       panelHeader.parentElement.style.top = `${nextY}px`;
     };
-    document.addEventListener('mousemove', onPanelMove);
-    panelHeader.addEventListener('mousedown', function(e) {
-      movePanel = true;
-    });
-    document.addEventListener('mouseup', function() {
-      if (movePanel === true) {
-        movePanel = false;
-        document.body.removeEventListener('mousemove', onPanelMove);
+
+    var onResizeLeft = function onResizeLeft(e) {
+      if (interfaceFlags.resizeLeft === false) {
+        return;
+      }
+      e.stopPropagation();
+      e.preventDefault();
+      const mainDivBox = panelHeader.parentElement.getBoundingClientRect();
+      // -20 because box-sizing is not border-box and has padding etc
+      const currentWidth = mainDivBox.width - 20;
+      const currentLeft = mainDivBox.left;
+
+      const nextLeft = Math.max(0, currentLeft + e.movementX);
+      const delta = nextLeft - currentLeft;
+      const nextWidth = currentWidth - delta;
+
+      panelHeader.parentElement.style.left = `${nextLeft}px`;
+      panelHeader.parentElement.style.width = `${nextWidth}px`;
+    };
+
+    var onResizeTop = function onResizeLeft(e) {
+      if (interfaceFlags.resizeTop === false) {
+        return;
+      }
+      e.stopPropagation();
+      e.preventDefault();
+      const mainDivBox = panelHeader.parentElement.getBoundingClientRect();
+      // -36.667 because box-sizing is not border-box and has padding etc
+      const currentHeight = mainDivBox.height - 36.667;
+      const currentTop = mainDivBox.top;
+
+      const nextTop = Math.max(0, currentTop + e.movementY);
+      const delta = nextTop - currentTop;
+      const nextHeight = currentHeight - delta;
+
+      panelHeader.parentElement.style.top = `${nextTop}px`;
+      panelHeader.parentElement.style.height = `${nextHeight}px`;
+
+      adjustTabContent(true);
+    };
+
+    document.addEventListener('mousemove', function(e) {
+      if (interfaceFlags.movePanel) {
+        onPanelMove(e);
+      } else if (interfaceFlags.resizeLeft) {
+        onResizeLeft(e);
+      } else if (interfaceFlags.resizeTop) {
+        onResizeTop(e);
       }
     });
+    const down = function(which, e) {
+      interfaceFlags[which] = true;
+      e.stopPropagation();
+      e.preventDefault();
+    };
+
+    panelHeader.addEventListener('mousedown', function(e) {down('movePanel', e)});
+    leftResizeArea.addEventListener('mousedown', function(e) {down('resizeLeft', e)});
+    topResizeArea.addEventListener('mousedown', function(e) {down('resizeTop', e)});
+
+    document.addEventListener('mouseup', function() {
+      if (interfaceFlags.movePanel === true) {
+        interfaceFlags.movePanel = false;
+      } else if (interfaceFlags.resizeLeft === true) {
+        interfaceFlags.resizeLeft = false;
+      } else if (interfaceFlags.resizeTop === true) {
+        interfaceFlags.resizeTop = false;
+      }
+      document.body.removeEventListener('mousemove', onPanelMove);
+      document.body.removeEventListener('mousemove', onResizeLeft);
+      document.body.removeEventListener('mousemove', topResizeArea);
+    });
+
   </script>
 
   <div class="first-nav">
@@ -566,23 +658,31 @@
   <div id="ResizeRight"></div>
   <div id="ResizeBottom"></div>
 
+  <div id="ResizeLeft"></div>
+  <div id="ResizeTop"></div>
+
 
   <script>
-    var adjustTabContent = function adjustTabContent() {
-      setTimeout(function () {
-        const tc = document.getElementById('tab-content');
-        const md = document.getElementById('main_div');
+    var doAdjustTabContent = function() {
+      const tc = document.getElementById('tab-content');
+      const md = document.getElementById('main_div');
 
-        const mainRect = md.getBoundingClientRect();
-        const contentRect = tc.getBoundingClientRect();
+      const mainRect = md.getBoundingClientRect();
+      const contentRect = tc.getBoundingClientRect();
 
-        if (mainRect.width === 0 || mainRect.height === 0 || contentRect.height === 0 || contentRect.width === 0) {
-          setTimeout(function() { adjustTabContent(); }, 300);
-        } else {
-          const availableHeight = mainRect.height - contentRect.top + mainRect.top - 42;
-          tc.style.height = `${availableHeight}px`;
-        }
-      }, 0);
+      if (mainRect.width === 0 || mainRect.height === 0 || contentRect.height === 0 || contentRect.width === 0) {
+        setTimeout(function() { adjustTabContent(); }, 300);
+      } else {
+        const availableHeight = mainRect.height - contentRect.top + mainRect.top - 42;
+        tc.style.height = `${availableHeight}px`;
+      }
+    };
+    var adjustTabContent = function adjustTabContent(immediately) {
+      if (immediately) {
+        doAdjustTabContent();
+      } else {
+        setTimeout(function () {doAdjustTabContent()}, 0);
+      }
     };
   </script>
 </div>
