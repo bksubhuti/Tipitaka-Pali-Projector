@@ -328,6 +328,9 @@
         $(`.helper.${tab.dataset.helper}`).show();
       }
       change_tab(tab.id);
+      if (tab.id === 'page3') {
+        ParagraphAnalysis();
+      }
     };
     $('.helper.dict').show();
   </script>
