@@ -321,9 +321,11 @@
       }
     });
     const down = function(which, e) {
-      interfaceFlags[which] = true;
-      e.stopPropagation();
-      e.preventDefault();
+      if (localStorage.getItem('contentposition') === '0') {
+        interfaceFlags[which] = true;
+        e.stopPropagation();
+        e.preventDefault();
+      }
     };
 
     panelHeader.addEventListener('mousedown', function(e) {down('movePanel', e)});
