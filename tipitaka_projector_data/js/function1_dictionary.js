@@ -80,3 +80,60 @@ function DictionaryKeyGo() {
 	}
 }
 
+
+function dictionaryMap() {
+	return {
+		hee1: ee1,
+		hpc1: pc1,
+		hpc2: pc2,
+		hpd1: pd1,
+		hpe1: pe1,
+		hpe2: pe2,
+		hpe3: pe3,
+		hpe4: pe4,
+		hpe5: pe5,
+		hpe6: pe6,
+		hpg1: pg1,
+		hpm1: pm1,
+		hpm2: pm2,
+		hpm3: pm3,
+		hpm4: pm4,
+		hpv1: pv1,
+		hpv2: pv2,
+		hpv3: pv3,
+		hse1: se1
+	};
+}
+
+
+function WordListLookup(target) {
+	const key = toUniRegEx(document.getElementById('DictionaryKey').value.toLowerCase().trim());
+	if (!key) { return [] }
+
+	dict_records = 0;
+	let currentKeys = '';
+	const dictionaries = dictionaryMap();
+
+	for (const dictionary of ary_dict) {
+		if (!dictionary) {
+			continue;
+		}
+		const dictionaryName = dictionary.substring(1);
+		const actualDictionary = dictionaries[dictionary];
+		if (actualDictionary) {
+			currentKeys += GetKeys(actualDictionary, dictionaryName, key, '');
+		}
+	}
+
+	const cleanKeys = currentKeys
+		.replace(/##/g, '#')
+		.split('#')
+		.filter(key => key)
+		.map(key => key.slice(1));
+
+	const uniqueKeys = [...new Set(cleanKeys)];
+	uniqueKeys.sort();
+
+	const usableKeys = uniqueKeys.slice(0, 20);
+	return usableKeys;
+};

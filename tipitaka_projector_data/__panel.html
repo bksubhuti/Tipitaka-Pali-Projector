@@ -437,6 +437,20 @@
           <span class="input-label">Pāḷi</span>
           <input type="textbox" class="generous-input" style="max-width:85%;width:85pt;display:inline;" id="DictionaryKey" name="DictionaryKey">
           <input type="button" value="Go" onClick="DictionaryKeyGo();" id="GoDictionary">
+          <script>
+            const performLookup = (val) => {
+              console.log('will lookup', val);
+              const lookupResult = WordListLookup(val);
+              console.log('lookup result', lookupResult);
+            };
+
+            let debounceTimeout;
+            $('#DictionaryKey').on('input', function() {
+              clearTimeout(debounceTimeout);
+              const value = this.value;
+              debounceTimeout = setTimeout(() => { performLookup(value); }, 300);
+            })
+          </script>
         </div>
         <div>
           <span style="font-size: 13px">Algorithm:</span>
