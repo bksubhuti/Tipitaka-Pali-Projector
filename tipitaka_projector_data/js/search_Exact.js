@@ -7,7 +7,7 @@
 			var Str_Pali = 'abcdefghijklmnopqrstuvwxyzāīūṅñṭḍṇḷṃABCDEFGHIJKLMNOPQRSTUVWXYZĀĪŪṄÑṬḌHṆḶṂ';
 
 			document.getElementById('msg').innerHTML = "";
-			document.getElementById('out').innerHTML = "";
+			// document.getElementById('out').innerHTML = "";
 
 			document.write.innerHTML = localStorage.setItem("Sr_type", 'E');
 

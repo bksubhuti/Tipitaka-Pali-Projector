@@ -89,7 +89,8 @@
 		</tr>
 		<tr style="line-height: 150%">
 			<td></td>
-			<td colspan="3" id="suggest" onClick="document.getElementById('out').innerHTML= '';">
+			<!--  onClick="document.getElementById('out').innerHTML= '';" -->
+			<td colspan="3" id="suggest">
 				<span id="out"></span>
 			</td>
 			<td></td>
@@ -441,7 +442,7 @@
 					document.getElementById('Out' + no).innerHTML = '';
 				}
 			}
-			document.getElementById('out').innerHTML = '';
+			// document.getElementById('out').innerHTML = '';
 		}
 
 		function Jump(url) {
