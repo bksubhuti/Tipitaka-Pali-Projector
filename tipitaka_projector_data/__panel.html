@@ -239,6 +239,14 @@
       overflow:hidden;
       z-index:3;
     }
+    .lookup-result {
+      font-weight: bold;
+      color: dodgerblue;
+
+    }
+    .lookup-result:hover {
+      text-decoration: underline;
+    }
   </style>
 
   <header class="panel-header" id="panel-header">
@@ -436,25 +444,14 @@
           <i onClick="paliGoBack()" class="material-icons">arrow_back</i>&nbsp;&nbsp;
           <span class="input-label">Pāḷi</span>
           <input type="textbox" class="generous-input" style="max-width:85%;width:85pt;display:inline;" id="DictionaryKey" name="DictionaryKey">
-          <input type="button" value="Go" onClick="DictionaryKeyGo();" id="GoDictionary">
-          <script>
-            const performLookup = (val) => {
-              console.log('will lookup', val);
-              const lookupResult = WordListLookup(val);
-              console.log('lookup result', lookupResult);
-            };
 
-            let debounceTimeout;
-            $('#DictionaryKey').on('input', function() {
-              clearTimeout(debounceTimeout);
-              const value = this.value;
-              debounceTimeout = setTimeout(() => { performLookup(value); }, 300);
-            })
-          </script>
-        </div>
-        <div>
+          <!-- just display:none a wrapped "GO" button for now so it remains in the DOM and won't break JS.. -->
+          <div style="display: none">
+            <input type="button" value="Go" onClick="DictionaryKeyGo();" id="GoDictionary">
+          </div>
+
           <span style="font-size: 13px">Algorithm:</span>
-          <select id="algorithm-selector" style="width: 120px;">
+          <select id="algorithm-selector" style="width: 120px; height: 27px; line-height: 27px;">
             <option value="auto">Auto</option>
             <option value="dpr">DPR</option>
             <option value="tpp">TPP</option>
@@ -475,7 +472,35 @@
               DictionaryGo();
             });
           </script>
+
         </div>
+        <div id="lookup-results">
+
+        </div>
+        <script>
+          const $lookupResults = $('#lookup-results');
+          $lookupResults.on('click', '.lookup-result', function() {
+            $lookupResults.empty();
+            $('#DictionaryKey').val(this.dataset.word);
+            DictionaryGo();
+          });
+          const performLookup = (val) => {
+            const lookupResults = WordListLookup(val);
+            $lookupResults.empty();
+            let resultHTML = '';
+            for (const result of lookupResults) {
+              resultHTML += '<div class="lookup-result" data-word="' + result + '">' + result + '</div>';
+            }
+            $lookupResults.html(resultHTML);
+          };
+
+          let debounceTimeout;
+          $('#DictionaryKey').on('input', function() {
+            clearTimeout(debounceTimeout);
+            const value = this.value;
+            debounceTimeout = setTimeout(() => { performLookup(value); }, 300);
+          })
+        </script>
       </div>
 
 
