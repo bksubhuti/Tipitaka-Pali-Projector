@@ -300,7 +300,7 @@ var loadInSequence = function loadInSequence(scripts) {
 };
 
 if (localStorage.getItem("view_right") == 'Suttacentral') {
-    $.getScript('pali/Suttacentral/' + html_no + '.js');
+    $.getScript('pali/SuttaCentral/' + html_no + '.js');
 }
 // Script load order is VERY important
 // stuff in final-script uses stuff in the others
