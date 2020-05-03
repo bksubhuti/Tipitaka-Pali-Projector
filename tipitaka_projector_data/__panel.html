@@ -442,7 +442,7 @@
       <div class="helper dict">
         <div class="search-area">
           <i onClick="paliGoBack()" class="material-icons">arrow_back</i>&nbsp;&nbsp;
-          <span class="input-label">Pāḷi</span>
+          <span>&nbsp;Pāḷi:&nbsp;</span>
           <input type="textbox" class="generous-input" style="max-width:85%;width:85pt;display:inline;" id="DictionaryKey" name="DictionaryKey">
 
           <!-- just display:none a wrapped "GO" button for now so it remains in the DOM and won't break JS.. -->
@@ -450,8 +450,8 @@
             <input type="button" value="Go" onClick="DictionaryKeyGo();" id="GoDictionary">
           </div>
 
-          <span style="font-size: 13px">Algorithm:</span>
-          <select id="algorithm-selector" style="width: 120px; height: 27px; line-height: 27px;">
+          <span>&nbsp;Algo:&nbsp;&nbsp;</span>
+          <select id="algorithm-selector" >
             <option value="auto">Auto</option>
             <option value="dpr">DPR</option>
             <option value="tpp">TPP</option>
