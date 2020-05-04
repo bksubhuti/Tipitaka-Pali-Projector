@@ -69,6 +69,7 @@ function RestorePreferences() {
     def['r1']='@';
     def['m1']='@';
     def['b1']='@';
+    def['PaliFontSize'] ='@';
 
     file = 'preferences.txt'; 
     var rawFile = new XMLHttpRequest();
@@ -245,6 +246,15 @@ function ChooseSelect(key) {
 
         document.write = localStorage.setItem('contentlineheight', val);
     }
+
+
+    if (key == PaliFontSize){
+
+        localStorage.setItem("PaliFontSize", val);
+    }
+
+
+
 
     if (key == 'bg_color'){
         document.body.style.background = val;
@@ -536,6 +546,10 @@ function SavePreferences() {
     def['width_left'] = '';
     def['width_right'] = '';
     def['Show_numbers']='';
+    def['r1']='';
+    def['m1']='';
+    def['b1']='';
+    def['PaliFontSize']='';
 
     for (i in localStorage) {
         if (def[i] != null) {
@@ -567,6 +581,9 @@ function initPreferences(){
 
     var font_left = localStorage.getItem("font_left");
     document.getElementById('font_left').value = font_left;
+
+    var PaliFontSize = localStorage.getItem("PaliFontSize");
+    document.getElementById('PaliFontSize').value = PaliFontSize;
 
     var view_left = localStorage.getItem("view_left");
     document.getElementById('view_left').value = view_left;

@@ -3,7 +3,7 @@
     //-----------------------
     // Left View
     if (!localStorage.getItem("size_left")) {
-        document.write = localStorage.setItem("size_left", '1.0');
+        document.write = localStorage.setItem("size_left", '1.5');
     }
     if (!localStorage.getItem("font_left")) {
         document.write = localStorage.setItem("font_left", 'DejaVuSansCondensed');
@@ -27,7 +27,11 @@
         document.write = localStorage.setItem("font_right", 'DejaVuSansCondensed');
     }
     if (!localStorage.getItem("size_right")) {
-        document.write = localStorage.setItem("size_right", '1.0');
+        document.write = localStorage.setItem("size_right", '1.5');
+    }
+    // Font Size
+    if (!localStorage.getItem("PaliFontSize")) {
+        document.write = localStorage.setItem("PaliFontSize", '20');
     }
     // Dispaly Note
     if (!localStorage.getItem("Pali_note")) {

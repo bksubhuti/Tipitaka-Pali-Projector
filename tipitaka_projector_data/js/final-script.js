@@ -86,16 +86,30 @@ $(".m1").css("line-height", '180%');
 
 // 2. Font-size,
 var size_left = localStorage.getItem('size_left');
-var p24 = parseInt(size_left * 24);		var p30 = parseInt(size_left * 30);
-var p33 = parseInt(size_left * 33);		var p36 = parseInt(size_left * 36);
-var r1 =  parseInt(size_left * 25);
-//$(".r1").css("line-height",	(parseInt(r1/2) + 24)  + "pt");	//--------td
+var PaliFontSize = localStorage.getItem("PaliFontSize");
+var iPaliFontSize = parseInt(PaliFontSize);  // no need to call parseint every time
 
-var size_right = localStorage.getItem('size_right');
-var m24 = parseInt(size_right * 24);	var m30 = parseInt(size_right * 30);
-var m33 = parseInt(size_right * 33);	var m36 = parseInt(size_right * 36);
-var m1 =  parseInt(size_right * 25);
-//$(".m1").css("line-height",	(parseInt(m1/2) + 24)  + "pt");	//--------td
+
+
+var p24 = parseInt(iPaliFontSize);		
+var p30 = parseInt(iPaliFontSize + 6);
+var p33 = parseInt(iPaliFontSize + 8);		
+var p36 = parseInt(iPaliFontSize + 12);
+var r1 =  parseInt(iPaliFontSize);
+var iLineHeight =  parseFloat(size_left) * 100;
+var strLineHeight = iLineHeight.toString() +"%";
+
+$(".r1").css("line-height",	strLineHeight);	//--------td
+
+
+var size_right = 	localStorage.getItem('size_right');
+var m24 = parseInt(iPaliFontSize);	
+var m30 = parseInt(iPaliFontSize + 6);
+var m33 = parseInt(iPaliFontSize + 8);	
+var m36 = parseInt(iPaliFontSize + 12);
+var m1 =  parseInt(iPaliFontSize);
+
+$(".m1").css("line-height",	(parseInt(m1/2) + iPaliFontSize)  + "pt");	//--------td
 $(".r1").css("font-size",	r1  + "pt");	//--------td
 $(".b1").css("font-size",	p24 + "pt");	//bodytext
 $(".b2").css("font-size",	p33 + "pt");	//book

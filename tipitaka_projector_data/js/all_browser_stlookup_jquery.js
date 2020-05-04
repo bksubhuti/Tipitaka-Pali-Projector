@@ -78,7 +78,7 @@ $(".m1").css("color",m1);
 $(".b1").css("color",b1);
 
 
-
+/*
 if ((load_size_left) && (load_size_left != "25")) {
 var writeline_heightleft = Number(load_size_left) + 12; writeline_heightleft += 'pt';
 var writetextsizeleft = load_size_left + "pt";
@@ -96,6 +96,8 @@ $(":input#size_right").attr('value', load_size_right);
 }
 
 });
+
+*/
 
 /*
 @ Change textSize function

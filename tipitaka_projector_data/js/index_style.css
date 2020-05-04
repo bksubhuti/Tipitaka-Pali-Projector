@@ -50,8 +50,9 @@ a:visited { color:#FFF2CC;text-decoration:none; }
 a:link { color:blue;text-decoration:none; }
 table { table-layout:fixed;margin-top:0.0pt;margin-right:0in;margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt;}
 td {word-wrap:break-word;}
-.r1 { vertical-align:top; width:85%;line-height:155%;font-size:25.0pt;font-family:DejaVuSansCondensed,serif;}
-.m1 { vertical-align:top; width:15%;line-height:155%;font-size:25.0pt;font-family:"Myanmar Text",serif;}
+.r1 { vertical-align:top; width:85%;}
+.m1 { vertical-align:top; width:15%;}
+
 
 .recentClickedCSSleft{text-decoration: none;border-left: 1.5px solid red;}
 .recentClickedCSSright{text-decoration: none;border-right: 1.5px solid red;}
@@ -63,6 +64,7 @@ td {word-wrap:break-word;}
 
 .bld { font-weight:900;} 
 .r11 {margin-left:28px;color:green;border:1px solid grey;padding:8px;background:#F7DBD0;font-size:x-large;border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;-o-border-radius:4px;font-family:DejaVuSansCondensed;}
+
 .closepopup { margin-left:45%;padding:8px;background:#d8d8d8;color:white;font-size:large;}
 
 .note {display:inline;color:#000080}

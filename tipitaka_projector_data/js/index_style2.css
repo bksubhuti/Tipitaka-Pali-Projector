@@ -31,38 +31,38 @@ p {
 }
 
 /*  */
-.b1	{ font-size: 24pt; text-indent: 2em;}
-.b2	{ font-size: 33pt; text-align:center; font-weight: bold;}
-.c3	{ font-size: 24pt; text-align:center;}						/* Namo tassa, and nitthita -- no unique structural distinction */
-.c4	{ font-size: 30pt; text-align:center; font-weight: bold;}
-.g5	{ font-size: 24pt; margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 1 */
-.g6	{ font-size: 24pt; margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 2 */
-.g7	{ font-size: 24pt; margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 3 */
-.g8	{ font-size: 24pt; margin-bottom: 0.5em; margin-left: 4em;}	/* Gatha last line */
-.h9	{ font-size: 24pt; text-indent: 2em;}
-.ia	{ font-size: 24pt; text-indent: 2em; margin-left: 3em;}
-.nb	{ font-size: 36pt; text-align:center; font-weight: bold;}
-.sc	{ font-size: 24pt; text-align:center; font-weight: bold;}
-.sd	{ font-size: 24pt; text-align:center; font-weight: bold;}
-.te	{ font-size: 24pt; text-align:center; font-weight: bold;}
-.uf	{ font-size: 24pt;}
+/*.b1	{ font-size: 24pt; text-indent: 2em;}*/
+.b2	{ text-align:center; font-weight: bold;}
+.c3	{  text-align:center;}						/* Namo tassa, and nitthita -- no unique structural distinction */
+.c4	{  text-align:center; font-weight: bold;}
+.g5	{  margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 1 */
+.g6	{  margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 2 */
+.g7	{  margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 3 */
+.g8	{  margin-bottom: 0.5em; margin-left: 4em;}	/* Gatha last line */
+.h9	{  text-indent: 2em;}
+.ia	{  text-indent: 2em; margin-left: 3em;}
+.nb	{  text-align:center; font-weight: bold;}
+.sc	{  text-align:center; font-weight: bold;}
+.sd	{  text-align:center; font-weight: bold;}
+.te	{  text-align:center; font-weight: bold;}
+.uf	{ }
 
 /*  */
-.m_b1 { font-size: 24pt; text-indent: 2em;}
-.m_b2 { font-size: 33pt; text-align:center; font-weight: bold;}
-.m_c3 { font-size: 24pt; text-align:center;}						/* Namo tassa, and nitthita -- no unique structural distinction */
-.m_c4 { font-size: 30pt; text-align:center; font-weight: bold;}
-.m_g5 { font-size: 24pt; margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 1 */
-.m_g6 { font-size: 24pt; margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 2 */
-.m_g7 { font-size: 24pt; margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 3 */
-.m_g8 { font-size: 24pt; margin-bottom: 0.5em; margin-left: 4em;}	/* Gatha last line */
-.m_h9 { font-size: 24pt; text-indent: 2em;}
-.m_ia { font-size: 24pt; text-indent: 2em; margin-left: 3em;}
-.m_nb { font-size: 36pt; text-align:center; font-weight: bold;}
-.m_sc { font-size: 24pt; text-align:center; font-weight: bold;}
-.m_sd { font-size: 24pt; text-align:center; font-weight: bold;}
-.m_te { font-size: 24pt; text-align:center; font-weight: bold;}
-.m_uf { font-size: 24pt;}
+.m_b1 { text-indent: 2em;}
+.m_b2 {  text-align:center; font-weight: bold;}
+.m_c3 {  text-align:center;}						/* Namo tassa, and nitthita -- no unique structural distinction */
+.m_c4 {  text-align:center; font-weight: bold;}
+.m_g5 {  margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 1 */
+.m_g6 {  margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 2 */
+.m_g7 {  margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 3 */
+.m_g8 {  margin-bottom: 0.5em; margin-left: 4em;}	/* Gatha last line */
+.m_h9 {  text-indent: 2em;}
+.m_ia {  text-indent: 2em; margin-left: 3em;}
+.m_nb {  text-align:center; font-weight: bold;}
+.m_sc {  text-align:center; font-weight: bold;}
+.m_sd {  text-align:center; font-weight: bold;}
+.m_te {  text-align:center; font-weight: bold;}
+.m_uf { }
 
 .blue { color:blue;}
 
