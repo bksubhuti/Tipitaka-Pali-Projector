@@ -108,6 +108,7 @@ function dictionaryMap() {
 
 function WordListLookup(target) {
 	const key = toUniRegEx(document.getElementById('DictionaryKey').value.toLowerCase().trim());
+	document.getElementById('DictionaryKey').value = key;
 	if (!key) { return [] }
 
 	dict_records = 0;
