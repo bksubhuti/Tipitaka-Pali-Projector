@@ -260,9 +260,37 @@
       resizeLeft: false,
       resizeTop: false
     };
+    var moveInfo = {
+      movePanel: {x: 0, y: 0},
+      resizeLeft: {x: 0, y: 0},
+      resizeTop: {x: 0, y: 0},
+    };
     const panelHeader = document.getElementById('panel-header');
     const leftResizeArea = document.getElementById('ResizeLeft');
     const topResizeArea = document.getElementById('ResizeTop');
+
+    const getMovement = function(which, e) {
+      if (e.movementX !== undefined) {
+        return {
+          x: e.movementX,
+          y: e.movementY
+        }
+      }
+
+      // This all is handling touches rather than mouse input:
+      //
+
+      const cx = e.touches && e.touches[0].clientX || 0;
+      const cy = e.touches && e.touches[0].clientY || 0;
+
+      const mx = cx - moveInfo[which].x;
+      const my = cy - moveInfo[which].y;
+
+      moveInfo[which].x = cx;
+      moveInfo[which].y = cy;
+
+      return {x: mx, y: my};
+    };
 
     var onPanelMove = function(e) {
       if (interfaceFlags.movePanel === false) {
@@ -272,8 +300,10 @@
       const mainDivBox = panelHeader.parentElement.getBoundingClientRect();
       const box = panelHeader.parentElement.getBoundingClientRect();
 
-      const nextX = Math.min(window.innerWidth - mainDivBox.width, Math.max(0, e.movementX + box.x));
-      const nextY = Math.min(window.innerHeight - mainDivBox.height, Math.max(0, e.movementY + box.y));
+      const movement = getMovement('movePanel', e);
+
+      const nextX = Math.min(window.innerWidth - mainDivBox.width, Math.max(0, movement.x + box.x));
+      const nextY = Math.min(window.innerHeight - mainDivBox.height, Math.max(0, movement.y + box.y));
 
       panelHeader.parentElement.style.left = `${nextX}px`;
       panelHeader.parentElement.style.top = `${nextY}px`;
@@ -290,7 +320,9 @@
       const currentWidth = mainDivBox.width - 20;
       const currentLeft = mainDivBox.left;
 
-      const nextLeft = Math.max(0, currentLeft + e.movementX);
+      const movement = getMovement('resizeLeft', e);
+
+      const nextLeft = Math.max(0, currentLeft + movement.x);
       const delta = nextLeft - currentLeft;
       const nextWidth = currentWidth - delta;
 
@@ -309,7 +341,8 @@
       const currentHeight = mainDivBox.height - 36.667;
       const currentTop = mainDivBox.top;
 
-      const nextTop = Math.max(0, currentTop + e.movementY);
+      const movement = getMovement('resizeTop', e);
+      const nextTop = Math.max(0, currentTop + movement.y);
       const delta = nextTop - currentTop;
       const nextHeight = currentHeight - delta;
 
@@ -319,7 +352,7 @@
       adjustTabContent(true);
     };
 
-    document.addEventListener('mousemove', function(e) {
+    const onMove = function(e) {
       if (interfaceFlags.movePanel) {
         onPanelMove(e);
       } else if (interfaceFlags.resizeLeft) {
@@ -327,20 +360,34 @@
       } else if (interfaceFlags.resizeTop) {
         onResizeTop(e);
       }
-    });
+    };
+
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('touchmove', onMove);
+
     const down = function(which, e) {
       if (localStorage.getItem('contentposition') === '0') {
         interfaceFlags[which] = true;
+        moveInfo[which] = {
+          x: e.clientX || e.touches[0].clientX,
+          y: e.clientY || e.touches[0].clientY
+        };
         e.stopPropagation();
         e.preventDefault();
       }
     };
 
+    // panel
     panelHeader.addEventListener('mousedown', function(e) {down('movePanel', e)});
-    leftResizeArea.addEventListener('mousedown', function(e) {down('resizeLeft', e)});
-    topResizeArea.addEventListener('mousedown', function(e) {down('resizeTop', e)});
+    panelHeader.addEventListener('touchstart', function(e) {down('movePanel', e)});
 
-    document.addEventListener('mouseup', function() {
+    leftResizeArea.addEventListener('mousedown', function(e) {down('resizeLeft', e)});
+    leftResizeArea.addEventListener('touchstart', function(e) {down('resizeLeft', e)});
+
+    topResizeArea.addEventListener('mousedown', function(e) {down('resizeTop', e)});
+    topResizeArea.addEventListener('touchstart', function(e) {down('resizeTop', e)});
+
+    const onUp = function() {
       if (interfaceFlags.movePanel === true) {
         interfaceFlags.movePanel = false;
       } else if (interfaceFlags.resizeLeft === true) {
@@ -349,9 +396,16 @@
         interfaceFlags.resizeTop = false;
       }
       document.body.removeEventListener('mousemove', onPanelMove);
+      document.body.removeEventListener('touchmove', onPanelMove);
+
       document.body.removeEventListener('mousemove', onResizeLeft);
+      document.body.removeEventListener('touchmove', onResizeLeft);
+
       document.body.removeEventListener('mousemove', topResizeArea);
-    });
+      document.body.removeEventListener('touchmove', topResizeArea);
+    };
+    document.addEventListener('mouseup', onUp);
+    document.addEventListener('touchend', onUp);
 
   </script>
 
