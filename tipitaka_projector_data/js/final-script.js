@@ -725,27 +725,33 @@ function stopResizeBottom(){
 	}
 };
 
+
 // Resize All
-oDiv.onmousedown=function(ev){
+oDiv.onmousedown = oDiv.ontouchstart = function(ev){
 	var oEvent=ev||event;
-	mouseStart.x=oEvent.clientX;
-	mouseStart.y=oEvent.clientY;
+
+	mouseStart.x = oEvent.clientX || (oEvent.touches && oEvent.touches[0].clientX);
+	mouseStart.y = oEvent.clientY || (oEvent.touches && oEvent.touches[0].clientY);
+
 	divStart.x=oDiv.offsetLeft;
 	divStart.y=oDiv.offsetTop;
 	if(oDiv.setCapture){
-		oDiv.onmousemove=doDrag;
-		oDiv.onmouseup=stopDrag;
+		oDiv.onmousemove = oDiv.ontouchmove = doDrag;
+		oDiv.onmouseup = oDiv.ontouchend = stopDrag;
 		oDiv.setCapture();
 	}
 	else{
-		document.addEventListener("mousemove",doDrag,true);
-		document.addEventListener("mouseup",stopDrag,true);
+		document.addEventListener("mousemove", doDrag,true);
+		document.addEventListener("touchmove", doDrag,true);
+
+		document.addEventListener("mouseup", stopDrag,true);
+		document.addEventListener("touchend", stopDrag,true);
 	}
 };
 function doDrag(ev){
 	var oEvent=ev||event;
-	var l=oEvent.clientX-mouseStart.x+divStart.x;
-	var t=oEvent.clientY-mouseStart.y+divStart.y;
+	var l= (oEvent.clientX || (oEvent.touches && oEvent.touches[0].clientX)) -mouseStart.x + divStart.x;
+	var t= (oEvent.clientY || (oEvent.touches && oEvent.touches[0].clientY)) - mouseStart.y + divStart.y;
 
 	var w=l+oDiv.offsetWidth;
 	var h=t+oDiv.offsetHeight;
