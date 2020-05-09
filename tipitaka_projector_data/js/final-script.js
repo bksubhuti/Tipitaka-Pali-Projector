@@ -693,25 +693,32 @@ function stopResizeRight(){
 };
 
 // Resize Down
-ResizeBottom.onmousedown=function(ev){
+ResizeBottom.onmousedown = ResizeBottom.ontouchstart = function(ev){
 	var oEvent=ev||event;
-	mouseStart.x=oEvent.clientX;
-	mouseStart.y=oEvent.clientY;
-	bottomStart.y=ResizeBottom.offsetTop;
+	mouseStart.x= clientX(oEvent);
+	mouseStart.y = clientY(oEvent);
+	bottomStart.y = ResizeBottom.offsetTop;
+
 	if(ResizeBottom.setCapture){
 		ResizeBottom.onmousemove=doResizeBottom;
 		ResizeBottom.onmouseup=stopResizeBottom;
+
+		ResizeBottom.ontouchmove=doResizeBottom;
+		ResizeBottom.ontouchend=stopResizeBottom;
 		ResizeBottom.setCapture();
 	}
 	else{
 		document.addEventListener("mousemove",doResizeBottom,true);
 		document.addEventListener("mouseup",stopResizeBottom,true);
+
+		document.addEventListener("touchmove",doResizeBottom,true);
+		document.addEventListener("touchend",stopResizeBottom,true);
 	}
 };
 function doResizeBottom(ev){
 	var oEvent=ev||event;
-	var t=oEvent.clientY-mouseStart.y+bottomStart.y;
-	var h=t+oDiv.offsetHeight;
+	var t = clientY(oEvent) - mouseStart.y + bottomStart.y;
+	var h = t + oDiv.offsetHeight;
 
 	tx = parseInt(document.getElementById('main_div').style.top);
 	h = Math.max(100, Math.min(h, window.innerHeight -tx -30));
@@ -728,11 +735,18 @@ function stopResizeBottom(){
 	if(ResizeBottom.releaseCapture){
 		ResizeBottom.onmousemove=null;
 		ResizeBottom.onmouseup=null;
+
+		ResizeBottom.ontouchmove=null;
+		ResizeBottom.ontouchend=null;
+
 		ResizeBottom.releaseCapture();
 	}
 	else{
 		document.removeEventListener("mousemove",doResizeBottom,true);
 		document.removeEventListener("mouseup",stopResizeBottom,true);
+
+		document.removeEventListener("touchmove",doResizeBottom,true);
+		document.removeEventListener("touchend",stopResizeBottom,true);
 	}
 };
 
