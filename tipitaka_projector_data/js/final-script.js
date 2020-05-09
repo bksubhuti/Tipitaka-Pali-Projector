@@ -641,25 +641,29 @@ var rightStart={};
 var bottomStart={};
 
 // Resize Right
-ResizeRight.onmousedown=function(ev){
+ResizeRight.onmousedown = ResizeRight.ontouchstart = function(ev){
 	var oEvent=ev||event;
-	mouseStart.x=oEvent.clientX;
-	mouseStart.y=oEvent.clientY;
-	rightStart.x=ResizeRight.offsetLeft;
+	mouseStart.x = clientX(oEvent);
+	mouseStart.y = clientY(oEvent);
+	rightStart.x = ResizeRight.offsetLeft;
+
 	if(ResizeRight.setCapture){
-		ResizeRight.onmousemove=doResizeRight;
-		ResizeRight.onmouseup=stopResizeRight;
+		ResizeRight.onmousemove = ResizeRight.ontouchmove = doResizeRight;
+		ResizeRight.onmouseup = ResizeRight.ontouchend = stopResizeRight;
 		ResizeRight.setCapture();
 	}
 	else{
 		document.addEventListener("mousemove",doResizeRight,true);
 		document.addEventListener("mouseup",stopResizeRight,true);
+
+		document.addEventListener("touchmove",doResizeRight,true);
+		document.addEventListener("touchend",stopResizeRight,true);
 	}
 };
 function doResizeRight(ev){
 	var oEvent=ev||event;
-	var l=oEvent.clientX-mouseStart.x+rightStart.x;
-	var w=l+oDiv.offsetWidth;
+	var l = clientX(oEvent) - mouseStart.x + rightStart.x;
+	var w = l + oDiv.offsetWidth;
 
 	lx = parseInt(document.getElementById('main_div').style.left);
 	w = Math.max(250, Math.min(w, window.innerWidth -lx -20));
@@ -673,11 +677,18 @@ function stopResizeRight(){
 	if(ResizeRight.releaseCapture){
 		ResizeRight.onmousemove=null;
 		ResizeRight.onmouseup=null;
+
+		ResizeRight.ontouchmove=null;
+		ResizeRight.ontouchend=null;
+
 		ResizeRight.releaseCapture();
 	}
 	else{
 		document.removeEventListener("mousemove",doResizeRight,true);
 		document.removeEventListener("mouseup",stopResizeRight,true);
+
+		document.removeEventListener("touchmove",doResizeRight,true);
+		document.removeEventListener("touchend",stopResizeRight,true);
 	}
 };
 
