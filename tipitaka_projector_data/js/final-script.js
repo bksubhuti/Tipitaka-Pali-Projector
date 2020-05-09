@@ -725,13 +725,24 @@ function stopResizeBottom(){
 	}
 };
 
+var client = function(event, which) {
+	return event[which] || (event.touches && event.touches[0][which]);
+};
+
+var clientX = function(event) {
+	return client(event, 'clientX');
+};
+var clientY = function(event) {
+	return client(event, 'clientY');
+};
+
 
 // Resize All
 oDiv.onmousedown = oDiv.ontouchstart = function(ev){
 	var oEvent=ev||event;
 
-	mouseStart.x = oEvent.clientX || (oEvent.touches && oEvent.touches[0].clientX);
-	mouseStart.y = oEvent.clientY || (oEvent.touches && oEvent.touches[0].clientY);
+	mouseStart.x = clientX(oEvent);
+	mouseStart.y = clientY(oEvent);
 
 	divStart.x=oDiv.offsetLeft;
 	divStart.y=oDiv.offsetTop;
@@ -750,8 +761,8 @@ oDiv.onmousedown = oDiv.ontouchstart = function(ev){
 };
 function doDrag(ev){
 	var oEvent=ev||event;
-	var l= (oEvent.clientX || (oEvent.touches && oEvent.touches[0].clientX)) -mouseStart.x + divStart.x;
-	var t= (oEvent.clientY || (oEvent.touches && oEvent.touches[0].clientY)) - mouseStart.y + divStart.y;
+	var l= clientX(oEvent) -mouseStart.x + divStart.x;
+	var t= clientY(oEvent) - mouseStart.y + divStart.y;
 
 	var w=l+oDiv.offsetWidth;
 	var h=t+oDiv.offsetHeight;
@@ -785,27 +796,30 @@ function stopDrag(){
 };
 
 // Drag
-divDragIcon.onmousedown=function(ev){
+divDragIcon.onmousedown = divDragIcon.ontouchstart = function(ev){
 	var oEvent=ev||event;
-	mouseStart.x=oEvent.clientX;
-	mouseStart.y=oEvent.clientY;
+	mouseStart.x = clientX(oEvent);
+	mouseStart.y = clientY(oEvent);
 	divStart.x=omain_div.offsetLeft;
 	divStart.y=omain_div.offsetTop;
 
 	if(divDragIcon.setCapture){
-		divDragIcon.onmousemove=doDrag3;
-		divDragIcon.onmouseup=stopDrag3;
+		divDragIcon.onmousemove = divDragIcon.ontouchmove = doDrag3;
+		divDragIcon.onmouseup = divDragIcon.ontouchend = stopDrag3;
 		divDragIcon.setCapture();
 	}
 	else{
 		document.addEventListener("mousemove",doDrag3,true);
+		document.addEventListener("touchmove",doDrag3,true);
+
 		document.addEventListener("mouseup",stopDrag3,true);
+		document.addEventListener("touchend",stopDrag3,true);
 	}
 };
 function doDrag3(ev){
 	var oEvent=ev||event;
-	var l=oEvent.clientX-mouseStart.x+divStart.x;
-	var t=oEvent.clientY-mouseStart.y+divStart.y;
+	var l = clientX(oEvent) - mouseStart.x + divStart.x;
+	var t = clientY(oEvent) - mouseStart.y + divStart.y;
 	if(l<0){
 		l=0;
 	}
@@ -831,12 +845,17 @@ function doDrag3(ev){
 };
 function stopDrag3(){
 	if(divDragIcon.releaseCapture){
-		divDragIcon.onmousemove=null;
-		divDragIcon.onmouseup=null;
+		divDragIcon.onmousemove = null;
+		divDragIcon.onmouseup = null;
+		divDragIcon.ontouchmove = null;
+		divDragIcon.ontouchend = null;
 		divDragIcon.releaseCapture();
 	}
 	else{
 		document.removeEventListener("mousemove",doDrag3,true);
 		document.removeEventListener("mouseup",stopDrag3,true);
+
+		document.removeEventListener("touchmove",doDrag3,true);
+		document.removeEventListener("touchend",stopDrag3,true);
 	}
 }
