@@ -36,16 +36,32 @@ function Message(tr_no) {
 }
 
 function goToc() {
+
 	var val = document.getElementById('Toc').value;
 
 	var old = '@' + localStorage.getItem('palihistory');
 	var today = new Date();
 	var date = ('0' + (today.getMonth() + 1)).slice(-2) + ('0' + today.getDate()).slice(-2)  + " "+ ('0' + today.getHours()).slice(-2)  + ('0' + today.getMinutes()).slice(-2);
-	document.write = localStorage.setItem('palihistory', date + "_" + html_no + '.htm#' + P_Toc[val] + old) ;	//	p=Id Number
+
+
+	gPaliHistoryItem.paraNo = P_Toc[val];
+	gPaliHistoryItem.html_no = html_no;
+
+
+
+	var str = 	TOC_Dropdown_Items[val];//direct array that filled drop down items
+
+	gPaliHistoryItem.Toc_Name = str.replace(/_/g,''); 
+
+	writeHistoryStorage();
+	
+	//document.write = localStorage.setItem('palihistory', date + "_" + html_no + '.htm#' + P_Toc[val] + old) ;	//	p=Id Number
 
 	window.location = '#' + P_Toc[val];	// P_Toc convert to Id
 	Message(P_Toc[val].substring(1));
+	PaliHistoryList();
 }
+
 
 function goUrl() {
 	var p1 = document.getElementsByName('Reference');
@@ -93,28 +109,33 @@ function goUrl() {
 }
 
 function PaliHistoryList() {
-	var val = localStorage.getItem('palihistory');
-	if ((val != null) && (val != '')) {
-		var url = '';
-		var ary = val.split('@');
-		for (var i in ary) {
-			if ((ary[i] != 'null') && (ary[i] != '')) {
-				url = url + '<span onClick="PaliHistoryGoUrl(\'' + ary[i].substring(10) + '\');"">'
-				url = url + ary[i].substring(0, 9) + '&nbsp;';
+	var PaliHistoryArray = [];
+	PaliHistoryArray = JSON.parse(localStorage.getItem('PaliHistoryJSON'));
+	if (PaliHistoryArray != null){// use JSON objects instead
+		var showurl = '';
+		var i = PaliHistoryArray.length - 1;
+
+		for (i in PaliHistoryArray) {
+			if (PaliHistoryArray[i] != 'null'){
+				showurl = showurl + '<span style="white-space: nowrap;\" onClick="PaliHistoryGoUrl(\'' + PaliHistoryArray[i].html_no + '.htm'+ "#" + PaliHistoryArray[i].paraNo +  '\');"">'
+				//showurl = showurl + PaliHistoryArray[i].date + '&nbsp;'; // date
 				//
-				url = url + toTranslate(T_Book[ary[i].split('_')[1].split('.')[0]]);
-				//
-				url = url + '&nbsp;#';
-				url = url + ary[i].split('#')[1]  + '</span><br>';
+				showurl = showurl + toTranslate(T_Book[PaliHistoryArray[i].html_no]);//pass html_no to get the title of book
+				showurl = showurl + '&nbsp;' +'/ '  + PaliHistoryArray[i].Toc_Name;
+				showurl = showurl + '&nbsp;#';
+				showurl = showurl + PaliHistoryArray[i].paraNo + '</span><br>';
 			}
 		}
-		url = '&nbsp;<span style="font-size:10.5pt;" onClick="PaliHistoryClear(0)">&nbsp;<img src="images/b_drop.png">Clear All</span><br>' + url;
-		document.getElementById('palihistory').innerHTML = url;
+		showurl = '&nbsp;<span style="font-size:10.5pt;" onClick="PaliHistoryClear(0)">&nbsp;<img src="images/b_drop.png">Clear All</span><br>' + showurl;
+		document.getElementById('palihistory').innerHTML = showurl;
+
+
 	}
+
 }
 
 function PaliHistoryClear(val) {
-	document.write = localStorage.setItem('palihistory', '');
+	document.write = localStorage.setItem('PaliHistoryJSON', '');
 	document.getElementById('palihistory').innerHTML = ''; 
 }
 
@@ -135,8 +156,8 @@ function PaliHistoryGoUrl(val) {
 						break;
 					}
 				}
-			} else {		//  R= go to paragram no
-				loc = pos.substring(2);	// loc=R12
+			} else {		//  R= go to paragraph no
+			    loc = pos.substring(2);	// loc=R12
 				loc = P_Par[loc];		// loc=p123
 				loc = loc.substring(1);	// loc=123
 				for (i=(P_Par.length-1); 0<i; i--) {
@@ -157,7 +178,7 @@ function PaliHistoryGoUrl(val) {
 			location.href = file;	
 		}
 		
-	}
+	}	
 }
 
 function QuickJump() {
@@ -294,3 +315,44 @@ function SetupToc() {
     const options = TOC_Dropdown_Items.map((item, index) => `<option value="${index}">${item}</option>`);
     document.getElementById('Toc').innerHTML = options;
 }
+
+
+///////////////////////////////////////////////////////
+/// function writeHistoryStorage
+// will manage unique list and put recent one up top
+// if duplicate wants to be added
+////////////////////////////////////////////////////////
+function writeHistoryStorage(){
+	// duplicates for now okay until I learn 
+	// some() and shift()
+	
+		var today = new Date();
+		var date = ('0' + (today.getMonth() + 1)).slice(-2) + ('0' + today.getDate()).slice(-2)  + " "+ ('0' + today.getHours()).slice(-2)  + ('0' + today.getMinutes()).slice(-2);
+		gPaliHistoryItem.date = date;
+	
+		var HistoryJSONArray = [];
+		var oldHistoryJSONString = localStorage.getItem('PaliHistoryJSON');
+	
+		if (oldHistoryJSONString){
+			HistoryJSONArray  = JSON.parse(oldHistoryJSONString);
+		}
+	
+
+		var i=0;
+		// Check to see if it exists already.. if so we need to shift it up top  shift/push
+		for (i in  HistoryJSONArray){
+			if ( (HistoryJSONArray[i].paraNo == gPaliHistoryItem.paraNo) &&  ( HistoryJSONArray[i].paraNo == gPaliHistoryItem.paraNo ) ){
+				//found.. take it out and push to beginning later. 
+				 HistoryJSONArray.splice(i,1);	
+			} 
+		}
+		// new item goes to beginning
+		HistoryJSONArray.unshift(gPaliHistoryItem);
+	
+	
+		document.write = localStorage.setItem('PaliHistoryJSON', JSON.stringify(HistoryJSONArray));	
+	
+	
+	
+	}
+	

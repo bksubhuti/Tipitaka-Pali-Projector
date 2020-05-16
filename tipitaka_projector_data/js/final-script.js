@@ -625,6 +625,13 @@ if (localStorage.getItem('Show_Numbers') == 'false') {
 }
 
 
+var gPaliHistoryItem = {date:"", html_no:"0", paraNo:"0", Toc_Name:""};
+
+gPaliHistoryItem.paraNo = 'p1';
+gPaliHistoryItem.html_no = html_no;
+gPaliHistoryItem.Toc_Name = TOC_Dropdown_Items[1];// [0] book name [1] chaptername
+
+writeHistoryStorage();
 
 
 // ----

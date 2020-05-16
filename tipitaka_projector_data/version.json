@@ -1,5 +1,5 @@
 
 {
-    "versionno": "0016",
-    "releasenotes": "Touch now working for phones and tablets.  Ipad Mode removed."
+    "versionno": "0017",
+    "releasenotes": "Fixed History on navigation tab, sorted-recent first, instant refesh, page visits, no dups, real names."
 }
