@@ -1,193 +1,203 @@
-$(".r1").click(function () {
-	// copy from stlooku_jquery.js designed by Ven. Paññindriya(Vietnam)
-	if (latestElementClickedJqueryObject) {
-		$(latestElementClickedJqueryObject).removeClass("recentClickedCSSleft");
-		$(latestElementClickedJqueryObject).removeClass("recentClickedCSSright");
-	}
-	$(this).addClass("recentClickedCSSright");
-	latestElementClickedJqueryObject = $(this);
+function registerListeners() {
 
-	GetTrId($(this).attr('id').substring(1));
+	$(document.body).on('click', '.r1', function () {
+		// copy from stlooku_jquery.js designed by Ven. Paññindriya(Vietnam)
+		if (latestElementClickedJqueryObject) {
+			$(latestElementClickedJqueryObject).removeClass("recentClickedCSSleft");
+			$(latestElementClickedJqueryObject).removeClass("recentClickedCSSright");
+		}
+		$(this).addClass("recentClickedCSSright");
+		latestElementClickedJqueryObject = $(this);
 
-	word_click();
-	if (t.length > 0) {
-		//lookupCoordinator(t, 0);	//$changecolor = $ns % 2; /
-		document.getElementById('main_div').style.display = 'inline';
+		GetTrId($(this).attr('id').substring(1));
 
-		if (localStorage.getItem('main_content') == 'page1') {
-			DictionaryKeyGo();
-		} else {
-			if (localStorage.getItem('main_content') == 'page2') {
-				change_tab('page2');
+		word_click();
+		if (t.length > 0) {
+			//lookupCoordinator(t, 0);	//$changecolor = $ns % 2; /
+			document.getElementById('main_div').style.display = 'inline';
+
+			if (localStorage.getItem('main_content') == 'page1') {
+				DictionaryKeyGo();
 			} else {
-				if (localStorage.getItem('main_content') == 'page3') {
-					ParagraphAnalysis();
-					window.location= '#G_' + t;
+				if (localStorage.getItem('main_content') == 'page2') {
+					change_tab('page2');
+				} else {
+					if (localStorage.getItem('main_content') == 'page3') {
+						ParagraphAnalysis();
+						window.location= '#G_' + t;
+					}
 				}
 			}
 		}
-	}
 
-	const currentTab = localStorage.getItem('main_content');
+		const currentTab = localStorage.getItem('main_content');
 
-	if (['page4', 'page5'].indexOf(currentTab) >= 0) {
-		// switch to dictionary
-		//
-		onTabClick(document.getElementById('page1'));
-	}
-});
-
-$(".m1").bind('click', function () {
-	// copy from stlooku_jquery.js designed by Ven. Paññindriya(Vietnam)
-	if (latestElementClickedJqueryObject) {
-		$(latestElementClickedJqueryObject).removeClass("recentClickedCSSleft");
-		$(latestElementClickedJqueryObject).removeClass("recentClickedCSSright");
-	}
-	$(this).addClass("recentClickedCSSleft");
-	latestElementClickedJqueryObject = $(this);
-
-	GetTrId($(this).attr('id').substring(1));
-
-	if ((localStorage.getItem('contentdisplay') == '0') && (localStorage.getItem('contentposition') == '0')) {
-		if (document.getElementById('main_div').style.display == 'none') {
-			document.getElementById('main_div').style.display = 'inline';
-		} else {
-			document.getElementById('main_div').style.display = 'none';
+		if (['page4', 'page5'].indexOf(currentTab) >= 0) {
+			// switch to dictionary
+			//
+			onTabClick(document.getElementById('page1'));
 		}
-	}
+	});
 
-	if (localStorage.getItem('main_content') == 'page3') { // grammer
-		ParagraphAnalysis();
-	}
-});
+	$(document.body).on('click', '.m1', function () {
+		// copy from stlooku_jquery.js designed by Ven. Paññindriya(Vietnam)
+		if (latestElementClickedJqueryObject) {
+			$(latestElementClickedJqueryObject).removeClass("recentClickedCSSleft");
+			$(latestElementClickedJqueryObject).removeClass("recentClickedCSSright");
+		}
+		$(this).addClass("recentClickedCSSleft");
+		latestElementClickedJqueryObject = $(this);
 
-$(".pages").click(function () {
-	word_click();
-	if (t.length > 0) {
-		DictionaryKeyGo();
-		change_tab('page1');
+		GetTrId($(this).attr('id').substring(1));
 
-		if ((hee1 ==1) && (localStorage.getItem("speech_repeat") != '0')) {
-			for (var idx=1; idx<=localStorage.getItem("speech_repeat"); idx++) {
-				speakSynthesis(t);//repeat 2 times
+		if ((localStorage.getItem('contentdisplay') == '0') && (localStorage.getItem('contentposition') == '0')) {
+			if (document.getElementById('main_div').style.display == 'none') {
+				document.getElementById('main_div').style.display = 'inline';
+			} else {
+				document.getElementById('main_div').style.display = 'none';
 			}
 		}
-	}
-});
 
-//========================================================================================
-// TABLE Start
-// 1. Font-Family
-$(".r1").css("font-family", localStorage.getItem('font_left'));
-$(".m1").css("font-family", localStorage.getItem('font_right'));
-$(".r1").css("line-height", '180%');
-$(".m1").css("line-height", '180%');
+		if (localStorage.getItem('main_content') == 'page3') { // grammer
+			ParagraphAnalysis();
+		}
+	});
 
+	$(document.body).on('click', '.pages', function () {
+		word_click();
+		if (t.length > 0) {
+			DictionaryKeyGo();
+			change_tab('page1');
 
-// 2. Font-size,
-var size_left = localStorage.getItem('size_left');
-var PaliFontSize = localStorage.getItem("PaliFontSize");
-var iPaliFontSize = parseInt(PaliFontSize);  // no need to call parseint every time
-
-
-
-var p24 = parseInt(iPaliFontSize);		
-var p30 = parseInt(iPaliFontSize + 6);
-var p33 = parseInt(iPaliFontSize + 8);		
-var p36 = parseInt(iPaliFontSize + 12);
-var r1 =  parseInt(iPaliFontSize);
-var iLineHeight =  parseFloat(size_left) * 100;
-var strLineHeight = iLineHeight.toString() +"%";
-
-$(".r1").css("line-height",	strLineHeight);	//--------td
-
-
-var size_right = 	localStorage.getItem('size_right');
-var m24 = parseInt(iPaliFontSize);	
-var m30 = parseInt(iPaliFontSize + 6);
-var m33 = parseInt(iPaliFontSize + 8);	
-var m36 = parseInt(iPaliFontSize + 12);
-var m1 =  parseInt(iPaliFontSize);
-
-$(".m1").css("line-height",	(parseInt(m1/2) + iPaliFontSize)  + "pt");	//--------td
-$(".r1").css("font-size",	r1  + "pt");	//--------td
-$(".b1").css("font-size",	p24 + "pt");	//bodytext
-$(".b2").css("font-size",	p33 + "pt");	//book
-$(".c3").css("font-size",	p24 + "pt");	//centered
-$(".c4").css("font-size", 	p30 + "pt");	//chapter
-$(".g5").css("font-size", 	p24 + "pt");	//gatha1
-$(".g6").css("font-size", 	p24 + "pt");	//gatha2
-$(".g7").css("font-size", 	p24 + "pt");	//gatha3
-$(".g8").css("font-size",	p24 + "pt");	//gathalast
-$(".h9").css("font-size",	p24 + "pt");	//hangnum
-$(".ia").css("font-size",	p24 + "pt");	//indent
-$(".nb").css("font-size",	p36 + "pt");	//nikaya
-$(".sc").css("font-size", 	p24 + "pt");	//subhead
-$(".sd").css("font-size", 	p24 + "pt");	//subsubhead
-$(".te").css("font-size", 	p24 + "pt");	//title
-$(".uf").css("font-size", 	p24 + "pt");	//unindented
-
-$(".m1").css("font-size",	m1  + "pt");	//--------td
-$(".m_b1").css("font-size",	p24 + "pt");	//bodytext
-$(".m_b2").css("font-size",	p33 + "pt");    //book
-$(".m_c3").css("font-size",	p24 + "pt");    //centered
-$(".m_c4").css("font-size",	p30 + "pt");    //chapter
-$(".m_g5").css("font-size",	p24 + "pt");    //gatha1
-$(".m_g6").css("font-size",	p24 + "pt");    //gatha2
-$(".m_g7").css("font-size",	p24 + "pt");    //gatha3
-$(".m_g8").css("font-size",	p24 + "pt");    //gathalast
-$(".m_h9").css("font-size",	p24 + "pt");    //hangnum
-$(".m_ia").css("font-size",	p24 + "pt");    //indent
-$(".m_nb").css("font-size",	p36 + "pt");    //nikaya
-$(".m_sc").css("font-size",	p24 + "pt");    //subhead
-$(".m_sd").css("font-size",	p24 + "pt");    //subsubhead
-$(".m_te").css("font-size",	p24 + "pt");    //title
-$(".m_uf").css("font-size",	p24 + "pt");    //unindented
-
-// 3. Background-Color
-
-// 4. Font Color
-var font_color = {
-	'#f3ddb6':['#000000'], 	'#fff8dc':['#000000'],	'#1f3763':['#fffffe'],	'#000001':['#ffffff'],
-	'#121212':['#b0b0b0'],	'#010101':['#937811'],	'#1e1e1e':['#628754'],	'#090c11':['#2d3d4a'],
-	'#3c3c3c':['#cecece'],	'#5a5a5a':['#cacaca'],	'#d7d4cd':['#626262'],	'#e0e0e0':['#202020'],
-	'#f0f0f0':['#008000'],	'#fefefe':['#000000'],	'#d8cbab':['#000001'],	'#e2bdb4':['#010101']}
-var bld_color = {
-	'#f3ddb6':['brown'],	'#fff8dc':['brown'],	'#1f3763':['#ffff00'],	'#000001':['brown'],
-	'#121212':['brown'],	'#010101':['brown'],	'#1e1e1e':['brown'],	'#090c11':['brown'],
-	'#3c3c3c':['brown'],	'#5a5a5a':['brown'],	'#d7d4cd':['brown'],	'#e0e0e0':['brown'],
-	'#f0f0f0':['brown'],	'#fefefe':['brown'],	'#d8cbab':['brown'],	'#e2bdb4':['brown']}
-
-// 5. Pali Text
-var view_left = localStorage.getItem("view_left");
-var view_right = localStorage.getItem("view_right");
-
-//-------------------------------------
-// 7. Font Color
-
-if (view_right != 'Space') {
-	var width_r1 = localStorage.getItem('width_left');
-	var width_m1 = localStorage.getItem('width_right');
-} else {
-	width_r1 = 92;
-	width_m1 = 8;
+			if ((hee1 ==1) && (localStorage.getItem("speech_repeat") != '0')) {
+				for (var idx=1; idx<=localStorage.getItem("speech_repeat"); idx++) {
+					speakSynthesis(t);//repeat 2 times
+				}
+			}
+		}
+	});
 }
-$(".r1").css("width", width_r1 + '%');
-$(".m1").css("width", width_m1 + '%');
-var color = font_color[localStorage.getItem('bg_color')];
-var bold = bld_color[localStorage.getItem('bg_color')];
-$(".r1").css("color", color);
-$(".m1").css("color", color);
-$(".bld").css("color", bold);
-//$('#main_td2').css('backgroundColor', localStorage.getItem('bg_color'));
-$('#main_table').css('background-color', localStorage.getItem('bg_color'));
-//$('#main_td2').css('background-color', localStorage.getItem('bg_color'));
 
-//console.log(localStorage.getItem('bg_color'));
+function setTableStyling() {
+	//========================================================================================
+	// TABLE Start
+	// 1. Font-Family
 
-// TABLE End
-//========================================================================================
+	$(".r1").css("font-family", localStorage.getItem('font_left'));
+	$(".m1").css("font-family", localStorage.getItem('font_right'));
+	$(".r1").css("line-height", '180%');
+	$(".m1").css("line-height", '180%');
 
+	// 2. Font-size,
+	var size_left = localStorage.getItem('size_left');
+	var PaliFontSize = localStorage.getItem("PaliFontSize");
+	var iPaliFontSize = parseInt(PaliFontSize);  // no need to call parseint every time
+
+	var p24 = parseInt(iPaliFontSize);
+	var p30 = parseInt(iPaliFontSize + 6);
+	var p33 = parseInt(iPaliFontSize + 8);
+	var p36 = parseInt(iPaliFontSize + 12);
+	var r1 =  parseInt(iPaliFontSize);
+	var iLineHeight =  parseFloat(size_left) * 100;
+	var strLineHeight = iLineHeight.toString() +"%";
+
+	$(".r1").css("line-height",	strLineHeight);	//--------td
+
+
+	var size_right = 	localStorage.getItem('size_right');
+	var m24 = parseInt(iPaliFontSize);
+	var m30 = parseInt(iPaliFontSize + 6);
+	var m33 = parseInt(iPaliFontSize + 8);
+	var m36 = parseInt(iPaliFontSize + 12);
+	var m1 =  parseInt(iPaliFontSize);
+
+	$(".m1").css("line-height",	(parseInt(m1/2) + iPaliFontSize)  + "pt");	//--------td
+	$(".r1").css("font-size",	r1  + "pt");	//--------td
+	$(".b1").css("font-size",	p24 + "pt");	//bodytext
+	$(".b2").css("font-size",	p33 + "pt");	//book
+	$(".c3").css("font-size",	p24 + "pt");	//centered
+	$(".c4").css("font-size", 	p30 + "pt");	//chapter
+	$(".g5").css("font-size", 	p24 + "pt");	//gatha1
+	$(".g6").css("font-size", 	p24 + "pt");	//gatha2
+	$(".g7").css("font-size", 	p24 + "pt");	//gatha3
+	$(".g8").css("font-size",	p24 + "pt");	//gathalast
+	$(".h9").css("font-size",	p24 + "pt");	//hangnum
+	$(".ia").css("font-size",	p24 + "pt");	//indent
+	$(".nb").css("font-size",	p36 + "pt");	//nikaya
+	$(".sc").css("font-size", 	p24 + "pt");	//subhead
+	$(".sd").css("font-size", 	p24 + "pt");	//subsubhead
+	$(".te").css("font-size", 	p24 + "pt");	//title
+	$(".uf").css("font-size", 	p24 + "pt");	//unindented
+
+	$(".m1").css("font-size",	m1  + "pt");	//--------td
+	$(".m_b1").css("font-size",	p24 + "pt");	//bodytext
+	$(".m_b2").css("font-size",	p33 + "pt");    //book
+	$(".m_c3").css("font-size",	p24 + "pt");    //centered
+	$(".m_c4").css("font-size",	p30 + "pt");    //chapter
+	$(".m_g5").css("font-size",	p24 + "pt");    //gatha1
+	$(".m_g6").css("font-size",	p24 + "pt");    //gatha2
+	$(".m_g7").css("font-size",	p24 + "pt");    //gatha3
+	$(".m_g8").css("font-size",	p24 + "pt");    //gathalast
+	$(".m_h9").css("font-size",	p24 + "pt");    //hangnum
+	$(".m_ia").css("font-size",	p24 + "pt");    //indent
+	$(".m_nb").css("font-size",	p36 + "pt");    //nikaya
+	$(".m_sc").css("font-size",	p24 + "pt");    //subhead
+	$(".m_sd").css("font-size",	p24 + "pt");    //subsubhead
+	$(".m_te").css("font-size",	p24 + "pt");    //title
+	$(".m_uf").css("font-size",	p24 + "pt");    //unindented
+
+	// 3. Background-Color
+
+	// 4. Font Color
+	var font_color = {
+		'#f3ddb6':['#000000'], 	'#fff8dc':['#000000'],	'#1f3763':['#fffffe'],	'#000001':['#ffffff'],
+		'#121212':['#b0b0b0'],	'#010101':['#937811'],	'#1e1e1e':['#628754'],	'#090c11':['#2d3d4a'],
+		'#3c3c3c':['#cecece'],	'#5a5a5a':['#cacaca'],	'#d7d4cd':['#626262'],	'#e0e0e0':['#202020'],
+		'#f0f0f0':['#008000'],	'#fefefe':['#000000'],	'#d8cbab':['#000001'],	'#e2bdb4':['#010101']}
+	var bld_color = {
+		'#f3ddb6':['brown'],	'#fff8dc':['brown'],	'#1f3763':['#ffff00'],	'#000001':['brown'],
+		'#121212':['brown'],	'#010101':['brown'],	'#1e1e1e':['brown'],	'#090c11':['brown'],
+		'#3c3c3c':['brown'],	'#5a5a5a':['brown'],	'#d7d4cd':['brown'],	'#e0e0e0':['brown'],
+		'#f0f0f0':['brown'],	'#fefefe':['brown'],	'#d8cbab':['brown'],	'#e2bdb4':['brown']}
+
+	// 5. Pali Text
+	var view_left = localStorage.getItem("view_left");
+	var view_right = localStorage.getItem("view_right");
+
+	//-------------------------------------
+	// 7. Font Color
+
+	if (view_right != 'Space') {
+		var width_r1 = localStorage.getItem('width_left');
+		var width_m1 = localStorage.getItem('width_right');
+	} else {
+		width_r1 = 92;
+		width_m1 = 8;
+	}
+	$(".r1").css("width", width_r1 + '%');
+	$(".m1").css("width", width_m1 + '%');
+	var color = font_color[localStorage.getItem('bg_color')];
+	var bold = bld_color[localStorage.getItem('bg_color')];
+	$(".r1").css("color", color);
+	$(".m1").css("color", color);
+	$(".bld").css("color", bold);
+	//$('#main_td2').css('backgroundColor', localStorage.getItem('bg_color'));
+	$('#main_table').css('background-color', localStorage.getItem('bg_color'));
+	//$('#main_td2').css('background-color', localStorage.getItem('bg_color'));
+
+	//console.log(localStorage.getItem('bg_color'));
+	// TABLE End
+	//========================================================================================
+}
+
+
+
+
+
+
+
+registerListeners();
+setTableStyling();
 
 //------------
 //------------
@@ -201,81 +211,87 @@ if (Sr_key) {
 }
 var Sr_id = localStorage.getItem('Sr_id'+ html_no);
 
-for (var idx in P_HTM) {
-	var Sr_run = '';
-	if (Sr_key) {
-		if (Sr_id) {
-			if (Sr_id.indexOf(';' + idx + ';') != -1) {
-				var Sr_run = '1';
-			}
-		}
-	}
-
-	var pali2 = P_HTM[idx].split('*');		// right-side
-	var tags2 = P_Tag[idx].split('*');		// right-side
-
-	// get para_no
-	//var s0 = 'p' + idx;
-	//var s0 = P_Par.findIndex(key => key === s0);
-	//if (s0 != -1) {
-	//	para_no = s0;
-	//}
-
-	//var n1 = '{!@#' + idx + '#@!}';
-	var pali = P_HTM[idx].split('*');
-	var tags = P_Tag[idx].split('*');
-
-	s1 = '';
-	s2 = '';
-
-	for (var idy in pali) {
-		if (idy == 999) {
-			break;
-		}
-		//
-		pali[idy] = toTranslate(pali[idy]);
-		if (Sr_run == '1') {
-			for (var Sr_ndx in Sr_ary) {
-				pali[idy] = replacei(pali[idy], toTranslate(Sr_ary[Sr_ndx]), sub=> '<span id="Sr' + idx + '" class="Sr_note">' + toTranslate(Sr_ary[Sr_ndx]) + "</span>");
-			}
-		}
-		s1 = s1 + pali[idy] + tags[idy];
-
-		if ((view_right != 'Space') && (view_right != 'MyNote') && (view_right != 'Suttacentral')) {
-			pali2[idy] = toTranslateRight(pali2[idy]);
-			if (Sr_run == '1') {
-				for (var Sr_ndx in Sr_ary) {
-					pali2[idy] = replacei(pali2[idy], toTranslateRight(Sr_ary[Sr_ndx]), sub=> '<span class="Sr_note">' + toTranslateRight(Sr_ary[Sr_ndx]) + "</span>");
+var displayBook = function() {
+	for (var idx in P_HTM) {
+		var Sr_run = '';
+		if (Sr_key) {
+			if (Sr_id) {
+				if (Sr_id.indexOf(';' + idx + ';') != -1) {
+					var Sr_run = '1';
 				}
 			}
-			s2 = s2 + pali2[idy] + tags2[idy];
 		}
-	}
+
+		var pali2 = P_HTM[idx].split('*');		// right-side
+		var tags2 = P_Tag[idx].split('*');		// right-side
+
+		// get para_no
+		//var s0 = 'p' + idx;
+		//var s0 = P_Par.findIndex(key => key === s0);
+		//if (s0 != -1) {
+		//	para_no = s0;
+		//}
+
+		//var n1 = '{!@#' + idx + '#@!}';
+		var pali = P_HTM[idx].split('*');
+		var tags = P_Tag[idx].split('*');
+
+		s1 = '';
+		s2 = '';
+
+		for (var idy in pali) {
+			if (idy == 999) {
+				break;
+			}
+			//
+			pali[idy] = toTranslate(pali[idy]);
+			if (Sr_run == '1') {
+				for (var Sr_ndx in Sr_ary) {
+					pali[idy] = replacei(pali[idy], toTranslate(Sr_ary[Sr_ndx]), sub=> '<span id="Sr' + idx + '" class="Sr_note">' + toTranslate(Sr_ary[Sr_ndx]) + "</span>");
+				}
+			}
+			s1 = s1 + pali[idy] + tags[idy];
+
+			if ((view_right != 'Space') && (view_right != 'MyNote') && (view_right != 'Suttacentral')) {
+				pali2[idy] = toTranslateRight(pali2[idy]);
+				if (Sr_run == '1') {
+					for (var Sr_ndx in Sr_ary) {
+						pali2[idy] = replacei(pali2[idy], toTranslateRight(Sr_ary[Sr_ndx]), sub=> '<span class="Sr_note">' + toTranslateRight(Sr_ary[Sr_ndx]) + "</span>");
+					}
+				}
+				s2 = s2 + pali2[idy] + tags2[idy];
+			}
+		}
 
 
-	if (view_right == 'MyNote') {
-		tmp = localStorage.getItem('n' + html_no + '_'+idx);
+		if (view_right == 'MyNote') {
+			tmp = localStorage.getItem('n' + html_no + '_'+idx);
 
-		if ((tmp != null) && (tmp != undefined) && (tmp !='')) {
-			s2 = tags2[0].replace('<p class="', '<p class="m1_') + tmp.replace(/\n/g, '<br>'); + '</p>';
-			M_LOC[idx] = tmp;
-		} else {
-			tmp = M_LOC[idx];
 			if ((tmp != null) && (tmp != undefined) && (tmp !='')) {
-				document.write = localStorage.setItem('n' + html_no + '_'+idx, tmp);
+				s2 = tags2[0].replace('<p class="', '<p class="m1_') + tmp.replace(/\n/g, '<br>'); + '</p>';
+				M_LOC[idx] = tmp;
+			} else {
+				tmp = M_LOC[idx];
+				if ((tmp != null) && (tmp != undefined) && (tmp !='')) {
+					document.write = localStorage.setItem('n' + html_no + '_'+idx, tmp);
+					s2 = tags2[0].replace('<p class="', '<p class="m1_') + tmp.replace(/\n/g, '<br>'); + '</p>';
+				}
+			}
+		}
+
+		if (view_right == 'Suttacentral') {
+			tmp = M_SCT[idx];
+			if ((tmp != null) && (tmp != undefined) && (tmp !='')) {
 				s2 = tags2[0].replace('<p class="', '<p class="m1_') + tmp.replace(/\n/g, '<br>'); + '</p>';
 			}
 		}
+		document.getElementById('p' +idx).innerHTML = s1;
+		document.getElementById('m' +idx).innerHTML = s2;
 	}
+};
 
-	if (view_right == 'Suttacentral') {
-		tmp = M_SCT[idx];
-		if ((tmp != null) && (tmp != undefined) && (tmp !='')) {
-			s2 = tags2[0].replace('<p class="', '<p class="m1_') + tmp.replace(/\n/g, '<br>'); + '</p>';
-		}
-	}
-	document.getElementById('p' +idx).innerHTML = s1;
-	document.getElementById('m' +idx).innerHTML = s2;
+if (!SingleLoad) {
+	displayBook();
 }
 
 if (localStorage.getItem('Pali_note') == 'none') {
@@ -521,8 +537,8 @@ change_tab('page1');
 
 
 if (localStorage.getItem('Sr_id'+ html_no)) {
-	
-	var ary1 = localStorage.getItem('Sr_id'+ html_no).split(';');  
+
+	var ary1 = localStorage.getItem('Sr_id'+ html_no).split(';');
 	var n = Number(location.search.split('n=')[1]);
 	if (0 < n) {
 		for (i in ary1) {
@@ -530,7 +546,7 @@ if (localStorage.getItem('Sr_id'+ html_no)) {
 				break;
 			}
 		}
-		document.getElementById('Sr' + ary1[i]).scrollIntoView(); 
+		document.getElementById('Sr' + ary1[i]).scrollIntoView();
 		document.getElementById('Sr_Now').innerHTML = (Number(i));
 	}
 }
@@ -555,7 +571,7 @@ if (localStorage.getItem('history_pos') != null) {
 					}
 				}
 			} else {			// R= from paragraph number to id
-				var tr = document.getElementsByClassName('r1');					
+				var tr = document.getElementsByClassName('r1');
 				lenx = parseInt(pos.substring(2));
 				for (var i=lenx; i<=tr.length; i++) {
 					if (P_Par[i] != undefined) {
@@ -567,10 +583,10 @@ if (localStorage.getItem('history_pos') != null) {
 
 
 			}
-		} 
-		document.write = localStorage.setItem('history_pos', ''); 
+		}
+		document.write = localStorage.setItem('history_pos', '');
 	}
-} 
+}
 
 
 // Change Page4 TOC at none Roman Script
@@ -605,7 +621,7 @@ const setSelected = (element, name) => {
 	element.classList.remove('notselected');
 	element.classList.add('selected');
 	element.style.color = '#777777';
-}
+};
 for (i=1; i<=3; i++) {
 	const element = document.getElementById('Pali' + i);
 	if (T_Maps[html_no] == undefined) {
@@ -629,7 +645,14 @@ var gPaliHistoryItem = {date:"", html_no:"0", paraNo:"0", Toc_Name:""};
 
 gPaliHistoryItem.paraNo = 'p1';
 gPaliHistoryItem.html_no = html_no;
-gPaliHistoryItem.Toc_Name = TOC_Dropdown_Items[1];// [0] book name [1] chaptername
+
+var setHistoryItemChapterName = function setHistoryItemChapterName() {
+	gPaliHistoryItem.Toc_Name = TOC_Dropdown_Items[1];// [0] book name [1] chaptername
+};
+
+if (!SingleLoad) {
+	setHistoryItemChapterName();
+}
 
 writeHistoryStorage();
 

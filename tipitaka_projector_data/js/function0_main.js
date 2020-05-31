@@ -1,3 +1,5 @@
+var SingleLoad = typeof UseSinglePageLoading !== "undefined" && UseSinglePageLoading === true;
+
 // This function( toUniRegEx) is from "Digital Pali Reader (DPR)".
 //
 // GNU General Public License version 2.0 (GPLv2)
@@ -289,13 +291,16 @@ document.head.addEventListener("load", function(event) {
      console.log('event.target.src', event.target.src);
 });
 
-var loadInSequence = function loadInSequence(scripts) {
+var loadInSequence = function loadInSequence(scripts, onDone) {
     if (!scripts || scripts.length === 0) {
+    	if (onDone) {
+    		onDone();
+		}
         return;
     }
     var current = scripts.shift();
     addScript(current, {onload: function() {
-        loadInSequence(scripts);
+        loadInSequence(scripts, onDone);
     }});
 };
 
@@ -304,8 +309,17 @@ if (localStorage.getItem("view_right") == 'Suttacentral') {
 }
 // Script load order is VERY important
 // stuff in final-script uses stuff in the others
-loadInSequence([
-    'pali/' + html_no + '.js', 
-    'pali/' + html_no + 'a.js',
-    'js/final-script.js'
-]);
+var toLoad = [];
+if (SingleLoad) {
+	toLoad = [
+		'js/final-script.js'
+	]
+} else {
+	toLoad = [
+		'pali/' + html_no + '.js',
+		'pali/' + html_no + 'a.js',
+		'js/final-script.js'
+	]
+}
+
+loadInSequence(toLoad);

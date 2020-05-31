@@ -7,7 +7,7 @@ function DictHistoryList() {
 		for (var i in ary) {
 			if ((ary[i] != 'null') && (ary[i] != '')) {
 				v1 = ary[i].replace('$', '').replace(',', '',).replace('?', '',).replace('.', '').replace(';', '').replace('’', '');
-				url = url + '<span style="color:blue;" onClick="DictHistoryDisplay(\'' + ary[i].split('#')[1].replace('$', '') + '\');">' + v1 + '</span><br>';
+				url = url + '<input type="checkbox" data-word="' + ary[i].split('#')[1].replace('$', '') + '"/><span style="color:blue;" onClick="DictHistoryDisplay(\'' + ary[i].split('#')[1].replace('$', '') + '\');">' + v1 + '</span><br>';
 				out = out + '@' + v1 + '$';
 			}
 		}
