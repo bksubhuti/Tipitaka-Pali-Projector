@@ -1,5 +1,5 @@
 
 {
-    "versionno": "0017",
-    "releasenotes": "Fixed History on navigation tab, sorted-recent first, instant refesh, page visits, no dups, real names."
+    "versionno": "0018",
+    "releasenotes": "Fixed Anki to Import now.  Need to have notecard with key, source and def fields to work."
 }

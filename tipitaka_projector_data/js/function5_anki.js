@@ -1,56 +1,38 @@
+
+
 function AnkiAdd() {
-    var tr_id = localStorage.getItem('tr_id');
-    if (tr_id != undefined) {
-        key = document.getElementById('DictionaryKey').value.trim();
-        if (key != '') {
-            var AnkiOld = localStorage.getItem('Anki');
-            if (AnkiOld == undefined) {
-                AnkiOld = '';
+    var AnkiHistArr =[];
+    var strAnkiLine = "";
+    var strDef = "";
+
+    var strDictInfoArr = localStorage.getItem('DictInfoArr');
+	var DictInfoArr = [];
+	if (strDictInfoArr){
+		DictInfoArr = JSON.parse(strDictInfoArr);
+        AnkiHistArr =  document.getElementsByName("AnkiHist");
+
+        // DictInfoArr and AnkiHistArr were built from the same array so 
+        // we can use the same index instead of going off the key.
+
+        var len = AnkiHistArr.length;
+        for (i in AnkiHistArr ){
+            if (AnkiHistArr[i].checked == true){
+        
+                strDef =DictInfoArr[i].def.replace(/(\r\n|\n|\r)/gm,"");
+                strDef = strDef.replace(/style=\"background-color:rgb\(204,198,176\)\"/g, "");
+                strAnkiLine = strAnkiLine  + DictInfoArr[i].key + '\t' + DictInfoArr[i].source + '\t' +  strDef + '\n';
+
             }
-
-            var str1 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZĀĪŪṬḌṄṆÑḶṂ';
-            val = P_HTM[tr_id];
-            val = val.replace(/\[[^\]]+./gm, '');
-            val = val.replace(/\*/gm, '').replace(/\‘/g, '').replace(/\’/g, '');
-            var ary = val.split(key);
-
-            s0 = '';
-            arys0 = ary[0].split('');
-            lenx = arys0.length-1;
-            for (i=lenx; 0<=i; i--) {
-                c1 = arys0[i]
-                s0 = c1 + s0;
-                if (str1.indexOf(c1) != -1) {
-                    break;
-                }
-            }
-
-            s1 = '';
-            if (ary[1] == undefined) {
-                out = '<b>' + key + '</b>' + s0;
-            } else {    
-                arys1 = ary[1].split('');
-                for (i in arys1) {
-                    c1 = arys1[i];
-                    s1 = s1 + c1;
-                    if (c1 == '.') {
-                        break;
-                    }
-                }
-                out = s0 + '<b>' + key + '</b>' + s1;
-            }    
-
-            var ret1 = AnkiSearch(key);
-            var key2 = '';
-            if (ret1 == '') {
-                var key2 = wordbreakdata[key]; // declension
-                var ret1 = AnkiSearch(key2);
-            }    
-            
-            out = key + '\t' + out + '\t' + ret1  + '<br><br>' + key2 + '\n' + AnkiOld;
-            document.write = localStorage.setItem('Anki', out);
         }
+
+        document.write = localStorage.setItem('Anki', strAnkiLine); 
+        document.getElementById('CopyText').value = strAnkiLine;
+
+        //var blob = new Blob([strAnkiLine], {type: "text/plain;charset=utf-8"});
+        //saveAs(blob, 'AnkiImportFromTPP.tsv');
+
     }
+
 }
 
 function AnkiSearch(key) { 
@@ -87,34 +69,17 @@ function AnkiGetValue(aryAnkiGetValue, key) {
 }
 
 function AnkiCopy() {
-    var dat = localStorage.getItem('Anki');
-    if ((dat != undefined) && (dat != '')) {
-        dat = dat.trim()
-        ary = dat.split('\n');
-        ary.sort();
-
-        var out = '';
-
-        var lenx = ary.length;
-        ary[lenx] = '';
-        for (i=0; i<lenx; i++) {
-            ary1 = ary[i].split('\t');
-            ary2 = ary[i+1].split('\t');
-            if (ary1[0] != ary2[0]) {
-                out = out + ary[i] + '\n';
-            }
-        }
-        out = out.trim();
-
-        document.getElementById('CopyText').value = out;
+    var strAnkiLine = localStorage.getItem('Anki');
+        document.getElementById('CopyText').value = strAnkiLine;
         
         $('#CopyText').select();
         document.execCommand('copy');
     }    
-}
+
 
 function AnkiClear() {
     document.write = localStorage.setItem('Anki', '');
+    document.write = localStorage.setItem('AnkiLine', '');
     document.write = localStorage.removeItem('Anki');
     document.getElementById('CopyText').value = '';
 }

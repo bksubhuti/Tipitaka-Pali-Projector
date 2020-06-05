@@ -32,7 +32,17 @@ function TmpDictionarySave(id) {
 }
 
 function DictionaryGo() {
+	var gDictInfo = {key:"", source:"", def:""};
+
 	key = toUniRegEx(document.getElementById('DictionaryKey').value.toLowerCase().trim());
+
+	gDictInfo.key = key;
+
+	var tr_id = localStorage.getItem('tr_id');
+	if (tr_id){
+		gDictInfo.source = getAnkiSentence(key, P_HTM[tr_id]);
+	}
+ 
 	if (key == '') { return(''); }
 	document.getElementById('DictionaryKey').value = key;
 
@@ -53,6 +63,8 @@ function DictionaryGo() {
 			DictionaryRet = DictionaryRet + DoAnalysis(key) + '</div>';
 		}	
 	}
+	gDictInfo.def = DoAnalysis(key);
+
 	document.getElementById('page1_desc').innerHTML = DictionaryRet;
 
 	// put in history
@@ -65,6 +77,17 @@ function DictionaryGo() {
 	val = val.replace(DictionaryRet + '{!@@!}', '');
 	val = DictionaryRet + '{!@@!}' + val;
 	document.write = localStorage.setItem('history', val);
+
+
+	// now write the gDictInfo to the localStorage and create an array to do so.
+	// This will be used for anki later on.
+	var DictInfoArr = [];
+	var strDictInfoArr = localStorage.getItem("DictInfoArr");
+	if (strDictInfoArr){
+		DictInfoArr= JSON.parse(strDictInfoArr);
+	}
+	DictInfoArr.push(gDictInfo);
+	localStorage.setItem("DictInfoArr", JSON.stringify(DictInfoArr));
 }
 
 function DictionaryKeyGo() {
@@ -138,3 +161,47 @@ function WordListLookup(target) {
 	const usableKeys = uniqueKeys.slice(0, 20);
 	return usableKeys;
 };
+
+ function getAnkiSentence(key, strPara){
+
+	var str1 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZĀĪŪṬḌṄṆÑḶṂ';
+	val = strPara;
+	val = val.replace(/\[[^\]]+./gm, '');
+	val = val.replace(/\*/gm, '').replace(/\‘/g, '').replace(/\’/g, '');
+	var ary = val.split(key);
+
+	var s0 = '';
+	var arys0 = ary[0].split('');
+	var lenx = arys0.length-1;
+	for (var i=lenx; 0<=i; i--) {
+		var c1 = arys0[i]
+		s0 = c1 + s0;
+		if (str1.indexOf(c1) != -1) {
+			break;
+		}
+	}
+
+	var s1 = '';
+	if (ary[1] == undefined) {
+		out = '<b>' + key + '</b>' + s0;
+	} else {    
+		arys1 = ary[1].split('');
+		for (i in arys1) {
+			c1 = arys1[i];
+			s1 = s1 + c1;
+			if (c1 == '.') {
+				break;
+			}
+		}
+		out = s0 + '<b>' + key + '</b>' + s1;
+	}    
+
+
+
+
+	return out;
+
+
+}
+
+
