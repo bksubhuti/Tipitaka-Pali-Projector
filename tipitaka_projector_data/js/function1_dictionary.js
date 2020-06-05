@@ -33,6 +33,8 @@ function TmpDictionarySave(id) {
 
 function DictionaryGo() {
 	var gDictInfo = {key:"", source:"", def:""};
+	//preserve original for searching... 
+	//var strOrigKey = this.dataset.wordvalue.trim();
 
 	key = toUniRegEx(document.getElementById('DictionaryKey').value.toLowerCase().trim());
 
@@ -164,44 +166,24 @@ function WordListLookup(target) {
 
  function getAnkiSentence(key, strPara){
 
-	var str1 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZĀĪŪṬḌṄṆÑḶṂ';
-	val = strPara;
-	val = val.replace(/\[[^\]]+./gm, '');
-	val = val.replace(/\*/gm, '').replace(/\‘/g, '').replace(/\’/g, '');
-	var ary = val.split(key);
+	var strResult = "";
+	// small fix (temporary?) for this is to make lowercase result since the 
+	// the original key is changed to lower.. need to match.
+	// can do RegEx to ingore case later.
+	
+	strPara = strPara.toLowerCase();
+	var sentencesArr = strPara.match( /[^\.!\?]+[\.!\?]+/g );
 
-	var s0 = '';
-	var arys0 = ary[0].split('');
-	var lenx = arys0.length-1;
-	for (var i=lenx; 0<=i; i--) {
-		var c1 = arys0[i]
-		s0 = c1 + s0;
-		if (str1.indexOf(c1) != -1) {
-			break;
+	for (i in sentencesArr){
+		if (sentencesArr[i].includes(key)){
+			// replace the key with <B>key</B>
+			strResult = sentencesArr[i].replace(key, '<b>' + key + '</b>');
+			return strResult;
 		}
+
 	}
-
-	var s1 = '';
-	if (ary[1] == undefined) {
-		out = '<b>' + key + '</b>' + s0;
-	} else {    
-		arys1 = ary[1].split('');
-		for (i in arys1) {
-			c1 = arys1[i];
-			s1 = s1 + c1;
-			if (c1 == '.') {
-				break;
-			}
-		}
-		out = s0 + '<b>' + key + '</b>' + s1;
-	}    
-
-
-
-
-	return out;
-
-
+	// nothing found
+	return null;
 }
 
 
