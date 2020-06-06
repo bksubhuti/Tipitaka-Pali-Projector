@@ -1,0 +1,65 @@
+/* static - don't move these */
+
+.div_selectx {
+  font-family:Tahoma;visibility:hidden;display:scroll;position:fixed;width:100%;height:220px;top:0px;right:0px;background-color:#ffffc0;overflow-y:scroll;max-height:50%;
+}
+
+.div_selectx_Dict {
+  font-family:Tahoma;visibility:hidden;display:scroll;position:fixed;width:100%;height:220px;top:0px;right:0px;background-color:#ffffc0;overflow-y:scroll;max-height:100%;
+}
+
+.div_border {
+  color:blue;padding:4px;margin-left:1%;margin-right:1%;background:#F7DBD0; border:1px dashed orange;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;
+}
+
+p {
+  border-top: 0in; border-bottom: 0in;
+  padding-top: 0in; padding-bottom: 0in;
+  margin-top: 0in; margin-bottom: 0.5cm;
+}
+/*.note {color:#880000}*/
+.BookTip {
+  position: absolute; display: none;
+  z-index: 9900000; outline: none;
+  font-size:13pt;
+  padding:5px;margin-left:0%;margin-right:0%;background:#F7DBD0;color:black;
+  border:1px dashed orange;border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;-o-border-radius:10px;
+}
+
+.font10 {
+ font-size:10pt;
+}
+
+/*  */
+.b1	{ font-size: 24pt; text-indent: 2em;}
+.b2	{ font-size: 33pt; text-align:center; font-weight: bold;}
+.c3	{ font-size: 24pt; text-align:center;}						/* Namo tassa, and nitthita -- no unique structural distinction */
+.c4	{ font-size: 30pt; text-align:center; font-weight: bold;}
+.g5	{ font-size: 24pt; margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 1 */
+.g6	{ font-size: 24pt; margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 2 */
+.g7	{ font-size: 24pt; margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 3 */
+.g8	{ font-size: 24pt; margin-bottom: 0.5cm; margin-left: 4em;}	/* Gatha last line */
+.h9	{ font-size: 24pt; text-indent: 2em;}
+.ia	{ font-size: 24pt; text-indent: 2em; margin-left: 3em;}
+.nb	{ font-size: 36pt; text-align:center; font-weight: bold;}
+.sc	{ font-size: 24pt; text-align:center; font-weight: bold;}
+.sd	{ font-size: 24pt; text-align:center; font-weight: bold;}
+.te	{ font-size: 24pt; text-align:center; font-weight: bold;}
+.uf	{ font-size: 24pt;}
+
+/*  */
+.m1_b1 { font-size: 24pt; text-indent: 2em;}
+.m1_b2 { font-size: 33pt; text-align:center; font-weight: bold;}
+.m1_c3 { font-size: 24pt; text-align:center;}						/* Namo tassa, and nitthita -- no unique structural distinction */
+.m1_c4 { font-size: 30pt; text-align:center; font-weight: bold;}
+.m1_g5 { font-size: 24pt; margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 1 */
+.m1_g6 { font-size: 24pt; margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 2 */
+.m1_g7 { font-size: 24pt; margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 3 */
+.m1_g8 { font-size: 24pt; margin-bottom: 0.5cm; margin-left: 4em;}	/* Gatha last line */
+.m1_h9 { font-size: 24pt; text-indent: 2em;}
+.m1_ia { font-size: 24pt; text-indent: 2em; margin-left: 3em;}
+.m1_nb { font-size: 36pt; text-align:center; font-weight: bold;}
+.m1_sc { font-size: 24pt; text-align:center; font-weight: bold;}
+.m1_sd { font-size: 24pt; text-align:center; font-weight: bold;}
+.m1_te { font-size: 24pt; text-align:center; font-weight: bold;}
+.m1_uf { font-size: 24pt;}
