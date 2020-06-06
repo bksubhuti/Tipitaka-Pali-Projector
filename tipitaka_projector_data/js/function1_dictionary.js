@@ -173,7 +173,7 @@ function WordListLookup(target) {
 	for (i in sentencesArr){
 		if (rx.test(sentencesArr[i])){
 			// replace the key with <B>key</B>
-			strResult = sentencesArr[i].replace(rx, "<b>$1<b>");
+			strResult = sentencesArr[i].replace(rx, "<b>$1</b>");
 			return strResult;
 		}
 	}
