@@ -888,6 +888,20 @@ function hideshowlogo(){
     }
 }
 
+function ResetPreferences(){
+        var askcf = confirm("It helps to refresh the Pāḷi Tipiṭaka Projector to its original settings.\nConfirm to proceed?");
+        if (askcf == true) {
+  
+          for (i in localStorage) {
+            document.write.innerHTML = localStorage.setItem(i, '');
+            document.write.innerHTML = localStorage.removeItem(i);
+          } 
+  
+          window.location.pathname ='index.htm';
+  
+        }
+}
+
 function enlarge()
 {
     /*var ev = jQuery.Event("keypress");
