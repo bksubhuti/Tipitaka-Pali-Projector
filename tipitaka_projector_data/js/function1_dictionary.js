@@ -165,22 +165,17 @@ function WordListLookup(target) {
 };
 
  function getAnkiSentence(key, strPara){
-
 	var strResult = "";
-	// small fix (temporary?) for this is to make lowercase result since the 
-	// the original key is changed to lower.. need to match.
-	// can do RegEx to ingore case later.
-	
-	strPara = strPara.toLowerCase();
+	var rx = new RegExp (`(${key})`,"i");
+
 	var sentencesArr = strPara.match( /[^\.!\?]+[\.!\?]+/g );
 
 	for (i in sentencesArr){
-		if (sentencesArr[i].includes(key)){
+		if (rx.test(sentencesArr[i])){
 			// replace the key with <B>key</B>
-			strResult = sentencesArr[i].replace(key, '<b>' + key + '</b>');
+			strResult = sentencesArr[i].replace(rx, "<b>$1<b>");
 			return strResult;
 		}
-
 	}
 	// nothing found
 	return null;
