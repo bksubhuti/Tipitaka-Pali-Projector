@@ -1,0 +1,42 @@
+#dialog {
+    display:none;
+}
+.myTarget {
+    font-weight:bold;
+    font-style:italic;
+    color:red;
+}
+
+<div>Here is the rest of the page. Hopefully we can get the value from the dialog form?! Should display <span class="myTarget">here</span> when finished.</div>
+<div id="dialog" title="Basic dialog">
+    <p>This is an animated dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+    <input class="myInput" type="text" />
+    <button class="formSaver">Save me!</button>
+</div>
+<button id="opener">Open Dialog</button>
+
+
+
+//Initialize dialog
+$("#dialog").dialog({
+    autoOpen: false,
+    show: {
+        effect: "blind",
+        duration: 1000
+    },
+    hide: {
+        effect: "explode",
+        duration: 1000
+    }
+});
+
+//Open it when #opener is clicked
+$("#opener").click(function () {
+    $("#dialog").dialog("open");
+});
+
+//When the button in the form is clicked, take the input value and set that as the value of `.myTarget`
+$('.formSaver').on('click', function () {
+    $('.myTarget').text($('.myInput').val());
+    $("#dialog").dialog('close');
+});
