@@ -28,6 +28,9 @@
 	    }
 
 
+
+
+		}
 	
 
 	    a:link {
@@ -88,14 +91,6 @@
 	      from {opacity: 0;}
 	      to {opacity: 1;}
 		}
-		#dialog {
-    display:none;
-}
-.myTarget {
-    font-weight:bold;
-    font-style:italic;
-    color:red;
-}
 	</style>
 	
 	<script src="js/index_initialize.js"></script>
@@ -618,13 +613,8 @@
 											<div id="versioninfo"> </div>
 											</div>
 											<br>
-											<div>Here is the rest of the page. Hopefully we can get the value from the dialog form?! Should display <span class="myTarget">here</span> when finished.</div>
-											<div id="dialog" title="Basic dialog">
-												<p>This is an animated dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
-												<input class="myInput" type="text" />
-												<button class="formSaver">Save me!</button>
-											</div>
-											<button id="opener">Open Dialog</button>										</td>
+		
+										</td>
 
 									</tr>
 	
@@ -639,13 +629,9 @@
 		</tr>
 	</table>
 
+	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/preferences.js"></script>
 	<script src="js/savefile.js"></script>
-	<script src="https://js/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
-	<script src="https://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/redmond/jquery-ui.css">
-
 		
 	<script>
      $('#asoka2').hide() ;
@@ -700,31 +686,7 @@
 		}
 
 	}    //getVersion function
-
-//Initialize dialog
-$("#dialog").dialog({
-    autoOpen: false,
-    show: {
-        effect: "blind",
-        duration: 1000
-    },
-    hide: {
-        effect: "explode",
-        duration: 1000
-    }
-});
-
-//Open it when #opener is clicked
-$("#opener").click(function () {
-    $("#dialog").dialog("open");
-});
-
-//When the button in the form is clicked, take the input value and set that as the value of `.myTarget`
-$('.formSaver').on('click', function () {
-    $('.myTarget').text($('.myInput').val());
-    $("#dialog").dialog('close');
-});
-
+	
 </script>
 	
 
@@ -732,4 +694,3 @@ $('.formSaver').on('click', function () {
 
 </body>
 </html> 
-
