@@ -1,5 +1,5 @@
 
 {
-    "versionno": "0018",
-    "releasenotes": "Fixed Anki to Import now.  Need to have notecard with key, source and def fields to work."
+    "versionno": "0019",
+    "releasenotes": "Removed dup words in dicthist, selected mula button and M A T tool tip improvements"
 }
