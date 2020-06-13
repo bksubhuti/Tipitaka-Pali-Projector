@@ -1,0 +1,1734 @@
+{
+   "books":[
+      {
+         "name":"Vinayapiṭaka",
+         "sets":[
+            {
+               "name":"Mūla",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":1101,
+                     "title":"Pārājika Pāḷi",
+                     "rows":2483
+                  },
+                  {
+                     "index":2,
+                     "bookId":1102,
+                     "title":"Pācittiya Pāḷi",
+                     "rows":3703
+                  },
+                  {
+                     "index":3,
+                     "bookId":1103,
+                     "title":"Mahāvagga Pāḷi",
+                     "rows":2770
+                  },
+                  {
+                     "index":4,
+                     "bookId":1104,
+                     "title":"Cūḷavagga Pāḷi",
+                     "rows":2834
+                  },
+                  {
+                     "index":5,
+                     "bookId":1105,
+                     "title":"Parivāra Pāḷi",
+                     "rows":3664
+                  }
+               ]
+            },
+            {
+               "name":"Aṭṭhakathā",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":1201,
+                     "title":"Pārājika Aṭṭhakathā-1",
+                     "rows":1623
+                  },
+                  {
+                     "index":2,
+                     "bookId":1202,
+                     "title":"Pārājika Aṭṭhakathā-2",
+                     "rows":1351
+                  },
+                  {
+                     "index":3,
+                     "bookId":1203,
+                     "title":"Pācittiya Aṭṭhakathā",
+                     "rows":1466
+                  },
+                  {
+                     "index":4,
+                     "bookId":1204,
+                     "title":"Mahāvagga Aṭṭhakathā",
+                     "rows":923
+                  },
+                  {
+                     "index":5,
+                     "bookId":1205,
+                     "title":"Cūḷavagga Aṭṭhakathā",
+                     "rows":669
+                  },
+                  {
+                     "index":6,
+                     "bookId":1206,
+                     "title":"Parivāra Aṭṭhakathā",
+                     "rows":661
+                  },
+                  {
+                     "index":7,
+                     "bookId":1207,
+                     "title":"Kaṅkhāvitaraṇi Aṭṭhakathā",
+                     "rows":2713
+                  },
+                  {
+                     "index":8,
+                     "bookId":1208,
+                     "title":"Vinayasaṅgaha Aṭṭhakathā",
+                     "rows":1673
+                  }
+               ]
+            },
+            {
+               "name":"Ṭīkā",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":1301,
+                     "title":"Sāratthadīpanī Ṭīkā-1",
+                     "rows":1659
+                  },
+                  {
+                     "index":2,
+                     "bookId":1302,
+                     "title":"Sāratthadīpanī Ṭīkā-2",
+                     "rows":1660
+                  },
+                  {
+                     "index":3,
+                     "bookId":1303,
+                     "title":"Sāratthadīpanī Ṭīkā-3",
+                     "rows":2401
+                  },
+                  {
+                     "index":4,
+                     "bookId":1304,
+                     "title":"Vajirabuddhi Ṭīkā",
+                     "rows":2673
+                  },
+                  {
+                     "index":5,
+                     "bookId":1305,
+                     "title":"Vimativinodanī Ṭīkā-1",
+                     "rows":3137
+                  },
+                  {
+                     "index":6,
+                     "bookId":1306,
+                     "title":"Vimativinodanī Ṭīkā-2",
+                     "rows":1180
+                  },
+                  {
+                     "index":7,
+                     "bookId":1307,
+                     "title":"Vinayālaṅkāra Ṭīkā-1",
+                     "rows":1234
+                  },
+                  {
+                     "index":8,
+                     "bookId":1308,
+                     "title":"Vinayālaṅkāra Ṭīkā-2",
+                     "rows":585
+                  },
+                  {
+                     "index":9,
+                     "bookId":1309,
+                     "title":"Kaṅkhāvitaraṇī-Purāṇa-Abhinava Ṭīkā",
+                     "rows":84
+                  },
+                  {
+                     "index":10,
+                     "bookId":1310,
+                     "title":"Vinayavinicchaya-uttaravinicchayo",
+                     "rows":13281
+                  },
+                  {
+                     "index":11,
+                     "bookId":1311,
+                     "title":"Vinayavinicchaya Ṭīkā-1",
+                     "rows":2416
+                  },
+                  {
+                     "index":12,
+                     "bookId":1312,
+                     "title":"Vinayavinicchaya Ṭīkā-2",
+                     "rows":1852
+                  },
+                  {
+                     "index":13,
+                     "bookId":1313,
+                     "title":"Pācityādiyojanāpāḷi",
+                     "rows":2992
+                  },
+                  {
+                     "index":14,
+                     "bookId":1314,
+                     "title":"Khuddasikkhā-mūlasikkhā",
+                     "rows":3631
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name":"Dīghanikāya",
+         "sets":[
+            {
+               "name":"Mūla",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":2101,
+                     "title":"Sīlakkhandhavagga Pāḷi",
+                     "rows":1088
+                  },
+                  {
+                     "index":2,
+                     "bookId":2102,
+                     "title":"Mahāvagga Pāḷi (Dīgha)",
+                     "rows":1570
+                  },
+                  {
+                     "index":3,
+                     "bookId":2103,
+                     "title":"Pāthikavagga Pāḷi",
+                     "rows":1922
+                  }
+               ]
+            },
+            {
+               "name":"Aṭṭhakathā",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":2201,
+                     "title":"Sīlakkhandhavagga Aṭṭhakathā",
+                     "rows":1521
+                  },
+                  {
+                     "index":2,
+                     "bookId":2202,
+                     "title":"Mahāvagga Aṭṭhakathā (Dīgha)",
+                     "rows":1723
+                  },
+                  {
+                     "index":3,
+                     "bookId":2203,
+                     "title":"Pāthikavagga Aṭṭhakathā",
+                     "rows":1143
+                  }
+               ]
+            },
+            {
+               "name":"Ṭīkā",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":2301,
+                     "title":"Sīlakkhandhavagga Ṭīkā",
+                     "rows":1406
+                  },
+                  {
+                     "index":2,
+                     "bookId":2302,
+                     "title":"Mahāvagga Ṭīkā(Dīgha)",
+                     "rows":1506
+                  },
+                  {
+                     "index":3,
+                     "bookId":2303,
+                     "title":"Pāthikavagga Ṭīkā",
+                     "rows":1144
+                  },
+                  {
+                     "index":4,
+                     "bookId":2304,
+                     "title":"Sīlakkhandhavagga-abhinava Ṭīkā-1",
+                     "rows":1574
+                  },
+                  {
+                     "index":5,
+                     "bookId":2305,
+                     "title":"Sīlakkhandhavagga-abhinava Ṭīkā-2",
+                     "rows":1366
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name":"Majjhimanikāya",
+         "sets":[
+            {
+               "name":"Mūla",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":3101,
+                     "title":"Mūlapaṇṇāsa Pāḷi",
+                     "rows":1803
+                  },
+                  {
+                     "index":2,
+                     "bookId":3102,
+                     "title":"Majjhimapaṇṇāsa Pāḷi",
+                     "rows":1696
+                  },
+                  {
+                     "index":3,
+                     "bookId":3103,
+                     "title":"Uparipaṇṇāsa Pāḷi",
+                     "rows":1469
+                  }
+               ]
+            },
+            {
+               "name":"Aṭṭhakathā",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":3201,
+                     "title":"Mūlapaṇṇāsa Aṭṭhakathā-1",
+                     "rows":1847
+                  },
+                  {
+                     "index":2,
+                     "bookId":3202,
+                     "title":"Mūlapaṇṇāsa Aṭṭhakathā-2",
+                     "rows":1071
+                  },
+                  {
+                     "index":3,
+                     "bookId":3203,
+                     "title":"Majjhimapaṇṇāsa Aṭṭhakathā",
+                     "rows":1345
+                  },
+                  {
+                     "index":4,
+                     "bookId":3204,
+                     "title":"Uparipaṇṇāsa Aṭṭhakathā",
+                     "rows":1113
+                  }
+               ]
+            },
+            {
+               "name":"Ṭīkā",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":3301,
+                     "title":"Mūlapaṇṇāsa Ṭīkā",
+                     "rows":2394
+                  },
+                  {
+                     "index":2,
+                     "bookId":3302,
+                     "title":"Majjhimapaṇṇāsa Ṭīkā",
+                     "rows":912
+                  },
+                  {
+                     "index":3,
+                     "bookId":3303,
+                     "title":"Uparipaṇṇāsa Ṭīkā",
+                     "rows":864
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name":"Saṃyuttanikāya",
+         "sets":[
+            {
+               "name":"Mūla",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":4101,
+                     "title":"Sagāthāvagga Pāḷi",
+                     "rows":3510
+                  },
+                  {
+                     "index":2,
+                     "bookId":4102,
+                     "title":"Nidānavagga Pāḷi",
+                     "rows":1438
+                  },
+                  {
+                     "index":3,
+                     "bookId":4103,
+                     "title":"Khandhavagga Pāḷi",
+                     "rows":1481
+                  },
+                  {
+                     "index":4,
+                     "bookId":4104,
+                     "title":"Saḷāyatanavagga Pāḷi",
+                     "rows":2031
+                  },
+                  {
+                     "index":5,
+                     "bookId":4105,
+                     "title":"Mahāvagga Pāḷi (Saṃyutta)",
+                     "rows":2865
+                  }
+               ]
+            },
+            {
+               "name":"Aṭṭhakathā",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":4201,
+                     "title":"Sagāthāvagga Aṭṭhakathā",
+                     "rows":1490
+                  },
+                  {
+                     "index":2,
+                     "bookId":4202,
+                     "title":"Nidāna-Khandhavagga Aṭṭhakathā",
+                     "rows":989
+                  },
+                  {
+                     "index":3,
+                     "bookId":4203,
+                     "title":"Khandhavagga Aṭṭhakathā",
+                     "rows":505
+                  },
+                  {
+                     "index":4,
+                     "bookId":4204,
+                     "title":"Saḷāyatana-Mahāvagga Aṭṭhakathā",
+                     "rows":810
+                  },
+                  {
+                     "index":5,
+                     "bookId":4205,
+                     "title":"Mahāvagga Aṭṭhakathā (Saṃyutta)",
+                     "rows":1029
+                  }
+               ]
+            },
+            {
+               "name":"Ṭīkā",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":4301,
+                     "title":"Sagāthāvagga Ṭīkā",
+                     "rows":1717
+                  },
+                  {
+                     "index":2,
+                     "bookId":4302,
+                     "title":"Nidānavagga Ṭīkā",
+                     "rows":1038
+                  },
+                  {
+                     "index":3,
+                     "bookId":4303,
+                     "title":"Khandhavagga Ṭīkā",
+                     "rows":534
+                  },
+                  {
+                     "index":4,
+                     "bookId":4304,
+                     "title":"Saḷāyatanavagga Ṭīkā",
+                     "rows":740
+                  },
+                  {
+                     "index":5,
+                     "bookId":4305,
+                     "title":"Mahāvagga Ṭīkā (Saṃyutta)",
+                     "rows":863
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name":"Aṅguttaranikāya",
+         "sets":[
+            {
+               "name":"Mūla",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":5101,
+                     "title":"Ekakanipāta Pāḷi",
+                     "rows":421
+                  },
+                  {
+                     "index":2,
+                     "bookId":5102,
+                     "title":"Dukanipāta Pāḷi",
+                     "rows":341
+                  },
+                  {
+                     "index":3,
+                     "bookId":5103,
+                     "title":"Tikanipāta Pāḷi",
+                     "rows":1358
+                  },
+                  {
+                     "index":4,
+                     "bookId":5104,
+                     "title":"Catukkanipāta Pāḷi",
+                     "rows":1984
+                  },
+                  {
+                     "index":5,
+                     "bookId":5105,
+                     "title":"Pañcakanipāta Pāḷi",
+                     "rows":1667
+                  },
+                  {
+                     "index":6,
+                     "bookId":5106,
+                     "title":"Chakkanipāta Pāḷi",
+                     "rows":873
+                  },
+                  {
+                     "index":7,
+                     "bookId":5107,
+                     "title":"Sattakanipāta Pāḷi",
+                     "rows":804
+                  },
+                  {
+                     "index":8,
+                     "bookId":5108,
+                     "title":"Aṭṭhakanipāta Pāḷi",
+                     "rows":1055
+                  },
+                  {
+                     "index":9,
+                     "bookId":5109,
+                     "title":"Navakanipāta Pāḷi",
+                     "rows":515
+                  },
+                  {
+                     "index":10,
+                     "bookId":5110,
+                     "title":"Dasakanipāta Pāḷi",
+                     "rows":1632
+                  },
+                  {
+                     "index":11,
+                     "bookId":5111,
+                     "title":"Ekādasakanipāta Pāḷi",
+                     "rows":250
+                  }
+               ]
+            },
+            {
+               "name":"Aṭṭhakathā",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":5201,
+                     "title":"Ekakanipāta Aṭṭhakathā",
+                     "rows":1646
+                  },
+                  {
+                     "index":2,
+                     "bookId":5202,
+                     "title":"Dukanipāta Aṭṭhakathā",
+                     "rows":344
+                  },
+                  {
+                     "index":3,
+                     "bookId":5203,
+                     "title":"Tikanipāta Aṭṭhakathā",
+                     "rows":692
+                  },
+                  {
+                     "index":4,
+                     "bookId":5204,
+                     "title":"Catukkanipāta Aṭṭhakathā",
+                     "rows":761
+                  },
+                  {
+                     "index":5,
+                     "bookId":5205,
+                     "title":"Pañcakanipāta Aṭṭhakathā",
+                     "rows":531
+                  },
+                  {
+                     "index":6,
+                     "bookId":5206,
+                     "title":"Chakkanipāta Aṭṭhakathā",
+                     "rows":304
+                  },
+                  {
+                     "index":7,
+                     "bookId":5207,
+                     "title":"Sattakanipāta Aṭṭhakathā",
+                     "rows":205
+                  },
+                  {
+                     "index":8,
+                     "bookId":5208,
+                     "title":"Aṭṭhakanipāta Aṭṭhakathā",
+                     "rows":284
+                  },
+                  {
+                     "index":9,
+                     "bookId":5209,
+                     "title":"Navakanipāta Aṭṭhakathā",
+                     "rows":134
+                  },
+                  {
+                     "index":10,
+                     "bookId":5210,
+                     "title":"Dasakanipāta Aṭṭhakathā",
+                     "rows":297
+                  },
+                  {
+                     "index":11,
+                     "bookId":5211,
+                     "title":"Ekādasakanipāta Aṭṭhakathā",
+                     "rows":93
+                  }
+               ]
+            },
+            {
+               "name":"Ṭīkā",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":5301,
+                     "title":"Ekakanipāta Ṭīkā",
+                     "rows":1174
+                  },
+                  {
+                     "index":2,
+                     "bookId":5302,
+                     "title":"Dukanipāta Ṭīkā",
+                     "rows":321
+                  },
+                  {
+                     "index":3,
+                     "bookId":5303,
+                     "title":"Tikanipāta Ṭīkā",
+                     "rows":699
+                  },
+                  {
+                     "index":4,
+                     "bookId":5304,
+                     "title":"Catukkanipāta Ṭīkā",
+                     "rows":905
+                  },
+                  {
+                     "index":5,
+                     "bookId":5305,
+                     "title":"Pañcakanipāta Ṭīkā",
+                     "rows":467
+                  },
+                  {
+                     "index":6,
+                     "bookId":5306,
+                     "title":"Chakkanipāta Ṭīkā",
+                     "rows":323
+                  },
+                  {
+                     "index":7,
+                     "bookId":5307,
+                     "title":"Sattakanipāta Ṭīkā",
+                     "rows":236
+                  },
+                  {
+                     "index":8,
+                     "bookId":5308,
+                     "title":"Aṭṭhakanipāta Ṭīkā",
+                     "rows":275
+                  },
+                  {
+                     "index":9,
+                     "bookId":5309,
+                     "title":"Navakanipāta Ṭīkā",
+                     "rows":188
+                  },
+                  {
+                     "index":10,
+                     "bookId":5310,
+                     "title":"Dasakanipāta Ṭīkā",
+                     "rows":310
+                  },
+                  {
+                     "index":11,
+                     "bookId":5311,
+                     "title":"Ekādasakanipāta Ṭīkā",
+                     "rows":95
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name":"Khuddakanikāya",
+         "sets":[
+            {
+               "name":"Mūla",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":6101,
+                     "title":"Khuddakapāṭha Pāḷi ",
+                     "rows":286
+                  },
+                  {
+                     "index":2,
+                     "bookId":6102,
+                     "title":"Dhammapada Pāḷi",
+                     "rows":1421
+                  },
+                  {
+                     "index":3,
+                     "bookId":6103,
+                     "title":"Udāna Pāḷi",
+                     "rows":974
+                  },
+                  {
+                     "index":4,
+                     "bookId":6104,
+                     "title":"Itivuttaka Pāḷi",
+                     "rows":1199
+                  },
+                  {
+                     "index":5,
+                     "bookId":6105,
+                     "title":"Suttanipāta Pāḷi",
+                     "rows":4057
+                  },
+                  {
+                     "index":6,
+                     "bookId":6106,
+                     "title":"Vimānavatthu Pāḷi",
+                     "rows":3282
+                  },
+                  {
+                     "index":7,
+                     "bookId":6107,
+                     "title":"Petavatthu Pāḷi",
+                     "rows":2660
+                  },
+                  {
+                     "index":8,
+                     "bookId":6108,
+                     "title":"Theragāthā Pāḷi",
+                     "rows":4691
+                  },
+                  {
+                     "index":9,
+                     "bookId":6109,
+                     "title":"Therīgāthā Pāḷi",
+                     "rows":1802
+                  },
+                  {
+                     "index":10,
+                     "bookId":6110,
+                     "title":"Apadāna Pāḷi-1",
+                     "rows":14689
+                  },
+                  {
+                     "index":11,
+                     "bookId":6111,
+                     "title":"Apadāna Pāḷi-2",
+                     "rows":10693
+                  },
+                  {
+                     "index":12,
+                     "bookId":6112,
+                     "title":"Buddhavaṃsa Pāḷi",
+                     "rows":3312
+                  },
+                  {
+                     "index":13,
+                     "bookId":6113,
+                     "title":"Cariyāpiṭaka Pāḷi",
+                     "rows":1203
+                  },
+                  {
+                     "index":14,
+                     "bookId":6114,
+                     "title":"Jātaka Pāḷi-1",
+                     "rows":10523
+                  },
+                  {
+                     "index":15,
+                     "bookId":6115,
+                     "title":"Jātaka Pāḷi-2",
+                     "rows":11535
+                  },
+                  {
+                     "index":16,
+                     "bookId":6116,
+                     "title":"Mahāniddesa Pāḷi",
+                     "rows":2944
+                  },
+                  {
+                     "index":17,
+                     "bookId":6117,
+                     "title":"Cūḷaniddesa Pāḷi",
+                     "rows":2774
+                  },
+                  {
+                     "index":18,
+                     "bookId":6118,
+                     "title":"Paṭisambhidāmagga Pāḷi",
+                     "rows":2048
+                  },
+                  {
+                     "index":19,
+                     "bookId":6119,
+                     "title":"Netti Pāḷi",
+                     "rows":1631
+                  },
+                  {
+                     "index":20,
+                     "bookId":6120,
+                     "title":"Milindapañha Pāḷi",
+                     "rows":2499
+                  },
+                  {
+                     "index":21,
+                     "bookId":6121,
+                     "title":"Peṭakopadesa Pāḷi",
+                     "rows":1226
+                  }
+               ]
+            },
+            {
+               "name":"Aṭṭhakathā",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":6201,
+                     "title":"Khuddakapāṭha Aṭṭhakathā",
+                     "rows":1235
+                  },
+                  {
+                     "index":2,
+                     "bookId":6202,
+                     "title":"Dhammapada Aṭṭhakathā-1",
+                     "rows":2058
+                  },
+                  {
+                     "index":3,
+                     "bookId":6203,
+                     "title":"Dhammapada Aṭṭhakathā-2",
+                     "rows":3173
+                  },
+                  {
+                     "index":4,
+                     "bookId":6204,
+                     "title":"Udāna Aṭṭhakathā",
+                     "rows":1688
+                  },
+                  {
+                     "index":5,
+                     "bookId":6205,
+                     "title":"Itivuttaka Aṭṭhakathā",
+                     "rows":1759
+                  },
+                  {
+                     "index":6,
+                     "bookId":6206,
+                     "title":"Suttanipāta Aṭṭhakathā-1",
+                     "rows":1156
+                  },
+                  {
+                     "index":7,
+                     "bookId":6207,
+                     "title":"Suttanipāta Aṭṭhakathā-2",
+                     "rows":1533
+                  },
+                  {
+                     "index":8,
+                     "bookId":6208,
+                     "title":"Vimānavatthu Aṭṭhakathā",
+                     "rows":4017
+                  },
+                  {
+                     "index":9,
+                     "bookId":6209,
+                     "title":"Petavatthu Aṭṭhakathā",
+                     "rows":3236
+                  },
+                  {
+                     "index":10,
+                     "bookId":6210,
+                     "title":"Theragāthā Aṭṭhakathā-1",
+                     "rows":5412
+                  },
+                  {
+                     "index":11,
+                     "bookId":6211,
+                     "title":"Theragāthā Aṭṭhakathā-2",
+                     "rows":6607
+                  },
+                  {
+                     "index":12,
+                     "bookId":6212,
+                     "title":"Therīgāthā Aṭṭhakathā",
+                     "rows":4548
+                  },
+                  {
+                     "index":13,
+                     "bookId":6213,
+                     "title":"Apadāna Aṭṭhakathā-1",
+                     "rows":2141
+                  },
+                  {
+                     "index":14,
+                     "bookId":6214,
+                     "title":"Apadāna Aṭṭhakathā-2"
+                  },
+                  {
+                     "index":15,
+                     "bookId":6215,
+                     "title":"Buddhavaṃsa Aṭṭhakathā",
+                     "rows":4137
+                  },
+                  {
+                     "index":16,
+                     "bookId":6216,
+                     "title":"Cariyāpiṭaka Aṭṭhakathā",
+                     "rows":2126
+                  },
+                  {
+                     "index":17,
+                     "bookId":6217,
+                     "title":"Jātaka Aṭṭhakathā-1",
+                     "rows":3117
+                  },
+                  {
+                     "index":18,
+                     "bookId":6218,
+                     "title":"Jātaka Aṭṭhakathā-2",
+                     "rows":2997
+                  },
+                  {
+                     "index":19,
+                     "bookId":6219,
+                     "title":"Jātaka Aṭṭhakathā-3",
+                     "rows":4868
+                  },
+                  {
+                     "index":20,
+                     "bookId":6220,
+                     "title":"Jātaka Aṭṭhakathā-4",
+                     "rows":6738
+                  },
+                  {
+                     "index":21,
+                     "bookId":6221,
+                     "title":"Jātaka Aṭṭhakathā-5",
+                     "rows":5079
+                  },
+                  {
+                     "index":22,
+                     "bookId":6222,
+                     "title":"Jātaka Aṭṭhakathā-6",
+                     "rows":3688
+                  },
+                  {
+                     "index":23,
+                     "bookId":6223,
+                     "title":"Jātaka Aṭṭhakathā-7",
+                     "rows":6463
+                  },
+                  {
+                     "index":24,
+                     "bookId":6224,
+                     "title":"Mahāniddesa Aṭṭhakathā",
+                     "rows":1833
+                  },
+                  {
+                     "index":25,
+                     "bookId":6225,
+                     "title":"Cūḷaniddesa Aṭṭhakathā",
+                     "rows":753
+                  },
+                  {
+                     "index":26,
+                     "bookId":6226,
+                     "title":"Paṭisambhidāmagga Aṭṭhakathā-1",
+                     "rows":1414
+                  },
+                  {
+                     "index":27,
+                     "bookId":6227,
+                     "title":"Paṭisambhidāmagga Aṭṭhakathā-2",
+                     "rows":1112
+                  },
+                  {
+                     "index":28,
+                     "bookId":6228,
+                     "title":"Nettippakaraṇa Aṭṭhakathā",
+                     "rows":1096
+                  }
+               ]
+            },
+            {
+               "name":"Ṭīkā",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":6301,
+                     "title":"Nettippakaraṇa Ṭīkā",
+                     "rows":764
+                  },
+                  {
+                     "index":2,
+                     "bookId":6302,
+                     "title":"Nettivibhāvinī Ṭīkā",
+                     "rows":1670
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name":"Abhidhammapiṭaka",
+         "sets":[
+            {
+               "name":"Mūla",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":7101,
+                     "title":"Dhammasaṅgaṇī Pāḷi",
+                     "rows":2436
+                  },
+                  {
+                     "index":2,
+                     "bookId":7102,
+                     "title":"Vibhaṅga Pāḷi",
+                     "rows":3427
+                  },
+                  {
+                     "index":3,
+                     "bookId":7103,
+                     "title":"Dhātukathā Pāḷi",
+                     "rows":673
+                  },
+                  {
+                     "index":4,
+                     "bookId":7104,
+                     "title":"Puggalapaññatti Pāḷi",
+                     "rows":561
+                  },
+                  {
+                     "index":5,
+                     "bookId":7105,
+                     "title":"Kathāvatthu Pāḷi",
+                     "rows":3460
+                  },
+                  {
+                     "index":6,
+                     "bookId":7106,
+                     "title":"Yamaka Pāḷi-1",
+                     "rows":4774
+                  },
+                  {
+                     "index":7,
+                     "bookId":7107,
+                     "title":"Yamaka Pāḷi-2",
+                     "rows":3859
+                  },
+                  {
+                     "index":8,
+                     "bookId":7108,
+                     "title":"Yamaka Pāḷi-3",
+                     "rows":5586
+                  },
+                  {
+                     "index":9,
+                     "bookId":7109,
+                     "title":"Paṭṭhāna Pāḷi-1",
+                     "rows":4301
+                  },
+                  {
+                     "index":10,
+                     "bookId":7110,
+                     "title":"Paṭṭhāna Pāḷi-2",
+                     "rows":4241
+                  },
+                  {
+                     "index":11,
+                     "bookId":7111,
+                     "title":"Paṭṭhāna Pāḷi-3",
+                     "rows":6004
+                  },
+                  {
+                     "index":12,
+                     "bookId":7112,
+                     "title":"Paṭṭhāna Pāḷi-4",
+                     "rows":8046
+                  },
+                  {
+                     "index":13,
+                     "bookId":7113,
+                     "title":"Paṭṭhāna Pāḷi-5",
+                     "rows":5169
+                  }
+               ]
+            },
+            {
+               "name":"Aṭṭhakathā",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":7201,
+                     "title":"Dhammasaṅgaṇī Pāḷi",
+                     "rows":2489
+                  },
+                  {
+                     "index":2,
+                     "bookId":7202,
+                     "title":"Sammohavinodanī Aṭṭhakathā",
+                     "rows":2346
+                  },
+                  {
+                     "index":3,
+                     "bookId":7203,
+                     "title":"Dhātukathā Aṭṭhakathā",
+                     "rows":170
+                  },
+                  {
+                     "index":4,
+                     "bookId":7204,
+                     "title":"Puggalapaññatti Aṭṭhakathā",
+                     "rows":301
+                  },
+                  {
+                     "index":5,
+                     "bookId":7205,
+                     "title":"Kathāvatthu Aṭṭhakathā",
+                     "rows":1149
+                  },
+                  {
+                     "index":6,
+                     "bookId":7206,
+                     "title":"Yamakappakaraṇa Aṭṭhakathā",
+                     "rows":257
+                  },
+                  {
+                     "index":7,
+                     "bookId":7207,
+                     "title":"Paṭṭhānappakaraṇa Aṭṭhakathā",
+                     "rows":734
+                  }
+               ]
+            },
+            {
+               "name":"Ṭīkā",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":7301,
+                     "title":"Dhammasaṅgaṇī Mūlaṭīkā",
+                     "rows":722
+                  },
+                  {
+                     "index":2,
+                     "bookId":7302,
+                     "title":"Dhammasaṅgaṇī Anuṭīkā",
+                     "rows":725
+                  },
+                  {
+                     "index":3,
+                     "bookId":7303,
+                     "title":"Vibhaṅga Mūlaṭīkā",
+                     "rows":1152
+                  },
+                  {
+                     "index":4,
+                     "bookId":7304,
+                     "title":"Vibhaṅga Anuṭīkā",
+                     "rows":1067
+                  },
+                  {
+                     "index":5,
+                     "bookId":7305,
+                     "title":"Dhātukathā Mūlaṭīkā",
+                     "rows":99
+                  },
+                  {
+                     "index":6,
+                     "bookId":7306,
+                     "title":"Puggalapaññatti Mūlaṭīkā",
+                     "rows":102
+                  },
+                  {
+                     "index":7,
+                     "bookId":7305,
+                     "title":"Kathāvatthu Mūlaṭīkā",
+                     "rows":99
+                  },
+                  {
+                     "index":8,
+                     "bookId":7308,
+                     "title":"Yamakappakaraṇa Mūlaṭīkā",
+                     "rows":195
+                  },
+                  {
+                     "index":9,
+                     "bookId":7309,
+                     "title":"Paṭṭhānappakaraṇa Mūlaṭīkā",
+                     "rows":430
+                  },
+                  {
+                     "index":10,
+                     "bookId":7310,
+                     "title":"Dhātukathā Anuṭīkā",
+                     "rows":116
+                  },
+                  {
+                     "index":11,
+                     "bookId":7311,
+                     "title":"Puggalapaññatti Anuṭīkā",
+                     "rows":97
+                  },
+                  {
+                     "index":12,
+                     "bookId":7312,
+                     "title":"Kathāvatthu Anuṭīkā",
+                     "rows":704
+                  },
+                  {
+                     "index":13,
+                     "bookId":7313,
+                     "title":"Yamakappakaraṇa Anuṭīkā",
+                     "rows":222
+                  },
+                  {
+                     "index":14,
+                     "bookId":7314,
+                     "title":"Paṭṭhānappakaraṇa Anuṭīkā",
+                     "rows":374
+                  },
+                  {
+                     "index":15,
+                     "bookId":7315,
+                     "title":"Abhidhammāvatāro",
+                     "rows":15499
+                  },
+                  {
+                     "index":16,
+                     "bookId":7316,
+                     "title":"Abhidhammatthasaṅgaho",
+                     "rows":1838
+                  },
+                  {
+                     "index":17,
+                     "bookId":7317,
+                     "title":"Abhidhammāvatāra-purāṇaṭīkā",
+                     "rows":2598
+                  },
+                  {
+                     "index":18,
+                     "bookId":7318,
+                     "title":"Abhidhammamātikāpāḷi",
+                     "rows":2826
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name":"Vinayapiṭaka",
+         "sets":[
+            {
+               "name":"Mūla",
+               "texts":[
+
+               ]
+            },
+            {
+               "name":"Aṭṭhakathā",
+               "texts":[
+
+               ]
+            },
+            {
+               "name":"Ṭīkā",
+               "texts":[
+
+               ]
+            }
+         ]
+      },
+      {
+         "name":"Añña",
+         "sets":[
+            {
+               "name":"Visuddhimagga",
+               "texts":[
+                  {
+                     "index":1,
+                     "bookId":8201,
+                     "title":"Visuddhimagga-1",
+                     "rows":2240
+                  },
+                  {
+                     "index":2,
+                     "bookId":8202,
+                     "title":"Visuddhimagga-2",
+                     "rows":2192
+                  },
+                  {
+                     "index":3,
+                     "bookId":8303,
+                     "title":"Visuddhimagga-mahāṭīkā-1",
+                     "rows":1613
+                  },
+                  {
+                     "index":4,
+                     "bookId":8304,
+                     "title":"Visuddhimagga-mahāṭīkā-2",
+                     "rows":1851
+                  },
+                  {
+                     "index":5,
+                     "bookId":8305,
+                     "title":"Visuddhimagga nidānakathā",
+                     "rows":981
+                  }
+               ]
+            },
+            {
+               "name":"Saṅgāyana-puccha vissajjanā",
+               "texts":[
+                  {
+                     "index":6,
+                     "bookId":8206,
+                     "title":"Dīghanikāya (pu-vi)",
+                     "rows":349
+                  },
+                  {
+                     "index":7,
+                     "bookId":8207,
+                     "title":"Majjhimanikāya (pu-vi)",
+                     "rows":688
+                  },
+                  {
+                     "index":8,
+                     "bookId":8208,
+                     "title":"Saṃyuttanikāya (pu-vi)",
+                     "rows":1256
+                  },
+                  {
+                     "index":9,
+                     "bookId":8209,
+                     "title":"Aṅguttaranikāya (pu-vi)",
+                     "rows":907
+                  },
+                  {
+                     "index":10,
+                     "bookId":8210,
+                     "title":"Vinayapiṭaka (pu-vi)",
+                     "rows":1554
+                  },
+                  {
+                     "index":11,
+                     "bookId":8211,
+                     "title":"Abhidhammapiṭaka (pu-vi)",
+                     "rows":296
+                  },
+                  {
+                     "index":12,
+                     "bookId":8212,
+                     "title":"Aṭṭhakathā (pu-vi)",
+                     "rows":503
+                  }
+               ]
+            },
+            {
+               "name":"Leḍī sayāḍo gantha-saṅgaho",
+               "texts":[
+                  {
+                     "index":13,
+                     "bookId":8213,
+                     "title":"Niruttidīpanī",
+                     "rows":6144
+                  },
+                  {
+                     "index":14,
+                     "bookId":8214,
+                     "title":"Paramatthadīpanī Saṅgahamahāṭīkāpāṭha",
+                     "rows":1498
+                  },
+                  {
+                     "index":15,
+                     "bookId":8215,
+                     "title":"Anudīpanīpāṭha",
+                     "rows":434
+                  },
+                  {
+                     "index":16,
+                     "bookId":8216,
+                     "title":"Paṭṭhānuddesa dīpanīpāṭha",
+                     "rows":249
+                  }
+               ]
+            },
+            {
+               "name":"Buddha-vandanā gantha-saṅgaho",
+               "texts":[
+                  {
+                     "index":17,
+                     "bookId":8217,
+                     "title":"Namakkāraṭīkā",
+                     "rows":981
+                  },
+                  {
+                     "index":18,
+                     "bookId":8218,
+                     "title":"Mahāpaṇāmapāṭha",
+                     "rows":845
+                  },
+                  {
+                     "index":19,
+                     "bookId":8219,
+                     "title":"Lakkhaṇāto buddhathomanāgāthā",
+                     "rows":316
+                  },
+                  {
+                     "index":20,
+                     "bookId":8220,
+                     "title":"Sutavandanā",
+                     "rows":597
+                  },
+                  {
+                     "index":21,
+                     "bookId":8221,
+                     "title":"Jinālaṅkāra",
+                     "rows":1025
+                  },
+                  {
+                     "index":22,
+                     "bookId":8222,
+                     "title":"Kamalāñjali",
+                     "rows":302
+                  },
+                  {
+                     "index":23,
+                     "bookId":8223,
+                     "title":"Pajjamadhu",
+                     "rows":526
+                  },
+                  {
+                     "index":24,
+                     "bookId":8224,
+                     "title":"Buddhaguṇagāthāvalī",
+                     "rows":2458
+                  }
+               ]
+            },
+            {
+               "name":"Vaṃsa-gantha-saṅgaho",
+               "texts":[
+                  {
+                     "index":25,
+                     "bookId":8225,
+                     "title":"Cūḷaganthavaṃsa",
+                     "rows":152
+                  },
+                  {
+                     "index":26,
+                     "bookId":8226,
+                     "title":"Sāsanavaṃsa",
+                     "rows":970
+                  },
+                  {
+                     "index":27,
+                     "bookId":8227,
+                     "title":"Mahāvaṃsa",
+                     "rows":15944
+                  }
+               ]
+            },
+            {
+               "name":"Byākaraṇa gantha-saṅgaho",
+               "texts":[
+                  {
+                     "index":28,
+                     "bookId":8228,
+                     "title":"Moggallānabyākaraṇaṃ",
+                     "rows":3262
+                  },
+                  {
+                     "index":29,
+                     "bookId":8229,
+                     "title":"Kaccāyanabyākaraṇaṃ",
+                     "rows":3486
+                  },
+                  {
+                     "index":30,
+                     "bookId":8230,
+                     "title":"Saddanītippakaraṇaṃ (padamālā)",
+                     "rows":2980
+                  },
+                  {
+                     "index":31,
+                     "bookId":8231,
+                     "title":"Saddanītippakaraṇaṃ (dhātumālā)",
+                     "rows":3401
+                  },
+                  {
+                     "index":32,
+                     "bookId":8232,
+                     "title":"Padarūpasiddhi",
+                     "rows":4055
+                  },
+                  {
+                     "index":33,
+                     "bookId":8233,
+                     "title":"Mogallānapañcikā",
+                     "rows":1579
+                  },
+                  {
+                     "index":34,
+                     "bookId":8234,
+                     "title":"Payogasiddhipāṭha",
+                     "rows":2493
+                  },
+                  {
+                     "index":35,
+                     "bookId":8235,
+                     "title":"Vuttodayapāṭha",
+                     "rows":318
+                  },
+                  {
+                     "index":36,
+                     "bookId":8236,
+                     "title":"Abhidhānappadīpikāpāṭha",
+                     "rows":3963
+                  },
+                  {
+                     "index":37,
+                     "bookId":8237,
+                     "title":"Abhidhānappadīpikāṭīkā",
+                     "rows":2714
+                  },
+                  {
+                     "index":38,
+                     "bookId":8238,
+                     "title":"Subodhālaṅkārapāṭha",
+                     "rows":1320
+                  },
+                  {
+                     "index":39,
+                     "bookId":8239,
+                     "title":"Subodhālaṅkāraṭīkā",
+                     "rows":2885
+                  },
+                  {
+                     "index":40,
+                     "bookId":8240,
+                     "title":"Bālāvatāra gaṇṭhipadatthavinicchayasāra",
+                     "rows":847
+                  }
+               ]
+            },
+            {
+               "name":"Nīti-gantha-saṅgaho",
+               "texts":[
+                  {
+                     "index":41,
+                     "bookId":8241,
+                     "title":"Kavidappaṇanīti",
+                     "rows":1347
+                  },
+                  {
+                     "index":42,
+                     "bookId":8242,
+                     "title":"Nītimañjarī",
+                     "rows":243
+                  },
+                  {
+                     "index":43,
+                     "bookId":8243,
+                     "title":"Dhammanīti",
+                     "rows":1333
+                  },
+                  {
+                     "index":44,
+                     "bookId":8244,
+                     "title":"Mahārahanīti",
+                     "rows":1283
+                  },
+                  {
+                     "index":45,
+                     "bookId":8245,
+                     "title":"Lokanīti",
+                     "rows":876
+                  },
+                  {
+                     "index":46,
+                     "bookId":8246,
+                     "title":"Suttantanīti",
+                     "rows":266
+                  },
+                  {
+                     "index":47,
+                     "bookId":8247,
+                     "title":"Sūrassatinīti",
+                     "rows":545
+                  },
+                  {
+                     "index":48,
+                     "bookId":8248,
+                     "title":"Cāṇakyanīti",
+                     "rows":552
+                  },
+                  {
+                     "index":49,
+                     "bookId":8249,
+                     "title":"Naradakkhadīpanī",
+                     "rows":1847
+                  },
+                  {
+                     "index":50,
+                     "bookId":8250,
+                     "title":"Caturārakkhadīpanī",
+                     "rows":1960
+                  }
+               ]
+            },
+            {
+               "name":"Pakiṇṇaka-gantha-saṅgaho",
+               "texts":[
+                  {
+                     "index":51,
+                     "bookId":8251,
+                     "title":"Rasavāhinī",
+                     "rows":2457
+                  },
+                  {
+                     "index":52,
+                     "bookId":8252,
+                     "title":"Sīmavisodhanīpāṭha",
+                     "rows":433
+                  },
+                  {
+                     "index":53,
+                     "bookId":8253,
+                     "title":"Vessantaragīti",
+                     "rows":2613
+                  }
+               ]
+            },
+            {
+               "name":"Sihaḷa-gantha-saṅgaho",
+               "texts":[
+                  {
+                     "index":54,
+                     "bookId":8254,
+                     "title":"Moggallāna vuttivivaraṇapañcikā",
+                     "rows":1703
+                  },
+                  {
+                     "index":55,
+                     "bookId":8255,
+                     "title":"Thupavaṃsa",
+                     "rows":709
+                  },
+                  {
+                     "index":56,
+                     "bookId":8256,
+                     "title":"Dāṭhāvaṃsa",
+                     "rows":1642
+                  },
+                  {
+                     "index":57,
+                     "bookId":8257,
+                     "title":"Dhātupāṭhavilāsiniyā",
+                     "rows":118
+                  },
+                  {
+                     "index":58,
+                     "bookId":8258,
+                     "title":"Dhātuvaṃsa",
+                     "rows":491
+                  },
+                  {
+                     "index":59,
+                     "bookId":8259,
+                     "title":"Hatthavanagallavihāravaṃsa",
+                     "rows":364
+                  },
+                  {
+                     "index":60,
+                     "bookId":8260,
+                     "title":"Jinacaritaya",
+                     "rows":1649
+                  },
+                  {
+                     "index":61,
+                     "bookId":8261,
+                     "title":"Jinavaṃsadīpaṃ",
+                     "rows":9907
+                  },
+                  {
+                     "index":62,
+                     "bookId":8262,
+                     "title":"Telakaṭāhagāthā",
+                     "rows":501
+                  },
+                  {
+                     "index":63,
+                     "bookId":8263,
+                     "title":"Milidaṭīkā",
+                     "rows":1240
+                  },
+                  {
+                     "index":64,
+                     "bookId":8264,
+                     "title":"Padamañjarī",
+                     "rows":1640
+                  },
+                  {
+                     "index":65,
+                     "bookId":8265,
+                     "title":"Padasādhanaṃ",
+                     "rows":1095
+                  },
+                  {
+                     "index":66,
+                     "bookId":8266,
+                     "title":"Saddabindupakaraṇaṃ",
+                     "rows":83
+                  },
+                  {
+                     "index":67,
+                     "bookId":8267,
+                     "title":"Kaccāyanadhātumañjusā",
+                     "rows":494
+                  },
+                  {
+                     "index":68,
+                     "bookId":8268,
+                     "title":"Sāmantakūṭavaṇṇanā",
+                     "rows":3057
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}
