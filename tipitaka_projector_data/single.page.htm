@@ -2,19 +2,93 @@
 <html>
 <head>
     <title></title>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="TIPITAKA PROJECTOR ICON" href="images/favico.ico" />
     <link rel="stylesheet" type="text/css" href="js/index_style.css" />
     <link rel="stylesheet" type="text/css" href="js/index_style2.css" />
+    <link rel="stylesheet" type="text/css" href="css/js.tree.style.min.css" />
+    <link rel = "stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.css" />
+    
+    <style>
+        #index {
+            display: none;
+        }
+    </style>
+
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-ui-1.12.1/jquery-ui.js"></script>
+    <script src="js/jstree.js"></script>
+
     <script>
         var UseSinglePageLoading = true;
         var DEBUG = true;
-        var booksMetaData = {
-            '1101': { title: 'Pārājika Pāḷi', rows: 2483 },
-            '1102': { title: 'Pācittiya Pāḷi', rows: 3703 }
+
+        var bookData = {
+            structure: {},
+            flat: {}
         };
+
+        $.jstree.defaults.core.themes.variant = 'large';
+
+        const setBookInfo = (rawBookMetaData) => {
+            const structuredData = JSON.parse(rawBookMetaData).books;
+            
+            for (const book of structuredData) {
+                for (const set of book.sets) {
+                    for (const text of set.texts) {
+                        const extraInfo = {set: set.name, book: book.name};
+                        bookData.flat[text.bookId] = Object.assign(extraInfo, text);
+                    }
+                }
+            }
+            
+            const treeData = structuredData.map(sd => {
+                return {
+                    text: sd.name,
+                    children: sd.sets.map(set => {
+                        return {
+                            text: set.name,
+                            children: set.texts.map(text => {
+                                return {
+                                    text: text.title,
+                                    icon: 'images/text.png',
+                                    data: text
+                                }
+                            })
+                        }
+                    })
+                }
+            });
+
+            console.log(treeData);
+
+            $('#books-tree').jstree({core: {data: treeData}});
+            $('#books-tree').on('select_node.jstree', (event, data) => {
+                if (data && data.node && data.node.data) {
+                    const bookInfo = data.node.data;
+                    loadBook(bookInfo.bookId);
+                }
+            });
+
+            $('#index').dialog({autoOpen: false, maxHeight: $(window).height()});
+            
+        };
+        
+        var showIndex = function showIndex() {
+            $('#index').dialog('open');
+        };
+
+        $.ajax({
+            url: 'books.json',
+            dataType: "text",
+            type: "GET",
+            mimeType: 'text/json; charset=utf-8',
+            contentType: 'text/json; charset=UTF-8',
+            success: setBookInfo
+        });
     </script>
 </head>
 
@@ -66,7 +140,6 @@
     }
     .helpers {
       position: sticky;
-      background: white;
       top: 0;
       padding-top: 10px;
     }
@@ -279,7 +352,7 @@
 
   <div class="first-nav">
     <!-- HOME -->
-    <div class="notselected grey-button" onClick="window.location.href='index.htm'" title="Home">
+    <div class="notselected grey-button" onClick="showIndex()" title="Home">
       <i class="material-icons">home</i>
     </div>
 
@@ -813,7 +886,7 @@
     </table>
     <script type="text/javascript">
         var loadBook = function loadBook(bookId) {
-            var bookInfo = booksMetaData[bookId];
+            var bookInfo = bookData.flat[bookId];
             var start = new Date();
             if (DEBUG) {
                 console.log(start);
@@ -946,5 +1019,9 @@
 
 <popupfix></popupfix>
 <!---End of add dictionary function--->
+
+<div id="index" title="Books Index">
+    <div id="books-tree"></div>
+</div>
 </body>
 </html>
