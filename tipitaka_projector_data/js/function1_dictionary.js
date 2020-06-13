@@ -32,17 +32,17 @@ function TmpDictionarySave(id) {
 }
 
 function DictionaryGo() {
-	var gDictInfo = {key:"", source:"", def:""};
+	var jDictInfo = {key:"", source:"", def:""};
 	//preserve original for searching... 
 	//var strOrigKey = this.dataset.wordvalue.trim();
 
 	key = toUniRegEx(document.getElementById('DictionaryKey').value.toLowerCase().trim());
 
-	gDictInfo.key = key;
+	jDictInfo.key = key;
 
 	var tr_id = localStorage.getItem('tr_id');
 	if (tr_id){
-		gDictInfo.source = getAnkiSentence(key, P_HTM[tr_id]);
+		jDictInfo.source = getAnkiSentence(key, P_HTM[tr_id]);
 	}
  
 	if (key == '') { return(''); }
@@ -65,30 +65,33 @@ function DictionaryGo() {
 			DictionaryRet = DictionaryRet + DoAnalysis(key) + '</div>';
 		}	
 	}
-	gDictInfo.def = DoAnalysis(key);
+
+	//write to the anki structure
+	jDictInfo.def = DoAnalysis(key);
 
 	document.getElementById('page1_desc').innerHTML = DictionaryRet;
 
-	// put in history
-	val = localStorage.getItem('history');
-	if ((val == null) || (val == undefined)) {
-		val = '';
-	}
-	val = val.replace('-', '');
-	val = val.replace('.', '');
-	val = val.replace(DictionaryRet + '{!@@!}', '');
-	val = DictionaryRet + '{!@@!}' + val;
-	document.write = localStorage.setItem('history', val);
-
-
-	// now write the gDictInfo to the localStorage and create an array to do so.
+	// now write the jDictInfo to the localStorage and create an array to do so.
 	// This will be used for anki later on.
 	var DictInfoArr = [];
 	var strDictInfoArr = localStorage.getItem("DictInfoArr");
 	if (strDictInfoArr){
 		DictInfoArr= JSON.parse(strDictInfoArr);
+
+		if (DictInfoArr)
+			var i=0;
+			// Check to see if it exists already.. if so we need to shift it up top  shift/push
+			for (i in  DictInfoArr){
+				if ( (DictInfoArr[i].key == jDictInfo.key) ) {
+					//found.. take it out and push to beginning later. 
+					DictInfoArr.splice(i,1);	
+				} 
+			}
+			// found and taken out to be added later or new item goes to beginning
+			DictInfoArr.unshift(jDictInfo);
 	}
-	DictInfoArr.push(gDictInfo);
+
+
 	localStorage.setItem("DictInfoArr", JSON.stringify(DictInfoArr));
 }
 

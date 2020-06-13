@@ -118,7 +118,7 @@
         document.write = localStorage.setItem("main_left", '0px'); 
     } 
     if (!localStorage.getItem("main_width")) {
-        document.write = localStorage.setItem("main_width", '350'); 
+        document.write = localStorage.setItem("main_width", '400'); 
     } 
     if (!localStorage.getItem("main_height")) {
         document.write = localStorage.setItem("main_height", '200px'); 
