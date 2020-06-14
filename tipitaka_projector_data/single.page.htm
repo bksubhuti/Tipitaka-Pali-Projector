@@ -66,10 +66,17 @@
             console.log(treeData);
 
             $('#books-tree').jstree({core: {data: treeData}});
+
             $('#books-tree').on('select_node.jstree', (event, data) => {
                 if (data && data.node && data.node.data) {
+                    // this is actual text
+                    //
                     const bookInfo = data.node.data;
                     loadBook(bookInfo.bookId);
+                } else {
+                    // this is an expandable entity (e.g. a book)
+                    //
+                    data.instance.toggle_node(data.selected);
                 }
             });
 
