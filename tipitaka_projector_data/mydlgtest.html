@@ -16,9 +16,7 @@
       <!-- CSS -->
       <style>
          .ui-widget-header,.ui-state-default, ui-button {
-            background:#b9cd6d;
-            border: 1px solid #b9cd6d;
-            color: #FFFFFF;
+            border: 1px solid #2f302d;
             font-weight: bold;
          }
 	body {
@@ -377,7 +375,7 @@
                         </div>
                      </div>
                      
-                        <div style="margin-top:1%;line-height: 150%;padding:8px;background-color: #ccc; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
+                        <div id="Dictionaries" class="tabcontent" style="margin-top:1%;line-height: 150%;padding:8px;background-color: #ccc; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
                            <table border="0" width="100%" cellspacing="0" cellpadding="0">
                               <form method="post" name="form1" action="" style="text-align:center;">
                               <tr>
@@ -673,7 +671,7 @@
 
    <script>
 
- 	function PrefTab(evt, cityName) {
+ 	function PrefTab(evt, tabname) {
 		var i, tabcontent, tablinks;
 		tabcontent = document.getElementsByClassName("tabcontent");
 		for (i = 0; i < tabcontent.length; i++) {
@@ -683,7 +681,7 @@
 		for (i = 0; i < tablinks.length; i++) {
 		tablinks[i].className = tablinks[i].className.replace(" active", "");
 		}
-		document.getElementById(cityName).style.display = "block";
+		document.getElementById(tabname).style.display = "block";
 		evt.currentTarget.className += " active";
 	}
 	document.getElementById("defaultOpen").click();

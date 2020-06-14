@@ -18,9 +18,13 @@
         }
     </style>
 
-    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script src = "js/jquery-3.5.1.js"></script>
     <script src="js/jquery-ui-1.12.1/jquery-ui.js"></script>
     <script src="js/jstree.js"></script>
+    <script src="js/index_initialize.js"></script>      
+    <script src="js/preferences.js"></script>
+    <script src="js/savefile.js"></script>
+
 
     <script>
         var UseSinglePageLoading = true;
@@ -369,6 +373,101 @@
     .lookup-result:hover {
       text-decoration: underline;
     }
+/*///////////////////////*/
+/*for the preferences dlg*/
+/*///////////////////////*/
+    <!-- CSS -->
+      <style>
+         .ui-widget-header,.ui-state-default, ui-button {
+            border: 1px solid #2f302d;
+            font-weight: bold;
+         }
+	body {
+	  cursor:pointer;
+	  background-color: #ffffc0;
+	  font-family: Arial;
+     width: auto;
+     height: auto;
+	}
+	.tinysetting {
+	  text-align: center;
+	  font-size: small;
+	  color: red;
+	}
+
+	a:hover {
+	  color: #0000ff;
+	  text-decoration: none;
+	}
+
+	a:visited {
+	  color: #0000ff;
+	  text-decoration: none;
+	}
+
+	a:link {
+	  color: #0000ff;
+	  text-decoration: none;
+	} 
+	/* Style the tab */
+	.tab {
+	  overflow: hidden;
+	  border: 1px solid #ccc;
+	  background-color: #f1f1f1;
+	  border-radius:8px;
+	  -moz-border-radius:8px;
+	  -webkit-border-radius:8px;
+	  -o-border-radius:8px;
+	  margin-left: 12px;
+	  margin-right: 12px;
+	  margin-bottom: -16px;
+	}
+
+	/* Style the buttons inside the tab */
+	.tab button {
+	  background-color: inherit;
+	  float: left;
+	  border: none;
+	  outline: none;
+	  cursor: pointer;
+	  padding: 15px 15px;
+	  transition: 0.3s;
+	  font-size: 17px;
+	}
+
+	/* Change background color of buttons on hover */
+	.tab button:hover {
+	  background-color: #ddd;
+	}
+
+	/* Create an active/current tablink class */
+	.tab button.active {
+	  background-color: #ccc;
+	}
+
+	/* Style the tab content */
+	.tabcontent {
+	  display: none;
+	  padding: 6px 12px;
+	  -webkit-animation: fadeEffect 1s;
+	  animation: fadeEffect 1s;
+	}
+
+	/* Fade in tabs */
+	@-webkit-keyframes fadeEffect {
+	  from {opacity: 0;}
+	  to {opacity: 1;}
+	}
+
+	@keyframes fadeEffect {
+	  from {opacity: 0;}
+	  to {opacity: 1;}
+	}
+
+
+
+
+
   </style>
 
   <header class="panel-header" id="panel-header">
@@ -390,7 +489,7 @@
     </div>
 
     <!-- PREFERENCES -->
-    <div class="notselected grey-button" onClick="window.location.href='preferences.htm'" title="Preferences">
+    <div class="notselected grey-button" id="prefsbutton"  title="Preferences">
       <i class="material-icons">settings</i>
     </div>
 
@@ -1396,9 +1495,541 @@
 	<a name="Velthuis"></a>
 
 <br><br>
+
+<body>
+  <!-- HTML --> 
+  <div id = "dialog-1" 
+     title = "Preferences" width = "auto">
+     
+     <table border="0" width="100%">
+        <tr>
+           <td width="100%" align="left" valign="top">
+              <div style="width:100%">
+                 <!-- <h2 style="text-align: center;">Preferences</h2> -->
+     
+                 <div class="tab">
+                    <button class="tablinks" onclick="PrefTab(event, 'General')" id="defaultOpen">Left Right View</button>
+                    <button class="tablinks" onclick="PrefTab(event, 'Dictionaries')">Dictionaries</button>
+                    <button class="tablinks" onclick="PrefTab(event, 'Panel')">Panel</button>
+                    <button class="tablinks" onclick="PrefTab(event, 'SaveSettings')">Save-Settings</button>
+                    <button class="tablinks" onclick="PrefTab(event, 'About')">About</button>
+                 </div>
+                 
+                 <div id="General" class="tabcontent" style="display:inline;">
+                    <div style="margin-top:1%;line-height: 150%;padding:8px;background-color: #ccc; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
+                       <table border="0" width="100%" cellpadding="0" cellpadding="0">
+                          <tr>
+                             <td width="40%" valign="top" align="right">
+                                <strong>Left View</strong>
+                                <div style="margin-top:1%;line-height: 150%;padding:8px;background-color: #acacac; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
+                                   <table border="0" width="100%" cellpadding="0" cellpadding="0">
+                                      <tr>
+                                         <td width="50%" valign="top" align="center">
+                                            <strong style="color:#880000;">Width</strong>
+                                            <br>
+                                            <span id="width_left"></span>
+                                            <br><br>
+                                         </td>
+                                         <td width="50%" valign="top" align="right">
+                                            <strong style="color:#880000;">Left Text</strong>
+                                            <br>
+                                            <select name="view_left" id="view_left" onChange='ChooseSelect("view_left")'>
+                                               <option value="Roman">Roman</option>
+                                               <option value="Myanmar">Myanmar</option>
+                                               <option value="Sinhala">Sinhala</option>
+                                               <option value="Thai">Thai</option>
+                                               <option value="Devanagari">Devanagari</option>
+                                            </select>
+                                            <br><br>
+                                         </td>
+                                      </tr>
+                                      <tr>
+                                         <td valign="top" align="right" colspan="2">
+                                            <strong style="color:#880000;">Font Family</strong>
+                                            <br>
+                                            <select name="font_left" id="font_left" onchange="ChooseSelect('font_left')"> 
+                                               <option value="Calibri Light">Calibri Light</option>
+                                               <option value="DejaVuSansCondensed">DejaVuSansCondensed</option> 
+                                               <option value="Myanmar Text">Myanmar Text</option>
+                                               <option value="Palatino Linotype">Palatino Linotype</option>
+                                               <option value="Pyidaungsu">Pyidaungsu</option>
+                                               <option value="Tahoma">Tahoma</option>
+                                               <option value="Times New Roman">Times New Roman</option>
+                                               <option value="Verdana">Verdana</option>
+                                            </select>
+                                            <br><br>
+                                         </td>
+                                      </tr>
+                                      <tr>
+                                         <td></td>
+                                         <td valign="top" align="right">
+                                            <strong style="color:#880000;">Font Line Scale</strong>
+                                            <br>
+                                            <select name="size_left" id="size_left" onchange="ChooseSelect('size_left')">   
+                                               <option value="1.0"> x 1.0</option>
+                                               <option value="1.25"> x 1.25</option>
+                                               <option value="1.5"> x 1.5</option>
+                                               <option value="1.75"> x 1.75</option>
+                                               <option value="2"> x 2.0</option>
+                                               <option value="2.25"> x 2.25</option>
+                                               <option value="2.5"> x 2.5</option>
+                                               <option value="2.75"> x 2.75</option>
+                                               <option value="3.0"> x 3.0</option>
+                                               </select>
+                                         </td>
+                                      </tr>
+                                   </table>
+                                </div>
+                             </td>
+                             <td width="20%" valign="top" align="center">
+                                <br>
+                                <div style="margin-top:1%;line-height: 150%;padding:8px;background-color: #acacac; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
+                                   <strong style="color:#880000;">Background Color</strong>				
+                                   <br>
+                                   <select name="bg_color" id="bg_color" onchange="ChooseSelect('bg_color');"> 
+                                      <option value="#f3ddb6" style="background-color:#f3ddb6;color:#000000;"> Classic Reader</option> 
+                                      <option value="#fff8dc" style="background-color:#fff8dc;color:#000000;"> CornSilk</option>
+                                      <option value="#1f3763" style="background-color:#1f3763;color:#fffffe;"> Blue sky </option>
+                                      <option value="#000001" style="background-color:#000001;color:#ffffff;"> Night 1 </option>
+                                      <option value="#121212" style="background-color:#121212;color:#b0b0b0;"> Night 2 </option>
+                                      <option value="#010101" style="background-color:#010101;color:#937811;"> Night 3 </option>
+                                      <option value="#1e1e1e" style="background-color:#1e1e1e;color:#628754;"> Night 4 </option>
+                                      <option value="#090c11" style="background-color:#090c11;color:#2d3d4a;"> Night 5 </option>
+                                      <option value="#3c3c3c" style="background-color:#3c3c3c;color:#cecece;"> Dawn 1 </option>
+                                      <option value="#5a5a5a" style="background-color:#5a5a5a;color:#cacaca;"> Dawn 2 </option>
+                                      <option value="#d7d4cd" style="background-color:#d7d4cd;color:#626262;"> Dawn 3 </option>
+                                      <option value="#e0e0e0" style="background-color:#e0e0e0;color:#202020;"> Day 1 </option>
+                                      <option value="#f0f0f0" style="background-color:#f0f0f0;color:#008000;"> Day 2 </option>
+                                      <option value="#fefefe" style="background-color:#fefefe;color:#000000;"> Day 3 </option>
+                                      <option value="#d8cbab" style="background-color:#d8cbab;color:#000001;"> Evening 1 </option>
+                                      <option value="#e2bdb4" style="background-color:#e2bdb4;color:#010101;"> Evening 2 </option>
+                                   </select>
+                                   <input type="checkbox" type=onoffswitch-checkbox id="Themes"  onclick='ChooseCheckbox("Themes")' >
+                                   <label for="Themes">Themes</label>
+                                   <br>
+                                   <div style="margin-top:1%;line-height: 150%;padding:8px;background-color: #acacac; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">											
+                                   <label for="PaliFontSize">Font Size</label>
+                                   <select name="PaliFontSize" id="PaliFontSize" onchange="ChooseSelect('PaliFontSize');"> 
+                                      <option value="10" > 10</option> 
+                                      <option value="11" > 11</option>
+                                      <option value="12" > 12 </option>
+                                      <option value="13" > 13 </option>
+                                      <option value="14" > 14 </option>
+                                      <option value="15" > 15 </option>
+                                      <option value="16" > 16 </option>
+                                      <option value="17" > 17 </option>
+                                      <option value="18" > 18 </option>
+                                      <option value="19" > 19 </option>
+                                      <option value="20" > 20 </option>
+                                      <option value="21" > 21 </option>
+                                      <option value="22" > 22 </option>
+                                      <option value="24" > 23 </option>
+                                      <option value="25" > 24 </option>
+                                      <option value="28" > 28 </option>
+                                   </select>
+     
+                                   </div>
+                                   <br>
+                                </div> 
+                             </td>
+     
+                             <td width="40%" valign="top" align="left">
+                                <strong>Right View</strong>
+                                <div style="margin-top:1%;line-height: 150%;padding:8px;background-color: #acacac; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
+                                   <table border="0" width="100%" cellpadding="0" cellpadding="0">
+                                      <tr>
+                                         <td width="50%" valign="top">
+                                            <strong style="color:#880000;">Right Text</strong>
+                                            <br>
+                                            <select name="view_right" id="view_right" onChange='ChooseSelect("view_right")'>
+                                               <option value="Space">None</option>
+                                               <option value="Roman">Roman</option>
+                                               <option value="Myanmar">Myanmar</option>
+                                               <option value="Sinhala">Sinhala</option>
+                                               <option value="Thai">Thai</option>
+                                               <option value="Devanagari">Devanagari</option>
+                                               <option value="MyNote">My Note</option>
+                                               <option value="Suttacentral">Sutta Central</option>
+                                            </select>
+                                            <br><br>
+                                         </td>
+                                         <td width="50%" valign="top" align="center">
+                                            <strong style="color:#880000;">Width</strong>
+                                            <br>
+                                            <span id="width_right"></span>
+                                            <br><br>
+                                         </td>
+                                      </tr>
+                                      <tr>
+                                         <td valign="top">
+                                            <strong style="color:#880000;">Font Family</strong>
+                                            <br>
+                                            <select name="font_right" id="font_right" onchange="ChooseSelect('font_right')">                 
+                                               <option value="Calibri Light">Calibri Light</option>
+                                               <option value="DejaVuSansCondensed">DejaVuSansCondensed</option> 
+                                               <option value="Myanmar Text">Myanmar Text</option>
+                                               <option value="Palatino Linotype">Palatino Linotype</option>
+                                               <option value="Pyidaungsu">Pyidaungsu</option>
+                                               <option value="Tahoma">Tahoma</option>
+                                               <option value="Times New Roman">Times New Roman</option>
+                                               <option value="Verdana">Verdana</option>
+                                            </select>
+                                            <br><br>											
+                                         </td>
+                                      </tr>
+                                      <tr>
+                                         <td valign="top">
+                                            <strong style="color:#880000;">Font Line Scale</strong>
+                                            <br>
+                                            <select name="size_right" id="size_right" onchange="ChooseSelect('size_right')">  
+                                               <option value="1.0"> x 1.0</option>
+                                               <option value="1.25"> x 1.25</option>
+                                               <option value="1.5"> x 1.5</option>
+                                               <option value="1.75"> x 1.75</option>
+                                               <option value="2"> x 2.0</option>
+                                               <option value="2.25"> x 2.25</option>
+                                               <option value="2.5"> x 2.5</option>
+                                               <option value="2.75"> x 2.75</option>
+                                               <option value="3.0"> x 3.0</option>
+                                               </select>
+                                         </td>
+                                      </tr>
+                                   </table>
+                                </div>
+                                </td>
+                             </tr>
+                          <tr> 
+                             <td colspan="3" algin="center">
+                                <div style="text-align: center; margin-top:1%;line-height: 150%;padding:8px;background-color: #acacac; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
+                                   <strong style="color:#880000;">Left - Right Frame's Width Ratio</strong>
+                                   <input type="range" min=2 max=98 step=2 name="divwidth" id="divwidth" onChange="ChooseRange('divwidth')" style="background:#880000;color:red;width:100%;">
+                                </div>   
+                             </td> 
+                          </tr>
+                          <tr> 
+                             <td colspan="3">
+                                <div style="margin-top:1%;line-height: 150%;padding:8px;background-color: #acacac; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
+                                   <strong style="color:#880000;">Dispaly Note</strong>
+                                   <br>
+                                   <input name="palinote" id="Pali_note1" type="radio" onclick='ChooseRadio("Pali_note1")'>
+                                   <label for="Pali_note1">Inline Display</label>
+                                   <input name="palinote" id="Pali_note2" type="radio" onclick='ChooseRadio("Pali_note2")'>
+                                   <label for="Pali_note2">No Display (Default)</label>
+                                   <br>
+                                   <strong style="color:#880000;">Show Page Numbers</strong>
+                                   <br>
+     
+                                   <input name="Show_Numbers" id="Show_Numbers1" type="radio" onclick='ChooseRadio("Show_Numbers1")'>
+                                   <label for="Show_Numbers1">Show Numbers</label>
+                                   <input name="Show_Numbers" id="Hide_Numbers2" type="radio" onclick='ChooseRadio("Hide_Numbers2")'>
+                                   <label for="Hide_Numbers2">No Display</label>
+                                   <br>
+     
+                                      
+                                </div>
+                             </td> 
+                          </tr>
+                       </table>
+                    </div>
+                 </div>
+                 
+                    <div id="Dictionaries" class="tabcontent" style="margin-top:1%;line-height: 150%;padding:8px;background-color: #ccc; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
+                       <table border="0" width="100%" cellspacing="0" cellpadding="0">
+                          <form method="post" name="form1" action="" style="text-align:center;">
+                          <tr>
+                             <td valign="top" width="46%" align="left">
+                             <strong style="color:#880000;">Disabled Pali Dictionaries</strong>
+                             <span id="DisableCount" style="font-size:10pt;color:gray;"></span>
+                             <select style="width:100%;font-size:12pt;line-height:175%;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;" multiple name="DictionaryDisable" id="DictionaryDisable" size="10" ondblclick="DictionaryMoveOption(document.form1.DictionaryDisable, document.form1.DictionaryEnable)" onClick="toGetAbbr('0');">
+                             </select>
+                             </td>
+                             <td valign="top" width="8%" align="center">
+                             <br>
+                             <input type="button" value="Up" style="width:60pt;" onclick="DictionaryChangePos(DictionaryEnable,-1)"/>
+                             <br><br>
+                             <input type="button" value="Down" style="width:60pt;" onclick="DictionaryChangePos(DictionaryEnable,1)"/>
+                             <br><br>
+                          
+                             <input type="button" value=">>" style="width:60pt;" onclick="DictionaryMoveOption(document.form1.DictionaryDisable, document.form1.DictionaryEnable)"/>
+                             <br><br>
+                             <input type="button" value="<<" style="width:60pt;" onclick="DictionaryMoveOption(document.form1.DictionaryEnable, document.form1.DictionaryDisable)"/>   
+                             </td>
+                             <td valign="top" width="46%" align="left">
+                       
+                             <strong style="color:#880000;">Enabled Pali Dictionaries</strong>
+                             <span id="EnableCount" style="font-size:10pt;color:gray;"></span>
+                             <select style="width:100%;font-size:12pt;line-height:175%;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;" multiple name="DictionaryEnable" id="DictionaryEnable" size="10" ondblclick="DictionaryMoveOption(document.form1.DictionaryEnable, document.form1.DictionaryDisable)" onClick="toGetAbbr('1')">
+                             </select>
+                             </td>
+                          </tr>
+                          <tr>
+                             <td colspan="3">
+                             <br>
+                             <strong style="color:#880000;">Abbreviated of Dictionary</strong>
+                             <input type="textbox" id="Abbreviated" style="max-width:100%;width:120pt;font-size:12pt;" onBlur="toSaveAbbr();">
+                             <input type="hidden" id="AbbreviatedDictionary" value="">
+                             <span>1-8 Chars&nbsp;</span><br>
+                             <span id="AbbreviatedMessage"></span>
+                             </td>
+                          </tr>
+                          </form>
+                       </table>
+                       <br>
+     
+                       <strong style="color:#880000;">English Dictionary</strong>
+                       <br>
+                       <input name="hee1" id="hee1" type="checkbox" onclick='ChooseCheckbox("hee1")' /></input>
+                       <label for="hee1">WN: [148,730 entries - 23.2 MB] Word-Net Eng-Eng dictionary</label>
+                       <br>
+                    
+                       <label style="color:red;">Speech Repeat=</label>
+                       <select name="speech_repeat" id="speech_repeat" onChange="ChooseSelect('speech_repeat');">
+                          <option value="0">Off</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                       </select>
+                       ,&nbsp;&nbsp;
+                       <label id="showspeed" style="color:red;">Speed=</label>
+                       <input type="range" min=0.5 max=1.5 step=0.1 name="speech_speed" id="speech_speed" onChange="ChooseRange('speech_speed')" style="background:gray;">
+                    </div>
+                 </div>
+                 
+                 <div id="Panel" class="tabcontent" style="display:inline;">
+                    <div style="margin-top:1%;line-height: 150%;padding:8px;background-color: #ccc; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
+                       <table border="0" width="100%">
+                          <tr>
+                             <td width="50%">
+                                <strong style="color:#880000;">Panel Position</strong>
+                                <br>
+                                <input name="contentposition" id="positionfixed" value="1" type="radio" onclick='ChooseRadio("positionfixed")'>
+                                <label for="positionfixed" onclick='ChooseRadio("positionfixed")'>Left Fixed</label>
+                                <input name="contentposition" id="positionfloat" value="0" type="radio" onclick='ChooseRadio("positionfloat")'>
+                                <label for="positionfloat" onclick='ChooseRadio("positionfloat")'>Moveable (Default)</label>
+                                <br><br>
+                             </td>
+                             <td width="50%">
+                                <div style="visibility:hidden">
+                                <strong style="color:#880000;">Panel Mode</strong>
+                                <br>
+                                <input name="contentmode" id="modeipad" value="iPad" type="radio" onclick='ChooseRadio("modeipad")'>
+                                <label for="modeipad" onclick='ChooseRadio("modeipad")'>iPad</label>
+                                <input name="contentmode" id="modepc" value="PC" type="radio" onclick='ChooseRadio("modepc")'>
+                                <label for="modepc" onclick='ChooseRadio("modepc")'>PC Mode (Default)</label>
+                                <br><br>
+                             </div>
+                             </td>
+                          </tr>
+     
+                          <tr>
+                             <td width="50%" valign="top">
+                                <strong style="color:#880000;">Panel Display</strong>
+                                <br>
+                                <input name="contentdisplay" id="displayalways" value="1" type="radio" onclick='ChooseRadio("displayalways")'>
+                                <label for="displayalways" onclick='ChooseRadio("displayalways")'>Always</label>
+                                <input name="contentdisplay" id="displayclick" value="0" type="radio" onclick='ChooseRadio("displayclick")'>
+                                <label for="displayclick" onclick='ChooseRadio("displayclick")'>On Click (Default)</label>
+                                <br><br>
+                             </td>
+                             <td width="50%" valign="top">
+                                <strong style="color:#880000;">Panel Position & Size</strong>
+                                <br> 
+                                Top:&nbsp;<span id="main_top"></span>&nbsp;&nbsp;
+                                Left:&nbsp;<span id="main_left"></span><br>
+                                Width:&nbsp;<span id="main_width"></span>&nbsp;&nbsp;
+                                Height:&nbsp;<span id="main_height"></span>&nbsp;&nbsp;
+                                <br><br>
+                             </td>
+                          </tr>
+                          <tr>
+                             <td width="50%" valign="top">
+                                <strong style="color:#880000;">Font Family</strong>
+                                <br>
+                                <select name="contentfontname" id="contentfontname" onchange="ChooseSelect('contentfontname')"> 
+                                   <option value="Calibri Light">Calibri Light</option>
+                                   <option value="DejaVuSansCondensed">DejaVuSansCondensed</option> 
+                                   <option value="Myanmar Text">Myanmar Text</option>
+                                   <option value="Palatino Linotype">Palatino Linotype</option>
+                                   <option value="Pyidaungsu">Pyidaungsu</option>
+                                   <option value="Tahoma">Tahoma</option>
+                                   <option value="Times New Roman">Times New Roman</option>
+                                   <option value="Verdana">Verdana</option>
+                                </select>
+                                <br><br>
+                             </td>
+                             <td width="50%" valign="top">
+                                <strong style="color:#880000;">Font Size</strong>
+                                <br>
+                                <input type="range" min=10 max=24 step=0.5 value= 12 name="contentfontsize" id="contentfontsize" onChange="ChooseRange('contentfontsize')" style="background:gray;">
+                                <br><br>
+                             </td>
+                          </tr>
+     
+                          <tr>
+                             <td valign="top">
+                                <strong style="color:#880000;">Background Color</strong>
+                                <br>
+                                R<input type="range" min=0 max=255 step=1 value=192 name="colorR" id="colorR" onChange="ChooseRange('colorR')" style="background:gray;">
+                                <br>
+                                G<input type="range" min=0 max=255 step=1 value=255 name="colorG" id="colorG" onChange="ChooseRange('colorG')" style="background:gray;">
+                                <br>
+                                B<input type="range" min=0 max=255 step=1 value=192 name="colorB" id="colorB" onChange="ChooseRange('colorB')" style="background:gray;">
+                                <br><br>
+                             </td>
+                             <td valign="top">
+                                <strong style="color:#880000;">Font Color</strong>
+                                <br>
+                                R<input type="range" min=0 max=255 step=1 value=0 name="fontcolorR" id="fontcolorR" onChange="ChooseRange('fontcolorR')" style="background:gray;">
+                                <br>
+                                G<input type="range" min=0 max=255 step=1 value=0 name="fontcolorG" id="fontcolorG" onChange="ChooseRange('fontcolorG')" style="background:gray;">
+                                <br>
+                                B<input type="range" min=0 max=255 step=1 value=0 name="fontcolorB" id="fontcolorB" onChange="ChooseRange('fontcolorB')" style="background:gray;">
+                                <br>
+                             </td>
+                          </tr>
+                          <tr>
+                             <td width="50%" valign="top">
+                                <strong style="color:#880000;">Line Height</strong>
+                                <br>
+                                <select name="contentlineheight" id="contentlineheight" onchange="ChooseSelect('contentlineheight')"> 
+                                   <option value="150">150%</option>
+                                   <option value="160">160%</option> 
+                                   <option value="170">170%</option> 
+                                   <option value="180">180%</option> 
+                                   <option value="190">190%</option> 
+                                   <option value="200">200%</option> 
+                                   <option value="210">210%</option> 
+                                   <option value="220">220%</option> 
+                                   <option value="230">230%</option> 
+                                   <option value="240">240%</option> 
+                                   <option value="250">250%</option> 
+                                   <option value="260">260%</option> 
+                                   <option value="270">270%</option> 
+                                   <option value="280">280%</option> 
+                                   <option value="290">290%</option> 
+                                   <option value="300">300%</option> 
+                                </select>
+                             </td>
+                             <td width="50%" valign="middle" align="center">
+                                <table border="0" width="100%" id="colortable">
+                                   <tr>
+                                      <td width="100%" id="contentbackground" style="background-color: RGB(207, 255, 128);" align="center" valign="middle">
+                                         <label id="showfontnamesize" style="font-family:DejaVuSansCondensed;font-size:12pt">DejaVuSansCondensed 12pt</label><br>
+                                         <span id="showbackground" style="font-family:DejaVuSansCondensed;font-size:12pt">BackGround = RGB(207, 255, 128)</span><br>
+                                         <span id="showfontcolor" style="font-family:DejaVuSansCondensed;font-size:12pt">FontColor = RGB(0, 0, 0)</span><br>
+                                      </td>
+                                   </tr>
+                                </table>
+                             </td>
+                          </tr>
+                       </table>
+                    </div>  
+                 </div>
+                 
+                 <div id="SaveSettings" class="tabcontent" style="display:inline;">
+                    <div style="margin-top:1%;line-height: 150%;padding:8px;background-color: #ccc; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
+                        <br>
+                       <button id="btnRestore"  onclick="RestorePreferences()"><img src="images/restorePref.png" width="50" height="50" border="0"><span style="font-size:20px;">Restore Prefs</span></button>
+                       <br><br>
+                       <br>
+     
+                       <table border="0" width="100%" cellpadding="0" cellspacing="0" id="TablePreference" style="line-height: 150%;">
+                          <tr>
+                             <td width="50%" valign="top" style="line-height: 150%;">
+                                <button  id="btnSave"  onclick="SavePreferences()"><img src="images/savePref.png" width="50" height="50" border="0"><span style="font-size:20px;">  Save Prefs </button>
+                                <br>
+                                <br>
+                                <button  id="btnReset"  onclick="ResetPreferences()"><img src="images/reset2.png" width="50" height="50" border="0"><span style="font-size:20px;">  Reset All </button>
+                                <br>
+                                <br>
+     
+                                Step 1 :<br>
+                                &nbsp;&nbsp;Save "preference.txt"
+                                <br>
+                                Step 2 :<br>
+                                &nbsp;&nbsp;Copy this text file into<br>&nbsp;&nbsp;\tipitaka_projector_data\
+                                <br><br>
+                             </td>
+                             <td width="50%" valign="top">	
+                                <textarea name="preferences" id="preferences" style="border:none;display:inline;font-size:9.0pt;line-height:120%;width:90%;max-width:90%x;height:100pt;background-color:#ffff88;"></textarea>
+                             </td>
+                          </tr>
+                       </table> 
+                       <strong style="color:#880000;">Testing</strong>
+                       <br>
+                       <table border="0" width="100%" cellpadding="0" cellspacing="0" id="TablePreference">
+                          <tr>
+                             <td width="50%" valign="top">
+                             <span style="color:blue;" onClick="window.location='analysis.htm'">  
+                                <img src="images/b_empty.png">
+                                Analysis
+                             </span><br><br>
+                 
+                             <span style="color:blue;" onClick="window.location='analysis2.htm'">
+                                <img src="images/b_empty.png">
+                                Analysis 2.0
+                             </span><br><br>
+     
+                             <span style="color:blue;" onClick="window.location='analysis21.htm'">
+                                <img src="images/b_empty.png">
+                                Analysis 2.1
+                             </span><br><br>
+                 
+                             </td>
+                             <td width="50%" valign="top">
+                             <span style="color:blue;" onClick="window.location='export.htm'">  
+                                <img src="images/save.png">
+                                Export My Note
+                             </span><br><br>
+                 
+                             <span style="color:blue;" onClick="window.location='notfound.htm'">  
+                                <img src="images/pause.png">
+                                Not Found In Dictionary
+                             </span><br><br>
+                          </tr>
+                       </table>
+                    </div>
+                 </div>
+                 <div id="About" class="tabcontent" style="display:inline;">
+                    <div style="margin-top:1%;line-height: 150%;padding:8px;background-color: #ccc; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
+                          <table>
+                             <tr>
+                                <td>
+                                   <br>
+                                   Your Current Version is: <div id="currentversion"> </div>
+                                   <br>  
+                                   <br>  
+                                   Check Repository for Latest Version:  <button type="button" id="btnGetVersion" onclick="getVersion()">Check Repo</button>
+                                   <br>
+                                   <div id="versioninfo"> </div>
+                                   </div>
+                                   <br>
+        
+                                </td>
+     
+                             </tr>
+     
+                          </table><br>
+                          
+                    </div>
+                 </div>
+              </div>	
+           </td>
+           <td width="10%" align="left" valign="top">
+           </td>
+        </tr>
+     </table>
+     
+  </div>
+
+
+
 	<script>
 		P_TNO = '';
-		P_TNX = '';
+    P_TNX = '';
 	</script>
 
 	<script src="js/z_search_pali_no.js"></script>
@@ -1666,6 +2297,74 @@ window.onload = function () {
 		document.getElementById('All').checked = true;
 		choosePali('All');
 	}
+
+  $(function() {
+            const width = () => $(window).width() - 40;
+            const height = () => $(window).height() - 40;
+
+            $( "#dialog-1" ).dialog({
+               autoOpen: false,
+               resizable: false,
+               draggable: false,
+
+               minWidth: width(),
+               minHeight: height(),
+
+               maxHeight: width(),
+               maxWidth: height(),
+
+               open: function() {
+                $(this).dialog('option', {minWidth: width(), maxWidth: width(), minHeight: height(), maxHeight: height()});
+               }
+            });
+            $( "#prefsbutton" ).click(function() {
+               $( "#dialog-1" ).dialog( "open" );
+            });
+         });
+  function PrefTab(evt, tabname) {
+		var i, tabcontent, tablinks;
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++) {
+		tabcontent[i].style.display = "none";
+		}
+		tablinks = document.getElementsByClassName("tablinks");
+		for (i = 0; i < tablinks.length; i++) {
+		tablinks[i].className = tablinks[i].className.replace(" active", "");
+		}
+		document.getElementById(tabname).style.display = "block";
+		evt.currentTarget.className += " active";
+	}
+	document.getElementById("defaultOpen").click();
+
+	function getVersion(){ 
+		file = 'https://raw.githubusercontent.com/bksubhuti/Tipitaka-Pali-Projector/master/tipitaka_projector_data/version.json'; 
+		var rawFile = new XMLHttpRequest();
+		try{
+			rawFile.open('GET', file, false);
+			rawFile.onreadystatechange = function () {
+			if (rawFile.readyState === 4) {
+				if (rawFile.status === 200 || rawFile.status == 0) {
+					var versiontxt = JSON.parse(rawFile.responseText) ;
+		
+					if (versiontxt.versionno == localStorage.getItem('versionno') ){
+						document.getElementById('versioninfo').innerHTML = '<b>Version is up to date</b>'; 
+					}
+					else{
+					document.getElementById('versioninfo').innerHTML = "<b>Version number:</b> " + versiontxt.versionno + '<br>' +'<b>New Version Notes:</b> ' + versiontxt.releasenotes;
+
+					}
+					//alert('WRITING FILEURI IS OK') ;
+					}// status = 200
+				} //readystate =4
+			}//readystatechange
+			rawFile.send(null);
+		}//try
+		catch{
+			//do nothing.
+		}
+
+	}    //getVersion function
+
 
 
 		// add listener to go back when the escape key is pressed.
