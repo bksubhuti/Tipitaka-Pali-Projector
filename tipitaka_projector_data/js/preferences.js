@@ -597,7 +597,12 @@ function initPreferences(){
     // Background Color
     var bg_color = localStorage.getItem("bg_color");
     document.getElementById('bg_color').value = bg_color;
+    // need to change for dlg too
+    // cannot get this to refresh.
     document.body.style.background = bg_color;
+    getElementById("main_table").style.backgroundColor = bg_color;
+    getElementById("main_div").style.backgroundColor = bg_color;
+    
 
     // check to see if themes is set or not and load it.
     if(localStorage.getItem('Themes')=='true'){

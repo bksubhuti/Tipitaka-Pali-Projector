@@ -480,7 +480,7 @@
   <div class="first-nav">
     <!-- HOME -->
     <div class="notselected grey-button" onClick="showIndex()" title="Home">
-      <i class="material-icons">home</i>
+      <i class="material-icons">library_books</i>
     </div>
 
     <!-- SEARCH -->
@@ -1498,7 +1498,7 @@
 
 <body>
   <!-- HTML --> 
-  <div id = "dialog-1" 
+  <div id = "prefsDialog" 
      title = "Preferences" width = "auto">
      
      <table border="0" width="100%">
@@ -2302,7 +2302,7 @@ window.onload = function () {
             const width = () => $(window).width() - 40;
             const height = () => $(window).height() - 40;
 
-            $( "#dialog-1" ).dialog({
+            $( "#prefsDialog" ).dialog({
                autoOpen: false,
                resizable: false,
                draggable: false,
@@ -2318,7 +2318,7 @@ window.onload = function () {
                }
             });
             $( "#prefsbutton" ).click(function() {
-               $( "#dialog-1" ).dialog( "open" );
+               $( "#prefsDialog" ).dialog( "open" );
             });
          });
   function PrefTab(evt, tabname) {
@@ -2364,6 +2364,24 @@ window.onload = function () {
 		}
 
 	}    //getVersion function
+
+
+    // LoadPrefs  .. found in preferences.js
+        //set the background color
+        //when loading call
+        initPreferences();     
+        
+        // load logo.
+        document.body.innerHTML ='<a href="single.page.htm" id="asoka"><img src="images/asoka.png"></a>';
+
+
+
+      // when the prefsDialog closes call initPreferences()
+        $('div#prefsDialog').on('dialogclose', function(event) {
+          initPreferences();        
+    });
+
+
 
 
 
