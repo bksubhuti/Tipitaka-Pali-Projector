@@ -600,9 +600,18 @@ function initPreferences(){
     // need to change for dlg too
     // cannot get this to refresh.
     document.body.style.background = bg_color;
-    getElementById("main_table").style.backgroundColor = bg_color;
-    getElementById("main_div").style.backgroundColor = bg_color;
+
+    const setBg = (elementId, color) => {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.style.backgroundColor = color;
+        }
+    };
+    ['main_table', 'main_div'].forEach(id => setBg(id, setBg));
     
+    // document.getElementById("main_table").style.backgroundColor = bg_color;
+    // document.getElementById("main_div").style.backgroundColor = bg_color;
+
 
     // check to see if themes is set or not and load it.
     if(localStorage.getItem('Themes')=='true'){
