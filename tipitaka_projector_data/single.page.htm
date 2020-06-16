@@ -2517,6 +2517,7 @@
     function getVersion() {
         file = 'https://raw.githubusercontent.com/bksubhuti/Tipitaka-Pali-Projector/master/tipitaka_projector_data/version.json';
         var rawFile = new XMLHttpRequest();
+        
         try {
             rawFile.open('GET', file, false);
             rawFile.onreadystatechange = function () {

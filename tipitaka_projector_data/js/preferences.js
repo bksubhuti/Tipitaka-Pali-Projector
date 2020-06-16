@@ -455,9 +455,9 @@ function ChooseRange(key) {
         x[0].style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
         document.getElementById('showbackground').innerHTML = 'Background = RGB(' + r +', ' + g + ', ' + b +')';
 
-        document.write = localStorage.setItem('contentbackgroundR', r);
-        document.write = localStorage.setItem('contentbackgroundG', g);
-        document.write = localStorage.setItem('contentbackgroundB', b);
+        localStorage.setItem('contentbackgroundR', r);
+        localStorage.setItem('contentbackgroundG', g);
+        localStorage.setItem('contentbackgroundB', b);
     }
 
     if (key.indexOf('fontcolor') != -1) {
@@ -470,9 +470,9 @@ function ChooseRange(key) {
         document.getElementById('showfontcolor').style.color = 'rgb(' + r + ',' + g + ',' + b + ')';
         document.getElementById('showfontcolor').innerHTML = 'Font Color = RGB(' + r +', ' + g + ', ' + b +')';
 
-        document.write = localStorage.setItem('contentfontcolorR', r);
-        document.write = localStorage.setItem('contentfontcolorG', g);
-        document.write = localStorage.setItem('contentfontcolorB', b);
+        localStorage.setItem('contentfontcolorR', r);
+        localStorage.setItem('contentfontcolorG', g);
+        localStorage.setItem('contentfontcolorB', b);
     }
 } 
 
@@ -606,8 +606,9 @@ function initPreferences(){
         if (element) {
             element.style.backgroundColor = color;
         }
+        console.log('setting bg', element, color);
     };
-    ['main_table', 'main_div'].forEach(id => setBg(id, setBg));
+    ['main_table', 'main_div'].forEach(id => setBg(id, bg_color));
     
     // document.getElementById("main_table").style.backgroundColor = bg_color;
     // document.getElementById("main_div").style.backgroundColor = bg_color;
@@ -870,6 +871,7 @@ function initPreferences(){
     var rawFile = new XMLHttpRequest();
     try{
         rawFile.open('GET', file, false);
+        rawFile.responseType = 'json';
         rawFile.onreadystatechange = function () {
         if (rawFile.readyState === 4) {
             if (rawFile.status === 200 || rawFile.status == 0) {
