@@ -2,11 +2,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch index.htm",
+            "name": "Launch single.page.htm",
             "type": "firefox",
             "request": "launch",
             "reAttach": true,
-            "file": "${workspaceFolder}/index.htm"
+            "file": "${workspaceFolder}/tipitaka_projector_data/single.page.htm"
         }
     ]
 }
@@ -20,7 +20,7 @@ You may want (or need) to debug your application running on a Webserver (especia
             "type": "firefox",
             "request": "launch",
             "reAttach": true,
-            "url": "http://localhost/index.htm",
+            "url": "http://localhost/tipitaka_projector_data/single.page.htm",
             "webRoot": "${workspaceFolder}"
         }
     ]
@@ -35,7 +35,7 @@ The url property may point to a file or a directory, if it points to a directory
             "type": "firefox",
             "request": "launch",
             "reAttach": true,
-            "url": "http://localhost/index.htm",
+            "url": "http://localhost/single.page.htm",
             "pathMappings": [{
                 "url": "http://localhost",
                 "path": "${workspaceFolder}"

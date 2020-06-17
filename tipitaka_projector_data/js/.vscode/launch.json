@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "name": "single.page.htm",
+            "file": "${workspaceFolder}/single.page.htm"
+        },
+        {
             "type": "node",
             "request": "launch",
             "name": "Launch Program",

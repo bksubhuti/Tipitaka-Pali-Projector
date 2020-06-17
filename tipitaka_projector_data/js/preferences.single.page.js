@@ -318,6 +318,17 @@ function ChooseSelect(key) {
         $('h2').css('color', r1);
         $('h3').css('color', r1);
 
+        var el = document.getElementById("main_table");
+            if (el)
+                {
+                    document.getElementById("main_table").style.backgroundColor = bg_color;
+                    document.getElementById("main_div").style.backgroundColor = bg_color;
+            
+
+                }
+
+       
+
 
         hideshowlogo();
 
@@ -327,26 +338,42 @@ function ChooseSelect(key) {
         if ( document.getElementById("Themes").checked == true ){
         
             // auto set the panel to the same color as a theme
-            var r= '';
-            var g= '';
-            var b= '';
-            if(val.length == 7){
-                r = parseInt(val.substr(1,2),16);
-                g = parseInt(val.substr(3,2),16);
-                b = parseInt(val.substr(5,2),16);   
+            var color = new RGBColor(val);  // library call 
+
+            if(color.ok){
+                localStorage.setItem('contentbackgroundR', String(color.r) );
+                localStorage.setItem('contentbackgroundG', String(color.g) );
+                localStorage.setItem('contentbackgroundB', String(color.b) );
             }   
 
-            localStorage.setItem('contentbackgroundR', r);
-            localStorage.setItem('contentbackgroundG', g);
-            localStorage.setItem('contentbackgroundB', b);
+            // need to make string?  stackexchange  otherwise length is always 1
+            let strR1= String(r1);
+            // Panel FontColor
+            var color2 = new RGBColor(strR1);
+            if (color.ok)
+            {
+
+                localStorage.setItem('contentfontcolorR', color2.r);
+                localStorage.setItem('contentfontcolorG', color2.g);
+                localStorage.setItem('contentfontcolorB', color2.b);
+            }
+
+            // I don't feel like doing the code 
+            // to set this little box.. It is done here.
+            initPreferences();
+
         }
 
     }
 
+    //  Reset the colors here.
+    // get the font color and set it 
+    var r1 = localStorage.getItem('r1');
+    $('h2').css('color', r1);
+    $('h3').css('color', r1);
 
  
 } 
-
 
 
 function ChooseRadio(key) {
@@ -610,8 +637,8 @@ function initPreferences(){
     };
     ['main_table', 'main_div'].forEach(id => setBg(id, bg_color));
   */  
-     document.getElementById("main_table").style.backgroundColor = bg_color;
-     document.getElementById("main_div").style.backgroundColor = bg_color;
+ document.getElementById("main_table").style.backgroundColor = bg_color;
+ document.getElementById("main_div").style.backgroundColor = bg_color;
 
 
     // check to see if themes is set or not and load it.
@@ -625,6 +652,8 @@ function initPreferences(){
     var r1 = localStorage.getItem('r1');
     $('h2').css('color', r1);
     $('h3').css('color', r1);
+    document.getElementById("main_table").style.backgroundColor = bg_color;
+    document.getElementById("main_div").style.backgroundColor = bg_color;
 
 
 
@@ -926,3 +955,35 @@ function enlarge()
     alert('called');
 
 }
+
+
+function getVersion() {
+    file = 'https://raw.githubusercontent.com/bksubhuti/Tipitaka-Pali-Projector/master/tipitaka_projector_data/version.json';
+    var rawFile = new XMLHttpRequest();
+    
+    try {
+        rawFile.open('GET', file, false);
+        rawFile.onreadystatechange = function () {
+            if (rawFile.readyState === 4) {
+                if (rawFile.status === 200 || rawFile.status == 0) {
+                    var versiontxt = JSON.parse(rawFile.responseText);
+
+                    if (versiontxt.versionno == localStorage.getItem('versionno')) {
+                        document.getElementById('versioninfo').innerHTML = '<b>Version is up to date</b>';
+                    } else {
+                        document.getElementById('versioninfo').innerHTML = "<b>Version number:</b> " + versiontxt.versionno + '<br>' + '<b>New Version Notes:</b> ' + versiontxt.releasenotes;
+
+                    }
+                    //alert('WRITING FILEURI IS OK') ;
+                }// status = 200
+            } //readystate =4
+        }//readystatechange
+        rawFile.send(null);
+    }//try
+    catch {
+        //do nothing.
+    }
+
+}    //getVersion function
+
+

@@ -11,19 +11,16 @@
     <link rel="stylesheet" type="text/css" href="js/index_style2.css"/>
     <link rel="stylesheet" type="text/css" href="css/js.tree.style.min.css"/>
     <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.css"/>
+    <link rel="stylesheet" type="text/css" href="single.page.css"/>
 
-    <style>
-        .app-dialog {
-            display: none;
-        }
-    </style>
 
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/jquery-ui-1.12.1/jquery-ui.js"></script>
     <script src="js/jstree.js"></script>
     <script src="js/index_initialize.js"></script>
-    <script src="js/preferences.js"></script>
+    <script src="js/preferences.single.page.js"></script>
     <script src="js/savefile.js"></script>
+    <script src="js/rgbcolor.js"></script>
 
     <script>
         var UseSinglePageLoading = true;
@@ -33,6 +30,14 @@
             structure: {},
             flat: {}
         };
+
+
+
+//////////////////////////////////////////////////////////////////////////
+/////
+////                JSTREE & INDEX DIALOG STUFF
+////
+////////////////////////////////////////////////////////////////////////
 
         $.jstree.defaults.core.themes.variant = 'large';
 
@@ -86,6 +91,15 @@
             const width = () => $(window).width() - 40;
             const height = () => $(window).height() - 40;
 
+
+//////////////////////////////////////////////////////////////////////////
+/////
+////                SEARCH DIALOG STUFF
+////
+////////////////////////////////////////////////////////////////////////
+
+
+
             $('#search').dialog({
                 autoOpen: false,
                 resizable: false,
@@ -109,6 +123,51 @@
 
         };
 
+
+    /////////////////////////////////////////////
+    // code for prefs dialog to work
+    //  prefs dialog stuf
+    /////////////////////////////
+    $(function () {
+        const width = () => $(window).width() - 40;
+        const height = () => $(window).height() - 40;
+
+        $("#prefsDialog").dialog({
+            autoOpen: false,
+            resizable: false,
+            draggable: false,
+
+            minWidth: width(),
+            minHeight: height(),
+
+            maxHeight: width(),
+            maxWidth: height(),
+
+            open: function () {
+                $(this).dialog('option', {
+                    minWidth: width(),
+                    maxWidth: width(),
+                    minHeight: height(),
+                    maxHeight: height()
+                });
+            }
+        });
+        $("#prefsbutton").click(function () {
+            $("#prefsDialog").dialog("open");
+        });
+    });
+
+ 
+
+
+
+
+//////////////////////////////////////////////////
+//  
+//    Book Index DLG
+//
+/////////////////////////////////////////////////////////
+
         var showIndex = function showIndex() {
             $('#index').dialog('open');
         };
@@ -131,391 +190,6 @@
 <body style="background-color: black; margin-top:0.0pt;margin-right:0in;margin-bottom:0in;margin-left:0in;margin-bottom:0pt;">
 
 <div id="main_div">
-
-    <!-- These are the tabs styles, they should for now be here for easier editing but eventually moved to a .css file -->
-    <style>
-        @font-face {
-            font-family: 'Material Icons';
-            font-style: normal;
-            font-weight: 400;
-            src: url(./fonts/material/MaterialIcons-Regular.eot); /* For IE6-8 */
-            src: local('Material Icons'),
-            local('MaterialIcons-Regular'),
-            url(./fonts/material/MaterialIcons-Regular.woff2) format('woff2'),
-            url(./fonts/material/MaterialIcons-Regular.woff) format('woff'),
-            url(./fonts/material/MaterialIcons-Regular.ttf) format('truetype');
-        }
-
-        .material-icons {
-            font-family: 'Material Icons';
-            font-weight: normal;
-            font-style: normal;
-            font-size: 24px; /* Preferred icon size */
-            display: inline-block;
-            line-height: 1;
-            text-transform: none;
-            letter-spacing: normal;
-            word-wrap: normal;
-            white-space: nowrap;
-            direction: ltr;
-
-            /* Support for all WebKit browsers. */
-            -webkit-font-smoothing: antialiased;
-            /* Support for Safari and Chrome. */
-            text-rendering: optimizeLegibility;
-
-            /* Support for Firefox. */
-            -moz-osx-font-smoothing: grayscale;
-
-            /* Support for IE. */
-            font-feature-settings: 'liga';
-        }
-
-        .first-nav {
-            margin-bottom: 5px;
-            padding-top: 5px;
-            line-height: 1;
-        }
-
-        .helpers {
-            position: sticky;
-            top: 0;
-            padding-top: 10px;
-        }
-
-        .helpers > * {
-            display: none;
-        }
-
-        .tabs {
-            position: absolute;
-            z-index: 1000;
-            left: 5px;
-            right: 0;
-            height: 32px;
-        }
-
-        #main_div .tabs > li {
-            border: 2px solid #00000024;
-            padding: 0 10px;
-            line-height: 32px;
-            float: left;
-            border-bottom: 0;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-            margin-right: 5px;
-            color: #555;
-            text-decoration: none;
-            font-size: 14px;
-            position: relative;
-            height: 30px;
-            user-select: none;
-            background-color: transparent;
-            font-weight: normal;
-            font-family: sans-serif;
-        }
-
-        #main_div .tabs > li.selected {
-            border-color: #777;
-            height: 32px;
-            /* background-color: #fafafa;*/
-            font-weight: bold;
-        }
-
-        .tab-content {
-            /* background-color: #fafafa;*/
-            border: 2px solid #777;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            margin-top: 32px;
-            float: left;
-            width: 100%;
-            box-sizing: border-box;
-            font-family: sans-serif;
-            overflow-y: scroll;
-            position: relative;
-            padding: 0 10px 10px;
-        }
-
-        #main_div li {
-
-        }
-
-        .grey-button {
-            box-shadow: inset 0px 1px 0px 0px #ffffff;
-            /*      background: linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
-                  background-color: #ededed;*/
-            border-radius: 5px;
-            border: 1px solid #aaa;
-            cursor: pointer;
-            color: #777;
-            line-height: 1;
-            text-decoration: none;
-            text-shadow: 0px 1px 0px #ffffff;
-            display: inline-block;
-            width: 36px;
-            height: 36px;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        .grey-button.letter {
-            line-height: 36px;
-            font-family: sans-serif;
-            font-size: 18px;
-        }
-
-        .grey-button.letter.selected {
-            font-weight: bold;
-        }
-
-        .grey-button i {
-            margin: 5px;
-        }
-
-        .grey-button span {
-            width: 24px;
-            height: 24px;
-            margin: 5px;
-            font-weight: bold;
-            display: inline-block;
-            line-height: 24px;
-            text-align: center;
-        }
-
-        .grey-button:hover {
-            background: linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
-            background-color: #dfdfdf;
-        }
-
-        .grey-button:active {
-            position: relative;
-            top: 1px;
-        }
-
-        .sep {
-            margin-left: 5px;
-            margin-right: 5px;
-            width: 1px;
-            display: inline-block;
-            height: 23px;
-            background: #aaa;
-            margin-bottom: 5px;
-        }
-
-        .generous-input {
-            font-size: 16px;
-            margin-left: 5px;
-            margin-right: 5px;
-            padding: 3px;
-        }
-
-        .input-label {
-            font-size: 14px;
-        }
-
-        .search-area {
-            display: flex;
-            margin-top: 5px;
-            align-items: center;
-        }
-
-        .search-area i {
-            border-radius: 50%;
-            background: #fff;
-            border: 1px solid #b3b3b3;
-            color: #515151;
-            width: 24px;
-            height: 24px;
-            overflow: hidden;
-            user-select: none;
-        }
-
-        .search-area i:hover {
-            border-color: #aaa;
-            color: #000;
-        }
-
-        .DictionaryClass {
-            background-color: rgba(176, 176, 176, 0.42) !important;
-        }
-
-        .dict {
-            font-family: sans-serif;
-        }
-
-        .dictionary-item {
-            display: inline-block;
-            white-space: nowrap;
-        }
-
-        #TmpDictionary:after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-
-        header.panel-header {
-            height: 30px;
-            width: calc(100% + 10px);
-            display: flex;
-            font-family: sans-serif;
-            align-items: center;
-            border-bottom: 3px solid #777;
-            margin-left: -5px;
-            padding-left: 5px;
-            cursor: grab;
-            user-select: none;
-        }
-
-        header.panel-header * {
-            display: flex;
-        }
-
-        header.panel-header img {
-            margin-right: 5px;
-        }
-
-        #ResizeLeft {
-            width: 10px;
-            height: 100%;
-            position: absolute;
-            left: -8px;
-            top: 0;
-            cursor: e-resize;
-            overflow: hidden;
-            z-index: 3;
-        }
-
-        #ResizeTop {
-            width: 100%;
-            height: 10px;
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: -8px;
-            cursor: n-resize;
-            overflow: hidden;
-            z-index: 3;
-        }
-
-        .lookup-result {
-            font-weight: bold;
-            color: dodgerblue;
-
-        }
-
-        .lookup-result:hover {
-            text-decoration: underline;
-        }
-
-        /*///////////////////////*/
-        /*for the preferences dlg*/
-        /*///////////////////////*/
-        <!--
-        CSS
-
-        -->
-
-        .ui-widget-header, .ui-state-default, ui-button {
-            border: 1px solid #2f302d;
-            font-weight: bold;
-        }
-
-        body {
-            cursor: pointer;
-            background-color: #ffffc0;
-            font-family: Arial;
-            width: auto;
-            height: auto;
-        }
-
-        .tinysetting {
-            text-align: center;
-            font-size: small;
-            color: red;
-        }
-
-        a:hover {
-            color: #0000ff;
-            text-decoration: none;
-        }
-
-        a:visited {
-            color: #0000ff;
-            text-decoration: none;
-        }
-
-        a:link {
-            color: #0000ff;
-            text-decoration: none;
-        }
-
-        /* Style the tab */
-        .tab {
-            overflow: hidden;
-            border: 1px solid #ccc;
-            background-color: #f1f1f1;
-            border-radius: 8px;
-            -moz-border-radius: 8px;
-            -webkit-border-radius: 8px;
-            -o-border-radius: 8px;
-            margin-left: 12px;
-            margin-right: 12px;
-            margin-bottom: -16px;
-        }
-
-        /* Style the buttons inside the tab */
-        .tab button {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 15px 15px;
-            transition: 0.3s;
-            font-size: 17px;
-        }
-
-        /* Change background color of buttons on hover */
-        .tab button:hover {
-            background-color: #ddd;
-        }
-
-        /* Create an active/current tablink class */
-        .tab button.active {
-            background-color: #ccc;
-        }
-
-        /* Style the tab content */
-        .tabcontent {
-            display: none;
-            padding: 6px 12px;
-            -webkit-animation: fadeEffect 1s;
-            animation: fadeEffect 1s;
-        }
-
-        /* Fade in tabs */
-        @-webkit-keyframes fadeEffect {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeEffect {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-
-    </style>
 
     <header class="panel-header" id="panel-header">
         <img src="images/dhammacakka.svg" height="22" width="22"/>
@@ -559,7 +233,7 @@
         <span id="message" style="font-size:10pt;"
               title="Id=Id-No. Para=Paragraph No. M=Myanmar PageNo. P=PTS PageNo."></span>
 
-        <div id="TmpDictionary" style="display:inline;margin-left:10px; margin-top: 5px;">
+        <div id="TmpDictionary" style="display:inline;margin-left:10px;">
         </div>
     </div>
 
@@ -709,7 +383,7 @@
             </div>
             <input type="hidden" id="ParagraphWords" value="">
 
-            <div id="page4_desc" class="pages2" style="display:none;align:center;">
+            <div id="page4_desc" class="pages2" style="display:none;text-align:center;">
                 <div class="page4" style="line-height: 250%;">
                     <select name="Toc" id="Toc" onchange="goToc();">
                     </select>
@@ -1224,6 +898,14 @@
 
 <popupfix></popupfix>
 <!---End of add dictionary function--->
+
+<!---Search Dialog stuff ----------->
+<!---Search Dialog stuff ----------->
+<!---Search Dialog stuff ----------->
+<!---Search Dialog stuff ----------->
+<!---Search Dialog stuff ----------->
+<!---Search Dialog stuff ----------->
+
 
 <div id="index" title="Books Index" class="app-dialog">
     <div id="books-tree"></div>
@@ -2176,7 +1858,7 @@
                 </div>
                 <div id="About" class="tabcontent" style="display:inline;">
                     <div style="margin-top:1%;line-height: 150%;padding:8px;background-color: #ccc; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
-
+                        <img src="images/asoka.png">
                         <br>
                         Your Current Version is:
                         <div id="currentversion"></div>
@@ -2213,6 +1895,13 @@
 
 <script>
 
+/////////////////////////////////////////
+///////////
+////////          GENERAL SEARCH CODE  (to be moved to js soon)
+///////
+///////////////////////////////////////////////
+
+
     //<script src="dictionary/z_search_pali_words.js"></ script>
     function Put(val) {
         var key = document.getElementById('key').value.trim();
@@ -2239,6 +1928,12 @@
         return B.join('');
     }
 
+
+    /////////////////////////////////////////
+    ///////
+    /////     DUPLICATE CODE TO BE MOVED TO TPPUTIL.JS FILE
+    ////
+    ////////////////////////
     function toUniRegEx(input) {
         if (!input || input == '') return input;
         var nigahita = 'ṃ';
@@ -2469,92 +2164,40 @@
         choosePali('All');
     }
 
-    $(function () {
-        const width = () => $(window).width() - 40;
-        const height = () => $(window).height() - 40;
 
-        $("#prefsDialog").dialog({
-            autoOpen: false,
-            resizable: false,
-            draggable: false,
-
-            minWidth: width(),
-            minHeight: height(),
-
-            maxHeight: width(),
-            maxWidth: height(),
-
-            open: function () {
-                $(this).dialog('option', {
-                    minWidth: width(),
-                    maxWidth: width(),
-                    minHeight: height(),
-                    maxHeight: height()
-                });
-            }
-        });
-        $("#prefsbutton").click(function () {
-            $("#prefsDialog").dialog("open");
-        });
-    });
-
-    function PrefTab(evt, tabname) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(tabname).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-
-    document.getElementById("defaultOpen").click();
-
-    function getVersion() {
-        file = 'https://raw.githubusercontent.com/bksubhuti/Tipitaka-Pali-Projector/master/tipitaka_projector_data/version.json';
-        var rawFile = new XMLHttpRequest();
-        
-        try {
-            rawFile.open('GET', file, false);
-            rawFile.onreadystatechange = function () {
-                if (rawFile.readyState === 4) {
-                    if (rawFile.status === 200 || rawFile.status == 0) {
-                        var versiontxt = JSON.parse(rawFile.responseText);
-
-                        if (versiontxt.versionno == localStorage.getItem('versionno')) {
-                            document.getElementById('versioninfo').innerHTML = '<b>Version is up to date</b>';
-                        } else {
-                            document.getElementById('versioninfo').innerHTML = "<b>Version number:</b> " + versiontxt.versionno + '<br>' + '<b>New Version Notes:</b> ' + versiontxt.releasenotes;
-
-                        }
-                        //alert('WRITING FILEURI IS OK') ;
-                    }// status = 200
-                } //readystate =4
-            }//readystatechange
-            rawFile.send(null);
-        }//try
-        catch {
-            //do nothing.
-        }
-
-    }    //getVersion function
+    // load logo.
+    //Logo is always NEEDED upon loading the user needs to see the
+    // software title and the logo.  But crazy layout for main_td2.. needs work to work and should not 
+    // be crazy..
+    //getElementById("main_td2").innerHTML ='<a href="single.page.htm" id="asoka"><img src="images/asoka.png"></a>';
 
 
-    // LoadPrefs  .. found in preferences.js
+    // LoadPrefs  .. found in preferences.single.page.js
     //set the background color
     //when loading call
     initPreferences();
+    function PrefTab(evt, tabname) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabname).style.display = "block";
+    evt.currentTarget.className += " active";
+}
 
-    // load logo.
-    // THIS IS NOT NEEDED
-    // document.body.innerHTML ='<a href="single.page.htm" id="asoka"><img src="images/asoka.png"></a>';
-
+    // this hides everything.. not sure why it is needed..should be hidden 
+    // anyway.
+    document.getElementById("defaultOpen").click();
 
     // when the prefsDialog closes call initPreferences()
+    $('div#prefsDialog').on('dialogshow', function (event) {
+        initPreferences();
+    });
     $('div#prefsDialog').on('dialogclose', function (event) {
         initPreferences();
     });
