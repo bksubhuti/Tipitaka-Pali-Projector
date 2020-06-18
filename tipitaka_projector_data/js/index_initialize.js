@@ -132,29 +132,15 @@
         document.write = localStorage.setItem("contentfontsize", '12');
     }  
 
-    // Panel Background
-    if (!localStorage.getItem("contentbackgroundR")) {
-        document.write = localStorage.setItem("contentbackgroundR", '255'); 
+    if (!localStorage.getItem("panel_bg_color")) {
+        document.write = localStorage.setItem("panel_bg_color", '#f0f0f0'); 
     }
-    // Panel Background
-    if (!localStorage.getItem("contentbackgroundG")) {
-        document.write = localStorage.setItem("contentbackgroundG", '248'); 
-    }
-    // Panel Background
-    if (!localStorage.getItem("contentbackgroundB")) {
-        document.write = localStorage.setItem("contentbackgroundB", '220'); 
-    }
+
+
+
     // Panel FontColor
-    if (!localStorage.getItem("contentfontcolorR")) {
-        document.write = localStorage.setItem("contentfontcolorR", '0'); 
-    }
-    // Panel FontColor
-    if (!localStorage.getItem("contentfontcolorG")) {
-        document.write = localStorage.setItem("contentfontcolorG", '0'); 
-    }
-    // Panel FontColor
-    if (!localStorage.getItem("contentfontcolorB")) {
-        document.write = localStorage.setItem("contentfontcolorB", '0'); 
+    if (!localStorage.getItem("panel_font_color")) {
+        document.write = localStorage.setItem("panel_font_color", '#000000'); 
     }
     // Panel Line height
     if (!localStorage.getItem("contentlineheight")) {

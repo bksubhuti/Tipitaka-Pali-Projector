@@ -1,13 +1,7 @@
 function RestorePreferences() {
     var def = [];
     def['bg_color'] = '@';
-    def['contentbackgroundR'] = '@';
-    def['contentbackgroundG'] = '@';
-    def['contentbackgroundB'] = '@';
     def['contentdisplay'] = '@';
-    def['contentfontcolorR'] = '@';
-    def['contentfontcolorG'] = '@';
-    def['contentfontcolorB'] = '@';
     def['contentfontname'] = '@';
     def['contentfontsize'] = '@';
     def['contentlineheight'] = '@';
@@ -70,6 +64,8 @@ function RestorePreferences() {
     def['m1']='@';
     def['b1']='@';
     def['PaliFontSize'] ='@';
+    def['panel_bg_color'] ='@';
+    
 
     file = 'preferences.txt'; 
     var rawFile = new XMLHttpRequest();
@@ -323,45 +319,23 @@ function ChooseSelect(key) {
                 {
                     document.getElementById("main_table").style.backgroundColor = bg_color;
                     document.getElementById("main_div").style.backgroundColor = bg_color;
-            
-
                 }
 
-       
-
-
         hideshowlogo();
-
-
 
         // get the theme checkbox.. if checked then set the panel to the same color
         if ( document.getElementById("Themes").checked == true ){
         
-            // auto set the panel to the same color as a theme
-            var color = new RGBColor(val);  // library call 
 
-            if(color.ok){
-                localStorage.setItem('contentbackgroundR', String(color.r) );
-                localStorage.setItem('contentbackgroundG', String(color.g) );
-                localStorage.setItem('contentbackgroundB', String(color.b) );
-            }   
+            localStorage.setItem('panel_bg_color', val);
 
             // need to make string?  stackexchange  otherwise length is always 1
             let strR1= String(r1);
             // Panel FontColor
-            var color2 = new RGBColor(strR1);
-            if (color.ok)
-            {
-
-                localStorage.setItem('contentfontcolorR', color2.r);
-                localStorage.setItem('contentfontcolorG', color2.g);
-                localStorage.setItem('contentfontcolorB', color2.b);
-            }
-
+            localStorage.setItem('panel_font_color', strR1);
             // I don't feel like doing the code 
             // to set this little box.. It is done here.
             initPreferences();
-
         }
 
     }
@@ -374,7 +348,6 @@ function ChooseSelect(key) {
 
  
 } 
-
 
 function ChooseRadio(key) {
     val = document.getElementById(key).value;
@@ -602,6 +575,15 @@ window.onload = function () {
 }
 
 function initPreferences(){
+
+    // panel background and font colors
+    var panel_bg_color = localStorage.getItem("panel_bg_color");
+    document.getElementById('panel_bg_color').value = panel_bg_color;
+
+    var panel_font_color = localStorage.getItem("panel_font_color");
+    document.getElementById('panel_font_color').value = panel_font_color;
+
+
     // View Left
     var size_left = localStorage.getItem("size_left");
     document.getElementById('size_left').value = size_left;
@@ -653,7 +635,7 @@ function initPreferences(){
     $('h2').css('color', r1);
     $('h3').css('color', r1);
     document.getElementById("main_table").style.backgroundColor = bg_color;
-    document.getElementById("main_div").style.backgroundColor = bg_color;
+    document.getElementById("main_div").style.backgroundColor = panel_bg_color;
 
 
 
@@ -771,25 +753,17 @@ function initPreferences(){
     // Panel Font Size
     var contentfontsize = localStorage.getItem("contentfontsize");
     document.getElementById('contentfontsize').value = contentfontsize;
-    // Panel Background
-    var colorR = localStorage.getItem("contentbackgroundR");
-    document.getElementById('colorR').value = colorR;
-    // Panel Background
-    var colorG = localStorage.getItem("contentbackgroundG");
-    document.getElementById('colorG').value = colorG;
-    // Panel Background
-    var colorB = localStorage.getItem("contentbackgroundB");
-    document.getElementById('colorB').value = colorB;
+
+
+    if (!panel_bg_color){ // debug does not have the value
+        panel_bg_color = '#fff000';
+    }
+    document.getElementById("panel_bg_color").value = panel_bg_color;
+        
+    
+    
 
     // Panel FontColor
-    var fontcolorR = localStorage.getItem("contentfontcolorR");
-    document.getElementById('fontcolorR').value = fontcolorR;
-    // Panel FontColor
-    var fontcolorG = localStorage.getItem("contentfontcolorG");
-    document.getElementById('fontcolorG').value = fontcolorG;
-    // Panel FontColor
-    var fontcolorB = localStorage.getItem("contentfontcolorB");
-    document.getElementById('fontcolorB').value = fontcolorB;
     
 
     // Panel Line height
@@ -801,13 +775,13 @@ function initPreferences(){
     document.getElementById('contentlineheight').value = contentlineheight;
 
     var x = document.getElementById('colortable').getElementsByTagName('td');
-    x[0].style.backgroundColor = 'rgb(' + colorR + ',' + colorG + ',' + colorB + ')';
-    x[0].style.color = 'rgb(' + fontcolorR + ',' + fontcolorG + ',' + fontcolorB + ')';
+    x[0].style.backgroundColor =  panel_bg_color ;//'rgb(' + colorR + ',' + colorG + ',' + colorB + ')';
+    x[0].style.color = panel_font_color; //'rgb(' + fontcolorR + ',' + fontcolorG + ',' + fontcolorB + ')';
     x[0].style.lineHeight = contentlineheight + '%';
-    
+
+    document.getElementById('showbackground').innerHTML = 'Background = ' + panel_bg_color;
     document.getElementById('showfontnamesize').innerHTML = contentfontname + ' ' +contentfontsize + 'pt';
-    document.getElementById('showbackground').innerHTML = 'Backgrounnd RGB=(' + colorR + ',' + colorG + ',' + colorB + ')';
-    document.getElementById('showfontcolor').innerHTML = 'Font Color RGB=(' + colorR + ',' + colorG + ',' + colorB + ')';
+    document.getElementById('showfontcolor').innerHTML = 'Font Color = ' + panel_font_color;
  
     document.getElementById('showfontnamesize').style.fontFamily = contentfontname;
     document.getElementById('showfontnamesize').style.fontSize = contentfontsize + 'pt';
@@ -985,5 +959,14 @@ function getVersion() {
     }
 
 }    //getVersion function
+
+function PanelBGColorChange(value){
+    localStorage.setItem("panel_bg_color", value);
+    initPreferences();
+}
+function PanelFontColorChange(value){
+    localStorage.setItem("panel_font_color", value);
+    initPreferences();
+}
 
 

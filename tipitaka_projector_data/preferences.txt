@@ -45,3 +45,5 @@ view_left	Roman
 view_right	Space
 width_left	50
 width_right	50
+panel_bg_color #f0f0f0
+panel_font_color #000000

@@ -1709,29 +1709,17 @@
 
                             <tr>
                                 <td valign="top">
-                                    <strong style="color:#880000;">Background Color</strong>
+                                    <strong style="color:#880000;">Select Background Color:</strong>
                                     <br>
-                                    R<input type="range" min=0 max=255 step=1 value=192 name="colorR" id="colorR"
-                                            onChange="ChooseRange('colorR')" style="background:gray;">
-                                    <br>
-                                    G<input type="range" min=0 max=255 step=1 value=255 name="colorG" id="colorG"
-                                            onChange="ChooseRange('colorG')" style="background:gray;">
-                                    <br>
-                                    B<input type="range" min=0 max=255 step=1 value=192 name="colorB" id="colorB"
-                                            onChange="ChooseRange('colorB')" style="background:gray;">
+                                    <input id='panel_bg_color' name="panel_bg_color" type="color" value = "#ffffff" onChange="PanelBGColorChange(value)"/>
                                     <br><br>
                                 </td>
                                 <td valign="top">
-                                    <strong style="color:#880000;">Font Color</strong>
+                                    <strong style="color:#880000;">Select Font Color:</strong>
                                     <br>
-                                    R<input type="range" min=0 max=255 step=1 value=0 name="fontcolorR" id="fontcolorR"
-                                            onChange="ChooseRange('fontcolorR')" style="background:gray;">
+                                    <input id='panel_font_color' name="panel_font_color" type="color" value = "#000000" onChange="PanelFontColorChange(value)"/>
                                     <br>
-                                    G<input type="range" min=0 max=255 step=1 value=0 name="fontcolorG" id="fontcolorG"
-                                            onChange="ChooseRange('fontcolorG')" style="background:gray;">
                                     <br>
-                                    B<input type="range" min=0 max=255 step=1 value=0 name="fontcolorB" id="fontcolorB"
-                                            onChange="ChooseRange('fontcolorB')" style="background:gray;">
                                     <br>
                                 </td>
                             </tr>
@@ -1762,16 +1750,10 @@
                                 <td width="50%" valign="middle" align="center">
                                     <table border="0" width="100%" id="colortable">
                                         <tr>
-                                            <td width="100%" id="contentbackground"
-                                                style="background-color: RGB(207, 255, 128);" align="center"
-                                                valign="middle">
-                                                <label id="showfontnamesize"
-                                                       style="font-family:DejaVuSansCondensed;font-size:12pt">DejaVuSansCondensed
-                                                    12pt</label><br>
-                                                <span id="showbackground"
-                                                      style="font-family:DejaVuSansCondensed;font-size:12pt">BackGround = RGB(207, 255, 128)</span><br>
-                                                <span id="showfontcolor"
-                                                      style="font-family:DejaVuSansCondensed;font-size:12pt">FontColor = RGB(0, 0, 0)</span><br>
+                                            <td width="100%" id="contentbackground" style="background-color: RGB(207, 255, 128);" align="center" valign="middle">
+                                                <label id="showfontnamesize" style="font-family:DejaVuSansCondensed;font-size:12pt">DejaVuSansCondensed 12pt</label><br>
+                                                <span id="showbackground" style="font-family:DejaVuSansCondensed;font-size:12pt">BackGround = RGB(207, 255, 128)</span><br>
+                                                <span id="showfontcolor" style="font-family:DejaVuSansCondensed;font-size:12pt">FontColor = RGB(0, 0, 0)</span><br>
                                             </td>
                                         </tr>
                                     </table>
@@ -2206,6 +2188,9 @@
     window.addEventListener("keyup", function (e) {
         if (e.keyCode == 27) history.back();
     }, false);
+
+
+    
 </script>
 
 

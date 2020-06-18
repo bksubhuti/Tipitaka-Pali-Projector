@@ -468,40 +468,28 @@ if (localStorage.getItem('contentdisplay') == '0') {
 	document.getElementById('main_div').style.display = 'inline';
 }
 
-r = localStorage.getItem('contentbackgroundR');
-if (!r) {
-	r = 207;
-}
-g = localStorage.getItem('contentbackgroundG');
-if (!g) {
-	g = 255;
-}
-b = localStorage.getItem('contentbackgroundB');
-if (!b) {
-	b = 207;
-}
-document.getElementById('main_div').style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
 
-r = parseInt(r * 0.8);
-g = parseInt(g * 0.8);
-b = parseInt(b * 0.8);
-DictionaryBackground = 'background-color:rgb(' + r + ',' + g + ',' + b + ')';
+var panel_bg_color  = localStorage.getItem('panel_bg_color');
+if (!panel_bg_color) {
+	panel_bg_color = '#f0f0f0';
+}
+var panel_font_color  = localStorage.getItem('panel_font_color');
+if (!panel_font_color) {
+	panel_font_color = '#000000';
+}
 
 
+document.getElementById('main_div').style.backgroundColor = panel_bg_color;
 
-r = localStorage.getItem('contentfontcolorR');
-if (!r) {
-	r = 0;
-}
-g = localStorage.getItem('contentfontcolorG');
-if (!g) {
-	g = 0;
-}
-b = localStorage.getItem('contentfontcolorB');
-if (!b) {
-	b = 0;
-}
-document.getElementById('main_div').style.color= 'rgb(' + r + ',' + g + ',' + b + ')';
+var colorobj = new RGBColor(panel_bg_color);
+colorobj.r = parseInt(colorobj.r * 0.8);
+colorobj.g = parseInt(colorobj.g * 0.8);
+colorobj.b = parseInt(colorobj.b * 0.8);
+DictionaryBackground = 'background-color:rgb(' + colorobj.r + ',' + colorobj.g + ',' + colorobj.b + ')';
+
+
+
+document.getElementById('main_div').style.color= panel_font_color;
 
 
 // set the font color for the dictionary

@@ -12,34 +12,4 @@
 }
 You may want (or need) to debug your application running on a Webserver (especially if it interacts with server-side components like Webservices). In this case replace the file property in your launch configuration with a url and a webRoot property. These properties are used to map urls to local files:
 
-{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Launch localhost",
-            "type": "firefox",
-            "request": "launch",
-            "reAttach": true,
-            "url": "http://localhost/tipitaka_projector_data/single.page.htm",
-            "webRoot": "${workspaceFolder}"
-        }
-    ]
-}
 The url property may point to a file or a directory, if it points to a directory it must end with a trailing / (e.g. http://localhost/my-app/). You may omit the webRoot property if you specify the pathMappings manually. For example, the above configuration would be equivalent to
-
-{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Launch localhost",
-            "type": "firefox",
-            "request": "launch",
-            "reAttach": true,
-            "url": "http://localhost/single.page.htm",
-            "pathMappings": [{
-                "url": "http://localhost",
-                "path": "${workspaceFolder}"
-            }]
-        }
-    ]
-}
