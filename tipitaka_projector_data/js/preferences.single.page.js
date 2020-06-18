@@ -170,6 +170,8 @@ function DictionaryRenew() {
         inc = (i + 1) * 10;
         inc = ('000' + inc).slice(-3);
         document.write  = localStorage.setItem('h' + val, inc); 
+
+        initDictionaries();
     }
 
     var e = document.form1.DictionaryDisable;

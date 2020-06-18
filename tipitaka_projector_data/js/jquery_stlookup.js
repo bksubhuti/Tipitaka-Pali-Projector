@@ -56,6 +56,8 @@ var wordbreakdata = "";
 $.getScript("dictionary/000_wordbreakdata_Pali_Pali_grammar_Dictionary_extract_DPR_2018.js");
 $.getScript("dictionary/dpr-breakup.js");
 
+
+// this var declaration has lines by language..
 var pc1 = ''; var pc2 = '';
 var pd1 = '';
 var pe1 = ''; var pe2 = ''; var pe3 = ''; var pe4 = ''; var pe5 = ''; var pe6 = '';
@@ -101,60 +103,6 @@ ary.sort();
 
 var aryAbbr = []; aryTemp = [];
 var tmpDictionary = '';
-dict_in_use = 0;
-for (var i in ary) {
-	var val = ary[i].substring(0, 3);
-	var name = ary[i].substring(3);
-
-	v1 = localStorage.getItem(name);
-	if (!v1) {
-		document.write = localStorage.setItem(name, '000'); 	
-		val = '000';
-	}
-
-	v0 = name.substring(1, 4);
-	v1 = localStorage.getItem('i' + v0);
-	if (!v1) {
-		v1 = v0;
-		document.write = localStorage.setItem('i' + v0, v1); 	
-	}
-	aryAbbr[v0] = v1;		// v0=pc1,pc2.. v1=Abbr. Name
-	aryTemp[v0] = '1';		// 1 = ON
-
-	//alert(name);
-	if ((val != '000') && (val != 'nul')) {
-		tmpDictionary += '<span class="dictionary-item">';
-		tmpDictionary = tmpDictionary + '<input id="j' + v0 + '" type="checkbox" onclick="TmpDictionarySave(\'' + v0 + '\');" checked></input>'; 
-		tmpDictionary = tmpDictionary + '<label for="j' + v0 + '" style="font-size:12pt;">&nbsp;' + aryAbbr[v0] + '&nbsp;</label>&nbsp;&nbsp;';
-		tmpDictionary += '</span>';
-
-		dict_in_use++;
-		ary_dict[dict_in_use] = name;
-		
-		if ( name == 'hpc1') {$.getScript("dictionary/pc1_Pali_Zh_sc2016_pi2zh-maindata-v1.js"); }
-		if ( name == 'hpc2') {$.getScript("dictionary/pc2_Pali_Zh_12_in_1@2018.js"); }
-		if ( name == 'hpd1') {$.getScript("dictionary/pd1_Pali_Indo_sc2016_pi2id-maindata-v1.js"); }
-		if ( name == 'hpe1') {$.getScript("dictionary/pe1_Pali_English_sc2016_pi2en-maindata-v1.2.js"); }
-		if ( name == 'hpe2') {$.getScript("dictionary/pe2_Pali_English_Dictionary_extract_DPR_2018.js"); }
-		if ( name == 'hpe3') {$.getScript("dictionary/pe3_Pali_English_Dictionary_by_PaliTextSociety.js"); }
-		if ( name == 'hpe4') {$.getScript("dictionary/pe4_Pali_English_Declension_Dict_@DPR_2018.js"); }
-		if ( name == 'hpe5') {$.getScript("dictionary/pe5_Pali_Grammar_Dictionary@DPR_2018.js"); }
-		if ( name == 'hpe6') {$.getScript("dictionary/pe6_Pali_Proper_Names_G_P_Malalasekera@2018.js"); }
-		if ( name == 'hpg1') {$.getScript("dictionary/pg1_Pali_Germany_sc2016_pi2de-maindata-v1.2.js"); }
-		if ( name == 'hpm1') {$.getScript("dictionary/pm1_Pali_Word_Grammar_@2018.js"); }
-		if ( name == 'hpm2') {$.getScript("dictionary/pm2_Tipitaka_Pali_Myanmar_@2018.js"); }
-		if ( name == 'hpm3') {$.getScript("dictionary/pm3_Pali_Myanmar_Dictionary_@U_Hau_Sein_2018.js"); }
-		if ( name == 'hpm4') {$.getScript("dictionary/pm4_Pali_Roots_Dictionary_@2018.js"); }
-		if ( name == 'hpv1') {$.getScript("dictionary/pv1_Pali_Viet_Dictionary_by_ngaiBuuChon_stardict.js"); }
-		if ( name == 'hpv2') {$.getScript("dictionary/pv2_Pali_Viet_Abhi-Terms_by_ngaiTinhSu_Stardict.js"); }
-		if ( name == 'hpv3') {$.getScript("dictionary/pv3_Pali_Viet_Vinaya-Terms_by_VenGiacNguyenBhikkhu.js"); }
-		if ( name == 'hse1') {$.getScript("dictionary/se1_A_Sanskrit_English_Dictionary_Monier_Williams@1899.js"); }
-		
-	} else {
-		aryTemp[v0] = '0';
-	}
-}
-document.getElementById('TmpDictionary').innerHTML = tmpDictionary;
 
 /*
 if (dict_in_use == 0) {		//pe4
@@ -165,9 +113,113 @@ if (dict_in_use == 0) {		//pe4
 }
 */
 
-if ((hee1 == 1)) { 
-	ary_dict[0] = 'hee1';
-}	// English - English Dictionary
+initDictionaries();
+
+
+function initDictionaries(){
+
+	tmpDictionary = "";
+
+    val =
+	localStorage.getItem('hpc1') + 'hpc1' + '@' + 
+	localStorage.getItem('hpc2') + 'hpc2' + '@' +
+	localStorage.getItem('hpd1') + 'hpd1' + '@' +
+	localStorage.getItem('hpe1') + 'hpe1' + '@' + 
+	localStorage.getItem('hpe2') + 'hpe2' + '@' +
+	localStorage.getItem('hpe3') + 'hpe3' + '@' + 
+	localStorage.getItem('hpe4') + 'hpe4' + '@' +
+	localStorage.getItem('hpe5') + 'hpe5' + '@' +
+	localStorage.getItem('hpe6') + 'hpe6' + '@' +
+	localStorage.getItem('hpg1') + 'hpg1' + '@' +
+	localStorage.getItem('hpm1') + 'hpm1' + '@' + 
+	localStorage.getItem('hpm2') + 'hpm2' + '@' +
+	localStorage.getItem('hpm3') + 'hpm3' + '@' + 
+	localStorage.getItem('hpm4') + 'hpm4' + '@' +
+	localStorage.getItem('hpv1') + 'hpv1' + '@' + 
+	localStorage.getItem('hpv2') + 'hpv2' + '@' +
+	localStorage.getItem('hpv3') + 'hpv3' + '@' +
+	localStorage.getItem('hse1') + 'hse1';
+
+	ary = [];
+    ary = val.split('@');
+  
+  	ary.sort();
+  
+
+	dict_in_use = 0;
+	for (var i in ary) {
+		var val = ary[i].substring(0, 3);
+		var name = ary[i].substring(3);
+	
+		v1 = localStorage.getItem(name);
+		if (!v1) {
+			document.write = localStorage.setItem(name, '000'); 	
+			val = '000';
+		}
+	
+		v0 = name.substring(1, 4);
+		v1 = localStorage.getItem('i' + v0);
+		if (!v1) {
+			v1 = v0;
+			document.write = localStorage.setItem('i' + v0, v1); 	
+		}
+		aryAbbr[v0] = v1;		// v0=pc1,pc2.. v1=Abbr. Name
+		aryTemp[v0] = '1';		// 1 = ON
+	
+		//alert(name);
+		if ((val != '000') && (val != 'nul')) {
+			tmpDictionary += '<span class="dictionary-item">';
+			tmpDictionary = tmpDictionary + '<input id="j' + v0 + '" type="checkbox" onclick="TmpDictionarySave(\'' + v0 + '\');" checked></input>'; 
+			tmpDictionary = tmpDictionary + '<label for="j' + v0 + '" style="font-size:12pt;">&nbsp;' + aryAbbr[v0] + '&nbsp;</label>&nbsp;&nbsp;';
+			tmpDictionary += '</span>';
+	
+			dict_in_use++;
+			ary_dict[dict_in_use] = name;
+			
+			if ( name == 'hpc1') {$.getScript("dictionary/pc1_Pali_Zh_sc2016_pi2zh-maindata-v1.js"); }
+			if ( name == 'hpc2') {$.getScript("dictionary/pc2_Pali_Zh_12_in_1@2018.js"); }
+			if ( name == 'hpd1') {$.getScript("dictionary/pd1_Pali_Indo_sc2016_pi2id-maindata-v1.js"); }
+			if ( name == 'hpe1') {$.getScript("dictionary/pe1_Pali_English_sc2016_pi2en-maindata-v1.2.js"); }
+			if ( name == 'hpe2') {$.getScript("dictionary/pe2_Pali_English_Dictionary_extract_DPR_2018.js"); }
+			if ( name == 'hpe3') {$.getScript("dictionary/pe3_Pali_English_Dictionary_by_PaliTextSociety.js"); }
+			if ( name == 'hpe4') {$.getScript("dictionary/pe4_Pali_English_Declension_Dict_@DPR_2018.js"); }
+			if ( name == 'hpe5') {$.getScript("dictionary/pe5_Pali_Grammar_Dictionary@DPR_2018.js"); }
+			if ( name == 'hpe6') {$.getScript("dictionary/pe6_Pali_Proper_Names_G_P_Malalasekera@2018.js"); }
+			if ( name == 'hpg1') {$.getScript("dictionary/pg1_Pali_Germany_sc2016_pi2de-maindata-v1.2.js"); }
+			if ( name == 'hpm1') {$.getScript("dictionary/pm1_Pali_Word_Grammar_@2018.js"); }
+			if ( name == 'hpm2') {$.getScript("dictionary/pm2_Tipitaka_Pali_Myanmar_@2018.js"); }
+			if ( name == 'hpm3') {$.getScript("dictionary/pm3_Pali_Myanmar_Dictionary_@U_Hau_Sein_2018.js"); }
+			if ( name == 'hpm4') {$.getScript("dictionary/pm4_Pali_Roots_Dictionary_@2018.js"); }
+			if ( name == 'hpv1') {$.getScript("dictionary/pv1_Pali_Viet_Dictionary_by_ngaiBuuChon_stardict.js"); }
+			if ( name == 'hpv2') {$.getScript("dictionary/pv2_Pali_Viet_Abhi-Terms_by_ngaiTinhSu_Stardict.js"); }
+			if ( name == 'hpv3') {$.getScript("dictionary/pv3_Pali_Viet_Vinaya-Terms_by_VenGiacNguyenBhikkhu.js"); }
+			if ( name == 'hse1') {$.getScript("dictionary/se1_A_Sanskrit_English_Dictionary_Monier_Williams@1899.js"); }
+			
+		} else {
+			aryTemp[v0] = '0';
+		}
+	}
+	document.getElementById('TmpDictionary').innerHTML = tmpDictionary;
+	
+
+
+
+
+
+
+
+
+
+	if ((hee1 == 1)) { 
+		ary_dict[0] = 'hee1';
+	}	// English - English Dictionary
+	
+	
+}
+
+
+
+
 
 function word_click() {
 	/*
