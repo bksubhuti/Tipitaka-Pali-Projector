@@ -1716,17 +1716,16 @@
                                 <td valign="top">
                                     <strong style="color:#880000;">Select Background Color:</strong>
                                     <br>
-                                    <input id='panel_bg_color' name="panel_bg_color" type="color" value = "#ffffff" onChange="PanelBGColorChange(value)"/>
-                                    <br><br>
+                                    <form action="" style="width: 400px;">
+                                    <div class="form-item"><label for="color2">Color:</label><input type="text"id="panel_bg_color" name="panel_bg_color" value="#f0f0f0" /></div><div id="picker2"></div>
+                                    </form>
+
                                 </td>
                                 <td valign="top">
                                     <strong style="color:#880000;">Select Font Color:</strong>
                                     <br>
-                                    <br>
-                                    <div id="demo" style="color: red; font-size: 1.4em">jQuery.js is not present. You must install jQuery in this folder for the demo to work.</div>
-
                                     <form action="" style="width: 400px;">
-                                    <div class="form-item"><label for="color">Color:</label><input type="text"id="panel_font_color" name="panel_font_color" value="#123456" /></div><div id="picker"></div>
+                                    <div class="form-item"><label for="color">:</label><input type="text"id="panel_font_color" name="panel_font_color" value="#123456" /></div><div id="picker"></div>
                                     </form>
 
                                     
@@ -2201,21 +2200,22 @@
     }, false);
 
     $(document).ready(function() {
-        $('#demo').hide();
-    $('#picker').farbtastic('#panel_font_color');
-    var picker1 = $.farbtastic('#panel_font_color');  //picker variable
-    picker1.setColor("#b6b6ff"); //set initial color
-    picker1.linkTo(PanelFontColorChange); //link to callback
+        $('#picker').farbtastic('#panel_font_color');
+        var mypicker = $.farbtastic('#picker');        
+        mypicker.linkTo(PanelFontColorChange); //link to callback
+
+        $('#picker2').farbtastic('#panel_bg_color');     
+        var mypicker2 = $.farbtastic('#picker2');        
+        mypicker2.linkTo(PanelBGColorChange); //link to callback
+        // while I'm able to get a call back.. I'm not able to 
+        // have the text box change color as well.. only one or the other.
+
+
+
   });
 
-  function PanelFontColorChange(color){
-      alert("test");
-    localStorage.setItem("panel_font_color", color);
-    initPreferences();
-}
+  
 
-
-    
 </script>
 
 

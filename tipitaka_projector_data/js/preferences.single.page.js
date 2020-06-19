@@ -633,6 +633,7 @@ function initPreferences(){
     $('h3').css('color', r1);
     document.getElementById("main_table").style.backgroundColor = bg_color;
     document.getElementById("main_div").style.backgroundColor = panel_bg_color;
+    document.getElementById("main_div").style.color = panel_font_color;
 
 
 
@@ -990,8 +991,16 @@ function getVersion() {
 
 }    //getVersion function
 
-function PanelBGColorChange(value){
-    localStorage.setItem("panel_bg_color", value);
+function PanelBGColorChange(color){
+
+    // works on load but not here..
+    localStorage.setItem("panel_bg_color", color);
     initPreferences();
 }
+
+function PanelFontColorChange(color){
+    localStorage.setItem("panel_font_color", color);
+    initPreferences();
+}
+
 
