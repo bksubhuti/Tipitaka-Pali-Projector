@@ -12,7 +12,8 @@
     <link rel="stylesheet" type="text/css" href="css/js.tree.style.min.css"/>
     <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.css"/>
     <link rel="stylesheet" type="text/css" href="single.page.css"/>
-
+    <link rel="stylesheet" type="text/css" href="js/farbtastic12/farbtastic/farbtastic.css"  />
+ 
 
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/jquery-ui-1.12.1/jquery-ui.js"></script>
@@ -21,6 +22,8 @@
     <script src="js/preferences.single.page.js"></script>
     <script src="js/savefile.js"></script>
     <script src="js/rgbcolor.js"></script>
+    <script src="js/farbtastic12/farbtastic/farbtastic.js"></script>
+ 
 
     <script>
         var UseSinglePageLoading = true;
@@ -131,6 +134,8 @@
     $(function () {
         const width = () => $(window).width() - 40;
         const height = () => $(window).height() - 40;
+ 
+
 
         $("#prefsDialog").dialog({
             autoOpen: false,
@@ -1717,8 +1722,14 @@
                                 <td valign="top">
                                     <strong style="color:#880000;">Select Font Color:</strong>
                                     <br>
-                                    <input id='panel_font_color' name="panel_font_color" type="color" value = "#000000" onChange="PanelFontColorChange(value)"/>
                                     <br>
+                                    <div id="demo" style="color: red; font-size: 1.4em">jQuery.js is not present. You must install jQuery in this folder for the demo to work.</div>
+
+                                    <form action="" style="width: 400px;">
+                                    <div class="form-item"><label for="color">Color:</label><input type="text"id="panel_font_color" name="panel_font_color" value="#123456" /></div><div id="picker"></div>
+                                    </form>
+
+                                    
                                     <br>
                                     <br>
                                 </td>
@@ -2188,6 +2199,20 @@
     window.addEventListener("keyup", function (e) {
         if (e.keyCode == 27) history.back();
     }, false);
+
+    $(document).ready(function() {
+        $('#demo').hide();
+    $('#picker').farbtastic('#panel_font_color');
+    var picker1 = $.farbtastic('#panel_font_color');  //picker variable
+    picker1.setColor("#b6b6ff"); //set initial color
+    picker1.linkTo(PanelFontColorChange); //link to callback
+  });
+
+  function PanelFontColorChange(color){
+      alert("test");
+    localStorage.setItem("panel_font_color", color);
+    initPreferences();
+}
 
 
     

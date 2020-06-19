@@ -246,13 +246,11 @@ function ChooseSelect(key) {
     }
 
 
-    if (key == PaliFontSize){
+    if (key == 'PaliFontSize'){
 
         localStorage.setItem("PaliFontSize", val);
+        // call the text size routine found in all_broswer_stllookup.. 
     }
-
-
-
 
     if (key == 'bg_color'){
         document.body.style.background = val;
@@ -342,12 +340,9 @@ function ChooseSelect(key) {
 
     }
 
-    //  Reset the colors here.
-    // get the font color and set it 
-    var r1 = localStorage.getItem('r1');
-    $('h2').css('color', r1);
-    $('h3').css('color', r1);
-
+    // this will set the colors adn everything.   
+    // located finalscript.js; 
+    setTableStyling();
  
 } 
 
@@ -763,7 +758,40 @@ function initPreferences(){
     document.getElementById("panel_bg_color").value = panel_bg_color;
         
     
-    
+    ///  font stuff.. set the other active changes to panel
+
+    // set the font color for the dictionary
+    r1 = localStorage.getItem("r1");
+    $('.dict').css('color', r1);
+    $('li').css('color', r1);
+
+
+    lineheight = localStorage.getItem('contentlineheight');
+    if (!lineheight) {
+        lineheight = '200';
+    }
+    document.getElementById('main_div').style.lineHeight= lineheight + '%';
+
+    fontsize = localStorage.getItem('contentfontsize');
+    if (!fontsize) {
+        fontsize = '12';
+    }
+    $(".pages").css('font-size', fontsize + 'pt');
+    $(".pages2").css('font-size', fontsize + 'pt');
+    v1 = parseInt(fontsize * 0.9 + 0.5);
+    //page3ResultStyle = page3ResultStyle + 'font-size:' + v1 + 'pt;';
+
+    fontname =  localStorage.getItem('contentfontname');
+    if (!fontname) {
+        fontname = 'Tahoma';
+    }
+    $(".pages").css('font-family', fontname);
+    $(".pages2").css('font-family', fontname);
+    //page3ResultStyle = page3ResultStyle + 'font-family:"' + fontname +'";';
+
+
+
+
 
     // Panel FontColor
     
@@ -966,9 +994,4 @@ function PanelBGColorChange(value){
     localStorage.setItem("panel_bg_color", value);
     initPreferences();
 }
-function PanelFontColorChange(value){
-    localStorage.setItem("panel_font_color", value);
-    initPreferences();
-}
-
 
