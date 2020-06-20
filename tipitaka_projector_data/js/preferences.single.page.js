@@ -578,17 +578,29 @@ var setPanelFontColorInput = function setPanelFontColorInput() {
 };
 
 var setPanelBackgroundColorInput = function setPanelBackgroundColorInput() {
-    var panel_bg_color = localStorage.getItem("panel_bg_color");
+    var panel_bg_color = localStorage.getItem("panel_bg_color") || '#fff000';
     document.getElementById('panel_bg_color').value = panel_bg_color;
     return panel_bg_color;
 }
 
-function initPreferences(){
-
-    // panel background and font colors
+var updatePanelColors = function updatePanelColors(panel_bg_color, panel_font_color) {
     var panel_bg_color = setPanelBackgroundColorInput();
     var panel_font_color = setPanelFontColorInput();
 
+    document.getElementById("main_div").style.backgroundColor = panel_bg_color;
+    document.getElementById("main_div").style.color = panel_font_color;
+    
+    var x = document.getElementById('colortable').getElementsByTagName('td');
+    x[0].style.backgroundColor =  panel_bg_color ;//'rgb(' + colorR + ',' + colorG + ',' + colorB + ')';
+    x[0].style.color = panel_font_color; //'rgb(' + fontcolorR + ',' + fontcolorG + ',' + fontcolorB + ')';
+    x[0].style.lineHeight = contentlineheight + '%';
+
+    document.getElementById('showbackground').innerHTML = 'Background = ' + panel_bg_color;
+    document.getElementById('showfontcolor').innerHTML = 'Font Color = ' + panel_font_color;
+
+}
+
+function initPreferences(){
 
     // View Left
     var size_left = localStorage.getItem("size_left");
@@ -625,8 +637,8 @@ function initPreferences(){
     };
     ['main_table', 'main_div'].forEach(id => setBg(id, bg_color));
   */  
- document.getElementById("main_table").style.backgroundColor = bg_color;
- document.getElementById("main_div").style.backgroundColor = bg_color;
+ 
+    updatePanelColors();
 
 
     // check to see if themes is set or not and load it.
@@ -641,8 +653,7 @@ function initPreferences(){
     $('h2').css('color', r1);
     $('h3').css('color', r1);
     document.getElementById("main_table").style.backgroundColor = bg_color;
-    document.getElementById("main_div").style.backgroundColor = panel_bg_color;
-    document.getElementById("main_div").style.color = panel_font_color;
+    
 
 
 
@@ -762,10 +773,6 @@ function initPreferences(){
     document.getElementById('contentfontsize').value = contentfontsize;
 
 
-    if (!panel_bg_color){ // debug does not have the value
-        panel_bg_color = '#fff000';
-    }
-    document.getElementById("panel_bg_color").value = panel_bg_color;
         
     
     ///  font stuff.. set the other active changes to panel
@@ -812,24 +819,20 @@ function initPreferences(){
         contentlineheight = '200';
         document.write = localStorage.setItem("contentlineheight", contentlineheight); 
     } 
+    
+    var x = document.getElementById('colortable').getElementsByTagName('td');
+    x[0].style.lineHeight = contentlineheight + '%';
+    
     document.getElementById('contentlineheight').value = contentlineheight;
 
-    var x = document.getElementById('colortable').getElementsByTagName('td');
-    x[0].style.backgroundColor =  panel_bg_color ;//'rgb(' + colorR + ',' + colorG + ',' + colorB + ')';
-    x[0].style.color = panel_font_color; //'rgb(' + fontcolorR + ',' + fontcolorG + ',' + fontcolorB + ')';
-    x[0].style.lineHeight = contentlineheight + '%';
-
-    document.getElementById('showbackground').innerHTML = 'Background = ' + panel_bg_color;
+    
     document.getElementById('showfontnamesize').innerHTML = contentfontname + ' ' +contentfontsize + 'pt';
-    document.getElementById('showfontcolor').innerHTML = 'Font Color = ' + panel_font_color;
- 
     document.getElementById('showfontnamesize').style.fontFamily = contentfontname;
     document.getElementById('showfontnamesize').style.fontSize = contentfontsize + 'pt';
     document.getElementById('showbackground').style.fontFamily = contentfontname;
     document.getElementById('showbackground').style.fontSize = contentfontsize + 'pt';
     document.getElementById('showfontcolor').style.fontFamily = contentfontname;
     document.getElementById('showfontcolor').style.fontSize = contentfontsize + 'pt';
-    
     
     //--------------------------------------------------------------------------------
     //End of Panel
@@ -1002,12 +1005,12 @@ function getVersion() {
 
 function PanelBGColorChange(color){
     localStorage.setItem("panel_bg_color", color);
-    setPanelBackgroundColorInput();
+    updatePanelColors();
 }
 
 function PanelFontColorChange(color){
     localStorage.setItem("panel_font_color", color);
-    setPanelFontColorInput();
+    updatePanelColors();
 }
 
 
