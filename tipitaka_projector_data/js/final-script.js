@@ -212,14 +212,18 @@ if (Sr_key) {
 var Sr_id = localStorage.getItem('Sr_id'+ html_no);
 
 var displayBook = function() {
+
 	for (var idx in P_HTM) {
 		var Sr_run = '';
 		if (Sr_key) {
 			if (Sr_id) {
 				if (Sr_id.indexOf(';' + idx + ';') != -1) {
-					var Sr_run = '1';
+					Sr_run = '1';
 				}
 			}
+		}
+		if (DEBUG) {
+			console.log(`Displaying book. Sr_key = "${Sr_key}". Sr_run: "${Sr_run}".`);
 		}
 
 		var pali2 = P_HTM[idx].split('*');		// right-side
@@ -288,28 +292,27 @@ var displayBook = function() {
 		document.getElementById('p' +idx).innerHTML = s1;
 		document.getElementById('m' +idx).innerHTML = s2;
 	}
+
+	if (Sr_id != null) {
+		document.getElementById('Sr_Div').style.visibility = '';
+		document.getElementById('Sr_Next').innerHTML = Sr_id.split(';').length - 2;
+		if (Sr_id.length < 2) {
+			document.getElementById('Sr_Div').style.visibility = 'hidden';
+		}
+	}
 };
 
 if (!SingleLoad) {
 	displayBook();
 }
 
+
+
+
 if (localStorage.getItem('Pali_note') == 'none') {
 	$(".note").css("display", 'none');
 } else {
 	$(".note").css("display", 'inline');
-}
-
-
-
-
-
-if (Sr_id != null) {
-	document.getElementById('Sr_Div').style.visibility = '';
-	document.getElementById('Sr_Next').innerHTML = Sr_id.split(';').length - 2;
-	if (Sr_id.length < 2) {
-		document.getElementById('Sr_Div').style.visibility = 'hidden';
-	}
 }
 
 
