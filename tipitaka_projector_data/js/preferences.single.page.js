@@ -965,11 +965,17 @@ function getCurrentVersion(){
         rawFile.onreadystatechange = function () {
             if (rawFile.readyState === 4) {
                 if (rawFile.status === 200 || rawFile.status == 0) {
+                
+                if (rawFile.responseText){
+                    var versiontxt = JSON.parse(rawFile.responseText) ;                
+                    document.getElementById('currentversion').innerHTML = '<b>' + versiontxt.versionno +'</b>'; 
+                    localStorage.setItem('versionno', versiontxt.versionno);
+                }
+                else{
 
-                var versiontxt = JSON.parse(rawFile.responseText) ;
-    
-                document.getElementById('currentversion').innerHTML = '<b>' + versiontxt.versionno +'</b>'; 
-                localStorage.setItem('versionno', versiontxt.versionno)
+                    alert("problem loading file: " + versionfile );
+                }
+
             } //readystate =200
         }//readystate 4
     } //readstaychange
