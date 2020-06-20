@@ -1,7 +1,9 @@
 function Sr_Go(val) {
 	if (val == '0') {
 		document.getElementById('Sr_Div').style.visibility = 'hidden';
-		document.write = localStorage.setItem('Sr_id'+ html_no, ''); 
+		localStorage.setItem('Sr_id'+ html_no, '');
+		location.hash = '';
+
 	} else {
 		var old = Number(document.getElementById('Sr_Now').innerHTML);
 		var last = Number(document.getElementById('Sr_Next').innerHTML);
@@ -28,10 +30,11 @@ function SrClear() {
 	document.getElementById('Sr_Div').style.visibility = 'hidden';
     for (i in localStorage) {
     	if (i.substring(0, 3) == 'Sr_') {
-      		document.write = localStorage.setItem(i, '');
-      		document.write = localStorage.removeItem(i);
+      		localStorage.setItem(i, '');
+      		localStorage.removeItem(i);
       	}	
-    } 
+    }
+    location.hash = '';
 }
 
 window.onload = function () { 
