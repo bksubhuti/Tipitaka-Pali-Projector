@@ -136,20 +136,17 @@
 
         $("#prefsDialog").dialog({
             autoOpen: false,
-            resizable: false,
-            draggable: false,
-
-            minWidth: width(),
-            minHeight: height(),
+            resizable: true,
+            draggable: true,
 
             maxHeight: width(),
             maxWidth: height(),
+            
+            width: Math.min(900, width()),
 
             open: function () {
                 $(this).dialog('option', {
-                    minWidth: width(),
                     maxWidth: width(),
-                    minHeight: height(),
                     maxHeight: height()
                 });
             }
