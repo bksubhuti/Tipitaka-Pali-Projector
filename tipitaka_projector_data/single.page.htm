@@ -769,7 +769,7 @@
 
     </table>
     <script type="text/javascript">
-        var loadBook = function loadBook(bookId) {
+        var loadBook = function loadBook(bookId, onBookLoadingDone) {
             var bookInfo = bookData.flat[bookId];
             var start = new Date();
             if (DEBUG) {
@@ -827,6 +827,10 @@
                 // Load the book text content, paragraph data etc
                 //
                 displayBook();
+                
+                if (onBookLoadingDone) {
+                    onBookLoadingDone();
+                }
             });
         }
     </script>
@@ -1900,7 +1904,7 @@
         }
         if (hash.indexOf('#/book/' === 0)) {
             const parsedBookInfo = hash.match(/#\/book\/(\d+)\/(\d+)/i);
-            if (parsedBookInfo.length > 1) {
+            if (parsedBookInfo.length > 0) {
             
                 // This "html_no" variable is used in many scripts, here it's reset
                 // so that the Sr_Go function in z_search_navigator.js works
@@ -1908,7 +1912,6 @@
                 html_no = parsedBookInfo[1];
 
                 const bookId = parseInt(html_no);
-                const number = parseInt(parsedBookInfo[2]);
 
                 // Get data relevant to the search and the "Sr" widget
                 //
@@ -1917,12 +1920,16 @@
                     Sr_ary = Sr_key.split(' ');
                 }
                 Sr_id = localStorage.getItem('Sr_id'+ bookId);
-                
+
                 // Load the book content
                 //
-                loadBook(bookId);
-
-                $('#search').dialog('close');
+                loadBook(bookId, () => {
+                    // Set the search navigator position
+                    //
+                    setSearchNavigator();
+                    
+                    $('#search').dialog('close');
+                });
             }
         }
         

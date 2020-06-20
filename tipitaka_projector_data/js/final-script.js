@@ -223,7 +223,7 @@ var displayBook = function() {
 			}
 		}
 		if (DEBUG) {
-			console.log(`Displaying book. Sr_key = "${Sr_key}". Sr_run: "${Sr_run}".`);
+			// console.log(`Displaying book. Sr_key = "${Sr_key}". Sr_run: "${Sr_run}".`);
 		}
 
 		var pali2 = P_HTM[idx].split('*');		// right-side
@@ -526,20 +526,31 @@ $(".pages2").css('font-family', fontname);
 
 change_tab('page1');
 
+var setSearchNavigator = function() {
+	if (localStorage.getItem('Sr_id'+ html_no)) {
 
-if (localStorage.getItem('Sr_id'+ html_no)) {
-
-	var ary1 = localStorage.getItem('Sr_id'+ html_no).split(';');
-	var n = Number(location.search.split('n=')[1]);
-	if (0 < n) {
-		for (i in ary1) {
-			if (ary1[i] == n ) {
-				break;
+			var ary1 = localStorage.getItem('Sr_id'+ html_no).split(';');
+		var n = Number(location.search.split('n=')[1]);
+		if (SingleLoad && location.hash.indexOf('#/book/') === 0) {
+			const parsedBookInfo = location.hash.match(/#\/book\/(\d+)\/(\d+)/i);
+			if (parsedBookInfo.length > 1) {
+				n = parseInt(parsedBookInfo[2]);
 			}
 		}
-		document.getElementById('Sr' + ary1[i]).scrollIntoView();
-		document.getElementById('Sr_Now').innerHTML = (Number(i));
+		if (0 < n) {
+			for (i in ary1) {
+				if (ary1[i] == n ) {
+					break;
+				}
+			}
+			document.getElementById('Sr' + ary1[i]).scrollIntoView();
+			document.getElementById('Sr_Now').innerHTML = (Number(i));
+		}
 	}
+};
+
+if (!SingleLoad) {
+	setSearchNavigator();
 }
 
 // go to history position  ------------------------
