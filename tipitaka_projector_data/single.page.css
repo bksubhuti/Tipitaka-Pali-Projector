@@ -133,6 +133,9 @@
     font-family: sans-serif;
     font-size: 18px;
 }
+.grey-button.letter.free {
+    margin-left: 20px;
+}
 
 .grey-button.letter.selected {
     font-weight: bold;
@@ -383,3 +386,38 @@ a:link {
     }
 }
 
+
+
+
+
+#book-area {
+            width: calc(100% - 50px);
+            height: calc(100% - 20px);
+            box-shadow: 0 0 4px #ccc;
+            border-radius: 5px;
+            padding: 0;
+            position: relative;
+            margin: 10px auto;
+            background: white url(ajax-loader.gif) center center no-repeat;
+        }
+        .arrow {
+          position: absolute;
+          top: 50%;
+          margin-top: -32px;
+          font-size: 64px;
+          color: #E2E2E2;
+          font-family: arial, sans-serif;
+          font-weight: bold;
+          cursor: pointer;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          user-select: none;
+          text-decoration: none;
+        }
+        #prev {
+          left: 0;
+        }
+
+        #next {
+          right: 0;
+        }

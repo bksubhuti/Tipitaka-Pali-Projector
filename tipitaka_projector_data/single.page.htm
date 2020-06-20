@@ -23,7 +23,9 @@
     <script src="js/savefile.js"></script>
     <script src="js/rgbcolor.js"></script>
     <script src="js/farbtastic12/farbtastic/farbtastic.js"></script>
- 
+
+    <script src="js/epub.min.js"></script>
+    <script src="js/jszip.min.js"></script>
 
     <script>
         var UseSinglePageLoading = true;
@@ -94,6 +96,72 @@
             const width = () => $(window).width() - 40;
             const height = () => $(window).height() - 40;
 
+// ================================================================================
+
+    var epubRendition;
+    var loadEpubDemo = function loadEbookDemo() {
+        var book = ePub("epub/dn_en_sujato.epub");
+        var rendition = epubRendition = book.renderTo("book-area", {width: '100%', height: '100%', spread: "always"});
+        var displayed = rendition.display();
+        book.ready.then(() => {
+              var next = document.getElementById("next");
+
+              next.addEventListener("click", function(e){
+                book.package.metadata.direction === "rtl" ? rendition.prev() : rendition.next();
+                e.preventDefault();
+              }, false);
+
+              var prev = document.getElementById("prev");
+              prev.addEventListener("click", function(e){
+                book.package.metadata.direction === "rtl" ? rendition.next() : rendition.prev();
+                e.preventDefault();
+              }, false);
+
+              var keyListener = function(e){
+
+                // Left Key
+                if ((e.keyCode || e.which) == 37) {
+                  book.package.metadata.direction === "rtl" ? rendition.next() : rendition.prev();
+                }
+
+                // Right Key
+                if ((e.keyCode || e.which) == 39) {
+                  book.package.metadata.direction === "rtl" ? rendition.prev() : rendition.next();
+                }
+
+              };
+
+              rendition.on("keyup", keyListener);
+              document.addEventListener("keyup", keyListener, false);
+        });
+
+    }
+    loadEpubDemo();
+    
+    $('#epub').dialog({
+                autoOpen: false,
+                resizable: true,
+                draggable: true,
+
+                maxHeight: width(),
+                maxWidth: height(),
+                
+                width: Math.min(width(), 950),
+
+                open: function () {
+                    $(this).dialog('option', {
+                        maxHeight: height(),
+                        maxWidth: width(),
+                    });
+                    epubRendition.resize($(this).outerWidth() - 88, $(this).outerHeight() - 36);
+                    epubRendition.display();
+                },
+                resizeStop: function(event, ui) {
+                    epubRendition.resize($(this).outerWidth() - 88, $(this).outerHeight() - 36);
+                    epubRendition.display();
+                }
+            });
+// ================================================================================
 
 //////////////////////////////////////////////////////////////////////////
 /////
@@ -174,6 +242,10 @@
         var showDialog = function showDialog(dialogId) {
             $(dialogId).dialog('open');
         };
+        
+        var showEpubDemo = function showEpubDemo() {
+            showDialog('#epub');
+        }
 
         $.ajax({
             url: 'books.json',
@@ -223,6 +295,10 @@
 
         <div class="notselected grey-button letter" id="Pali3" title="Ṭīkā" onClick="MATurlGo('3')">
             T
+        </div>
+        
+        <div class="notselected grey-button letter free" title="EPUB Demo" onClick="showEpubDemo()">
+            E
         </div>
 
     </div>
@@ -912,6 +988,12 @@
 
 <div id="index" title="Books Index" class="app-dialog">
     <div id="books-tree"></div>
+</div>
+
+<div id="epub" title="EPUB Reader" class="app-dialog">
+    <div id="book-area"></div>
+    <a id="prev" href="#prev" class="arrow">‹</a>
+    <a id="next" href="#next" class="arrow">›</a>
 </div>
 
 <div id="search" title="Search" class="app-dialog">
