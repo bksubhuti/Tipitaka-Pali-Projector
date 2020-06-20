@@ -105,21 +105,18 @@
 
             $('#search').dialog({
                 autoOpen: false,
-                resizable: false,
-                draggable: false,
-
-                minWidth: width(),
-                minHeight: height(),
+                resizable: true,
+                draggable: true,
 
                 maxHeight: width(),
                 maxWidth: height(),
+                
+                width: Math.min(width(), 950),
 
                 open: function () {
                     $(this).dialog('option', {
-                        minWidth: width(),
+                        maxHeight: height(),
                         maxWidth: width(),
-                        minHeight: height(),
-                        maxHeight: height()
                     });
                 }
             });
