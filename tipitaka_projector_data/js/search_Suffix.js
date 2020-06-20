@@ -121,7 +121,7 @@
 														tmp = tmp.substring(pos + 2);
 
 														for (j in ary_key) {
-															tmp = replacei(tmp, j, sub=> '<a href="' + i + '.htm?n=' + tmp_id + '" target=_blank style="background:yellow">' + j + "</a>");
+															tmp = replacei(tmp, j, sub=> '<a class="search-result" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + j + "</a>");
 														}
 
 														pali = pali + tmp;
