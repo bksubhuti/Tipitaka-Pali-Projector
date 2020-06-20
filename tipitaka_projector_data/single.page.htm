@@ -2234,19 +2234,81 @@
         if (e.keyCode == 27) history.back();
     }, false);
 
+    var hexToHSL = function hexToHSL(H) {
+      // Convert hex to RGB first
+      let r = 0, g = 0, b = 0;
+      if (H.length == 4) {
+        r = "0x" + H[1] + H[1];
+        g = "0x" + H[2] + H[2];
+        b = "0x" + H[3] + H[3];
+      } else if (H.length == 7) {
+        r = "0x" + H[1] + H[2];
+        g = "0x" + H[3] + H[4];
+        b = "0x" + H[5] + H[6];
+      }
+      // Then to HSL
+      r /= 255;
+      g /= 255;
+      b /= 255;
+      let cmin = Math.min(r,g,b),
+          cmax = Math.max(r,g,b),
+          delta = cmax - cmin,
+          h = 0,
+          s = 0,
+          l = 0;
+
+      if (delta == 0)
+        h = 0;
+      else if (cmax == r)
+        h = ((g - b) / delta) % 6;
+      else if (cmax == g)
+        h = (b - r) / delta + 2;
+      else
+        h = (r - g) / delta + 4;
+
+      h = Math.round(h * 60);
+
+      if (h < 0)
+        h += 360;
+
+      l = (cmax + cmin) / 2;
+      s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+      s = +(s * 100).toFixed(1);
+      l = +(l * 100).toFixed(1);
+
+      return {hue: h, saturation: s, lightness: l};
+    };
+
+    var ensureTextIsRedable = (backgroundColor, $element) => {
+        const hsl = hexToHSL(backgroundColor);
+        if (hsl.lightness > 50) {
+            $element.css('color', '#000000');
+        } else {
+            $element.css('color', '#FFFfff');
+        }
+    };
+
     $(document).ready(function() {
-        $('#picker').farbtastic('#panel_font_color');
-        var mypicker = $.farbtastic('#picker');        
-        mypicker.linkTo(PanelFontColorChange); //link to callback
 
-        $('#picker2').farbtastic('#panel_bg_color');     
-        var mypicker2 = $.farbtastic('#picker2');        
-        mypicker2.linkTo(PanelBGColorChange); //link to callback
-        // while I'm able to get a call back.. I'm not able to 
-        // have the text box change color as well.. only one or the other.
+        var $fontColorInput = $('#panel_font_color');
+        $.farbtastic('#picker').linkTo(function(color) {
+            ensureTextIsRedable(color, $fontColorInput);
+            $fontColorInput.css('background-color', color);
+            PanelFontColorChange(color);
+        });
 
-
-
+        var $backgroundColorInput = $('#panel_bg_color');
+        $.farbtastic('#picker2').linkTo(function(color) {
+            ensureTextIsRedable(color, $backgroundColorInput);
+            $backgroundColorInput.css('background-color', color);
+            PanelBGColorChange(color);
+        });
+        
+        const colorInputs = [$fontColorInput, $backgroundColorInput];
+        for (const $colorInput of colorInputs) {
+            $colorInput.css('background-color', $colorInput.val());
+            ensureTextIsRedable($colorInput.val(), $colorInput);
+        }
   });
 
   

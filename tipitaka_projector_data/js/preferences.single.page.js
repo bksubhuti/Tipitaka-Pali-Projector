@@ -571,14 +571,23 @@ window.onload = function () {
     initPreferences();
 }
 
+var setPanelFontColorInput = function setPanelFontColorInput() {
+    var panel_font_color = localStorage.getItem("panel_font_color");
+    document.getElementById('panel_font_color').value = panel_font_color;
+    return panel_font_color;
+};
+
+var setPanelBackgroundColorInput = function setPanelBackgroundColorInput() {
+    var panel_bg_color = localStorage.getItem("panel_bg_color");
+    document.getElementById('panel_bg_color').value = panel_bg_color;
+    return panel_bg_color;
+}
+
 function initPreferences(){
 
     // panel background and font colors
-    var panel_bg_color = localStorage.getItem("panel_bg_color");
-    document.getElementById('panel_bg_color').value = panel_bg_color;
-
-    var panel_font_color = localStorage.getItem("panel_font_color");
-    document.getElementById('panel_font_color').value = panel_font_color;
+    var panel_bg_color = setPanelBackgroundColorInput();
+    var panel_font_color = setPanelFontColorInput();
 
 
     // View Left
@@ -992,15 +1001,13 @@ function getVersion() {
 }    //getVersion function
 
 function PanelBGColorChange(color){
-
-    // works on load but not here..
     localStorage.setItem("panel_bg_color", color);
-    initPreferences();
+    setPanelBackgroundColorInput();
 }
 
 function PanelFontColorChange(color){
     localStorage.setItem("panel_font_color", color);
-    initPreferences();
+    setPanelFontColorInput();
 }
 
 
