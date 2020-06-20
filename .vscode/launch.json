@@ -2,11 +2,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch single.page.htm",
+            "name": "Launch index.htm",
             "type": "firefox",
             "request": "launch",
             "reAttach": true,
-            "file": "${workspaceFolder}/tipitaka_projector_data/single.page.htm"
+            "file": "${workspaceFolder}/tipitaka_projector_data/index.htm"
         }
     ]
 }

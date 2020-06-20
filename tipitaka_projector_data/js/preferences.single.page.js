@@ -911,28 +911,7 @@ function initPreferences(){
     document.getElementById('showspeed').innerHTML = 'Speed=' + speech_speed;
 
 
-    // get the version number.. always do this last in case the file read fails it will 
-    // cause the function to crash.
-    file = 'version.json'; 
-    var rawFile = new XMLHttpRequest();
-    try{
-        rawFile.open('GET', file, false);
-        rawFile.responseType = 'json';
-        rawFile.onreadystatechange = function () {
-        if (rawFile.readyState === 4) {
-            if (rawFile.status === 200 || rawFile.status == 0) {
-                var versiontxt = JSON.parse(rawFile.responseText) ;
-    
-                document.getElementById('currentversion').innerHTML = '<b>' + versiontxt.versionno +'</b>'; 
-                localStorage.setItem('versionno', versiontxt.versionno)
-            } //readystate =200
-        }//readystate 4
-    } //readstaychange
-    rawFile.send(null);
-    }//try
-    catch{
-        //do nothing.
-    }
+
 }
 
 function hideshowlogo(){
@@ -970,6 +949,38 @@ function enlarge()
    $('body').animate({ 'zoom': 4.2 }, 150); 
 
     alert('called');
+
+}
+
+
+function getCurrentVersion(){
+
+    // get the version number.. always do this last in case the file read fails it will 
+    // cause the function to crash.
+    versionfile = 'version.json'; 
+    var rawFile = new XMLHttpRequest();
+    
+    try {
+        rawFile.open('GET', versionfile, false);
+        rawFile.onreadystatechange = function () {
+            if (rawFile.readyState === 4) {
+                if (rawFile.status === 200 || rawFile.status == 0) {
+
+                var versiontxt = JSON.parse(rawFile.responseText) ;
+    
+                document.getElementById('currentversion').innerHTML = '<b>' + versiontxt.versionno +'</b>'; 
+                localStorage.setItem('versionno', versiontxt.versionno)
+            } //readystate =200
+        }//readystate 4
+    } //readstaychange
+    rawFile.send(null);
+    }//try
+    catch{
+        //do nothing.
+    }
+
+
+
 
 }
 
