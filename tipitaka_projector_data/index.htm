@@ -24,8 +24,8 @@
     <script src="js/rgbcolor.js"></script>
     <script src="js/farbtastic12/farbtastic/farbtastic.js"></script>
 
-    <script src="js/epub.min.js"></script>
-    <script src="js/jszip.min.js"></script>
+    <script src="js/epublib/epub.min.js"></script>
+    <script src="js/epublib/jszip.min.js"></script>
 
     <script>
         var UseSinglePageLoading = true;
@@ -146,7 +146,8 @@
                 maxHeight: width(),
                 maxWidth: height(),
                 
-                width: Math.min(width(), 950),
+                width: 500,
+                height: 850,
 
                 open: function () {
                     $(this).dialog('option', {
