@@ -453,13 +453,6 @@ for (i=30; i<=100; i=i+5) {
 	e.options.add(new Option(i +'%', h2));
 }
 
-e = document.getElementById('AnkiDictionary');
-for (i in aryTemp) {
-	if (aryTemp[i] == '1')	{	// enabled
-		e.options.add(new Option(aryAbbr[i], i));
-	}
-}
-
 
 // 6. Background-Color
 $('#main_div').css('backgroundColor', localStorage.getItem('bg_color'));
