@@ -107,7 +107,7 @@
 		// Load the opf
 		var book = ePub("epub/dn_en_sujato.epub");
 		var rendition = book.renderTo("book-area", {width: '100%', height: '100%', spread: "always"});
-		var displayed = rendition.display(currentSectionIndex);
+		var displayed = rendition.display();
 
 		book.loaded.navigation.then(function(toc){
 			var $select = document.getElementById("toc"),
@@ -130,7 +130,35 @@
 					return false;
 			};
 
+            var next = document.getElementById("next");
 
+            next.addEventListener("click", function(e){
+            book.package.metadata.direction === "rtl" ? rendition.prev() : rendition.next();
+            e.preventDefault();
+            }, false);
+
+            var prev = document.getElementById("prev");
+            prev.addEventListener("click", function(e){
+            book.package.metadata.direction === "rtl" ? rendition.next() : rendition.prev();
+            e.preventDefault();
+            }, false);
+
+            var keyListener = function(e){
+
+            // Left Key
+            if ((e.keyCode || e.which) == 37) {
+                book.package.metadata.direction === "rtl" ? rendition.next() : rendition.prev();
+            }
+
+            // Right Key
+            if ((e.keyCode || e.which) == 39) {
+                book.package.metadata.direction === "rtl" ? rendition.prev() : rendition.next();
+            }
+
+            };
+
+            rendition.on("keyup", keyListener);
+            document.addEventListener("keyup", keyListener, false);
 		});
     }
     loadEpubDemo();
