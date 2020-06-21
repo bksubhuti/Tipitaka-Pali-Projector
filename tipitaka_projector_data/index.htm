@@ -101,17 +101,17 @@
     var epubRendition;
     var loadEpubDemo = function loadEbookDemo() {
         var $viewer = document.getElementById("viewer");
-		var $next = document.getElementById("next");
-		var $prev = document.getElementById("prev");
-		var currentSectionIndex = 9;
-		// Load the opf
-		var book = ePub("epub/dn_en_sujato.epub");
-		var rendition = book.renderTo("book-area", {width: '100%', height: '100%', spread: "always"});
-		var displayed = rendition.display(currentSectionIndex);
+        var $next = document.getElementById("next");
+        var $prev = document.getElementById("prev");
+        var currentSectionIndex = 9;
+        // Load the opf
+        var book = ePub("epub/dn_en_sujato.epub");
+        var rendition = epubRendition = book.renderTo("book-area", {width: '100%', height: '100%', spread: "always"});
+        var displayed = rendition.display(currentSectionIndex);
 
-		book.loaded.navigation.then(function(toc){
-			var $select = document.getElementById("toc"),
-					docfrag = document.createDocumentFragment();
+        book.loaded.navigation.then(function(toc){
+            var $select = document.getElementById("toc"),
+            docfrag = document.createDocumentFragment();
 
 			toc.forEach(function(chapter) {
 				var option = document.createElement("option");
@@ -135,6 +135,8 @@
     }
     loadEpubDemo();
     
+    const halfTableWidth = () => $('#main_table').outerWidth() * 0.5;
+
     $('#epub').dialog({
                 autoOpen: false,
                 resizable: true,
@@ -143,13 +145,16 @@
                 maxHeight: width(),
                 maxWidth: height(),
                 
-                width: 500,
-                height: 850,
+                width: Math.min(halfTableWidth(), 500),
+                height: Math.min(height(), 850),
 
                 open: function () {
                     $(this).dialog('option', {
                         maxHeight: height(),
                         maxWidth: width(),
+                        
+                        height: Math.min(height(), 850),
+                        width: Math.min(halfTableWidth, 500),
                     });
                     epubRendition.resize($(this).outerWidth() - 88, $(this).outerHeight() - 36);
                     epubRendition.display();
