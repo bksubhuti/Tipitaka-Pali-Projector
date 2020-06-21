@@ -388,19 +388,24 @@ a:link {
 
 
 
-
+#toc {
+    margin-left: 24px;
+    margin-right: 24px;
+    max-width: calc(100% - 48px);
+}
 
 #book-area {
             width: calc(100% - 50px);
-            height: calc(100% - 20px);
+            height: calc(100% - 40px);
             box-shadow: 0 0 4px #ccc;
             border-radius: 5px;
             padding: 0;
             position: relative;
             margin: 10px auto;
             background: white url(ajax-loader.gif) center center no-repeat;
+            overflow: hidden;
         }
-        .arrow {
+        a.arrow {
           position: absolute;
           top: 50%;
           margin-top: -32px;
@@ -414,10 +419,13 @@ a:link {
           user-select: none;
           text-decoration: none;
         }
+        a.arrow:active {
+            color: #999;
+        }
         #prev {
-          left: 0;
+          left: 8px;
         }
 
         #next {
-          right: 0;
+          right: 8px;
         }

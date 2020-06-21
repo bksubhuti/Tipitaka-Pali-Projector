@@ -109,6 +109,38 @@
         var rendition = epubRendition = book.renderTo("book-area", {width: '100%', height: '100%', spread: "always"});
         var displayed = rendition.display(currentSectionIndex);
 
+        book.ready.then(() => {
+              var next = document.getElementById("next");
+
+              next.addEventListener("click", function(e){
+                book.package.metadata.direction === "rtl" ? rendition.prev() : rendition.next();
+                e.preventDefault();
+              }, false);
+
+              var prev = document.getElementById("prev");
+              prev.addEventListener("click", function(e){
+                book.package.metadata.direction === "rtl" ? rendition.next() : rendition.prev();
+                e.preventDefault();
+              }, false);
+
+              var keyListener = function(e){
+
+                // Left Key
+                if ((e.keyCode || e.which) == 37) {
+                  book.package.metadata.direction === "rtl" ? rendition.next() : rendition.prev();
+                }
+
+                // Right Key
+                if ((e.keyCode || e.which) == 39) {
+                  book.package.metadata.direction === "rtl" ? rendition.prev() : rendition.next();
+                }
+
+              };
+
+              rendition.on("keyup", keyListener);
+              document.addEventListener("keyup", keyListener, false);
+        });
+
         book.loaded.navigation.then(function(toc){
             var $select = document.getElementById("toc"),
             docfrag = document.createDocumentFragment();
@@ -155,12 +187,17 @@
                         
                         height: Math.min(height(), 850),
                         width: Math.min(halfTableWidth, 500),
+                        
+                        
                     });
-                    epubRendition.resize($(this).outerWidth() - 88, $(this).outerHeight() - 36);
+                    $(this).dialog('option', {
+                        position: { my: "right-20 top", at: "right top+20", of: $('#main_table')}
+                    });
+                    epubRendition.resize($(this).outerWidth() - 88, $(this).outerHeight() - 36 - 20);
                     epubRendition.display();
                 },
                 resizeStop: function(event, ui) {
-                    epubRendition.resize($(this).outerWidth() - 88, $(this).outerHeight() - 36);
+                    epubRendition.resize($(this).outerWidth() - 88, $(this).outerHeight() - 36 - 20);
                     epubRendition.display();
                 }
             });
