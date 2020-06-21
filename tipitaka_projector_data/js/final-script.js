@@ -481,8 +481,8 @@ var colorobj = new RGBColor(panel_bg_color);
 colorobj.r = parseInt(colorobj.r * 0.8);
 colorobj.g = parseInt(colorobj.g * 0.8);
 colorobj.b = parseInt(colorobj.b * 0.8);
-DictionaryBackground = 'background-color:rgb(' + colorobj.r + ',' + colorobj.g + ',' + colorobj.b + ')';
-
+//DictionaryBackground = 'background-color:rgb(' + colorobj.r + ',' + colorobj.g + ',' + colorobj.b + ')';
+// removed.. seems to format without it.. and it was going to the anki output
 
 
 document.getElementById('main_div').style.color= panel_font_color;
