@@ -299,15 +299,15 @@
                 showDialog('#epub');
                 loadEpubBook(fileName);
             });
-        });
 
-        $.ajax({
-            url: 'books.json',
-            dataType: "text",
-            type: "GET",
-            mimeType: 'text/json; charset=utf-8',
-            contentType: 'text/json; charset=UTF-8',
-            success: setBookInfo
+            $.ajax({
+                url: 'books.json',
+                dataType: "text",
+                type: "GET",
+                mimeType: 'text/json; charset=utf-8',
+                contentType: 'text/json; charset=UTF-8',
+                success: setBookInfo
+            });
         });
     </script>
 </head>

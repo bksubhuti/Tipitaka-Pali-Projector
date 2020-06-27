@@ -1,0 +1,22 @@
+{
+  "name": "tipitaka-pali-projector",
+  "version": "1.0.0",
+  "description": "You can download this program in the clone or download zip section of this github.  Top right of this page.\r Soon there will be a release section.\r Then open up index.htm and start.",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bksubhuti/Tipitaka-Pali-Projector.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bksubhuti/Tipitaka-Pali-Projector/issues"
+  },
+  "homepage": "https://github.com/bksubhuti/Tipitaka-Pali-Projector#readme",
+  "devDependencies": {
+    "electron": "^9.0.5"
+  }
+}
