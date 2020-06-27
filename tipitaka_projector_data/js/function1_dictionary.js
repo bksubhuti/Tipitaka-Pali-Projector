@@ -42,7 +42,11 @@ function DictionaryGo() {
 	jDictInfo.key = key;
 
 	var tr_id = localStorage.getItem('tr_id');
-	if (tr_id){
+	//
+	// if you loaded TPP but haven't loaded any text P_HTM would not exist yet
+	// it only gets defined after loading a text
+	// 
+	if (tr_id && typeof P_HTM !== 'undefined'){
 		jDictInfo.source = getAnkiSentence(key, P_HTM[tr_id]);
 	}
  
