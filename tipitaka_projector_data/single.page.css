@@ -429,3 +429,23 @@ a:link {
         #next {
           right: 8px;
         }
+        
+        .epub-books {
+            list-style-type: none;
+        }
+        
+        .epub-books li {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+        
+        .epub-books li:hover {
+            background: #f2f2f2;
+        }
+
+        #epub-selector {
+            padding: 0;
+        }

@@ -92,180 +92,182 @@
                     data.instance.toggle_node(data.selected);
                 }
             });
+        };
 
-            $('#index').dialog({autoOpen: false, maxHeight: $(window).height()});
-
-            const width = () => $(window).width() - 40;
-            const height = () => $(window).height() - 40;
-
+        const width = () => $(window).width() - 40;
+        const height = () => $(window).height() - 40;
+        
 // ================================================================================
 
     var epubRendition;
-    var loadEpubDemo = function loadEbookDemo() {
+    var epubBook;
+    var loadEpubBook = function loadEpubBook(fileName) {
+    
+        // Close previously opened book
+        //
+        if (epubRendition) {
+            epubRendition.destroy();
+        }
         var $viewer = document.getElementById("viewer");
-        var $next = document.getElementById("next");
-        var $prev = document.getElementById("prev");
-        var currentSectionIndex = 9;
+        var $next = $('#next');
+        var $prev = $('#prev');
+        
         // Load the opf
-        var book = ePub("epub/dn_en_sujato.epub");
+        //
+        var book = epubBook = ePub(`epub/${fileName}`);
+
         var rendition = epubRendition = book.renderTo("book-area", {width: '100%', height: '100%', spread: "always"});
-        var displayed = rendition.display(currentSectionIndex);
-
-        book.ready.then(() => {
-              var next = document.getElementById("next");
-
-              next.addEventListener("click", function(e){
-                book.package.metadata.direction === "rtl" ? rendition.prev() : rendition.next();
-                e.preventDefault();
-              }, false);
-
-              var prev = document.getElementById("prev");
-              prev.addEventListener("click", function(e){
-                book.package.metadata.direction === "rtl" ? rendition.next() : rendition.prev();
-                e.preventDefault();
-              }, false);
-
-              var keyListener = function(e){
-
+        var displayed = rendition.display(0);
+        
+        $next.off();
+        $next.click(function(e) {
+            epubBook.package.metadata.direction === "rtl" ? epubRendition.prev() : epubRendition.next();
+            e.preventDefault();
+        });
+        
+        $prev.off();
+        $prev.click(function(e) {
+            epubBook.package.metadata.direction === "rtl" ? epubRendition.next() : epubRendition.prev();
+            e.preventDefault();
+        });
+        
+        var keyListener = function(e){
                 // Left Key
                 if ((e.keyCode || e.which) == 37) {
-                  book.package.metadata.direction === "rtl" ? rendition.next() : rendition.prev();
+                  epubBook.package.metadata.direction === "rtl" ? epubRendition.next() : epubRendition.prev();
                 }
 
                 // Right Key
                 if ((e.keyCode || e.which) == 39) {
-                  book.package.metadata.direction === "rtl" ? rendition.prev() : rendition.next();
+                  epubBook.package.metadata.direction === "rtl" ? epubRendition.prev() : epubRendition.next();
                 }
+        };
 
-              };
-
-              rendition.on("keyup", keyListener);
-              document.addEventListener("keyup", keyListener, false);
+        $()
+        book.ready.then(() => {
+              epubRendition.on("keyup", keyListener);
+              //document.addEventListener("keyup", keyListener, false);
         });
 
         book.loaded.navigation.then(function(toc){
-            var $select = document.getElementById("toc"),
-            docfrag = document.createDocumentFragment();
+            const $select = $('#toc');
+            $select.off();
 
-			toc.forEach(function(chapter) {
-				var option = document.createElement("option");
-				option.textContent = chapter.label;
-				option.ref = chapter.href;
+            const options = toc.toc.map(t => `<option data-ref="${t.href}">${t.label}</option>`);
+            $select.html(options);
 
-				docfrag.appendChild(option);
-			});
+            $select.change(function(){
+                    const index = this.selectedIndex;
+                    const url = this.options[index].dataset.ref;
+                    rendition.display(url);
+                    return false;
+            });
 
-			$select.appendChild(docfrag);
-
-			$select.onchange = function(){
-					var index = $select.selectedIndex,
-							url = $select.options[index].ref;
-					rendition.display(url);
-					return false;
-			};
-
-
-		});
+        });
     }
-    loadEpubDemo();
     
     const halfTableWidth = () => $('#main_table').outerWidth() * 0.5;
 
-    $('#epub').dialog({
-                autoOpen: false,
-                resizable: true,
-                draggable: true,
+    var initDialogs = () => {
+        $('#index').dialog({autoOpen: false, maxHeight: $(window).height()});
+        $('#epub-selector').dialog({autoOpen: false, width: 256, height: 256, resizable: false, draggable: true});
+        
+        $('#epub').dialog({
+                    autoOpen: false,
+                    resizable: true,
+                    draggable: true,
 
-                maxHeight: width(),
-                maxWidth: height(),
-                
-                width: Math.min(halfTableWidth(), 500),
-                height: Math.min(height(), 850),
+                    maxHeight: width(),
+                    maxWidth: height(),
+                    
+                    width: Math.min(halfTableWidth(), 500),
+                    height: Math.min(height(), 850),
 
-                open: function () {
-                    $(this).dialog('option', {
-                        maxHeight: height(),
-                        maxWidth: width(),
-                        
-                        height: Math.min(height(), 850),
-                        width: Math.min(halfTableWidth, 500),
-                        
-                        
-                    });
-                    $(this).dialog('option', {
-                        position: { my: "right-20 top", at: "right top+20", of: $('#main_table')}
-                    });
-                    epubRendition.resize($(this).outerWidth() - 88, $(this).outerHeight() - 36 - 20);
-                    epubRendition.display();
-                },
-                resizeStop: function(event, ui) {
-                    epubRendition.resize($(this).outerWidth() - 88, $(this).outerHeight() - 36 - 20);
-                    epubRendition.display();
-                }
-            });
-// ================================================================================
-
-//////////////////////////////////////////////////////////////////////////
-/////
-////                SEARCH DIALOG STUFF
-////
-////////////////////////////////////////////////////////////////////////
-
-
-
-            $('#search').dialog({
-                autoOpen: false,
-                resizable: true,
-                draggable: true,
-
-                maxHeight: width(),
-                maxWidth: height(),
-                
-                width: Math.min(width(), 950),
-
-                open: function () {
-                    $(this).dialog('option', {
-                        maxHeight: height(),
-                        maxWidth: width(),
-                    });
-                }
-            });
-
-        };
-
-
-    /////////////////////////////////////////////
-    // code for prefs dialog to work
-    //  prefs dialog stuf
-    /////////////////////////////
-    $(function () {
-        const width = () => $(window).width() - 40;
-        const height = () => $(window).height() - 40;
- 
-
-
-        $("#prefsDialog").dialog({
-            autoOpen: false,
-            resizable: true,
-            draggable: true,
-
-            maxHeight: width(),
-            maxWidth: height(),
-            
-            width: Math.min(900, width()),
-
-            open: function () {
-                $(this).dialog('option', {
-                    maxWidth: width(),
-                    maxHeight: height()
+                    open: function () {
+                        $(this).dialog('option', {
+                            maxHeight: height(),
+                            maxWidth: width(),
+                            
+                            height: Math.min(height(), 850),
+                            width: Math.min(halfTableWidth, 500),
+                            
+                            
+                        });
+                        $(this).dialog('option', {
+                            position: { my: "right-20 top", at: "right top+20", of: $('#main_table')}
+                        });
+                        if (epubRendition) {
+                            epubRendition.resize($(this).outerWidth() - 88, $(this).outerHeight() - 36 - 20);
+                            epubRendition.display();
+                        }
+                    },
+                    resizeStop: function(event, ui) {
+                        epubRendition.resize($(this).outerWidth() - 88, $(this).outerHeight() - 36 - 20);
+                        epubRendition.display();
+                    }
                 });
-            }
-        });
-        $("#prefsbutton").click(function () {
-            $("#prefsDialog").dialog("open");
-        });
-    });
+    // ================================================================================
 
+    //////////////////////////////////////////////////////////////////////////
+    /////
+    ////                SEARCH DIALOG STUFF
+    ////
+    ////////////////////////////////////////////////////////////////////////
+
+
+
+                $('#search').dialog({
+                    autoOpen: false,
+                    resizable: true,
+                    draggable: true,
+
+                    maxHeight: width(),
+                    maxWidth: height(),
+                    
+                    width: Math.min(width(), 950),
+
+                    open: function () {
+                        $(this).dialog('option', {
+                            maxHeight: height(),
+                            maxWidth: width(),
+                        });
+                    }
+                });
+
+
+        /////////////////////////////////////////////
+        // code for prefs dialog to work
+        //  prefs dialog stuf
+        /////////////////////////////
+        $(function () {
+            const width = () => $(window).width() - 40;
+            const height = () => $(window).height() - 40;
+     
+
+
+            $("#prefsDialog").dialog({
+                autoOpen: false,
+                resizable: true,
+                draggable: true,
+
+                maxHeight: width(),
+                maxWidth: height(),
+                
+                width: Math.min(900, width()),
+
+                open: function () {
+                    $(this).dialog('option', {
+                        maxWidth: width(),
+                        maxHeight: height()
+                    });
+                }
+            });
+            $("#prefsbutton").click(function () {
+                $("#prefsDialog").dialog("open");
+            });
+        });
+
+    };
  
 
 
@@ -286,8 +288,18 @@
         };
         
         var showEpubDemo = function showEpubDemo() {
-            showDialog('#epub');
+            showDialog('#epub-selector');
         }
+        
+        $(document).ready(() => { 
+            initDialogs();
+
+            $('body').on('click', '#epub-selector .epub-books li', function() {
+                const fileName = this.dataset.fileName;
+                showDialog('#epub');
+                loadEpubBook(fileName);
+            });
+        });
 
         $.ajax({
             url: 'books.json',
@@ -1027,6 +1039,17 @@
 
 <div id="index" title="Books Index" class="app-dialog">
     <div id="books-tree"></div>
+</div>
+
+<div id="epub-selector" title="EPUB Books" class="app-dialog">
+    <ul class="epub-books">
+        <li data-file-name="an_en_sujato.epub">Aṅguttara Nikāya</li>
+        <li data-file-name="dn_en_sujato.epub">Dīgha Nikāya</li>
+        <li data-file-name="mn_en_sujato.epub">Majjhima Nikāya</li>
+        <li data-file-name="sn_en_sujato.epub">Saṃyutta Nikāya</li>
+        <li data-file-name="thag_en_sujato.epub">Theragāthā</li>
+        <li data-file-name="thig_en_sujato.epub">Therīgāthā</li>
+    </ul>
 </div>
 
 <div id="epub" title="EPUB Reader" class="app-dialog">
@@ -2021,7 +2044,7 @@
         }
         if (hash.indexOf('#/book/' === 0)) {
             const parsedBookInfo = hash.match(/#\/book\/(\d+)\/(\d+)/i);
-            if (parsedBookInfo.length > 0) {
+            if (parsedBookInfo && parsedBookInfo.length > 0) {
             
                 // This "html_no" variable is used in many scripts, here it's reset
                 // so that the Sr_Go function in z_search_navigator.js works
