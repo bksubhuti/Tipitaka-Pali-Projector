@@ -297,6 +297,7 @@
             $('body').on('click', '#epub-selector .epub-books li', function() {
                 const fileName = this.dataset.fileName;
                 showDialog('#epub');
+                $('#epub-selector').dialog('close');
                 loadEpubBook(fileName);
             });
 
@@ -1081,7 +1082,7 @@
                        onkeyup="Keyin()" value="">
                 <input type="hidden" id="id1">
                 <input type="hidden" id="id2">
-                <table border="0" width="70%">
+                <table border="0" width="80%">
                     <tr>
                         <td width="20%" align="right">
                             Search in :&nbsp;
@@ -1115,7 +1116,6 @@
                 <span id="msg"></span>
             </td>
             <td align="center" width="10%">
-				<span align="center" style="color:blue;"><a href="index.htm"><img src="images/home.png"> Home </a>
 				<br></span>Seach Tipiṭaka
             </td>
             <td width="2%"></td>
@@ -1136,19 +1136,19 @@
         <tr>
             <td width="1%">
             </td>
-            <td align="center" width="17%" bgcolor="#bfb070">
+            <td align="center" width="23%" bgcolor="#bfb070">
                 <input id="All" type="checkbox" name="All" onclick='choosePali("All")'/></input>
                 <label for="All" onclick='choosePali("All")'>ALL</label>
             </td>
-            <td width="27%" bgcolor="#dfd090">
+            <td width="23%" bgcolor="#dfd090">
                 <input id="MAT1" type="checkbox" name="MAT1" onclick='choosePali("x1")'/></input>
                 <label for="MAT1" onclick='choosePali("x1")'>1 Mūla</label>
             </td>
-            <td width="27%" bgcolor="#dfd090">
+            <td width="23%" bgcolor="#dfd090">
                 <input id="MAT2" type="checkbox" name="MAT2" onclick='choosePali("x2")'/></input>
                 <label for="MAT2" onclick='choosePali("x2")'>2 Aṭṭhakathā</label>
             </td>
-            <td width="27%" bgcolor="#dfd090">
+            <td width="23%" bgcolor="#dfd090">
                 <input id="MAT3" type="checkbox" name="MAT3" onclick='choosePali("x3")'/></input>
                 <label for="MAT3" onclick='choosePali("x3")'>3 Ṭīkā</label>
             </td>
