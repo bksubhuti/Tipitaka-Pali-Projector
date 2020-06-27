@@ -32,6 +32,7 @@ function TmpDictionarySave(id) {
 }
 
 function DictionaryGo() {
+	$('#lookup-results').empty();
 	var jDictInfo = {key:"", source:"", def:""};
 	//preserve original for searching... 
 	//var strOrigKey = this.dataset.wordvalue.trim();

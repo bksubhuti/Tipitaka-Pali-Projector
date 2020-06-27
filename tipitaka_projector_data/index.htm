@@ -438,7 +438,6 @@
                 <script>
                     const $lookupResults = $('#lookup-results');
                     $lookupResults.on('click', '.lookup-result', function () {
-                        $lookupResults.empty();
                         $('#DictionaryKey').val(this.dataset.word);
                         DictionaryGo();
                     });
