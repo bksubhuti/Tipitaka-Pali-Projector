@@ -391,7 +391,6 @@
                 ParagraphAnalysis();
             }
         };
-        $('.helper.dict').show();
     </script>
 
     <div class="tab-content" id="tab-content">
@@ -458,7 +457,8 @@
                         debounceTimeout = setTimeout(() => {
                             performLookup(value);
                         }, 300);
-                    })
+                    });
+                    $('.helper.dict').show();
                 </script>
             </div>
 
