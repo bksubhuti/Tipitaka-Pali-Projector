@@ -1,7 +1,7 @@
 function Sr_Go(val) {
 	if (val == '0') {
 		document.getElementById('Sr_Div').style.visibility = 'hidden';
-		document.write.innerHTML = localStorage.setItem('Sr_id'+ html_no, ''); 
+		localStorage.setItem('Sr_id'+ html_no, '');
 	} else {
 		var old = Number(document.getElementById('Sr_Now').innerHTML);
 		var last = Number(document.getElementById('Sr_Next').innerHTML);

@@ -2272,12 +2272,12 @@
     function Clear() {
         for (i in localStorage) {
             if (i.substring(0, 3) == 'Sr_') {
-                document.write.innerHTML = localStorage.setItem(i, '');
-                document.write.innerHTML = localStorage.removeItem(i);
+                localStorage.setItem(i, '');
+                localStorage.removeItem(i);
             }
         }
 
-        document.write.innerHTML = localStorage.setItem("Sr_key", '');
+        localStorage.setItem("Sr_key", '');
         document.getElementById('key').value = '';
         document.getElementById('key').focus();
         for (x = 1; x <= 3; x++) {

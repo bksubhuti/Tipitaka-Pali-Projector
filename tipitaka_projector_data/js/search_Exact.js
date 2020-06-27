@@ -9,11 +9,11 @@
 			document.getElementById('msg').innerHTML = "";
 			// document.getElementById('out').innerHTML = "";
 
-			document.write.innerHTML = localStorage.setItem("Sr_type", 'E');
+			localStorage.setItem("Sr_type", 'E');
 
 			var key = toUniRegEx(document.getElementById('key').value).trim().toLowerCase();
 			if ( 1 < key.length) {
-				document.write.innerHTML = localStorage.setItem("Sr_key", key);
+				localStorage.setItem("Sr_key", key);
 
 				var i, x , y;
 
@@ -30,12 +30,12 @@
 				for (x=1; x<=3; x++) {
 				  for (y=1; y<=8; y++) {
 				    document.getElementById('Out' + y + x).innerHTML = '';
-				    document.write.innerHTML  = localStorage.setItem('Sr_Out' + y + x, '');
+				    localStorage.setItem('Sr_Out' + y + x, '');
 				  }
 				}
 
 				for (i in pws_no) {
-					document.write.innerHTML = localStorage.setItem('Sr_id' + i, '');
+					localStorage.setItem('Sr_id' + i, '');
 				}
 
 				var total_file = 0;
@@ -135,7 +135,7 @@
 									//*****************
 									if (Sr_id != '') {
 										//alert(i +" =  " + Sr_id);
-										document.write.innerHTML = localStorage.setItem('Sr_id' + i, ';' + Sr_id);
+										localStorage.setItem('Sr_id' + i, ';' + Sr_id);
 									}
 								}
 
@@ -150,7 +150,7 @@
 							}
 							total_file = total_file + cx_file;
 							total_hit = total_hit + cx_hit;
-							document.write.innerHTML  = localStorage.setItem('Sr_Out' + y + x, pali);
+							localStorage.setItem('Sr_Out' + y + x, pali);
 						} else {
 							document.getElementById('Out' + y + x).innerHTML = '0 Hits.' ;
 						}

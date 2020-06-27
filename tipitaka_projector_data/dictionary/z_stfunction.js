@@ -37,7 +37,7 @@ var html_file = ary[0].slice(-4) + '.htm';
 var html_no = ary[0].slice(-4);
 
 function Get(val) {
-	document.write.innerHTML = localStorage.setItem('tr_id', val);
+	localStorage.setItem('tr_id', val);
 }
 
 function sel_on() {
@@ -116,7 +116,7 @@ function BookTipRun(para, no) {		// para =  para number  of <td>, no=1=mula, 2=a
 		}
 	}
 	url = url + '.htm@#' + para;
-	document.write.innerHTML = localStorage.setItem('history_pos', url);
+	localStorage.setItem('history_pos', url);
 	History_Go(url);
 }
 
@@ -147,7 +147,7 @@ function Note_Save() {
 	}
 	my_note = my_note.trim();
 
-	document.write.innerHTML = localStorage.setItem('note' + html_no, my_note);
+	localStorage.setItem('note' + html_no, my_note);
 	document.getElementById('my_note').style.visibility = 'hidden';
 
 	//alert(view_right + html_no +'  '+my_note);

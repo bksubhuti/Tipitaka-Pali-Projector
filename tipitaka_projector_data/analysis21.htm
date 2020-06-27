@@ -99,14 +99,14 @@
 	flag = '0';
 	for (i in ary) {
 		if (localStorage.getItem(ary[i]) == undefined) { 
-			document.write.innerHTML = localStorage.setItem(ary[i], '000');
+			localStorage.setItem(ary[i], '000');
 		} else {
 			flag = '1';
 		}	
 	}
 	if (flag == '0') {
-		document.write.innerHTML = localStorage.setItem('hpe2', '010');	
-		document.write.innerHTML = localStorage.setItem('hpe4', '020');	
+		localStorage.setItem('hpe2', '010');
+		localStorage.setItem('hpe4', '020');
 	}
  
 	var val =
