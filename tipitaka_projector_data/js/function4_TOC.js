@@ -174,12 +174,13 @@ function PaliHistoryGoUrl(val) {
 		document.write = localStorage.setItem('history_pos', pos);
 		 var Thelocation = pos.substring(1);
 		if (document.getElementById('QuickJumpNewTab').checked == true) {
-			loadBook(file);
-			document.getElementById(Thelocation).scrollIntoView();
-		} else {
-			loadBook(file);		
-			document.getElementById(Thelocation).scrollIntoView(); // I will fix the logic for this later.. only need this line after
-									// any of the load books and just have this be a drop default.
+			loadBook(file, () => {
+				document.getElementById(Thelocation).scrollIntoView();
+			  });
+			} else {
+			loadBook(file, () => {
+				document.getElementById(Thelocation).scrollIntoView();
+			  });									// any of the load books and just have this be a drop default.
 		
 		}
 		
