@@ -546,42 +546,46 @@ if (!SingleLoad) {
 	setSearchNavigator();
 }
 
-// go to history position  ------------------------
-if (localStorage.getItem('history_pos') != null) {
-	if (localStorage.getItem('history_pos') != '') {
-		var pos = localStorage.getItem('history_pos');	// pos #MP
+function GoToHistoryPosition(){
+	// go to history position  ------------------------
+	if (localStorage.getItem('history_pos') != null) {
+		if (localStorage.getItem('history_pos') != '') {
+			var pos = localStorage.getItem('history_pos');	// pos #MP
 
-		if (pos.indexOf('p') != -1) {	// for id
-			loc = pos.substring(1);
-			document.getElementById(loc).scrollIntoView();
-		} else {
-			if ((pos.indexOf('M') != -1) || (pos.indexOf('P') != -1)){		// myanmar or PTS page
+			if (pos.indexOf('p') != -1) {	// for id
 				loc = pos.substring(1);
-				var tr = document.getElementsByClassName('r1');
-				for (var i=0; i<tr.length; i++) {
-					if (tr[i].innerHTML.indexOf(loc) != -1) {
-						document.getElementById('p' + (i +1)).scrollIntoView();
-						Get(i+1);
-						break;
+				document.getElementById(loc).scrollIntoView();
+			} else {
+				if ((pos.indexOf('M') != -1) || (pos.indexOf('P') != -1)){		// myanmar or PTS page
+					loc = pos.substring(1);
+					var tr = document.getElementsByClassName('r1');
+					for (var i=0; i<tr.length; i++) {
+						if (tr[i].innerHTML.indexOf(loc) != -1) {
+							document.getElementById('p' + (i +1)).scrollIntoView();
+							Get(i+1);
+							break;
+						}
 					}
-				}
-			} else {			// R= from paragraph number to id
-				var tr = document.getElementsByClassName('r1');
-				lenx = parseInt(pos.substring(2));
-				for (var i=lenx; i<=tr.length; i++) {
-					if (P_Par[i] != undefined) {
-						window.location = '#' + P_Par[i];
-						GetTrId(P_Par[i].substring(1));
-						break;
+				} else {			// R= from paragraph number to id
+					var tr = document.getElementsByClassName('r1');
+					lenx = parseInt(pos.substring(2));
+					for (var i=lenx; i<=tr.length; i++) {
+						if (P_Par[i] != undefined) {
+							window.location = '#' + P_Par[i];
+							GetTrId(P_Par[i].substring(1));
+							break;
+						}
 					}
-				}
 
 
+				}
 			}
+			document.write = localStorage.setItem('history_pos', '');
 		}
-		document.write = localStorage.setItem('history_pos', '');
 	}
+
 }
+
 
 
 // Change Page4 TOC at none Roman Script

@@ -403,7 +403,8 @@ a:link {
             position: relative;
             margin: 10px auto;
             background: white url(ajax-loader.gif) center center no-repeat;
-            overflow: hidden;
+            overflow-y: scroll;
+            overflow-x: hidden;
         }
         a.arrow {
           position: absolute;
@@ -444,6 +445,10 @@ a:link {
         
         .epub-books li:hover {
             background: #f2f2f2;
+        }
+
+        .epub-container{
+             overflow-x: hidden; 
         }
 
         #epub-selector {

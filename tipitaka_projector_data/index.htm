@@ -116,7 +116,7 @@
         //
         var book = epubBook = ePub(`epub/${fileName}`);
 
-        var rendition = epubRendition = book.renderTo("book-area", {width: '100%', height: '100%', spread: "always"});
+        var rendition = epubRendition = book.renderTo("book-area", {width: '100%', height: '100%', method: "continuous",  flow: "scrolled-doc", spread: "always"});
         var displayed = rendition.display(0);
         
         $next.off();
@@ -180,7 +180,7 @@
                     maxHeight: width(),
                     maxWidth: height(),
                     
-                    width: Math.min(halfTableWidth(), 500),
+                    width: Math.min(halfTableWidth(), 700),
                     height: Math.min(height(), 850),
 
                     open: function () {
