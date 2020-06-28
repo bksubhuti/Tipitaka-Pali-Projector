@@ -905,6 +905,7 @@
             // Set the document/window title
             //
             document.title = bookInfo.title;
+            html_no=bookId; // this is an important global variable for nav history, etc
 
             // Empty the table showing the book contents in case
             // it was showing another book previously
@@ -949,6 +950,8 @@
                 // Load the book text content, paragraph data etc
                 //
                 displayBook();
+                PaliHistorySet();  // set the history
+                PaliHistoryList(); // refresh the list
                 
                 if (onBookLoadingDone) {
                     onBookLoadingDone();

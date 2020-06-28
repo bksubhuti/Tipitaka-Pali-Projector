@@ -522,7 +522,7 @@ change_tab('page1');
 var setSearchNavigator = function() {
 	if (localStorage.getItem('Sr_id'+ html_no)) {
 
-			var ary1 = localStorage.getItem('Sr_id'+ html_no).split(';');
+		var ary1 = localStorage.getItem('Sr_id'+ html_no).split(';');
 		var n = Number(location.search.split('n=')[1]);
 		if (SingleLoad && location.hash.indexOf('#/book/') === 0) {
 			const parsedBookInfo = location.hash.match(/#\/book\/(\d+)\/(\d+)/i);
@@ -628,29 +628,34 @@ for (i=1; i<=3; i++) {
 	}
 }
 
-if (localStorage.getItem('Show_Numbers') == 'true') {
-	$('.font10').show();
+var ShowHideNumbers = function ShowHideNumbers(){
+	if (localStorage.getItem('Show_Numbers') == 'true') {
+		$('.font10').show();
+	}
+	if (localStorage.getItem('Show_Numbers') == 'false') {
+		$('.font10').hide();
+	}
 }
-if (localStorage.getItem('Show_Numbers') == 'false') {
-	$('.font10').hide();
-}
-
 
 var gPaliHistoryItem = {date:"", html_no:"0", paraNo:"0", Toc_Name:""};
 
-gPaliHistoryItem.paraNo = 'p1';
-gPaliHistoryItem.html_no = html_no;
 
 var setHistoryItemChapterName = function setHistoryItemChapterName() {
 	gPaliHistoryItem.Toc_Name = TOC_Dropdown_Items[1];// [0] book name [1] chaptername
 };
 
-if (!SingleLoad) {
-	setHistoryItemChapterName();
-}
 
-writeHistoryStorage();
+var PaliHistorySet = function PaliHistorySet() { 
 
+	gPaliHistoryItem.paraNo = 'p1';
+	gPaliHistoryItem.html_no = html_no;
+
+
+	if (!SingleLoad) {
+		setHistoryItemChapterName();
+	}
+	writeHistoryStorage();
+};
 
 // ----
 // Panel Drag & Resize

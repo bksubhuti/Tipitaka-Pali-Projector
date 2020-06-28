@@ -39,7 +39,6 @@ function goToc() {
 
 	var val = document.getElementById('Toc').value;
 
-	var old = '@' + localStorage.getItem('palihistory');
 	var today = new Date();
 	var date = ('0' + (today.getMonth() + 1)).slice(-2) + ('0' + today.getDate()).slice(-2)  + " "+ ('0' + today.getHours()).slice(-2)  + ('0' + today.getMinutes()).slice(-2);
 
@@ -55,7 +54,6 @@ function goToc() {
 
 	writeHistoryStorage();
 	
-	//document.write = localStorage.setItem('palihistory', date + "_" + html_no + '.htm#' + P_Toc[val] + old) ;	//	p=Id Number
 
 	window.location = '#' + P_Toc[val];	// P_Toc convert to Id
 	Message(P_Toc[val].substring(1));
@@ -117,7 +115,7 @@ function PaliHistoryList() {
 
 		for (i in PaliHistoryArray) {
 			if (PaliHistoryArray[i] != 'null'){
-				showurl = showurl + '<span style="white-space: nowrap;\" onClick="PaliHistoryGoUrl(\'' + PaliHistoryArray[i].html_no + '.htm'+ "#" + PaliHistoryArray[i].paraNo +  '\');"">'
+				showurl = showurl + '<span style="white-space: nowrap;\" onClick="PaliHistoryGoUrl(\'' + PaliHistoryArray[i].html_no + "#" + PaliHistoryArray[i].paraNo +  '\');"">'
 				//showurl = showurl + PaliHistoryArray[i].date + '&nbsp;'; // date
 				//
 				showurl = showurl + toTranslate(T_Book[PaliHistoryArray[i].html_no]);//pass html_no to get the title of book
@@ -140,10 +138,12 @@ function PaliHistoryClear(val) {
 }
 
 function PaliHistoryGoUrl(val) {
-	file = val.substring(0,8);
-	pos = val.substring(8);
+	file = val.substring(0,4);
+	pos = val.substring(4);
+//html_no
+// para_no
 
-	if (window.location.toString().indexOf(file) != -1) {		// same file
+	if (html_no == file ) {		// same doc file
 		if (pos.indexOf('p') != -1) {	// directly jump
 			window.location = pos;
 		} else {	// myanmar or PTS page no jump
@@ -171,11 +171,16 @@ function PaliHistoryGoUrl(val) {
 			}	
 		}
 	} else {
-		document.write = localStorage.setItem('history_pos', pos); 
+		document.write = localStorage.setItem('history_pos', pos);
+		 var Thelocation = pos.substring(1);
 		if (document.getElementById('QuickJumpNewTab').checked == true) {
-			window.open(file, '_blank');
+			loadBook(file);
+			document.getElementById(Thelocation).scrollIntoView();
 		} else {
-			location.href = file;	
+			loadBook(file);		
+			document.getElementById(Thelocation).scrollIntoView(); // I will fix the logic for this later.. only need this line after
+									// any of the load books and just have this be a drop default.
+		
 		}
 		
 	}	
@@ -341,7 +346,7 @@ function writeHistoryStorage(){
 		var i=0;
 		// Check to see if it exists already.. if so we need to shift it up top  shift/push
 		for (i in  HistoryJSONArray){
-			if ( (HistoryJSONArray[i].paraNo == gPaliHistoryItem.paraNo) &&  ( HistoryJSONArray[i].paraNo == gPaliHistoryItem.paraNo ) ){
+			if ( (HistoryJSONArray[i].html_no == gPaliHistoryItem.html_no) &&  ( HistoryJSONArray[i].paraNo == gPaliHistoryItem.paraNo ) ){
 				//found.. take it out and push to beginning later. 
 				 HistoryJSONArray.splice(i,1);	
 			} 
@@ -352,7 +357,7 @@ function writeHistoryStorage(){
 	
 		document.write = localStorage.setItem('PaliHistoryJSON', JSON.stringify(HistoryJSONArray));	
 	
-	
+		PaliHistoryList(); // refresh the list // maybe needed on book load.
 	
 	}
 	
