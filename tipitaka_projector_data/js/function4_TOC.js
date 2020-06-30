@@ -56,7 +56,15 @@ function goToc() {
 	
 
 	window.location = '#' + P_Toc[val];	// P_Toc convert to Id
-	Message(P_Toc[val].substring(1));
+
+	// need to add a paragraph number because the algo to get back to the myanmar paragraph
+	// goes a little too far.. so add one to it..
+	var parano= parseInt( P_Toc[val].slice(1) );
+
+	parano=parano+1;
+	
+	localStorage.setItem('tr_id', parano.toString() );  // set the current location if m a t button is called without clicking.
+	Message(parano.toString() );
 	PaliHistoryList();
 }
 
@@ -179,7 +187,7 @@ function PaliHistoryGoUrl(val) {
 			  });
 			} else {
 			loadBook(file, () => {
-				document.getElementById(Thelocation).scrollIntoView();
+				window.location = pos;
 			  });									// any of the load books and just have this be a drop default.
 		
 		}

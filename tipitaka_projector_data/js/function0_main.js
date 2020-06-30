@@ -255,7 +255,7 @@ function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
 		}
 	}
 
-	url = v1 + '.htm#R' + para;
+	url = v1 + '#para' + para;
 	document.write = localStorage.setItem('history_pos', url); 
 	PaliHistoryGoUrl(url); 
 }	

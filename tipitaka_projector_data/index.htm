@@ -118,6 +118,20 @@
 
         var rendition = epubRendition = book.renderTo("book-area", {width: '100%', height: '100%', method: "continuous",  flow: "scrolled-doc", spread: "always"});
         var displayed = rendition.display(0);
+
+        var PaliFontSize = localStorage.getItem("PaliFontSize");
+        var bg_color = localStorage.getItem("bg_color");
+        var bookarea = document.getElementById("book-area");
+        var epubDialog = document.getElementById("epub");
+
+        bookarea.style.backgroundColor = bg_color;
+        epubDialog.style.backgroundColor = bg_color;
+        epubDialog.style.overflowX="hidden";
+        bookarea.style.overflowX="hidden";
+
+        rendition.themes.default({ "p": { "font-size": PaliFontSize}})
+        $viewer.style.overflowX='hidden';
+
         
         $next.off();
         $next.click(function(e) {
@@ -952,6 +966,10 @@
                 displayBook();
                 PaliHistorySet();  // set the history
                 PaliHistoryList(); // refresh the list
+
+                // set the current position for m a t buttons if not clicked
+                localStorage.setItem('tr_id', P_Toc[1].slice(1) );  // set the current location first para if m a t button is called without clicking.
+
                 
                 if (onBookLoadingDone) {
                     onBookLoadingDone();
@@ -1061,7 +1079,7 @@
     </ul>
 </div>
 
-<div id="epub" title="EPUB Reader" class="app-dialog">
+<div id="epub" title="English Reader" class="app-dialog">
     <select id="toc"></select>
     <div id="book-area"></div>
 	<div id="viewer" class="scrolled"></div>
