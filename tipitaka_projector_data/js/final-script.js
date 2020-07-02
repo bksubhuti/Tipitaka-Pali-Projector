@@ -559,7 +559,7 @@ var setSearchNavigator = function() {
 if (!SingleLoad) {
 	setSearchNavigator();
 }
-
+/*
 function GoToHistoryPosition(){
 	// go to history position  ------------------------
 	if (localStorage.getItem('history_pos') != null) {
@@ -600,7 +600,7 @@ function GoToHistoryPosition(){
 
 }
 
-
+*/
 
 // Change Page4 TOC at none Roman Script
 if (view_left != 'Roman') {
@@ -933,7 +933,4 @@ function stopDrag3(){
 	}
 }
 
-$.getJSON("js/quickjump.json", function(json) {
-	gDNJSON = json; // this will show the info it in firebug console
-});
 

@@ -1,4 +1,4 @@
-var gDNJSON;
+
 
 function Message(tr_no) { 
 	val = parseInt(tr_no); 
@@ -66,7 +66,6 @@ function goToc() {
 	parano=parano+1;
 	
 	localStorage.setItem('tr_id', parano.toString() );  // set the current location if m a t button is called without clicking.
-	Message(parano.toString() );
 	PaliHistoryList();
 }
 
@@ -191,8 +190,7 @@ function PaliHistoryGoUrl(val) {
 			}	
 		}
 	} else {
-		document.write = localStorage.setItem('history_pos', pos);
-		 var Thelocation = pos.substring(1);
+		var Thelocation = pos.substring(1);
 		if (document.getElementById('QuickJumpNewTab').checked == true) {
 			loadBook(file, () => {
 				document.getElementById(Thelocation).scrollIntoView();
@@ -218,8 +216,6 @@ function findquickjump(qj) {
     return -1;
 }
 
-// global var...
-var tocnum;
 
 
 function makeQuickJumpTables(){
@@ -446,5 +442,11 @@ function writeHistoryStorage(){
 	
 	}
 
+// global var...
+var tocnum;
+var gDNJSON;
+///////////  global variables
 
-	
+	$.getJSON("js/quickjump.json", function(json) {
+		gDNJSON = json; // this will show the info it in firebug console
+	});

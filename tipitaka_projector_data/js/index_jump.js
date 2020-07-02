@@ -1,4 +1,4 @@
-	// go to history position  
+/*	// go to history position  
 	if (localStorage.getItem('history_pos') != null) {
 		if (localStorage.getItem('history_pos') != '') {
 			var pos = localStorage.getItem('history_pos');	// pos #MP
@@ -39,3 +39,4 @@
 			document.write = localStorage.setItem('history_pos', ''); 
 		}
 	} 
+*/

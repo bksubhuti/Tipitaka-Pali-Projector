@@ -116,7 +116,7 @@ function BookTipRun(para, no) {		// para =  para number  of <td>, no=1=mula, 2=a
 		}
 	}
 	url = url + '.htm@#' + para;
-	localStorage.setItem('history_pos', url);
+	//localStorage.setItem('history_pos', url);
 	History_Go(url);
 }
 
@@ -727,7 +727,7 @@ $(window).on('load', function () {
 	$(".m1").css("color", font_color[load_bg_color]);
 	$(".bld").css("color", bld_color[load_bg_color]);
 	//===============================================
-
+/*
 	// go to history postition
 	if (localStorage.getItem('history_pos') != null) {
 		if (localStorage.getItem('history_pos') != '') {
@@ -752,5 +752,5 @@ $(window).on('load', function () {
 			document.write.innerHTML = localStorage.setItem('history_pos', ''); 
 		}
 	}
-
+*/
 });

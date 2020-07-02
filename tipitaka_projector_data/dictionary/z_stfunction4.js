@@ -68,7 +68,7 @@ function History_Go(val) {
 		}
 		sel_off();
 	} else {
-	document.write.innerHTML = localStorage.setItem('history_pos', pos);
+//	document.write.innerHTML = localStorage.setItem('history_pos', pos);
 	location.href = file;
 	}
 }
