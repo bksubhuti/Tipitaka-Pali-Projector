@@ -1982,6 +1982,7 @@ P_Tag[1469]='<p class="c3">&nbsp;*</p>*';
 var TOC_Dropdown_Items = [
 	'1. Devadahavaggo',
 	'____1. Devadahasuttaṃ',
+	'____2. Pañcattayasuttaṃ',
 	'____3. Kintisuttaṃ',
 	'____4. Sāmagāmasuttaṃ',
 	'____5. Sunakkhattasuttaṃ',

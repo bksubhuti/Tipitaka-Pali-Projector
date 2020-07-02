@@ -76,6 +76,20 @@ function registerListeners() {
 			}
 		}
 	});
+
+	var QuickJump = document.getElementById("QuickJump");
+	// Execute a function when the user releases a key on the keyboard
+	QuickJump.addEventListener("keyup", function(event) {
+	// Number 13 is the "Enter" key on the keyboard
+	if (event.keyCode === 13) {
+	  // Cancel the default action, if needed
+	  event.preventDefault();
+	  // Trigger the button element with a click
+	  document.getElementById("QuickJumpBtn").click();
+	}
+  });
+
+
 }
 
 function setTableStyling() {
@@ -918,3 +932,8 @@ function stopDrag3(){
 		document.removeEventListener("touchend",stopDrag3,true);
 	}
 }
+
+$.getJSON("js/quickjump.json", function(json) {
+	gDNJSON = json; // this will show the info it in firebug console
+});
+

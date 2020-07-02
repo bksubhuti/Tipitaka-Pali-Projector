@@ -1,3 +1,5 @@
+var gDNJSON;
+
 function Message(tr_no) { 
 	val = parseInt(tr_no); 
 
@@ -146,6 +148,16 @@ function PaliHistoryClear(val) {
 }
 
 function PaliHistoryGoUrl(val) {
+
+	if (val.substring(0,2) == 'qj')
+	{
+		var booktoload= val.substring(2,7);
+
+		loadBook(booktoload, () => {
+			window.location = '#' + P_Toc[tocnum];
+		  });						
+		  return;
+	}
 	file = val.substring(0,4);
 	pos = val.substring(4);
 //html_no
@@ -195,9 +207,69 @@ function PaliHistoryGoUrl(val) {
 	}	
 }
 
-function QuickJump() {
-	input = document.getElementById('QuickJump').value.trim().toLowerCase();
 
+
+function findquickjump(qj) {
+    for (i = 0; i < gDNJSON.length; i++) {
+        if (gDNJSON[i].QuickJump == qj) {
+            return gDNJSON[i];
+        }
+    }
+    return -1;
+}
+
+// global var...
+var tocnum;
+
+
+function makeQuickJumpTables(){
+	input = document.getElementById('QuickJump').value.trim().toLowerCase();
+	var s = "";
+	var suttanum = parseInt(input) -1;
+	var sectionnum = 0;
+	var x = 0;
+
+
+	for (x in TOC_Dropdown_Items){
+		if (1){
+			let num = parseInt(TOC_Dropdown_Items[x].substring(4,5)); //or just Number.parseInt
+			if(!isNaN(num)) {  // first is number this is a higher sutta number
+				suttanum=suttanum +1;
+				sectionnum = 0;
+				s = s + "mn" + suttanum.toString() + "," + x.toString() + ','  + html_no + ',' + TOC_Dropdown_Items[x] +  '\n' ;
+				s = s + "mn" + suttanum +'.'+ sectionnum.toString() +  "," + x.toString() + ','  + html_no + ',' + TOC_Dropdown_Items[x] + '\n';
+				//console.log(s);
+			}else{
+				sectionnum = sectionnum + 1;
+				s = s + "mn" + suttanum +'.'+ sectionnum.toString() +  "," + x.toString() + ','  + html_no + ',' + TOC_Dropdown_Items[x] + '\n';
+				//console.log(s);
+
+			}
+		}
+	}
+	
+	console.log(s);
+
+
+
+
+
+}
+
+
+
+function QuickJump() {
+//	makeQuickJumpTables();
+//	return;
+
+	input = document.getElementById('QuickJump').value.trim().toLowerCase();
+	
+
+	var qjson= findquickjump(input);
+	tocnum =  parseInt(qjson.TOC);
+	PaliHistoryGoUrl("qj"+ qjson.File); // test for quick jump works..
+
+	/*
 	var dot = input.lastIndexOf('.'); 	// for direct jump into sutta no
 	var dot_para = '0';
 	if (dot != -1) {
@@ -286,6 +358,8 @@ function QuickJump() {
 			PaliHistoryGoUrl(para_M_PTS);
 		}	
 	}
+
+*/
 }
 
 
@@ -327,8 +401,10 @@ function QuickJumpTips() {
 
 function SetupToc() {
     const options = TOC_Dropdown_Items.map((item, index) => `<option value="${index}">${item}</option>`);
-    document.getElementById('Toc').innerHTML = options;
+	document.getElementById('Toc').innerHTML = options;
+
 }
+
 
 
 ///////////////////////////////////////////////////////
@@ -369,4 +445,6 @@ function writeHistoryStorage(){
 		PaliHistoryList(); // refresh the list // maybe needed on book load.
 	
 	}
+
+
 	

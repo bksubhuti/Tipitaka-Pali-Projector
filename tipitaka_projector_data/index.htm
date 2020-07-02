@@ -556,10 +556,8 @@
                     </div>
                     Quick Jump
                     <input type="Textbox" name="QuickJump" id="QuickJump" value=""
-                           style="font-size:11pt;width:100%;max-width:60pt;" onBlur="QuickJump()"
-                           onKeyup="QuickJumpTips()">
-                    <input id="QuickJumpNewTab" type="checkbox" value="0"></input>
-                    <label for="QuickJumpNewTab">Open at New Tab</label><br>
+                           style="font-size:11pt;width:100%;max-width:60pt;" onKeyup="QuickJumpTips()">
+                    <input type="button" id="QuickJumpBtn" value="Quick Jump" onclick="QuickJump()"></button>
                     <span id="QuickJumpTips" style="color:#440000;"></span>
                 </div>
                 <span id="page4break3"></span>
