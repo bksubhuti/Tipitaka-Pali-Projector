@@ -50,13 +50,16 @@ function goToc() {
 
 
 
-	var str = 	TOC_Dropdown_Items[val];//direct array that filled drop down items
+	str = 	TOC_Dropdown_Items[val];//direct array that filled drop down items
 
 	gPaliHistoryItem.Toc_Name = str.replace(/_/g,''); 
 
 	writeHistoryStorage();
-	
 
+/*	var str= P_Toc[val];
+	var ele = document.getElementById(str);
+	ele.scrollIntoView();
+*/
 	window.location = '#' + P_Toc[val];	// P_Toc convert to Id
 
 	// need to add a paragraph number because the algo to get back to the myanmar paragraph
@@ -190,18 +193,11 @@ function PaliHistoryGoUrl(val) {
 			}	
 		}
 	} else {
-		var Thelocation = pos.substring(1);
-		if (document.getElementById('QuickJumpNewTab').checked == true) {
-			loadBook(file, () => {
-				document.getElementById(Thelocation).scrollIntoView();
-			  });
-			} else {
+		var Thelocation = pos.substring(1);		
 			loadBook(file, () => {
 				window.location = pos;
 			  });									// any of the load books and just have this be a drop default.
-		
-		}
-		
+				
 	}	
 }
 
