@@ -164,7 +164,18 @@
             const $select = $('#toc');
             $select.off();
 
-            const options = toc.toc.map(t => `<option data-ref="${t.href}">${t.label}</option>`);
+            const getToc = (toc) => {
+                let result = '';
+                for (const t of toc) {
+                    result += `\n<option data-ref="${t.href}">${t.label}</option>`;
+                    if (t.subitems && t.subitems.length > 0) {
+                        result += `\n<optgroup label="${t.label}">${getToc(t.subitems)}</optgroup>`;
+                    }
+
+                }
+                return result;
+            }
+            const options = getToc(toc.toc);
             $select.html(options);
 
             $select.change(function(){
