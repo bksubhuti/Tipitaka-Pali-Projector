@@ -3,6 +3,9 @@
 			SetSelect();
 			
 			var startDate = new Date();
+			var strTopResult ='';
+			document.getElementById('SearchResult').innerHTML = strTopResult;
+
 
 			//var Chars = 'abcdefghijklmnopqrstuvwxyzāīūṅñṭḍṇḷṃABCDEFGHIJKLMNOPQRSTUVWXYZĀĪŪṄÑṬḌHṆḶṂ';
 
@@ -144,7 +147,9 @@
 							total_file = total_file + cx_file;
 							total_hit = total_hit + cx_hit;
 							localStorage.setItem('Sr_Out' + y + x, pali);
-              //alert(pali.length);
+							strTopResult = strTopResult + pali;
+
+							//alert(pali.length);
 						} else {
 							document.getElementById('Out' + y + x).innerHTML = '0 Hits.' ;
 						}
@@ -154,4 +159,7 @@
 			var endDate = new Date();
 			var seconds = (endDate.getTime() - startDate.getTime())/1000;
 			document.getElementById('msg').innerHTML = 'Fuzzy Search : ' + total_file +' Files, ' + total_hit + ' Paragraphs, ' + seconds + " Seconds";
+
+			// write the final string.
+			document.getElementById('SearchResult').innerHTML = strTopResult;
 		}

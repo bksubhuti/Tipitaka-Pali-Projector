@@ -1106,6 +1106,13 @@
                        onkeyup="Keyin()" value="">
                 <input type="hidden" id="id1">
                 <input type="hidden" id="id2">
+                
+                <label class="switch">
+                    <input id="ShowOnTop" type="checkbox" onClick="ShowOnTopClick(checked)" >
+                    <span class="slider round"></span>
+                  </label>
+                  <label for="ShowOnTop" style="color:blue;font-size:12pt;">&nbsp;Results On Top&nbsp;</label>
+
                 <table border="0" width="80%">
                     <tr>
                         <td width="20%" align="right">
@@ -1135,6 +1142,7 @@
                         <td>
                             <span style="color:blue;cursor: pointer;font-size:12pt;" onClick="Clear();">Clear</span><br>
                         </td>
+
                     </tr>
                 </table>
                 <span id="msg"></span>
@@ -1150,8 +1158,14 @@
             <td colspan="3" id="suggest">
                 <span id="out"></span>
             </td>
-            <td></td>
         </tr>
+        <tr style="line-height: 150%">
+            <td></td>
+        <td colspan="3" id="SearchResultTD">
+            <span id="SearchResult" style="display: none";></span>
+        </td>
+    </tr>
+
         </tbody>
     </table>
 
@@ -2340,6 +2354,15 @@
                 key = 'Nikaya' + v1 + x;
                 document.getElementById(key).checked = chk;
             }
+        }
+    }
+
+    function ShowOnTopClick(checked)
+    {
+        if (checked == true){
+            document.getElementById("SearchResult").style.display="inline";
+        }else{
+            document.getElementById("SearchResult").style.display="none";
         }
     }
 

@@ -9,6 +9,9 @@
 			document.getElementById('msg').innerHTML = "";
 			// document.getElementById('out').innerHTML = "";
 
+			var strTopResult ='';
+			document.getElementById('SearchResult').innerHTML = strTopResult;
+
 			localStorage.setItem("Sr_type", 'S');
 
 			var key = toUniRegEx(document.getElementById('key').value).trim().toLowerCase();
@@ -126,6 +129,8 @@
 
 														pali = pali + tmp;
 														Sr_id = Sr_id + tmp_id + ";";
+														strTopResult = strTopResult + pali;
+
 													}
 												}
 											}
@@ -163,4 +168,8 @@
 			var endDate = new Date();
 			var seconds = (endDate.getTime() - startDate.getTime())/1000;
 			document.getElementById('msg').innerHTML = 'Suffix Search : ' + total_file +' Files, ' + total_hit + ' Paragraphs, ' + seconds + " Seconds";
+		
+		
+			// write the final string.
+			document.getElementById('SearchResult').innerHTML = strTopResult;		
 		}

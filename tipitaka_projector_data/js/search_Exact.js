@@ -3,6 +3,9 @@
 			SetSelect();
 			
 			var startDate = new Date();
+			var strTopResult ='';
+			document.getElementById('SearchResult').innerHTML = strTopResult;
+
 
 			var Str_Pali = 'abcdefghijklmnopqrstuvwxyzāīūṅñṭḍṇḷṃABCDEFGHIJKLMNOPQRSTUVWXYZĀĪŪṄÑṬḌHṆḶṂ';
 
@@ -124,6 +127,8 @@
 
 														pali = pali + tmp;
 														Sr_id = Sr_id + tmp_id + ";";
+														strTopResult = strTopResult + pali;
+
 													}
 												}
 											}
@@ -161,4 +166,7 @@
 			var endDate = new Date();
 			var seconds = (endDate.getTime() - startDate.getTime())/1000;
 			document.getElementById('msg').innerHTML = 'Exact Search : ' + total_file +' Files, ' + total_hit + ' Paragraphs, ' + seconds + " Seconds";
+		
+			// write the final string.
+			document.getElementById('SearchResult').innerHTML = strTopResult;				
 		}
