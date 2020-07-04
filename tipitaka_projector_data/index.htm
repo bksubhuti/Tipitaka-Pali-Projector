@@ -191,24 +191,24 @@
                     resizable: true,
                     draggable: true,
 
-                    maxHeight: width(),
-                    maxWidth: height(),
+                    maxHeight: height(),
+                    maxWidth: width(),
                     
                     width: Math.min(halfTableWidth(), 600),
                     height: Math.min(height(), 850),
 
                     open: function () {
-                        $(this).dialog('option', {
+                        const dialogOptions = {
                             maxHeight: height(),
                             maxWidth: width(),
                             
                             height: Math.min(height(), 850),
-                            width: Math.min(halfTableWidth, 500),
-                            
-                            
-                        });
+                            width: Math.min(halfTableWidth(), 500),
+                        };
+
+                        $(this).dialog('option', dialogOptions);
                         $(this).dialog('option', {
-                            position: { my: "right-20 top", at: "right top+20", of: $('#main_table')}
+                            position: { my: "right-20 top", at: "right top+20", of: $('body')}
                         });
                         if (epubRendition) {
                             epubRendition.resize($(this).outerWidth() - 88, $(this).outerHeight() - 36 - 20);
@@ -1080,7 +1080,7 @@
 <div id="epub" title="English Reader" class="app-dialog">
     <select id="toc"></select>
     <div id="book-area"></div>
-	<div id="viewer" class="scrolled"></div>
+    <div id="viewer" class="scrolled"></div>
     <a id="prev" href="#prev" class="arrow">‹</a>
     <a id="next" href="#next" class="arrow">›</a>
 </div>
