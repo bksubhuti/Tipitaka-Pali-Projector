@@ -957,37 +957,25 @@ function getCurrentVersion(){
 
     // get the version number.. always do this last in case the file read fails it will 
     // cause the function to crash.
-    versionfile = 'version.json'; 
-    var rawFile = new XMLHttpRequest();
-    
-    try {
-        rawFile.open('GET', versionfile, false);
-        rawFile.onreadystatechange = function () {
-            if (rawFile.readyState === 4) {
-                if (rawFile.status === 200 || rawFile.status == 0) {
-                
-                if (rawFile.responseText){
-                    var versiontxt = JSON.parse(rawFile.responseText) ;                
-                    document.getElementById('currentversion').innerHTML = '<b>' + versiontxt.versionno +'</b>'; 
-                    localStorage.setItem('versionno', versiontxt.versionno);
-                }
-                else{
+    versionfile = 'version.json';
 
-                    alert("problem loading file: " + versionfile );
-                }
-
-            } //readystate =200
-        }//readystate 4
-    } //readstaychange
-    rawFile.send(null);
-    }//try
-    catch{
-        //do nothing.
-    }
-
-
-
-
+    $.ajax({
+        url: versionfile,
+        dataType: "text",
+        type: "GET",
+        mimeType: 'text/json; charset=utf-8',
+        contentType: 'text/json; charset=UTF-8',
+        success: function(rawJson) {
+            if (rawJson) {
+                var versiontxt = JSON.parse(rawJson) ;
+                document.getElementById('currentversion').innerHTML = '<b>' + versiontxt.versionno +'</b>';
+                localStorage.setItem('versionno', versiontxt.versionno);
+            }
+        },
+        error: function(error) {
+            alert("problem loading file: " + versionfile );
+        }
+    });
 }
 
 
