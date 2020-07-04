@@ -388,23 +388,15 @@ a:link {
 
 
 
-#toc {
-    margin-left: 24px;
-    margin-right: 24px;
-    max-width: calc(100% - 48px);
-}
-
 #book-area {
-            width: calc(100% - 50px);
-            height: calc(100% - 40px);
-            box-shadow: 0 0 4px #ccc;
-            border-radius: 5px;
+            width: 100%;
+            height: calc(100% - 30px);
             padding: 0;
             position: relative;
             margin: 10px auto;
             background: white url(ajax-loader.gif) center center no-repeat;
-            overflow-y: scroll;
-            overflow-x: hidden;
+            overflow: hidden;
+            margin: 0;
         }
         a.arrow {
           position: absolute;
@@ -448,7 +440,7 @@ a:link {
         }
 
         .epub-container{
-             overflow-x: hidden; 
+             overflow-x: hidden !important; 
         }
 
         #epub-selector {
@@ -517,3 +509,14 @@ a:link {
   .slider.round:before {
     border-radius: 50%;
   }
+  
+  
+  #epub {
+      padding: 0;
+  }
+
+#epub select#toc {
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+}
