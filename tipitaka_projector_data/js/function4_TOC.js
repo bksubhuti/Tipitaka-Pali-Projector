@@ -443,6 +443,13 @@ var tocnum;
 var gDNJSON;
 ///////////  global variables
 
-	$.getJSON("js/quickjump.json", function(json) {
-		gDNJSON = json; // this will show the info it in firebug console
-	});
+$.ajax({
+	url: 'js/quickjump.json',
+	dataType: "text",
+	type: "GET",
+	mimeType: 'text/json; charset=utf-8',
+	contentType: 'text/json; charset=UTF-8',
+	success: function(json) {
+		gDNJSON = JSON.parse(json);
+	}
+});
