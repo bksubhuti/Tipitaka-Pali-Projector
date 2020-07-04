@@ -427,10 +427,7 @@ if (p == '0') {		// floating
 	RedrawTable(parseInt(w));
 
 	//page4 TOC
-	$('.page4Top').css('width', '98%');
-	$('.page4Bottom').css('width', '98%');
 	document.getElementById('page4break1').innerHTML = '<br>';
-	document.getElementById('page4break2').innerHTML = '<br>';
 	document.getElementById('page4break3').innerHTML = '<br>';
 
 	$('.page5').css('width', '98%');
