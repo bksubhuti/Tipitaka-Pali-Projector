@@ -423,9 +423,15 @@
             if (tab.dataset.helper) {
                 $(`.helper.${tab.dataset.helper}`).show();
             }
+
             change_tab(tab.id);
+
             if (tab.id === 'page3') {
                 ParagraphAnalysis();
+
+            } else if (tab.id === 'page1') {
+                DictionaryGo();
+
             }
         };
     </script>
