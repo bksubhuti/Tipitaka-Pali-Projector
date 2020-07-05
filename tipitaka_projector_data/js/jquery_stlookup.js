@@ -681,7 +681,10 @@ function viewSri() {
 //$(document).ready(function () = when DOM & all images are rendered. So it seems better than $(window).on('load',function ()
 $(document).ready(function () {
 
-	setTimeout(() => $('#welcome').css('opacity', 1), 2200);
+	setTimeout(() => {
+		$('#welcome').css('opacity', 1)
+		$('#loader').remove();
+	}, 2200);
 
 	// give extra 2.5 seconds for data ready
 	$('#loader').addClass('fade-out');
