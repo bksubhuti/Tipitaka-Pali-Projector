@@ -86,6 +86,7 @@
                     //
                     const bookInfo = data.node.data;
                     loadBook(bookInfo.bookId);
+                   // EnglishModeLoadEpub(bookInfo.bookId);
                 } else {
                     // this is an expandable entity (e.g. a book)
                     //
@@ -133,7 +134,7 @@
             p: {
                 'font-size': `${PaliFontSize}pt`,
                 'line-height': '150%', 
-                'font': `${PaliFontName}`
+                'font-family': `${PaliFontName}`
             },
             body: {
             'padding-left': '20px !important',
@@ -1666,7 +1667,7 @@
                                                             <option value="Thai">Thai</option>
                                                             <option value="Devanagari">Devanagari</option>
                                                             <option value="MyNote">My Note</option>
-                                                            <option value="Suttacentral">Sutta Central</option>
+                                                            <option value="Suttacentral">English Mode</option>
                                                         </select>
                                                         <br><br>
                                                     </td>
@@ -2535,7 +2536,16 @@
 
   });
 
-  
+  function EnglishModeLoadEpub(bookid){
+    var ViewRight =  localStorage.getItem("view_right")
+    if (ViewRight == 'Suttacentral'){
+
+       // loadEpubBook("dn_en_sujato.epub");
+
+    }
+
+  }
+
 
 </script>
 
