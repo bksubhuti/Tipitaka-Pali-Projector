@@ -553,3 +553,7 @@ a:link {
     color: black;
 }
 
+
+.app-dialog, .app-dialog * {
+    color: black !important;
+}
