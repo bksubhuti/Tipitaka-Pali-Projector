@@ -146,7 +146,6 @@ $(window).on('load', function () {
   if ((view_type == 'Sinhala')) { viewSri(); }
   if ((view_type == 'Thai')) { viewThai(); }       
   if ((view_type == 'Devanagari')) { viewDevar(); }
-  $('#loader').fadeOut(1000);
 });
     /*****
     @ May all be well and happy!

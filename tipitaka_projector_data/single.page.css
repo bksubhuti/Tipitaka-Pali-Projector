@@ -524,3 +524,32 @@ a:link {
 #search {
     padding: 0;
 }
+
+#loader.fade-out{
+    opacity: 0;
+}
+
+#loader {
+    -webkit-transition: opacity 2.5s linear;
+    -moz-transition: opacity 2.5s linear;
+    -ms-transition: opacity 2.5s linear;
+    -o-transition: opacity 2.5s linear;
+     opacity: 1;
+}
+
+#welcome {
+    opacity: 0;
+    
+    padding: 30px;
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+#welcome .welcome-content * {
+    color: black;
+}
+

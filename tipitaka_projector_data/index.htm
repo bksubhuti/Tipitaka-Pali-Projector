@@ -905,6 +905,11 @@
 
 <div id="main_td2" class="main_td2">
     <div id="loader" style="z-index: auto;"></div>
+    <div id="welcome">
+        <div class="welcome-content">
+            <h1>Welcome</h1>
+        </div>
+    </div>
     <table id="main_table" bgcolor="#010101" width=100% border=0 align="left" cellspacing=3 cellpadding=7
            style="padding-left: 15px;">
 
@@ -912,6 +917,7 @@
     </table>
     <script type="text/javascript">
         var loadBook = function loadBook(bookId, onBookLoadingDone) {
+            $('#welcome').remove();
             var bookInfo = bookData.flat[bookId];
             var start = new Date();
             if (DEBUG) {

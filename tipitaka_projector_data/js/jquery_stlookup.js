@@ -30,7 +30,28 @@ var deleChars = /[\[\]01234567890.,-;\"\’\?_]/;
 */ 
 var loader = document.getElementById("loader");
 
-loader.innerHTML = '<div align="center" style="z-index:9999;position:fixed;background:orange;border:2px solid white;top:35%;left:3%;right:3%;font-size:x-large;box-shadow:  -8px -2px 8px 8px white, -8px 8px 8px 8px #D9D9D9, 8px 12px 12px 12px white;"">' + '<strong><p>"vayadhammā saṅkhārā appamādena sampādethā"</strong><br> <i>~  mahāparinibbāna sutta (par.218) ~</i></p>' + '<hr><i>Starting...</i></div>';
+loader.innerHTML = `
+<div align="center" style="
+	z-index: 9999;
+	padding-top: 30px;
+	padding-bottom: 15px;
+	position: absolute;
+	background: orange;
+	border: 2px solid white;
+	top: 35%;
+	left: 3%;
+	right: 3%;
+	font-size: x-large;
+	box-shadow: -8px -2px 8px 8px white, -8px 8px 8px 8px #D9D9D9, 8px 12px 12px 12px white;">
+
+	<strong style="display: block; margin-bottom: 10px; font-weight: bolder">
+		"vayadhammā saṅkhārā appamādena sampādethā"
+	</strong>
+
+	<i>~  mahāparinibbāna sutta (par.218) ~</i></p>
+	<hr>
+	<i style="margin-top: 10px; display: block">Starting...</i>
+</div>`;
 
 var divheight = localStorage.getItem("divheight");
 
@@ -659,6 +680,9 @@ function viewSri() {
 
 //$(document).ready(function () = when DOM & all images are rendered. So it seems better than $(window).on('load',function ()
 $(document).ready(function () {
-	$('#loader').fadeOut(2000);//give extra 2 seconds for data ready
-	//$('#loader').remove();
+
+	setTimeout(() => $('#welcome').css('opacity', 1), 2200);
+
+	// give extra 2.5 seconds for data ready
+	$('#loader').addClass('fade-out');
 });
