@@ -520,3 +520,7 @@ a:link {
     line-height: 30px;
     width: 100%;
 }
+
+#search {
+    padding: 0;
+}

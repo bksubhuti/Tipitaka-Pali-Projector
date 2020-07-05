@@ -243,15 +243,15 @@
                     resizable: true,
                     draggable: true,
 
-                    maxHeight: width(),
-                    maxWidth: height(),
+                    maxHeight: $(window).height(),
+                    maxWidth: $(window).width(),
                     
-                    width: Math.min(width(), 950),
+                    width: Math.min($(window).width(), 1144),
 
                     open: function () {
                         $(this).dialog('option', {
-                            maxHeight: height(),
-                            maxWidth: width(),
+                            maxHeight: $(window).height(),
+                            maxWidth: $(window).width(),
                         });
                     }
                 });
