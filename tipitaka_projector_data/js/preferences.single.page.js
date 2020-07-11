@@ -805,7 +805,7 @@ function initPreferences(){
     // set the font color for the dictionary
     r1 = localStorage.getItem("r1");
     $('.dict').css('color', r1);
-    $('li').css('color', r1);
+    // $('li').css('color', r1);
 
 
     lineheight = localStorage.getItem('contentlineheight');

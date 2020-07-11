@@ -503,7 +503,7 @@ document.getElementById('main_div').style.color= panel_font_color;
 // set the font color for the dictionary
 r1 = localStorage.getItem("r1");
 $('.dict').css('color', r1);
-$('li').css('color', r1);
+//$('li').css('color', r1);
 
 
 lineheight = localStorage.getItem('contentlineheight');
