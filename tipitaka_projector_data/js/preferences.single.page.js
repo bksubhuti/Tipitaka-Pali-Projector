@@ -236,6 +236,94 @@ function setTextColorsFromLocalStorage() {
     $('h3').css('color', r1);
 }
 
+function setThemeStyling() {
+
+    const useTheme = localStorage.getItem('Themes') === 'true';
+    if (!useTheme) {
+        return;
+    }
+
+    const theme = getCurrentTheme();
+
+    document.body.style.background = theme;
+
+    let r1 = '';
+    let m1 = '';
+    let b1 = '';
+
+    const font_color = {
+        '#f3ddb6':'#000000',
+        '#fff8dc':'#000000',
+        '#1f3763':'#fffffe',
+        '#000001':'#ffffff',
+        '#121212':'#b0b0b0',
+        '#010101':'#937811',
+        '#090c11':'#2d3d4a',
+        '#3C3C3C':'#cecece',
+        '#5a5a5a':'#cacaca',
+        '#d7d4cd':'#626262',
+        '#e0e0e0':'#202020',
+        '#f0f0f0':'#008000',
+        '#fefefe':'#000000',
+        '#d8cbab':'#000001',
+        '#e2bdb4':'#010101'
+    };
+    const b1_color = {
+        '#f3ddb6':'brown',
+        '#fff8dc':'brown',
+        '#1f3763':'#ffff00',
+        '#000001':'brown',
+        '#121212':'brown',
+        '#010101':'brown',
+        '#090C11':'brown',
+        '#3c3c3c':'brown',
+        '#5a5a5a':'brown',
+        '#d7d4cd':'brown',
+        '#e0e0e0':'brown',
+        '#f0f0f0':'brown',
+        '#fefefe':'brown',
+        '#d8cbab':'brown',
+        '#e2bdb4':'brown'
+    };
+
+    r1 = font_color[theme];
+    m1 = font_color[theme];
+    b1 = b1_color[theme];
+
+    // set these to local storage
+    localStorage.setItem("r1", r1);
+    localStorage.setItem("m1", m1);
+    localStorage.setItem("b1", b1);
+
+    var el = document.getElementById("main_table");
+    if (el)
+    {
+        // TODO what was this for?
+        //
+        //document.getElementById("main_table").style.backgroundColor = bg_color;
+        //document.getElementById("main_div").style.backgroundColor = bg_color;
+    }
+
+    hideshowlogo();
+
+    // get the theme checkbox.. if checked then set the panel to the same color
+    if ( document.getElementById("Themes").checked ){
+
+
+        localStorage.setItem('panel_bg_color', theme);
+
+        // need to make string?  stackexchange  otherwise length is always 1
+
+        // Panel FontColor
+        localStorage.setItem('panel_font_color', r1);
+        // I don't feel like doing the code
+        // to set this little box.. It is done here.
+
+    }
+
+    setTextColorsFromLocalStorage();
+}
+
 function ChooseSelect(key) {
     val = document.getElementById(key).value;
     localStorage.setItem(key, val);
@@ -270,93 +358,17 @@ function ChooseSelect(key) {
     // Call the default table settings prior to setting the theme stuff
     setTableStyling();
 
-    if (key == 'bg_color'){
-        document.body.style.background = val;
-
-        var r1='';
-        var m1='';
-        var b1='';
-        /*
-                if ((val) && (val != "#f3ddb6")) {
-                    if (val == "#fff8dc") {r1 = m1 = 'black';   }// { $(".r1").css("color","black"); $(".m1").css("color","black") }
-                    else  {r1 = m1 = '#FFF2CC'} ;  // { $(".r1").css("color","#FFF2CC"); $(".m1").css("color","#FFF2CC");}
-                }
-        */  // this section gets overwritten anyway (so I think).
-        var font_color = {
-            '#f3ddb6':'#000000',
-            '#fff8dc':'#000000',
-            '#1f3763':'#fffffe',
-            '#000001':'#ffffff',
-            '#121212':'#b0b0b0',
-            '#010101':'#937811',
-            '#090c11':'#2d3d4a',
-            '#3C3C3C':'#cecece',
-            '#5a5a5a':'#cacaca',
-            '#d7d4cd':'#626262',
-            '#e0e0e0':'#202020',
-            '#f0f0f0':'#008000',
-            '#fefefe':'#000000',
-            '#d8cbab':'#000001',
-            '#e2bdb4':'#010101'
-        }
-        var b1_color = {
-            '#f3ddb6':'brown',
-            '#fff8dc':'brown',
-            '#1f3763':'#ffff00',
-            '#000001':'brown',
-            '#121212':'brown',
-            '#010101':'brown',
-            '#090C11':'brown',
-            '#3c3c3c':'brown',
-            '#5a5a5a':'brown',
-            '#d7d4cd':'brown',
-            '#e0e0e0':'brown',
-            '#f0f0f0':'brown',
-            '#fefefe':'brown',
-            '#d8cbab':'brown',
-            '#e2bdb4':'brown'
-        }
-
-
-        r1 = font_color[val];
-        m1 = font_color[val];
-        b1 = b1_color[val];
-
-        // set these to local storage
-        localStorage.setItem("r1", r1);
-        localStorage.setItem("m1", m1);
-        localStorage.setItem("b1", b1);
-
-        var el = document.getElementById("main_table");
-        if (el)
-        {
-            //document.getElementById("main_table").style.backgroundColor = bg_color;
-            //document.getElementById("main_div").style.backgroundColor = bg_color;
-        }
-
-        hideshowlogo();
-
-        // get the theme checkbox.. if checked then set the panel to the same color
-        if ( document.getElementById("Themes").checked == true ){
-
-
-            localStorage.setItem('panel_bg_color', val);
-
-            // need to make string?  stackexchange  otherwise length is always 1
-
-            // Panel FontColor
-            localStorage.setItem('panel_font_color', r1);
-            // I don't feel like doing the code 
-            // to set this little box.. It is done here.
-            initPreferences();
-        }
-
-        setTextColorsFromLocalStorage();
-
+    if (key == 'bg_color') {
+        localStorage.setItem('current-theme', val);
+        setThemeStyling();
     }
 
+}
 
-
+function getCurrentTheme() {
+    // #f3ddb6 is the 'Classic Reader' theme
+    //
+    return localStorage.getItem('current-theme') || '#f3ddb6';
 }
 
 function ChooseRadio(key) {
@@ -923,7 +935,7 @@ function initPreferences(){
     var speech_speed = localStorage.getItem("speech_speed");
     document.getElementById('showspeed').innerHTML = 'Speed=' + speech_speed;
 
-    setTextColorsFromLocalStorage();
+    setThemeStyling();
 
 }
 
