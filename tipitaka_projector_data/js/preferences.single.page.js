@@ -236,6 +236,32 @@ function setTextColorsFromLocalStorage() {
     $('h3').css('color', r1);
 }
 
+function getFontColor() {
+    if (localStorage.getItem('Themes') === 'true') {
+        const fontColors = {
+            '#f3ddb6':'#000000',
+            '#fff8dc':'#000000',
+            '#1f3763':'#fffffe',
+            '#000001':'#ffffff',
+            '#121212':'#b0b0b0',
+            '#010101':'#937811',
+            '#090c11':'#2d3d4a',
+            '#3C3C3C':'#cecece',
+            '#5a5a5a':'#cacaca',
+            '#d7d4cd':'#626262',
+            '#e0e0e0':'#202020',
+            '#f0f0f0':'#008000',
+            '#fefefe':'#000000',
+            '#d8cbab':'#000001',
+            '#e2bdb4':'#010101'
+        };
+        return fontColors[getCurrentTheme()];
+    }
+
+    // black by default
+    //
+    return '#000000';
+}
 function setThemeStyling() {
 
     const useTheme = localStorage.getItem('Themes') === 'true';

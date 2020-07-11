@@ -127,17 +127,24 @@
         epubDialog.style.overflowX="hidden";
         bookarea.style.overflowX="hidden";
 
+        const fontColor = `${getFontColor()} !important`;
+
         // EPUB Rendition Style Overrides
         //
         rendition.themes.default({
             p: {
                 'font-size': `${PaliFontSize}pt`,
                 'line-height': '150%', 
-                'font-family': `${PaliFontName}`
+                'font-family': `${PaliFontName}`,
+                'color': fontColor
             },
+            'h1' : {'color': getFontColor()},
+            'h2' : {'color': getFontColor()},
+            'h3' : {'color': getFontColor()},
             body: {
             'padding-left': '20px !important',
-            'padding-right': '20px !important'
+            'padding-right': '20px !important',
+            'color': getFontColor()
             }
         });
 
