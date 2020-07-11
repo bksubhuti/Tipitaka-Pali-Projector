@@ -140,20 +140,20 @@
 
     // Panel FontColor
     if (!localStorage.getItem("panel_font_color")) {
-        document.write = localStorage.setItem("panel_font_color", '#000000'); 
+        localStorage.setItem("panel_font_color", '#000000');
     }
     // Panel Line height
     if (!localStorage.getItem("contentlineheight")) {
-        document.write = localStorage.setItem("contentlineheight", '200'); 
+        localStorage.setItem("contentlineheight", '200');
     } 
 
     // Show numbers checkbox
     if (!localStorage.getItem("Show_Numbers") ) {
-        document.write = localStorage.setItem("Show_Numbers", 'true'); 
+        localStorage.setItem("Show_Numbers", 'true');
     } 
 
     // checkbox for Themes
     if (!localStorage.getItem("Themes") ) {
-        document.write = localStorage.setItem("Themes", 'true'); 
+        localStorage.setItem("Themes", 'true');
     } 
 
