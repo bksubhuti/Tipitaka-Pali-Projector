@@ -26,8 +26,8 @@ function RestorePreferences() {
     def['hpm4'] = '@';
     def['hpv1'] = '@';
     def['hpv2'] = '@';
-    def['hpv3'] = '@'; 
-    def['hse1'] = '@'; 
+    def['hpv3'] = '@';
+    def['hse1'] = '@';
     def['ipc1'] = '@';
     def['ipc2'] = '@';
     def['ipd1'] = '@';
@@ -44,8 +44,8 @@ function RestorePreferences() {
     def['ipm4'] = '@';
     def['ipv1'] = '@';
     def['ipv2'] = '@';
-    def['ipv3'] = '@'; 
-    def['ise1'] = '@'; 
+    def['ipv3'] = '@';
+    def['ise1'] = '@';
     def['main_height'] = '@';
     def['main_left'] = '@';
     def['main_top'] = '@';
@@ -58,50 +58,50 @@ function RestorePreferences() {
     def['view_left'] = '@';
     def['view_right'] = '@';
     def['width_left'] = '@';
-    def['width_right'] = '@'; 
+    def['width_right'] = '@';
     def['Show_Numbers']='@';
     def['r1']='@';
     def['m1']='@';
     def['b1']='@';
     def['PaliFontSize'] ='@';
     def['panel_bg_color'] ='@';
-    
 
-    file = 'preferences.txt'; 
+
+    file = 'preferences.txt';
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, false);
     rawFile.onreadystatechange = function () {
         if (rawFile.readyState === 4) {
-        if (rawFile.status === 200 || rawFile.status == 0) {
-            var data = rawFile.responseText; 
-            data = data.replace(/<[^>]+>/gm, '');
+            if (rawFile.status === 200 || rawFile.status == 0) {
+                var data = rawFile.responseText;
+                data = data.replace(/<[^>]+>/gm, '');
 
-            var ary = data.split( "\n" );
-            for (i in ary) {
-            var ary2 = ary[i].split('\t');
+                var ary = data.split( "\n" );
+                for (i in ary) {
+                    var ary2 = ary[i].split('\t');
 
-            if ((ary2[0] != null) && (ary2[1] != null)) { 
-                var key = ary2[0].trim();
-                var val = ary2[1].trim();
+                    if ((ary2[0] != null) && (ary2[1] != null)) {
+                        var key = ary2[0].trim();
+                        var val = ary2[1].trim();
 
-                if ((key != '') && (val != '')) { 
-                if (def[key] == '@') { 
-                    def[key] = val;
+                        if ((key != '') && (val != '')) {
+                            if (def[key] == '@') {
+                                def[key] = val;
+                            }
+                        }
+                    }
                 }
+
+                for (i in def) {
+                    if (def[i] != '@') {
+                        document.write  = localStorage.setItem(i, def[i]);
+                    }
                 }
-            }
-            }
+                // reload the values.
 
-            for (i in def) {
-            if (def[i] != '@') {
-                document.write  = localStorage.setItem(i, def[i]);  
+                initPreferences();
+                // window.location.reload();
             }
-            } 
-            // reload the values.
-
-            initPreferences();
-            // window.location.reload();
-        }
         }
     }
     rawFile.send(null);
@@ -110,66 +110,66 @@ function RestorePreferences() {
 
 }// end restore..
 
-    var Dicts = [];
-    Dicts['pc1'] = 'PC1: [10,530 entries - 675 KB] Pali Zh Suttacentral Offline 2016';
-    Dicts['pc2'] = 'PC2: [20,113 entries - 5.25 MB] Pali Zh 12 in 1 @2018';
-    Dicts['pd1'] = 'PD1: [3,607 entries - 400 KB] Pali Indonesian Suttacentral Offline 2016';
-    Dicts['pe1'] = 'PE1: [23,850 entries - 1.34 MB ] Pali English Suttacentral Offline 2016';
-    Dicts['pe2'] = 'PE2: [20,968 entries - 1.10 MB] Pali English Extracted From Digital Pali Reader (DPR)';
-    Dicts['pe3'] = 'PE3: [16,274 entries - 6.91 MB] Pali English Dictionary (PTS)';
-    Dicts['pe4'] = 'PE4: [381,754 entries - 37.1 MB] Pali English Declension Dict @DPR 2018';
-    Dicts['pe5'] = 'PE5: [330,972entries - 14.5 MB] Pali Grammar Dictionary@DPR 2018';
-    Dicts['pe6'] = 'PE6: [5,775 entries - 4,0 MB] Pali Proper Names G P Malalasekera@2018';
-    Dicts['pg1'] = 'PG1: [22,729 entries - 1.27 MB] Pali Germany Suttacentral Offline 2016';
-    Dicts['pm1'] = 'PM1: [153,527 entries - 37.8 MB] Pali Word Grammar @2018';
-    Dicts['pm2'] = 'PM2: [153,527 entries - 23.9 MB] Tipitaka Pali Myanmar @2018';
-    Dicts['pm3'] = 'PM3: [58,095 entries - 7.01 MB] Pali Myanmar Dictionary @U Hau Sein 2018';
-    Dicts['pm4'] = 'PM4: [1,882 entries - 441 KB] Pali Roots Dictionary @2018';
-    Dicts['pv1'] = 'PV1: [17,423 entries - 902 KB] Pali Viet Dictionary Bản dịch của ngài Bửu Chơn';
-    Dicts['pv2'] = 'PV2: [3,827 entries - 214 KB] Pali Viet Abhidhamma Terms - ngài Tịnh Sự (phần ghi chú thuật ngữ)';
-    Dicts['pv3'] = 'PV3: [914 entries - 253 KB] Pali Viet Vinaya Terms - Từ điển các thuật ngữ về luật do tỳ khưu Giác Nguyên sưu tầm';
-    Dicts['se1'] = 'SE1: [223,917 entries - 28.9 MB] A Sanskrit English Dictionary - Monier Williams@1899';
+var Dicts = [];
+Dicts['pc1'] = 'PC1: [10,530 entries - 675 KB] Pali Zh Suttacentral Offline 2016';
+Dicts['pc2'] = 'PC2: [20,113 entries - 5.25 MB] Pali Zh 12 in 1 @2018';
+Dicts['pd1'] = 'PD1: [3,607 entries - 400 KB] Pali Indonesian Suttacentral Offline 2016';
+Dicts['pe1'] = 'PE1: [23,850 entries - 1.34 MB ] Pali English Suttacentral Offline 2016';
+Dicts['pe2'] = 'PE2: [20,968 entries - 1.10 MB] Pali English Extracted From Digital Pali Reader (DPR)';
+Dicts['pe3'] = 'PE3: [16,274 entries - 6.91 MB] Pali English Dictionary (PTS)';
+Dicts['pe4'] = 'PE4: [381,754 entries - 37.1 MB] Pali English Declension Dict @DPR 2018';
+Dicts['pe5'] = 'PE5: [330,972entries - 14.5 MB] Pali Grammar Dictionary@DPR 2018';
+Dicts['pe6'] = 'PE6: [5,775 entries - 4,0 MB] Pali Proper Names G P Malalasekera@2018';
+Dicts['pg1'] = 'PG1: [22,729 entries - 1.27 MB] Pali Germany Suttacentral Offline 2016';
+Dicts['pm1'] = 'PM1: [153,527 entries - 37.8 MB] Pali Word Grammar @2018';
+Dicts['pm2'] = 'PM2: [153,527 entries - 23.9 MB] Tipitaka Pali Myanmar @2018';
+Dicts['pm3'] = 'PM3: [58,095 entries - 7.01 MB] Pali Myanmar Dictionary @U Hau Sein 2018';
+Dicts['pm4'] = 'PM4: [1,882 entries - 441 KB] Pali Roots Dictionary @2018';
+Dicts['pv1'] = 'PV1: [17,423 entries - 902 KB] Pali Viet Dictionary Bản dịch của ngài Bửu Chơn';
+Dicts['pv2'] = 'PV2: [3,827 entries - 214 KB] Pali Viet Abhidhamma Terms - ngài Tịnh Sự (phần ghi chú thuật ngữ)';
+Dicts['pv3'] = 'PV3: [914 entries - 253 KB] Pali Viet Vinaya Terms - Từ điển các thuật ngữ về luật do tỳ khưu Giác Nguyên sưu tầm';
+Dicts['se1'] = 'SE1: [223,917 entries - 28.9 MB] A Sanskrit English Dictionary - Monier Williams@1899';
 
 
 function DictionaryMoveOption(source, destination) {   // source move to dist. 
-    try { 
-        for(var i=0; i<source.options.length; i++){ 
-        if(source.options[i].selected){ 
-            var e = source.options[i];  
+    try {
+        for(var i=0; i<source.options.length; i++){
+            if(source.options[i].selected){
+                var e = source.options[i];
 
-            destination.options.add(new Option(e.text, e.value)); 
-            destination.options[destination.options.length -1].title = e.title;
-            source.remove(i);  
-        } 
-        } 
+                destination.options.add(new Option(e.text, e.value));
+                destination.options[destination.options.length -1].title = e.title;
+                source.remove(i);
+            }
+        }
         DictionaryRenew();
     } catch(e) {
-    } 
-} 
+    }
+}
 
-function DictionaryChangePos(obj, index) { 
-    if(index==-1){ 
-        if (obj.selectedIndex>0){ 
-        //obj.options(obj.selectedIndex).swapNode(obj.options(obj.selectedIndex-1)) //swapNode on at IE
-        obj.insertBefore(obj.options[obj.selectedIndex], obj.options[obj.selectedIndex - 1]); 
-        } 
-    }else if(index==1){ 
-        if (obj.selectedIndex<obj.options.length-1){ 
-        //obj.options(obj.selectedIndex).swapNode(obj.options(obj.selectedIndex+1)) //swapNode at IE
-        obj.insertBefore(obj.options[obj.selectedIndex + 1], obj.options[obj.selectedIndex]);  
-        } 
-    } 
+function DictionaryChangePos(obj, index) {
+    if(index==-1){
+        if (obj.selectedIndex>0){
+            //obj.options(obj.selectedIndex).swapNode(obj.options(obj.selectedIndex-1)) //swapNode on at IE
+            obj.insertBefore(obj.options[obj.selectedIndex], obj.options[obj.selectedIndex - 1]);
+        }
+    }else if(index==1){
+        if (obj.selectedIndex<obj.options.length-1){
+            //obj.options(obj.selectedIndex).swapNode(obj.options(obj.selectedIndex+1)) //swapNode at IE
+            obj.insertBefore(obj.options[obj.selectedIndex + 1], obj.options[obj.selectedIndex]);
+        }
+    }
     DictionaryRenew();
 }
 
 function DictionaryRenew() {
     var e = document.form1.DictionaryEnable;
     document.getElementById('EnableCount').innerHTML = e.options.length;
-    for(var i=0; i<e.options.length; i++){ 
-        val = e.options[i].value; 
+    for(var i=0; i<e.options.length; i++){
+        val = e.options[i].value;
         inc = (i + 1) * 10;
         inc = ('000' + inc).slice(-3);
-        document.write  = localStorage.setItem('h' + val, inc); 
+        document.write  = localStorage.setItem('h' + val, inc);
 
         initDictionaries();
     }
@@ -179,18 +179,18 @@ function DictionaryRenew() {
     var val_disable = '';
 
     j = e.options.length-1;   // remove all options  
-    for(var i=j; 0<=i; i--) { 
+    for(var i=j; 0<=i; i--) {
         val = e.options[i].value;
         val_disable = val_disable + val + ';';
-        document.write  = localStorage.setItem('h' + val, '000'); 
+        document.write  = localStorage.setItem('h' + val, '000');
         e.remove(i);
-    } 
+    }
 
     for(i in Dicts) {   // add options by Dicts order
-        if (val_disable.indexOf(i) != -1) { 
-        s1 = Dicts[i].split('] '); 
-        e.options.add(new Option(s1[1], i));   
-        e.options[e.length -1].title = s1[0] + ']';
+        if (val_disable.indexOf(i) != -1) {
+            s1 = Dicts[i].split('] ');
+            e.options.add(new Option(s1[1], i));
+            e.options[e.length -1].title = s1[0] + ']';
         }
     }
 }
@@ -216,16 +216,29 @@ function toSaveAbbr() { // 0= from disabled, 1 = from enabled
     if (no != '') {
         val = document.getElementById('Abbreviated').value.trim();
         if (val == '') {
-        val = no;
+            val = no;
         }
         val = val.substr(0, 8);
-        document.write = localStorage.setItem('i' + no, val); 
+        document.write = localStorage.setItem('i' + no, val);
     }
+}
+
+function setTextColorsFromLocalStorage() {
+    const r1 = localStorage.getItem('r1');
+    const m1 = localStorage.getItem('m1');
+    const b1 = localStorage.getItem('b1');
+
+    $('.r1').css('color', r1);
+    $('.m1').css('color', m1);
+    $('.b1').css('color', b1);
+
+    $('h2').css('color', r1);
+    $('h3').css('color', r1);
 }
 
 function ChooseSelect(key) {
     val = document.getElementById(key).value;
-    document.write = localStorage.setItem(key, val);
+    localStorage.setItem(key, val);
 
 
     if (key == 'contentfontname') {
@@ -252,50 +265,57 @@ function ChooseSelect(key) {
         // call the text size routine found in all_broswer_stllookup.. 
     }
 
+
+    // IMPORTANT
+    // Call the default table settings prior to setting the theme stuff
+    setTableStyling();
+
     if (key == 'bg_color'){
         document.body.style.background = val;
 
         var r1='';
         var m1='';
         var b1='';
-/*
-        if ((val) && (val != "#f3ddb6")) {
-            if (val == "#fff8dc") {r1 = m1 = 'black';   }// { $(".r1").css("color","black"); $(".m1").css("color","black") }
-            else  {r1 = m1 = '#FFF2CC'} ;  // { $(".r1").css("color","#FFF2CC"); $(".m1").css("color","#FFF2CC");}
-        }
-*/  // this section gets overwritten anyway (so I think).
+        /*
+                if ((val) && (val != "#f3ddb6")) {
+                    if (val == "#fff8dc") {r1 = m1 = 'black';   }// { $(".r1").css("color","black"); $(".m1").css("color","black") }
+                    else  {r1 = m1 = '#FFF2CC'} ;  // { $(".r1").css("color","#FFF2CC"); $(".m1").css("color","#FFF2CC");}
+                }
+        */  // this section gets overwritten anyway (so I think).
         var font_color = {
-        '#f3ddb6':['#000000'],
-        '#fff8dc':['#000000'],
-        '#1f3763':['#fffffe'],
-        '#000001':['#ffffff'],
-        '#121212':['#b0b0b0'],
-        '#010101':['#937811'],
-        '#090c11':['#2d3d4a'],
-        '#3C3C3C':['#cecece'],
-        '#5a5a5a':['#cacaca'],
-        '#d7d4cd':['#626262'],
-        '#e0e0e0':['#202020'],
-        '#f0f0f0':['#008000'],
-        '#fefefe':['#000000'],
-        '#d8cbab':['#000001'],
-        '#e2bdb4':['#010101']}
+            '#f3ddb6':'#000000',
+            '#fff8dc':'#000000',
+            '#1f3763':'#fffffe',
+            '#000001':'#ffffff',
+            '#121212':'#b0b0b0',
+            '#010101':'#937811',
+            '#090c11':'#2d3d4a',
+            '#3C3C3C':'#cecece',
+            '#5a5a5a':'#cacaca',
+            '#d7d4cd':'#626262',
+            '#e0e0e0':'#202020',
+            '#f0f0f0':'#008000',
+            '#fefefe':'#000000',
+            '#d8cbab':'#000001',
+            '#e2bdb4':'#010101'
+        }
         var b1_color = {
-        '#f3ddb6':['brown'],
-        '#fff8dc':['brown'],
-        '#1f3763':['#ffff00'],
-        '#000001':['brown'],
-        '#121212':['brown'],
-        '#010101':['brown'],
-        '#090C11':['brown'],
-        '#3c3c3c':['brown'],
-        '#5a5a5a':['brown'],
-        '#d7d4cd':['brown'],
-        '#e0e0e0':['brown'],
-        '#f0f0f0':['brown'],
-        '#fefefe':['brown'],
-        '#d8cbab':['brown'],
-        '#e2bdb4':['brown']}
+            '#f3ddb6':'brown',
+            '#fff8dc':'brown',
+            '#1f3763':'#ffff00',
+            '#000001':'brown',
+            '#121212':'brown',
+            '#010101':'brown',
+            '#090C11':'brown',
+            '#3c3c3c':'brown',
+            '#5a5a5a':'brown',
+            '#d7d4cd':'brown',
+            '#e0e0e0':'brown',
+            '#f0f0f0':'brown',
+            '#fefefe':'brown',
+            '#d8cbab':'brown',
+            '#e2bdb4':'brown'
+        }
 
 
         r1 = font_color[val];
@@ -307,45 +327,37 @@ function ChooseSelect(key) {
         localStorage.setItem("m1", m1);
         localStorage.setItem("b1", b1);
 
-        $('r1').css('color', r1);
-        $('m1').css('color', m1);
-        $('b1').css('color', b1);
-
-        $('h2').css('color', r1);
-        $('h3').css('color', r1);
-        
-
         var el = document.getElementById("main_table");
-            if (el)
-                {
-                    document.getElementById("main_table").style.backgroundColor = bg_color;
-                    document.getElementById("main_div").style.backgroundColor = bg_color;
-                }
+        if (el)
+        {
+            //document.getElementById("main_table").style.backgroundColor = bg_color;
+            //document.getElementById("main_div").style.backgroundColor = bg_color;
+        }
 
         hideshowlogo();
 
         // get the theme checkbox.. if checked then set the panel to the same color
         if ( document.getElementById("Themes").checked == true ){
-        
+
 
             localStorage.setItem('panel_bg_color', val);
 
             // need to make string?  stackexchange  otherwise length is always 1
-            let strR1= String(r1);
+
             // Panel FontColor
-            localStorage.setItem('panel_font_color', strR1);
+            localStorage.setItem('panel_font_color', r1);
             // I don't feel like doing the code 
             // to set this little box.. It is done here.
             initPreferences();
         }
 
+        setTextColorsFromLocalStorage();
+
     }
 
-    // this will set the colors adn everything.   
-    // located finalscript.js; 
-    setTableStyling();
- 
-} 
+
+
+}
 
 function ChooseRadio(key) {
     val = document.getElementById(key).value;
@@ -360,7 +372,7 @@ function ChooseRadio(key) {
     if (key == 'Show_Numbers1') {
         document.write  = localStorage.setItem('Show_Numbers', 'true');
     }
-    if (key == 'Hide_Numbers2') {   
+    if (key == 'Hide_Numbers2') {
         document.write  = localStorage.setItem('Show_Numbers', 'false');
     }
 
@@ -369,11 +381,11 @@ function ChooseRadio(key) {
 
 
 
-        if (val == 1){ 
-        // left fixed will set Always (display)
-        // disable click to show
-        document.getElementById('displayclick').disabled = true;
-        document.getElementById('displayalways').checked = true;
+        if (val == 1){
+            // left fixed will set Always (display)
+            // disable click to show
+            document.getElementById('displayclick').disabled = true;
+            document.getElementById('displayalways').checked = true;
 
         }
         else{
@@ -386,7 +398,7 @@ function ChooseRadio(key) {
     if (key.indexOf('display') != -1) {
         document.write  = localStorage.setItem('contentdisplay', val);
     }
-    
+
     if (key.indexOf('mode') != -1) {
         document.write  = localStorage.setItem('contentmode', val);
     }
@@ -398,20 +410,20 @@ function ChooseCheckbox(key) {
 
     if (key.indexOf('hee1') != -1) {
         if (chk == true) {
-        document.write  = localStorage.setItem('hee1', 1);
-    } else {
-        document.write  = localStorage.setItem('hee1', 0);
+            document.write  = localStorage.setItem('hee1', 1);
+        } else {
+            document.write  = localStorage.setItem('hee1', 0);
         }
     }
 
     if (key.indexOf('Themes') != -1) {
         if (chk == true) {
-             localStorage.setItem('Themes', 'true');
+            localStorage.setItem('Themes', 'true');
         } else {
-             localStorage.setItem('Themes', 'false');
-            }
+            localStorage.setItem('Themes', 'false');
+        }
     }
-    
+
 }
 
 function ChooseRange(key) {
@@ -423,11 +435,11 @@ function ChooseRange(key) {
         document.getElementById('width_right').innerHTML = (100- Number(val)) + ' %';
         document.write = localStorage.setItem('width_left', val);
         document.write = localStorage.setItem('width_right', (100 - Number(val)));
-    } 
+    }
 
     if (key.indexOf('divheight') != -1) {
         document.getElementById('showdivheight').innerHTML = 'Height=' + val + ' %';
-    } 
+    }
     if (key.indexOf('speed') != -1) {
         document.getElementById('showspeed').innerHTML = 'Speed=' + val;
     }
@@ -437,7 +449,7 @@ function ChooseRange(key) {
         document.getElementById('showfontnamesize').style.fontSize = val + 'pt';
         document.getElementById('showbackground').style.fontSize = val + 'pt';
         document.getElementById('showfontcolor').style.fontSize = val + 'pt';
-        
+
         document.write  = localStorage.setItem('contentfontsize', val);
         //
         var x = document.getElementById('colortable').getElementsByTagName('td');
@@ -472,7 +484,7 @@ function ChooseRange(key) {
         localStorage.setItem('contentfontcolorG', g);
         localStorage.setItem('contentfontcolorB', b);
     }
-} 
+}
 
 function SavePreferences() {
     def = [];
@@ -509,8 +521,8 @@ function SavePreferences() {
     def['hpv1'] = '';
     def['hpv2'] = '';
     def['hpv3'] = '';
-    def['hpv3'] = ''; 
-    def['hse1'] = ''; 
+    def['hpv3'] = '';
+    def['hse1'] = '';
     def['ipc1'] = '';
     def['ipc2'] = '';
     def['ipd1'] = '';
@@ -528,12 +540,12 @@ function SavePreferences() {
     def['ipv1'] = '';
     def['ipv2'] = '';
     def['ipv3'] = '';
-    def['ipv3'] = ''; 
-    def['ise1'] = ''; 
+    def['ipv3'] = '';
+    def['ise1'] = '';
     def['main_height'] = '';
     def['main_left'] = '';
     def['main_top'] = '';
-    def['main_width'] = ''; 
+    def['main_width'] = '';
     def['Pali_note'] = '';
     def['size_left'] = '';
     def['size_right'] = '';
@@ -551,21 +563,21 @@ function SavePreferences() {
 
     for (i in localStorage) {
         if (def[i] != null) {
-        def[i] = localStorage[i];
+            def[i] = localStorage[i];
         }
     }
 
     dat = '';
     for (i in def) {
         if (def[i] != '') {
-        dat = dat + i + '\t' + def[i] + '\n';
+            dat = dat + i + '\t' + def[i] + '\n';
         }
     }
     document.getElementById('preferences').value = dat;
 
     var blob = new Blob([dat], {type: "text/plain;charset=utf-8"});
     saveAs(blob, 'preferences.txt');
-} 
+}
 
 
 window.onload = function () {
@@ -590,7 +602,7 @@ var updatePanelColors = function updatePanelColors(panel_bg_color, panel_font_co
 
     document.getElementById("main_div").style.backgroundColor = panel_bg_color;
     document.getElementById("main_div").style.color = panel_font_color;
-    
+
     var x = document.getElementById('colortable').getElementsByTagName('td');
     x[0].style.backgroundColor =  panel_bg_color ;//'rgb(' + colorR + ',' + colorG + ',' + colorB + ')';
     x[0].style.color = panel_font_color; //'rgb(' + fontcolorR + ',' + fontcolorG + ',' + fontcolorB + ')';
@@ -617,10 +629,10 @@ function initPreferences(){
     document.getElementById('view_left').value = view_left;
     if (view_left == 'Myanmar') {
         if ((font_left != 'Myanmar Text') && (font_left != 'Pyidaungsu')) {
-        font_left = 'Myanmar Text';
-        document.getElementById('font_left').value = font_left;
-        } 
-    }  
+            font_left = 'Myanmar Text';
+            document.getElementById('font_left').value = font_left;
+        }
+    }
 
     // Background Color
     var bg_color = localStorage.getItem("bg_color");
@@ -628,17 +640,17 @@ function initPreferences(){
     // need to change for dlg too
     // cannot get this to refresh.
     document.body.style.background = bg_color;
-/*
-    const setBg = (elementId, color) => {
-        const element = document.getElementById(elementId);
-        if (element) {
-            element.style.backgroundColor = color;
-        }
-        console.log('setting bg', element, color);
-    };
-    ['main_table', 'main_div'].forEach(id => setBg(id, bg_color));
-  */  
- 
+    /*
+        const setBg = (elementId, color) => {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.style.backgroundColor = color;
+            }
+            console.log('setting bg', element, color);
+        };
+        ['main_table', 'main_div'].forEach(id => setBg(id, bg_color));
+      */
+
     updatePanelColors();
 
 
@@ -654,7 +666,7 @@ function initPreferences(){
     $('h2').css('color', r1);
     $('h3').css('color', r1);
     document.getElementById("main_table").style.backgroundColor = bg_color;
-    
+
 
 
 
@@ -675,10 +687,10 @@ function initPreferences(){
     document.getElementById('font_right').value = font_right;
     if (view_right == 'Myanmar') {
         if ((font_right != 'Myanmar Text') && (font_right != 'Pyidaungsu')) {
-        font_right = 'Myanmar Text';
-        document.getElementById('font_right').value = font_right;
-        } 
-    }  
+            font_right = 'Myanmar Text';
+            document.getElementById('font_right').value = font_right;
+        }
+    }
 
     var size_right = localStorage.getItem("size_right");
     document.getElementById('size_right').value = size_right;
@@ -686,13 +698,13 @@ function initPreferences(){
     // Pali_note
     var Pali_note = localStorage.getItem("Pali_note");
     if (Pali_note == 'inline') {
-    document.getElementById('Pali_note1').checked = true;
+        document.getElementById('Pali_note1').checked = true;
     } else {
-    document.getElementById('Pali_note2').checked = true;
+        document.getElementById('Pali_note2').checked = true;
     }
 
-    
-    
+
+
     if (localStorage.getItem('Show_Numbers') == 'true' ){
         // set the radio button
         document.getElementById('Show_Numbers1').checked = true;
@@ -701,7 +713,7 @@ function initPreferences(){
         document.getElementById('Hide_Numbers2').checked = true;
     }
 
-    
+
     if ( localStorage.getItem('Themes') == 'true') {
         document.getElementById('Themes').checked = true;
     }
@@ -744,7 +756,7 @@ function initPreferences(){
     document.getElementById('main_left').innerHTML = main_left;
 
     var main_width = localStorage.getItem("main_width");
-    document.getElementById('main_width').innerHTML = main_width; 
+    document.getElementById('main_width').innerHTML = main_width;
 
     var main_height = localStorage.getItem("main_height");
     if (_init == '1') {
@@ -753,18 +765,18 @@ function initPreferences(){
         } else {
             main_height = '100%';
         }
-        document.write = localStorage.setItem("main_height", main_height); 
-    } 
+        document.write = localStorage.setItem("main_height", main_height);
+    }
     document.getElementById('main_height').innerHTML = main_height;
 
     // Panel mode
     var contentmode = localStorage.getItem("contentmode");
     if (contentmode == 'PC') {
-    document.getElementById('modepc').checked = true;
+        document.getElementById('modepc').checked = true;
     } else {
-    document.getElementById('modeipad').checked = true;
+        document.getElementById('modeipad').checked = true;
     }
-    
+
     // Panel Font Family
     var contentfontname = localStorage.getItem("contentfontname");
     document.getElementById('contentfontname').value = contentfontname;
@@ -774,8 +786,8 @@ function initPreferences(){
     document.getElementById('contentfontsize').value = contentfontsize;
 
 
-        
-    
+
+
     ///  font stuff.. set the other active changes to panel
 
     // set the font color for the dictionary
@@ -812,21 +824,21 @@ function initPreferences(){
 
 
     // Panel FontColor
-    
+
 
     // Panel Line height
     var contentlineheight = localStorage.getItem("contentlineheight");
     if (!contentlineheight) {
         contentlineheight = '200';
-        document.write = localStorage.setItem("contentlineheight", contentlineheight); 
-    } 
-    
+        document.write = localStorage.setItem("contentlineheight", contentlineheight);
+    }
+
     var x = document.getElementById('colortable').getElementsByTagName('td');
     x[0].style.lineHeight = contentlineheight + '%';
-    
+
     document.getElementById('contentlineheight').value = contentlineheight;
 
-    
+
     document.getElementById('showfontnamesize').innerHTML = contentfontname + ' ' +contentfontsize + 'pt';
     document.getElementById('showfontnamesize').style.fontFamily = contentfontname;
     document.getElementById('showfontnamesize').style.fontSize = contentfontsize + 'pt';
@@ -834,7 +846,7 @@ function initPreferences(){
     document.getElementById('showbackground').style.fontSize = contentfontsize + 'pt';
     document.getElementById('showfontcolor').style.fontFamily = contentfontname;
     document.getElementById('showfontcolor').style.fontSize = contentfontsize + 'pt';
-    
+
     //--------------------------------------------------------------------------------
     //End of Panel
     //--------------------------------------------------------------------------------
@@ -846,62 +858,62 @@ function initPreferences(){
 
     for(var i=(e_enable.length -1); 0<=i; i--) { // remove all options  
         e_enable.remove(i);
-    } 
+    }
     for(var i=(e_disable.length -1); 0<=i; i--) { // remove all options  
         e_disable.remove(i);
-    } 
+    }
 
     e_enable_options = '';
     for(i in Dicts) {   // add options by Dicts order
         var val = localStorage.getItem("h" + i);
         if (!val) {
-        val = '000';
+            val = '000';
         }
 
         if (val == '000') {
-        s1 = Dicts[i].split('] ');
-        e_disable.options.add(new Option(s1[1], i));  
-        e_disable.options[e_disable.length -1].title = s1[0] + ']';
-        } else { 
-        e_enable_options = e_enable_options + val + i + '@';
-        } 
+            s1 = Dicts[i].split('] ');
+            e_disable.options.add(new Option(s1[1], i));
+            e_disable.options[e_disable.length -1].title = s1[0] + ']';
+        } else {
+            e_enable_options = e_enable_options + val + i + '@';
+        }
 
         // put dictionary name
         var val = localStorage.getItem("i" + i);
         if (!val) {
-        val = i;
-        document.write = localStorage.setItem('i' + i, val);
+            val = i;
+            document.write = localStorage.setItem('i' + i, val);
         }
 
-    } 
-  
+    }
+
     var ary = e_enable_options.split('@'); // put enabled options
-    ary.sort(); 
+    ary.sort();
     var inc = 0;
     for (var i in ary) {
-        if (ary[i] != '') { 
-        v2 = ary[i].slice(-3);    // key 
+        if (ary[i] != '') {
+            v2 = ary[i].slice(-3);    // key
 
-        s1 = Dicts[v2].split('] ');
-        e_enable.options.add(new Option(s1[1], v2));
-        e_enable.options[e_enable.length -1].title = s1[0] + ']';
+            s1 = Dicts[v2].split('] ');
+            e_enable.options.add(new Option(s1[1], v2));
+            e_enable.options[e_enable.length -1].title = s1[0] + ']';
 
-        inc = inc +10;
-        v1 = '000' + inc;
-        v1 = v1.slice(-3);
-        document.write = localStorage.setItem('h' + v2, v1);
-        } 
-    } 
+            inc = inc +10;
+            v1 = '000' + inc;
+            v1 = v1.slice(-3);
+            document.write = localStorage.setItem('h' + v2, v1);
+        }
+    }
     document.getElementById('EnableCount').innerHTML = document.form1.DictionaryEnable.options.length;
     document.getElementById('DisableCount').innerHTML = document.form1.DictionaryDisable.options.length;
 
     // English Dictionary
-    var hee1 = localStorage.getItem("hee1"); 
+    var hee1 = localStorage.getItem("hee1");
     if (hee1 == '1') {
-    document.getElementById('hee1').checked = true;
+        document.getElementById('hee1').checked = true;
     } else {
-    document.getElementById('hee1').checked = false;
-    } 
+        document.getElementById('hee1').checked = false;
+    }
 
     // Speech Repeat
     var speech_repeat = localStorage.getItem("speech_repeat");
@@ -911,7 +923,7 @@ function initPreferences(){
     var speech_speed = localStorage.getItem("speech_speed");
     document.getElementById('showspeed').innerHTML = 'Speed=' + speech_speed;
 
-
+    setTextColorsFromLocalStorage();
 
 }
 
@@ -923,7 +935,7 @@ function hideshowlogo(){
     $('#asoka2').hide();
     $('#asoka1').show();
 
-    if ( (r1 == '#ffffff') || (r1 == '#fffffe')  || (r1 =='#b0b0b0') || bg_color == '#010101') { 
+    if ( (r1 == '#ffffff') || (r1 == '#fffffe')  || (r1 =='#b0b0b0') || bg_color == '#010101') {
         $('table#titletable a').css('color',r1);
         $('#asoka1').hide() ;
         $('#asoka2').show();
@@ -931,11 +943,11 @@ function hideshowlogo(){
 }
 
 function ResetPreferences(){
-        var askcf = confirm("It helps to refresh the Pāḷi Tipiṭaka Projector to its original settings.\nConfirm to proceed?");
-        if (askcf == true) {
-          localStorage.clear();
-          window.location.href ='index.htm';
-        }
+    var askcf = confirm("It helps to refresh the Pāḷi Tipiṭaka Projector to its original settings.\nConfirm to proceed?");
+    if (askcf == true) {
+        localStorage.clear();
+        window.location.href ='index.htm';
+    }
 }
 
 function enlarge()
@@ -947,7 +959,7 @@ function enlarge()
 
     */
 
-   $('body').animate({ 'zoom': 4.2 }, 150); 
+    $('body').animate({ 'zoom': 4.2 }, 150);
 
     alert('called');
 
@@ -983,7 +995,7 @@ function getCurrentVersion(){
 function getVersion() {
     file = 'https://raw.githubusercontent.com/bksubhuti/Tipitaka-Pali-Projector/master/tipitaka_projector_data/version.json';
     var rawFile = new XMLHttpRequest();
-    
+
     try {
         rawFile.open('GET', file, false);
         rawFile.onreadystatechange = function () {
