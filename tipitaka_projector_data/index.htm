@@ -987,6 +987,10 @@
 
                 EnglishModeLoadEpub(bookInfo.bookId);
 
+                // Set Theme Colors
+                //
+                setThemeStyling();
+
                 // set the current position for m a t buttons if not clicked
                 localStorage.setItem('tr_id', P_Toc[1].slice(1) );  // set the current location first para if m a t button is called without clicking.
 
