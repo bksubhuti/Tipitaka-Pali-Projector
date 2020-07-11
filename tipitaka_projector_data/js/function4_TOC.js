@@ -156,7 +156,17 @@ function PaliHistoryGoUrl(val) {
 		var booktoload= val.substring(2,7);
 
 		loadBook(booktoload, () => {
+			if (tocnum < 9000){
+
 			window.location = '#' + P_Toc[tocnum];
+			}
+			else {
+				// it is angutara  .. subtract 10,000 to get paragraph number.
+				tocnum = tocnum -10000;
+				window.location = '#' + "para" +  tocnum.toString();
+
+			}
+
 		  });						
 		  return;
 	}
@@ -297,9 +307,24 @@ function QuickJump() {
 	input = document.getElementById('QuickJump').value.trim().toLowerCase();
 	
 
-	var qjson= findquickjump(input);
-	tocnum =  parseInt(qjson.TOC);
-	PaliHistoryGoUrl("qj"+ qjson.File); // test for quick jump works..
+	if (input.substring(0,2) == "an"){
+		var strnumsut =  input.match(/\d+.\d+/) + "";
+		var stranarr =  strnumsut.split(".");
+		var book = stranarr[0];
+		var sutta = stranarr[1];
+		var filenum =0;
+		
+		filenum = 5100 + parseInt(book);  // 5101 is book of ones , 5102 is book of twos
+		tocnum = 10000 + parseInt(sutta); // 10,000 is a code to look for
+		PaliHistoryGoUrl("qj"+ filenum); // test for quick jump works..
+
+	}
+	else{
+		var qjson= findquickjump(input);
+		tocnum =  parseInt(qjson.TOC);
+		PaliHistoryGoUrl("qj"+ qjson.File); // test for quick jump works..
+	}
+
 
 	/*
 	var dot = input.lastIndexOf('.'); 	// for direct jump into sutta no

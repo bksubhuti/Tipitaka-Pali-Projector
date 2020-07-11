@@ -907,7 +907,11 @@ function ShowOnTopClick(checked)
         document.getElementById("SearchResult").style.display="inline";
     }else{
         document.getElementById("SearchResult").style.display="none";
-    }
+	}
+	
+	// set the status to local storage.
+	localStorage.setItem("ShowOnTop", checked.toString());
+
 }
 
 function Show_Detail(id) {

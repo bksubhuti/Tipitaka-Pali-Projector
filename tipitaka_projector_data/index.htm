@@ -2214,8 +2214,14 @@
         // new code to have all boxes checked.. search is fast so why not?
         //
         // maybe later we can save in local storage and check based on that.
-        document.getElementById('All').checked = true;
-        choosePali('All');
+        //document.getElementById('All').checked = true;
+        //choosePali('All');
+        // set the search dlg ResultsOnTOp to the localstorage
+
+        var checked = false;
+        var strChecked = localStorage.getItem("ShowOnTop");
+        if (strChecked = "true") {checked = true;} 
+        ShowOnTopClick(checked);
     }
 
 
