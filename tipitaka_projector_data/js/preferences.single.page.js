@@ -258,16 +258,12 @@ function ChooseSelect(key) {
         var r1='';
         var m1='';
         var b1='';
-
-        // copied from all_browser_stlookup_jquery.js
-        // set r1 m1 in local storage
-//        if (!(val) || (val == "#f3ddb6")) {   $("select#bg_color").val('#f3ddb6'); }
+/*
         if ((val) && (val != "#f3ddb6")) {
             if (val == "#fff8dc") {r1 = m1 = 'black';   }// { $(".r1").css("color","black"); $(".m1").css("color","black") }
             else  {r1 = m1 = '#FFF2CC'} ;  // { $(".r1").css("color","#FFF2CC"); $(".m1").css("color","#FFF2CC");}
-//            $("table").css("background", val);
         }
-
+*/  // this section gets overwritten anyway (so I think).
         var font_color = {
         '#f3ddb6':['#000000'],
         '#fff8dc':['#000000'],
@@ -311,8 +307,13 @@ function ChooseSelect(key) {
         localStorage.setItem("m1", m1);
         localStorage.setItem("b1", b1);
 
+        $('r1').css('color', r1);
+        $('m1').css('color', m1);
+        $('b1').css('color', b1);
+
         $('h2').css('color', r1);
         $('h3').css('color', r1);
+        
 
         var el = document.getElementById("main_table");
             if (el)

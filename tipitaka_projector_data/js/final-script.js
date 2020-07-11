@@ -193,6 +193,7 @@ function setTableStyling() {
 	var color = font_color[localStorage.getItem('bg_color')];
 	var bold = bld_color[localStorage.getItem('bg_color')];
 	$(".r1").css("color", color);
+	$(".b1").css("color", color);
 	$(".m1").css("color", color);
 	$(".bld").css("color", bold);
 	//$('#main_td2').css('backgroundColor', localStorage.getItem('bg_color'));

@@ -215,44 +215,84 @@ function findquickjump(qj) {
 
 
 function makeQuickJumpTables(){
+	
 	input = document.getElementById('QuickJump').value.trim().toLowerCase();
 	var s = "";
-	var suttanum = parseInt(input) -1;
+	var suttanum = parseInt(input.substring(2)) -1;
 	var sectionnum = 0;
 	var x = 0;
 
+	if (input.substring(0,2)== "mn"){
+		for (x in TOC_Dropdown_Items){
+			if (1){
+				let num = parseInt(TOC_Dropdown_Items[x].substring(4,5)); //or just Number.parseInt
+				if(!isNaN(num)) {  // first is number this is a higher sutta number
+					suttanum=suttanum +1;
+					sectionnum = 0;
+					s = s + "mn" + suttanum.toString() + "," + x.toString() + ','  + html_no + ',' + TOC_Dropdown_Items[x] +  '\n' ;
+					s = s + "mn" + suttanum +'.'+ sectionnum.toString() +  "," + x.toString() + ','  + html_no + ',' + TOC_Dropdown_Items[x] + '\n';
+					//console.log(s);
+				}else{
+					sectionnum = sectionnum + 1;
+					s = s + "mn" + suttanum +'.'+ sectionnum.toString() +  "," + x.toString() + ','  + html_no + ',' + TOC_Dropdown_Items[x] + '\n';
+					//console.log(s);
 
-	for (x in TOC_Dropdown_Items){
-		if (1){
-			let num = parseInt(TOC_Dropdown_Items[x].substring(4,5)); //or just Number.parseInt
-			if(!isNaN(num)) {  // first is number this is a higher sutta number
-				suttanum=suttanum +1;
-				sectionnum = 0;
-				s = s + "mn" + suttanum.toString() + "," + x.toString() + ','  + html_no + ',' + TOC_Dropdown_Items[x] +  '\n' ;
-				s = s + "mn" + suttanum +'.'+ sectionnum.toString() +  "," + x.toString() + ','  + html_no + ',' + TOC_Dropdown_Items[x] + '\n';
-				//console.log(s);
-			}else{
-				sectionnum = sectionnum + 1;
-				s = s + "mn" + suttanum +'.'+ sectionnum.toString() +  "," + x.toString() + ','  + html_no + ',' + TOC_Dropdown_Items[x] + '\n';
-				//console.log(s);
-
+				}
 			}
 		}
-	}
 	
-	console.log(s);
+	}
+
+	var samyuttano = parseInt(input.substring(2)) -1;
+var huh = input.substring(0,2);
+	if (input.substring(0,2)== "sn"){
+		for (x in  TOC_Dropdown_Items){
+			if (TOC_Dropdown_Items[x].includes("saṃyuttaṃ") ){  // first character is a number  = samyutta
+				
+				// increase the samyutta number
+				samyuttano++;
+				suttanum = 0;
+			}
+			if (TOC_Dropdown_Items[x].includes("vaggo") ){
+				// do nothing.. 
+			
+			}
+			if (TOC_Dropdown_Items[x].includes("suttaṃ") ) {
+				suttanum++;
+				s = s + "sn" + samyuttano.toString() + "." + suttanum.toString() + "," + x.toString() + "," + html_no + "," + TOC_Dropdown_Items[x] +  "\n" ;		
+			}	
+			if (TOC_Dropdown_Items[x].search(/\d+-\d+/) != -1) {
+
+				var sran = TOC_Dropdown_Items[x].match(/\d+-\d+/) + ""; // make string.
+				var strnumrangeArr = sran.split("-");
+				
+				// there will be a start and end
+				var iStart = parseInt(strnumrangeArr[0]);
+				var iEnd = parseInt(strnumrangeArr[1]);
+
+				var subx = 0;
+				for (subx=iStart; subx <= iEnd; subx++){
+					suttanum++;
+					s = s + "sn" + samyuttano.toString() + "." + suttanum.toString() + "," + x.toString() + "," + html_no + "," + TOC_Dropdown_Items[x] +  "\n" ;		
+				}
 
 
+			}// 	
+		}// for loop
+
+
+	}// if sn type
+
+    var blob = new Blob([s], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, input.substring(0,2) + parseInt(input.substring(2)) +  ".csv");
 
 
 
 }
 
-
-
 function QuickJump() {
-//	makeQuickJumpTables();
-//	return;
+	//makeQuickJumpTables();
+	//return;
 
 	input = document.getElementById('QuickJump').value.trim().toLowerCase();
 	

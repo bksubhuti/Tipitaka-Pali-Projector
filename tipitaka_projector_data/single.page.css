@@ -284,10 +284,7 @@ header.panel-header img {
 /*///////////////////////*/
 /*for the preferences dlg*/
 /*///////////////////////*/
-<!--
-CSS
 
--->
 
 .ui-widget-header, .ui-state-default, ui-button {
     border: 1px solid #2f302d;
@@ -554,6 +551,6 @@ a:link {
 }
 
 
-.app-dialog, .app-dialog * {
-    color: black !important;
+.app-dialog{
 }
+

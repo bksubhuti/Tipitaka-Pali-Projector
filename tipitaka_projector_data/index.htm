@@ -86,7 +86,6 @@
                     //
                     const bookInfo = data.node.data;
                     loadBook(bookInfo.bookId);
-                   // EnglishModeLoadEpub(bookInfo.bookId);
                 } else {
                     // this is an expandable entity (e.g. a book)
                     //
@@ -985,6 +984,8 @@
                 displayBook();
                 PaliHistorySet();  // set the history
                 PaliHistoryList(); // refresh the list
+
+                EnglishModeLoadEpub(bookInfo.bookId);
 
                 // set the current position for m a t buttons if not clicked
                 localStorage.setItem('tr_id', P_Toc[1].slice(1) );  // set the current location first para if m a t button is called without clicking.
@@ -2087,10 +2088,7 @@
 
 <script src="js/z_search_pali_no.js"></script>
 <script src="js/z_tipitaka_Maps.js"></script>
-<script src="js/search_Fuzzy.js"></script>
-<script src="js/search_Exact.js"></script>
-<script src="js/search_Prefix.js"></script>
-<script src="js/search_Suffix.js"></script>
+<script src="js/searchdlg.js"></script>
 <script src="js/search_Title_No.js"></script>
 
 <script>
@@ -2210,197 +2208,6 @@
 
     pws = [];
 
-    function Keyin() {
-        var key = toUniRegEx(document.getElementById('key').value);
-        document.getElementById('key').value = key;
-        key = key.trim().toLowerCase();
-
-        if (document.getElementById('SearchType1').checked == true) {
-            key_ary = key.split(' ');
-            key_ary_length = key_ary.length;
-
-            var out = "";
-            var key_notfound = "";
-            for (key_i = 0; key_i < key_ary_length; key_i++) {
-                key = key_ary[key_i].trim();
-                var len = key.length;
-                if (1 <= len) {
-                    if ((pws[key.substring(0, 1)] == undefined) && ('abcdeghijklmnoprstuvyñāīūḍḷṃṅṇṭ'.indexOf(key.substring(0, 1)) != -1)) {
-                        var newscript = document.createElement('script');
-                        newscript.setAttribute('type', 'text/javascript');
-                        newscript.setAttribute('src', 'dictionary/zz_search_' + key.substring(0, 1) + '.js');
-                        var head = document.getElementsByTagName('head')[0];
-                        head.appendChild(newscript);
-                    }
-
-                    if ((key_i + 1) == key_ary_length) {
-                        cx = 0;
-                        var out_tmp = "";
-
-                        for (var i in pws) {
-                            if (i.substring(0, len) == key) {
-                                cx = cx + 1;
-                                out_tmp = out_tmp + '<a hef="javascript:void(0)" style="color:blue;" onClick="Put(\'' + i + '\');">' + i + '</a>' + " <span style='font-size:9pt;color:#800080;'>" + pws[i] + "</span>,&nbsp;&nbsp;&nbsp;";
-                                if (cx > 99) {
-                                    out_tmp = out_tmp + " <span style='font-size:12pt;color:red;'>> 99...</span>";
-                                    break;
-                                }
-                            }
-                        }
-
-                        if (out_tmp == "") {
-                            key_notfound = key_notfound + key + " ";
-                        } else {
-                            out = out + out_tmp;
-                        }
-                    } else {
-                        if (pws[key] == undefined) {
-                            key_notfound = key_notfound + key + ".... ";
-                        }
-                    }
-                }
-            }
-            document.getElementById('out').innerHTML = out;
-        } else {
-            if (2 < key.length) {
-                var ary = [];
-                for (i = 1; i <= 3; i++) {
-                    for (j = 1; j <= 8; j++) {
-                        no = '' + j + '' + i;
-                        ary[no] = '';
-                        document.getElementById('Out' + no).innerHTML = '';
-                    }
-                }
-
-                var type2 = document.getElementById('SearchType2').checked;
-                var lenx = key.length;
-
-                old = 'x';
-                cx = 0;
-                for (i in P_TNO) {
-                    sutta = i.substring(0, 4)
-                    no = i.substring(0, 2);
-                    var sub = i.substr(8, lenx);
-                    //chk = document.getElementById('Nikaya' + no).checked;
-                    //if ((i.indexOf(key) != -1) && (chk == true)) {
-                    if (((i.indexOf(key) != -1) && type2) || ((sub == key) && !type2)) {
-
-                        if (old != sutta) {
-                            ary[no] = ary[no] + '<hr style="border: 1pt dashed gray;"><b style="color:brown;">' + sutta + " " + T_Book[sutta] + "</b><br>";
-                        }
-                        cx = cx + 1;
-
-                        name = i.substring(8);
-                        name = name.replace(key, '<span style="background:yellow">' + key + '</span>');
-
-                        ary[no] = ary[no] + cx + ' ' + '<a href="javascript:void(0);" onClick="Jump(\'' + sutta + P_TNO[i] + '\')" title="' + P_TNO[i] + '">' + name + '<span></a><br>';
-                        old = sutta;
-                    }
-                }
-
-                for (i = 1; i <= 3; i++) {
-                    for (j = 1; j <= 8; j++) {
-                        no = '' + j + '' + i;
-                        id = 'Out' + no;
-                        document.getElementById(id).innerHTML = ary[no];
-                    }
-                }
-            }
-        }
-    }
-
-    //**************************************************************************************
-
-
-    //**************************************************************************************
-
-
-    //**************************************************************************************
-
-
-    //**************************************************************************************
-
-
-    //**************************************************************************************
-    function Velthuis() {
-        v1 = document.getElementById("velthuis").style.display;
-        if (v1 == "none") {
-            document.getElementById("velthuis").style.display = "inline";
-        } else {
-            document.getElementById("key").focus();
-            document.getElementById("velthuis").style.display = "none";
-
-        }
-    }
-
-    function Clear() {
-        for (i in localStorage) {
-            if (i.substring(0, 3) == 'Sr_') {
-                localStorage.setItem(i, '');
-                localStorage.removeItem(i);
-            }
-        }
-
-        localStorage.setItem("Sr_key", '');
-        document.getElementById('key').value = '';
-        document.getElementById('key').focus();
-        for (x = 1; x <= 3; x++) {
-            for (y = 1; y <= 8; y++) {
-                var name1 = 'Out' + y + x;
-                document.getElementById(name1).innerHTML = '';
-            }
-        }
-        document.getElementById('out').innerHTML = '';
-    }
-
-    function choosePali(val) {
-        var chk, key, x, y;
-        var v1 = val.substring(0, 1);
-        var v2 = val.substring(1, 2);
-
-        if (val == 'All') {
-            chk = document.getElementById('All').checked;
-            for (x = 1; x <= 3; x++) {
-                for (y = 1; y <= 8; y++) {
-                    key = 'Nikaya' + y + x;
-                    document.getElementById(key).checked = chk;
-                }
-            }
-        }
-        if (v1 == 'x') {
-            chk = document.getElementById('MAT' + v2).checked;
-            for (y = 1; y <= 8; y++) {
-                key = 'Nikaya' + y + v2;
-                document.getElementById(key).checked = chk;
-            }
-        }
-        if (v2 == 'x') {
-            chk = document.getElementById('Nikaya' + v1).checked;
-            for (x = 1; x <= 3; x++) {
-                key = 'Nikaya' + v1 + x;
-                document.getElementById(key).checked = chk;
-            }
-        }
-    }
-
-    function ShowOnTopClick(checked)
-    {
-        if (checked == true){
-            document.getElementById("SearchResult").style.display="inline";
-        }else{
-            document.getElementById("SearchResult").style.display="none";
-        }
-    }
-
-    function Show_Detail(id) {
-        var html = document.getElementById(id).innerHTML;
-        var pos1 = html.indexOf('<hr');
-        if (pos1 == -1) {
-            document.getElementById(id).innerHTML = document.getElementById(id).innerHTML + localStorage.getItem('Sr_' + id);
-        } else {
-            document.getElementById(id).innerHTML = document.getElementById(id).innerHTML.substring(0, pos1);
-        }
-    }
 
     window.onload = function () {
 
@@ -2537,14 +2344,112 @@
   });
 
   function EnglishModeLoadEpub(bookid){
-    var ViewRight =  localStorage.getItem("view_right")
+    var ViewRight =  localStorage.getItem("view_right");
+
+    var filetoload = "";
+
     if (ViewRight == 'Suttacentral'){
 
-       // loadEpubBook("dn_en_sujato.epub");
+
+        // buddhist legends and jatakaA will not match totally correct.
+        // As they are epubs, we can re-arrange volumes to match pali volumes if we want.
+        switch(bookid){
+            case 1101:
+                filetoload = "bod-1-parajika.epub";
+                break;
+            case 1102:
+                filetoload = "bod-2-pacittiya.epub";
+                break;
+            case 1103:
+                filetoload = "bod-3-mahavagga.epub";
+                break;
+            case 1104:
+                filetoload = "bod-4-culavagga.epub";
+                break;
+            case 1105:
+                filetoload = "bod-5-parivara.epub";
+            case 2101:
+            case 2102:
+            case 2103:
+                filetoload = "dn_en_sujato.epub";
+                break;
+            case 3101:
+            case 3102:
+            case 3103:
+                filetoload = "mn_en_sujato.epub";
+                break;
+            case 4101:
+            case 4102:
+            case 4103:
+            case 4104:
+            case 4105:
+                filetoload = "sn_en_sujato.epub";
+                break;
+            case 5101:
+            case 5102:
+            case 5103:
+            case 5104:
+            case 5105:
+            case 5106:
+            case 5107:
+            case 5108:
+            case 5109:
+            case 5110:
+            case 5111:
+                filetoload = "an_en_sujato.epub";
+                break;
+            case 6108:
+                filetoload = "thag_en_sujato.epub";
+                break;
+            case 6109:
+                filetoload = "thig_en_sujato.epub";
+                break;
+            case 6202:
+                filetoload = "Buddhist-Legends-1.epub";
+                break;
+            case 6202:
+                filetoload = "Buddhist-Legends-1.epub";
+                break;
+            case 6203:
+                filetoload = "Buddhist-Legends-3.epub";
+                break;
+            case 6217:
+                filetoload = "JatakaVol.1,The-E.B.Cowell.epub";
+                break;
+            case 6218:
+                filetoload = "JatakaVol.2,The-E.B.Cowell.epub";
+                break;
+            case 6219:
+                filetoload = "JatakaVol.3,The-E.B.Cowell.epub";
+                break;
+            case 6220:
+                filetoload = "JatakaVol.4,The-E.B.Cowell.epub";
+                break;
+            case 6221:
+                filetoload = "JatakaVol.5,The-E.B.Cowell.epub";
+                break;
+            case 6222:
+                filetoload = "JatakaVol.6,The-E.B.Cowell.epub";
+                break;
+            case 6223:
+                filetoload = "JatakaVol.6,The-E.B.Cowell.epub";
+                break;
+            default:
+                filetoload = "";
+                break;
+        }
+
+        if (filetoload != ""){
+            showDialog('#epub');
+            $('#epub-selector').dialog('close');
+            loadEpubBook(filetoload);
+        }
+
 
     }
 
-  }
+}
+
 
 
 </script>
