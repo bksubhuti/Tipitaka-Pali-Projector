@@ -226,20 +226,19 @@ function RedrawTable(w) {
 }
 
 function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
-	var tr_id = localStorage.getItem('tr_id'); 
-	tr_id = parseInt(tr_id);
+	var para= "";
 
-	// tr_id convert into Myanmar paragraph no.
-	var para = 1;
-	for (para=(P_Par.length-1); 0<para; para--) {
-		if (P_Par[para] != null) {
-			v1 = parseInt(P_Par[para].substring(1));
-			if (v1<=  tr_id) {
-				break;
-			}
-		}	
-	} 	 
-	para = parseInt(para);
+	tr_id = localStorage.getItem("tr_id");
+
+	if (tr_id !=""){
+		 para = GetMyanmarParaNo();
+
+	}
+	else{
+		para = localStorage.getItem("MyanmarParaNum");
+	}
+
+
 
 	v1 = T_Maps[html_no][no];
 	if (v1.length != 4) {		// multi volumn
@@ -259,6 +258,30 @@ function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
 	//document.write = localStorage.setItem('history_pos', url); 
 	PaliHistoryGoUrl(url); 
 }	
+
+
+function GetMyanmarParaNo(){
+	var tr_id = localStorage.getItem('tr_id'); 
+	tr_id = parseInt(tr_id)+2;
+
+	// tr_id convert into Myanmar paragraph no.
+	var para = 1;
+	for (para=(P_Par.length-1); 0<para; para--) {
+		if (P_Par[para] != null) {
+			v1 = parseInt(P_Par[para].substring(1));
+			if (v1<=  tr_id) {
+				break;
+			}
+		}	
+	} 	 
+	para = parseInt(para);
+	return para;
+
+}
+
+
+
+
 
 
 /*

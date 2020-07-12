@@ -159,11 +159,15 @@ function PaliHistoryGoUrl(val) {
 			if (tocnum < 9000){
 
 			window.location = '#' + P_Toc[tocnum];
+			 localStorage.setItem('tr_id', P_Toc[tocnum].substring(1));
+			var mnp = GetMyanmarParaNo();
+			setMyanmarParaInStorage("", mnp);
 			}
 			else {
 				// it is angutara  .. subtract 10,000 to get paragraph number.
 				tocnum = tocnum -10000;
 				window.location = '#' + "para" +  tocnum.toString();
+				setMyanmarParaInStorage("",tocnum);
 
 			}
 
@@ -177,6 +181,7 @@ function PaliHistoryGoUrl(val) {
 
 	if (html_no == file ) {		// same doc file
 		if (pos.indexOf('p') != -1) {	// directly jump
+			setMyanmarParaInStorage(pos.substring(2),"" );
 			window.location = pos;
 		} else {	// myanmar or PTS page no jump
 			if ((pos.indexOf('M') != -1) || (pos.indexOf('P') != -1)) {
@@ -206,11 +211,38 @@ function PaliHistoryGoUrl(val) {
 		var Thelocation = pos.substring(1);		
 			loadBook(file, () => {
 				window.location = pos;
+				setMyanmarParaInStorage(pos.substring(5),"" );
 			  });									// any of the load books and just have this be a drop default.
 				
 	}	
 }
 
+
+//////////////////////////////
+//setMyanmarParaInStorage
+/////////////////////////////////////
+//  M A T Buttons needs to know which myanmar paragraph is is on
+// but sometimes the user does not click after "jumping" to a location 
+// by TOC-navigation, quickjump, M A T buttons, UserHistoryLinks (misc tab)
+// so must keep track and convert to myanmarpara num and set tr_id to 0
+// This way, we know.. has not clicked on anything.. and use myanmarParano
+// This function needs to be called on all "location jumps"
+/////////////////////////////////////////////////////////////////
+function setMyanmarParaInStorage(pnum, myanmarnum)
+{
+	var mParaNum = "0";
+	localStorage.setItem("tr_id", "");
+	// always set local storage for tri_id to ""
+
+	// if (pnum !="") convert pnum to myanmar
+	if (pnum != ""){
+		myanmarnum = GetMyanmarParaNo(pnum);
+	}
+	// set local storage MyanmarPara
+
+	
+	localStorage.setItem("MyanmarParaNum", myanmarnum);
+}
 
 
 function findquickjump(qj) {
@@ -221,7 +253,6 @@ function findquickjump(qj) {
     }
     return -1;
 }
-
 
 
 function makeQuickJumpTables(){

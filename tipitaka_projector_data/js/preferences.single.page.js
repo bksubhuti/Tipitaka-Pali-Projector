@@ -264,10 +264,10 @@ function getFontColor() {
 }
 function setThemeStyling() {
 
+    // themes simply sets the panel to the same color scheme.. nothing more nothing less
+    // the panel can be set separately.
     const useTheme = localStorage.getItem('Themes') === 'true';
-    if (!useTheme) {
-        return;
-    }
+
 
     const theme = getCurrentTheme();
 
@@ -278,38 +278,40 @@ function setThemeStyling() {
     let b1 = '';
 
     const font_color = {
-        '#f3ddb6':'#000000',
-        '#fff8dc':'#000000',
-        '#1f3763':'#fffffe',
-        '#000001':'#ffffff',
-        '#121212':'#b0b0b0',
-        '#010101':'#937811',
-        '#090c11':'#2d3d4a',
-        '#3C3C3C':'#cecece',
-        '#5a5a5a':'#cacaca',
-        '#d7d4cd':'#626262',
-        '#e0e0e0':'#202020',
-        '#f0f0f0':'#008000',
-        '#fefefe':'#000000',
-        '#d8cbab':'#000001',
-        '#e2bdb4':'#010101'
+        '#f3ddb6':'black',
+        '#fff8dc':'black',
+        '#1f3763':'white',
+        '#000001':'white',
+        '#121212':'darkgray',
+        '#010101':'goldenrod',
+        '#1e1e1e':'goldenrod',
+        '#090c11':'deepskyblue',
+        '#3C3C3C':'darkgray',
+        '#5a5a5a':'darkgray',
+        '#d7d4cd':'darkgray',
+        '#e0e0e0':'black',
+        '#f0f0f0':'green',
+        '#fefefe':'black',
+        '#d8cbab':'black',
+        '#e2bdb4':'black'
     };
     const b1_color = {
-        '#f3ddb6':'brown',
-        '#fff8dc':'brown',
-        '#1f3763':'#ffff00',
-        '#000001':'brown',
-        '#121212':'brown',
-        '#010101':'brown',
-        '#090C11':'brown',
-        '#3c3c3c':'brown',
-        '#5a5a5a':'brown',
-        '#d7d4cd':'brown',
-        '#e0e0e0':'brown',
-        '#f0f0f0':'brown',
-        '#fefefe':'brown',
-        '#d8cbab':'brown',
-        '#e2bdb4':'brown'
+        '#f3ddb6':'black',
+        '#fff8dc':'black',
+        '#1f3763':'white',
+        '#000001':'white',
+        '#121212':'darkgray',
+        '#010101':'goldenrod',
+        '#1e1e1e':'goldenrod',
+        '#090c11':'deepskyblue',
+        '#3C3C3C':'darkgray',
+        '#5a5a5a':'darkgray',
+        '#d7d4cd':'darkgray',
+        '#e0e0e0':'black',
+        '#f0f0f0':'green',
+        '#fefefe':'black',
+        '#d8cbab':'black',
+        '#e2bdb4':'black'
     };
 
     r1 = font_color[theme];
@@ -337,13 +339,12 @@ function setThemeStyling() {
 
 
         localStorage.setItem('panel_bg_color', theme);
-
-        // need to make string?  stackexchange  otherwise length is always 1
-
-        // Panel FontColor
         localStorage.setItem('panel_font_color', r1);
-        // I don't feel like doing the code
-        // to set this little box.. It is done here.
+
+        document.getElementById('panel_font_color').value = theme;
+        document.getElementById('panel_bg_color').value = r1;
+        updatePanelColors();
+
 
     }
 
