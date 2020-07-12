@@ -1,4 +1,34 @@
+//global variable ;
+var gbJustLookingBack = false;
+
 function paliGoBack() {
+
+	var strDictInfoArr = localStorage.getItem('DictInfoArr');
+	var DictInfoArr = [];
+	if (strDictInfoArr){
+		DictInfoArr = JSON.parse(strDictInfoArr);
+		var key= document.getElementById("DictionaryKey").value;
+		var x = 0;
+		var oneahead = 0;
+		// look for the first item to match the array then use the next one in the list if it exist
+		for (x=0; x < DictInfoArr.length; x++){
+
+			oneahead = x+1;
+			if (DictInfoArr[x].key == key && (oneahead < DictInfoArr.length )){
+				x++;
+				document.getElementById('DictionaryKey').value =  DictInfoArr[x].key;
+				gbJustLookingBack = true;
+				DictionaryKeyGo();
+				gbJustLookingBack = false;
+				break;
+			}
+		}
+	}
+
+// this code is broken because history is not written anymore.. need to use the 
+// new pali history and also can delete this old code elsewhere.
+
+	/*
 	val = localStorage.getItem('history');
 	if ((val != null) && (val != undefined) && (5 < val.length)) {  
 		ary = val.split('{!@@!}');
@@ -11,6 +41,7 @@ function paliGoBack() {
 			change_tab('page1');
 		}
 	}
+	*/
 }
 
 function TmpDictionarySave(id) {
@@ -41,14 +72,6 @@ function DictionaryGo() {
 
 	jDictInfo.key = key;
 
-	var tr_id = localStorage.getItem('tr_id');
-	//
-	// if you loaded TPP but haven't loaded any text P_HTM would not exist yet
-	// it only gets defined after loading a text
-	// 
-	if (tr_id && typeof P_HTM !== 'undefined'){
-		jDictInfo.source = getAnkiSentence(key, P_HTM[tr_id]);
-	}
  
 	if (key == '') { return(''); }
 	document.getElementById('DictionaryKey').value = key;
@@ -71,8 +94,6 @@ function DictionaryGo() {
 		}	
 	}
 
-	//write to the anki structure
-	jDictInfo.def = DoAnalysis(key);
 
 	document.getElementById('page1_desc').innerHTML = DictionaryRet;
 
@@ -82,8 +103,21 @@ function DictionaryGo() {
 	var strDictInfoArr = localStorage.getItem("DictInfoArr");
 	if (strDictInfoArr){
 		DictInfoArr= JSON.parse(strDictInfoArr);
+	}
+	if (!gbJustLookingBack){
 
-		if (DictInfoArr)
+		//write to the anki structure
+		jDictInfo.def = DoAnalysis(key);
+		var tr_id = localStorage.getItem('tr_id');
+		//
+		// if you loaded TPP but haven't loaded any text P_HTM would not exist yet
+		// it only gets defined after loading a text
+		// 
+		if (tr_id && typeof P_HTM !== 'undefined'){
+			jDictInfo.source = getAnkiSentence(key, P_HTM[tr_id]);
+		}
+	
+		if (DictInfoArr){
 			var i=0;
 			// Check to see if it exists already.. if so we need to shift it up top  shift/push
 			for (i in  DictInfoArr){
@@ -94,10 +128,10 @@ function DictionaryGo() {
 			}
 			// found and taken out to be added later or new item goes to beginning
 			DictInfoArr.unshift(jDictInfo);
+			localStorage.setItem("DictInfoArr", JSON.stringify(DictInfoArr));
+		}
+
 	}
-
-
-	localStorage.setItem("DictInfoArr", JSON.stringify(DictInfoArr));
 }
 
 function DictionaryKeyGo() {
