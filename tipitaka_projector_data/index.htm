@@ -26,8 +26,8 @@
     <script src="js/rgbcolor.js"></script>
     <script src="js/farbtastic12/farbtastic/farbtastic.js"></script>
 
-    <script src="js/epublib/epub.min.js"></script>
     <script src="js/epublib/jszip.min.js"></script>
+    <script src="js/epublib/epub.min.js"></script>
 
     <script>
         var UseSinglePageLoading = true;
@@ -114,7 +114,7 @@
         var book = epubBook = ePub(`epub/${fileName}`);
 
         var rendition = epubRendition = book.renderTo("book-area", {width: '100%', height: '100%', method: "continuous",  flow: "scrolled-doc", spread: "always"});
-        var displayed = rendition.display(0);
+        var displayed = rendition.display();
 
         var PaliFontSize = localStorage.getItem("PaliFontSize");
         var PaliFontName = localStorage.getItem("font_left")
@@ -161,7 +161,6 @@
                 }
         };
 
-        $()
         book.ready.then(() => {
               epubRendition.on("keyup", keyListener);
               //document.addEventListener("keyup", keyListener, false);
