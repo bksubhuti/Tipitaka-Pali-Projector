@@ -261,11 +261,11 @@ function Grammar_Open() {
 		document.getElementById('p' +idx).innerHTML = s1;
 	}
 
-	if (localStorage.getItem('Pali_note') == 'none') {
-		$(".note").css("display", 'none');
-	} else {
-		$(".note").css("display", 'inline');
-	}
+	// if (localStorage.getItem('Pali_note') == 'none') {
+	// 	$(".note").css("display", 'none');
+	// } else {
+	// 	$(".note").css("display", 'inline');
+	// }
 }
 
 function Note_Open() {
@@ -551,11 +551,11 @@ $(window).on('load', function () {
 		}
 	}
 
-	if (localStorage.getItem('Pali_note') == 'none') {
-		$(".note").css("display", 'none');
-	} else {
-		$(".note").css("display", 'inline');
-	}
+	// if (localStorage.getItem('Pali_note') == 'none') {
+	// 	$(".note").css("display", 'none');
+	// } else {
+	// 	$(".note").css("display", 'inline');
+	// }
 
 	if (Sr_id != null) {
 		document.getElementById('Sr_Div').style.visibility = '';

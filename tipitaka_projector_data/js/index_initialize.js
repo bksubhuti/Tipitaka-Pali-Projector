@@ -34,9 +34,9 @@
         document.write = localStorage.setItem("PaliFontSize", '20');
     }
     // Dispaly Note
-    if (!localStorage.getItem("Pali_note")) {
-        document.write = localStorage.setItem("Pali_note", 'none');
-    }
+    // if (!localStorage.getItem("Pali_note")) {
+    //     document.write = localStorage.setItem("Pali_note", 'none');
+    // }
 
 
     //-----------------------

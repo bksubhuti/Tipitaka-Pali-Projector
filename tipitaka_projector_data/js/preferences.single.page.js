@@ -399,12 +399,12 @@ function getCurrentTheme() {
 
 function ChooseRadio(key) {
     val = document.getElementById(key).value;
-    if (key.indexOf('Pali_note') != -1) {
-        if (key == 'Pali_note1') {
-            document.write  = localStorage.setItem('Pali_note', 'inline');
-        } else {
-            document.write  = localStorage.setItem('Pali_note', 'none');
-        }
+
+
+    if (key.indexOf('Pali_note') === 0) {
+        const display = key === 'Pali_note1'
+        setPreferenceFlag(PreferenceKeys.showAlternateReading, display);
+        return;
     }
 
     if (key == 'Show_Numbers1') {
@@ -651,6 +651,33 @@ var updatePanelColors = function updatePanelColors(panel_bg_color, panel_font_co
 
 }
 
+const PreferenceKeys = {
+    showAlternateReading: 'showAlternateReading'
+}
+
+function setPreferenceFlag(pref, value) {
+    if (value) {
+        localStorage.setItem(pref, 'true')
+    } else {
+        localStorage.removeItem(pref);
+    }
+    onPrefFlagChange(pref);
+}
+
+function getPreferenceFlag(pref, defaultValue) {
+    return !!(localStorage.getItem(pref) || defaultValue);
+}
+
+function onPrefFlagChange(pref) {
+    switch (pref) {
+        case PreferenceKeys.showAlternateReading: {
+            const value = getPreferenceFlag(pref);
+            $('body').toggleClass('show-notes', value);
+            break;
+        }
+    }
+}
+
 function initPreferences(){
 
     // View Left
@@ -734,8 +761,8 @@ function initPreferences(){
     document.getElementById('size_right').value = size_right;
 
     // Pali_note
-    var Pali_note = localStorage.getItem("Pali_note");
-    if (Pali_note == 'inline') {
+    var pref = getPreferenceFlag(PreferenceKeys.showAlternateReading);
+    if (pref) {
         document.getElementById('Pali_note1').checked = true;
     } else {
         document.getElementById('Pali_note2').checked = true;
@@ -963,6 +990,9 @@ function initPreferences(){
 
     setThemeStyling();
 
+    Object.keys(PreferenceKeys)
+        .map(key => PreferenceKeys[key])
+        .map(onPrefFlagChange);
 }
 
 function hideshowlogo(){

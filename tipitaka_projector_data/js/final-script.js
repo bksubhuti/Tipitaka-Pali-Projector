@@ -324,11 +324,11 @@ if (!SingleLoad) {
 
 
 
-if (localStorage.getItem('Pali_note') == 'none') {
-	$(".note").css("display", 'none');
-} else {
-	$(".note").css("display", 'inline');
-}
+// if (localStorage.getItem('Pali_note') == 'none') {
+// 	$(".note").css("display", 'none');
+// } else {
+// 	$(".note").css("display", 'inline');
+// }
 
 
 p = localStorage.getItem('contentposition');

@@ -554,3 +554,12 @@ a:link {
 .app-dialog{
 }
 
+
+
+body table#main_table .note {
+    display: none;
+}
+
+body.show-notes table#main_table .note {
+    display: inline;
+}
