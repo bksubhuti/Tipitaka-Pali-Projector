@@ -226,22 +226,30 @@ function RedrawTable(w) {
 }
 
 function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
-	var para= "";
+	var strpara= "";
+	var para=0;
 
 	tr_id = localStorage.getItem("tr_id");
 
+
+	// if it is blank that means the user jumped to a location but did not click
+	// clicking will set tr_id
+	// jump calls set tr_id to zero and set myanmarParaNum in storage. (or should)
+
 	if (tr_id !=""){
-		 para = GetMyanmarParaNo();
+		 strpara = GetMyanmarParaNo();
 
 	}
 	else{
-		para = localStorage.getItem("MyanmarParaNum");
+		strpara = localStorage.getItem("MyanmarParaNum");
 	}
 
+	strpara = strpara.match(/\d+/)+"";
 
-
+	para = parseInt(strpara);
+	// get the right matching book from maps of books
 	v1 = T_Maps[html_no][no];
-	if (v1.length != 4) {		// multi volumn
+	if (v1.length > 4) {		// multi volumn
 		var v2 = T_Mapx[html_no][no];
 		ary1 = v2.split(';');
 		for (i in ary1) {
@@ -253,17 +261,21 @@ function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
 			}
 		}
 	}
-
-	url = v1 + '#para' + para;
-	//document.write = localStorage.setItem('history_pos', url); 
+	url = v1 + '#para' + para.toString();
 	PaliHistoryGoUrl(url); 
 }	
 
 
-function GetMyanmarParaNo(){
-	var tr_id = localStorage.getItem('tr_id'); 
-	tr_id = parseInt(tr_id)+2;
+function GetMyanmarParaNo(pnum = ""){
 
+	if (pnum ==""){
+		var tr_id = localStorage.getItem('tr_id');
+		} else{
+			// remove the letters etc.
+			tr_id = pnum.match(/\d+/) +"";
+		}
+		
+	tr_id = parseInt(tr_id) + 1;
 	// tr_id convert into Myanmar paragraph no.
 	var para = 1;
 	for (para=(P_Par.length-1); 0<para; para--) {
@@ -275,14 +287,44 @@ function GetMyanmarParaNo(){
 		}	
 	} 	 
 	para = parseInt(para);
-	return para;
+	return "para" + para.toString();
 
 }
 
 
 
 
+function SetMATButtons(){
 
+	
+	document.getElementById("Pali1").disabled = false;
+	document.getElementById("Pali2").disabled = false;
+	document.getElementById("Pali3").disabled = false;
+	
+	document.getElementById("Pali1").selected = false;
+	document.getElementById("Pali2").selected = false;
+	document.getElementById("Pali3").selected = false;
+	
+	
+
+	booktype = html_no.toString().substring(1,2);
+	switch (booktype){
+		case "1":
+			document.getElementById("Pali1").disabled = true;
+			//document.getElementById("Pali1").selected = true;
+			break;
+		case "2":
+			document.getElementById("Pali2").disabled = true;
+			//document.getElementById("Pali2").selected = true;
+			break;
+		case "3":
+			document.getElementById("Pali3").disabled = true;
+			//document.getElementById("Pali3").selected = true;
+			break;
+	}
+
+
+}
 
 /*
 @ CHANGE DEFAULT CSS BACKGROUND COLOR, FONT COLOR, TEXT SIZE
@@ -346,3 +388,5 @@ if (SingleLoad) {
 }
 
 loadInSequence(toLoad);
+
+

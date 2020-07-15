@@ -944,6 +944,7 @@
             //
             document.title = bookInfo.title;
             html_no=bookId; // this is an important global variable for nav history, etc
+            SetMATButtons();
 
             // Empty the table showing the book contents in case
             // it was showing another book previously
@@ -996,9 +997,7 @@
                 // Set Theme Colors
                 //
                 setThemeStyling();
-
-                // set the current position for m a t buttons if not clicked
-                localStorage.setItem('tr_id', P_Toc[1].slice(1) );  // set the current location first para if m a t button is called without clicking.
+                window.location = "#p1";  // sometimes does not load to beginning.. leftover jumps in address?
 
                 
                 if (onBookLoadingDone) {

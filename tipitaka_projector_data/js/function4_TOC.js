@@ -56,19 +56,9 @@ function goToc() {
 
 	writeHistoryStorage();
 
-/*	var str= P_Toc[val];
-	var ele = document.getElementById(str);
-	ele.scrollIntoView();
-*/
 	window.location = '#' + P_Toc[val];	// P_Toc convert to Id
+	setMyanmarParaInStorage(P_Toc[val]);
 
-	// need to add a paragraph number because the algo to get back to the myanmar paragraph
-	// goes a little too far.. so add one to it..
-	var parano= parseInt( P_Toc[val].slice(1) );
-
-	parano=parano+1;
-	
-	localStorage.setItem('tr_id', parano.toString() );  // set the current location if m a t button is called without clicking.
 	PaliHistoryList();
 }
 
@@ -151,34 +141,47 @@ function PaliHistoryClear(val) {
 
 function PaliHistoryGoUrl(val) {
 
+
+	var Booktoload    = "";
+	var MyanmarParaNo = "";
+	var PositionToGo  = "";
+
 	if (val.substring(0,2) == 'qj')
 	{
-		var booktoload= val.substring(2,7);
+		Booktoload= val.substring(2,7);
+		if (tocnum < 9000){
+			PositionToGo =  P_Toc[tocnum];
+		}
+		else{  // AN book
+			// it is angutara  .. subtract 10,000 to get paragraph number.
+			tocnum = tocnum -10000;
+			PositionToGo =  "para" +  tocnum.toString();
+		}
+	}else{
 
-		loadBook(booktoload, () => {
-			if (tocnum < 9000){
-
-			window.location = '#' + P_Toc[tocnum];
-			 localStorage.setItem('tr_id', P_Toc[tocnum].substring(1));
-			var mnp = GetMyanmarParaNo();
-			setMyanmarParaInStorage("", mnp);
-			}
-			else {
-				// it is angutara  .. subtract 10,000 to get paragraph number.
-				tocnum = tocnum -10000;
-				window.location = '#' + "para" +  tocnum.toString();
-				setMyanmarParaInStorage("",tocnum);
-
-			}
-
-		  });						
-		  return;
+		Booktoload = val.substring(0,4);
+		PositionToGo = val.substring(5);
 	}
-	file = val.substring(0,4);
-	pos = val.substring(4);
-//html_no
-// para_no
 
+	// now load the book if needed
+	// set scroll position
+	// set variables in storage to go back to myanmar parano
+	// This is always a jump.. so always set tr_id to "" and MyanmarParano
+
+		if (html_no == Booktoload ) {		// same doc file
+			window.location = "#" + PositionToGo;
+		}
+		else{
+			loadBook(Booktoload, () => {
+				window.location = "#" + PositionToGo;
+				});									// any of the load books and just have this be a drop default.
+		}
+
+	// now call set Myanmar
+	setMyanmarParaInStorage(PositionToGo);				
+
+
+/*
 	if (html_no == file ) {		// same doc file
 		if (pos.indexOf('p') != -1) {	// directly jump
 			setMyanmarParaInStorage(pos.substring(2),"" );
@@ -207,14 +210,11 @@ function PaliHistoryGoUrl(val) {
 				}
 			}	
 		}
-	} else {
-		var Thelocation = pos.substring(1);		
-			loadBook(file, () => {
-				window.location = pos;
-				setMyanmarParaInStorage(pos.substring(5),"" );
-			  });									// any of the load books and just have this be a drop default.
-				
 	}	
+
+
+*/
+
 }
 
 
@@ -228,20 +228,23 @@ function PaliHistoryGoUrl(val) {
 // This way, we know.. has not clicked on anything.. and use myanmarParano
 // This function needs to be called on all "location jumps"
 /////////////////////////////////////////////////////////////////
-function setMyanmarParaInStorage(pnum, myanmarnum)
+function setMyanmarParaInStorage(PositionToGo)
 {
-	var mParaNum = "0";
+
+	var MyanmarParaNo= "";
 	localStorage.setItem("tr_id", "");
 	// always set local storage for tri_id to ""
 
 	// if (pnum !="") convert pnum to myanmar
-	if (pnum != ""){
-		myanmarnum = GetMyanmarParaNo(pnum);
+	if (PositionToGo.includes("para") ){
+		MyanmarParaNo =PositionToGo;
+	}
+	else{
+		MyanmarParaNo =GetMyanmarParaNo(PositionToGo);
+
 	}
 	// set local storage MyanmarPara
-
-	
-	localStorage.setItem("MyanmarParaNum", myanmarnum);
+	localStorage.setItem("MyanmarParaNum", MyanmarParaNo);
 }
 
 
