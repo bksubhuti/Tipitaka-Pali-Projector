@@ -132,19 +132,25 @@ Dicts['se1'] = 'SE1: [223,917 entries - 28.9 MB] A Sanskrit English Dictionary -
 
 
 function DictionaryMoveOption(source, destination) {   // source move to dist. 
-    try {
-        for(var i=0; i<source.options.length; i++){
-            if(source.options[i].selected){
-                var e = source.options[i];
+    try { 
+        var v1 = '';
+        for(var i=0; i<source.options.length; i++){  
+            if(source.options[i].selected){ 
+                var e = source.options[i];  
 
-                destination.options.add(new Option(e.text, e.value));
+                destination.options.add(new Option(e.text, e.value)); 
                 destination.options[destination.options.length -1].title = e.title;
-                source.remove(i);
-            }
-        }
+                //source.remove(i);  
+                v1 = ';' + i + v1;
+            } 
+        } 
+        var ary = v1.substr(1).split(';');
+        for (var i in ary) { 
+            source.remove(ary[i]);  
+        } 
         DictionaryRenew();
     } catch(e) {
-    }
+    } 
 }
 
 function DictionaryChangePos(obj, index) {
