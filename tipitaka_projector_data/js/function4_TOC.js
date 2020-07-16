@@ -150,12 +150,22 @@ function PaliHistoryGoUrl(val) {
 	{
 		Booktoload= val.substring(2,7);
 		if (tocnum < 9000){
-			PositionToGo =  P_Toc[tocnum];
+			loadBook(Booktoload, () => {
+					PositionToGo =  P_Toc[tocnum];
+					window.location = "#" + PositionToGo;
+				});									// any of the load books and just have this be a drop default.
+
+
+
 		}
 		else{  // AN book
 			// it is angutara  .. subtract 10,000 to get paragraph number.
 			tocnum = tocnum -10000;
 			PositionToGo =  "para" +  tocnum.toString();
+			loadBook(Booktoload, () => {
+				PositionToGo =  P_Toc[tocnum];
+				window.location = "#" + PositionToGo;});
+		
 		}
 	}else{
 
