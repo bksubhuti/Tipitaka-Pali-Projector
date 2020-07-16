@@ -133,9 +133,8 @@
         //
         rendition.themes.default({
             p: {
-                'font-size': `${PaliFontSize}pt`,
                 'line-height': '150%', 
-                'font-family': `${PaliFontName}`,
+                'font': `${PaliFontSize}pt ` + `${PaliFontName}`,
                 'color': fontColor
             },
             'h1' : {'color': getFontColor()},
@@ -1127,6 +1126,10 @@
 
 <div id="epub" title="English Reader" class="app-dialog">
     <select id="toc"></select>
+    <span class="center">
+    <i onClick="epubRendition.prev()" class="material-icons">arrow_back</i>&nbsp;&nbsp;
+    <i onClick="epubRendition.next()" class="material-icons">arrow_forward</i>&nbsp;&nbsp;
+</span>
     <div id="book-area"></div>
     <div id="viewer" class="scrolled"></div>
 </div>
