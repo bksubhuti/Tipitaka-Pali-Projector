@@ -23,7 +23,7 @@ var latestElementClickedJqueryObject = '';
 */
 var keepChars = /[^a-zA-Zāīūṇṅñṃṁḷḍṭáàảãạăắằẳẵặâấầẩẫậóòỏõọôốồổỗộơớờởỡợéèẻẽẹêếềểễệúùủũụưứừửữựíìỉĩịýỳỷỹỵđंअआइईउऊएओकखगघङचछजझञटठडढणतथदधनपफबभमयरलळवसहािीुूेो्ංඅආඉඊඋඌඑඔකඛගඝඞඟචඡජඣඤඤ්ජඥඦටඨඩඪණණ්ඩඬතථදධනන්දඳපඵබභමම්බඹයරලවසහළ්්රාිීුූෙොกขคฆงจฉชฌญฏฐฑฒณตถทธนปผพภมยรลวสหฬอาิีึฺุูเโํကခဂဃငင္င်္စဆဇဈဉဉ္ဉညဋဌဍဎဏတထဒဓနပဖဗဘမယရလဝသသ္သဟဠအအာဣဤဥဦဧဩါာိီုူေေါောံ္္ယ္ရ္ဝ္ဟျြွှဿ]/;
 //var rex = /([a-zA-Zāīūṇṅñṃṁḷḍṭáàảãạăắằẳẵặâấầẩẫậóòỏõọôốồổỗộơớờởỡợéèẻẽẹêếềểễệúùủũụưứừửữựíìỉĩịýỳỷỹỵđ]+)/gim; //add <span> to click for buttom para
-var deleChars = /[\[\]01234567890.,-;\"\’\?_]/;
+var deleChars = /[\[\]01234567890.,-;\+\"\’\?_]/;
 
 /*
 @ Display random message while loading
@@ -357,7 +357,7 @@ function word_click() {
 		}
 	}
 
-	t = t.replace(/\(/g, ' ').replace(/\)/g, ' ').replace(/\[/g, ' ').replace(/\]/g, ' ').replace(/\,/g, ' ').replace(/\-/g, ' ').replace(/\./g, ' ').replace(/\;/g, ' ').replace(/\‘/g, ' ').replace(/\’/g, ' ').replace(/\  /g, ' ').replace(/\ \ /g, ' ');
+	t = t.replace(/\(/g, ' ').replace(/\)/g, ' ').replace(/\[/g, ' ').replace(/\]/g, ' ').replace(/\,/g, ' ').replace(/\-/g, ' ').replace(/\./g, ' ').replace(/\;/g, ' ').replace(/\+/g, ' ').replace(/\‘/g, ' ').replace(/\’/g, ' ').replace(/\  /g, ' ').replace(/\ \ /g, ' ');
 
 	t = t.trim(); 
 

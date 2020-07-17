@@ -63,7 +63,11 @@ function registerListeners() {
 		}
 	});
 
-	$(document.body).on('click', '.pages', function () {
+	$(document.body).on('click', '.pages', function (event) {
+		
+		if ( document.getSelection() != "") {
+			return;  // do nothing if selection.
+		}
 		word_click();
 		if (t.length > 0) {
 			DictionaryKeyGo();
