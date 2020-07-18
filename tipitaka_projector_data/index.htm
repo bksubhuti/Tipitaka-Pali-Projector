@@ -83,9 +83,8 @@
             $('#books-tree').on('select_node.jstree', (event, data) => {
                 if (data && data.node && data.node.data) {
                     // this is actual text
-                    //
                     const bookInfo = data.node.data;
-                    loadBook(bookInfo.bookId);
+                    PaliHistoryGoUrl(bookInfo.bookId + "#p1");
                 } else {
                     // this is an expandable entity (e.g. a book)
                     //
