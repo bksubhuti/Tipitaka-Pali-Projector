@@ -982,11 +982,6 @@
                     console.log('Loaded book contents in ' + (new Date().getTime() - start.getTime()) + ' ms.');
                 }
 
-                // at this point both files should be loaded so we can display
-                // the contents, but first set the chapter name:
-                //
-                setHistoryItemChapterName();
-
                 // Set the table styling before filling the content of the book 
                 // to avoid repaint
                 //
@@ -995,8 +990,6 @@
                 // Load the book text content, paragraph data etc
                 //
                 displayBook();
-                PaliHistorySet();  // set the history
-                PaliHistoryList(); // refresh the list
 
                 EnglishModeLoadEpub(bookInfo.bookId);
 
