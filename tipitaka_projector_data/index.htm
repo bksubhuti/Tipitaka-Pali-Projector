@@ -246,6 +246,7 @@
                     autoOpen: false,
                     resizable: true,
                     draggable: true,
+                    modal: true,
 
                     maxHeight: $(window).height(),
                     maxWidth: $(window).width(),
@@ -1003,8 +1004,6 @@
                 // Set Theme Colors
                 //
                 setThemeStyling();
-                window.location = "#p1";  // sometimes does not load to beginning.. leftover jumps in address?
-
                 
                 if (onBookLoadingDone) {
                     onBookLoadingDone();
