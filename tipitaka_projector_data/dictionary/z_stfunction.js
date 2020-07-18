@@ -558,7 +558,7 @@ $(window).on('load', function () {
 	// }
 
 	if (Sr_id != null) {
-		document.getElementById('Sr_Div').style.visibility = '';
+		document.getElementById('Sr_Div').style.visibility = 'visible';
 		document.getElementById('Sr_Next').innerHTML = Sr_id.split(';').length - 2;
 		if (Sr_id.length < 2) {
 			document.getElementById('Sr_Div').style.visibility = 'hidden';

@@ -568,3 +568,21 @@ body.show-notes table#main_table .note {
     display: block;
     text-align: center;
   }
+  
+#Sr_Div {
+     position: fixed;
+     top: 110px;
+     right: 0px;
+     visibility: hidden;
+     z-index: 1234567;
+     max-height: 90px;
+     width: 100px;
+     text-align: center;
+     padding: 3px;
+     margin-left: 1%;
+     margin-right: 1%;
+     background: #F7DBD0;
+     color: black;
+     border: 1px dashed orange;
+     border-radius: 3px;
+}
