@@ -204,6 +204,8 @@ function setTableStyling() {
 	$('#main_table').css('background-color', localStorage.getItem('bg_color'));
 	//$('#main_td2').css('background-color', localStorage.getItem('bg_color'));
 
+
+	ShowHideNumbers();
 	//console.log(localStorage.getItem('bg_color'));
 	// TABLE End
 	//========================================================================================
@@ -648,12 +650,12 @@ for (i=1; i<=3; i++) {
 	}
 }
 
-var ShowHideNumbers = function ShowHideNumbers(){
+function ShowHideNumbers(){
 	if (localStorage.getItem('Show_Numbers') == 'true') {
-		$('.font10').show();
+		$('.font10').css("display", "inline");
 	}
 	if (localStorage.getItem('Show_Numbers') == 'false') {
-		$('.font10').hide();
+		$('.font10').css("display","none");
 	}
 }
 
