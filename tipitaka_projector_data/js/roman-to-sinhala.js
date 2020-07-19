@@ -3,7 +3,7 @@
  * Modified 2019-06-22 to ES6
  */
 
- "use strict"
+ //"use strict"
 
 // sinhala unicode, roman
 const ro_specials = [
@@ -145,7 +145,7 @@ function createConsoCombi(combinations, consonants) {
 
 const ro_conso_combi = createConsoCombi(ro_combinations, ro_consonants);
 
-export function romanToSinhala(text) {
+ function romanToSinhala(text) {
     text = genericConvert(text, 1, ro_conso_combi, ro_specials);
     // add zwj for yansa and rakaransa
     text = replaceRe(text, '්ර', '්‍ර'); // rakar
@@ -153,7 +153,7 @@ export function romanToSinhala(text) {
     return text;
 }
 
-export function sinhalaToRoman(text) {
+ function sinhalaToRoman(text) {
     // remove zwj since it does not occur in roman
     text = replaceRe(text, '\u200D', '');
     text = genericConvert(text, 0, ro_conso_combi, ro_specials);

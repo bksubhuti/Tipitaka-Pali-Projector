@@ -300,7 +300,7 @@ function word_click() {
 							break;
 						}
 					case 'Sinhala' :
-						if (toSinhala(ary[i]).trim() == t) {
+						if (romanToSinhala(ary[i]).trim() == t) {
 							t = ary[i].trim();
 							break;
 						}
