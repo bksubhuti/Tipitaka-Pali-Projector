@@ -8,7 +8,7 @@ Then open up index.htm and start.
 
 Setup of browser or webserver:
 
-You will need Firefox web browser.  This will in turn need the file.uri.strict set to false.  You can do so by typing about:config in the address bar and then searching for this property and set it to false.  
+You will need Firefox web browser.  This will in turn need the <b>security.fileuri.strict_origin_policy</b> set to <b>false</b>.  You can do so by typing about:config in the address bar and then searching for this property and set it to false.  
 
 A few other methods.  
 Chrome has an extension called web server which should work
