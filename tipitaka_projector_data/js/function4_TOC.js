@@ -40,26 +40,11 @@ function Message(tr_no) {
 function goToc() {
 
 	var val = document.getElementById('Toc').value;
-
-	var today = new Date();
-	var date = ('0' + (today.getMonth() + 1)).slice(-2) + ('0' + today.getDate()).slice(-2)  + " "+ ('0' + today.getHours()).slice(-2)  + ('0' + today.getMinutes()).slice(-2);
-
-
-	gPaliHistoryItem.paraNo = P_Toc[val];
-	gPaliHistoryItem.html_no = html_no;
-
-
-
 	str = 	TOC_Dropdown_Items[val];//direct array that filled drop down items
-
 	gPaliHistoryItem.Toc_Name = str.replace(/_/g,''); 
 
-	writeHistoryStorage();
+	PaliHistoryGoUrl(html_no + "#" + P_Toc[val]);
 
-	window.location = '#' + P_Toc[val];	// P_Toc convert to Id
-	setMyanmarParaInStorage(P_Toc[val]);
-
-	PaliHistoryList();
 }
 
 
@@ -145,6 +130,11 @@ function PaliHistoryGoUrl(val) {
 	var Booktoload    = "";
 	var MyanmarParaNo = "";
 	var PositionToGo  = "";
+	var str ="";
+
+	var today = new Date();
+	var date = ('0' + (today.getMonth() + 1)).slice(-2) + ('0' + today.getDate()).slice(-2)  + " "+ ('0' + today.getHours()).slice(-2)  + ('0' + today.getMinutes()).slice(-2);
+
 
 	if (val.substring(0,2) == 'qj')
 	{
@@ -152,7 +142,13 @@ function PaliHistoryGoUrl(val) {
 		if (tocnum < 9000){
 			loadBook(Booktoload, () => {
 					PositionToGo =  P_Toc[tocnum];
+					str = 	TOC_Dropdown_Items[tocnum];//direct array that filled drop down items
+					gPaliHistoryItem.Toc_Name = str.replace(/_/g,''); 				
 					window.location = "#" + PositionToGo;
+					gPaliHistoryItem.paraNo = PositionToGo;
+					writeHistoryStorage();
+					setMyanmarParaInStorage(PositionToGo);		
+
 				});									// any of the load books and just have this be a drop default.
 
 
@@ -164,31 +160,48 @@ function PaliHistoryGoUrl(val) {
 			PositionToGo =  "para" +  tocnum.toString();
 			loadBook(Booktoload, () => {
 				PositionToGo =  P_Toc[tocnum];
+				str = 	TOC_Dropdown_Items[val];//direct array that filled drop down items
+				gPaliHistoryItem.Toc_Name = str.replace(/_/g,''); 
+			
 				window.location = "#" + PositionToGo;});
+				gPaliHistoryItem.paraNo = PositionToGo;
+				setMyanmarParaInStorage(PositionToGo);		
+				writeHistoryStorage();
 		
 		}
-	}else{
+	}else{ // not quick jump
 
 		Booktoload = val.substring(0,4);
 		PositionToGo = val.substring(5);
-	}
 
-	// now load the book if needed
-	// set scroll position
-	// set variables in storage to go back to myanmar parano
-	// This is always a jump.. so always set tr_id to "" and MyanmarParano
+
+
+		// now load the book if needed
+		// set scroll position
+		// set variables in storage to go back to myanmar parano
+		// This is always a jump.. so always set tr_id to "" and MyanmarParano
 
 		if (html_no == Booktoload ) {		// same doc file
 			window.location = "#" + PositionToGo;
+			gPaliHistoryItem.paraNo = PositionToGo;
+			writeHistoryStorage();
+			setMyanmarParaInStorage(PositionToGo);		
+
 		}
 		else{
 			loadBook(Booktoload, () => {
 				window.location = "#" + PositionToGo;
+				gPaliHistoryItem.paraNo = PositionToGo;
+				writeHistoryStorage();
+
+				setMyanmarParaInStorage(PositionToGo);		
+
 				});									// any of the load books and just have this be a drop default.
 		}
 
-	// now call set Myanmar
-	setMyanmarParaInStorage(PositionToGo);				
+
+	}
+
 
 
 /*
@@ -516,6 +529,8 @@ function SetupToc() {
 function writeHistoryStorage(){
 	// duplicates for now okay until I learn 
 	// some() and shift()
+	gPaliHistoryItem.html_no = html_no;
+
 	
 		var today = new Date();
 		var date = ('0' + (today.getMonth() + 1)).slice(-2) + ('0' + today.getDate()).slice(-2)  + " "+ ('0' + today.getHours()).slice(-2)  + ('0' + today.getMinutes()).slice(-2);

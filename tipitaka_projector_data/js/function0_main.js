@@ -46,7 +46,7 @@ function toTranslate(input) {
 			out = toMyanmar(input);
 			break;
 		case 'Sinhala' :
-			out = toSinhala(input);
+			out = romanToSinhala(input);
 			break;
 		case 'Thai' :
 			out = toThai(input);
@@ -69,7 +69,7 @@ function toTranslateRight(input) {
 			out = toMyanmar(input);
 			break;
 		case 'Sinhala' :
-			out = toSinhala(input);
+			out = romanToSinhala(input);
 			break;
 		case 'Thai' :
 			out = toThai(input);

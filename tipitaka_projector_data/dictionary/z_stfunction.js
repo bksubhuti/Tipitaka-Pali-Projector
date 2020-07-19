@@ -219,7 +219,7 @@ function Grammar_Open() {
 							var ret = toMyanmar(word_str);
 							break;
 						case 'Sinhala' :
-							var ret = toSinhala(word_str);
+							var ret = romanToSinhala(word_str);
 							break;
 						case 'Thai' :
 							var ret = toThai(word_str);
@@ -407,10 +407,10 @@ $(window).on('load', function () {
 						//s1 = s1 + pali[idy] + tags[idy];
 						break;
 					case 'Sinhala' :
-						pali[idy] = toSinhala(pali[idy]);
+						pali[idy] = romanToSinhala(pali[idy]);
 						if (Sr_run == '1') {
 							for (var Sr_ndx in Sr_ary) {
-								pali[idy] = replacei(pali[idy], toSinhala(Sr_ary[Sr_ndx]), sub=> '<span class="Sr_note">' + toSinhala(Sr_ary[Sr_ndx]) + "</span>");
+								pali[idy] = replacei(pali[idy], romanToSinhala(Sr_ary[Sr_ndx]), sub=> '<span class="Sr_note">' + romanToSinhala(Sr_ary[Sr_ndx]) + "</span>");
 							}
 						}
 						//s1 = s1 + pali[idy] + tags[idy];
@@ -454,10 +454,10 @@ $(window).on('load', function () {
 							}
 							break;
 						case 'Sinhala' :
-							pali2[idy] = toSinhala(pali2[idy]);
+							pali2[idy] = romanToSinhala(pali2[idy]);
 							if (Sr_run == '1') {
 								for (var Sr_ndx in Sr_ary) {
-									pali2[idy] = replacei(pali2[idy], toSinhala(Sr_ary[Sr_ndx]), sub=> '<span class="Sr_note">' + toSinhala(Sr_ary[Sr_ndx]) + "</span>");
+									pali2[idy] = replacei(pali2[idy], romanToSinhala(Sr_ary[Sr_ndx]), sub=> '<span class="Sr_note">' + romanToSinhala(Sr_ary[Sr_ndx]) + "</span>");
 								}
 							}
 							break;
@@ -528,7 +528,7 @@ $(window).on('load', function () {
 						s1 = s1 + toMyanmar(pali[idy]) + tags[idy];
 						break;
 					case 'Sinhala' :
-						s1 = s1 + toSinhala(pali[idy]) + tags[idy];
+						s1 = s1 + romanToSinhala(pali[idy]) + tags[idy];
 						break;
 					case 'Thai' :
 						s1 = s1 + toThai(pali[idy]) + tags[idy];
