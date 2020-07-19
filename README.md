@@ -3,10 +3,12 @@
 You can download this program in the clone or download zip section of this github.  Top right of this page.
 Soon there will be a release section.
 Then open up index.htm and start.
+<B>UPDATE:  open up the index.htm in the tipitaka_projector_data folder</B>
+
 
 Setup of browser or webserver:
 
-You will need Firefox web browser.  This will in turn need the file.uri.strict set to false.  You can do so by typing about:config in the address bar and then searching for this property and set it to false.  
+You will need Firefox web browser.  This will in turn need the <b>security.fileuri.strict_origin_policy</b> set to <b>false</b>.  You can do so by typing about:config in the address bar and then searching for this property and set it to false.  
 
 A few other methods.  
 Chrome has an extension called web server which should work
