@@ -3,6 +3,8 @@
 You can download this program in the clone or download zip section of this github.  Top right of this page.
 Soon there will be a release section.
 Then open up index.htm and start.
+<B>UPDATE:  open up the index.htm in the tipitaka_projector_data folder</B>
+
 
 Setup of browser or webserver:
 
