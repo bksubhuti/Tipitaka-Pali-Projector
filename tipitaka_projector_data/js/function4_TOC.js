@@ -159,10 +159,8 @@ function PaliHistoryGoUrl(val) {
 			tocnum = tocnum -10000;
 			PositionToGo =  "para" +  tocnum.toString();
 			loadBook(Booktoload, () => {
-				PositionToGo =  P_Toc[tocnum];
-				str = 	TOC_Dropdown_Items[val];//direct array that filled drop down items
-				gPaliHistoryItem.Toc_Name = str.replace(/_/g,''); 
-			
+				// set the title as "Number + para" instead of name... no TOC
+				gPaliHistoryItem.Toc_Name = "Number "+ tocnum.toString(); 			
 				window.location = "#" + PositionToGo;});
 				gPaliHistoryItem.paraNo = PositionToGo;
 				setMyanmarParaInStorage(PositionToGo);		
