@@ -1,10 +1,9 @@
- 
 {
   "name": "tipitaka-pali-projector",
   "version": "1.0.0",
   "description": "You can download this program in the clone or download zip section of this github.  Top right of this page.\r Soon there will be a release section.\r Then open up index.htm and start.",
   "main": "index.js",
-  "icon":"build/tpp-icon.ico",
+  "icon": "build/tpp-icon.ico",
   "scripts": {
     "start": "electron ."
   },
@@ -19,13 +18,58 @@
   },
   "homepage": "https://github.com/bksubhuti/Tipitaka-Pali-Projector#readme",
   "devDependencies": {
-    "electron": "^9.0.5"
+    "electron": "^9.1.0",
+    "electron-packager": "^15.0.0",
+    "electron-updater": "^1.16.0",
+    "electron-builder": "^22.7.0"
   },
   "dependencies": {
+    "electron-log": "^1.3.0"
   },
-"build":{
+  "build": {
+    "icon": "build/tpp-icon.ico",
+    "appId": "com.pa-auk.electron.exchange.stream",
+    "productName": "Tipitaka Pali Projector",
+    "copyright": "Copyright © 2018 according to license in github",
+    "publish": [
+      "github"
+    ]
+  },
   "win": {
-    "icon": "build/tpp-icon.ico"
-  }
-}
+    "icon": "build/tpp-icon.ico",
+    "publisherName": "Trinity InfoSystem",
+    "publish": [
+      "github"
+    ],
+    "target": [
+      "nsis"
+    ]
+  },
+  "linux": {
+    "target": [
+      "AppImage",
+      "tar.gz"
+    ]
+  },
+  "dmg": {
+    "icon": "build/tpp-icon.ico",
+    "title": "Tipitaka Pali Projector"
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true
+  },
+  "publish": [
+    {
+      "provider": "github",
+      "owner": "bksubhuti",
+      "repo": "Tipitaka-Pali-Projector",
+      "vPrefixedTagName": true,
+      "private": false,
+      "releaseType": "draft"
+    }
+  ]
 }
