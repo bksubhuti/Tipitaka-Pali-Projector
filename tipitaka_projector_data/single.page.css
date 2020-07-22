@@ -130,6 +130,7 @@
 .grey-button.search{
     width: auto;
     height: 20px;
+    vertical-align: bottom;
 
 
 }
