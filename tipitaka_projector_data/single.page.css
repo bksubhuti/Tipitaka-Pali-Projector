@@ -127,6 +127,12 @@
     overflow: hidden;
     text-align: center;
 }
+.grey-button.search{
+    width: auto;
+    height: 20px;
+
+
+}
 
 .grey-button.letter {
     line-height: 36px;
