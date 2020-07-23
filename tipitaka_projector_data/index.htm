@@ -62,13 +62,13 @@
 
             const treeData = structuredData.map(sd => {
                 return {
-                    text: sd.name,
+                    text: toTranslate(sd.name),
                     children: sd.sets.map(set => {
                         return {
-                            text: set.name,
+                            text: toTranslate(set.name),
                             children: set.texts.map(text => {
                                 return {
-                                    text: text.title,
+                                    text: toTranslate(text.title),
                                     icon: 'images/text.png',
                                     data: text
                                 }
@@ -931,9 +931,7 @@
         </div>
     </div>
     <table id="main_table" bgcolor="#010101" width=100% border=0 align="left" cellspacing=3 cellpadding=7
-           style="padding-left: 15px;">
-
-
+           style="padding-left: 15px;">        
     </table>
     <script type="text/javascript">
         var loadBook = function loadBook(bookId, onBookLoadingDone) {
@@ -2466,6 +2464,12 @@
 
 }
 
+function TPPFind(){
+
+    var str = document.getElementById("TPPFindText").value;
+    window.find(str);
+
+}
 
 
 </script>
