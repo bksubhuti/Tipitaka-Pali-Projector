@@ -245,6 +245,7 @@
 									rawFile.onreadystatechange = function () {
 										if (rawFile.readyState === 4) {
 											if (rawFile.status === 200 || rawFile.status == 0) {
+												//diffrent here 
 												var data =' ' +  rawFile.responseText + ' ';
 
 												var ary_source = data.split( "\n" );
@@ -301,7 +302,7 @@
 
 														pali = pali + tmp;
 														Sr_id = Sr_id + tmp_id + ";";
-														strTopResult = strTopResult + pali;
+														
 
 													}
 												}
@@ -330,6 +331,8 @@
 							total_file = total_file + cx_file;
 							total_hit = total_hit + cx_hit;
 							localStorage.setItem('Sr_Out' + y + x, pali);
+							strTopResult = strTopResult + pali;
+							
 						} else {
 							document.getElementById('Out' + y + x).innerHTML = '0 Hits.' ;
 						}
