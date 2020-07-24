@@ -263,16 +263,43 @@ function word_click() {
 		//direction can be: left right backward forward
 		//how far: can be character word paragraph line ...
 		//https://developer.mozilla.org/en-US/docs/Web/API/Selection/modify
+		
+        //***************************************************************
+        // start of fixing bugs 2020.07.24
+        //
+        sel_object.modify("extend","forward","word");
+        var t_forward = sel_object.toString();
+        sel_object.modify("extend","backward","word");
+        var t_backward = sel_object.toString();
 
-		sel_object.modify("move","forward","character");
-		//alert(sel_object.toString().trim());
-		sel_object.modify("extend","backward","word");
-		sel_object.modify("move","backward","character");
-		sel_object.modify("extend","forward","word");
-		//sel_object.modify("move","forward","character");
-		//sel_object.modify("extend","backward","character");
-
-		t = sel_object.toString().trim();
+        var t0 = (t_backward + t_forward).trim();
+        var ary_tmp = t0.split(' '); 
+        t = ary_tmp[ary_tmp.length -1]; 
+        if (ary_tmp.length == 1) {
+			sel_object.modify("move","forward","character"); 
+    	    sel_object.modify("extend","backward","word");
+			sel_object.modify("move","backward","character");  
+			sel_object.modify("move","forward","character");  
+			for (var i=0; i<t.length; i++) {
+				var te = t.substr(i, 1);
+				var f = keepChars.test(te); //chars is not included in var keepChars, it will be removed
+				if (f) {
+					break;
+				}
+				sel_object.modify("extend","forward","character");
+			}
+        } else {       
+    		for (var i=0; i<(t0.length -1); i++) {
+    			var v1 = t0.substr(i);
+    			sel_object.modify("move","forward","character"); 
+    			if (v1.indexOf(' ') == -1) {
+    				break;
+    			}
+    		}
+   			sel_object.modify("extend","forward","word");  
+        } 
+        // end of fixing bugs
+        //***************************************************************
 
 		if (view_left != 'Roman') {
 			var id = parseInt(localStorage.getItem('tr_id'));
@@ -357,7 +384,7 @@ function word_click() {
 		}
 	}
 
-	t = t.replace(/\(/g, ' ').replace(/\)/g, ' ').replace(/\[/g, ' ').replace(/\]/g, ' ').replace(/\,/g, ' ').replace(/\-/g, ' ').replace(/\./g, ' ').replace(/\;/g, ' ').replace(/\+/g, ' ').replace(/\‘/g, ' ').replace(/\’/g, ' ').replace(/\  /g, ' ').replace(/\ \ /g, ' ');
+	t = t.replace(/\(/g, ' ').replace(/\)/g, ' ').replace(/\[/g, ' ').replace(/\]/g, ' ').replace(/\,/g, ' ').replace(/\-/g, ' ').replace(/\./g, ' ').replace(/\;/g, ' ').replace(/\‘/g, ' ').replace(/\’/g, ' ').replace(/\  /g, ' ').replace(/\ \ /g, ' ');
 
 	t = t.trim(); 
 
