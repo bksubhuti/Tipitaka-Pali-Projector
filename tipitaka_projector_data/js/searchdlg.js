@@ -815,7 +815,7 @@ function Keyin() {
                     name = name.replace(key, '<span style="background:yellow">' + key + '</span>');
 
                     ary[no] = ary[no] + cx + ' ' + '<a href="javascript:void(0);" onClick="Jump(\'' + sutta + P_TNO[i] + '\')" title="' + P_TNO[i] + '">' + name + '<span></a><br>';
-                    old = sutta;
+					old = sutta;
                 }
             }
 
@@ -925,4 +925,11 @@ function Show_Detail(id) {
     } else {
         document.getElementById(id).innerHTML = document.getElementById(id).innerHTML.substring(0, pos1);
     }
+}
+
+// this is called from the title fuzzy search  to load a book and title
+function Jump(url) {
+	html = url.substring(0, 4);
+	id = url.substring(4);
+	PaliHistoryGoUrl(html + "#p"+id);
 }

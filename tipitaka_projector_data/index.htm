@@ -2208,12 +2208,7 @@
         // document.getElementById('out').innerHTML = '';
     }
 
-    function Jump(url) {
-        html = url.substring(0, 4) + '.htm';
-        id = url.substring(4);
-        //document.write = localStorage.setItem('history_pos', '#R' + id);		// W=New Window, I=Jump ID
-        window.open(html, '_blank');
-    }
+
 
 
     pws = [];
@@ -2230,7 +2225,10 @@
 
         var checked = false;
         var strChecked = localStorage.getItem("ShowOnTop");
-        if (strChecked = "true") {checked = true;} 
+        if (strChecked = "true") {
+            checked = true; 
+            document.getElementById("ShowOnTop").checked = checked;
+        }
         ShowOnTopClick(checked);
     }
 

@@ -65,6 +65,7 @@ function RestorePreferences() {
     def['b1']='@';
     def['PaliFontSize'] ='@';
     def['panel_bg_color'] ='@';
+    def['ShowOnTop']='@';
 
 
     file = 'preferences.txt';
@@ -1002,6 +1003,16 @@ function initPreferences(){
     document.getElementById('showspeed').innerHTML = 'Speed=' + speech_speed;
 
     setThemeStyling();
+
+
+    // this belongs on search dlg but I'll put it here
+    var checked = false;
+    var strChecked = localStorage.getItem("ShowOnTop");
+    if (strChecked = "true") {
+        checked = true; 
+    }
+    document.getElementById("ShowOnTop").checked = checked;
+    ShowOnTopClick(checked);
 
     Object.keys(PreferenceKeys)
         .map(key => PreferenceKeys[key])
