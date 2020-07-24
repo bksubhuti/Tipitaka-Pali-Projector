@@ -361,6 +361,12 @@ function ChooseSelect(key) {
     val = document.getElementById(key).value;
     localStorage.setItem(key, val);
 
+    if (key=='view_left'){
+
+        //$('#books-tree').jstree({core: {data: treeData}});
+        // set the tree.. cannot set and don't understand this code
+        
+    }
 
     if (key == 'contentfontname') {
         document.getElementById('showfontnamesize').innerHTML = val + ' ' + document.getElementById('contentfontsize').value + 'pt';

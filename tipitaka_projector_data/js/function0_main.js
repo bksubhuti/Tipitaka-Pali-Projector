@@ -33,9 +33,9 @@ function replacei(str, sub, f){
 	return B.join('');
 }
 
-var view_left = localStorage.getItem("view_left");
-var view_right = localStorage.getItem("view_right");
 function toTranslate(input) {
+	var view_left = localStorage.getItem("view_left");
+	var view_right = localStorage.getItem("view_right");
 	out = '';
 	input = '' + input;
 	switch (view_left) {

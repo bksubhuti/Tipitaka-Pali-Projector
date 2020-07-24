@@ -1,4 +1,7 @@
-﻿// This function( toUniRegEx) is from "Digital Pali Reader (DPR)".
+﻿// This file is not loaded anywhere
+
+
+// This function( toUniRegEx) is from "Digital Pali Reader (DPR)".
 //
 // GNU General Public License version 2.0 (GPLv2)
 // https://sourceforge.net/projects/digitalpali/
@@ -291,48 +294,61 @@ function Note_Open() {
 @ Default values left column text-size: 25pt, right column 20pt;
 @ This function help to custom text-size on small-screen devices.
 */
-var isPopupMode = localStorage.getItem("popupword");
+var isPopupMode;
+var load_size_left;
+var load_font_left;
+var load_bg_color;
+var load_size_right;
+var view_left;
+var view_right;
+var newscript;
+var head;
 
-//---------------------------------
-// 1. Left Font-size, Line-Height
-var load_size_left = localStorage.getItem('size_left');
-if (!load_size_left) { load_size_left = '1.0'; document.write.innerHTML = localStorage.setItem('size_left', load_size_left); }
 
-// 4. Left Font-Family
-var load_font_left = localStorage.getItem('font_left');
-if (!load_font_left) { load_font_left = 'DejaVuSansCondensed'; document.write.innerHTML = localStorage.setItem('font_left', load_font_left); }
+getGlobalWritingVariables();
+function getGlobalWritingVariables(){
+	isPopupMode = localStorage.getItem("popupword");
 
-// 6. Background-Color
-var load_bg_color = localStorage.getItem('bg_color');
-if (!load_bg_color) { load_bg_color = '#f3ddb6'; document.write.innerHTML = localStorage.setItem('bg_color', load_bg_color); }
+	//---------------------------------
+	// 1. Left Font-size, Line-Height
+	load_size_left = localStorage.getItem('size_left');
+	if (!load_size_left) { load_size_left = '1.0'; document.write.innerHTML = localStorage.setItem('size_left', load_size_left); }
 
-// 2. Right Font-size, Line-Height
-var load_size_right = localStorage.getItem('size_right');
-if (!load_size_right) { load_size_right = '1.0'; document.write.innerHTML = localStorage.setItem('size_right', load_size_right); }
+	// 4. Left Font-Family
+	load_font_left = localStorage.getItem('font_left');
+	if (!load_font_left) { load_font_left = 'DejaVuSansCondensed'; document.write.innerHTML = localStorage.setItem('font_left', load_font_left); }
 
-// 5. Right Font-Family
-var load_font_right = localStorage.getItem('font_right');
-if (!load_font_right) { load_font_right = 'DejaVuSansCondensed'; document.write.innerHTML = localStorage.setItem('font_right', load_font_right); }
-//---------------------------------
+	// 6. Background-Color
+	load_bg_color = localStorage.getItem('bg_color');
+	if (!load_bg_color) { load_bg_color = '#f3ddb6'; document.write.innerHTML = localStorage.setItem('bg_color', load_bg_color); }
 
-var view_left = localStorage.getItem("view_left");
-if (!view_left) { view_left = 'Roman'; document.write.innerHTML = localStorage.setItem('view_left', view_left); }
+	// 2. Right Font-size, Line-Height
+	load_size_right = localStorage.getItem('size_right');
+	if (!load_size_right) { load_size_right = '1.0'; document.write.innerHTML = localStorage.setItem('size_right', load_size_right); }
 
-var view_right = localStorage.getItem("view_right");
-if (!view_right) { view_right = 'Space'; document.write.innerHTML = localStorage.setItem('view_right', view_right); }
+	// 5. Right Font-Family
+	load_font_right = localStorage.getItem('font_right');
+	if (!load_font_right) { load_font_right = 'DejaVuSansCondensed'; document.write.innerHTML = localStorage.setItem('font_right', load_font_right); }
+	//---------------------------------
 
-var newscript = document.createElement('script');
-newscript.setAttribute('type', 'text/javascript');
-newscript.setAttribute('src', 'pali/' + html_no + '.js');
-var head = document.getElementsByTagName('head')[0];
-head.appendChild(newscript);
+	view_left = localStorage.getItem("view_left");
+	if (!view_left) { view_left = 'Roman'; document.write.innerHTML = localStorage.setItem('view_left', view_left); }
 
-var newscript = document.createElement('script');
-newscript.setAttribute('type', 'text/javascript');
-newscript.setAttribute('src', 'pali/' + html_no + 'a.js');
-var head = document.getElementsByTagName('head')[0];
-head.appendChild(newscript);
+	view_right = localStorage.getItem("view_right");
+	if (!view_right) { view_right = 'Space'; document.write.innerHTML = localStorage.setItem('view_right', view_right); }
 
+	newscript = document.createElement('script');
+	newscript.setAttribute('type', 'text/javascript');
+	newscript.setAttribute('src', 'pali/' + html_no + '.js');
+	head = document.getElementsByTagName('head')[0];
+	head.appendChild(newscript);
+
+	 newscript = document.createElement('script');
+	newscript.setAttribute('type', 'text/javascript');
+	newscript.setAttribute('src', 'pali/' + html_no + 'a.js');
+	 head = document.getElementsByTagName('head')[0];
+	head.appendChild(newscript);
+}
 $(window).on('load', function () {
 
 	if (isPopupMode == 1) {

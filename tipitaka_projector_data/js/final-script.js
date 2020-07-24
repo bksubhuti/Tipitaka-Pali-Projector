@@ -232,7 +232,7 @@ if (Sr_key) {
 }
 var Sr_id = localStorage.getItem('Sr_id'+ html_no);
 
-var displayBook = function() {
+function  displayBook() {
 
 	for (var idx in P_HTM) {
 		var Sr_run = '';
