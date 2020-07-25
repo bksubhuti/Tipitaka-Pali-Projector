@@ -102,29 +102,32 @@ const ro_combinations = [
     ['', 'ḹ', 'ෳ'] // sinhala only end
 ];
 
+const cachedRes = {};
+
 function replaceRe(text, f, r) {
-    var re = new RegExp(f, "gi");
+    let re = cachedRes[f];
+    if (!re) {
+        cachedRes[f] = re = new RegExp(f, "gi");
+    }
     return text.replace(re, r);
 }
 
-function genericConvert(text, dir, conso_combi, specials) {
-    conso_combi.sort(function(a, b) {
-        return b[dir].length - a[dir].length;
-    });
-    conso_combi.forEach(cc => {
+function genericConvert(text, dir) {
+    let conso_combi = dir === 1 ? ro_conso_combi_forward : ro_conso_combi_backward;
+
+    for (const cc of conso_combi) {
         if (cc.length < 3 || cc[2] == dir) {
             text = replaceRe(text, cc[dir], cc[+!dir]);
         }
-    });
+    }
 
-    specials.sort(function(a, b) {
-        return b[dir].length - a[dir].length;
-    });
-    specials.forEach(v => {
+    let specials = dir === 1 ? ro_specials_forward : ro_specials_backward;
+
+    for (const v of specials) {
         if (v.length < 3 || v[2] == dir) {
             text = replaceRe(text, v[dir], v[+!dir]);
         }
-    });
+    }
     return text;
 }
 
@@ -144,9 +147,21 @@ function createConsoCombi(combinations, consonants) {
 }
 
 const ro_conso_combi = createConsoCombi(ro_combinations, ro_consonants);
+const ro_conso_combi_forward = ro_conso_combi.slice().sort(function(a, b) {
+    return b[1].length - a[1].length;
+});
+const ro_conso_combi_backward = ro_conso_combi.slice().sort(function(a, b) {
+    return b[0].length - a[0].length;
+});
+const ro_specials_forward = ro_specials.slice().sort(function(a, b) {
+    return b[1].length - a[1].length;
+});
+const ro_specials_backward = ro_specials.slice().sort(function(a, b) {
+    return b[0].length - a[0].length;
+});
 
  function romanToSinhala(text) {
-    text = genericConvert(text, 1, ro_conso_combi, ro_specials);
+    text = genericConvert(text, 1);
     // add zwj for yansa and rakaransa
     text = replaceRe(text, '්ර', '්‍ර'); // rakar
     text = replaceRe(text, '්ය', '්‍ය'); // yansa
@@ -156,7 +171,7 @@ const ro_conso_combi = createConsoCombi(ro_combinations, ro_consonants);
  function sinhalaToRoman(text) {
     // remove zwj since it does not occur in roman
     text = replaceRe(text, '\u200D', '');
-    text = genericConvert(text, 0, ro_conso_combi, ro_specials);
+    text = genericConvert(text, 0);
     return text;
 }
 

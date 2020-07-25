@@ -995,7 +995,9 @@
 
                 // Load the book text content, paragraph data etc
                 //
+                console.time('display book');
                 displayBook();
+                console.timeEnd('display book');
 
                 EnglishModeLoadEpub(bookInfo.bookId);
 

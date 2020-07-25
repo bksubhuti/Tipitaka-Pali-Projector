@@ -33,9 +33,8 @@ function replacei(str, sub, f){
 	return B.join('');
 }
 
-function toTranslate(input) {
-	var view_left = localStorage.getItem("view_left");
-	var view_right = localStorage.getItem("view_right");
+function toTranslate(input, viewLeftConfig) {
+	const view_left = viewLeftConfig || localStorage.getItem("view_left");
 	out = '';
 	input = '' + input;
 	switch (view_left) {
