@@ -13,7 +13,9 @@
     <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.css"/>
     <link rel="stylesheet" type="text/css" href="single.page.css"/>
     <link rel="stylesheet" type="text/css" href="js/farbtastic12/farbtastic/farbtastic.css"  />
- 
+
+
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/jquery-ui-1.12.1/jquery-ui.js"></script>
@@ -40,11 +42,11 @@
 
 
 
-//////////////////////////////////////////////////////////////////////////
-/////
-////                JSTREE & INDEX DIALOG STUFF
-////
-////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////
+        /////
+        ////                JSTREE & INDEX DIALOG STUFF
+        ////
+        ////////////////////////////////////////////////////////////////////////
 
         $.jstree.defaults.core.themes.variant = 'large';
 
@@ -77,7 +79,7 @@
                     })
                 }
             });
-            
+
             $('#books-tree').off().jstree("destroy").empty().jstree({core: {data: treeData}});
 
             $('#books-tree').on('select_node.jstree', (event, data) => {
@@ -95,215 +97,215 @@
 
         const width = () => $(window).width() - 40;
         const height = () => $(window).height() - 40;
-        
-// ================================================================================
 
-    var epubRendition;
-    var epubBook;
-    var loadEpubBook = function loadEpubBook(fileName) {
-    
-        // Close previously opened book
-        //
-        if (epubRendition) {
-            epubRendition.destroy();
-        }
-        
-        // Load the opf
-        //
-        var book = epubBook = ePub(`epub/${fileName}`);
+        // ================================================================================
 
-        var rendition = epubRendition = book.renderTo("book-area", {width: '100%', height: '100%', method: "continuous",  flow: "scrolled-doc", spread: "always"});
-        var displayed = rendition.display();
+        var epubRendition;
+        var epubBook;
+        var loadEpubBook = function loadEpubBook(fileName) {
 
-        var PaliFontSize = localStorage.getItem("PaliFontSize");
-        var PaliFontName = localStorage.getItem("font_left")
-        var bg_color = localStorage.getItem("bg_color");
-        var bookarea = document.getElementById("book-area");
-        var epubDialog = document.getElementById("epub");
-
-        bookarea.style.backgroundColor = bg_color;
-        epubDialog.style.backgroundColor = bg_color;
-        epubDialog.style.overflowX="hidden";
-        bookarea.style.overflowX="hidden";
-
-        const fontColor = `${getFontColor()} !important`;
-
-        // EPUB Rendition Style Overrides
-        //
-        rendition.themes.default({
-            p: {
-                'line-height': '150%', 
-                'font': `${PaliFontSize}pt ` + `${PaliFontName}`,
-                'color': fontColor
-            },
-            'h1' : {'color': getFontColor()},
-            'h2' : {'color': getFontColor()},
-            'h3' : {'color': getFontColor()},
-            body: {
-            'padding-left': '20px !important',
-            'padding-right': '20px !important',
-            'color': getFontColor()
+            // Close previously opened book
+            //
+            if (epubRendition) {
+                epubRendition.destroy();
             }
-        });
+
+            // Load the opf
+            //
+            var book = epubBook = ePub(`epub/${fileName}`);
+
+            var rendition = epubRendition = book.renderTo("book-area", {width: '100%', height: '100%', method: "continuous",  flow: "scrolled-doc", spread: "always"});
+            var displayed = rendition.display();
+
+            var PaliFontSize = localStorage.getItem("PaliFontSize");
+            var PaliFontName = localStorage.getItem("font_left")
+            var bg_color = localStorage.getItem("bg_color");
+            var bookarea = document.getElementById("book-area");
+            var epubDialog = document.getElementById("epub");
+
+            bookarea.style.backgroundColor = bg_color;
+            epubDialog.style.backgroundColor = bg_color;
+            epubDialog.style.overflowX="hidden";
+            bookarea.style.overflowX="hidden";
+
+            const fontColor = `${getFontColor()} !important`;
+
+            // EPUB Rendition Style Overrides
+            //
+            rendition.themes.default({
+                p: {
+                    'line-height': '150%',
+                    'font': `${PaliFontSize}pt ` + `${PaliFontName}`,
+                    'color': fontColor
+                },
+                'h1' : {'color': getFontColor()},
+                'h2' : {'color': getFontColor()},
+                'h3' : {'color': getFontColor()},
+                body: {
+                    'padding-left': '20px !important',
+                    'padding-right': '20px !important',
+                    'color': getFontColor()
+                }
+            });
 
 
-        var keyListener = function(e){
+            var keyListener = function(e){
                 // Left Key
                 if ((e.keyCode || e.which) == 37) {
-                  epubBook.package.metadata.direction === "rtl" ? epubRendition.next() : epubRendition.prev();
+                    epubBook.package.metadata.direction === "rtl" ? epubRendition.next() : epubRendition.prev();
                 }
 
                 // Right Key
                 if ((e.keyCode || e.which) == 39) {
-                  epubBook.package.metadata.direction === "rtl" ? epubRendition.prev() : epubRendition.next();
+                    epubBook.package.metadata.direction === "rtl" ? epubRendition.prev() : epubRendition.next();
                 }
-        };
+            };
 
-        book.ready.then(() => {
-              epubRendition.on("keyup", keyListener);
-              //document.addEventListener("keyup", keyListener, false);
-        });
+            book.ready.then(() => {
+                epubRendition.on("keyup", keyListener);
+                //document.addEventListener("keyup", keyListener, false);
+            });
 
-        book.loaded.navigation.then(function(toc){
-            const $select = $('#toc');
-            $select.off();
+            book.loaded.navigation.then(function(toc){
+                const $select = $('#toc');
+                $select.off();
 
-            const getToc = (toc) => {
-                let result = '';
-                for (const t of toc) {
-                    result += `\n<option data-ref="${t.href}">${t.label}</option>`;
-                    if (t.subitems && t.subitems.length > 0) {
-                        result += `\n<optgroup label="${t.label}">${getToc(t.subitems)}</optgroup>`;
+                const getToc = (toc) => {
+                    let result = '';
+                    for (const t of toc) {
+                        result += `\n<option data-ref="${t.href}">${t.label}</option>`;
+                        if (t.subitems && t.subitems.length > 0) {
+                            result += `\n<optgroup label="${t.label}">${getToc(t.subitems)}</optgroup>`;
+                        }
+
                     }
-
+                    return result;
                 }
-                return result;
-            }
-            const options = getToc(toc.toc);
-            $select.html(options);
+                const options = getToc(toc.toc);
+                $select.html(options);
 
-            $select.change(function(){
+                $select.change(function(){
                     const index = this.selectedIndex;
                     const url = this.options[index].dataset.ref;
                     rendition.display(url);
                     return false;
+                });
+
             });
+        }
 
-        });
-    }
-    
-    const halfTableWidth = () => $('#main_table').outerWidth() * 0.5;
+        const halfTableWidth = () => $('#main_table').outerWidth() * 0.5;
 
-    var initDialogs = () => {
-        $('#index').dialog({autoOpen: false, maxHeight: $(window).height()});
-        $('#epub-selector').dialog({autoOpen: false, width: 256, height: 770, resizable: false, draggable: true});
-        
-        $('#epub').dialog({
-                    autoOpen: false,
-                    resizable: true,
-                    draggable: true,
+        var initDialogs = () => {
+            $('#index').dialog({autoOpen: false, maxHeight: $(window).height()});
+            $('#epub-selector').dialog({autoOpen: false, width: 256, height: 770, resizable: false, draggable: true});
 
-                    maxHeight: $(window).height(),
-                    maxWidth: $(window).width(),
-                    
-                    width: Math.min(halfTableWidth(), 600),
-                    height: Math.min($(window).height(), 850),
-
-                    open: function () {
-                        const dialogOptions = {
-                            maxHeight: height(),
-                            maxWidth: width(),
-                            
-                            height: $(window).height(),
-                            width: halfTableWidth(),
-                        };
-                        console.log(dialogOptions, 'dialog options');
-                        $(this).dialog('option', dialogOptions);
-                        $(this).dialog('option', {
-                            position: { my: "right top", at: "right top", of: $('body')}
-                        });
-                        if (epubRendition) {
-                            epubRendition.resize($(this).outerWidth() - 88, $(this).outerHeight() - 36 - 20);
-                            epubRendition.display();
-                        }
-                    },
-                    resizeStop: function(event, ui) {
-                        epubRendition.resize($(this).outerWidth() - 88, $(this).outerHeight() - 36 - 20);
-                        epubRendition.display();
-                    }
-                });
-    // ================================================================================
-
-    //////////////////////////////////////////////////////////////////////////
-    /////
-    ////                SEARCH DIALOG STUFF
-    ////
-    ////////////////////////////////////////////////////////////////////////
-
-
-
-                $('#search').dialog({
-                    autoOpen: false,
-                    resizable: true,
-                    draggable: true,
-
-                    maxHeight: $(window).height(),
-                    maxWidth: $(window).width(),
-                    
-                    width: Math.min($(window).width(), 1144),
-
-                    open: function () {
-                        $(this).dialog('option', {
-                            maxHeight: $(window).height(),
-                            maxWidth: $(window).width(),
-                        });
-                    }
-                });
-
-
-        /////////////////////////////////////////////
-        // code for prefs dialog to work
-        //  prefs dialog stuf
-        /////////////////////////////
-        $(function () {
-            const width = () => $(window).width() - 40;
-            const height = () => $(window).height() - 40;
-     
-
-
-            $("#prefsDialog").dialog({
+            $('#epub').dialog({
                 autoOpen: false,
                 resizable: true,
                 draggable: true,
 
-                maxHeight: width(),
-                maxWidth: height(),
-                
-                width: Math.min(900, width()),
+                maxHeight: $(window).height(),
+                maxWidth: $(window).width(),
+
+                width: Math.min(halfTableWidth(), 600),
+                height: Math.min($(window).height(), 850),
+
+                open: function () {
+                    const dialogOptions = {
+                        maxHeight: height(),
+                        maxWidth: width(),
+
+                        height: $(window).height(),
+                        width: halfTableWidth(),
+                    };
+                    console.log(dialogOptions, 'dialog options');
+                    $(this).dialog('option', dialogOptions);
+                    $(this).dialog('option', {
+                        position: { my: "right top", at: "right top", of: $('body')}
+                    });
+                    if (epubRendition) {
+                        epubRendition.resize($(this).outerWidth() - 88, $(this).outerHeight() - 36 - 20);
+                        epubRendition.display();
+                    }
+                },
+                resizeStop: function(event, ui) {
+                    epubRendition.resize($(this).outerWidth() - 88, $(this).outerHeight() - 36 - 20);
+                    epubRendition.display();
+                }
+            });
+            // ================================================================================
+
+            //////////////////////////////////////////////////////////////////////////
+            /////
+            ////                SEARCH DIALOG STUFF
+            ////
+            ////////////////////////////////////////////////////////////////////////
+
+
+
+            $('#search').dialog({
+                autoOpen: false,
+                resizable: true,
+                draggable: true,
+
+                maxHeight: $(window).height(),
+                maxWidth: $(window).width(),
+
+                width: Math.min($(window).width(), 1144),
 
                 open: function () {
                     $(this).dialog('option', {
-                        maxWidth: width(),
-                        maxHeight: height()
+                        maxHeight: $(window).height(),
+                        maxWidth: $(window).width(),
                     });
                 }
             });
-            $("#prefsbutton").click(function () {
-                $("#prefsDialog").dialog("open");
+
+
+            /////////////////////////////////////////////
+            // code for prefs dialog to work
+            //  prefs dialog stuf
+            /////////////////////////////
+            $(function () {
+                const width = () => $(window).width() - 40;
+                const height = () => $(window).height() - 40;
+
+
+
+                $("#prefsDialog").dialog({
+                    autoOpen: false,
+                    resizable: true,
+                    draggable: true,
+
+                    maxHeight: width(),
+                    maxWidth: height(),
+
+                    width: Math.min(900, width()),
+
+                    open: function () {
+                        $(this).dialog('option', {
+                            maxWidth: width(),
+                            maxHeight: height()
+                        });
+                    }
+                });
+                $("#prefsbutton").click(function () {
+                    $("#prefsDialog").dialog("open");
+                });
             });
-        });
 
-    };
- 
+        };
 
 
 
 
-//////////////////////////////////////////////////
-//  
-//    Book Index DLG
-//
-/////////////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //
+        //    Book Index DLG
+        //
+        /////////////////////////////////////////////////////////
 
         var showIndex = function showIndex() {
             $('#index').dialog('open');
@@ -312,11 +314,11 @@
         var showDialog = function showDialog(dialogId) {
             $(dialogId).dialog('open');
         };
-        
+
         var showEpubDemo = function showEpubDemo() {
             showDialog('#epub-selector');
         }
-        
+
         var loadJSONBooks = function loadJSONBooks() {
             $.ajax({
                 url: 'books.json',
@@ -327,8 +329,8 @@
                 success: setBookInfo
             });
         }
-        
-        $(document).ready(() => { 
+
+        $(document).ready(() => {
             initDialogs();
 
             $('body').on('click', '#epub-selector .epub-books li', function() {
@@ -381,7 +383,7 @@
         <div class="notselected grey-button letter" id="Pali3" title="Ṭīkā" onClick="MATurlGo('3')">
             T
         </div>
-        
+
         <div class="notselected grey-button letter free" title="EPUB Demo" onClick="showEpubDemo()">
             E
         </div>
@@ -930,12 +932,12 @@
             </span>
             <a href="https://github.com/bksubhuti/Tipitaka-Pali-Projector"><u><h1>https://github.com/bksubhuti/Tipitaka-Pali-Projector</h1></u></a>
             <a href="https://www.youtube.com/channel/UCMKjBJT7vMjyWt8RU4lpiDg"><h1>Visit and subscribe to the Tipitaka Pāḷi Projector Youtube Channel <u>here.</u></h1></a>
-            
-            
+
+
         </div>
     </div>
     <table id="main_table" bgcolor="#010101" width=100% border=0 align="left" cellspacing=3 cellpadding=7
-           style="padding-left: 15px;">        
+           style="padding-left: 15px;">
     </table>
     <script type="text/javascript">
         var loadBook = function loadBook(bookId, onBookLoadingDone) {
@@ -1000,7 +1002,7 @@
                 // Set Theme Colors
                 //
                 setThemeStyling();
-                
+
                 if (onBookLoadingDone) {
                     onBookLoadingDone();
                 }
@@ -1147,12 +1149,12 @@
                        onkeyup="Keyin()" value="">
                 <input type="hidden" id="id1">
                 <input type="hidden" id="id2">
-                
+
                 <label class="switch">
                     <input id="ShowOnTop" type="checkbox" onClick="ShowOnTopClick(checked)" >
                     <span class="slider round"></span>
-                  </label>
-                  <label for="ShowOnTop" style="color:blue;font-size:12pt;">&nbsp;Results On Top&nbsp;</label>
+                </label>
+                <label for="ShowOnTop" style="color:blue;font-size:12pt;">&nbsp;Results On Top&nbsp;</label>
 
                 <table border="0" width="80%">
                     <tr>
@@ -1189,7 +1191,7 @@
                 <span id="msg"></span>
             </td>
             <td align="center" width="10%">
-				<br></span>Seach Tipiṭaka
+                <br></span>Seach Tipiṭaka
             </td>
             <td width="2%"></td>
         </tr>
@@ -1202,10 +1204,10 @@
         </tr>
         <tr style="line-height: 150%">
             <td></td>
-        <td colspan="3" id="SearchResultTD">
-            <span id="SearchResult" style="display: none";></span>
-        </td>
-    </tr>
+            <td colspan="3" id="SearchResultTD">
+                <span id="SearchResult" style="display: none";></span>
+            </td>
+        </tr>
 
         </tbody>
     </table>
@@ -1940,7 +1942,7 @@
                                     <strong style="color:#880000;">Select Background Color:</strong>
                                     <br>
                                     <form action="" style="width: 400px;">
-                                    <div class="form-item"><label for="color2">Color:</label><input type="text"id="panel_bg_color" name="panel_bg_color" value="#f0f0f0" /></div><div id="picker2"></div>
+                                        <div class="form-item"><label for="color2">Color:</label><input type="text"id="panel_bg_color" name="panel_bg_color" value="#f0f0f0" /></div><div id="picker2"></div>
                                     </form>
 
                                 </td>
@@ -1948,10 +1950,10 @@
                                     <strong style="color:#880000;">Select Font Color:</strong>
                                     <br>
                                     <form action="" style="width: 400px;">
-                                    <div class="form-item"><label for="color">:</label><input type="text"id="panel_font_color" name="panel_font_color" value="#123456" /></div><div id="picker"></div>
+                                        <div class="form-item"><label for="color">:</label><input type="text"id="panel_font_color" name="panel_font_color" value="#123456" /></div><div id="picker"></div>
                                     </form>
 
-                                    
+
                                     <br>
                                     <br>
                                 </td>
@@ -2107,11 +2109,11 @@
 
 <script>
 
-/////////////////////////////////////////
-///////////
-////////          GENERAL SEARCH CODE  (to be moved to js soon)
-///////
-///////////////////////////////////////////////
+    /////////////////////////////////////////
+    ///////////
+    ////////          GENERAL SEARCH CODE  (to be moved to js soon)
+    ///////
+    ///////////////////////////////////////////////
 
     $( window ).on( 'hashchange', function( e ) {
         const hash = location.hash;
@@ -2121,7 +2123,7 @@
         if (hash.indexOf('#/book/' === 0)) {
             const parsedBookInfo = hash.match(/#\/book\/(\d+)\/(\d+)/i);
             if (parsedBookInfo && parsedBookInfo.length > 0) {
-            
+
                 // This "html_no" variable is used in many scripts, here it's reset
                 // so that the Sr_Go function in z_search_navigator.js works
                 //
@@ -2143,12 +2145,12 @@
                     // Set the search navigator position
                     //
                     setSearchNavigator();
-                    
+
                     $('#search').dialog('close');
                 });
             }
         }
-        
+
     } );
 
     //<script src="dictionary/z_search_pali_words.js"></ script>
@@ -2230,7 +2232,7 @@
         var checked = false;
         var strChecked = localStorage.getItem("ShowOnTop");
         if (strChecked = "true") {
-            checked = true; 
+            checked = true;
             document.getElementById("ShowOnTop").checked = checked;
         }
         ShowOnTopClick(checked);
@@ -2249,18 +2251,18 @@
     //when loading call
     initPreferences();
     function PrefTab(evt, tabname) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabname).style.display = "block";
+        evt.currentTarget.className += " active";
     }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(tabname).style.display = "block";
-    evt.currentTarget.className += " active";
-}
 
     // this hides everything.. not sure why it is needed..should be hidden 
     // anyway.
@@ -2280,48 +2282,48 @@
     }, false);
 
     var hexToHSL = function hexToHSL(H) {
-      // Convert hex to RGB first
-      let r = 0, g = 0, b = 0;
-      if (H.length == 4) {
-        r = "0x" + H[1] + H[1];
-        g = "0x" + H[2] + H[2];
-        b = "0x" + H[3] + H[3];
-      } else if (H.length == 7) {
-        r = "0x" + H[1] + H[2];
-        g = "0x" + H[3] + H[4];
-        b = "0x" + H[5] + H[6];
-      }
-      // Then to HSL
-      r /= 255;
-      g /= 255;
-      b /= 255;
-      let cmin = Math.min(r,g,b),
-          cmax = Math.max(r,g,b),
-          delta = cmax - cmin,
-          h = 0,
-          s = 0,
-          l = 0;
+        // Convert hex to RGB first
+        let r = 0, g = 0, b = 0;
+        if (H.length == 4) {
+            r = "0x" + H[1] + H[1];
+            g = "0x" + H[2] + H[2];
+            b = "0x" + H[3] + H[3];
+        } else if (H.length == 7) {
+            r = "0x" + H[1] + H[2];
+            g = "0x" + H[3] + H[4];
+            b = "0x" + H[5] + H[6];
+        }
+        // Then to HSL
+        r /= 255;
+        g /= 255;
+        b /= 255;
+        let cmin = Math.min(r,g,b),
+            cmax = Math.max(r,g,b),
+            delta = cmax - cmin,
+            h = 0,
+            s = 0,
+            l = 0;
 
-      if (delta == 0)
-        h = 0;
-      else if (cmax == r)
-        h = ((g - b) / delta) % 6;
-      else if (cmax == g)
-        h = (b - r) / delta + 2;
-      else
-        h = (r - g) / delta + 4;
+        if (delta == 0)
+            h = 0;
+        else if (cmax == r)
+            h = ((g - b) / delta) % 6;
+        else if (cmax == g)
+            h = (b - r) / delta + 2;
+        else
+            h = (r - g) / delta + 4;
 
-      h = Math.round(h * 60);
+        h = Math.round(h * 60);
 
-      if (h < 0)
-        h += 360;
+        if (h < 0)
+            h += 360;
 
-      l = (cmax + cmin) / 2;
-      s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
-      s = +(s * 100).toFixed(1);
-      l = +(l * 100).toFixed(1);
+        l = (cmax + cmin) / 2;
+        s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+        s = +(s * 100).toFixed(1);
+        l = +(l * 100).toFixed(1);
 
-      return {hue: h, saturation: s, lightness: l};
+        return {hue: h, saturation: s, lightness: l};
     };
 
     var ensureTextIsRedable = (backgroundColor, $element) => {
@@ -2348,7 +2350,7 @@
             $backgroundColorInput.css('background-color', color);
             PanelBGColorChange(color);
         });
-        
+
         const colorInputs = [$fontColorInput, $backgroundColorInput];
         for (const $colorInput of colorInputs) {
             $colorInput.css('background-color', $colorInput.val());
@@ -2359,123 +2361,134 @@
 
         onTabClick($('#page4')[0]);
 
-  });
+    });
 
-  function EnglishModeLoadEpub(bookid){
-    var ViewRight =  localStorage.getItem("view_right");
+    function EnglishModeLoadEpub(bookid){
+        var ViewRight =  localStorage.getItem("view_right");
 
-    var filetoload = "";
+        var filetoload = "";
 
-    if (ViewRight == 'Suttacentral'){
+        if (ViewRight == 'Suttacentral'){
 
 
-        // buddhist legends and jatakaA will not match totally correct.
-        // As they are epubs, we can re-arrange volumes to match pali volumes if we want.
-        switch(bookid){
-            case 1101:
-                filetoload = "bod-1-parajika.epub";
-                break;
-            case 1102:
-                filetoload = "bod-2-pacittiya.epub";
-                break;
-            case 1103:
-                filetoload = "bod-3-mahavagga.epub";
-                break;
-            case 1104:
-                filetoload = "bod-4-culavagga.epub";
-                break;
-            case 1105:
-                filetoload = "bod-5-parivara.epub";
-                break;
-            case 2101:
-            case 2102:
-            case 2103:
-                filetoload = "dn_en_sujato.epub";
-                break;
-            case 3101:
-            case 3102:
-            case 3103:
-                filetoload = "mn_en_sujato.epub";
-                break;
-            case 4101:
-            case 4102:
-            case 4103:
-            case 4104:
-            case 4105:
-                filetoload = "sn_en_sujato.epub";
-                break;
-            case 5101:
-            case 5102:
-            case 5103:
-            case 5104:
-            case 5105:
-            case 5106:
-            case 5107:
-            case 5108:
-            case 5109:
-            case 5110:
-            case 5111:
-                filetoload = "an_en_sujato.epub";
-                break;
-            case 6108:
-                filetoload = "thag_en_sujato.epub";
-                break;
-            case 6109:
-                filetoload = "thig_en_sujato.epub";
-                break;
-            case 6202:
-                filetoload = "Buddhist-Legends-1.epub";
-                break;
-            case 6203:
-                filetoload = "Buddhist-Legends-2.epub";
-                break;
-            case 6217:
-                filetoload = "JatakaVol.1,The-E.B.Cowell.epub";
-                break;
-            case 6218:
-                filetoload = "JatakaVol.2,The-E.B.Cowell.epub";
-                break;
-            case 6219:
-                filetoload = "JatakaVol.3,The-E.B.Cowell.epub";
-                break;
-            case 6220:
-                filetoload = "JatakaVol.4,The-E.B.Cowell.epub";
-                break;
-            case 6221:
-                filetoload = "JatakaVol.5,The-E.B.Cowell.epub";
-                break;
-            case 6222:
-                filetoload = "JatakaVol.6,The-E.B.Cowell.epub";
-                break;
-            case 6223:
-                filetoload = "JatakaVol.6,The-E.B.Cowell.epub";
-                break;
-            default:
-                filetoload = "";
-                break;
+            // buddhist legends and jatakaA will not match totally correct.
+            // As they are epubs, we can re-arrange volumes to match pali volumes if we want.
+            switch(bookid){
+                case 1101:
+                    filetoload = "bod-1-parajika.epub";
+                    break;
+                case 1102:
+                    filetoload = "bod-2-pacittiya.epub";
+                    break;
+                case 1103:
+                    filetoload = "bod-3-mahavagga.epub";
+                    break;
+                case 1104:
+                    filetoload = "bod-4-culavagga.epub";
+                    break;
+                case 1105:
+                    filetoload = "bod-5-parivara.epub";
+                    break;
+                case 2101:
+                case 2102:
+                case 2103:
+                    filetoload = "dn_en_sujato.epub";
+                    break;
+                case 3101:
+                case 3102:
+                case 3103:
+                    filetoload = "mn_en_sujato.epub";
+                    break;
+                case 4101:
+                case 4102:
+                case 4103:
+                case 4104:
+                case 4105:
+                    filetoload = "sn_en_sujato.epub";
+                    break;
+                case 5101:
+                case 5102:
+                case 5103:
+                case 5104:
+                case 5105:
+                case 5106:
+                case 5107:
+                case 5108:
+                case 5109:
+                case 5110:
+                case 5111:
+                    filetoload = "an_en_sujato.epub";
+                    break;
+                case 6108:
+                    filetoload = "thag_en_sujato.epub";
+                    break;
+                case 6109:
+                    filetoload = "thig_en_sujato.epub";
+                    break;
+                case 6202:
+                    filetoload = "Buddhist-Legends-1.epub";
+                    break;
+                case 6203:
+                    filetoload = "Buddhist-Legends-2.epub";
+                    break;
+                case 6217:
+                    filetoload = "JatakaVol.1,The-E.B.Cowell.epub";
+                    break;
+                case 6218:
+                    filetoload = "JatakaVol.2,The-E.B.Cowell.epub";
+                    break;
+                case 6219:
+                    filetoload = "JatakaVol.3,The-E.B.Cowell.epub";
+                    break;
+                case 6220:
+                    filetoload = "JatakaVol.4,The-E.B.Cowell.epub";
+                    break;
+                case 6221:
+                    filetoload = "JatakaVol.5,The-E.B.Cowell.epub";
+                    break;
+                case 6222:
+                    filetoload = "JatakaVol.6,The-E.B.Cowell.epub";
+                    break;
+                case 6223:
+                    filetoload = "JatakaVol.6,The-E.B.Cowell.epub";
+                    break;
+                default:
+                    filetoload = "";
+                    break;
+            }
+
+            if (filetoload != ""){
+                showDialog('#epub');
+                $('#epub-selector').dialog('close');
+                loadEpubBook(filetoload);
+            }
+
+
         }
-
-        if (filetoload != ""){
-            showDialog('#epub');
-            $('#epub-selector').dialog('close');
-            loadEpubBook(filetoload);
-        }
-
 
     }
 
-}
+    function TPPFind(){
 
-function TPPFind(){
+        var str = document.getElementById("TPPFindText").value;
+        window.find(str);
 
-    var str = document.getElementById("TPPFindText").value;
-    window.find(str);
-
-}
+    }
 
 
 </script>
+<script>if (window.module) module = window.module;</script>
 
+<!-- ELECTRON FIND -->
+<script>
+    const { remote, ipcRenderer } = require('electron');
+    const { FindInPage } = require('electron-find');
+
+    let findInPage = new FindInPage(remote.getCurrentWebContents())
+    ipcRenderer.on('on-find', (e, args) => {
+        findInPage.openFindWindow();
+    });
+</script>
 
 </body>
 </html>

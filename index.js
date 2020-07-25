@@ -1,13 +1,43 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, globalShortcut  } = require('electron')
 const electron = require("electron");
 const updater = require("electron-updater");
 const autoUpdater = updater.autoUpdater;
 
+
+let findInPage;
+
 app.on('ready', () => {
-    const mainWindow = new BrowserWindow({width: 1200, height: 720});
+    let mainWindow = new BrowserWindow({
+        width: 1200,
+        height: 720,
+        webPreferences: {
+            nodeIntegration: true
+        }
+    });
     mainWindow.loadURL(`file://${__dirname}/tipitaka_projector_data/index.htm`);
     /*Checking updates just after app launch and also notify for the same*/
+    
+    mainWindow.on('focus', () => {
+        globalShortcut.register('CommandOrControl+F', function () {
+            if (mainWindow && mainWindow.webContents) {
+                mainWindow.webContents.send('on-find', '')
+            }
+        });
+    });
+    mainWindow.on('blur', () => {
+        globalShortcut.unregister('CommandOrControl+F')
+    });
+    mainWindow.on('closed', () => {
+        mainWindow = null
+    });
 });
+
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
+  globalShortcut.unregister('CommandOrControl+F')
+})
 
 
 
@@ -62,3 +92,4 @@ function sendStatusToWindow(message) {
 module.exports = {
     checkForUpdates,
 }
+
