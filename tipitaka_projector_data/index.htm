@@ -923,7 +923,7 @@
     <div id="loader" style="z-index: auto;"></div>
     <div id="welcome">
         <div class="welcome-content">
-            <span class="center epub-arrows"> <!-- Inline parent element -->
+            <span class="center"> <!-- Inline parent element -->
                 <b>Pa-Auk Forest Monastery Presents</b> 
                 <br>
                     <b>Tipitaka Pāḷi Projector</b> 
@@ -1122,10 +1122,10 @@
 
 <div id="epub" title="English Reader" class="app-dialog">
     <select id="toc"></select>
-    <span class="center">
-    <i onClick="epubRendition.prev()" class="material-icons">arrow_back</i>&nbsp;&nbsp;
-    <i onClick="epubRendition.next()" class="material-icons">arrow_forward</i>&nbsp;&nbsp;
-</span>
+    <span class="center epub-arrows">
+        <i onClick="epubRendition.prev()" class="material-icons">arrow_back</i>&nbsp;&nbsp;
+        <i onClick="epubRendition.next()" class="material-icons">arrow_forward</i>&nbsp;&nbsp;
+    </span>
     <div id="book-area"></div>
     <div id="viewer" class="scrolled"></div>
 </div>
@@ -2481,13 +2481,15 @@
 
 <!-- ELECTRON FIND -->
 <script>
-    const { remote, ipcRenderer } = require('electron');
-    const { FindInPage } = require('electron-find');
+    if (typeof(require) !== 'undefined') {
+        const { remote, ipcRenderer } = require('electron');
+        const { FindInPage } = require('electron-find');
 
-    let findInPage = new FindInPage(remote.getCurrentWebContents())
-    ipcRenderer.on('on-find', (e, args) => {
-        findInPage.openFindWindow();
-    });
+        let findInPage = new FindInPage(remote.getCurrentWebContents())
+        ipcRenderer.on('on-find', (e, args) => {
+            findInPage.openFindWindow();
+        });
+    }
 </script>
 
 </body>
