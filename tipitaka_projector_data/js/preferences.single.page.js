@@ -133,25 +133,25 @@ Dicts['se1'] = 'SE1: [223,917 entries - 28.9 MB] A Sanskrit English Dictionary -
 
 
 function DictionaryMoveOption(source, destination) {   // source move to dist. 
-    try { 
+    try {
         var v1 = '';
-        for(var i=0; i<source.options.length; i++){  
-            if(source.options[i].selected){ 
-                var e = source.options[i];  
+        for(var i=0; i<source.options.length; i++){
+            if(source.options[i].selected){
+                var e = source.options[i];
 
-                destination.options.add(new Option(e.text, e.value)); 
+                destination.options.add(new Option(e.text, e.value));
                 destination.options[destination.options.length -1].title = e.title;
                 //source.remove(i);  
                 v1 = ';' + i + v1;
-            } 
-        } 
+            }
+        }
         var ary = v1.substr(1).split(';');
-        for (var i in ary) { 
-            source.remove(ary[i]);  
-        } 
+        for (var i in ary) {
+            source.remove(ary[i]);
+        }
         DictionaryRenew();
     } catch(e) {
-    } 
+    }
 }
 
 function DictionaryChangePos(obj, index) {
@@ -369,7 +369,7 @@ function ChooseSelect(key) {
         LoadJSONBooks();
         //$('#books-tree').jstree({core: {data: treeData}});
         // set the tree.. cannot set and don't understand this code
-        
+
     }
 
     if (key == 'contentfontname') {
@@ -424,11 +424,9 @@ function ChooseRadio(key) {
         return;
     }
 
-    if (key == 'Show_Numbers1') {
-        document.write  = localStorage.setItem('Show_Numbers', 'true');
-    }
-    if (key == 'Hide_Numbers2') {
-        document.write  = localStorage.setItem('Show_Numbers', 'false');
+    if (/(Show|Hide)_Numbers(1|2)/.test(key)) {
+        const display = key === 'Show_Numbers1';
+        setPreferenceFlag(PreferenceKeys.showPageNumbers, display);
     }
 
 
@@ -669,7 +667,8 @@ var updatePanelColors = function updatePanelColors(panel_bg_color, panel_font_co
 }
 
 const PreferenceKeys = {
-    showAlternateReading: 'showAlternateReading'
+    showAlternateReading: 'showAlternateReading',
+    showPageNumbers: 'showPageNumbers'
 }
 
 function setPreferenceFlag(pref, value) {
@@ -686,10 +685,16 @@ function getPreferenceFlag(pref, defaultValue) {
 }
 
 function onPrefFlagChange(pref) {
+    const value = getPreferenceFlag(pref);
+
     switch (pref) {
         case PreferenceKeys.showAlternateReading: {
-            const value = getPreferenceFlag(pref);
             $('body').toggleClass('show-notes', value);
+            break;
+        }
+
+        case PreferenceKeys.showPageNumbers: {
+            $('body').toggleClass('show-page-numbers', value);
             break;
         }
     }
@@ -743,7 +748,7 @@ function initPreferences(){
         document.getElementById('Themes').checked = false;
     }
 
-    // get the font color and set it 
+    // get the font color and set it
     var r1 = localStorage.getItem('r1');
     $('h2').css('color', r1);
     $('h3').css('color', r1);
@@ -786,8 +791,8 @@ function initPreferences(){
     }
 
 
-
-    if (localStorage.getItem('Show_Numbers') == 'true' ){
+    var prefNumbers = getPreferenceFlag(PreferenceKeys.showPageNumbers);
+    if (prefNumbers){
         // set the radio button
         document.getElementById('Show_Numbers1').checked = true;
     }
@@ -938,10 +943,10 @@ function initPreferences(){
     var e_enable = document.getElementById('DictionaryEnable');
     var e_disable = document.getElementById('DictionaryDisable');
 
-    for(var i=(e_enable.length -1); 0<=i; i--) { // remove all options  
+    for(var i=(e_enable.length -1); 0<=i; i--) { // remove all options
         e_enable.remove(i);
     }
-    for(var i=(e_disable.length -1); 0<=i; i--) { // remove all options  
+    for(var i=(e_disable.length -1); 0<=i; i--) { // remove all options
         e_disable.remove(i);
     }
 
@@ -1012,7 +1017,7 @@ function initPreferences(){
     var checked = false;
     var strChecked = localStorage.getItem("ShowOnTop");
     if (strChecked = "true") {
-        checked = true; 
+        checked = true;
     }
     document.getElementById("ShowOnTop").checked = checked;
     ShowOnTopClick(checked);
@@ -1063,7 +1068,7 @@ function enlarge()
 
 function getCurrentVersion(){
 
-    // get the version number.. always do this last in case the file read fails it will 
+    // get the version number.. always do this last in case the file read fails it will
     // cause the function to crash.
     versionfile = 'version.json';
 
