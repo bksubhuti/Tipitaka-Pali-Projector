@@ -364,6 +364,9 @@ function ChooseSelect(key) {
 
     if (key=='view_left'){
 
+
+        $('#index').dialog('close');
+        LoadJSONBooks();
         //$('#books-tree').jstree({core: {data: treeData}});
         // set the tree.. cannot set and don't understand this code
         
