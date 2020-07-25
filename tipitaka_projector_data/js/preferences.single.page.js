@@ -362,11 +362,9 @@ function ChooseSelect(key) {
     val = document.getElementById(key).value;
     localStorage.setItem(key, val);
 
-    if (key=='view_left'){
+    if (key === 'view_left'){
 
-
-        $('#index').dialog('close');
-        LoadJSONBooks();
+        loadJSONBooks();
         //$('#books-tree').jstree({core: {data: treeData}});
         // set the tree.. cannot set and don't understand this code
 

@@ -77,8 +77,8 @@
                     })
                 }
             });
-
-            $('#books-tree').jstree({core: {data: treeData}});
+            
+            $('#books-tree').off().jstree("destroy").empty().jstree({core: {data: treeData}});
 
             $('#books-tree').on('select_node.jstree', (event, data) => {
                 if (data && data.node && data.node.data) {
@@ -317,6 +317,17 @@
             showDialog('#epub-selector');
         }
         
+        var loadJSONBooks = function loadJSONBooks() {
+            $.ajax({
+                url: 'books.json',
+                dataType: "text",
+                type: "GET",
+                mimeType: 'text/json; charset=utf-8',
+                contentType: 'text/json; charset=UTF-8',
+                success: setBookInfo
+            });
+        }
+        
         $(document).ready(() => { 
             initDialogs();
 
@@ -327,14 +338,7 @@
                 loadEpubBook(fileName);
             });
 
-            $.ajax({
-                url: 'books.json',
-                dataType: "text",
-                type: "GET",
-                mimeType: 'text/json; charset=utf-8',
-                contentType: 'text/json; charset=UTF-8',
-                success: setBookInfo
-            });
+            loadJSONBooks();
         });
     </script>
 </head>
