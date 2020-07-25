@@ -301,8 +301,8 @@ function word_click() {
         // end of fixing bugs
         //***************************************************************
 
-		if (view_left != 'Roman') {
-			var id = parseInt(localStorage.getItem('tr_id'));
+		if (view_left !== 'Roman' && typeof(P_HTM) !== 'undefined') {
+			var id = parseInt(localStorage.getItem('tr_id'));			
 			var data = P_HTM[id];
 
 			var reg1 = /\ /g;
