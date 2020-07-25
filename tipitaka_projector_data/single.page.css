@@ -394,7 +394,7 @@ a:link {
 
 #book-area {
             width: 100%;
-            height: calc(100% - 30px);
+            height: calc(100% - 58px);
             padding: 0;
             position: relative;
             margin: 10px auto;
@@ -592,4 +592,8 @@ body.show-notes table#main_table .note {
      color: black;
      border: 1px dashed orange;
      border-radius: 3px;
+}
+
+.center.epub-arrows {
+    height: 28px;
 }
