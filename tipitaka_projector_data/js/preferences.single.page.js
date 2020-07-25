@@ -683,7 +683,7 @@ function getPreferenceFlag(pref, defaultValue) {
 
 function onPrefFlagChange(pref) {
     const value = getPreferenceFlag(pref);
-    console.log(`"${pref}" -> ${value}`);
+
     switch (pref) {
         case PreferenceKeys.showAlternateReading: {
             $('body').toggleClass('show-notes', value);
