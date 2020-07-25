@@ -597,3 +597,11 @@ body.show-notes table#main_table .note {
 .center.epub-arrows {
     height: 28px;
 }
+
+p.b1 span.font10 {
+    display: none;
+}
+
+body.show-page-numbers p.b1 span.font10 {
+    display: inline;
+}
