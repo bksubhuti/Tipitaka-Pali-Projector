@@ -139,13 +139,17 @@
     line-height: 36px;
     font-family: sans-serif;
     font-size: 18px;
+    font-weight: bold;
+
 }
 .grey-button.letter.free {
     margin-left: 20px;
 }
 
 .grey-button.letter.selected {
-    font-weight: bold;
+    background: linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+    background-color: #dfdfdf;
+
 }
 
 .grey-button i {

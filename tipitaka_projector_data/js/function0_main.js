@@ -228,6 +228,12 @@ function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
 	var strpara= "";
 	var para=0;
 
+	// no book is loaded yet
+	if ( typeof(P_HTM) == 'undefined' ) {
+		return;
+	}
+
+
 	tr_id = localStorage.getItem("tr_id");
 
 
@@ -296,29 +302,23 @@ function GetMyanmarParaNo(pnum = ""){
 function SetMATButtons(){
 
 	
-	document.getElementById("Pali1").disabled = false;
-	document.getElementById("Pali2").disabled = false;
-	document.getElementById("Pali3").disabled = false;
 	
-	document.getElementById("Pali1").selected = false;
-	document.getElementById("Pali2").selected = false;
-	document.getElementById("Pali3").selected = false;
+	$("#Pali1").removeClass("selected");	
+	$("#Pali2").removeClass("selected");
+	$("#Pali3").removeClass("selected");
 	
 	
 
 	booktype = html_no.toString().substring(1,2);
 	switch (booktype){
 		case "1":
-			document.getElementById("Pali1").disabled = true;
-			//document.getElementById("Pali1").selected = true;
+			$('#Pali1').addClass("selected");
 			break;
 		case "2":
-			document.getElementById("Pali2").disabled = true;
-			//document.getElementById("Pali2").selected = true;
+			$("#Pali2").addClass("selected");
 			break;
 		case "3":
-			document.getElementById("Pali3").disabled = true;
-			//document.getElementById("Pali3").selected = true;
+			$("#Pali3").addClass("selected");
 			break;
 	}
 

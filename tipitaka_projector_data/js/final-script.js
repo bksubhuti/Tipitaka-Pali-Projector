@@ -626,32 +626,6 @@ if (view_left != 'Roman') {
 
 }
 
-// Turn on/off MAT icons
-ary1 = [];
-ary1[1] = "Mūla";
-ary1[2] = "Aṭṭhakathā";
-ary1[3] = "Ṭīkā";
-ary2 = [];
-ary2[1] = 'M';
-ary2[2] = 'A';
-ary2[3] = 'T';
-
-const setSelected = (element, name) => {
-	element.innerHTML = name;
-	element.classList.remove('notselected');
-	element.classList.add('selected');
-	element.style.color = '#777777';
-};
-for (i=1; i<=3; i++) {
-	const element = document.getElementById('Pali' + i);
-	if (T_Maps[html_no] == undefined) {
-		setSelected(element, ary2[i]);
-	} else {
-		if ((html_no.substring(1,1) == i) || (T_Maps[html_no][i] == 'x') || (T_Maps[html_no][i] == '#'))  {
-			setSelected(element, ary2[i]);
-		}
-	}
-}
 
 function ShowHideNumbers(){
 	if (localStorage.getItem('Show_Numbers') == 'true') {
