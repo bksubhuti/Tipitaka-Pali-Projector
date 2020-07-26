@@ -356,7 +356,7 @@
 
     <div class="first-nav">
         <!-- HOME -->
-        <div class="notselected grey-button" onClick="showIndex()" title="Home">
+        <div class="notselected grey-button" onClick="showIndex()" title="Select Book">
             <i class="material-icons">library_books</i>
         </div>
 
@@ -384,7 +384,7 @@
             T
         </div>
 
-        <div class="notselected grey-button letter free" title="EPUB Demo" onClick="showEpubDemo()">
+        <div class="notselected grey-button letter free" title="English Books" onClick="showEpubDemo()">
             E
         </div>
 
@@ -557,15 +557,16 @@
                     <span id="page4break1"></span>
 
                     <input name="Reference" id="Pgnum" value="0" type="radio" checked>
-                    <label for="Pgnum">Page...</label>
+                    <label for="Pgnum">Page</label>
                     <input name="Reference" id="Prnum" value="1" type="radio">
-                    <label for="Prnum">Paragraph...</label>
+                    <label for="Prnum">Paragraph</label>
                     <span id="page4break2"></span>
 
                     <input name="Reference" id="PTS" value="2" type="radio">
-                    <label for="PTS">PTS No...</label>
+                    <label for="PTS">PTS No</label>
                     <input type="Textbox" name="PageNo" id="PageNo" value=""
-                           style="font-size:11pt;width:100%;max-width:40pt;" onBlur="goUrl()">
+                           style="font-size:12pt;width:100%;max-width:30pt;">&nbsp;&nbsp;
+                           <input type="button" id="PageNoBtn" value="Go..." onClick="goUrl()"></button>
                     <br>
 
                     <div style="line-height: 110%;">
@@ -574,14 +575,17 @@
                             <img src="images/s_info.png">Tips
                         </div>
                         <div id="QuickJumpTipsShow" onClick="this.style.display='none'"
-                             style="color:#440000;font-size:11pt;display:none;">[sn1 99]= Jump to sn1 Paragraph 99,<br>[sn1
-                            m99]= Jump to sn1 Myanmar Page 99,<br>[sn1 p99] or [sn1 pts99]= Jump to sn1 PTS Page 99.<br>
+                             style="color:#440000;font-size:11pt;display:none;">
+                             Jump DN22 is Dīgha Nikāya 22nd Sutta<br>
+                             Jump MN22 is Majjhima Nikāya 22nd Sutta<br>
+                             Jump SN1.22 is Saṃyutta number 1 and 22nd Sutta <Br>
+                             Jump an5.20 is Aṅguttara Nikāya "Book of Fives", 20th Sutta
                         </div>
                     </div>
                     Quick Jump
                     <input type="Textbox" name="QuickJump" id="QuickJump" value=""
-                           style="font-size:11pt;width:100%;max-width:60pt;" onKeyup="QuickJumpTips()">
-                    <input type="button" id="QuickJumpBtn" value="Quick Jump" onclick="QuickJump()"></button>
+                           style="font-size:12pt;width:100%;max-width:60pt;" onKeyup="QuickJumpTips()">
+                    <input type="button" id="QuickJumpBtn" value="Quick Jump" onClick="QuickJump()"></button>
                     <span id="QuickJumpTips" style="color:#440000;"></span>
                 </div>
                 <span id="page4break3"></span>

@@ -203,10 +203,6 @@ function PaliHistoryGoUrl(val) {
 
 
 /*
-	if (html_no == file ) {		// same doc file
-		if (pos.indexOf('p') != -1) {	// directly jump
-			setMyanmarParaInStorage(pos.substring(2),"" );
-			window.location = pos;
 		} else {	// myanmar or PTS page no jump
 			if ((pos.indexOf('M') != -1) || (pos.indexOf('P') != -1)) {
 				pos = val.substring(9);		// M9999_9
