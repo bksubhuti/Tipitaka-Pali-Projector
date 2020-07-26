@@ -274,12 +274,22 @@ function word_click() {
 
         var t0 = (t_backward + t_forward).trim();
         var ary_tmp = t0.split(' '); 
-        t = ary_tmp[ary_tmp.length -1]; 
+        t = ary_tmp[ary_tmp.length -1]
+
+		// Selection so far:
+		//
+		// - The user clicks 'samayena', at the position between y and e:
+		// - samay|ena
+		// - at this point the browser would select [samay]ena
+		// - this is because of .modify("extend","backward","word")
+		//
+
         if (ary_tmp.length == 1) {
-			sel_object.modify("move","forward","character"); 
-    	    sel_object.modify("extend","backward","word");
-			sel_object.modify("move","backward","character");  
-			sel_object.modify("move","forward","character");  
+        	// Collapsing to the start of the selection means the selection position would be at the start of the word,
+			// in the above example this means:
+			// |samayena
+			//
+			sel_object.collapseToStart();
 			for (var i=0; i<t.length; i++) {
 				var te = t.substr(i, 1);
 				var f = keepChars.test(te); //chars is not included in var keepChars, it will be removed
