@@ -61,12 +61,12 @@ var divheight = localStorage.getItem("divheight");
 to add:
 * ee1 dictionary file: ee1_Eng_Eng_Dictionary_WordNet_3.0.js
 ***************************************/
-var ee1 = ""; //The dictionary code must be always declared before loading the script
-var hee1 = localStorage.getItem("hee1"); //Check setting: enabled this dictionary or not
-if ((hee1 == 1)) { 
-	dict_in_use++; 
-	$.getScript("dictionary/ee1_Eng_Eng_Dictionary_WordNet_3.0_.js")
-};
+//var ee1 = ""; //The dictionary code must be always declared before loading the script
+//var hee1 = localStorage.getItem("hee1"); //Check setting: enabled this dictionary or not
+//if ((hee1 == 1)) { 
+//	dict_in_use++; 
+//	$.getScript("dictionary/ee1_Eng_Eng_Dictionary_WordNet_3.0_.js")
+//};
 
 /******** Auto including wordbreakdata *********
 * THIS DATA FILE IS VERY IMPORTANT (It helps to recognize compound words)
@@ -86,6 +86,7 @@ var pg1 = '';
 var pm1 = ''; var pm2 = ''; var pm3 = ''; var pm4 = '';
 var pv1 = ''; var pv2 = ''; var pv3 = '';
 var se1 = '';
+var ee1 = '';
 
 /*
 var Kpc1 = ''; var Kpc2 = '';
@@ -117,7 +118,8 @@ var val =
   localStorage.getItem('hpv1') + 'hpv1' + '@' + 
   localStorage.getItem('hpv2') + 'hpv2' + '@' +
   localStorage.getItem('hpv3') + 'hpv3' + '@' +
-  localStorage.getItem('hse1') + 'hse1';
+  localStorage.getItem('hse1') + 'hse1' + '@' +
+  localStorage.getItem('hee1') + 'hee1';
 var ary = val.split('@');
 
 ary.sort();
@@ -159,7 +161,8 @@ function initDictionaries(){
 	localStorage.getItem('hpv1') + 'hpv1' + '@' + 
 	localStorage.getItem('hpv2') + 'hpv2' + '@' +
 	localStorage.getItem('hpv3') + 'hpv3' + '@' +
-	localStorage.getItem('hse1') + 'hse1';
+	localStorage.getItem('hse1') + 'hse1' + '@' +
+	localStorage.getItem('hee1') + 'hee1';
 
 	ary = [];
     ary = val.split('@');
@@ -215,6 +218,7 @@ function initDictionaries(){
 			if ( name == 'hpv2') {$.getScript("dictionary/pv2_Pali_Viet_Abhi-Terms_by_ngaiTinhSu_Stardict.js"); }
 			if ( name == 'hpv3') {$.getScript("dictionary/pv3_Pali_Viet_Vinaya-Terms_by_VenGiacNguyenBhikkhu.js"); }
 			if ( name == 'hse1') {$.getScript("dictionary/se1_A_Sanskrit_English_Dictionary_Monier_Williams@1899.js"); }
+			if ( name == 'hee1') {$.getScript("dictionary/wn-Eng-Eng-Dictionary_WordNet_3.0_.js"); }
 			
 		} else {
 			aryTemp[v0] = '0';
@@ -231,11 +235,8 @@ function initDictionaries(){
 
 
 
-	if ((hee1 == 1)) { 
-		ary_dict[0] = 'hee1';
-	}	// English - English Dictionary
-	
-	
+
+
 }
 
 

@@ -28,6 +28,7 @@ function RestorePreferences() {
     def['hpv2'] = '@';
     def['hpv3'] = '@';
     def['hse1'] = '@';
+    def['iee1'] = '@';
     def['ipc1'] = '@';
     def['ipc2'] = '@';
     def['ipd1'] = '@';
@@ -130,28 +131,29 @@ Dicts['pv1'] = 'PV1: [17,423 entries - 902 KB] Pali Viet Dictionary Bản dịch
 Dicts['pv2'] = 'PV2: [3,827 entries - 214 KB] Pali Viet Abhidhamma Terms - ngài Tịnh Sự (phần ghi chú thuật ngữ)';
 Dicts['pv3'] = 'PV3: [914 entries - 253 KB] Pali Viet Vinaya Terms - Từ điển các thuật ngữ về luật do tỳ khưu Giác Nguyên sưu tầm';
 Dicts['se1'] = 'SE1: [223,917 entries - 28.9 MB] A Sanskrit English Dictionary - Monier Williams@1899';
+Dicts['ee1'] = 'EE1: [148,730 entries - 23.2 MB] Word-Net Eng-Eng dictionary'; 
 
 
 function DictionaryMoveOption(source, destination) {   // source move to dist. 
-    try {
+    try { 
         var v1 = '';
-        for(var i=0; i<source.options.length; i++){
-            if(source.options[i].selected){
-                var e = source.options[i];
+        for(var i=0; i<source.options.length; i++){  
+            if(source.options[i].selected){ 
+                var e = source.options[i];  
 
-                destination.options.add(new Option(e.text, e.value));
+                destination.options.add(new Option(e.text, e.value)); 
                 destination.options[destination.options.length -1].title = e.title;
                 //source.remove(i);  
                 v1 = ';' + i + v1;
-            }
-        }
+            } 
+        } 
         var ary = v1.substr(1).split(';');
-        for (var i in ary) {
-            source.remove(ary[i]);
-        }
+        for (var i in ary) { 
+            source.remove(ary[i]);  
+        } 
         DictionaryRenew();
     } catch(e) {
-    }
+    } 
 }
 
 function DictionaryChangePos(obj, index) {
@@ -459,14 +461,7 @@ function ChooseRadio(key) {
 function ChooseCheckbox(key) {
     chk = document.getElementById(key).checked;
 
-    if (key.indexOf('hee1') != -1) {
-        if (chk == true) {
-            document.write  = localStorage.setItem('hee1', 1);
-        } else {
-            document.write  = localStorage.setItem('hee1', 0);
-        }
-    }
-
+ 
     if (key.indexOf('Themes') != -1) {
         if (chk == true) {
             localStorage.setItem('Themes', 'true');
@@ -746,7 +741,7 @@ function initPreferences(){
         document.getElementById('Themes').checked = false;
     }
 
-    // get the font color and set it
+    // get the font color and set it 
     var r1 = localStorage.getItem('r1');
     $('h2').css('color', r1);
     $('h3').css('color', r1);
@@ -941,10 +936,10 @@ function initPreferences(){
     var e_enable = document.getElementById('DictionaryEnable');
     var e_disable = document.getElementById('DictionaryDisable');
 
-    for(var i=(e_enable.length -1); 0<=i; i--) { // remove all options
+    for(var i=(e_enable.length -1); 0<=i; i--) { // remove all options  
         e_enable.remove(i);
     }
-    for(var i=(e_disable.length -1); 0<=i; i--) { // remove all options
+    for(var i=(e_disable.length -1); 0<=i; i--) { // remove all options  
         e_disable.remove(i);
     }
 
@@ -992,13 +987,7 @@ function initPreferences(){
     document.getElementById('EnableCount').innerHTML = document.form1.DictionaryEnable.options.length;
     document.getElementById('DisableCount').innerHTML = document.form1.DictionaryDisable.options.length;
 
-    // English Dictionary
-    var hee1 = localStorage.getItem("hee1");
-    if (hee1 == '1') {
-        document.getElementById('hee1').checked = true;
-    } else {
-        document.getElementById('hee1').checked = false;
-    }
+    
 
     // Speech Repeat
     var speech_repeat = localStorage.getItem("speech_repeat");
@@ -1015,7 +1004,7 @@ function initPreferences(){
     var checked = false;
     var strChecked = localStorage.getItem("ShowOnTop");
     if (strChecked = "true") {
-        checked = true;
+        checked = true; 
     }
     document.getElementById("ShowOnTop").checked = checked;
     ShowOnTopClick(checked);
@@ -1066,7 +1055,7 @@ function enlarge()
 
 function getCurrentVersion(){
 
-    // get the version number.. always do this last in case the file read fails it will
+    // get the version number.. always do this last in case the file read fails it will 
     // cause the function to crash.
     versionfile = 'version.json';
 

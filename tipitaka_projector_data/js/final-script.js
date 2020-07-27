@@ -72,8 +72,7 @@ function registerListeners() {
 		if (t.length > 0) {
 			DictionaryKeyGo();
 			change_tab('page1');
-
-			if ((hee1 ==1) && (localStorage.getItem("speech_repeat") != '0')) {
+			if ((localStorage.getItem('hee1') != '000') && (localStorage.getItem("speech_repeat") != '0')) {
 				for (var idx=1; idx<=localStorage.getItem("speech_repeat"); idx++) {
 					speakSynthesis(t);//repeat 2 times
 				}

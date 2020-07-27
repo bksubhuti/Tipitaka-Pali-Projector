@@ -104,7 +104,7 @@ function LookupDictionary(key) {
 	get_data = '';
 	for (var i = 0; i<ary_dict.length; i++) {
 		var d_name = ary_dict[i].substring(1);
-		if ((ary_dict[i] == 'hee1') && (hee1 == '1')) {get_data = get_data + GetValues(ee1, d_name, key);}
+		if ((ary_dict[i] == 'hee1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(ee1, d_name, key);}
 		if ((ary_dict[i] == 'hpc1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pc1, d_name, key);}
 		if ((ary_dict[i] == 'hpc2') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pc2, d_name, key);}
 		if ((ary_dict[i] == 'hpd1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pd1, d_name, key);}
