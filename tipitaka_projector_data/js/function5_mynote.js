@@ -1,5 +1,5 @@
 function MyNoteExport(key) { 	// 0=cancel, 1=save, lines=5-10-20
-	if ('1' < key) {	// lines
+	if (('1' < key) && (typeof P_HTM != 'undefined')) {	// lines
 		var tr_ids = '';
 		var tr_tags = '';
 		var tr_olds = '';
@@ -21,9 +21,9 @@ function MyNoteExport(key) { 	// 0=cancel, 1=save, lines=5-10-20
 				val = '';
 				if ((M_LOC[i] != undefined) && (M_LOC[i] != '')) {	// remove HTML Tag
 					val = document.getElementById('m' + i).innerHTML.replace(/<[^>]+>/gm ,'') ; 
-				}
-				height = parseInt(document.getElementById('p' + i).innerHTML.length /1.8);
-				document.getElementById('m' + i).innerHTML = '<textarea id="notes' + i +'" style="font-size:14.0pt;line-height:180%;width:99%;height:' + height + 'pt;color:#000000;background-color:#e0ffff;">' + val + '</textarea>';
+				} 
+				var v1 = Math.max(25, parseInt(P_HTM[i].length /0.9));
+				document.getElementById('m' + i).innerHTML = '<textarea id="notes' + i +'" style="font-size:14.0pt;line-height:180%;width:99%;height:' + v1 + 'pt;color:#000000;background-color:#e0ffff;">' + val + '</textarea>';
 
 				k1 = k1 -1;
 				if (k1 == 0) {
