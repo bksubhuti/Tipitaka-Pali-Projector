@@ -2539,8 +2539,27 @@
 </script>
 <script>if (window.module) module = window.module;</script>
 
-<!-- ELECTRON FIND -->
+<!-- ELECTRON -->
+<div id="electron-notification">
+    <span id="update-message"></span>
+    <button id="update-action-1"></button>
+    <button id="update-action-2"></button>
+    <b class="spacer"></b>
+    <i class="material-icons">close</i>
+</div>
 <script>
+
+    const $notification = $('#electron-notification');
+    const $message = $('#update-message');
+    const $action1 = $('#update-action-1');
+    const $action2 = $('#update-action-2');
+
+    const displayNotification = (shouldDisplay) => {
+        $notification.css('display', shouldDisplay ? 'flex' : 'none');
+    };
+
+    $('#electron-notification i').click(() => displayNotification(false));
+
     if (typeof(require) !== 'undefined') {
         const { remote, ipcRenderer } = require('electron');
         const { FindInPage } = require('electron-find');
@@ -2549,6 +2568,19 @@
         ipcRenderer.on('on-find', (e, args) => {
             findInPage.openFindWindow();
         });
+
+        ipcRenderer.on('update_available', () => {
+            $message.text('A new update is available. Do you want to download it?');
+            $action1.text('Yes').off().click(() => ipcRenderer.send('download-update'));
+            $action2.text('No').off().click(() => displayNotification(false));
+        });
+
+        ipcRenderer.on('update_downloaded', () => {
+            $message.text('Update Downloaded. It will be installed on restart. Restart now?');
+            $action1.text('Yes').off().click(() => ipcRenderer.send('restart-and-update'));
+            $action2.text('No').off().click(() => displayNotification(false));
+        });
+
     }
 </script>
 

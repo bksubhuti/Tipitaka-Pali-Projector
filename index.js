@@ -1,8 +1,10 @@
 const { app, BrowserWindow, globalShortcut  } = require('electron')
 const electron = require("electron");
-const updater = require("electron-updater");
-const autoUpdater = updater.autoUpdater;
+const { autoUpdater } = require('electron-updater');
 
+// Setup the Auto Updater
+//
+autoUpdater.autoDownload = false;
 
 let findInPage;
 
@@ -15,8 +17,7 @@ app.on('ready', () => {
         }
     });
     mainWindow.loadURL(`file://${__dirname}/tipitaka_projector_data/index.htm`);
-    /*Checking updates just after app launch and also notify for the same*/
-    
+
     mainWindow.on('focus', () => {
         globalShortcut.register('CommandOrControl+F', function () {
             if (mainWindow && mainWindow.webContents) {
@@ -30,6 +31,11 @@ app.on('ready', () => {
     mainWindow.on('closed', () => {
         mainWindow = null
     });
+
+    /* Checking updates just after app launch and also notify for the same */
+    mainWindow.webContents.on('dom-ready', () => {
+        autoUpdater.checkForUpdates();
+    });
 });
 
 app.on('window-all-closed', () => {
@@ -39,57 +45,16 @@ app.on('window-all-closed', () => {
   globalShortcut.unregister('CommandOrControl+F')
 })
 
-
-
-autoUpdater.on('checking-for-update', function () {
-    sendStatusToWindow('Checking for update...');
+autoUpdater.on('update-available', () => {
+    mainWindow.webContents.send('update_available');
+});
+autoUpdater.on('update-downloaded', () => {
+    mainWindow.webContents.send('update_downloaded');
 });
 
-autoUpdater.on('update-available', function (info) {
-    sendStatusToWindow('Update available.');
+ipcMain.on('restart-and-update', () => {
+    autoUpdater.quitAndInstall();
 });
-
-autoUpdater.on('update-not-available', function (info) {
-    sendStatusToWindow('Update not available.');
+ipcMain.on('download-update', () => {
+    autoUpdater.downloadUpdate();
 });
-
-autoUpdater.on('error', function (err) {
-    sendStatusToWindow('Error in auto-updater.');
-});
-
-autoUpdater.on('download-progress', function (progressObj) {
-    let log_message = "Download speed: " + progressObj.bytesPerSecond;
-    log_message = log_message + ' - Downloaded ' + parseInt(progressObj.percent) + '%';
-    log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
-    sendStatusToWindow(log_message);
-});
-
-autoUpdater.on('update-downloaded', function (info) {
-    sendStatusToWindow('Update downloaded; will install in 1 seconds');
-});
-
-autoUpdater.on('update-downloaded', function (info) {
-    setTimeout(function () {
-        autoUpdater.quitAndInstall();
-    }, 1000);
-});
-
-function checkForUpdates(){
-    const data = {
-        'provider': 'github',
-        'owner':    'bksubhuti',
-        'repo':     'Tipitaka-Pali-Projector',
-        'token':    '20e3a0ec85c4d2206044dd810c8f1b9228196900'
-      };
-    autoUpdater.setFeedURL(data);
-    autoUpdater.checkForUpdates();
-}
-
-function sendStatusToWindow(message) {
-    console.log(message);
-}
-
-module.exports = {
-    checkForUpdates,
-}
-

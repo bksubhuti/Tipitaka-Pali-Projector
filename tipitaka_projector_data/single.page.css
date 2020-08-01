@@ -609,3 +609,41 @@ p.b1 span.font10 {
 body.show-page-numbers p.b1 span.font10 {
     display: inline;
 }
+
+
+#electron-notification {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    top: 0;
+    display: none;
+    background: white;
+    z-index: 12345;
+    padding: 5px;
+    box-sizing: border-box;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    color: black;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#electron-notification #update-message {
+    
+}
+
+#electron-notification button {
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#electron-notification i { 
+    margin-left: 10px;
+}
+
+#electron-notification b { 
+    flex-grow: 1;
+}
