@@ -1,10 +1,11 @@
 function DictHistoryList() {
+
 	var strDictInfoArr = localStorage.getItem('DictInfoArr');
 	var DictInfoArr = [];
 
 	if (strDictInfoArr){
 		var url = '<br>';
-		url += '<a href="javascript:void(0);" onClick="DictHistoryCopy()" style="font-size:11pt;"><img src="images/b_ftext.png" width="16">Copy</a>&nbsp;&nbsp;';
+		url += '<a href="javascript:void(0);" onClick="DictHistoryCopy();" style="font-size:11pt;"><img src="images/b_ftext.png" width="16">Copy</a>&nbsp;&nbsp;';
 		url += '<a href="javascript:void(0);" onClick="DictHistoryClear(\'Select\')" style="font-size:11pt;"><img src="images/b_drop.png" width="16">Delete Select</a>&nbsp;&nbsp;'
 		url += '<a href="javascript:void(0);" onClick="DictHistoryClear(\'All\')" style="font-size:11pt;"><img src="images/b_drop.png" width="16">Delete All</a>';
 		url += '<br>';
@@ -12,7 +13,7 @@ function DictHistoryList() {
 
 		DictInfoArr = JSON.parse(strDictInfoArr);
 		var len = DictInfoArr.length;
-		for (var i=0 ; i < len ; i++ ){
+		for (var i=0 ; i < len ; i++ ) {
 			url += '<input type="checkbox" name="AnkiHist" id="DictHist' + i + '" checked value="' + DictInfoArr[i].key + '"/>';
 			url += '<a href="javascript:void(0);" onClick="DictHistoryDisplay(\'' + DictInfoArr[i].key + '\');">' + '&nbsp' + DictInfoArr[i].key + '</a><br>';
 		}
@@ -69,11 +70,6 @@ function DictHistoryCopy() {
 	if (strDictInfoArr){
 		DictInfoArr = JSON.parse(strDictInfoArr);
 
-		//var len = DictInfoArr.length;
-		//for (var i=0 ; i < len ; i++ ){
-		//	strHistory = strHistory + DictInfoArr[i].key + "\n";
-		//}
- 
         var len = DictInfoArr.length;
         for (i in DictInfoArr) {
         	var e = document.getElementById('DictHist' + i).checked;
@@ -82,8 +78,12 @@ function DictHistoryCopy() {
             }
         }
  
-		$('#CopyText').val('strHistory'); 
+		$('#CopyText').val(strHistory); 
 	}
 	$('#CopyText').select();
-	document.execCommand('copy');
+    
+    change_tab('page5');
+
+    $('#CopyText').select();
+    document.execCommand('copy'); 
 }

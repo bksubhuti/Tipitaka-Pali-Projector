@@ -95,6 +95,14 @@ function goUrl() {
 }
 
 function PaliHistoryList() {
+	var url = '';
+	var strLastHistory = localStorage.getItem('LastHistory');
+	if (strLastHistory) {
+		url += '<img src="images/reset.png" width="16">';
+		url += '<a href="index.htm#/book/' + strLastHistory + '">Lastest</a>&nbsp;';
+	} 
+	$('#LastHistory').html(url);	
+
 	var PaliHistoryArray = [];
 	PaliHistoryArray = JSON.parse(localStorage.getItem('PaliHistoryJSON'));
 	if (PaliHistoryArray != null){// use JSON objects instead
@@ -147,6 +155,36 @@ function PaliHistoryClear(type) {
 			PaliHistoryList();
 		} 
 	}	
+}
+
+
+function PaliHistoryCopy() {
+	var strHistory = "";
+	var strPaliHistory = localStorage.getItem('PaliHistoryJSON');
+	var PaliHistoryArr = [];
+	if (strPaliHistory){
+		PaliHistoryArr = JSON.parse(strPaliHistory); 
+
+        var len = PaliHistoryArr.length;
+        for (i in PaliHistoryArr) {
+        	var e = document.getElementById('PaliHist' + i).checked;
+            if (e == true){        
+                strHistory = strHistory + PaliHistoryArr[i].date + "\t";
+                strHistory = strHistory + PaliHistoryArr[i].html_no + "\t";
+                strHistory = strHistory + toTranslate(T_Book[PaliHistoryArr[i].html_no]) + "\t";
+                strHistory = strHistory + PaliHistoryArr[i].paraNo + "\t";
+                strHistory = strHistory + PaliHistoryArr[i].Toc_Name + "\n";  
+            }
+        }
+ 
+		$('#CopyText').val(strHistory); 
+	}
+	$('#CopyText').select();
+    
+    change_tab('page5');
+
+    $('#CopyText').select();
+    document.execCommand('copy'); 
 }
 
 function PaliHistoryGoUrl(val) {
@@ -520,10 +558,9 @@ function QuickJumpTips() {
 }
 
 
-
 function SetupToc() {
     const options = TOC_Dropdown_Items.map((item, index) => `<option value="${index}">${item}</option>`);
-	$('Toc').html(options); 
+	document.getElementById('Toc').innerHTML = options;
 
 }
 

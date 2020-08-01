@@ -16,7 +16,7 @@ function conjugate(word, id, which) {
 	var yto = yt[word];
 
 	if(yto == undefined) {
-		//alert('Word not found');
+		//console.log('Word not found');
 		return;
 	}
 
@@ -278,7 +278,7 @@ function conjugateVerb(word) {
 	var type1 = yto[4]+'#'+yto[5];
 	var type2 = iI[type1];
 	if(type2 == undefined) {
-		alertFlash('Verb not found','yellow');
+		console.log('Verb not found','yellow');
 		return;
 	}
 
@@ -371,7 +371,7 @@ function conjugateIrrNoun(word) {
 	var type1 = yto[4]+'#'+yto[5];
 	var type2 = iI[type1];
 	if(type2 == undefined) {
-		alertFlash('Noun not found','yellow');
+		console.log('Noun not found','yellow');
 		return;
 	}
 
@@ -379,7 +379,7 @@ function conjugateIrrNoun(word) {
 
 	var noun = iNI[outword];
 	if(noun == undefined) {
-		alertFlash('Noun not found','yellow');
+		console.log('Noun not found','yellow');
 		return;
 	}
 	var cnt = 0;
@@ -430,7 +430,7 @@ function conjugateIrrVerb(word,which) {
 	var type1 = yto[4]+'#'+yto[5];
 	var type2 = iI[type1];
 	if(type2 == undefined) {
-		alert('Noun not found');
+		console.log('Noun not found');
 		return;
 	}
 
@@ -441,7 +441,7 @@ function conjugateIrrVerb(word,which) {
 
 	var verbC = iVI[yto[6]];
 	if(verbC == undefined) {
-		alertFlash('Verb not found','yellow');
+		console.log('Verb not found','yellow');
 		return;
 	}
 	var verb;
