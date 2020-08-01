@@ -1,5 +1,6 @@
 function CopyText() {
-	var val = document.getElementById('CopyText').value;
+	var val = $('#CopyText').val();
+
 	var ary = val.split('[');
 	var data = '';
 	for (i in ary) {
@@ -30,7 +31,7 @@ function CopyText() {
 		}
 	}
 	data = data.trim();
-	document.getElementById('CopyText').value = data;
+	$('#CopyText').val(data);
  
 	$('#CopyText').select();
 	document.execCommand('copy');
@@ -38,21 +39,21 @@ function CopyText() {
 
 function CopyExport(key) { 
 	if (key == '1') {	//start
-		document.getElementById('CopyText').value = '';
-		document.getElementById('copy1').value = '*';
-		document.getElementById('copystart').style.display = 'none';
-		document.getElementById('copystatus').value = 'fetching';
-		document.getElementById('copyunformat').style.display = 'inline';
-		document.getElementById('copyformat').style.display = 'inline';
-		document.getElementById('copycancel').style.display = 'inline';
+		$('#CopyText').val('');
+		$('#copy1').val('*');
+		$('#copystatus').val('fetching');
+		$('#copystart').css('display', 'none');
+		$('#copyunformat').css('display','inline');
+		$('#copyformat').css('display','inline');
+		$('#copycancel').css('display','inline');
 	} 
 	
 	if ((key == '0') || (key == '2') || (key == '3')) {	// cancel unformated formated
-		copy1 = Number(document.getElementById('copy1').value);
+		copy1 = Number($('#copy1').val());
 		if (copy2 == '') {
 			copy2 = copy1;
 		} else {
-			copy2 = Number(document.getElementById('copy2').value);
+			copy2 = Number($('#copy2').val());
 		}
 		var s1 = Math.min(copy1, copy2);
 		var s2 = Math.max(copy1, copy2);
@@ -60,15 +61,14 @@ function CopyExport(key) {
 		if (key == '2') {
 			val = '';
 			for (i=s1; i<=s2; i++) { 
-				val = val + document.getElementById('p' + i).innerHTML.replace(/<[^>]+>/gm ,'') + '\n';
-				document.getElementById('m' + i).innerHTML = document.getElementById('m' + i).innerHTML.replace('<input type="checkbox" checked>', '');
+				val = val + $('#p' + i).html().replace(/<[^>]+>/gm ,'') + '\n';
+				$('#m' + i).html = $('#m' + i).html().replace('<input type="checkbox" checked>', '');
 			} 
 			val = val.replace(/\&nbsp;/g, '')
-			document.getElementById('CopyText').value = val;
+			$('#CopyText').val(val);
 			CopyText();
 		}
 		if (key == '3') {
-			//document.getElementById('CopyText').value = document.getElementById('main_table').innerHTML;
 			format = '<html>\n';
 			format = format + '	<head>\n';
 			format = format + '		<style>\n';
@@ -98,28 +98,30 @@ function CopyExport(key) {
 
 			val = '';
 			for (i=s1; i<=s2; i++) { 
-				val = val + '		' + document.getElementById('p' + i).innerHTML + '\n';
-				document.getElementById('m' + i).innerHTML = document.getElementById('m' + i).innerHTML.replace('<input type="checkbox" checked="">', '');
+				val = val + '		' + $('#p' + i).html() + '\n';
+				$('#m' + i).html($('#m' + i).html().replace('<input type="checkbox" checked="">', ''));
 
 			} 
 			format = format.replace('{!@#body#@!}', val);
-			format = format.replace(/\&nbsp;/g, '')
-			document.getElementById('CopyText').value = format;
+			format = format.replace(/\&nbsp;/g, '') 
+			$('#CopyText').val(format)
 			CopyText(); 
 		}
-		if (key == '0') {
-			document.getElementById('CopyText').value = '';
+		if (key == '0') { 
+			$('#CopyText').val('');
 		}	
 		for (i=s1; i<=s2; i++) { 
-			document.getElementById('m' + i).innerHTML = document.getElementById('m' + i).innerHTML.replace('<input type="checkbox" checked="">', '');
+			$('#m' + i).html($('#m' + i).html().replace('<input type="checkbox" checked="">', ''));
 		}
 
-		document.getElementById('copy1').value = '';
-		document.getElementById('copy2').value = '';
-		document.getElementById('copystatus').value = 'stop';
-		document.getElementById('copystart').style.display = 'inline';
-		document.getElementById('copyunformat').style.display = 'none';
-		document.getElementById('copyformat').style.display = 'none';
-		document.getElementById('copycancel').style.display = 'none';
+		$('#copy1').val('');
+		$('#copy1').val('stop');
+		$('#copystatus').val(''); 
+ 
+		$('#copystart').css('display', 'inline');
+		$('#copyunformat').css('display','none');
+		$('#copyformat').css('display','none');
+		$('#copycancel').css('display','none');
+
 	} 
 }

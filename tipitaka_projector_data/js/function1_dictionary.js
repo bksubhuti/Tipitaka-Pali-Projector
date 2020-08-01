@@ -7,7 +7,7 @@ function paliGoBack() {
 	var DictInfoArr = [];
 	if (strDictInfoArr){
 		DictInfoArr = JSON.parse(strDictInfoArr);
-		var key= document.getElementById("DictionaryKey").value;
+		var key= $('#DictionaryKey').val();
 		var x = 0;
 		var oneahead = 0;
 		// look for the first item to match the array then use the next one in the list if it exist
@@ -15,8 +15,8 @@ function paliGoBack() {
 
 			oneahead = x+1;
 			if (DictInfoArr[x].key == key && (oneahead < DictInfoArr.length )){
-				x++;
-				document.getElementById('DictionaryKey').value =  DictInfoArr[x].key;
+				x++; 
+				$('#DictionaryKey').val(DictInfoArr[x].key);
 				gbJustLookingBack = true;
 				DictionaryKeyGo();
 				gbJustLookingBack = false;
@@ -68,13 +68,14 @@ function DictionaryGo() {
 	//preserve original for searching... 
 	//var strOrigKey = this.dataset.wordvalue.trim();
 
-	key = toUniRegEx(document.getElementById('DictionaryKey').value.toLowerCase().trim());
+	key = $('#DictionaryKey').val().toLowerCase().trim();
 
 	jDictInfo.key = key;
 
  
-	if (key == '') { return(''); }
-	document.getElementById('DictionaryKey').value = key;
+	if (key == '') { return(''); } 
+	$('#DictionaryKey').val(key);
+
 
 	var DictionaryRet = '';
 	var get_data = LookupTwoMethod(key, '');	//1 time directly lookup
@@ -89,13 +90,13 @@ function DictionaryGo() {
 			DictionaryRet = DictionaryRet + get_data;
 		} else {		// not found
 			DictionaryRet = DictionaryRet + '<div class="DictionaryClass" style="' + DictionaryBackground + '">';
-			DictionaryRet = DictionaryRet + '<b style="color:#ff0000;" id="G_' + key + '" onClick="OpenOnce(\'' + key + '\')">' + toTranslate(key) + '&nbsp;</b>&nbsp;&nbsp;';
+			DictionaryRet = DictionaryRet + '<a href="javascript:void(0);" id="G_' + key + '" onClick="OpenOnce(\'' + key + '\')" style="font-weight:900;" >' + toTranslate(key) + '&nbsp;</a>&nbsp;&nbsp;';
 			DictionaryRet = DictionaryRet + DoAnalysis(key) + '</div>';
 		}	
 	}
 
 
-	document.getElementById('page1_desc').innerHTML = DictionaryRet;
+	$('#page1_desc').html(DictionaryRet);
 
 	// now write the jDictInfo to the localStorage and create an array to do so.
 	// This will be used for anki later on.
@@ -136,8 +137,8 @@ function DictionaryGo() {
 
 function DictionaryKeyGo() {
 	if (localStorage.getItem('main_content') == 'page2') {
-		key = toUniRegEx(document.getElementById('DictionaryKey').value.toLowerCase().trim());
-		document.getElementById('DictionaryKey').value = key;
+		key = toUniRegEx($('#DictionaryKey').val().toLowerCase().trim()); 
+		$('#DictionaryKey').val(key);
 		DeclensionShow(key);
 	} else {
 		DictionaryGo();
@@ -174,8 +175,8 @@ function dictionaryMap() {
 
 
 function WordListLookup(target) {
-	const key = toUniRegEx(document.getElementById('DictionaryKey').value.toLowerCase().trim());
-	document.getElementById('DictionaryKey').value = key;
+	const key = toUniRegEx($('#DictionaryKey').val().toLowerCase().trim()); 
+	$('#DictionaryKey').val(key);
 	if (!key) { return [] }
 
 	dict_records = 0;

@@ -81,39 +81,48 @@ function toTranslateRight(input) {
 }
 
 function change_tab(id) {
-	document.write = localStorage.setItem('main_content', id);
-	for (var i =1; i<=5; i++) {
-		document.getElementById("page" + i +"_desc").style.display = "none";
-		document.getElementById("page" + i).className="notselected";
-	}
-	document.getElementById(id).className="selected";
-	document.getElementById(id + "_desc").style.display = "inline";
+	if (id.indexOf('pg4_') == -1) {
+		document.write = localStorage.setItem('main_content', id);
+		for (var i =1; i<=5; i++) {
+			$("#page" + i +"_desc").css('display', "none");
+			document.getElementById("page" + i).className="notselected";
+		}
+		document.getElementById(id).className="selected";
+		$('#' + id + "_desc").css('display', "inline");
 
-	if (id == "page2") {    // declension 
-		document.getElementById('DictionaryKey').style.display = 'none';
-		document.getElementById('GoDictionary').style.display = 'none';
-		document.getElementById('DeclensionKey').style.display = 'inline';
-		document.getElementById('GoDeclension').style.display = 'inline';
+		if (id == "page2") {    // declension 
+			$('#DictionaryKey').css('display', 'none');
+			$('#GoDictionary').css('display', 'none');
+			$('#DeclensionKey').css('display', 'inline');
+			$('#GoDeclension').css('display ', 'inline');
 
-		var val = document.getElementById('DeclensionKey').value.trim();
-		document.getElementById('DeclensionKey').value = val;
+			var val = $('#DeclensionKey').val().trim();
+			$('#DeclensionKey').val(val);
 
-		DeclensionSearch();
-		DeclensionTable(val);
-		// document.getElementById('DeclensionKey').focus();
+			DeclensionSearch();
+			DeclensionTable(val);
+			// document.getElementById('DeclensionKey').focus();
+		} else {
+			$('#DictionaryKey').css('display', 'inline');
+			$('#GoDictionary').css('display', 'inline');
+			$('#DeclensionKey').css('display', 'none');
+			$('#GoDeclension').css('display', 'none');
+		}
+
+		if (id == "page4") {    // TOC
+			PaliHistoryList();
+		}
+		if (id == "page5") {    // history
+			DictHistoryList();
+		}
 	} else {
-		document.getElementById('DictionaryKey').style.display = 'inline';
-		document.getElementById('GoDictionary').style.display = 'inline';
-		document.getElementById('DeclensionKey').style.display = 'none';
-		document.getElementById('GoDeclension').style.display = 'none';
-	}
-
-	if (id == "page4") {    // TOC
-		PaliHistoryList();
-	}
-	if (id == "page5") {    // history
-		DictHistoryList();
-	}
+		for (var i =1; i<=3; i++) {
+			$("#pg4_page" + i +"_desc").css('display', "none");
+			document.getElementById("pg4_page" + i).className="notselected";
+		}
+		document.getElementById(id).className="selected";
+		$('#' + id + "_desc").css('display', "inline");
+	}	
 }
 
 $.getScript("js/z_english.js");
@@ -128,29 +137,26 @@ var html_file = _ary[0].slice(-4) + '.htm';
 var html_no = _ary[0].slice(-4);
 
 M_LOC = [];
-file = 'pali/MyNote/' + html_no + '.js';
-$.getScript(file);
 
 M_SCT = [];		// sutta_center;
 DictionaryBackground = '';
 
 function GetTrId(val) {
+	val = Math.max(1, val);
 	document.write = localStorage.setItem('tr_id', val);
 
-	h = parseInt(document.getElementById('main_div').style.height) - Math.max(34, parseInt(document.getElementById('main_div').style.top) + parseInt(document.getElementById('main_content').offsetTop));
-
-	// document.getElementById('main_content').style.height = h + "px";
+	h = parseInt($('#main_div').css('height')) - Math.max(34, parseInt($('#main_div').css('top'))) + parseInt($('#main_content').css('offsetTop'));
 
 	Message(val);		// put message
 
-	copystatus = document.getElementById('copystatus').value;
+	copystatus = $('#copystatus').val();
 	if (copystatus == 'fetching') {
-		copy1 = document.getElementById('copy1').value;
-		copy2 = document.getElementById('copy2').value;
+		copy1 = $('#copy1').val();
+		copy2 = $('#copy2').val();
 		if (copy1 == '*') {	// start
-			document.getElementById('copy1').value = val;
-			document.getElementById('copystatus').value = 'fetching';
-			document.getElementById('m' + val).innerHTML = '<input type="checkbox" checked="">' + document.getElementById('m' + val).innerHTML;
+			$('#copy1').val(val);
+			$('#copystatus').val('fetching');
+			$('#m' + val).html('<input type="checkbox" checked="">' + $('#m' + val).html());
 		} else {
 			if (copy2 == '') {
 				copy2 = val;
@@ -159,7 +165,7 @@ function GetTrId(val) {
 			var s2 = Math.max(Number(val), Math.max(Number(copy1), Number(copy2)));
 			for (i=s1; i<=s2; i++) {
 				if (P_HTM[i] != undefined) {
-					document.getElementById('m' + i).innerHTML = document.getElementById('m' + i).innerHTML.replace('<input type="checkbox" checked="">', '');
+					$('#m' + i).html($('m' + i).html().replace('<input type="checkbox" checked="">', ''));
 				}
 			}
 
@@ -167,10 +173,10 @@ function GetTrId(val) {
 			var s2 = Math.max(Number(copy1), Number(val));
 			for (i=s1; i<=s2; i++) {
 				if (P_HTM[i] != undefined) {
-					document.getElementById('m' + i).innerHTML = '<input type="checkbox" checked="">' + document.getElementById('m' + i).innerHTML;
+					$('#m' + i).html('<input type="checkbox" checked="">' + $('#m' + i).html());
 				}
 			}
-			document.getElementById('copy2').value = val;
+			$('#copy2').val(val);
 		}
 	}
 }
@@ -184,10 +190,10 @@ function sel_on_off() {
 	}
 
 	if (localStorage.getItem('contentdisplay') == '0') {
-		if (document.getElementById('main_div').style.display == 'none') {
-			document.getElementById('main_div').style.display = 'inline';
+		if ($('#main_div').css('display') == 'none') {
+			$('#main_div').css('display', 'inline');
 		} else {
-			document.getElementById('main_div').style.display = 'none';
+			$('#main_div').css('display', 'none');
 		}
 	}
 }
@@ -198,30 +204,27 @@ function RedrawTable(w) {
 	w2 = document.body.getBoundingClientRect().width - w1 - 15; 	// class="main_td2" margin-left:15px;
 
 	if (localStorage.getItem('contentposition') == '0') {  // float panel
-		document.getElementById('main_td2').style.left = "0px";
-		document.getElementById('main_td2').style.top = "0px";
-		document.getElementById('main_td2').style.width = document.body.getBoundingClientRect().width + "px";
-		document.getElementById('main_td2').style.height = window.innerHeight+ "px";
+		$('#main_td2').css('left', '0px');
+		$('#main_td2').css('top', '0px');
+		$('#main_td2').css('width', document.body.getBoundingClientRect().width + "px");
+		$('#main_td2').css('height', window.innerHeight+ "px");
 		$('.main_td2').css('margin-left', '0px');
 
-		w1 = parseInt(document.getElementById('main_div').style.width) + parseInt(document.getElementById('main_div').style.height);
+		w1 = parseInt($('#main_div').css('width')) + parseInt($('#main_div').css('height'));
 		if (w1 < 600) {
-			document.getElementById('main_div').style.width = '300px';
-			document.getElementById('main_div').style.height = '300px';
+			$('#main_div').css('style.width', '300px');
+			$('#main_div').css('height', '300px');
 		}
 	} else {	// fixed panel
-		document.getElementById('main_div').style.left = "0px";
-		document.getElementById('main_div').style.top = "0px";
-		document.getElementById('main_div').style.width= w1 + "px";
-		document.getElementById('main_div').style.height= (window.innerHeight -30) + "px";
-		document.getElementById('main_td2').style.left= w1 + "px";
-		document.getElementById('main_td2').style.width= w2 + "px";
-	}
-	// document.getElementById('main_content').style.height = document.getElementById('main_div').style.height + "px"
+		$('#main_div').css('left', "0px");
+		$('#main_div').css('top', "0px");
+		$('#main_div').css('width', w1 + "px");
+		$('#main_div').css('height', (window.innerHeight -30) + "px");
+		$('#main_td2').css('left', w1 + "px");
+		$('#main_td2').css('width', w2 + "px");
+	} 
 
 	adjustTabContent();
-
-	console.log(document.body.getBoundingClientRect().width + '  ' + window.innerWidth +'  '+ main_div.style.width+ '  '+main_td2.style.width);
 }
 
 function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
@@ -367,10 +370,7 @@ var loadInSequence = function loadInSequence(scripts, onDone) {
         loadInSequence(scripts, onDone);
     }});
 };
-
-if (localStorage.getItem("view_right") == 'Suttacentral') {
-    $.getScript('pali/SuttaCentral/' + html_no + '.js');
-}
+ 
 // Script load order is VERY important
 // stuff in final-script uses stuff in the others
 var toLoad = [];

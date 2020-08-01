@@ -41,52 +41,71 @@
 
     //-----------------------
     // Dictionaries
-    //-----------------------
-    var _s1 = '0';
-    var _ary = 'pc1;pc2;pd1;pe1;pe2;pe3;pe4;pe5;pe6;pg1;pm1;pm2;pm3;pm4;pv1;pv2;pv3;se1'.split(';');
-    var _ary2 = {
-        'pc1':['ZhD'],
-        'pc2':['Zh12D'],
-        'pd1':['IdD'],
-        'pe1':['SCD'],
-        'pe2':['DPR'],
-        'pe3':['PTS'],
-        'pe4':['PEDD'],
-        'pe5':['PGD'],
-        'pe6':['PPN'],
-        'pg1':['PGeD'],
-        'pm1':['MmG'],
-        'pm2':['MmT'],
-        'pm3':['MmD'],
-        'pm4':['MmR'],
-        'pv1':['Vn1'],
-        'pv2':['Vn2'],
-        'pv3':['Vn3'],
-        'se1':['SED']}
+    //----------------------- 
+    var ary = {        
+        'pc1':'ZhD',
+        'pc2':'Zh12D',
+        'pd1':'IdD',
+        'pe1':'SCD',
+        'pe2':'DPR',
+        'pe3':'PTS',
+        'pe4':'PEDD',
+        'pe5':'PGD',
+        'pe6':'PPN',
+        'pg1':'PGeD',
+        'pm1':'MmG',
+        'pm2':'MmT',
+        'pm3':'MmD',
+        'pm4':'MmR',
+        'pv1':'Vn1',
+        'pv2':'Vn2',
+        'pv3':'Vn3',
+        'se1':'SED',
+        'ee1':'EED'}
+    //  
+    var jDictData = {key:"", order:"", abbr:""};
+    var DictData = [];  
+    var strDictData = localStorage.getItem("DictData");
+    if (strDictData){
+        DictData = JSON.parse(strDictData); 
+    } 
 
-    for (_i in _ary) {
-        var _val = localStorage.getItem("h" + _ary[_i]);
-        if (!_val) {
-            document.write = localStorage.setItem("h" + _ary[_i], '000');
-        } else {
-            _s1 = '1';
+    var flag = '0';
+    for (i in ary) { 
+        var find = '0';
+        for (j in DictData) {
+            if (DictData[j]) {
+                if (DictData[j].key == i) {
+                    flag = '1';
+                    find = '1';
+                    break;
+                }    
+            }
         }
+        if (find == '0') {
+            var jDictData = {};
+            jDictData.key = i;
+            jDictData.order = '000';
+            jDictData.abbr = ary[i];
+            DictData.push(jDictData);
+        }
+    }
 
-        var _val = localStorage.getItem("i" + _ary[_i]);
-        if (!_val) {
-            document.write = localStorage.setItem("i" + _ary[_i], _ary2[_ary[_i]]);
+    if (flag == '0') {
+        for (j in DictData) { 
+            if (DictData[j].key == 'pe4') {
+                DictData[j].order = '010';
+            }
+            if (DictData[j].key == 'ee1') {
+                DictData[j].order = '020';
+            }
         }
-    }
-    if (_s1 == '0') {
-        document.write = localStorage.setItem("hpe4", '010');
-    }
-    // English Dictionary
-    if (!localStorage.getItem("hee1")) {
-        document.write = localStorage.setItem("hee1", '0');
-    }
+    } 
+    localStorage.setItem('DictData', JSON.stringify(DictData));
+
     // Speech Repeat
     if (!localStorage.getItem("speech_repeat")) {
-        document.write = localStorage.setItem("speech_repeat", '1');
+        document.write = localStorage.setItem("speech_repeat", '0');
     }
     // Speed
     if (!localStorage.getItem("speech_speed")) {
@@ -102,10 +121,6 @@
         document.write = localStorage.setItem("contentposition", '1');      // Floating
         var _init = '1';
     }
-    // Panel mode
-    if (!localStorage.getItem("contentmode")) {
-        document.write = localStorage.setItem("contentmode", 'PC');
-    } 
     // Panel Display
     if (!localStorage.getItem("contentdisplay")) {
         document.write = localStorage.setItem("contentdisplay", '1');       // onClick

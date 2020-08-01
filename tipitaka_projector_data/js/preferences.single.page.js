@@ -5,48 +5,12 @@ function RestorePreferences() {
     def['contentfontname'] = '@';
     def['contentfontsize'] = '@';
     def['contentlineheight'] = '@';
-    def['contentmode'] = '@';
     def['contentposition'] = '@';
     def['font_left'] = '@';
-    def['font_right'] = '@';
-    def['hee1'] = '@';
-    def['hpc1'] = '@';
-    def['hpc2'] = '@';
-    def['hpd1'] = '@';
-    def['hpe1'] = '@';
-    def['hpe2'] = '@';
-    def['hpe3'] = '@';
-    def['hpe4'] = '@';
-    def['hpe5'] = '@';
-    def['hpe6'] = '@';
-    def['hpg1'] = '@';
-    def['hpm1'] = '@';
-    def['hpm2'] = '@';
-    def['hpm3'] = '@';
-    def['hpm4'] = '@';
-    def['hpv1'] = '@';
-    def['hpv2'] = '@';
-    def['hpv3'] = '@';
-    def['hse1'] = '@';
-    def['iee1'] = '@';
-    def['ipc1'] = '@';
-    def['ipc2'] = '@';
-    def['ipd1'] = '@';
-    def['ipe1'] = '@';
-    def['ipe2'] = '@';
-    def['ipe3'] = '@';
-    def['ipe4'] = '@';
-    def['ipe5'] = '@';
-    def['ipe6'] = '@';
-    def['ipg1'] = '@';
-    def['ipm1'] = '@';
-    def['ipm2'] = '@';
-    def['ipm3'] = '@';
-    def['ipm4'] = '@';
-    def['ipv1'] = '@';
-    def['ipv2'] = '@';
-    def['ipv3'] = '@';
-    def['ise1'] = '@';
+    def['font_right'] = '@'; 
+    def['DictData'] = '@';
+    //********************
+
     def['main_height'] = '@';
     def['main_left'] = '@';
     def['main_top'] = '@';
@@ -67,7 +31,6 @@ function RestorePreferences() {
     def['PaliFontSize'] ='@';
     def['panel_bg_color'] ='@';
     def['ShowOnTop']='@';
-
 
     file = 'preferences.txt';
     var rawFile = new XMLHttpRequest();
@@ -172,28 +135,46 @@ function DictionaryChangePos(obj, index) {
 }
 
 function DictionaryRenew() {
+    var DictData = [];  
+    var strDictData = localStorage.getItem("DictData"); 
+    DictData = JSON.parse(strDictData);  
+
     var e = document.form1.DictionaryEnable;
-    document.getElementById('EnableCount').innerHTML = e.options.length;
+    $('#EnableCount').html(e.options.length);
     for(var i=0; i<e.options.length; i++){
         val = e.options[i].value;
         inc = (i + 1) * 10;
         inc = ('000' + inc).slice(-3);
-        document.write  = localStorage.setItem('h' + val, inc);
 
-        initDictionaries();
+        for (j in DictData) { 
+            if (DictData[j].key == val) {
+                DictData[j].order = inc;
+                break;
+            }    
+        }
+
     }
 
     var e = document.form1.DictionaryDisable;
-    document.getElementById('DisableCount').innerHTML = e.options.length;
+    $('#DisableCount').html(e.options.length);
     var val_disable = '';
 
     j = e.options.length-1;   // remove all options  
     for(var i=j; 0<=i; i--) {
         val = e.options[i].value;
         val_disable = val_disable + val + ';';
-        document.write  = localStorage.setItem('h' + val, '000');
+        
+        for (j in DictData) { 
+            if (DictData[j].key == val) {
+                DictData[j].order = '000';
+                break;
+            }    
+        }
+
         e.remove(i);
     }
+    localStorage.setItem('DictData', JSON.stringify(DictData));
+    initDictionaries();
 
     for(i in Dicts) {   // add options by Dicts order
         if (val_disable.indexOf(i) != -1) {
@@ -205,30 +186,46 @@ function DictionaryRenew() {
 }
 
 function toGetAbbr(val) { // 0= from disabled, 1 = from enabled
-    if (val == '0') {
-        val = document.getElementById('DictionaryDisable').value;
-    } else{
-        val = document.getElementById('DictionaryEnable').value;
-    }
-    document.getElementById('AbbreviatedDictionary').value = val;
-    document.getElementById('AbbreviatedMessage').innerHTML = Dicts[val];
+    var DictData = [];  
+    var strDictData = localStorage.getItem("DictData"); 
+    DictData = JSON.parse(strDictData);  
 
-    v1 = localStorage.getItem('i' + val);
-    if (!v1) {
-        v1 = val;
+    if (val == '0') {
+        val = $('#DictionaryDisable').val();
+    } else{
+        val = $('#DictionaryEnable').val();
     }
-    document.getElementById('Abbreviated').value = v1;
+    $('#AbbreviatedDictionary').val(val);
+    $('#AbbreviatedMessage').html(Dicts[val]);
+ 
+    for (j in DictData) { 
+        if (DictData[j].key == val) {
+            v1 = DictData[j].abbr;
+            break;
+        }    
+    } 
+    $('#Abbreviated').val(v1);
 }
 
 function toSaveAbbr() { // 0= from disabled, 1 = from enabled
-    no = document.getElementById('AbbreviatedDictionary').value;
+    no = $('#AbbreviatedDictionary').val();
     if (no != '') {
-        val = document.getElementById('Abbreviated').value.trim();
+        val = $('#Abbreviated').val().trim();
         if (val == '') {
             val = no;
         }
         val = val.substr(0, 8);
-        document.write = localStorage.setItem('i' + no, val);
+
+        var DictData = [];  
+        var strDictData = localStorage.getItem("DictData"); 
+        DictData = JSON.parse(strDictData); 
+        for (j in DictData) { 
+            if (DictData[j].key == no) {
+                DictData[j].abbr = val;
+                break;
+            }    
+        }  
+        localStorage.setItem('DictData', JSON.stringify(DictData));
     }
 }
 
@@ -331,16 +328,7 @@ function setThemeStyling() {
     localStorage.setItem("r1", r1);
     localStorage.setItem("m1", m1);
     localStorage.setItem("b1", b1);
-
-    var el = document.getElementById("main_table");
-    if (el)
-    {
-        // TODO what was this for?
-        //
-        //document.getElementById("main_table").style.backgroundColor = bg_color;
-        //document.getElementById("main_div").style.backgroundColor = bg_color;
-    }
-
+ 
     hideshowlogo();
 
     // get the theme checkbox.. if checked then set the panel to the same color
@@ -350,8 +338,8 @@ function setThemeStyling() {
         localStorage.setItem('panel_bg_color', theme);
         localStorage.setItem('panel_font_color', r1);
 
-        document.getElementById('panel_font_color').value = theme;
-        document.getElementById('panel_bg_color').value = r1;
+        $('#panel_font_color').val(theme);
+        $('#panel_bg_color').val(r1);
         updatePanelColors();
 
 
@@ -361,7 +349,7 @@ function setThemeStyling() {
 }
 
 function ChooseSelect(key) {
-    val = document.getElementById(key).value;
+    val = $('#' + key).val();
     localStorage.setItem(key, val);
 
     if (key === 'view_left'){
@@ -373,11 +361,11 @@ function ChooseSelect(key) {
     }
 
     if (key == 'contentfontname') {
-        document.getElementById('showfontnamesize').innerHTML = val + ' ' + document.getElementById('contentfontsize').value + 'pt';
+        $('#showfontnamesize').html(val + ' ' + $('#contentfontsize').val() + 'pt');
 
-        document.getElementById('showfontnamesize').style.fontFamily = val;
-        document.getElementById('showbackground').style.fontFamily = val;
-        document.getElementById('showfontcolor').style.fontFamily = val;
+        $('#showfontnamesize').css('fontFamily', val);
+        $('#showbackground').css('fontFamily', val);
+        $('#showfontcolor').css('fontFamily', val);
 
         document.write = localStorage.setItem('contentfontname', val);
     }
@@ -415,7 +403,7 @@ function getCurrentTheme() {
 }
 
 function ChooseRadio(key) {
-    val = document.getElementById(key).value;
+    val = $('#' + key).val();
 
 
     if (key.indexOf('Pali_note') === 0) {
@@ -451,11 +439,6 @@ function ChooseRadio(key) {
     if (key.indexOf('display') != -1) {
         document.write  = localStorage.setItem('contentdisplay', val);
     }
-
-    if (key.indexOf('mode') != -1) {
-        document.write  = localStorage.setItem('contentmode', val);
-    }
-
 }
 
 function ChooseCheckbox(key) {
@@ -473,43 +456,43 @@ function ChooseCheckbox(key) {
 }
 
 function ChooseRange(key) {
-    var val = document.getElementById(key).value;
+    var val = $('#' + key).val();
     document.write = localStorage.setItem(key, val);
 
     if (key.indexOf('divwidth') != -1) {
-        document.getElementById('width_left').innerHTML = val + ' %';
-        document.getElementById('width_right').innerHTML = (100- Number(val)) + ' %';
+        $('#width_left').html(val + ' %');
+        $('#width_right').html((100- Number(val)) + ' %');
         document.write = localStorage.setItem('width_left', val);
         document.write = localStorage.setItem('width_right', (100 - Number(val)));
     }
 
     if (key.indexOf('divheight') != -1) {
-        document.getElementById('showdivheight').innerHTML = 'Height=' + val + ' %';
+        $('#showdivheight').html('Height=' + val + ' %');
     }
     if (key.indexOf('speed') != -1) {
-        document.getElementById('showspeed').innerHTML = 'Speed=' + val;
+        $('#showspeed').html('Speed=' + val);
     }
     if (key.indexOf('fontsize') != -1) {
-        document.getElementById('showfontnamesize').innerHTML = document.getElementById('contentfontname').value + ' ' + val + 'pt';
+        $('#showfontnamesize').html($('#contentfontname').val() + ' ' + val + 'pt');
 
-        document.getElementById('showfontnamesize').style.fontSize = val + 'pt';
-        document.getElementById('showbackground').style.fontSize = val + 'pt';
-        document.getElementById('showfontcolor').style.fontSize = val + 'pt';
+        $('#showfontnamesize').css('fontSize', val + 'pt');
+        $('#showbackground').css('fontSize', val + 'pt');
+        $('#showfontcolor').css('fontSize', val + 'pt');
 
         document.write  = localStorage.setItem('contentfontsize', val);
         //
         var x = document.getElementById('colortable').getElementsByTagName('td');
-        x[0].style.lineHeight = document.getElementById('contentlineheight').value + '%';
+        x[0].style.lineHeight = $('#contentlineheight').val() + '%';
     }
 
     if (key.indexOf('color') != -1) {
-        r = Number(document.getElementById('colorR').value);
-        g = Number(document.getElementById('colorG').value);
-        b = Number(document.getElementById('colorB').value);
+        r = Number($('#colorR').val());
+        g = Number($('#colorG').val());
+        b = Number($('#colorB').val());
 
         var x = document.getElementById('colortable').getElementsByTagName('td');
         x[0].style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
-        document.getElementById('showbackground').innerHTML = 'Background = RGB(' + r +', ' + g + ', ' + b +')';
+        $('#showbackground').html('Background = RGB(' + r +', ' + g + ', ' + b +')');
 
         localStorage.setItem('contentbackgroundR', r);
         localStorage.setItem('contentbackgroundG', g);
@@ -517,14 +500,14 @@ function ChooseRange(key) {
     }
 
     if (key.indexOf('fontcolor') != -1) {
-        r = Number(document.getElementById('fontcolorR').value);
-        g = Number(document.getElementById('fontcolorG').value);
-        b = Number(document.getElementById('fontcolorB').value);
+        r = Number($('#fontcolorR').val());
+        g = Number($('#fontcolorG').val());
+        b = Number($('#fontcolorB').val());
 
-        document.getElementById('showfontnamesize').style.color = 'rgb(' + r + ',' + g + ',' + b + ')';
-        document.getElementById('showbackground').style.color = 'rgb(' + r + ',' + g + ',' + b + ')';
-        document.getElementById('showfontcolor').style.color = 'rgb(' + r + ',' + g + ',' + b + ')';
-        document.getElementById('showfontcolor').innerHTML = 'Font Color = RGB(' + r +', ' + g + ', ' + b +')';
+        $('#showfontnamesize').css('color', 'rgb(' + r + ',' + g + ',' + b + ')');
+        $('#showbackground').css('color', 'rgb(' + r + ',' + g + ',' + b + ')');
+        $('#showfontcolor').css('color', 'rgb(' + r + ',' + g + ',' + b + ')');
+        $('#showfontcolor').html('Font Color = RGB(' + r +', ' + g + ', ' + b +')');
 
         localStorage.setItem('contentfontcolorR', r);
         localStorage.setItem('contentfontcolorG', g);
@@ -545,49 +528,12 @@ function SavePreferences() {
     def['contentfontname'] = '';
     def['contentfontsize'] = '';
     def['contentlineheight'] = '';
-    def['contentmode'] = '';
     def['contentposition'] = '';
     def['font_left'] = '';
     def['font_right'] = '';
-    def['hee1'] = '';
-    def['hpc1'] = '';
-    def['hpc2'] = '';
-    def['hpd1'] = '';
-    def['hpe1'] = '';
-    def['hpe2'] = '';
-    def['hpe3'] = '';
-    def['hpe4'] = '';
-    def['hpe5'] = '';
-    def['hpe6'] = '';
-    def['hpg1'] = '';
-    def['hpm1'] = '';
-    def['hpm2'] = '';
-    def['hpm3'] = '';
-    def['hpm4'] = '';
-    def['hpv1'] = '';
-    def['hpv2'] = '';
-    def['hpv3'] = '';
-    def['hpv3'] = '';
-    def['hse1'] = '';
-    def['ipc1'] = '';
-    def['ipc2'] = '';
-    def['ipd1'] = '';
-    def['ipe1'] = '';
-    def['ipe2'] = '';
-    def['ipe3'] = '';
-    def['ipe4'] = '';
-    def['ipe5'] = '';
-    def['ipe6'] = '';
-    def['ipg1'] = '';
-    def['ipm1'] = '';
-    def['ipm2'] = '';
-    def['ipm3'] = '';
-    def['ipm4'] = '';
-    def['ipv1'] = '';
-    def['ipv2'] = '';
-    def['ipv3'] = '';
-    def['ipv3'] = '';
-    def['ise1'] = '';
+    def['DictData'] = '';
+    //**********************
+
     def['main_height'] = '';
     def['main_left'] = '';
     def['main_top'] = '';
@@ -619,7 +565,7 @@ function SavePreferences() {
             dat = dat + i + '\t' + def[i] + '\n';
         }
     }
-    document.getElementById('preferences').value = dat;
+    $('#preferences').val(dat);
 
     var blob = new Blob([dat], {type: "text/plain;charset=utf-8"});
     saveAs(blob, 'preferences.txt');
@@ -632,13 +578,13 @@ window.onload = function () {
 
 var setPanelFontColorInput = function setPanelFontColorInput() {
     var panel_font_color = localStorage.getItem("panel_font_color");
-    document.getElementById('panel_font_color').value = panel_font_color;
+    $('#anel_font_color').val(panel_font_color);
     return panel_font_color;
 };
 
 var setPanelBackgroundColorInput = function setPanelBackgroundColorInput() {
     var panel_bg_color = localStorage.getItem("panel_bg_color") || '#fff000';
-    document.getElementById('panel_bg_color').value = panel_bg_color;
+    $('#panel_bg_color').val(panel_bg_color);
     return panel_bg_color;
 }
 
@@ -646,16 +592,16 @@ var updatePanelColors = function updatePanelColors(panel_bg_color, panel_font_co
     var panel_bg_color = setPanelBackgroundColorInput();
     var panel_font_color = setPanelFontColorInput();
 
-    document.getElementById("main_div").style.backgroundColor = panel_bg_color;
-    document.getElementById("main_div").style.color = panel_font_color;
+    $('#main_div').css('backgroundColor', panel_bg_color);
+    $('#main_div').css('color', panel_font_color);
 
     var x = document.getElementById('colortable').getElementsByTagName('td');
     x[0].style.backgroundColor =  panel_bg_color ;//'rgb(' + colorR + ',' + colorG + ',' + colorB + ')';
     x[0].style.color = panel_font_color; //'rgb(' + fontcolorR + ',' + fontcolorG + ',' + fontcolorB + ')';
     x[0].style.lineHeight = contentlineheight + '%';
 
-    document.getElementById('showbackground').innerHTML = 'Background = ' + panel_bg_color;
-    document.getElementById('showfontcolor').innerHTML = 'Font Color = ' + panel_font_color;
+    $('#showbackground').html('Background = ' + panel_bg_color);
+    $('#showfontcolor').html('Font Color = ' + panel_font_color);
 
 }
 
@@ -697,26 +643,26 @@ function initPreferences(){
 
     // View Left
     var size_left = localStorage.getItem("size_left");
-    document.getElementById('size_left').value = size_left;
+    $('#size_left').val(size_left);
 
     var font_left = localStorage.getItem("font_left");
-    document.getElementById('font_left').value = font_left;
+    $('#font_left').val(font_left);
 
     var PaliFontSize = localStorage.getItem("PaliFontSize");
-    document.getElementById('PaliFontSize').value = PaliFontSize;
+    $('#PaliFontSize').val(PaliFontSize);
 
     var view_left = localStorage.getItem("view_left");
-    document.getElementById('view_left').value = view_left;
+    $('#view_left').val(view_left);
     if (view_left == 'Myanmar') {
         if ((font_left != 'Myanmar Text') && (font_left != 'Pyidaungsu')) {
             font_left = 'Myanmar Text';
-            document.getElementById('font_left').value = font_left;
+            $('#font_left').val(font_left);
         }
     }
 
     // Background Color
     var bg_color = localStorage.getItem("bg_color");
-    document.getElementById('bg_color').value = bg_color;
+    $('#bg_color').val(bg_color);
     // need to change for dlg too
     // cannot get this to refresh.
     document.body.style.background = bg_color;
@@ -745,9 +691,7 @@ function initPreferences(){
     var r1 = localStorage.getItem('r1');
     $('h2').css('color', r1);
     $('h3').css('color', r1);
-    document.getElementById("main_table").style.backgroundColor = bg_color;
-
-
+    $("#main_table").css('backgroundColor', bg_color);
 
 
     hideshowlogo();
@@ -755,25 +699,25 @@ function initPreferences(){
     // Left - Right Width Ratio
     var width_left = localStorage.getItem("width_left");
     document.write = localStorage.setItem("width_right", (100 - Number(width_left)));
-    document.getElementById('divwidth').value = width_left;
-    document.getElementById('width_left').innerHTML = width_left + ' %';
-    document.getElementById('width_right').innerHTML = (100 - Number(width_left)) + ' %';
+    $('#divwidth').val(width_left);
+    $('#width_left').html(width_left + ' %');
+    $('#width_right').html((100 - Number(width_left)) + ' %');
 
     // View Right
     var view_right = localStorage.getItem("view_right");
-    document.getElementById('view_right').value = view_right;
+    $('#view_right').val(view_right);
 
     var font_right = localStorage.getItem("font_right");
-    document.getElementById('font_right').value = font_right;
+    $('#font_right').val(font_right);
     if (view_right == 'Myanmar') {
         if ((font_right != 'Myanmar Text') && (font_right != 'Pyidaungsu')) {
             font_right = 'Myanmar Text';
-            document.getElementById('font_right').value = font_right;
+            $('#font_right').val(font_right)
         }
     }
 
     var size_right = localStorage.getItem("size_right");
-    document.getElementById('size_right').value = size_right;
+    $('#size_right').val(size_right);
 
     // Pali_note
     var pref = getPreferenceFlag(PreferenceKeys.showAlternateReading);
@@ -830,13 +774,13 @@ function initPreferences(){
     }
     // panel position & size
     var main_top = localStorage.getItem("main_top");
-    document.getElementById('main_top').innerHTML = main_top;
+    $('#main_top').html(main_top);
 
     var main_left = localStorage.getItem("main_left");
-    document.getElementById('main_left').innerHTML = main_left;
+    $('#main_left').html(main_left);
 
     var main_width = localStorage.getItem("main_width");
-    document.getElementById('main_width').innerHTML = main_width;
+    $('#main_width').html(main_width);
 
     var main_height = localStorage.getItem("main_height");
     if (_init == '1') {
@@ -847,23 +791,15 @@ function initPreferences(){
         }
         document.write = localStorage.setItem("main_height", main_height);
     }
-    document.getElementById('main_height').innerHTML = main_height;
-
-    // Panel mode
-    var contentmode = localStorage.getItem("contentmode");
-    if (contentmode == 'PC') {
-        document.getElementById('modepc').checked = true;
-    } else {
-        document.getElementById('modeipad').checked = true;
-    }
+    $('#main_height').html(main_height);
 
     // Panel Font Family
     var contentfontname = localStorage.getItem("contentfontname");
-    document.getElementById('contentfontname').value = contentfontname;
+    $('#contentfontname').val(contentfontname);
 
     // Panel Font Size
     var contentfontsize = localStorage.getItem("contentfontsize");
-    document.getElementById('contentfontsize').value = contentfontsize;
+    $('#contentfontsize').val(contentfontsize);
 
 
 
@@ -880,7 +816,7 @@ function initPreferences(){
     if (!lineheight) {
         lineheight = '200';
     }
-    document.getElementById('main_div').style.lineHeight= lineheight + '%';
+    $('#main_div').css('lineHeight', lineheight + '%');
 
     fontsize = localStorage.getItem('contentfontsize');
     if (!fontsize) {
@@ -916,22 +852,20 @@ function initPreferences(){
     var x = document.getElementById('colortable').getElementsByTagName('td');
     x[0].style.lineHeight = contentlineheight + '%';
 
-    document.getElementById('contentlineheight').value = contentlineheight;
+    $('#contentlineheight').val(contentlineheight);
 
 
-    document.getElementById('showfontnamesize').innerHTML = contentfontname + ' ' +contentfontsize + 'pt';
-    document.getElementById('showfontnamesize').style.fontFamily = contentfontname;
-    document.getElementById('showfontnamesize').style.fontSize = contentfontsize + 'pt';
-    document.getElementById('showbackground').style.fontFamily = contentfontname;
-    document.getElementById('showbackground').style.fontSize = contentfontsize + 'pt';
-    document.getElementById('showfontcolor').style.fontFamily = contentfontname;
-    document.getElementById('showfontcolor').style.fontSize = contentfontsize + 'pt';
+    $('#showfontnamesize').html(contentfontname + ' ' +contentfontsize + 'pt');
+    $('#showfontnamesize').css('fontFamily', contentfontname);
+    $('#showfontnamesize').css('fontSize', contentfontsize + 'pt');
+    $('#showbackground').css('fontFamily', contentfontname);
+    $('#showbackground').css('fontSize', contentfontsize + 'pt');
+    $('#showfontcolor').css('fontFamily', contentfontname);
+    $('#showfontcolor').css('fontSize', contentfontsize + 'pt');
 
     //--------------------------------------------------------------------------------
     //End of Panel
     //--------------------------------------------------------------------------------
-    var ary = 'ipc1;ipc2;ipd1;ipe1;ipe2;ipe3;ipe4;ipe5;ipe6;ipg1;ipm1;ipm2;ipm3;ipm4;ipv1;ipv2;ipv3;ise1';
-
     // PALI DICTIONARIES
     var e_enable = document.getElementById('DictionaryEnable');
     var e_disable = document.getElementById('DictionaryDisable');
@@ -943,11 +877,33 @@ function initPreferences(){
         e_disable.remove(i);
     }
 
+    //  
+    var jDictData = {key:"", order:"", abbr:""};
+    var DictData = [];  
+    var strDictData = localStorage.getItem("DictData");
+    if (strDictData){
+        DictData = JSON.parse(strDictData); 
+    }
+
     e_enable_options = '';
-    for(i in Dicts) {   // add options by Dicts order
-        var val = localStorage.getItem("h" + i);
-        if (!val) {
-            val = '000';
+    for(i in Dicts) {   // add options by Dicts order 
+        val = '000';
+        var find = '0';
+        for (j in DictData) {
+            if (DictData[j]) {
+                if (DictData[j].key == i) {
+                    val = DictData[j].order;
+                    find = '1';
+                    break;
+                }    
+            }
+        }
+        if (find == '0') {
+            var jDictData = {};
+            jDictData.key = i;
+            jDictData.order = val;
+            jDictData.abbr = i;
+            DictData.push(jDictData);
         }
 
         if (val == '000') {
@@ -957,14 +913,6 @@ function initPreferences(){
         } else {
             e_enable_options = e_enable_options + val + i + '@';
         }
-
-        // put dictionary name
-        var val = localStorage.getItem("i" + i);
-        if (!val) {
-            val = i;
-            document.write = localStorage.setItem('i' + i, val);
-        }
-
     }
 
     var ary = e_enable_options.split('@'); // put enabled options
@@ -972,7 +920,7 @@ function initPreferences(){
     var inc = 0;
     for (var i in ary) {
         if (ary[i] != '') {
-            v2 = ary[i].slice(-3);    // key
+            v2 = ary[i].slice(-3);    // keys
 
             s1 = Dicts[v2].split('] ');
             e_enable.options.add(new Option(s1[1], v2));
@@ -981,21 +929,27 @@ function initPreferences(){
             inc = inc +10;
             v1 = '000' + inc;
             v1 = v1.slice(-3);
-            document.write = localStorage.setItem('h' + v2, v1);
+ 
+            for (j in DictData) { 
+                if (DictData[j].key == v2) {
+                    DictData[j].order = v1;
+                    break;
+                }
+            }
         }
-    }
-    document.getElementById('EnableCount').innerHTML = document.form1.DictionaryEnable.options.length;
-    document.getElementById('DisableCount').innerHTML = document.form1.DictionaryDisable.options.length;
+    } 
+    localStorage.setItem('DictData', JSON.stringify(DictData));
 
-    
+    $('#EnableCount').html(document.form1.DictionaryEnable.options.length);
+    $('#DisableCount').html(document.form1.DictionaryDisable.options.length);
 
     // Speech Repeat
     var speech_repeat = localStorage.getItem("speech_repeat");
-    document.getElementById('speech_repeat').value = speech_repeat;
+    $('#speech_repeat').val(speech_repeat);
 
     // Speed
     var speech_speed = localStorage.getItem("speech_speed");
-    document.getElementById('showspeed').innerHTML = 'Speed=' + speech_speed;
+    $('#showspeed').html('Speed=' + speech_speed);
 
     setThemeStyling();
 
@@ -1068,7 +1022,7 @@ function getCurrentVersion(){
         success: function(rawJson) {
             if (rawJson) {
                 var versiontxt = JSON.parse(rawJson) ;
-                document.getElementById('currentversion').innerHTML = '<b>' + versiontxt.versionno +'</b>';
+                $('#currentversion').html('<b>' + versiontxt.versionno +'</b>');
                 localStorage.setItem('versionno', versiontxt.versionno);
             }
         },
@@ -1091,9 +1045,9 @@ function getVersion() {
                     var versiontxt = JSON.parse(rawFile.responseText);
 
                     if (versiontxt.versionno == localStorage.getItem('versionno')) {
-                        document.getElementById('versioninfo').innerHTML = '<b>Version is up to date</b>';
+                        $('#versioninfo').html('<b>Version is up to date</b>');
                     } else {
-                        document.getElementById('versioninfo').innerHTML = "<b>Version number:</b> " + versiontxt.versionno + '<br>' + '<b>New Version Notes:</b> ' + versiontxt.releasenotes;
+                        $('#versioninfo').html("<b>Version number:</b> " + versiontxt.versionno + '<br>' + '<b>New Version Notes:</b> ' + versiontxt.releasenotes);
 
                     }
                     //alert('WRITING FILEURI IS OK') ;

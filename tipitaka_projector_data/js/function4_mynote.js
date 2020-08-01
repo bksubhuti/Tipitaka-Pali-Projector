@@ -1,3 +1,26 @@
+function MyNoteHistoryList() {
+	var PaliHistoryArray = [];
+	PaliHistoryArray = JSON.parse(localStorage.getItem('PaliHistoryJSON'));
+	if (PaliHistoryArray != null){// use JSON objects instead
+		var url = '';
+		url += '<a href="javascript:void(0);" onClick="PaliHistoryCopy()"><img src="images/b_browse.png">Copy Text</a>&nbsp;&nbsp;';
+		url += '<a href="javascript:void(0);" onClick="PaliHistoryClear(\'Select\')"><img src="images/b_drop.png">Delete Select</a>&nbsp;&nbsp;'
+		url += '<a href="javascript:void(0);" onClick="PaliHistoryClear(\'All\')"><img src="images/b_drop.png">Delete All</a>';
+		url += '<br>';
+
+		for (i in PaliHistoryArray) {
+			url += '<input type="checkbox" id="PaliHist' + i + '" checked value="' + PaliHistoryArray[i].html_no + '"/>';
+			url += '<a href="javascript:void(0);" style="white-space: nowrap;\" onClick="PaliHistoryGoUrl(\'' + PaliHistoryArray[i].html_no + "#" + PaliHistoryArray[i].paraNo +  '\');"">' 
+			url += toTranslate(T_Book[PaliHistoryArray[i].html_no]); //pass html_no to get the title of book
+			url += '&nbsp;' +'/ '  + PaliHistoryArray[i].Toc_Name;
+			url += '&nbsp;#';
+			url += PaliHistoryArray[i].paraNo + '</a><br>';
+		}
+		document.getElementById('palihistory').innerHTML = url;
+	}
+
+}
+
 function MyNoteExport(key) { 	// 0=cancel, 1=save, lines=5-10-20
 	if (('1' < key) && (typeof P_HTM != 'undefined')) {	// lines
 		var tr_ids = '';

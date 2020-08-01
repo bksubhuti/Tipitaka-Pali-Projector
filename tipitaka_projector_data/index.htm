@@ -392,7 +392,7 @@
 
     <div class="dict">
 
-        <span id="message" style="font-size:10pt;"
+        <span id="IdMessage" style="font-size:10pt;"
               title="Id=Id-No. Para=Paragraph No. M=Myanmar PageNo. P=PTS PageNo."></span>
 
         <div id="TmpDictionary" style="display:inline;margin-left:10px;">
@@ -554,46 +554,91 @@
                 <div class="page4" style="line-height: 250%; text-align: center">
                     <select name="Toc" id="Toc" onchange="goToc();">
                     </select>
-                    <span id="page4break1"></span>
+                    <br>
 
-                    <input name="Reference" id="Pgnum" value="0" type="radio" checked>
+                    <input name="Reference" id="Pgnum" value="0" type="radio" onClick="goUrl()" checked>
                     <label for="Pgnum">Page</label>
-                    <input name="Reference" id="Prnum" value="1" type="radio">
+                    <input name="Reference" id="Prnum" value="1" type="radio" onClick="goUrl()">
                     <label for="Prnum">Paragraph</label>
-                    <span id="page4break2"></span>
-
-                    <input name="Reference" id="PTS" value="2" type="radio">
+                    <input name="Reference" id="PTS" value="2" type="radio" onClick="goUrl()">
                     <label for="PTS">PTS No</label>
                     <input type="Textbox" name="PageNo" id="PageNo" value=""
                            style="font-size:12pt;width:100%;max-width:30pt;">&nbsp;&nbsp;
                            <input type="button" id="PageNoBtn" value="Go..." onClick="goUrl()"></button>
                     <br>
 
-                    <div style="line-height: 110%;">
-                        <div onClick="document.getElementById('QuickJumpTipsShow').style.display='inline';"
-                             style="color:blue;">
-                            <img src="images/s_info.png">Tips
-                        </div>
-                        <div id="QuickJumpTipsShow" onClick="this.style.display='none'"
-                             style="color:#440000;font-size:11pt;display:none;">
-                             Jump DN22 is Dīgha Nikāya 22nd Sutta<br>
-                             Jump MN22 is Majjhima Nikāya 22nd Sutta<br>
-                             Jump SN1.22 is Saṃyutta number 1 and 22nd Sutta <Br>
-                             Jump an5.20 is Aṅguttara Nikāya "Book of Fives", 20th Sutta
-                        </div>
-                    </div>
-                    Quick Jump
                     <input type="Textbox" name="QuickJump" id="QuickJump" value=""
                            style="font-size:12pt;width:100%;max-width:60pt;" onKeyup="QuickJumpTips()">
-                    <input type="button" id="QuickJumpBtn" value="Quick Jump" onClick="QuickJump()"></button>
-                    <span id="QuickJumpTips" style="color:#440000;"></span>
+                    <input type="button" id="QuickJumpBtn" value="Quick Jump" onClick="QuickJump()"></button> 
+                    <span onClick="$('#QuickJumpTipsShow').css('display', 'inline-block');"
+                         style="color:blue;">
+                        <img src="images/s_info.png">Tips<br>
+                    </span>
+                    <div id="QuickJumpTipsShow" onClick="this.style.display='none'"
+                         style="color:#440000;font-size:11pt;display:none;line-height:14pt;text-align: left;display: inline-block;display: none;">
+                         Jump DN22 is Dīgha Nikāya 22nd Sutta<br>
+                         Jump MN22 is Majjhima Nikāya 22nd Sutta<br>
+                         Jump SN1.22 is Saṃyutta 1 and 22nd Sutta <Br>
+                         Jump an5.20 is Aṅguttara Nikāya "Book of Fives", 20th Sutta
+                    </div> 
+                    <div id="QuickJumpTips" style="color:#440000;text-align: left;display: inline-block;line-height: 16pt;"></div>
                 </div>
-                <span id="page4break3"></span>
+                <br>
+ 
+                <ul class="tabs">
+                    <li class="selected" id="pg4_page1" onclick="onTabClick(this)">
+                        History
+                    </li>
 
-                <div class="page4">
-                    <img src='images/b_browse.png'>History
-                    <span id='palihistory' style="font-size:10pt;color:blue;"></span>&nbsp;&nbsp;
-                </div>
+                    <li class="notselected" id="pg4_page2" onclick="onTabClick(this);MyNoteList();">
+                        My Notes
+                    </li>
+
+                    <li class="notselected" id="pg4_page3" onclick="onTabClick(this);BookmarkList();">
+                        Bookmarks
+                    </li>
+                </ul>
+                <br> 
+ 
+                <div style="border: 1px #aaaaaa solid;margin-left: -5px;padding:3px;margin-right: -10px;">
+                    <div id="pg4_page1_desc" class="pages">
+                        <div class="page4">
+                            <span id='palihistory' style="font-size:10pt;color:blue;"></span>
+                        </div>
+                    </div>    
+
+                    <div id="pg4_page2_desc" class="pages" style="display:none;">
+                        <div class="page4"> 
+                            <input type="hidden" id="MyNote1" value="">
+                            <input type="hidden" id="MyNoteIds" value="">
+                            <input type="hidden" id="MyNoteTags" value="">
+                            <input type="hidden" id="MyNoteOlds" value="">
+   
+                            <a href="javascript:void(0);" id="MyNoteEdit" onClick="MyNoteEdit()" style="font-size:12pt;margin-bottom:11px">
+                                 <img src="images/add_point_on.png" width="16">Edit
+                            </a>
+                            &nbsp;&nbsp;
+                            <a href="javascript:void(0);" id="MyNoteSave" onClick="MyNoteSaveCancel('Save')" style="display:none;font-size:11pt;">
+                                <img src="images/save.png" width="16">Save
+                            </a>
+                            &nbsp;&nbsp;
+                            <a href="javascript:void(0);" id="MyNoteCancel" onClick="MyNoteSaveCancel('Cancel')" style="display:none;font-size:11pt;">
+                                <img src="images/s_cancel.png" width="16">&nbsp;Cancel
+                            </a>
+                            <br>
+
+                            <span id='mynotehistory' style="font-size:10pt;"></span>
+                        </div>
+                    </div>    
+
+                    <div id="pg4_page3_desc" class="pages" style="display:none;">
+                        <div class="page4">
+                            <span id='bookmark' style="font-size:10pt;color:blue;"></span>
+                        </div>
+                    </div>  
+                </div>   
+
+                <br>
             </div>
 
             <div id="page5_desc" class="pages2" style="display:none;">
@@ -601,106 +646,52 @@
                     <img src='images/b_browse.png'>Dictionary History
                     <span id='dicthistory' style="font-size:11pt;color:blue;"></span>&nbsp;&nbsp;
                 </div>
-                <span id="page5break1"></span>
+                <br>
 
                 <div class="page5">
                     <img src='images/b_ftext.png' width="24">Copy Text
                     &nbsp;
-                    <span id="copystart" onClick="CopyExport(1)" style="font-size:10pt;color:blue">
-              <img src="images/change.png" width="22">&nbsp;Start Selection
-              <input type="hidden" id="copy1" value="">
-            </span>
-                    <span id="copyunformat" onClick="CopyExport(2)" style="display:none;font-size:10pt;color:blue">
-              <img src="images/b_sbrowse.png" width="22">&nbsp;UnFormat TXT
-              <input type="hidden" id="copy2" value="">
-              <input type="hidden" id="copystatus" value="stop">
-            </span>
-                    <span id="copyformat" onClick="CopyExport(3)" style="display:none;font-size:10pt;color:blue">
-              <img src="images/b_report.png" width="22">&nbsp;Format HTML
-              <input type="hidden" id="copy3" value="">
-            </span>
-                    <span id="copycancel" onClick="CopyExport(0)" style="display:none;font-size:10pt;color:blue">
-              <img src="images/s_cancel.png" width="22">&nbsp;Cancel
-            </span>
+                    <a href="javascript:void(0);" id="copystart" onClick="CopyExport(1)" style="font-size:11pt;">
+                        <img src="images/change.png" width="16">&nbsp;Start Selection
+                      <input type="hidden" id="copy1" value="">
+                    </a>
+                    <a href="javascript:void(0);" id="copyunformat" onClick="CopyExport(2)" style="display:none;font-size:11pt;">
+                      <img src="images/b_sbrowse.png" width="16">&nbsp;UnFormat TXT
+                      <input type="hidden" id="copy2" value="">
+                      <input type="hidden" id="copystatus" value="stop">
+                    </a>
+                    <a href="javascript:void(0);" id="copyformat" onClick="CopyExport(3)" style="display:none;font-size:11pt;">
+                      <img src="images/b_report.png" width="16">&nbsp;Format HTML
+                      <input type="hidden" id="copy3" value="">
+                    </a>
+                    <a href="javascript:void(0);" id="copycancel" onClick="CopyExport(0)" style="display:none;font-size:11pt;">
+                      <img src="images/s_cancel.png" width="16">&nbsp;Cancel
+                    </a>
                     <br>
-                    <textarea id='CopyText'
-                              style='width:95%;max-width:95%;max-height:95%; height:70%;overflow:hidden;resize:none;'></textarea>
+                    <textarea id='CopyText' style='width:95%;max-width:95%;max-height:95%; height:70%;min-height:40pt;overflow:hidden;resize:none;'></textarea>
                 </div>
-                <span id="page5break2"></span>
+                <br>
 
-                <div class="page5">
-                    <table style="border-collapse:collapse;padding:5px;width:100%;height:100%; border:0px;">
-                        <tr>
-                            <td valign="top" width="50%">
-                                <input type="hidden" id="mynote1" value="">
-                                <input type="hidden" id="mynoteids" value="">
-                                <input type="hidden" id="mynotetags" value="">
-                                <input type="hidden" id="mynoteolds" value="">
-
-                                <span id="mynote5" onClick="MyNoteExport(5)"
-                                      style="font-size:12pt;color:blue;margin-bottom:10px">
-                    <img src="images/add_point_on.png" width="22">Edit 5 Par.<br><br>
-                  </span>
-                                <span id="mynotesave" onClick="MyNoteExport(1)"
-                                      style="display:none;font-size:12pt;color:blue">
-                    <img src="images/save.png" width="22">Save<br><br>
-                  </span>
-
-                                <span id="mynote10" onClick="MyNoteExport(10)"
-                                      style="font-size:12pt;color:blue;margin-bottom:10px">
-                    <img src="images/add_point_on.png" width="22">Edit 10 Par.<br><br>
-                  </span>
-                                <span id="mynotecancel" onClick="MyNoteExport(0)"
-                                      style="display:none;font-size:12pt;color:blue">
-                    <img src="images/s_cancel.png" width="22">&nbsp;Cancel
-                  </span>
-
-                                <span id="mynote20" onClick="MyNoteExport(20)" style="font-size:12pt;color:blue">
-                    <img src="images/add_point_on.png" width="22">Edit 20 Par.
-                  </span>
-
-                            </td>
-                            <td valign="top" width="50%">
-                  <span onClick="AnkiAdd()" style="font-size:12pt;color:blue">
-                    <img src="images/Anki-icon.svg.png" width="22">Add to Anki
-                  </span>
-                                <br><br>
-
-                                <span onClick="AnkiCopy()" style="font-size:12pt;color:blue">
-                    <img src="images/s_okay.png" width="22">Copy
-                  </span>
-                                <br><br>
-
-                                <span onClick="AnkiClear()" style="font-size:12pt;color:blue">
-                    <img src="images/b_drop.png" width="22">Clear
-                  </span>
-                            </td>
-                        </tr>
-                    </table>
-
+                <div class="page5">  
+                    <img src='images/Anki-icon.svg.png' width="24">Anki
+                    &nbsp;
+                    <a href="javascript:void(0);" onClick="AnkiCopy()" style="font-size:11pt;">
+                        <img src="images/b_ftext.png" width="16">Copy
+                    </a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:void(0);" onClick="AnkiAdd()" style="font-size:11pt;">
+                        <img src="images/Anki-icon.svg.png" width="16">Add to Anki
+                    </a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:void(0);" onClick="AnkiClear()" style="font-size:11pt;">
+                        <img src="images/b_drop.png" width="16">Delete All
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
     <div style="display:inline;margin-left:10px; margin-top: 50px; width:100%;">
-        <div id="iPad" style="display:inline">
-            <select id="iPadDirection" onchange="iPadDirection()">
-                <option value="NW">Top-Left</option>
-                <option value="NE">Top-Right</option>
-                <option value="SE">Bottom-Right</option>
-                <option value="SW">Bottom-Left</option>
-            </select>
-            <span id="iPadW">W</span>
-            <select id="iPadWidth" onchange="iPadWidth()">
-                <option value=""></option>
-            </select>
-            <span id="iPadH">H</span>
-            <select id="iPadHeight" onchange="iPadHeight()">
-                <option value=""></option>
-            </select>
-        </div>
-
         <style>
             #PC * {
                 user-select: none;
@@ -979,15 +970,24 @@
 
             // These are the book .js files
             //
+            var aryLoadFiles = [];
             var bookMetaFile = 'pali/' + bookId + '.js';
             var bookParagraphsFile = 'pali/' + bookId + 'a.js';
+            aryLoadFiles.push(bookMetaFile);
+            aryLoadFiles.push(bookParagraphsFile);
+            if (localStorage.getItem('view_right') == 'MyNote') {
+                aryLoadFiles.push('pali/MyNote/' + bookId + '.js');
+            }
+            if (localStorage.getItem('view_right') == 'Suttacentral') {
+                aryLoadFiles.push('pali/SuttaCentral/' + bookId + '.js');
+            }
 
             if (DEBUG) {
                 console.log('Will load book contents:', [bookMetaFile, bookParagraphsFile].map(e => `'${e}'`).join(', '));
             }
 
             start = new Date();
-            loadInSequence([bookMetaFile, bookParagraphsFile], function onDone() {
+            loadInSequence(aryLoadFiles, function onDone() {
                 if (DEBUG) {
                     console.log('Loaded book contents in ' + (new Date().getTime() - start.getTime()) + ' ms.');
                 }
@@ -1014,6 +1014,73 @@
                 }
             });
         }
+
+
+        //
+        // Get Scroll Id
+        // 
+        function isElementPartiallyInViewport(par, cur) {
+            var parRect = par.getBoundingClientRect();
+            var curRect = cur.getBoundingClientRect();
+            return ((curRect.top <= parRect.height) && (0 <= (curRect.top + curRect.height)));
+        }
+
+        function toGetScrollId() {
+            var container = document.getElementById("main_td2");
+            var tr = document.getElementById('main_table').getElementsByTagName("tr");
+            var td = document.getElementById('main_table').getElementsByClassName("r1");
+            var i = 0;    
+            var tr_len = tr.length;
+            if (0 < tr_len) {
+                // get curOldTrId
+                var OldTrId = parseInt(localStorage.getItem('tr_id'));
+                var strOldTrId = '' + OldTrId;
+                if (strOldTrId == 'NaN') {
+                    OldTrId = 1;
+                    strOldTrId= '1';
+                } 
+                var i1 = Math.max(0, OldTrId -5);
+                var i2 = Math.min(tr_len -1, OldTrId + 5);
+                for (i=i1; i<=i2; i++) {
+                    var curOldTrId = td[i];
+                    var i3 = (curOldTrId.id).substr(1)
+                    if (i3 == strOldTrId) {
+                        break;
+                    }
+                    if (strOldTrId < i3) {
+                        strOldTrId = i3;
+                        break;
+                    }
+                }    
+
+                var parRect = container.getBoundingClientRect(); 
+                var oldCurect = curOldTrId.getBoundingClientRect();
+                if ((oldCurect.top <= parRect.height) && (0 <= (oldCurect.top + oldCurect.height))) {
+                    // in range 
+                } else { 
+                    for (var i = 0; i < tr_len; i++) {
+                        var cur = td[i];
+                        if (isElementPartiallyInViewport(container, cur)) { 
+                            break;
+                        }  
+                    }  
+                    GetTrId(parseInt((cur.id).substr(1)));
+                    //$('#m' + i).click();
+                } 
+            }
+        }
+
+        function addEvent(element, eventName, callback) {
+            if (element.addEventListener) {
+                element.addEventListener(eventName, callback, false);
+            } else if (element.attachEvent) {
+                element.attachEvent("on" + eventName, callback);
+            }
+        }
+
+        addEvent(window, "load", function () {
+            addEvent(document.getElementById("main_td2"), "scroll", toGetScrollId);
+        });
     </script>
 </div>
 
@@ -1036,14 +1103,15 @@
         'roman-to-sinhala.js',
         'jquery_stlookup.js',
         'function0_main.js',
-        'function0_main_content.js',
+        //'function0_main_content.js',
         'function1_dictionary.js',
         'function2_declension.js',
         'function3_paragraph.js',
         'function4_TOC.js',
+        'function4_mynote.js',
+        'function4_bookmark.js',
         'function5_copy.js',
         'function5_history.js',
-        'function5_mynote.js',
         'function5_anki.js',
         'z_tipitaka_Maps.js',
         'z_search_navigator.js'
@@ -1172,7 +1240,6 @@
                                    checked>
                             <label for="SearchType1" style="color:blue;font-size:12pt;">&nbsp;Tipiṭaka&nbsp;</label>
 
-
                             <input type="submit" onClick="Start_Fuzzy()" name="Submit" value="Fuzzy">&nbsp;&nbsp;
                             <input type="submit" onClick="Start_Exact()" name="Submit" value="Exact">&nbsp;&nbsp;
                             <input type="submit" onClick="Start_Prefix()" name="Submit" value="Prefix">&nbsp;&nbsp;
@@ -1210,15 +1277,15 @@
         </tr>
         <tr style="line-height: 150%">
             <td></td>
-            <td colspan="3" id="SearchResultTD">
-                <span id="SearchResult" style="display: none";></span>
+            <td colspan="3" id="SearchResultTD" style="font-size:14pt;line-height:150%;">
+                <span id="SearchResult" style="display: none;"></span>
             </td>
         </tr>
 
         </tbody>
     </table>
 
-    <table align="left" bgcolor="#ffffc0" border="0" cellspacing="1" cellpadding="3" width="100%">
+    <table align="left" bgcolor="#ffffc0" border="0" cellspacing="1" cellpadding="3" width="100%" style="font-size:14pt;line-height:150%;">
         <tbody>
         <tr>
             <td width="1%">
@@ -1772,7 +1839,7 @@
                                             <label for="Show_Numbers1">Show Numbers</label>
                                             <input name="Show_Numbers" id="Hide_Numbers2" type="radio"
                                                    onclick='ChooseRadio("Hide_Numbers2")'>
-                                            <label for="Hide_Numbers2">No Display</label>
+                                            <label for="Hide_Numbers2">No Display (Default)</label>
                                             <br>
 
 
@@ -1869,25 +1936,14 @@
                                     <br>
                                     <input name="contentposition" id="positionfixed" value="1" type="radio"
                                            onclick='ChooseRadio("positionfixed")'>
-                                    <label for="positionfixed" onclick='ChooseRadio("positionfixed")'>Left Fixed</label>
+                                    <label for="positionfixed" onclick='ChooseRadio("positionfixed")'>Left Fixed (Default)</label>
+                                    &nbsp;&nbsp;
                                     <input name="contentposition" id="positionfloat" value="0" type="radio"
                                            onclick='ChooseRadio("positionfloat")'>
-                                    <label for="positionfloat" onclick='ChooseRadio("positionfloat")'>Moveable
-                                        (Default)</label>
+                                    <label for="positionfloat" onclick='ChooseRadio("positionfloat")'>Moveable</label>
                                     <br><br>
                                 </td>
                                 <td width="50%">
-                                    <div style="visibility:hidden">
-                                        <strong style="color:#880000;">Panel Mode</strong>
-                                        <br>
-                                        <input name="contentmode" id="modeipad" value="iPad" type="radio"
-                                               onclick='ChooseRadio("modeipad")'>
-                                        <label for="modeipad" onclick='ChooseRadio("modeipad")'>iPad</label>
-                                        <input name="contentmode" id="modepc" value="PC" type="radio"
-                                               onclick='ChooseRadio("modepc")'>
-                                        <label for="modepc" onclick='ChooseRadio("modepc")'>PC Mode (Default)</label>
-                                        <br><br>
-                                    </div>
                                 </td>
                             </tr>
 
@@ -1897,11 +1953,11 @@
                                     <br>
                                     <input name="contentdisplay" id="displayalways" value="1" type="radio"
                                            onclick='ChooseRadio("displayalways")'>
-                                    <label for="displayalways" onclick='ChooseRadio("displayalways")'>Always</label>
+                                    <label for="displayalways" onclick='ChooseRadio("displayalways")'>Always (Default)</label>
+                                    &nbsp;&nbsp;
                                     <input name="contentdisplay" id="displayclick" value="0" type="radio"
                                            onclick='ChooseRadio("displayclick")'>
-                                    <label for="displayclick" onclick='ChooseRadio("displayclick")'>On Click
-                                        (Default)</label>
+                                    <label for="displayclick" onclick='ChooseRadio("displayclick")'>On Click</label>
                                     <br><br>
                                 </td>
                                 <td width="50%" valign="top">
@@ -2159,12 +2215,12 @@
 
     //<script src="dictionary/z_search_pali_words.js"></ script>
     function Put(val) {
-        var key = document.getElementById('key').value.trim();
+        var key = $('#key').val().trim();
         var pos = key.lastIndexOf(' ');
         if (pos != -1) {
-            document.getElementById('key').value = key.substr(0, pos) + ' ' + val;
+            $('#key').val(key.substr(0, pos) + ' ' + val);
         } else {
-            document.getElementById('key').value = val + ' ';
+            $('#key').val(val + ' ');
         }
         Start_Fuzzy();
     }
@@ -2211,8 +2267,8 @@
         for (i = 1; i <= 3; i++) {
             for (j = 1; j <= 8; j++) {
                 no = '' + j + '' + i;
-                document.getElementById('Nikaya' + no).style.display = dsp;
-                document.getElementById('Out' + no).innerHTML = '';
+                $('#Nikaya' + no).css('display', dsp);
+                $('#Out' + no).html('');
             }
         }
         // document.getElementById('out').innerHTML = '';
@@ -2474,7 +2530,7 @@
 
     function TPPFind(){
 
-        var str = document.getElementById("TPPFindText").value;
+        var str = $("#TPPFindText").val();
         window.find(str);
 
     }

@@ -56,16 +56,15 @@ function GetValues(aryVal, dname, key) {
 
 function DeclensionShow(key) {
 	var get_data = LookupDictionary(key); 
-	console.log(key);
 	
 	DeclensionTable(key);
-	document.getElementById("DeclensionResult").innerHTML = document.getElementById("DeclensionResult").innerHTML + get_data;
+	$("#DeclensionResult").html($("#DeclensionResult").html() + get_data) ;
 }
 
 function DeclensionSearch() {
 	dict_records = 0;
-	var key = toUniRegEx(document.getElementById('DeclensionKey').value.trim().toLowerCase());
-	document.getElementById('DeclensionKey').value = key;
+	var key = toUniRegEx($('#DeclensionKey').val().trim().toLowerCase());
+	$('#DeclensionKey').val(key);
 
 	if ( 0 < key.length ) {
 		var get_keys = '';
@@ -99,11 +98,11 @@ function DeclensionSearch() {
 		out = '';
 		for (var i = 1; i<lenx; i++) {
 			if (ary[i] != '') {
-				out = out + '<span onClick="DeclensionShow(\'' + ary[i].substring(1) +'\');document.getElementById(\'DeclensionResult\').scrollIntoView();">' + '. ' + toTranslate(ary[i].substring(1)) + '</span><br>';
+				out = out + '<a href="javascript:void(0);" onClick="DeclensionShow(\'' + ary[i].substring(1) +'\');document.getElementById(\'DeclensionResult\').scrollIntoView();">' + '. ' + toTranslate(ary[i].substring(1)) + '</a><br>';
 			}
 		}
 		//alert(lenx);
-		document.getElementById('DeclensionTips2').innerHTML = out;
+		$('#DeclensionTips2').html(out);
 		document.getElementById('DeclensionTips2').scrollIntoView();
 
 	}
@@ -157,6 +156,7 @@ function DeclensionTable(val) {
 			}
 		}
 	}
-	document.getElementById("DeclensionResult").innerHTML = outx + outy;
+	$("#DeclensionResult").html(outx + outy);
+
 
 }

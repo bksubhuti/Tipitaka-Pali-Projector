@@ -38,11 +38,9 @@ function iPadHeight() {
 	h2 = (h1 - (tx2 - tx) + 20);
 	// document.getElementById('main_content').style.height = h2 + "px";
 
-	console.log(tx +'  '+h1+ '  ' + window.innerHeight);
 	if (window.innerHeight <= (tx + h1 + 25)) {
 		t = tx + h1 - window.innerHeight + 25;
 		t = tx - t;
-		console.log('t=' + t);
 		document.getElementById('main_div').style.top = Math.max(0, t) + 'px';
 		document.write = localStorage.setItem('main_top', Math.max(0, t));
 	}

@@ -1,6 +1,8 @@
-
-
 function Message(tr_no) { 
+	if (typeof P_HTM == 'undefined') { 
+		return;
+	}
+
 	val = parseInt(tr_no); 
 
 	var msg = 'Id' + val;		// id no
@@ -34,12 +36,12 @@ function Message(tr_no) {
 			}	
 		}
 	} 	  
-	document.getElementById('message').innerHTML = msg;
+	$('#IdMessage').html(msg);
 }
 
 function goToc() {
 
-	var val = document.getElementById('Toc').value;
+	var val = $('#Toc').val();
 	str = 	TOC_Dropdown_Items[val];//direct array that filled drop down items
 	gPaliHistoryItem.Toc_Name = str.replace(/_/g,''); 
 
@@ -50,16 +52,16 @@ function goToc() {
 
 function goUrl() {
 	var p1 = document.getElementsByName('Reference');
-	var val = parseInt(document.getElementById('PageNo').value);
+	var val = parseInt($('#PageNo').val());
 	var url;
 
-	var old = '@' + localStorage.getItem('palihistory');
+	//var old = '@' + localStorage.getItem('palihistory');
 	var today = new Date();
 	var date = ('0' + (today.getMonth() + 1)).slice(-2) + ('0' + today.getDate()).slice(-2)  + " "+ ('0' + today.getHours()).slice(-2) + ('0' + today.getMinutes()).slice(-2);
 
 	if (p1[1].checked == true) {	
 		if (P_Par[val] !== undefined) 	{// Paragraph will convert into Id
-			document.write = localStorage.setItem('palihistory', date + '_' + html_no + '.htm#' + P_Par[val]+ old);
+			//document.write = localStorage.setItem('palihistory', date + '_' + html_no + '.htm#' + P_Par[val]+ old);
 			window.location = '#' + P_Par[val];
 			GetTrId(P_Par[val].substring(1));
 		} else {
@@ -75,15 +77,14 @@ function goUrl() {
 	} else {	// Myanmar Page or PTS Page
 		var url = '';
 		if (p1[0].checked == true) { 	// Myanmar Page
-			document.write = localStorage.setItem('palihistory', date + '_' + html_no + '.htm#M' + html_no + '_' + val + old);
+			//document.write = localStorage.setItem('palihistory', date + '_' + html_no + '.htm#M' + html_no + '_' + val + old);
 			url = 'M' + html_no +'_' + val;
 		} else { 						// PTS Page
-			document.write = localStorage.setItem('palihistory', date + '_' + html_no + '.htm#P' + html_no + '_' + val + old);
+			//document.write = localStorage.setItem('palihistory', date + '_' + html_no + '.htm#P' + html_no + '_' + val + old);
 			url = 'P' + html_no +'_' + val;
 		} 
 		var tr = document.getElementsByClassName('r1');
-		for (var i=0; i<tr.length; i++) {
-			//alert(tr[i].innerHTML + '  ' + url);
+		for (var i=0; i<tr.length; i++) { 
 			if (tr[i].innerHTML.indexOf(url) != -1) {
 				document.getElementById('p' + (i +1)).scrollIntoView();
 				GetTrId(i);
@@ -97,36 +98,58 @@ function PaliHistoryList() {
 	var PaliHistoryArray = [];
 	PaliHistoryArray = JSON.parse(localStorage.getItem('PaliHistoryJSON'));
 	if (PaliHistoryArray != null){// use JSON objects instead
-		var showurl = '';
-		var i = PaliHistoryArray.length - 1;
+		var url = '';
+		url += '<a href="javascript:void(0);" onClick="PaliHistoryCopy()" style="font-size:11pt;"><img src="images/b_browse.png" width="16">Copy</a>&nbsp;&nbsp;';
+		url += '<a href="javascript:void(0);" onClick="PaliHistoryClear(\'Select\')" style="font-size:11pt;"><img src="images/b_drop.png" width="16">Delete Select</a>&nbsp;&nbsp;'
+		url += '<a href="javascript:void(0);" onClick="PaliHistoryClear(\'All\')" style="font-size:11pt;"><img src="images/b_drop.png" width="16">Delete All</a>';
+		url += '<br>';
 
 		for (i in PaliHistoryArray) {
-			if (PaliHistoryArray[i] != 'null'){
-				showurl = showurl + '<span style="white-space: nowrap;\" onClick="PaliHistoryGoUrl(\'' + PaliHistoryArray[i].html_no + "#" + PaliHistoryArray[i].paraNo +  '\');"">'
-				//showurl = showurl + PaliHistoryArray[i].date + '&nbsp;'; // date
-				//
-				showurl = showurl + toTranslate(T_Book[PaliHistoryArray[i].html_no]);//pass html_no to get the title of book
-				showurl = showurl + '&nbsp;' +'/ '  + PaliHistoryArray[i].Toc_Name;
-				showurl = showurl + '&nbsp;#';
-				showurl = showurl + PaliHistoryArray[i].paraNo + '</span><br>';
-			}
-		}
-		showurl = '&nbsp;<span style="font-size:10.5pt;" onClick="PaliHistoryClear(0)">&nbsp;<img src="images/b_drop.png">Clear All</span><br>' + showurl;
-		document.getElementById('palihistory').innerHTML = showurl;
-
-
+			url += '<input type="checkbox" id="PaliHist' + i + '" checked value="' + PaliHistoryArray[i].html_no + '"/>';
+			url += '<a href="javascript:void(0);" style="white-space: nowrap;\" onClick="PaliHistoryGoUrl(\'' + PaliHistoryArray[i].html_no + "#" + PaliHistoryArray[i].paraNo +  '\');"">' 
+			url += toTranslate(T_Book[PaliHistoryArray[i].html_no]); //pass html_no to get the title of book
+			url += '&nbsp;' +'/ '  + PaliHistoryArray[i].Toc_Name;
+			url += '&nbsp;#';
+			url += PaliHistoryArray[i].paraNo + '</a><br>';
+		} 
+		$("#palihistory").html(url);
 	}
 
 }
 
-function PaliHistoryClear(val) {
-	document.write = localStorage.setItem('PaliHistoryJSON', '');
-	document.getElementById('palihistory').innerHTML = ''; 
+function PaliHistoryClear(type) {
+	if (type == 'All') {
+		document.write = localStorage.setItem('PaliHistoryJSON', '');
+		$('#palihistory').html('');
+	} else {
+		var strHistory = "";
+		var strPaliHistory = localStorage.getItem('PaliHistoryJSON');
+		var PaliHistoryArr = [];
+		if (strPaliHistory){
+			PaliHistoryArr = JSON.parse(strPaliHistory); 
+
+			var ary = [];
+			var cx = 0;
+	 
+	        var len = PaliHistoryArr.length -1;
+	        for (i=len; 0<=i; i--) {
+	        	var e = document.getElementById('PaliHist' + i);
+	            if (e.checked == true){
+	            	ary[cx] = i;
+	            	cx = cx +1;
+	            } 
+	        } 
+	        for (i in ary) {
+	        	PaliHistoryArr.splice(ary[i], 1);
+	        }
+
+			localStorage.setItem('PaliHistoryJSON', JSON.stringify(PaliHistoryArr));
+			PaliHistoryList();
+		} 
+	}	
 }
 
 function PaliHistoryGoUrl(val) {
-
-
 	var Booktoload    = "";
 	var MyanmarParaNo = "";
 	var PositionToGo  = "";
@@ -150,9 +173,6 @@ function PaliHistoryGoUrl(val) {
 					setMyanmarParaInStorage(PositionToGo);		
 
 				});									// any of the load books and just have this be a drop default.
-
-
-
 		}
 		else{  // AN book
 			// it is angutara  .. subtract 10,000 to get paragraph number.
@@ -164,15 +184,12 @@ function PaliHistoryGoUrl(val) {
 				window.location = "#" + PositionToGo;});
 				gPaliHistoryItem.paraNo = PositionToGo;
 				setMyanmarParaInStorage(PositionToGo);		
-				writeHistoryStorage();
-		
+				writeHistoryStorage();		
 		}
 	}else{ // not quick jump
 
 		Booktoload = val.substring(0,4);
 		PositionToGo = val.substring(5);
-
-
 
 		// now load the book if needed
 		// set scroll position
@@ -196,8 +213,6 @@ function PaliHistoryGoUrl(val) {
 
 				});									// any of the load books and just have this be a drop default.
 		}
-
-
 	}
 
 
@@ -276,8 +291,8 @@ function findquickjump(qj) {
 
 
 function makeQuickJumpTables(){
-	
-	input = document.getElementById('QuickJump').value.trim().toLowerCase();
+	 
+	input = $('#QuickJump').val().trim().toLowerCase();
 	var s = "";
 	var suttanum = parseInt(input.substring(2)) -1;
 	var sectionnum = 0;
@@ -305,7 +320,7 @@ function makeQuickJumpTables(){
 	}
 
 	var samyuttano = parseInt(input.substring(2)) -1;
-var huh = input.substring(0,2);
+	var huh = input.substring(0,2);
 	if (input.substring(0,2)== "sn"){
 		for (x in  TOC_Dropdown_Items){
 			if (TOC_Dropdown_Items[x].includes("saṃyuttaṃ") ){  // first character is a number  = samyutta
@@ -354,8 +369,8 @@ var huh = input.substring(0,2);
 function QuickJump() {
 	//makeQuickJumpTables();
 	//return;
-
-	input = document.getElementById('QuickJump').value.trim().toLowerCase();
+ 
+	input = $('#QuickJump').val().trim().toLowerCase();
 	
 
 	if (input.substring(0,2) == "an"){
@@ -471,8 +486,8 @@ function QuickJump() {
 }
 
 
-function QuickJumpTips() {
-	key = document.getElementById('QuickJump').value.trim().toLowerCase();
+function QuickJumpTips() { 
+	key = $('#QuickJump').val().trim().toLowerCase();
 	var reg1 = /\./g;
 	key = key.replace(reg1, ' ');
 	var reg1 = /\;/g;
@@ -499,17 +514,16 @@ function QuickJumpTips() {
 			}	
 		}
 	}
-	val = val.trim();
-	document.getElementById('QuickJumpTips').innerHTML = val;
-
-	//document.getElementById('QuickJump').value = key + ' ';
+	val = val.trim(); 
+	$('#QuickJumpTips').html(val);
+ 
 }
 
 
 
 function SetupToc() {
     const options = TOC_Dropdown_Items.map((item, index) => `<option value="${index}">${item}</option>`);
-	document.getElementById('Toc').innerHTML = options;
+	$('Toc').html(options); 
 
 }
 

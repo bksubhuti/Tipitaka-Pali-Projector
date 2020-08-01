@@ -1,45 +1,50 @@
 function ParagraphAnalysis() {
+	if (typeof P_HTM == 'undefined') { 
+		return;
+	}
 	//BookTipOut();
 	var idx = localStorage.getItem('tr_id');
 	if ((idx) && (idx != undefined) && (idx != null)) {
 
-		var ParagraphWords = '';
-		
-		var pali = P_HTM[idx].replace(/\*/g, '');
-		pali = pali.split('[');
-		//var pali = P_HTM[idx].split('*');
-		var Chars = 'abcdefghijklmnopqrstuvwxyzāīūṅñṭḍṇḷṃABCDEFGHIJKLMNOPQRSTUVWXYZĀĪŪṄÑṬḌHṆḶṂ';
+		if (typeof P_HTM[idx] != 'undefined') {
+			var ParagraphWords = '';
+			
+			var pali = P_HTM[idx].replace(/\*/g, '');
+			pali = pali.split('[');
+			//var pali = P_HTM[idx].split('*');
+			var Chars = 'abcdefghijklmnopqrstuvwxyzāīūṅñṭḍṇḷṃABCDEFGHIJKLMNOPQRSTUVWXYZĀĪŪṄÑṬḌHṆḶṂ';
 
-		for (var idy in pali) {
-			var pos = pali[idy].indexOf(']');
-			pali[idy] = pali[idy].substring(pos+1);
+			for (var idy in pali) {
+				var pos = pali[idy].indexOf(']');
+				pali[idy] = pali[idy].substring(pos+1);
 
-			var word = pali[idy] + ' ';
-			var word_str = '';  
-			for (var ndx=0; ndx < word.length; ndx ++) { 
-				var c1 = word.substr(ndx, 1);
-				if (Chars.indexOf(c1) == -1) {		// not in pali range
-					if (word_str.length > 1) {
-						ParagraphWords = ParagraphWords + word_str.trim().toLowerCase() + ';';
+				var word = pali[idy] + ' ';
+				var word_str = '';  
+				for (var ndx=0; ndx < word.length; ndx ++) { 
+					var c1 = word.substr(ndx, 1);
+					if (Chars.indexOf(c1) == -1) {		// not in pali range
+						if (word_str.length > 1) {
+							ParagraphWords = ParagraphWords + word_str.trim().toLowerCase() + ';';
+						}
+						word_str = '';
+					} else {
+						word_str = word_str + c1;
 					}
-					word_str = '';
-				} else {
-					word_str = word_str + c1;
 				}
 			}
-		}
-		document.getElementById('ParagraphWords').value = ParagraphWords.substring(0, ParagraphWords.length-1);
-		//change_tab('page3');
-		ParagraphDictionary();
+			$('#ParagraphWords').val(ParagraphWords.substring(0, ParagraphWords.length-1));
+			//change_tab('page3');
+			ParagraphDictionary();
+		}	
 	}	
 }
 
 function ParagraphDictionary() {
-	if (document.getElementById('ParagraphWords').value != '') {
+	if ($('#ParagraphWords').val() != '') {
 		// word_hit = 0;
 		// word_hit2 = 0;
 		ret = '';
-		aryParagraph = document.getElementById('ParagraphWords').value.split(';');
+		aryParagraph = $('#ParagraphWords').val().split(';');
 		for (j in aryParagraph) {
 			key = aryParagraph[j]; 
 
@@ -55,14 +60,13 @@ function ParagraphDictionary() {
 					ret = ret + get_data;
 				} else {		// not found
 					ret = ret + '<div>';
-					ret = ret + '<b style="color:#ff0000;" id="G_' + key + '" onClick="OpenOnce(\'' + key + '\')">' + toTranslate(key) + '&nbsp;</b>&nbsp;&nbsp;';
+					ret = ret + '<a href="javascript:void(0);" id="G_' + key + '" onClick="OpenOnce(\'' + key + '\')" style="font-weight:900;">' + toTranslate(key) + '&nbsp;</a>&nbsp;&nbsp;';
 					ret = ret + DoAnalysis(key) + '</div>';
 				}	
 				ret = ret + '<hr style="border: 1pt dashed gray;"><br>';
 			}
 		}	
-		// document.getElementById('page3_desc').innerHTML =  '<span style="font-size:11pt;">Found (' + word_hit + ' + ' + word_hit2 + ') / ' + aryParagraph.length + '&nbsp;(' + parseInt((word_hit + word_hit2)/ aryParagraph.length*100)+ '%)</span><br>' + ret + '<br><br><br>';
-		document.getElementById('page3_desc').innerHTML = ret + '<br><br><br>';
+		$('#page3_desc').html(ret + '<br><br><br>');
 	}
 }
 
@@ -168,14 +172,14 @@ function WordAnalysis3(key, fallBackToWordAnalysis2) {
 			return w.replace('`', '');
 		});
 
-		const formattedWords = breakupWords.map(w => `<b style="color:#0000ff">${w}</b>`).join(' + ');
+		const formattedWords = breakupWords.map(w => `<b style="color:#440000">${w}</b>`).join(' + ');
 		let result = `${entry.substr(0, indexOfLeftBracket)} (${formattedWords})\n`;
 		let hasAtLeastOneResult = false;
 		for (const word of breakupWords) {
 			const lookupResult = LookupDictionary(word);
 			if (lookupResult) {
 				let lookupResultView = '<b style="font-size:13pt;">⮕</b>';
-				lookupResultView += `<span style="color:#0000ff;">${word}</span>&nbsp;&nbsp`;
+				lookupResultView += `<span style="color:#440000;">${word}</span>&nbsp;&nbsp`;
 				lookupResultView += lookupResult;
 				hasAtLeastOneResult = true;
 				result += '<br>' + lookupResultView
@@ -264,8 +268,8 @@ function WordAnalysis2(key) {
 			for (j=start; j<i; j++) {
 				out = out + ary[j];
 			}
-			found = found + flag + '<span style="color:#0000ff;">' + v1 + out + '</span>&nbsp;&nbsp;' + ret;
-			word_split = word_split + ' + <b style="color:#0000ff">' +v1 + out + '</b>'
+			found = found + flag + '<span style="color:#440000;">' + v1 + out + '</span>&nbsp;&nbsp;' + ret;
+			word_split = word_split + ' + <b style="color:#440000">' +v1 + out + '</b>'
 
 			start = i;
 			end = lenx_1;

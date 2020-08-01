@@ -26,7 +26,7 @@ function AnkiAdd() {
         }
 
         document.write = localStorage.setItem('Anki', strAnkiLine); 
-        document.getElementById('CopyText').value = strAnkiLine;
+        $('#CopyText').val(strAnkiLine);
 
         var blob = new Blob([strAnkiLine], {type: "text/plain;charset=utf-8"});
         saveAs(blob, 'AnkiImportFromTPP.tsv');
@@ -47,8 +47,8 @@ function AnkiGetValue(aryAnkiGetValue, key) {
 }
 
 function AnkiCopy() {
-    var strAnkiLine = localStorage.getItem('Anki');
-        document.getElementById('CopyText').value = strAnkiLine;
+    var strAnkiLine = localStorage.getItem('Anki');  
+        $('#CopyText').val(strAnkiLine);
         
         $('#CopyText').select();
         document.execCommand('copy');
@@ -59,5 +59,6 @@ function AnkiClear() {
     document.write = localStorage.setItem('Anki', '');
     document.write = localStorage.setItem('AnkiLine', '');
     document.write = localStorage.removeItem('Anki');
-    document.getElementById('CopyText').value = '';
+    $('#CopyText').val('');
+
 }

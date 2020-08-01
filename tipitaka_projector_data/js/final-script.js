@@ -14,7 +14,7 @@ function registerListeners() {
 		word_click();
 		if (t.length > 0) {
 			//lookupCoordinator(t, 0);	//$changecolor = $ns % 2; /
-			document.getElementById('main_div').style.display = 'inline';
+			$('#main_div').css('display', 'inline');
 
 			if (localStorage.getItem('main_content') == 'page1') {
 				DictionaryKeyGo();
@@ -51,10 +51,10 @@ function registerListeners() {
 		GetTrId($(this).attr('id').substring(1));
 
 		if ((localStorage.getItem('contentdisplay') == '0') && (localStorage.getItem('contentposition') == '0')) {
-			if (document.getElementById('main_div').style.display == 'none') {
-				document.getElementById('main_div').style.display = 'inline';
+			if ($('#main_div').css('display') == 'none') {
+				$('#main_div').css('display', 'inline');
 			} else {
-				document.getElementById('main_div').style.display = 'none';
+				$('#main_div').css('display', 'none');
 			}
 		}
 
@@ -68,16 +68,18 @@ function registerListeners() {
 		if ( document.getSelection() != "") {
 			return;  // do nothing if selection.
 		}
-		word_click();
-		if (t.length > 0) {
-			DictionaryKeyGo();
-			change_tab('page1');
-			if ((localStorage.getItem('hee1') != '000') && (localStorage.getItem("speech_repeat") != '0')) {
-				for (var idx=1; idx<=localStorage.getItem("speech_repeat"); idx++) {
-					speakSynthesis(t);//repeat 2 times
+		if (localStorage.getItem('main_content') <= 'page3') {
+			word_click();
+			if (t.length > 0) {
+				DictionaryKeyGo();
+				change_tab('page1');
+				if ((localStorage.getItem('hee1') != '000') && (localStorage.getItem("speech_repeat") != '0')) {
+					for (var idx=1; idx<=localStorage.getItem("speech_repeat"); idx++) {
+						speakSynthesis(t);//repeat 2 times
+					}
 				}
 			}
-		}
+		}	
 	});
 
 	$('#QuickJump').on("keypress", function(e) {
@@ -245,6 +247,8 @@ var Sr_id = localStorage.getItem('Sr_id'+ html_no);
 
 function  displayBook() {
 	const viewLeftConfig = localStorage.getItem("view_left");
+	const viewRightConfig = localStorage.getItem("view_right");
+	 
 
 	for (var idx in P_HTM) {
 		var Sr_run = '';
@@ -259,17 +263,6 @@ function  displayBook() {
 			// console.log(`Displaying book. Sr_key = "${Sr_key}". Sr_run: "${Sr_run}".`);
 		}
 
-		var pali2 = P_HTM[idx].split('*');		// right-side
-		var tags2 = P_Tag[idx].split('*');		// right-side
-
-		// get para_no
-		//var s0 = 'p' + idx;
-		//var s0 = P_Par.findIndex(key => key === s0);
-		//if (s0 != -1) {
-		//	para_no = s0;
-		//}
-
-		//var n1 = '{!@#' + idx + '#@!}';
 		var pali = P_HTM[idx].split('*');
 		var tags = P_Tag[idx].split('*');
 
@@ -281,57 +274,62 @@ function  displayBook() {
 				break;
 			}
 			//
-			pali[idy] = toTranslate(pali[idy], viewLeftConfig);
+			var pali_left = toTranslate(pali[idy], viewLeftConfig);
 			if (Sr_run == '1') {
 				for (const currentSr of Sr_ary) {
 					const translated = toTranslate(currentSr, viewLeftConfig);
-					pali[idy] = replacei(pali[idy], translated, sub=> '<span id="Sr' + idx + '" class="Sr_note">' + translated + "</span>");
+					pali_left = replacei(pali_left, translated, sub=> '<span id="Sr' + idx + '" class="Sr_note">' + translated + "</span>");
 				}
 			}
-			s1 = s1 + pali[idy] + tags[idy];
+			s1 = s1 + pali_left + tags[idy];
 
-			if ((view_right != 'Space') && (view_right != 'MyNote') && (view_right != 'Suttacentral')) {
-				pali2[idy] = toTranslateRight(pali2[idy]);
+			if ((viewRightConfig != 'Space') && (viewRightConfig != 'MyNote') && (viewRightConfig != 'Suttacentral')) { 
+				var pali_right = toTranslate(pali[idy], viewRightConfig);
 				if (Sr_run == '1') {
-					for (var Sr_ndx in Sr_ary) {
-						pali2[idy] = replacei(pali2[idy], toTranslateRight(Sr_ary[Sr_ndx]), sub=> '<span class="Sr_note">' + toTranslateRight(Sr_ary[Sr_ndx]) + "</span>");
+					for (const currentSr of Sr_ary) {
+						const translated = toTranslate(currentSr, viewRightConfig);
+						pali_right = replacei(pali_right, translated, sub=> '<span id="Sr' + idx + '" class="Sr_note">' + translated + "</span>");
 					}
-				}
-				s2 = s2 + pali2[idy] + tags2[idy];
+				} 
+				s2 = s2 + pali_right + tags[idy];
+
 			}
 		}
+		//console.log(s2); 
 
-
-		if (view_right == 'MyNote') {
+		if (viewRightConfig == 'MyNote') {
 			tmp = localStorage.getItem('n' + html_no + '_'+idx);
 
 			if ((tmp != null) && (tmp != undefined) && (tmp !='')) {
-				s2 = tags2[0].replace('<p class="', '<p class="m1_') + tmp.replace(/\n/g, '<br>'); + '</p>';
+				s2 = tags[0].replace('<p class="', '<p class="m1_') + tmp.replace(/\n/g, '<br>'); + '</p>';
 				M_LOC[idx] = tmp;
 			} else {
 				tmp = M_LOC[idx];
 				if ((tmp != null) && (tmp != undefined) && (tmp !='')) {
 					document.write = localStorage.setItem('n' + html_no + '_'+idx, tmp);
-					s2 = tags2[0].replace('<p class="', '<p class="m1_') + tmp.replace(/\n/g, '<br>'); + '</p>';
+					s2 = tags[0].replace('<p class="', '<p class="m1_') + tmp.replace(/\n/g, '<br>'); + '</p>';
 				}
 			}
 		}
 
-		if (view_right == 'Suttacentral') {
+		if (viewRightConfig == 'Suttacentral') {
 			tmp = M_SCT[idx];
 			if ((tmp != null) && (tmp != undefined) && (tmp !='')) {
-				s2 = tags2[0].replace('<p class="', '<p class="m1_') + tmp.replace(/\n/g, '<br>'); + '</p>';
+				s2 = tags[0].replace('<p class="', '<p class="m1_') + tmp.replace(/\n/g, '<br>'); + '</p>';
 			}
 		}
-		document.getElementById('p' +idx).innerHTML = s1;
-		document.getElementById('m' +idx).innerHTML = s2;
+		$('#p' +idx).html(s1);
+		if (viewRightConfig != 'Space') {
+			$('#m' +idx).html(s2); 
+		}	 
+			//document.getElementById('m' +idx).innerHTML = s2; 
 	}
 
 	if (Sr_id != null) {
-		document.getElementById('Sr_Div').style.visibility = 'visible';
-		document.getElementById('Sr_Next').innerHTML = Sr_id.split(';').length - 2;
+		$('#Sr_Div').css('visibility', 'visible');
+		$('#Sr_Next').html(TML = Sr_id.split(';').length - 2);
 		if (Sr_id.length < 2) {
-			document.getElementById('Sr_Div').style.visibility = 'hidden';
+			$('#Sr_Div').css('visibility', 'hidden');
 		}
 	}
 
@@ -411,13 +409,13 @@ document.write = localStorage.setItem('main_left', l);
 document.write = localStorage.setItem('main_width', w);
 document.write = localStorage.setItem('main_height', h);
 
-document.getElementById('main_div').style.top = '' + t + 'px';
-document.getElementById('main_div').style.left = '' + l + 'px';
-document.getElementById('main_div').style.height = '' + h + 'px';
-document.getElementById('main_div').style.width = '' + w + 'px';
+$('#main_div').css('top', '' + t + 'px');
+$('#main_div').css('left', '' + l + 'px');
+$('#main_div').css('height', '' + h + 'px');
+$('#main_div').css('width', '' + w + 'px');
 adjustTabContent();
 
-document.getElementById('main_td2').style.width = (document.body.getBoundingClientRect().width - w) + 'px';
+$('#main_td2').css('width', (document.body.getBoundingClientRect().width - w) + 'px');
 
 window.addEventListener('resize', function() {
 	// adjust main_td2 on window resize
@@ -428,9 +426,8 @@ window.addEventListener('resize', function() {
 	mtd2.style.width = `${available}px`;
 });
 
-tx = parseInt(document.getElementById('main_div').style.top);
-tx2 = document.getElementById('main_content').offsetTop;
-// document.getElementById('main_content').style.height = (h - tx2 - tx + 20)+ "px";
+tx = parseInt($('#main_div').css('top'));
+tx2 = $('#main_content').css('offsetTop');
 
 if (p == '0') {		// floating
 	RedrawTable(0);
@@ -441,48 +438,18 @@ if (p == '0') {		// floating
 	$('.page5').css('height', '98%');
 } else {
 
-	$('#iPadDirection').css('display', 'none');
-	$('#iPadH').css('display', 'none');
-	$('#iPadHeight').css('display', 'none');
+	//$('#iPadDirection').css('display', 'none');
+	//$('#iPadH').css('display', 'none');
+	//$('#iPadHeight').css('display', 'none');
 
 	RedrawTable(parseInt(w));
-
-	//page4 TOC
-	document.getElementById('page4break1').innerHTML = '<br>';
-	document.getElementById('page4break3').innerHTML = '<br>';
+ 
 
 	$('.page5').css('width', '98%');
-	$('.page5').css('height', '32%');
-	document.getElementById('page5break1').innerHTML = '<br>';
-	document.getElementById('page5break2').innerHTML = '<br>';
+	$('.page5').css('height', '32%');  
 
-	document.getElementById('divDragIcon').style.display = "none";
-	document.getElementById('ResizeBottom').style.display = "none";
-}
-
-k = localStorage.getItem('contentmode');
-if (!k) {
-	k = 'PC';
-	document.write = localStorage.setItem('contentmode', k);
-}
-if (k == 'iPad') {
-	document.getElementById('iPad').style.display = 'inline';
-	document.getElementById('PC').style.display = 'none';
-} else {
-	document.getElementById('iPad').style.display = 'none';
-	document.getElementById('PC').style.display = 'inline';
-}
-e = document.getElementById('iPadWidth');
-w1 = window.innerWidth - 25;
-for (i=30; i<=100; i=i+5) {
-	w2 = parseInt(i * w1/100);
-	e.options.add(new Option(i +'%', w2));
-}
-e = document.getElementById('iPadHeight');
-h1 = window.innerHeight - 35;
-for (i=30; i<=100; i=i+5) {
-	h2 = parseInt(i * h1/100);
-	e.options.add(new Option(i +'%', h2));
+	$('#divDragIcon').css('display', "none");
+	$('#ResizeBottom').css('display', "none");
 }
 
 
@@ -491,9 +458,9 @@ $('#main_div').css('backgroundColor', localStorage.getItem('bg_color'));
 
 
 if (localStorage.getItem('contentdisplay') == '0') {
-	document.getElementById('main_div').style.display = 'none';
+	$('#main_div').css('display', 'none');
 } else {
-	document.getElementById('main_div').style.display = 'inline';
+	$('#main_div').css('display', 'inline');
 }
 
 
@@ -507,7 +474,7 @@ if (!panel_font_color) {
 }
 
 
-document.getElementById('main_div').style.backgroundColor = panel_bg_color;
+$('#main_div').css('backgroundColor', panel_bg_color);
 
 var colorobj = new RGBColor(panel_bg_color);
 colorobj.r = parseInt(colorobj.r * 0.8);
@@ -516,9 +483,7 @@ colorobj.b = parseInt(colorobj.b * 0.8);
 //DictionaryBackground = 'background-color:rgb(' + colorobj.r + ',' + colorobj.g + ',' + colorobj.b + ')';
 // removed.. seems to format without it.. and it was going to the anki output
 
-
-document.getElementById('main_div').style.color= panel_font_color;
-
+$('#main_div').css('color', panel_font_color);
 
 // set the font color for the dictionary
 r1 = localStorage.getItem("r1");
@@ -530,7 +495,7 @@ lineheight = localStorage.getItem('contentlineheight');
 if (!lineheight) {
 	lineheight = '200';
 }
-document.getElementById('main_div').style.lineHeight= lineheight + '%';
+$('#main_div').css('lineHeight', lineheight + '%');
 
 fontsize = localStorage.getItem('contentfontsize');
 if (!fontsize) {
@@ -569,7 +534,7 @@ var setSearchNavigator = function() {
 				}
 			}
 			document.getElementById('Sr' + ary1[i]).scrollIntoView();
-			document.getElementById('Sr_Now').innerHTML = (Number(i));
+			$('#Sr_Now').html(Number(i));
 		}
 	}
 };
@@ -705,7 +670,7 @@ function doResizeRight(ev){
 	var l = clientX(oEvent) - mouseStart.x + rightStart.x;
 	var w = l + oDiv.offsetWidth;
 
-	lx = parseInt(document.getElementById('main_div').style.left);
+	lx = parseInt($('#main_div').css('left'));
 	w = Math.max(250, Math.min(w, window.innerWidth -lx -20));
 
 	omain_div.style.width = w + "px";
@@ -760,14 +725,13 @@ function doResizeBottom(ev){
 	var t = clientY(oEvent) - mouseStart.y + bottomStart.y;
 	var h = t + oDiv.offsetHeight;
 
-	tx = parseInt(document.getElementById('main_div').style.top);
+	tx = parseInt($('#main_div').css('top'));
 	h = Math.max(100, Math.min(h, window.innerHeight -tx -30));
 
 	omain_div.style.height=h+"px";
 	document.write = localStorage.setItem('main_height', h);
 
-	tx2 = document.getElementById('main_content').offsetTop;
-	// document.getElementById('main_content').style.height = (h - tx2 - tx + 20)+ "px";
+	tx2 = document.getElementById('main_content').offsetTop; 
 
 	RedrawTable(0);
 };
@@ -832,8 +796,8 @@ function doDrag(ev){
 	var w=l+oDiv.offsetWidth;
 	var h=t+oDiv.offsetHeight;
 
-	lx = parseInt(document.getElementById('main_div').style.left);
-	tx = parseInt(document.getElementById('main_div').style.top);
+	lx = parseInt($('#main_div').css('left'));
+	tx = parseInt($('#main_div').css('top'));
 
 	w = Math.max(250, Math.min(w, window.innerWidth -lx -20));
 	h = Math.max(100, Math.min(h, window.innerHeight -tx -30));
@@ -843,8 +807,7 @@ function doDrag(ev){
 	document.write = localStorage.setItem('main_width', w);
 	document.write = localStorage.setItem('main_height', h);
 
-	tx2 = document.getElementById('main_content').offsetTop;
-	// document.getElementById('main_content').style.height = (h - tx2 - tx + 20)+ "px"
+	tx2 = document.getElementById('main_content').offsetTop; 
 
 	RedrawTable(w);
 };
