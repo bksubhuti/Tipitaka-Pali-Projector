@@ -173,6 +173,7 @@
                 const getToc = (toc) => {
                     let result = '';
                     for (const t of toc) {
+                        console.log(t);
                         result += `\n<option data-ref="${t.href}">${t.label}</option>`;
                         if (t.subitems && t.subitems.length > 0) {
                             result += `\n<optgroup label="${t.label}">${getToc(t.subitems)}</optgroup>`;
@@ -443,6 +444,10 @@
                 DictionaryGo();
 
             }
+
+            if (tab.id === 'pg4_page2') {
+                MyNoteList();
+            } 
         };
     </script>
 
@@ -451,7 +456,7 @@
             <div class="helper dict">
                 <div class="search-area">
                     <i onClick="paliGoBack()" class="material-icons">arrow_back</i>&nbsp;&nbsp;
-                    <span>&nbsp;Pāḷi:&nbsp;</span>
+                    <span onClick="DictionaryKeyGo();">&nbsp;Pāḷi:&nbsp;</span>
                     <input type="textbox" class="generous-input" style="max-width:85%;width:85pt;display:inline;"
                            id="DictionaryKey" name="DictionaryKey">
 
@@ -460,7 +465,7 @@
                         <input type="button" value="Go" onClick="DictionaryKeyGo();" id="GoDictionary">
                     </div>
 
-                    <span>&nbsp;Algo:&nbsp;&nbsp;</span>
+                    <span>&nbsp;Algo:&nbsp;</span>
                     <select id="algorithm-selector">
                         <option value="auto">Auto</option>
                         <option value="dpr">DPR</option>
@@ -539,8 +544,8 @@
                 <img src="images/s_info.png" onMouseover="document.getElementById('info').style.display='inline';"
                      onMouseout="document.getElementById('info').style.display='none';">
                 <span id="info" style="display:none;font-size:11pt;">
-            Velthuis Pali Letters,&nbsp;&nbsp;Wildcard Search, Ex:*sa, *sa*
-          </span>
+                    Velthuis Pali Letters,&nbsp;&nbsp;Wildcard Search, Ex:*sa, *sa*
+                </span>
                 <br><br>
             </div>
 
@@ -590,7 +595,7 @@
                         History
                     </li>
 
-                    <li class="notselected" id="pg4_page2" onclick="onTabClick(this);MyNoteList();">
+                    <li class="notselected" id="pg4_page2" onclick="onTabClick(this);">
                         My Notes
                     </li>
 
@@ -603,31 +608,30 @@
                 <div style="border: 1px #aaaaaa solid;margin-left: -5px;padding:3px;margin-right: -10px;">
                     <div id="pg4_page1_desc" class="pages">
                         <div class="page4">
+                            <span id='LastHistory' style="font-size:10pt;color:blue;"></span>
                             <span id='palihistory' style="font-size:10pt;color:blue;"></span>
                         </div>
                     </div>    
 
-                    <div id="pg4_page2_desc" class="pages" style="display:none;">
+                    <div id="pg4_page2_desc" class="pages" style="display:none;"> 
+                        <input type="hidden" id="MyNoteIds" value="">
                         <div class="page4"> 
-                            <input type="hidden" id="MyNote1" value="">
-                            <input type="hidden" id="MyNoteIds" value="">
-                            <input type="hidden" id="MyNoteTags" value="">
-                            <input type="hidden" id="MyNoteOlds" value="">
-   
-                            <a href="javascript:void(0);" id="MyNoteEdit" onClick="MyNoteEdit()" style="font-size:12pt;margin-bottom:11px">
-                                 <img src="images/add_point_on.png" width="16">Edit
-                            </a>
-                            &nbsp;&nbsp;
-                            <a href="javascript:void(0);" id="MyNoteSave" onClick="MyNoteSaveCancel('Save')" style="display:none;font-size:11pt;">
-                                <img src="images/save.png" width="16">Save
-                            </a>
-                            &nbsp;&nbsp;
-                            <a href="javascript:void(0);" id="MyNoteCancel" onClick="MyNoteSaveCancel('Cancel')" style="display:none;font-size:11pt;">
-                                <img src="images/s_cancel.png" width="16">&nbsp;Cancel
-                            </a>
-                            <br>
+                            <div id="MyNoteEditable" style="display: none;">   
+                                <a href="javascript:void(0);" id="MyNoteEdit" onClick="MyNoteEdit()" style="font-size:12pt;margin-bottom:11px">
+                                     <img src="images/add_point_on.png" width="16">Edit
+                                </a>
+                                &nbsp;&nbsp;
+                                <a href="javascript:void(0);" id="MyNoteSave" onClick="MyNoteSaveCancel('Save')" style="display:none;font-size:11pt;">
+                                    <img src="images/save.png" width="16">Save
+                                </a>
+                                &nbsp;&nbsp;
+                                <a href="javascript:void(0);" id="MyNoteCancel" onClick="MyNoteSaveCancel('Cancel')" style="display:none;font-size:11pt;">
+                                    <img src="images/s_cancel.png" width="16">&nbsp;Cancel
+                                </a>
+                                <br>
+                            </div>    
 
-                            <span id='mynotehistory' style="font-size:10pt;"></span>
+                            <span id='MyNoteList' style="font-size:10pt;"></span>
                         </div>
                     </div>    
 
@@ -1008,6 +1012,14 @@
                 // Set Theme Colors
                 //
                 setThemeStyling();
+ 
+                // scroll by id
+                var loc = '' + window.location;
+                var arySplit = loc.split('index.htm#/book/' + bookId + '/');
+                if (1 < arySplit.length) {
+                    var elmnt = document.getElementById('p' + arySplit[1]);
+                        elmnt.scrollIntoView();
+                }
 
                 if (onBookLoadingDone) {
                     onBookLoadingDone();

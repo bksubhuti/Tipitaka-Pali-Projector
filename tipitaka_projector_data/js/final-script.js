@@ -248,6 +248,34 @@ var Sr_id = localStorage.getItem('Sr_id'+ html_no);
 function  displayBook() {
 	const viewLeftConfig = localStorage.getItem("view_left");
 	const viewRightConfig = localStorage.getItem("view_right");
+
+	// Clear MyNote
+    if (viewRightConfig != 'MyNote') { 
+    	M_LOC = [];	 
+    } else {//
+	    var jMyNoteData = {TrId:"", val:""};
+		var MyNoteArray = [];
+		MyNoteArray = JSON.parse(localStorage.getItem('MyNote' + html_no));  
+		if (MyNoteArray != null){// use JSON objects instead  
+			for (i in MyNoteArray) { 
+				M_LOC[MyNoteArray[i].TrId] = MyNoteArray[i].val; 
+			} 
+		}	
+		MyNoteArray = [];  
+    }
+
+    if (viewRightConfig != 'Suttacentral') { 
+    	M_SCT = [];	
+    } else {
+	    var jSuttaCentralData = {TrId:"", val:""};
+		var SuttaCentralArray = [];
+		SuttaCentralArray = JSON.parse(localStorage.getItem('SuttaCentral' + html_no));  
+		for (i in SuttaCentralArray) { 
+			M_SCT[SuttaCentralArray[i].TrId] = SuttaCentralArray[i].val;
+		} 
+		SuttaCentralArray = [];
+	}
+
 	 
 
 	for (var idx in P_HTM) {
@@ -294,36 +322,52 @@ function  displayBook() {
 				s2 = s2 + pali_right + tags[idy];
 
 			}
-		}
-		//console.log(s2); 
+		} 
 
 		if (viewRightConfig == 'MyNote') {
-			tmp = localStorage.getItem('n' + html_no + '_'+idx);
+			var s21 = '';
+			if ((M_LOC[idx] != null) && (M_LOC[idx] != undefined) && (M_LOC[idx] !='')) {
+				s21 = s21 + M_LOC[idx].replace(/\n/g, '<br>');
 
-			if ((tmp != null) && (tmp != undefined) && (tmp !='')) {
-				s2 = tags[0].replace('<p class="', '<p class="m1_') + tmp.replace(/\n/g, '<br>'); + '</p>';
-				M_LOC[idx] = tmp;
-			} else {
-				tmp = M_LOC[idx];
-				if ((tmp != null) && (tmp != undefined) && (tmp !='')) {
-					document.write = localStorage.setItem('n' + html_no + '_'+idx, tmp);
-					s2 = tags[0].replace('<p class="', '<p class="m1_') + tmp.replace(/\n/g, '<br>'); + '</p>';
+            	var jMyNoteData = {};
+				jMyNoteData.TrId = idx; 
+				jMyNoteData.val = M_LOC[idx];  
+	            MyNoteArray.push(jMyNoteData); 
+			}
+			s2 = '<p class="b1" id="m1_' + idx + '">' + s21 +'</p>';
+
+			var v1 = Math.max(25, parseInt(P_HTM[idx].length /0.9));
+			s2 = s2 + '<textarea id="notes' + idx +'" style="font-size:13.0pt;line-height:170%;width:99%;height:' + v1 + 'pt;color:#000000;background-color:#e0ffff;display:none;">' + s21 + '</textarea>'; 
+
+		} else {
+			if (viewRightConfig == 'Suttacentral') {
+				if ((M_SCT[idx] != null) && (M_SCT[idx] != undefined) && (M_SCT[idx] !='')) {
+					s2 = tags[0].replace('<p class="', '<p class="m1_') + M_SCT[idx].replace(/\n/g, '<br>'); + '</p>';
+            		var jSuttaCentralData = {};
+					jSuttaCentralData.TrId = idx; 
+					jSuttaCentralData.val = M_SCT[idx];  
+	           		SuttaCentralArray.push(jSuttaCentralData); 
 				}
 			}
-		}
+		}	
 
-		if (viewRightConfig == 'Suttacentral') {
-			tmp = M_SCT[idx];
-			if ((tmp != null) && (tmp != undefined) && (tmp !='')) {
-				s2 = tags[0].replace('<p class="', '<p class="m1_') + tmp.replace(/\n/g, '<br>'); + '</p>';
-			}
-		}
+
 		$('#p' +idx).html(s1);
-		if (viewRightConfig != 'Space') {
-			$('#m' +idx).html(s2); 
-		}	 
+
+		//if (viewRightConfig != 'Space') {
+		$('#m' +idx).html(s2); 
+		//}	 
 			//document.getElementById('m' +idx).innerHTML = s2; 
 	}
+
+
+	if (viewRightConfig == 'MyNote') {
+    	localStorage.setItem('MyNote' + html_no, JSON.stringify(MyNoteArray));
+	} 
+	if (viewRightConfig == 'Suttacentral') {
+    	localStorage.setItem('SuttaCentral' + html_no, JSON.stringify(SuttaCentralArray));
+	}	
+
 
 	if (Sr_id != null) {
 		$('#Sr_Div').css('visibility', 'visible');

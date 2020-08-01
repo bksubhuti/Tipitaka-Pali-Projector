@@ -137,13 +137,13 @@ var html_file = _ary[0].slice(-4) + '.htm';
 var html_no = _ary[0].slice(-4);
 
 M_LOC = [];
-
 M_SCT = [];		// sutta_center;
 DictionaryBackground = '';
 
 function GetTrId(val) {
 	val = Math.max(1, val);
 	document.write = localStorage.setItem('tr_id', val);
+	document.write = localStorage.setItem('LastHistory', html_no + '/' + val);
 
 	h = parseInt($('#main_div').css('height')) - Math.max(34, parseInt($('#main_div').css('top'))) + parseInt($('#main_content').css('offsetTop'));
 
@@ -165,7 +165,7 @@ function GetTrId(val) {
 			var s2 = Math.max(Number(val), Math.max(Number(copy1), Number(copy2)));
 			for (i=s1; i<=s2; i++) {
 				if (P_HTM[i] != undefined) {
-					$('#m' + i).html($('m' + i).html().replace('<input type="checkbox" checked="">', ''));
+					$('#m' + i).html($('#m' + i).html().replace('<input type="checkbox" checked="">', ''));
 				}
 			}
 

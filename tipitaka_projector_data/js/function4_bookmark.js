@@ -5,12 +5,9 @@ function BookmarkList() {
 		var	url = '<a href="javascript:void(0);" onClick="BookmarkAdd()"><img src="images/add_point_on.png" width="16">Add Bookmark</a><br>';
 	}	
 
-	var v1 = localStorage.getItem('BookmarkJSON');
-	console.log(v1);
-	console.log(!v1);
+	var v1 = localStorage.getItem('BookmarkJSON'); 
 	if ((!v1) || (v1 == '')) {
 	} else {	
-		console.log(v1);
 		var BookmarkArray = [];
 		BookmarkArray = JSON.parse(v1);
 		if (BookmarkArray != null){// use JSON objects instead
@@ -114,9 +111,8 @@ function BookmarkCopy() {
     	strBookmark += BookmarkData[i].bookId + '-' + BookmarkData[i].trId + '  ';
     	strBookmark += BookmarkData[i].setTitle + '\n';
     	strBookmark += BookmarkData[i].pali + '\n\n';
-    	console.log(i);
     }	 
-    $('#CopyText').val('strBookmark');
+    $('#CopyText').val(strBookmark);
     
     change_tab('page5');
 
