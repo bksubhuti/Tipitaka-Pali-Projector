@@ -29,7 +29,7 @@
     <script src="js/farbtastic12/farbtastic/farbtastic.js"></script>
 
     <script src="js/epublib/jszip.min.js"></script>
-    <script src="js/epublib/epub.min.js"></script>
+    <script src="js/epublib/epub.min.js"></script> 
 
     <script>
         var UseSinglePageLoading = true;
@@ -503,7 +503,7 @@
                         $lookupResults.empty();
                         let resultHTML = '';
                         for (const result of lookupResults) {
-                            resultHTML += '<div class="lookup-result" data-word="' + result + '">' + result + '</div>';
+                            resultHTML += '<div class="lookup-result" data-word="' + result + '">' + toTranslate(result) + '</div>';
                         }
                         $lookupResults.html(resultHTML);
                     };
@@ -646,13 +646,13 @@
             </div>
 
             <div id="page5_desc" class="pages2" style="display:none;">
-                <div class="page5">
+                <div class="pages">
                     <img src='images/b_browse.png'>Dictionary History
                     <span id='dicthistory' style="font-size:11pt;color:blue;"></span>&nbsp;&nbsp;
                 </div>
                 <br>
 
-                <div class="page5">
+                <div class="pages">
                     <img src='images/b_ftext.png' width="24">Copy Text
                     &nbsp;
                     <a href="javascript:void(0);" id="copystart" onClick="CopyExport(1)" style="font-size:11pt;">
@@ -676,7 +676,7 @@
                 </div>
                 <br>
 
-                <div class="page5">  
+                <div class="pages">  
                     <img src='images/Anki-icon.svg.png' width="24">Anki
                     &nbsp;
                     <a href="javascript:void(0);" onClick="AnkiCopy()" style="font-size:11pt;">
@@ -1038,48 +1038,50 @@
         }
 
         function toGetScrollId() {
-            var container = document.getElementById("main_td2");
-            var tr = document.getElementById('main_table').getElementsByTagName("tr");
-            var td = document.getElementById('main_table').getElementsByClassName("r1");
-            var i = 0;    
-            var tr_len = tr.length;
-            if (0 < tr_len) {
-                // get curOldTrId
-                var OldTrId = parseInt(localStorage.getItem('tr_id'));
-                var strOldTrId = '' + OldTrId;
-                if (strOldTrId == 'NaN') {
-                    OldTrId = 1;
-                    strOldTrId= '1';
-                } 
-                var i1 = Math.max(0, OldTrId -5);
-                var i2 = Math.min(tr_len -1, OldTrId + 5);
-                for (i=i1; i<=i2; i++) {
-                    var curOldTrId = td[i];
-                    var i3 = (curOldTrId.id).substr(1)
-                    if (i3 == strOldTrId) {
-                        break;
-                    }
-                    if (strOldTrId < i3) {
-                        strOldTrId = i3;
-                        break;
-                    }
-                }    
-
-                var parRect = container.getBoundingClientRect(); 
-                var oldCurect = curOldTrId.getBoundingClientRect();
-                if ((oldCurect.top <= parRect.height) && (0 <= (oldCurect.top + oldCurect.height))) {
-                    // in range 
-                } else { 
-                    for (var i = 0; i < tr_len; i++) {
-                        var cur = td[i];
-                        if (isElementPartiallyInViewport(container, cur)) { 
+            if (P_HTM != undefined) {
+                var container = document.getElementById("main_td2");
+                var tr = document.getElementById('main_table').getElementsByTagName("tr");
+                var td = document.getElementById('main_table').getElementsByClassName("r1");
+                var i = 0;    
+                var tr_len = tr.length;
+                if (0 < tr_len) {
+                    // get curOldTrId
+                    var OldTrId = parseInt(localStorage.getItem('tr_id'));
+                    var strOldTrId = '' + OldTrId;
+                    if (strOldTrId == 'NaN') {
+                        OldTrId = 1;
+                        strOldTrId= '1';
+                    } 
+                    var i1 = Math.max(0, OldTrId -5);
+                    var i2 = Math.min(tr_len -1, OldTrId + 5);
+                    for (i=i1; i<=i2; i++) {
+                        var curOldTrId = td[i];
+                        var i3 = (curOldTrId.id).substr(1)
+                        if (i3 == strOldTrId) {
                             break;
+                        }
+                        if (strOldTrId < i3) {
+                            strOldTrId = i3;
+                            break;
+                        }
+                    }    
+
+                    var parRect = container.getBoundingClientRect(); 
+                    var oldCurect = curOldTrId.getBoundingClientRect();
+                    if ((oldCurect.top <= parRect.height) && (0 <= (oldCurect.top + oldCurect.height))) {
+                        // in range 
+                    } else { 
+                        for (var i = 0; i < tr_len; i++) {
+                            var cur = td[i];
+                            if (isElementPartiallyInViewport(container, cur)) { 
+                                break;
+                            }  
                         }  
-                    }  
-                    GetTrId(parseInt((cur.id).substr(1)));
-                    //$('#m' + i).click();
-                } 
-            }
+                        GetTrId(parseInt((cur.id).substr(1)));
+                        //$('#m' + i).click();
+                    } 
+                }
+            }    
         }
 
         function addEvent(element, eventName, callback) {

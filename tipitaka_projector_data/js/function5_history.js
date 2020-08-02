@@ -15,7 +15,7 @@ function DictHistoryList() {
 		var len = DictInfoArr.length;
 		for (var i=0 ; i < len ; i++ ) {
 			url += '<input type="checkbox" name="AnkiHist" id="DictHist' + i + '" checked value="' + DictInfoArr[i].key + '"/>';
-			url += '<a href="javascript:void(0);" onClick="DictHistoryDisplay(\'' + DictInfoArr[i].key + '\');">' + '&nbsp' + DictInfoArr[i].key + '</a><br>';
+			url += '<a href="javascript:void(0);" onClick="DictHistoryDisplay(\'' + DictInfoArr[i].key + '\');" title="' + DictInfoArr[i].key + '">' + '&nbsp' + toTranslate(DictInfoArr[i].key) + '</a><br>';
 		}
 		$('#dicthistory').html(url);
 	}

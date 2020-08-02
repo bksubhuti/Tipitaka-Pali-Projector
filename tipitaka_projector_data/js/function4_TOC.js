@@ -114,9 +114,9 @@ function PaliHistoryList() {
 
 		for (i in PaliHistoryArray) {
 			url += '<input type="checkbox" id="PaliHist' + i + '" checked value="' + PaliHistoryArray[i].html_no + '"/>';
-			url += '<a href="javascript:void(0);" style="white-space: nowrap;\" onClick="PaliHistoryGoUrl(\'' + PaliHistoryArray[i].html_no + "#" + PaliHistoryArray[i].paraNo +  '\');"">' 
+			url += '<a href="javascript:void(0);" style="white-space: nowrap;\" onClick="PaliHistoryGoUrl(\'' + PaliHistoryArray[i].html_no + "#" + PaliHistoryArray[i].paraNo +  '\');" title="' + T_Book[PaliHistoryArray[i].html_no] + '">' 
 			url += toTranslate(T_Book[PaliHistoryArray[i].html_no]); //pass html_no to get the title of book
-			url += '&nbsp;' +'/ '  + PaliHistoryArray[i].Toc_Name;
+			url += '&nbsp;' +'/ '  + toTranslate(PaliHistoryArray[i].Toc_Name);
 			url += '&nbsp;#';
 			url += PaliHistoryArray[i].paraNo + '</a><br>';
 		} 
@@ -559,7 +559,12 @@ function QuickJumpTips() {
 
 
 function SetupToc() {
-    const options = TOC_Dropdown_Items.map((item, index) => `<option value="${index}">${item}</option>`);
+
+	var aryTranslated = toTranslate(TOC_Dropdown_Items.join()).split(',');
+
+
+    //const options = TOC_Dropdown_Items.map((item, index) => `<option value="${index}">${item}</option>`);
+    const options = aryTranslated.map((item, index) => `<option value="${index}">${item}</option>`);
 	document.getElementById('Toc').innerHTML = options;
 
 }

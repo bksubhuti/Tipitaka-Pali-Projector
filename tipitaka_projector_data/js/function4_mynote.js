@@ -42,7 +42,7 @@ function MyNoteEdit() { 	// 0=cancel, 1=save, lines=5-10-20
 				tr_ids = tr_ids + i + ';';		// keep tr_id & HTML Tag
 				if (first == '') {
 					first = i;
-				} 
+				}  
 				 
 				$('#m1_' + i).css('display', 'none');
 				$('#notes' + i).css('display', 'inline'); 

@@ -20,7 +20,7 @@ function AnkiAdd() {
         
                 strDef =DictInfoArr[i].def.replace(/(\r\n|\n|\r)/gm,"");
                 strDef = strDef.replace(/style=\"background-color:rgb\(204,198,176\)\"/g, "");
-                strAnkiLine = strAnkiLine  + DictInfoArr[i].key + '\t' + DictInfoArr[i].source + '\t' +  strDef + '\n';
+                strAnkiLine = strAnkiLine  + toTranslate(DictInfoArr[i].key) + '\t' + toTranslate(DictInfoArr[i].source) + '\t' +  strDef + '\n';
 
             }
         }

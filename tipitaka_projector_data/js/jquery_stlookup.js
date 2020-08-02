@@ -192,8 +192,14 @@ function word_click() {
         var t_backward = sel_object.toString();
 
         var t0 = (t_backward + t_forward).trim();
+
         var ary_tmp = t0.split(' '); 
         t = ary_tmp[ary_tmp.length -1];
+
+        if (ary_tmp.length != 1) {
+        	console.log(t_backward + '  ' + t_forward);
+        	console.log('*** t ***  ' + t);
+        }	
 
 		// Selection so far:
 		//
@@ -202,31 +208,54 @@ function word_click() {
 		// - at this point the browser would select [samay]ena
 		// - this is because of .modify("extend","backward","word")
 		//
-
-        if (ary_tmp.length == 1) {
-        	// Collapsing to the start of the selection means the selection position would be at the start of the word,
-			// in the above example this means:
-			// |samayena
-			//
-			sel_object.collapseToStart();
-			for (var i=0; i<t.length; i++) {
-				var te = t.substr(i, 1);
-				var f = keepChars.test(te); //chars is not included in var keepChars, it will be removed
-				if (f) {
-					break;
+		if (view_left == 'Roman') {
+	        if (ary_tmp.length == 1) {
+	        	// Collapsing to the start of the selection means the selection position would be at the start of the word,
+				// in the above example this means:
+				// |samayena
+				//
+				sel_object.collapseToStart(); 
+				for (var i=0; i<t.length; i++) {
+					var te = t.substr(i, 1);
+					var f = keepChars.test(te); //chars is not included in var keepChars, it will be removed 
+					if (f) {
+						break;
+					} 
+					sel_object.modify("extend","forward","character"); 
 				}
-				sel_object.modify("extend","forward","character");
-			}
-        } else {       
-    		for (var i=0; i<(t0.length -1); i++) {
-    			var v1 = t0.substr(i);
-    			sel_object.modify("move","forward","character"); 
-    			if (v1.indexOf(' ') == -1) {
-    				break;
-    			}
-    		}
-   			sel_object.modify("extend","forward","word");  
-        } 
+	        } else {       
+	    		for (var i=0; i<(t0.length -1); i++) {
+	    			var v1 = t0.substr(i);
+	    			sel_object.modify("move","forward","character"); 
+	    			if (v1.indexOf(' ') == -1) {
+	    				break;
+	    			}
+	    		}
+	   			sel_object.modify("extend","forward","word");  
+	        } 
+	    } else {   // Myanmar, Sinhala
+	    	if (ary_tmp.length == 1) {
+				for (var i=0; i<t_forward.length; i++) {
+					var te = t_forward.substr(i, 1);
+					var f = keepChars.test(te);
+					if (f) {
+						break;
+					} 
+					sel_object.modify("extend","forward","character"); 
+				}  
+				sel_object.modify("move","backward","word"); 
+				//
+				sel_object.modify("move","backward","character"); 
+				sel_object.modify("move","forward","character"); 
+				sel_object.modify("extend","forward","word"); 
+			} else {
+				for (var i=1; i<=(ary_tmp.length -1); i++) {
+					sel_object.modify("move","forward","word"); 
+					sel_object.modify("extend","forward","word"); 
+				}	
+			}	
+	    }
+
         // end of fixing bugs
         //***************************************************************
 		t = t.toLowerCase();
