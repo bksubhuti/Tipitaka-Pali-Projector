@@ -18,9 +18,9 @@ function BookmarkList() {
 
 			for (i in BookmarkArray) {
 				url += '<input type="checkbox" id="BookmarkRec' + i + '" checked value="' + BookmarkArray[i].html_no + '"/>';
-				url += '<a style="white-space: nowrap;\" href=\"#/book/' + BookmarkArray[i].bookId + '/' + BookmarkArray[i].trId + '\");">';
+				url += '<a style="white-space: nowrap;\" href=\"#/book/' + BookmarkArray[i].bookId + '/' + BookmarkArray[i].trId + '\");" title="' + BookmarkArray[i].setTitle + '">';
 
-				url += BookmarkArray[i].setTitle;
+				url += toTranslate(BookmarkArray[i].setTitle);
 				url += ', Id='  + BookmarkArray[i].trId;
 				url += '</a><br>';
 			}

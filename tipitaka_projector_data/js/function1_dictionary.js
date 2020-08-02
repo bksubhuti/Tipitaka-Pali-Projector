@@ -192,7 +192,7 @@ function WordListLookup(target) {
 		if (actualDictionary) {
 			currentKeys += GetKeys(actualDictionary, dictionaryName, key, '');
 		}
-	}
+	} 
 
 	const cleanKeys = currentKeys
 		.replace(/##/g, '#')

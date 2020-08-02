@@ -16,9 +16,9 @@ function MyNoteList() {
 
 					for (i in MyNoteArray) { 
 						url += '<input type="checkbox" id="MyNoteSel' +MyNoteArray[i].TrId + '" checked value="' + MyNoteArray[i].TrId + '"/>'; 
-						url += '<label for="MyNoteSel' + MyNoteArray[i].TrId + '">';
+						url += '<a href="#/book/' + html_no + '/' + MyNoteArray[i].TrId + '">';
 						url += MyNoteArray[i].val;
-						url += '</label><br>';
+						url += '</a><br>';
 					} 
 				}	
 			} 
@@ -42,7 +42,7 @@ function MyNoteEdit() { 	// 0=cancel, 1=save, lines=5-10-20
 				tr_ids = tr_ids + i + ';';		// keep tr_id & HTML Tag
 				if (first == '') {
 					first = i;
-				} 
+				}  
 				 
 				$('#m1_' + i).css('display', 'none');
 				$('#notes' + i).css('display', 'inline'); 
