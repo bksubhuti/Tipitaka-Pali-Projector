@@ -16,9 +16,9 @@ function MyNoteList() {
 
 					for (i in MyNoteArray) { 
 						url += '<input type="checkbox" id="MyNoteSel' +MyNoteArray[i].TrId + '" checked value="' + MyNoteArray[i].TrId + '"/>'; 
-						url += '<label for="MyNoteSel' + MyNoteArray[i].TrId + '">';
+						url += '<a href="#/book/' + html_no + '/' + MyNoteArray[i].TrId + '">';
 						url += MyNoteArray[i].val;
-						url += '</label><br>';
+						url += '</a><br>';
 					} 
 				}	
 			} 
