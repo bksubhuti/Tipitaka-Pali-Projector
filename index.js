@@ -1,4 +1,4 @@
-const { app, BrowserWindow, globalShortcut  } = require('electron')
+const { app, BrowserWindow, globalShortcut, ipcMain } = require('electron')
 const electron = require("electron");
 const { autoUpdater } = require('electron-updater');
 
@@ -7,9 +7,10 @@ const { autoUpdater } = require('electron-updater');
 autoUpdater.autoDownload = false;
 
 let findInPage;
+let mainWindow;
 
 app.on('ready', () => {
-    let mainWindow = new BrowserWindow({
+    mainWindow = new BrowserWindow({
         width: 1200,
         height: 720,
         webPreferences: {
@@ -34,7 +35,7 @@ app.on('ready', () => {
 
     /* Checking updates just after app launch and also notify for the same */
     mainWindow.webContents.on('dom-ready', () => {
-        autoUpdater.checkForUpdates();
+        
     });
 });
 
@@ -52,9 +53,13 @@ autoUpdater.on('update-downloaded', () => {
     mainWindow.webContents.send('update_downloaded');
 });
 
+ipcMain.on('check-for-update', () => {
+    autoUpdater.checkForUpdates();
+});
 ipcMain.on('restart-and-update', () => {
     autoUpdater.quitAndInstall();
 });
 ipcMain.on('download-update', () => {
     autoUpdater.downloadUpdate();
 });
+

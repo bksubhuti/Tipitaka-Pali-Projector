@@ -2585,14 +2585,17 @@
             $message.text('A new update is available. Do you want to download it?');
             $action1.text('Yes').off().click(() => ipcRenderer.send('download-update'));
             $action2.text('No').off().click(() => displayNotification(false));
+            displayNotification(true);
         });
 
         ipcRenderer.on('update_downloaded', () => {
             $message.text('Update Downloaded. It will be installed on restart. Restart now?');
             $action1.text('Yes').off().click(() => ipcRenderer.send('restart-and-update'));
             $action2.text('No').off().click(() => displayNotification(false));
+            displayNotification(true);
         });
 
+        ipcRenderer.send('check-for-update');
     }
 </script>
 
