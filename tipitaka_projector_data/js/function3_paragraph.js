@@ -118,11 +118,14 @@ function LookupDictionary(key) {
 		if ((ary_dict[i] == 'hpe4') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe4, d_name, key);}
 		if ((ary_dict[i] == 'hpe5') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe5, d_name, key);}
 		if ((ary_dict[i] == 'hpe6') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe6, d_name, key);}
+		if ((ary_dict[i] == 'hpe7') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe7, d_name, key);}
 		if ((ary_dict[i] == 'hpg1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pg1, d_name, key);}
 		if ((ary_dict[i] == 'hpm1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pm1, d_name, key);}
 		if ((ary_dict[i] == 'hpm2') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pm2, d_name, key);}
 		if ((ary_dict[i] == 'hpm3') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pm3, d_name, key);}
 		if ((ary_dict[i] == 'hpm4') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pm4, d_name, key);}
+		if ((ary_dict[i] == 'hps1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(ps1, d_name, key);}
+		if ((ary_dict[i] == 'hps2') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(ps2, d_name, key);}
 		if ((ary_dict[i] == 'hpv1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pv1, d_name, key);}
 		if ((ary_dict[i] == 'hpv2') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pv2, d_name, key);}
 		if ((ary_dict[i] == 'hpv3') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pv3, d_name, key);}

@@ -1,7 +1,7 @@
 //global variable ;
 var gbJustLookingBack = false;
 
-function paliGoBack() {
+function paliGoBack() { 
 
 	var strDictInfoArr = localStorage.getItem('DictInfoArr');
 	var DictInfoArr = [];
@@ -161,11 +161,14 @@ function dictionaryMap() {
 		hpe4: pe4,
 		hpe5: pe5,
 		hpe6: pe6,
+		hpe7: pe7,
 		hpg1: pg1,
 		hpm1: pm1,
 		hpm2: pm2,
 		hpm3: pm3,
 		hpm4: pm4,
+		hps1: ps1,
+		hps2: ps2,
 		hpv1: pv1,
 		hpv2: pv2,
 		hpv3: pv3,

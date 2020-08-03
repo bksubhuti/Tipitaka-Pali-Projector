@@ -81,15 +81,16 @@ $.getScript("dictionary/dpr-breakup.js");
 // this var declaration has lines by language..
 var pc1 = ''; var pc2 = '';
 var pd1 = '';
-var pe1 = ''; var pe2 = ''; var pe3 = ''; var pe4 = ''; var pe5 = ''; var pe6 = '';
+var pe1 = ''; var pe2 = ''; var pe3 = ''; var pe4 = ''; var pe5 = ''; var pe6 = ''; var pe7 = '';
 var pg1 = '';
 var pm1 = ''; var pm2 = ''; var pm3 = ''; var pm4 = '';
+var ps1 = ''; var ps2 = '';
 var pv1 = ''; var pv2 = ''; var pv3 = '';
 var se1 = '';
 var ee1 = '';
 
 
-var ary_dict = ';'.repeat(17).split(';');
+var ary_dict = ';'.repeat(20).split(';');
  
 
 var aryAbbr = []; aryTemp = [];
@@ -140,11 +141,14 @@ function initDictionaries(){
 			if ( name == 'hpe4') {$.getScript("dictionary/pe4_Pali_English_Declension_Dict_@DPR_2018.js"); }
 			if ( name == 'hpe5') {$.getScript("dictionary/pe5_Pali_Grammar_Dictionary@DPR_2018.js"); }
 			if ( name == 'hpe6') {$.getScript("dictionary/pe6_Pali_Proper_Names_G_P_Malalasekera@2018.js"); }
+			if ( name == 'hpe7') {$.getScript("dictionary/pe7_Pali_English_Dictionary_extract@Janaka_2020.js"); }
 			if ( name == 'hpg1') {$.getScript("dictionary/pg1_Pali_Germany_sc2016_pi2de-maindata-v1.2.js"); }
 			if ( name == 'hpm1') {$.getScript("dictionary/pm1_Pali_Word_Grammar_@2018.js"); }
 			if ( name == 'hpm2') {$.getScript("dictionary/pm2_Tipitaka_Pali_Myanmar_@2018.js"); }
 			if ( name == 'hpm3') {$.getScript("dictionary/pm3_Pali_Myanmar_Dictionary_@U_Hau_Sein_2018.js"); }
 			if ( name == 'hpm4') {$.getScript("dictionary/pm4_Pali_Roots_Dictionary_@2018.js"); }
+			if ( name == 'hps1') {$.getScript("dictionary/ps1_Pali_Sinhala_by_Buddhadatta@Janaka_2020.js"); }
+			if ( name == 'hps2') {$.getScript("dictionary/ps2_Pali_Sinhala_by_Sumanagala@Janaka_2020.js"); }
 			if ( name == 'hpv1') {$.getScript("dictionary/pv1_Pali_Viet_Dictionary_by_ngaiBuuChon_stardict.js"); }
 			if ( name == 'hpv2') {$.getScript("dictionary/pv2_Pali_Viet_Abhi-Terms_by_ngaiTinhSu_Stardict.js"); }
 			if ( name == 'hpv3') {$.getScript("dictionary/pv3_Pali_Viet_Vinaya-Terms_by_VenGiacNguyenBhikkhu.js"); }

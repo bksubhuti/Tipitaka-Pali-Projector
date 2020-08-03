@@ -16,7 +16,7 @@ function MyNoteList() {
 
 					for (i in MyNoteArray) { 
 						url += '<input type="checkbox" id="MyNoteSel' +MyNoteArray[i].TrId + '" checked value="' + MyNoteArray[i].TrId + '"/>'; 
-						url += '<a href="#/book/' + html_no + '/' + MyNoteArray[i].TrId + '">';
+						url += '<a href="javascript:void(0);" onClick="MyNoteScroll(\'' + MyNoteArray[i].TrId + '\')">';
 						url += MyNoteArray[i].val;
 						url += '</a><br>';
 					} 
@@ -178,6 +178,11 @@ function MyNoteCopy() {
 	   		document.execCommand('copy'); 
 	   	}	
 	}
+}
+
+function MyNoteScroll(TrId) { 
+    var elmnt = document.getElementById('p' + TrId);
+    elmnt.scrollIntoView(); 
 }
 
 

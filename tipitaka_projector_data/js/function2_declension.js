@@ -80,13 +80,16 @@ function DeclensionSearch() {
 			if (ary_dict[i] == 'hpe4') {get_keys = get_keys + GetKeys(pe4, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hpe5') {get_keys = get_keys + GetKeys(pe5, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hpe6') {get_keys = get_keys + GetKeys(pe6, d_name, key, get_keys);}
+			if (ary_dict[i] == 'hpe7') {get_keys = get_keys + GetKeys(pe7, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hpg1') {get_keys = get_keys + GetKeys(pg1, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hpm1') {get_keys = get_keys + GetKeys(pm1, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hpm2') {get_keys = get_keys + GetKeys(pm2, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hpm3') {get_keys = get_keys + GetKeys(pm3, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hpm4') {get_keys = get_keys + GetKeys(pm4, d_name, key, get_keys);}
+			if (ary_dict[i] == 'hps1') {get_keys = get_keys + GetKeys(ps1, d_name, key, get_keys);}
+			if (ary_dict[i] == 'hps2') {get_keys = get_keys + GetKeys(ps2, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hpv1') {get_keys = get_keys + GetKeys(pv1, d_name, key, get_keys);}
-			if (ary_dict[i] == 'hpv2') {get_keys = get_keys + GetKeys(pv2, d_name, key, get_keys);}
+			if (ary_dict[i] == 'hpv2') {get_keys = get_keys + GetKeys(pv2, d_name, key, get_keys);}			
 			if (ary_dict[i] == 'hpv3') {get_keys = get_keys + GetKeys(pv3, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hse1') {get_keys = get_keys + GetKeys(se1, d_name, key, get_keys);}
 		}
