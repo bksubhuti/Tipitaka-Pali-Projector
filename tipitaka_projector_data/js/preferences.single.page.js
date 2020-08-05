@@ -87,6 +87,7 @@ Dicts['pe5'] = 'PE5: [330,972entries - 14.5 MB] Pali Grammar Dictionary@DPR 2018
 Dicts['pe6'] = 'PE6: [5,775 entries - 4.0 MB] Pali Proper Names G P Malalasekera@2018';
 Dicts['pe7'] = 'PE7: [27,730 entries - 22.8 MB] Pali English Dictionary extract@Janaka 2020';
 Dicts['pg1'] = 'PG1: [22,729 entries - 1.27 MB] Pali Germany Suttacentral Offline 2016';
+Dicts['pi1'] = 'PI1: [16,183 entries - 1.2 MB] Pali India Dictionary @Janaka 2020';
 Dicts['pm1'] = 'PM1: [153,527 entries - 37.8 MB] Pali Word Grammar @2018';
 Dicts['pm2'] = 'PM2: [153,527 entries - 23.9 MB] Tipitaka Pali Myanmar @2018';
 Dicts['pm3'] = 'PM3: [58,095 entries - 7.01 MB] Pali Myanmar Dictionary @U Hau Sein 2018';

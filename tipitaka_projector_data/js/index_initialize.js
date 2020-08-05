@@ -54,6 +54,7 @@
         'pe6':'PPN',
         'pe7':'PES',
         'pg1':'PGeD',
+        'pi1':'PInD',
         'pm1':'MmG',
         'pm2':'MmT',
         'pm3':'MmD',
