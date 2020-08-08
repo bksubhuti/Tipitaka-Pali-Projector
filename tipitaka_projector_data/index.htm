@@ -2585,7 +2585,10 @@
 
         ipcRenderer.on('update_available', () => {
             $message.text('A new update is available. Do you want to download it?');
-            $action1.text('Yes').off().click(() => ipcRenderer.send('download-update'));
+            $action1.text('Yes').off().click(() => {
+                ipcRenderer.send('download-update');
+                displayNotification(false);
+            });
             $action2.text('No').off().click(() => displayNotification(false));
             displayNotification(true);
         });
