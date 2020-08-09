@@ -194,6 +194,14 @@ function word_click() {
         //
         sel_object.modify("extend","forward","word");
         var t_forward = sel_object.toString();
+
+		// Fixing selection on MacOS
+		//
+
+		if (navigator.platform.toLowerCase().indexOf('mac') === 0) {
+			sel_object.collapseToStart();
+		}
+
         sel_object.modify("extend","backward","word");
         var t_backward = sel_object.toString();
 
@@ -220,7 +228,7 @@ function word_click() {
 				// in the above example this means:
 				// |samayena
 				//
-				sel_object.collapseToStart(); 
+				sel_object.collapseToStart();
 				for (var i=0; i<t.length; i++) {
 					var te = t.substr(i, 1);
 					var f = keepChars.test(te); //chars is not included in var keepChars, it will be removed 
