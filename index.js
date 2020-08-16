@@ -1,4 +1,4 @@
-const { app, BrowserWindow, globalShortcut, ipcMain } = require('electron')
+const { app, BrowserWindow, globalShortcut, ipcMain, shell } = require('electron')
 const electron = require("electron");
 const { autoUpdater } = require('electron-updater');
 
@@ -60,6 +60,10 @@ ipcMain.on('restart-and-update', () => {
     autoUpdater.quitAndInstall();
 });
 ipcMain.on('download-update', () => {
-    autoUpdater.downloadUpdate();
+    if (process.platform.toLowerCase().indexOf('win') === 0) {
+        autoUpdater.downloadUpdate();
+    } else {
+        shell.openExternal('https://github.com/bksubhuti/Tipitaka-Pali-Projector/releases/latest');
+    }
 });
 
