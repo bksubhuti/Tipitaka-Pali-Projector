@@ -9,13 +9,9 @@ function MyNoteList() {
 			MyNoteArray = JSON.parse(localStorage.getItem('MyNote' + html_no));
 			if (MyNoteArray != null) {// use JSON objects instead
 				if (0 < MyNoteArray.length) {
-					url += '<a href="javascript:void(0);" onClick="MyNoteCopy()"><img src="images/b_browse.png">Copy Text</a>&nbsp;&nbsp;';
-					url += '<a href="javascript:void(0);" onClick="MyNoteClear(\'Select\')"><img src="images/b_drop.png">Delete Select</a>&nbsp;&nbsp;'
-					url += '<a href="javascript:void(0);" onClick="MyNoteClear(\'All\')"><img src="images/b_drop.png">Delete All</a>';
-					url += '<br>';
 
 					for (i in MyNoteArray) { 
-						url += '<input type="checkbox" id="MyNoteSel' +MyNoteArray[i].TrId + '" checked value="' + MyNoteArray[i].TrId + '"/>'; 
+						url += '<input type="checkbox" id="MyNoteSel' +MyNoteArray[i].TrId + '" unchecked value="' + MyNoteArray[i].TrId + '"/>'; 
 						url += '<a href="javascript:void(0);" onClick="MyNoteScroll(\'' + MyNoteArray[i].TrId + '\')">';
 						url += MyNoteArray[i].val;
 						url += '</a><br>';
