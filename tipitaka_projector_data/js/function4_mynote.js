@@ -76,11 +76,12 @@ function MyNoteSaveCancel(key) { 	// Save or Cancel
 			}
 		}   
 
-	    var jMyNoteData = {TrId:"", val:""};
+	    var jMyNoteData = {html:"", TrId:"", val:""};
 	    var MyNoteData = [];   
         for (var i in P_HTM) { 
 			if ($('#notes' + i).val() != '') {  
             	var jMyNoteData = {};
+				jMyNoteData.html = html_no;
 				jMyNoteData.TrId = i; 
 				jMyNoteData.val = $('#m1_' + i).html();  
 	            MyNoteData.push(jMyNoteData);  
@@ -111,6 +112,8 @@ function MyNoteSaveCancel(key) { 	// Save or Cancel
 
 function MyNoteClear(type) {
 	if (type == 'All') { 
+
+		// need to get the html and remove from aray.
 		localStorage.setItem('MyNote' + html_no, '');
 		localStorage.removeItem('MyNote' + html_no); 
  

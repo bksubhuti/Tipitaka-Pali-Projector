@@ -360,14 +360,14 @@ function  displayBook() {
 			//document.getElementById('m' +idx).innerHTML = s2; 
 	}
 
-
+/*
 	if (viewRightConfig == 'MyNote') {
     	localStorage.setItem('MyNote' + html_no, JSON.stringify(MyNoteArray));
 	} 
 	if (viewRightConfig == 'Suttacentral') {
     	localStorage.setItem('SuttaCentral' + html_no, JSON.stringify(SuttaCentralArray));
 	}	
-
+*/
 
 	if (Sr_id != null) {
 		$('#Sr_Div').css('visibility', 'visible');
