@@ -102,21 +102,25 @@
                                                         flag = '1';
                                                         cx_file = cx_file + 1;
                                                         ResultSpan = setResultSpan(i);
-                                                        pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + T_Book[i] + "</span><br>";
+                                                        pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + toSelectedScript(T_Book[i]) + "</span><br>";
                                                     }
 
                                                     cx_hit = cx_hit + 1;
 
                                                     var tmp = ary_source[index];
 
-                                                    tmp = tmp.replace(/\*/g, '') + "<br><br>";
+
+                                                    tmp = tmp.replace(/\*/g, '');
                                                     tmp = tmp.replace(/\';/, '');
                                                     var pos = tmp.indexOf("='");
                                                     var tmp_id = tmp.substring(6, pos-1);
                                                     tmp = tmp.substring(pos + 2);
+                                                    tmp = toSelectedScript(tmp);
+                                                    tmp += "<br><br>";
+
 
                                                     for (j in ary_key) {
-                                                        tmp = replacei(tmp, j, sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + j  + "</a>");
+                                                    	tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + toSelectedScript(j)  + "</a>");
                                                     }
 
                                                     pali = pali + tmp;
@@ -281,7 +285,7 @@
 															flag = '1';
                                                             cx_file = cx_file + 1;
                                                             ResultSpan = setResultSpan(i);
-                                                            pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + T_Book[i] + "</span><br>";
+                                                            pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + toSelectedScript(T_Book[i]) + "</span><br>";
                                                         }
 
 														cx_hit = cx_hit + 1;
@@ -293,9 +297,11 @@
 														var pos = tmp.indexOf("='");
 														var tmp_id = tmp.substring(6, pos-1);
 														tmp = tmp.substring(pos + 2);
+														tmp = toSelectedScript(tmp);
+														tmp += "<br><br>";
 
 														for (j in ary_key) {
-															tmp = replacei(tmp, j, sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + j  + "</a>");
+															tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + j  + "</a>");
 														}
 
 														pali = pali + tmp;
@@ -460,7 +466,7 @@
 															flag = '1';
                                                             cx_file = cx_file + 1;
                                                             ResultSpan = setResultSpan(i);
-                                                            pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + T_Book[i] + "</span><br>";
+                                                            pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + toSelectedScript(T_Book[i]) + "</span><br>";
                                                         }
 
 														cx_hit = cx_hit + 1;
@@ -472,9 +478,11 @@
 														var pos = tmp.indexOf("='");
 														var tmp_id = tmp.substring(6, pos-1);
 														tmp = tmp.substring(pos + 2);
+														tmp = toSelectedScript(tmp);
+														tmp += "<br><br>";
 
 														for (j in ary_key) {
-															tmp = replacei(tmp, j, sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + j  + "</a>");
+															tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + j  + "</a>");
 														}
 
 														pali = pali + tmp;
@@ -635,7 +643,7 @@
 															flag = '1';
                                                             cx_file = cx_file + 1;
                                                             ResultSpan = setResultSpan(i);
-                                                            pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + T_Book[i] + "</span><br>";
+                                                            pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + toSelectedScript(T_Book[i]) + "</span><br>";
                                                         }
 
 														cx_hit = cx_hit + 1;
@@ -647,9 +655,11 @@
 														var pos = tmp.indexOf("='");
 														var tmp_id = tmp.substring(6, pos-1);
 														tmp = tmp.substring(pos + 2);
+														tmp = toSelectedScript(tmp);
+														tmp += "<br><br>";
 
 														for (j in ary_key) {
-															tmp = replacei(tmp, j, sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + j  + "</a>");
+															tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + j  + "</a>");
 														}
 
 														pali = pali + tmp;
@@ -726,11 +736,21 @@ function setResultSpan(i){
             
 }
 
+function toSelectedScript(input, script) {
+	script = script || localStorage.getItem("view_left");
+	if (script === 'Sinhala') {
+		return romanToSinhala(input);
+	}
+	return input;
+}
+
 
 function Keyin() {
     var key = toUniRegEx($('#key').val());
     $('#key').val(key);
-    key = key.trim().toLowerCase();
+    key = toRoman(key.trim().toLowerCase());
+
+
 
     if (document.getElementById('SearchType1').checked == true) {
         key_ary = key.split(' ');
@@ -738,6 +758,9 @@ function Keyin() {
 
         var out = "";
         var key_notfound = "";
+
+        const currentScript = localStorage.getItem("view_left");
+
         for (key_i = 0; key_i < key_ary_length; key_i++) {
             key = key_ary[key_i].trim();
             var len = key.length;
@@ -757,7 +780,7 @@ function Keyin() {
                     for (var i in pws) {
                         if (i.substring(0, len) == key) {
                             cx = cx + 1;
-                            out_tmp = out_tmp + '<a hef="javascript:void(0)" style="color:blue;" onClick="Put(\'' + i + '\');">' + i + '</a>' + " <span style='font-size:9pt;color:#800080;'>" + pws[i] + "</span>,&nbsp;&nbsp;&nbsp;";
+                            out_tmp = out_tmp + '<a hef="javascript:void(0)" style="color:blue;" onClick="Put(\'' + i + '\');">' + toSelectedScript(i, currentScript) + '</a>' + " <span style='font-size:9pt;color:#800080;'>" + pws[i] + "</span>,&nbsp;&nbsp;&nbsp;";
                             if (cx > 99) {
                                 out_tmp = out_tmp + " <span style='font-size:12pt;color:red;'>> 99...</span>";
                                 break;

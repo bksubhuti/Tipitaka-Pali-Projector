@@ -33,6 +33,17 @@ function replacei(str, sub, f){
 	return B.join('');
 }
 
+function toRoman(input) {
+	// this ensures the input text is always converted to roman
+	// it does that by running the input thru all available non-roman-to-roman convertion functions, for now there's
+	// only one such function for sinhala
+	//
+
+	input = sinhalaToRoman(input);
+
+	return input;
+}
+
 function toTranslate(input, viewLeftConfig) {
 	const view_left = viewLeftConfig || localStorage.getItem("view_left");
 	out = '';
