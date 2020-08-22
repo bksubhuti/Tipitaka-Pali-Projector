@@ -393,7 +393,7 @@
 
     <div class="dict">
 
-        <span id="IdMessage" style="font-size:10pt;"
+        <span id="IdMessage" style="font-size:12pt;"
               title="Id=Id-No. Para=Paragraph No. M=Myanmar PageNo. P=PTS PageNo."></span>
 
         <div id="TmpDictionary" style="display:inline;margin-left:10px;">
@@ -620,8 +620,8 @@
                             </div>
                             <br>
 
-                            <span id='LastHistory' style="font-size:10pt;color:blue;"></span>
-                            <span id='palihistory' style="font-size:10pt;color:blue;"></span>
+                            <span id='LastHistory' style="font-size:12pt;color:blue;"></span>
+                            <span id='palihistory' style="font-size:12pt;color:blue;"></span>
                         </div>
                     </div>    
 
@@ -629,7 +629,7 @@
                         <input type="hidden" id="MyNoteIds" value="">
                         <div class="page4"> 
                                 <div class="notselected grey-button" onClick="MyNoteEdit()" title="Add Notes">
-                                <i class="material-icons">add</i>
+                                <i class="material-icons">mode_edit</i>
                                 </div>
                                 <div class="notselected grey-button" onClick="MyNoteCopy()" title="Copy Notes">
                                 <i class="material-icons">content_copy</i>
@@ -640,21 +640,31 @@
                                 <div class="notselected grey-button" onClick="MyNoteClear('All')" title="Clear All">
                                 <i class="material-icons">delete</i>
                                 </div>
-                                    
-                                      &nbsp;&nbsp;&nbsp;
-                                <a href="javascript:void(0);" id="MyNoteSave" onClick="MyNoteSaveCancel('Save')" style="display:none;font-size:11pt;">
-                                    <img src="images/save.png" width="16">Save
-                                </a>
-                                &nbsp;&nbsp;
-                                <a href="javascript:void(0);" id="MyNoteCancel" onClick="MyNoteSaveCancel('Cancel')" style="display:none;font-size:11pt;">
-                                    <img src="images/s_cancel.png" width="16">&nbsp;Cancel
-                                </a>
+                                
+                                <label class="switch">
+                                <input id="AllBooksMyNotes" type="checkbox"  onClick="MyNoteList()" >
+                                <span class="slider round"></span>
+                                </label>
+                                <label for="AllBooksMyNotes" style="color:black;font-size:12pt;">&nbsp;All Books&nbsp;</label>
+
+                                <div id ="MyNoteSave" style="display:none;font-size:12pt;"> 
                                 <br>
 
-                            <div id="MyNoteEditable" style="display: none;">   
-                            </div>    
+                                    <div class="notselected grey-button" onClick="MyNoteSaveCancel('Save')" title="Save">
+                                    <i class="material-icons">save</i>
+                                    </div>
+                                    &nbsp;&nbsp;
+                                    <div class="notselected grey-button" onClick="MyNoteSaveCancel('Cancel')" title="Cancel">
+                                    <i class="material-icons">cancel</i>
+                                    </div>
+                                </div>
+                                <br>
 
-                            <span id='MyNoteList' style="font-size:10pt;"></span>
+                            <div id="MyNoteEditable">   
+                            </div>    
+                            <div class="MyNotesList">
+                                <span id='MyNoteList'></span>
+                            </div>
                         </div>
                     </div>    
 
@@ -676,7 +686,7 @@
                             </div>
 
 
-                            <span id='bookmark' style="font-size:10pt;color:blue;"></span>
+                            <span id='bookmark' style="font-size:12pt;color:blue;"></span>
 
                         </div>
                     </div>  
@@ -1925,7 +1935,7 @@
                                 <tr>
                                     <td valign="top" width="46%" align="left">
                                         <strong style="color:#880000;">Disabled Pali Dictionaries</strong>
-                                        <span id="DisableCount" style="font-size:10pt;color:gray;"></span>
+                                        <span id="DisableCount" style="font-size:12pt;color:gray;"></span>
                                         <select style="width:100%;font-size:12pt;line-height:175%;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;"
                                                 multiple name="DictionaryDisable" id="DictionaryDisable" size="10"
                                                 ondblclick="DictionaryMoveOption(document.form1.DictionaryDisable, document.form1.DictionaryEnable)"
@@ -1950,7 +1960,7 @@
                                     <td valign="top" width="46%" align="left">
 
                                         <strong style="color:#880000;">Enabled Pali Dictionaries</strong>
-                                        <span id="EnableCount" style="font-size:10pt;color:gray;"></span>
+                                        <span id="EnableCount" style="font-size:12pt;color:gray;"></span>
                                         <select style="width:100%;font-size:12pt;line-height:175%;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;"
                                                 multiple name="DictionaryEnable" id="DictionaryEnable" size="10"
                                                 ondblclick="DictionaryMoveOption(document.form1.DictionaryEnable, document.form1.DictionaryDisable)"

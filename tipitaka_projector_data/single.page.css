@@ -651,3 +651,12 @@ body.show-page-numbers p.b1 span.font10 {
 #electron-notification b { 
     flex-grow: 1;
 }
+
+
+.MyNotesList{
+    white-space: nowrap; 
+    width: 380px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    font-size:12pt;
+  }

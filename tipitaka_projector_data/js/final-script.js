@@ -255,12 +255,17 @@ function  displayBook() {
     } else {//
 	    var jMyNoteData = {TrId:"", val:""};
 		var MyNoteArray = [];
-		MyNoteArray = JSON.parse(localStorage.getItem('MyNote' + html_no));  
-		if (MyNoteArray != null){// use JSON objects instead  
-			for (i in MyNoteArray) { 
-				M_LOC[MyNoteArray[i].TrId] = MyNoteArray[i].val; 
-			} 
-		}	
+		var strMyNotes = localStorage.getItem('MyNotes');
+		if (strMyNotes!= null){
+			MyNoteArray = JSON.parse(strMyNotes);  
+			if (MyNoteArray != null){// use JSON objects instead  
+				for (i in MyNoteArray) { 
+					if (MyNoteArray[i].html_no === html_no){
+					M_LOC[MyNoteArray[i].TrId] = MyNoteArray[i].val;
+					} 
+				} 
+			}	
+		}
 		MyNoteArray = [];  
     }
 
