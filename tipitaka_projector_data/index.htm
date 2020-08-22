@@ -173,7 +173,6 @@
                 const getToc = (toc) => {
                     let result = '';
                     for (const t of toc) {
-                        console.log(t);
                         result += `\n<option data-ref="${t.href}">${t.label}</option>`;
                         if (t.subitems && t.subitems.length > 0) {
                             result += `\n<optgroup label="${t.label}">${getToc(t.subitems)}</optgroup>`;
@@ -2301,7 +2300,7 @@
 
     //<script src="dictionary/z_search_pali_words.js"></ script>
     function Put(val) {
-        var key = $('#key').val().trim();
+        var key = toSelectedScript($('#key').val().trim());
         var pos = key.lastIndexOf(' ');
         if (pos != -1) {
             $('#key').val(key.substr(0, pos) + ' ' + val);
