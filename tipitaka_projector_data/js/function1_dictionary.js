@@ -229,3 +229,17 @@ function WordListLookup(target) {
 }
 
 
+const variations = { 
+	'a': '[aā]',
+	't': '[tṭ]',
+	'n': '[nñṇṅ]',
+	'i': '[iī]',
+	'd': '[dḍ]',
+	'l': '[lḷ]',
+	'm': '[mṁṃ]',
+}
+/*usage
+const str = key.replace(/[atnidlm]/g, (m) => variations[m])
+const filterRegex = new RegExp(str)
+something.match(filterRegex)==null;
+*/

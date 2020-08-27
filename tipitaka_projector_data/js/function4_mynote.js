@@ -205,6 +205,8 @@ function MyNoteCopy() {
 		if (0 < MyNoteArray.length) {		 
 			var strMyNote = '';
 			for (i in MyNoteArray) { 
+				strMyNote += toTranslate(T_Book[MyNoteArray[i].html_no]) + '\n';
+				strMyNote += "Paragraph " + GetMyanmarParaNo( MyNoteArray[i].TrId) + '\n';
 				strMyNote += $('#p' + MyNoteArray[i].TrId).text().trim() + '\n';
 				strMyNote += MyNoteArray[i].val + '\n\n'; 
 			} 
