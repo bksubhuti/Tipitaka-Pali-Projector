@@ -231,6 +231,7 @@ function WordListLookup(target) {
 
 const variations = { 
 	'a': '[aā]',
+	'u': '[uū]',
 	't': '[tṭ]',
 	'n': '[nñṇṅ]',
 	'i': '[iī]',

@@ -960,7 +960,7 @@ function Keyin() {
                     var out_tmp = "";
 
 
-					str =  key.replace(/[atnidlm]/g, (m) => variations[m]);
+					str =  key.replace(/[autnidlm]/g, (m) => variations[m]);
 					filterRegex = new RegExp(str);
 				
 				

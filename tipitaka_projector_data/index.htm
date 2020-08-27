@@ -1317,11 +1317,11 @@
                                    checked>
                             <label for="SearchType1" style="color:blue;font-size:12pt;">&nbsp;Tipiṭaka&nbsp;</label>
 
-                            <input type="submit" onClick="Start_Fuzzy()" name="Submit" value="Fuzzy">&nbsp;&nbsp;
-                            <input type="submit" onClick="Start_Exact()" name="Submit" value="Exact">&nbsp;&nbsp;
-                            <input type="submit" onClick="Start_Prefix()" name="Submit" value="Prefix">&nbsp;&nbsp;
-                            <input type="submit" onClick="Start_Suffix()" name="Submit" value="Suffix">&nbsp;&nbsp;
-                            <input type="submit" onClick="Start_Sentence()" name="Submit" value="Sentence"><br>
+                            <input type="submit" onClick="Start_Fuzzy()" name="Submit" value="Fuzzy" title="Find words in any position... beginning or middle or ending">&nbsp;&nbsp;
+                            <input type="submit" onClick="Start_Exact()" name="Submit" value="Exact" title="Find words with exact spelling">&nbsp;&nbsp;
+                            <input type="submit" onClick="Start_Prefix()" name="Submit" value="Prefix" title="Find words starting with ...">&nbsp;&nbsp;
+                            <input type="submit" onClick="Start_Suffix()" name="Submit" value="Suffix" title="Find words ending with ...">&nbsp;&nbsp;
+                            <input type="submit" onClick="Start_Sentence()" name="Submit" value="Sentence" title="Search multiple words in a row"><br>
                         </td>
                         <td width="10%"></td>
                     </tr>
@@ -1329,9 +1329,9 @@
                         <td></td>
                         <td>
                             <input name="SearchType" id="SearchType2" type="radio" onChange="SetSelect();Keyin()">
-                            <label for="SearchType2" style="color:blue;font-size:12pt;">&nbsp;Fuzzy Title&nbsp;</label>
+                            <label for="SearchType2" title="Search titles anywhere in the words of the titles" style="color:blue;font-size:12pt;">&nbsp;Fuzzy Title&nbsp;</label>
                             <input name="SearchType" id="SearchType3" type="radio" onChange="SetSelect();Keyin()">
-                            <label for="SearchType3" style="color:blue;font-size:12pt;">&nbsp;Prefix Title&nbsp;</label>
+                            <label for="SearchType3" title="Search titles where it begins with ..." style="color:blue;font-size:12pt;">&nbsp;Prefix Title&nbsp;</label>
                         </td>
                         <td>
                             <span style="color:blue;cursor: pointer;font-size:12pt;" onClick="Clear();">Clear</span><br>
