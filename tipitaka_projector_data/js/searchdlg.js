@@ -959,8 +959,14 @@ function Keyin() {
                     cx = 0;
                     var out_tmp = "";
 
+
+					str =  key.replace(/[atnidlm]/g, (m) => variations[m]);
+					filterRegex = new RegExp(str);
+				
+				
+
                     for (var i in pws) {
-                        if (i.substrsearing(0, len) == key) {
+                        if (i.search(filterRegex)==0 ) {
                             cx = cx + 1;
                             out_tmp = out_tmp + '<a hef="javascript:void(0)" style="color:blue;" onClick="Put(\'' + i + '\');">' + toSelectedScript(i, currentScript) + '</a>' + " <span style='font-size:9pt;color:#800080;'>" + pws[i] + "</span>,&nbsp;&nbsp;&nbsp;";
                             if (cx > 99) {
