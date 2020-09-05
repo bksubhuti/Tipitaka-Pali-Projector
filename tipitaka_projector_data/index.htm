@@ -2676,5 +2676,107 @@
     }
 </script>
 
+<script>
+//
+// New Selection Algorithm
+//
+// Highly experimental
+//
+// To test:
+// - In the Settings make sure "Left Text" is set to "Sinhala"
+// - Load up "පාරාජික පාළි" (Pārājika Pāḷi)
+// - Click "නළෙරුපුචිමන්දමූලෙ" ( naḷerupucimandamūle)
+// - It should be selected, where as the older selection would not select it
+//
+// * The selected word itself is returned in the wordInfo object (wordInfo.word) and
+// * can be used to trigger the dictionary etc.
+//
+// The code is based on spliting clear text by ' ' (spaces) which means a word might
+// contain punctuation (for example .,!?‘), which should be removed from the word 
+// before it's used in a dictionary lookup or elsewhere.
+//
+// Note this hasn't been tested on Electron yet.
+//
+
+const USE_EXPERIMENTAL_SELECTION = true;
+
+$('#main_table').on('click', 'td.r1 p.b1', function onParagraphClick(event) {
+    if (!USE_EXPERIMENTAL_SELECTION) {
+        return;
+    }
+    event.preventDefault();
+    event.stopPropagation();
+
+    const $p = $(this);
+    const offset = $p.offset();
+    
+    const clone = $p.clone();
+    clone.css({
+        position: 'absolute',
+        'z-index': 123456789,
+        left: 0,
+        top: 0,
+        width: $p.outerWidth(),
+        height: $p.outerHeight(),
+        background: 'red'
+    });
+
+    const contents = clone.contents().toArray();
+
+    let nodes = '';
+    let index = 0;
+    let nodeIndex = 0;
+
+    for (const node of contents) {
+        if (node.nodeType === Node.TEXT_NODE) {
+            const words = node.data.split(' ');
+            const spanWords = [];
+            index = 0;
+            for (const word of words) {
+                const wordLength = word.length;
+                const spanWord = '<span class="clickable word" data-node="' + nodeIndex + '" data-word="' + word + '" data-index="' + index + '" data-length="' + wordLength + '">' + word + '</span>';
+                index += wordLength;
+                index++; // 1 for ' '
+                spanWords.push(spanWord);
+            }
+            nodes += spanWords.join(' ');
+        } else {
+            const $node = $(node);
+            const $nodeWithParent = $('<div></div>').html($node);
+            index += $nodeWithParent.text().length;
+            nodes += $nodeWithParent.html()
+        }
+        nodeIndex++;
+    }
+    clone.html(nodes);
+    
+    const parent = $p.parent();
+    parent.css('position', 'relative').append(clone);
+    
+    const x = offset.left + event.offsetX;
+    const y = offset.top + event.offsetY;
+    
+    const element = document.elementFromPoint(x, y);
+
+    if (element && element.classList.contains('clickable') && element.classList.contains('word')) {
+        const wordInfo = Object.assign({}, element.dataset);
+
+        const targetTextNode = this.childNodes[parseInt(wordInfo.node)];
+
+        const range = document.createRange();
+        const start = parseInt(wordInfo.index);
+        const end = start + parseInt(wordInfo.length);
+
+        range.setStart(targetTextNode, start);
+        range.setEnd(targetTextNode, end); 
+
+        document.getSelection().removeAllRanges();
+        document.getSelection().addRange(range);
+    }
+    clone.remove();
+    
+});
+</script>
+
 </body>
 </html>
