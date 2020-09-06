@@ -1,42 +1,46 @@
+function afterWordClicked(word, tdr1) {
+
+	if (latestElementClickedJqueryObject) {
+		$(latestElementClickedJqueryObject).removeClass("recentClickedCSSleft");
+		$(latestElementClickedJqueryObject).removeClass("recentClickedCSSright");
+	}
+	$(this).addClass("recentClickedCSSright");
+	latestElementClickedJqueryObject = $(tdr1);
+
+	GetTrId($(tdr1).attr('id').substring(1));
+
+	word_click(word);
+	if (t.length > 0) {
+		//lookupCoordinator(t, 0);	//$changecolor = $ns % 2; /
+		$('#main_div').css('display', 'inline');
+
+		if (localStorage.getItem('main_content') == 'page1') {
+			DictionaryKeyGo();
+		} else {
+			if (localStorage.getItem('main_content') == 'page2') {
+				change_tab('page2');
+			} else {
+				if (localStorage.getItem('main_content') == 'page3') {
+					ParagraphAnalysis();
+					window.location= '#G_' + t;
+				}
+			}
+		}
+	}
+
+	const currentTab = localStorage.getItem('main_content');
+
+	if (['page4', 'page5'].indexOf(currentTab) >= 0) {
+		// switch to dictionary
+		//
+		onTabClick(document.getElementById('page1'));
+	}
+}
 function registerListeners() {
 
 	$(document.body).on('click', '.r1', function () {
 		// copy from stlooku_jquery.js designed by Ven. Paññindriya(Vietnam)
-		if (latestElementClickedJqueryObject) {
-			$(latestElementClickedJqueryObject).removeClass("recentClickedCSSleft");
-			$(latestElementClickedJqueryObject).removeClass("recentClickedCSSright");
-		}
-		$(this).addClass("recentClickedCSSright");
-		latestElementClickedJqueryObject = $(this);
 
-		GetTrId($(this).attr('id').substring(1));
-
-		word_click();
-		if (t.length > 0) {
-			//lookupCoordinator(t, 0);	//$changecolor = $ns % 2; /
-			$('#main_div').css('display', 'inline');
-
-			if (localStorage.getItem('main_content') == 'page1') {
-				DictionaryKeyGo();
-			} else {
-				if (localStorage.getItem('main_content') == 'page2') {
-					change_tab('page2');
-				} else {
-					if (localStorage.getItem('main_content') == 'page3') {
-						ParagraphAnalysis();
-						window.location= '#G_' + t;
-					}
-				}
-			}
-		}
-
-		const currentTab = localStorage.getItem('main_content');
-
-		if (['page4', 'page5'].indexOf(currentTab) >= 0) {
-			// switch to dictionary
-			//
-			onTabClick(document.getElementById('page1'));
-		}
 	});
 
 	$(document.body).on('click', '.m1', function () {

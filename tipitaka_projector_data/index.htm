@@ -2700,16 +2700,16 @@
 
 const USE_EXPERIMENTAL_SELECTION = true;
 
-$('#main_table').on('click', 'td.r1 p.b1', function onParagraphClick(event) {
+const onParagraphClicked = function onParagraphClicked(event, paragraph) {
     if (!USE_EXPERIMENTAL_SELECTION) {
         return;
     }
     event.preventDefault();
     event.stopPropagation();
 
-    const $p = $(this);
+    const $p = $(paragraph);
     const offset = $p.offset();
-    
+
     const clone = $p.clone();
     clone.css({
         position: 'absolute',
@@ -2749,32 +2749,45 @@ $('#main_table').on('click', 'td.r1 p.b1', function onParagraphClick(event) {
         nodeIndex++;
     }
     clone.html(nodes);
-    
+
     const parent = $p.parent();
     parent.css('position', 'relative').append(clone);
-    
+
     const x = offset.left + event.offsetX;
     const y = offset.top + event.offsetY;
-    
+
     const element = document.elementFromPoint(x, y);
 
     if (element && element.classList.contains('clickable') && element.classList.contains('word')) {
         const wordInfo = Object.assign({}, element.dataset);
 
-        const targetTextNode = this.childNodes[parseInt(wordInfo.node)];
+        if (!wordInfo) {
+            return;
+        }
+
+        const targetTextNode = paragraph.childNodes[parseInt(wordInfo.node)];
 
         const range = document.createRange();
         const start = parseInt(wordInfo.index);
         const end = start + parseInt(wordInfo.length);
 
         range.setStart(targetTextNode, start);
-        range.setEnd(targetTextNode, end); 
+        range.setEnd(targetTextNode, end);
 
         document.getSelection().removeAllRanges();
         document.getSelection().addRange(range);
+
+        afterWordClicked(wordInfo.word, paragraph.parentElement);
     }
     clone.remove();
-    
+};
+
+$('#main_table').on('click', 'td.r1 p.b1', function onParagraphClick(event) {
+    try {
+        onParagraphClicked(event, this);
+    } catch (e) {
+        console.log('error selecting word', e);
+    }
 });
 </script>
 
