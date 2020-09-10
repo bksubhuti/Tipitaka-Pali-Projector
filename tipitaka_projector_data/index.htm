@@ -31,6 +31,7 @@
     <script src="js/epublib/jszip.min.js"></script>
     <script src="js/epublib/epub.min.js"></script> 
 
+
     <script>
         var UseSinglePageLoading = true;
         var DEBUG = true;
@@ -1191,7 +1192,8 @@
         'function5_history.js',
         'function5_anki.js',
         'z_tipitaka_Maps.js',
-        'z_search_navigator.js'
+        'z_search_navigator.js',
+        'pali-script.js'
     ];
 
     // This is a global jQuery getString override.
@@ -2299,17 +2301,6 @@
 
     } );
 
-    //<script src="dictionary/z_search_pali_words.js"></ script>
-    function Put(val) {
-        var key = toSelectedScript($('#key').val().trim());
-        var pos = key.lastIndexOf(' ');
-        if (pos != -1) {
-            $('#key').val(key.substr(0, pos) + ' ' + val);
-        } else {
-            $('#key').val(val + ' ');
-        }
-        Start_Fuzzy();
-    }
 
     function replacei(str, sub, f) {
         let A = str.toLowerCase().split(sub.toLowerCase());

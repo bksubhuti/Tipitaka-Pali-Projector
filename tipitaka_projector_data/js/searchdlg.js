@@ -13,8 +13,9 @@
 			$('#msg').html('');
 
 			localStorage.setItem("Sr_type", 'E');
-
-			var key = toUniRegEx($('#key').val()).trim().toLowerCase();
+			var strKey = $('#key').val();
+			strKey = toRoman(strKey);
+			var key = toUniRegEx(strKey).trim().toLowerCase();
 			if ( 1 < key.length) {
 				localStorage.setItem("Sr_key", key);
 
@@ -134,8 +135,6 @@
 
 														pali = pali + tmp;
 														Sr_id = Sr_id + tmp_id + ";";
-														
-
 													}
 												}
 											}
@@ -193,9 +192,11 @@
 
         $('#msg').html('');
 
-        localStorage.setItem("Sr_type", 'F');
-
-        var key = toUniRegEx($('#key').val()).trim().toLowerCase();
+		localStorage.setItem("Sr_type", 'F');
+		
+		var strKey = $('#key').val();
+		strKey = toRoman(strKey);
+        var key = toUniRegEx(strKey).trim().toLowerCase();
         if ( 1 < key.length) {
             localStorage.setItem("Sr_key", key);
 
@@ -370,7 +371,10 @@
 
 			localStorage.setItem("Sr_type", 'E');
 
-			var key = toUniRegEx($('#key').val()).trim().toLowerCase();
+			var strKey = $('#key').val();
+			strKey = toRoman(strKey);
+			var key = toUniRegEx(strKey).trim().toLowerCase();
+			
 			if ( 1 < key.length) {
 				localStorage.setItem("Sr_key", key);
 
@@ -550,8 +554,10 @@
 
 			localStorage.setItem("Sr_type", 'S');
 
-			var key = toUniRegEx($('#key').val()).trim().toLowerCase();
-
+			var strKey = $('#key').val();
+			strKey = toRoman(strKey);
+			var key = toUniRegEx(strKey).trim().toLowerCase();
+	
 			if ( 1 < key.length) {
 				localStorage.setItem("Sr_key", key);
 
@@ -729,7 +735,10 @@
 
 			localStorage.setItem("Sr_type", 'P');
 
-			var key = toUniRegEx($('#key').val()).trim().toLowerCase();
+			var strKey = $('#key').val();
+			strKey = toRoman(strKey);
+			var key = toUniRegEx(strKey).trim().toLowerCase();
+
 			if ( 1 < key.length) {
 				localStorage.setItem("Sr_key", key);
 
@@ -919,11 +928,8 @@ function setResultSpan(i){
 }
 
 function toSelectedScript(input, script) {
-	script = script || localStorage.getItem("view_left");
-	if (script === 'Sinhala') {
-		return romanToSinhala(input);
-	}
-	return input;
+	return toTranslate(input);
+
 }
 
 
@@ -1139,3 +1145,16 @@ function Jump(url) {
 	id = url.substring(4);
 	PaliHistoryGoUrl(html + "#p"+id);
 }
+
+// copied from index.htm when the search word is clicked on 
+function Put(input) {
+	var strKey = toSelectedScript(input.trim());
+	var pos = strKey.lastIndexOf(' ');
+	if (pos != -1) {
+		$('#key').val(strKey.substr(0, pos) + ' ' + input);
+	} else {
+		$('#key').val(strKey + ' ');
+	}
+	Start_Fuzzy();
+}
+

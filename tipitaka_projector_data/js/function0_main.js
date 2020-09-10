@@ -35,18 +35,21 @@ function replacei(str, sub, f){
 
 function toRoman(input) {
 	// this ensures the input text is always converted to roman
-	// it does that by running the input thru all available non-roman-to-roman convertion functions, for now there's
-	// only one such function for sinhala
 	//
+	const view_left = localStorage.getItem("view_left");
+	var out = '';
+	var input = '' + input;
+	var selectedScript = Script.RO;
 
-	input = sinhalaToRoman(input);
-
-	return input;
+	const sinhStr = TextProcessor.convertFromMixed(input);
+	out = TextProcessor.convert(sinhStr, selectedScript);
+	return (out.toLowerCase());
 }
 
 function toTranslate(input, viewLeftConfig) {
-	const view_left = viewLeftConfig || localStorage.getItem("view_left");
-	out = '';
+	//const view_left = viewLeftConfig || localStorage.getItem("view_left");
+	const view_left = localStorage.getItem("view_left");
+	var out = '';
 	input = '' + input;
 	switch (view_left) {
 		case 'Roman' :
@@ -56,7 +59,11 @@ function toTranslate(input, viewLeftConfig) {
 			out = toMyanmar(input);
 			break;
 		case 'Sinhala' :
-			out = romanToSinhala(input);
+			// this is the proper one to use and fixes one issue
+			// however, cannot use for other scripts because it is slow.
+			var selectedScript = Script.SI;
+			const sinhStr = TextProcessor.convertFromMixed(input);
+			out = TextProcessor.convert(sinhStr, selectedScript);
 			break;
 		case 'Thai' :
 			out = toThai(input);
@@ -69,7 +76,7 @@ function toTranslate(input, viewLeftConfig) {
 }
 
 function toTranslateRight(input) {
-	out = '';
+	var out = '';
 	input = '' + input;
 	switch (view_right) {
 		case 'Roman' :
