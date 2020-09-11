@@ -561,11 +561,7 @@ a:link {
 #welcome .welcome-content * {
     color: black;
 }
-
-a:link {
-    color: blue;
-  }
-
+#welcome .welcome-content a u h1 { color: blue; }
 
 
 .app-dialog{
