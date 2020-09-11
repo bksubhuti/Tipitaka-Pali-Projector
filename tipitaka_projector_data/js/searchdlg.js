@@ -130,7 +130,7 @@
 														tmp += "<br><br>";
 
 														for (j in ary_key) {
-															tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + j  + "</a>");
+															tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + toSelectedScript(j)  + "</a>");
 														}
 
 														pali = pali + tmp;
@@ -487,7 +487,7 @@
 														tmp += "<br><br>";
 
 														for (j in ary_key) {
-															tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + j  + "</a>");
+															tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + toSelectedScript(j)  + "</a>");
 														}
 
 														pali = pali + tmp;
@@ -670,7 +670,7 @@
 														tmp += "<br><br>";
 
 														for (j in ary_key) {
-															tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + j  + "</a>");
+															tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + toSelectedScript(j)  + "</a>");
 														}
 
 														pali = pali + tmp;
@@ -850,7 +850,7 @@
 														tmp += "<br><br>";
 
 														for (j in ary_key) {
-															tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + j  + "</a>");
+															tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + toSelectedScript(j)  + "</a>");
 														}
 
 														pali = pali + tmp;
