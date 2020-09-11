@@ -2773,7 +2773,7 @@ const onParagraphClicked = function onParagraphClicked(event, paragraph) {
     clone.remove();
 };
 
-$('#main_table').on('click', 'td.r1 p.b1', function onParagraphClick(event) {
+$('#main_table').on('click', 'td.r1 > p', function onParagraphClick(event) {
     try {
         onParagraphClicked(event, this);
     } catch (e) {
