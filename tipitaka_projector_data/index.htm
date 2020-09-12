@@ -2695,6 +2695,10 @@
 const USE_EXPERIMENTAL_SELECTION = true;
 
 const onParagraphClicked = function onParagraphClicked(event, paragraph) {
+    const selection = window.getSelection();
+    if (selection && !selection.isCollapsed) {
+        return;
+    }
     if (!USE_EXPERIMENTAL_SELECTION) {
         return;
     }
