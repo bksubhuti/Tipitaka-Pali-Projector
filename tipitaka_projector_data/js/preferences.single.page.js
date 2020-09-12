@@ -598,6 +598,7 @@ var updatePanelColors = function updatePanelColors(panel_bg_color, panel_font_co
 
     $('#main_div').css('backgroundColor', panel_bg_color);
     $('#main_div').css('color', panel_font_color);
+    $('.helpers').css('background-color', panel_bg_color);
 
     var x = document.getElementById('colortable').getElementsByTagName('td');
     x[0].style.backgroundColor =  panel_bg_color ;//'rgb(' + colorR + ',' + colorG + ',' + colorB + ')';
