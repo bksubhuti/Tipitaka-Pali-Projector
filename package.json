@@ -36,7 +36,10 @@
     "copyright": "Copyright © 2018 according to license in github",
     "publish": [
       "github"
-    ]
+    ],
+    "linux": {
+        "target": "deb"
+    }
   },
   "win": {
     "icon": "build/tpp-icon.png",
