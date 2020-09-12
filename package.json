@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/bksubhuti/Tipitaka-Pali-Projector.git"
   },
-  "author": "bksubhuti",
+  "author": "Bhante Subhuti <bksubhuti@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/bksubhuti/Tipitaka-Pali-Projector/issues"
@@ -40,7 +40,7 @@
   },
   "win": {
     "icon": "build/tpp-icon.png",
-    "publisherName": "Trinity InfoSystem",
+    "publisherName": "Pa-Auk TPP Department",
     "publish": [
       "github"
     ],
@@ -50,9 +50,9 @@
   },
   "linux": {
     "target": [
-      "AppImage",
-      "tar.gz"
-    ]
+      "deb"
+    ],
+    "category": "Education"
   },
   "dmg": {
     "icon": "build/tpp-icon.png",
