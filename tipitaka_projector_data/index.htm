@@ -2738,7 +2738,7 @@ const onParagraphClicked = function onParagraphClicked(event, paragraph) {
             const $node = $(node);
             const $nodeWithParent = $('<div></div>').html($node);
             index += $nodeWithParent.text().length;
-            nodes += $nodeWithParent.html()
+            nodes += $nodeWithParent.html();
         }
         nodeIndex++;
     }

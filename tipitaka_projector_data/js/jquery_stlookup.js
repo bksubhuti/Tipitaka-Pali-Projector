@@ -166,7 +166,6 @@ function initDictionaries(){
 
 function cleanSelectedWord(t) {
 	t = t.toLowerCase();
-	console.log('will clean', t);
 
 	/* Remove @begining: like "Katha... */
 	var te = t.substring(0, 1);
@@ -286,8 +285,13 @@ function onWordSelected(t) {
 }
 
 function selectWord(word) {
-	return onWordSelected(cleanSelectedWord(word));
+	if (word) {
+		return onWordSelected(cleanSelectedWord(word));
+	} else {
+		return word_click2();
+	}
 }
+
 function word_click(word) {
 	if (word) {
 		selectWord(word);
@@ -295,6 +299,8 @@ function word_click(word) {
 		const selection = window.getSelection();
 		if (selection) {
 			selectWord(selection.toString().trim());
+		} else {
+			word_click2();
 		}
 	}
 }
