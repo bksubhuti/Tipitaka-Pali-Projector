@@ -1,6 +1,6 @@
 {
   "name": "tipitaka-pali-projector",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "You can download this program in the clone or download zip section of this github.  Top right of this page.\r Soon there will be a release section.\r Then open up index.htm and start.",
   "main": "index.js",
   "icon": "build/tpp-icon.ico",
