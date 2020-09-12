@@ -164,8 +164,148 @@ function initDictionaries(){
 	$('#TmpDictionary').html(tmpDictionary);
 }
 
+function cleanSelectedWord(t) {
+	t = t.toLowerCase();
 
-function word_click() {
+	/* Remove @begining: like "Katha... */
+	var te = t.substring(0, 1);
+	var f = keepChars.test(te); //chars is not included in var keepChars, it will be removed
+	if (f) {
+		t = t.substring(1, t.length);
+		//2 times to remove punctuation.
+		var te = t.substring(0, 1);
+		var f = keepChars.test(te);
+		if (f) {
+			t = t.substring(1, t.length);
+		}
+	}
+
+	/* Remove @ending: like: kiṃ’’? (3 times)*/
+	var te = t.substring(0, 1);
+	var f = keepChars.test(te); //chars is not included in var keepChars, it will be removed
+	if (f) {
+		t = t.substring(1, t.length);
+		//2 times to remove punctuation.
+		var te = t.substring(0, 1);
+		var f = keepChars.test(te);
+		if (f) {
+			t = t.substring(1, t.length);
+		}
+	}
+
+	for (var i=1; i<=10; i++) {
+		var te = t.substring(0, 1);
+		var f = deleChars.test(te); //chars is not included in var keepChars, it will be removed
+		if (f) {
+			t = t.substring(1, t.length);
+		}
+	}
+
+	t = t.replace(/\(/g, ' ').replace(/\)/g, ' ').replace(/\[/g, ' ').replace(/\]/g, ' ').replace(/\,/g, ' ').replace(/\-/g, ' ').replace(/\./g, ' ').replace(/;/g, ' ').replace(/\+/g, ' ').replace(/\‘/g, ' ').replace(/\’/g, ' ').replace(/\  /g, ' ').replace(/\ \ /g, ' ');
+
+	t = t.trim();
+
+	if (t.length > 512) {
+		t = t.substring(0, 512);
+	}
+	//**************************
+
+	const view_left = localStorage.getItem("view_left");
+	if (view_left !== 'Roman' && typeof(P_HTM) !== 'undefined') {
+		var id = parseInt(localStorage.getItem('tr_id'));
+		var data = P_HTM[id].toLowerCase();
+
+		var reg1 = /\ /g;
+		data = data.replace(reg1, '*');
+		var reg1 = /\./g;
+		data = data.replace(reg1, '*');
+		var reg1 = /\;/g;
+		data = data.replace(reg1, '*');
+		var reg1 = /\-/g;
+		data = data.replace(reg1, '*');
+		var reg1 = /\‘/g;
+		data = data.replace(reg1, '*');
+		var reg1 = /\’/g;
+		data = data.replace(reg1, '*');
+		var ary = data.split('*');
+
+		for (var i in ary) {
+			switch (view_left) {
+				case 'Myanmar' :
+					if (toMyanmar(ary[i]).trim() == t) {
+						t = ary[i].trim();
+						break;
+					}
+				case 'Sinhala' :
+					if (romanToSinhala(ary[i]).trim() == t) {
+						t = ary[i].trim();
+						break;
+					}
+				case 'Thai' :
+					if (toThai(ary[i]).trim() == t) {
+						t = ary[i].trim();
+						break;
+					}
+				case 'Devanagari' :
+					if (toDevar(ary[i]).trim() == t) {
+						t = ary[i].trim();
+						break;
+					}
+			}
+		}
+	}
+	console.log('cleaned', t);
+	return t;
+}
+
+function onWordSelected(t) {
+	var tdict = t;
+	var n = tdict.indexOf(' ');
+	if (n != -1) {
+		tdict = tdict.substring(0, n);
+	}
+
+	for (i=0; i<=5; i++) {
+		var n = tdict.length - 1;
+		var f = tdict.substr(n, 1);
+		if (',.?’[ '.indexOf(f) != -1) {
+			tdict = tdict.substr(0, n);
+		}
+	}
+
+	pos = (t + ' ').indexOf(' ');
+	k1 = t.substring(0, pos);
+	$("#DictionaryKey").val(tdict);
+	document.write = localStorage.se
+	localStorage.setItem('DictionaryKey', tdict);
+	$("#DeclensionKey").val(tdict);
+	document.write = localStorage.setItem('DeclensionKey', tdict);
+
+	return t;
+}
+
+function selectWord(word) {
+	if (word) {
+		return onWordSelected(cleanSelectedWord(word));
+	} else {
+		return word_click2();
+	}
+}
+
+function word_click(word) {
+	if (word) {
+		selectWord(word);
+	} else {
+		const selection = window.getSelection();
+		if (selection) {
+			selectWord(selection.toString().trim());
+		} else {
+			word_click2();
+		}
+	}
+}
+
+function word_click2() {
 	/*
 	References:
 	@ https://developer.mozilla.org/en-US/docs/Web/API/Selection
@@ -272,120 +412,13 @@ function word_click() {
 
         // end of fixing bugs
         //***************************************************************
-		t = t.toLowerCase();
-
-		/* Remove @begining: like "Katha... */
-		var te = t.substring(0, 1);
-		var f = keepChars.test(te); //chars is not included in var keepChars, it will be removed
-		if (f) {
-			t = t.substring(1, t.length);
-			//2 times to remove punctuation.
-			var te = t.substring(0, 1);
-			var f = keepChars.test(te);
-			if (f) {
-			  t = t.substring(1, t.length);
-			}
-		}
-
-		/* Remove @ending: like: kiṃ’’? (3 times)*/
-		var te = t.substring(0, 1);
-		var f = keepChars.test(te); //chars is not included in var keepChars, it will be removed
-		if (f) {
-			t = t.substring(1, t.length);
-			//2 times to remove punctuation.
-			var te = t.substring(0, 1);
-			var f = keepChars.test(te);
-			if (f) {
-			  t = t.substring(1, t.length);
-			}
-		}
-
-		for (var i=1; i<=10; i++) {
-			var te = t.substring(0, 1);
-			var f = deleChars.test(te); //chars is not included in var keepChars, it will be removed
-			if (f) {
-			  t = t.substring(1, t.length);
-			}
-		}
-
-		t = t.replace(/\(/g, ' ').replace(/\)/g, ' ').replace(/\[/g, ' ').replace(/\]/g, ' ').replace(/\,/g, ' ').replace(/\-/g, ' ').replace(/\./g, ' ').replace(/;/g, ' ').replace(/\+/g, ' ').replace(/\‘/g, ' ').replace(/\’/g, ' ').replace(/\  /g, ' ').replace(/\ \ /g, ' ');
-
-		t = t.trim(); 
-
-		if (t.length > 512) { 
-			t = t.substring(0, 512);
-		}
-		//**************************
-
-		if (view_left !== 'Roman' && typeof(P_HTM) !== 'undefined') {
-			var id = parseInt(localStorage.getItem('tr_id'));			
-			var data = P_HTM[id].toLowerCase();
-
-			var reg1 = /\ /g;
-			data = data.replace(reg1, '*');
-			var reg1 = /\./g;
-			data = data.replace(reg1, '*');
-			var reg1 = /\;/g;
-			data = data.replace(reg1, '*');
-			var reg1 = /\-/g;
-			data = data.replace(reg1, '*');
-			var reg1 = /\‘/g;
-			data = data.replace(reg1, '*');
-			var reg1 = /\’/g;
-			data = data.replace(reg1, '*');
-			var ary = data.split('*');
-
-			for (var i in ary) {
-				switch (view_left) {
-					case 'Myanmar' :
-						if (toMyanmar(ary[i]).trim() == t) {
-							t = ary[i].trim();
-							break;
-						}
-					case 'Sinhala' :
-						if (romanToSinhala(ary[i]).trim() == t) {
-							t = ary[i].trim();
-							break;
-						}
-					case 'Thai' :
-						if (toThai(ary[i]).trim() == t) {
-							t = ary[i].trim();
-							break;
-						}
-					case 'Devanagari' :
-						if (toDevar(ary[i]).trim() == t) {
-							t = ary[i].trim();
-							break;
-						}
-				}
-			}
-		}
+		t = cleanSelectedWord(t);
 
 		sel_object = "";
 	}
 
 
-	var tdict = t;
-	var n = tdict.indexOf(' ');
-	if (n != -1) {
-		tdict = tdict.substring(0, n);
-	}
-
-	for (i=0; i<=5; i++) {
-		var n = tdict.length - 1;
-		var f = tdict.substr(n, 1);
-		if (',.?’[ '.indexOf(f) != -1) {
-			tdict = tdict.substr(0, n);
-		}
-	} 
-
-	pos = (t + ' ').indexOf(' ');
-	k1 = t.substring(0, pos);  
-	$("#DictionaryKey").val(tdict);
-	document.write = localStorage.se
-	localStorage.setItem('DictionaryKey', tdict); 
-	$("#DeclensionKey").val(tdict);
-	document.write = localStorage.setItem('DeclensionKey', tdict); 
+	t = onWordSelected(t);
 
 	return t; 
 }//function word_click

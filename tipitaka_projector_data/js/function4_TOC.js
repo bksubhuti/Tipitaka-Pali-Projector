@@ -107,13 +107,10 @@ function PaliHistoryList() {
 	PaliHistoryArray = JSON.parse(localStorage.getItem('PaliHistoryJSON'));
 	if (PaliHistoryArray != null){// use JSON objects instead
 		var url = '';
-		url += '<a href="javascript:void(0);" onClick="PaliHistoryCopy()" style="font-size:11pt;"><img src="images/b_browse.png" width="16">Copy</a>&nbsp;&nbsp;';
-		url += '<a href="javascript:void(0);" onClick="PaliHistoryClear(\'Select\')" style="font-size:11pt;"><img src="images/b_drop.png" width="16">Delete Select</a>&nbsp;&nbsp;'
-		url += '<a href="javascript:void(0);" onClick="PaliHistoryClear(\'All\')" style="font-size:11pt;"><img src="images/b_drop.png" width="16">Delete All</a>';
 		url += '<br>';
 
 		for (i in PaliHistoryArray) {
-			url += '<input type="checkbox" id="PaliHist' + i + '" checked value="' + PaliHistoryArray[i].html_no + '"/>';
+			url += '<input type="checkbox" id="PaliHist' + i + '" unchecked value="' + PaliHistoryArray[i].html_no + '"/>';
 			url += '<a href="javascript:void(0);" style="white-space: nowrap;\" onClick="PaliHistoryGoUrl(\'' + PaliHistoryArray[i].html_no + "#" + PaliHistoryArray[i].paraNo +  '\');" title="' + T_Book[PaliHistoryArray[i].html_no] + '">' 
 			url += toTranslate(T_Book[PaliHistoryArray[i].html_no]); //pass html_no to get the title of book
 			url += '&nbsp;' +'/ '  + toTranslate(PaliHistoryArray[i].Toc_Name);

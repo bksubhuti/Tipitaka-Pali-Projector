@@ -327,7 +327,7 @@ a:visited {
 }
 
 a:link {
-    color: #0000ff;
+    color: #0000ff ;
     text-decoration: none;
 }
 
@@ -561,6 +561,7 @@ a:link {
 #welcome .welcome-content * {
     color: black;
 }
+#welcome .welcome-content a u h1 { color: blue; }
 
 
 .app-dialog{
@@ -646,3 +647,12 @@ body.show-page-numbers p.b1 span.font10 {
 #electron-notification b { 
     flex-grow: 1;
 }
+
+
+.MyNotesList{
+    white-space: nowrap; 
+    width: 380px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    font-size:12pt;
+  }

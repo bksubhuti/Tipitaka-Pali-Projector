@@ -1,8 +1,9 @@
 function BookmarkList() {
+	var url ='<br>';
 	if (typeof P_HTM == 'undefined') {  
-		var url = '<br>';
+		url = url +  '<br>';
 	} else {
-		var	url = '<a href="javascript:void(0);" onClick="BookmarkAdd()"><img src="images/add_point_on.png" width="16">Add Bookmark</a><br>';
+		//var	url = '<a href="javascript:void(0);" onClick="BookmarkAdd()"><img src="images/add_point_on.png" width="16">Add Bookmark</a><br>';
 	}	
 
 	var v1 = localStorage.getItem('BookmarkJSON'); 
@@ -11,13 +12,9 @@ function BookmarkList() {
 		var BookmarkArray = [];
 		BookmarkArray = JSON.parse(v1);
 		if (BookmarkArray != null){// use JSON objects instead
-			url += '<a href="javascript:void(0);" onClick="BookmarkCopy()" style="font-size:11pt;"><img src="images/b_browse.png" width="16">Copy</a>&nbsp;&nbsp;';
-			url += '<a href="javascript:void(0);" onClick="BookmarkClear(\'Select\')" style="font-size:11pt;"><img src="images/b_drop.png" width="16">Delete Select</a>&nbsp;&nbsp;'
-			url += '<a href="javascript:void(0);" onClick="BookmarkClear(\'All\')" style="font-size:11pt;"><img src="images/b_drop.png" width="16">Delete All</a>';
-			url += '<br>';
 
 			for (i in BookmarkArray) {
-				url += '<input type="checkbox" id="BookmarkRec' + i + '" checked value="' + BookmarkArray[i].html_no + '"/>';
+				url += '<input type="checkbox" id="BookmarkRec' + i + '" unchecked value="' + BookmarkArray[i].bookId + '"/>';
 				url += '<a style="white-space: nowrap;\" href=\"#/book/' + BookmarkArray[i].bookId + '/' + BookmarkArray[i].trId + '\");" title="' + BookmarkArray[i].setTitle + '">';
 
 				url += toTranslate(BookmarkArray[i].setTitle);
@@ -70,7 +67,7 @@ function BookmarkAdd() {
 function BookmarkClear(type) {
 	if (type == 'All') {
 		document.write = localStorage.setItem('BookmarkJSON', ''); 
-		$('#bookmark').html(url); 
+		$('#bookmark').html(""); 
 	} else {
 		var str = "";
 		var strBookmark = localStorage.getItem('BookmarkJSON');

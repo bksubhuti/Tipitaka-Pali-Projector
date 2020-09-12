@@ -68,13 +68,13 @@ function DictionaryGo() {
 	//preserve original for searching... 
 	//var strOrigKey = this.dataset.wordvalue.trim();
 
-	key = $('#DictionaryKey').val().toLowerCase().trim();
+	var key = $('#DictionaryKey').val().toLowerCase().trim();
 
 	jDictInfo.key = key;
 
  
 	if (key == '') { return(''); } 
-	$('#DictionaryKey').val(key);
+	$('#DictionaryKey').val(toTranslate(key));
 
 
 	var DictionaryRet = '';
@@ -138,7 +138,7 @@ function DictionaryGo() {
 function DictionaryKeyGo() {
 	if (localStorage.getItem('main_content') == 'page2') {
 		key = toUniRegEx($('#DictionaryKey').val().toLowerCase().trim()); 
-		$('#DictionaryKey').val(key);
+		$('#DictionaryKey').val(toTranslate(key));
 		DeclensionShow(key);
 	} else {
 		DictionaryGo();
@@ -179,9 +179,11 @@ function dictionaryMap() {
 
 
 function WordListLookup(target) {
-	const key = toUniRegEx($('#DictionaryKey').val().toLowerCase().trim()); 
+	var key = toUniRegEx($('#DictionaryKey').val().toLowerCase().trim()); 
 	$('#DictionaryKey').val(key);
 	if (!key) { return [] }
+
+	key =toRoman(key);
 
 	dict_records = 0;
 	let currentKeys = '';
@@ -229,3 +231,18 @@ function WordListLookup(target) {
 }
 
 
+const variations = { 
+	'a': '[aā]',
+	'u': '[uū]',
+	't': '[tṭ]',
+	'n': '[nñṇṅ]',
+	'i': '[iī]',
+	'd': '[dḍ]',
+	'l': '[lḷ]',
+	'm': '[mṁṃ]',
+}
+/*usage
+const str = key.replace(/[atnidlm]/g, (m) => variations[m])
+const filterRegex = new RegExp(str)
+something.match(filterRegex)==null;
+*/

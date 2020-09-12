@@ -31,6 +31,7 @@
     <script src="js/epublib/jszip.min.js"></script>
     <script src="js/epublib/epub.min.js"></script> 
 
+
     <script>
         var UseSinglePageLoading = true;
         var DEBUG = true;
@@ -173,7 +174,6 @@
                 const getToc = (toc) => {
                     let result = '';
                     for (const t of toc) {
-                        console.log(t);
                         result += `\n<option data-ref="${t.href}">${t.label}</option>`;
                         if (t.subitems && t.subitems.length > 0) {
                             result += `\n<optgroup label="${t.label}">${getToc(t.subitems)}</optgroup>`;
@@ -393,7 +393,7 @@
 
     <div class="dict">
 
-        <span id="IdMessage" style="font-size:10pt;"
+        <span id="IdMessage" style="font-size:12pt;"
               title="Id=Id-No. Para=Paragraph No. M=Myanmar PageNo. P=PTS PageNo."></span>
 
         <div id="TmpDictionary" style="display:inline;margin-left:10px;">
@@ -581,10 +581,11 @@
                     </span>
                     <div id="QuickJumpTipsShow" onClick="this.style.display='none'"
                          style="color:#440000;font-size:11pt;display:none;line-height:14pt;text-align: left;display: inline-block;display: none;">
-                         Jump DN22 is Dīgha Nikāya 22nd Sutta<br>
-                         Jump MN22 is Majjhima Nikāya 22nd Sutta<br>
-                         Jump SN1.22 is Saṃyutta 1 and 22nd Sutta <Br>
-                         Jump an5.20 is Aṅguttara Nikāya "Book of Fives", 20th Sutta
+                        <br>
+                         DN22 is Dīgha Nikāya 22nd Sutta<br>
+                         MN22 is Majjhima Nikāya 22nd Sutta<br>
+                         SN1.22 is Saṃyutta 1 and 22nd Sutta <Br>
+                         an5.20 is Aṅguttara Nikāya "Book of Fives", 20th Sutta
                     </div> 
                     <div id="QuickJumpTips" style="color:#440000;text-align: left;display: inline-block;line-height: 16pt;"></div>
                 </div>
@@ -605,39 +606,88 @@
                 </ul>
                 <br> 
  
-                <div style="border: 1px #aaaaaa solid;margin-left: -5px;padding:3px;margin-right: -10px;">
+                <div style="border: 1px #aaaaaa solid;margin-left: -5px;padding:10px;margin-right: -10px;">
                     <div id="pg4_page1_desc" class="pages">
                         <div class="page4">
-                            <span id='LastHistory' style="font-size:10pt;color:blue;"></span>
-                            <span id='palihistory' style="font-size:10pt;color:blue;"></span>
+                            <div class="notselected grey-button" onClick="PaliHistoryCopy()" title="Copy Pali History">
+                            <i class="material-icons">content_copy</i>
+                            </div>
+                            <div class="notselected grey-button" onClick="PaliHistoryClear('Select')" title="Clear Selected">
+                            <i class="material-icons">delete_sweep</i>
+                            </div>
+                            <div class="notselected grey-button" onClick="PaliHistoryClear('All')" title="Clear All">
+                            <i class="material-icons">delete</i>
+                            </div>
+                            <br>
+
+                            <span id='LastHistory' style="font-size:12pt;color:blue;"></span>
+                            <span id='palihistory' style="font-size:12pt;color:blue;"></span>
                         </div>
                     </div>    
 
                     <div id="pg4_page2_desc" class="pages" style="display:none;"> 
                         <input type="hidden" id="MyNoteIds" value="">
                         <div class="page4"> 
-                            <div id="MyNoteEditable" style="display: none;">   
-                                <a href="javascript:void(0);" id="MyNoteEdit" onClick="MyNoteEdit()" style="font-size:12pt;margin-bottom:11px">
-                                     <img src="images/add_point_on.png" width="16">Edit
-                                </a>
-                                &nbsp;&nbsp;
-                                <a href="javascript:void(0);" id="MyNoteSave" onClick="MyNoteSaveCancel('Save')" style="display:none;font-size:11pt;">
-                                    <img src="images/save.png" width="16">Save
-                                </a>
-                                &nbsp;&nbsp;
-                                <a href="javascript:void(0);" id="MyNoteCancel" onClick="MyNoteSaveCancel('Cancel')" style="display:none;font-size:11pt;">
-                                    <img src="images/s_cancel.png" width="16">&nbsp;Cancel
-                                </a>
-                                <br>
-                            </div>    
+                                <div class="notselected grey-button" onClick="MyNoteEdit()" title="Add Notes">
+                                <i class="material-icons">mode_edit</i>
+                                </div>
+                                <div class="notselected grey-button" onClick="MyNoteCopy()" title="Copy Notes">
+                                <i class="material-icons">content_copy</i>
+                                </div>
+                                <div class="notselected grey-button" onClick="MyNoteClear('Select')" title="Clear Selected">
+                                <i class="material-icons">delete_sweep</i>
+                                </div>
+                                <div class="notselected grey-button" onClick="MyNoteClear('All')" title="Clear All">
+                                <i class="material-icons">delete</i>
+                                </div>
+                                
+                                <label class="switch">
+                                <input id="AllBooksMyNotes" type="checkbox"  onClick="MyNoteList()" >
+                                <span class="slider round"></span>
+                                </label>
+                                <label for="AllBooksMyNotes" style="color:black;font-size:12pt;">&nbsp;All Books&nbsp;</label>
 
-                            <span id='MyNoteList' style="font-size:10pt;"></span>
+                                <div id ="MyNoteSave" style="display:none;font-size:12pt;"> 
+                                <br>
+
+                                    <div class="notselected grey-button" onClick="MyNoteSaveCancel('Save')" title="Save">
+                                    <i class="material-icons">save</i>
+                                    </div>
+                                    &nbsp;&nbsp;
+                                    <div class="notselected grey-button" onClick="MyNoteSaveCancel('Cancel')" title="Cancel">
+                                    <i class="material-icons">cancel</i>
+                                    </div>
+                                </div>
+                                <br>
+
+                            <div id="MyNoteEditable">   
+                            </div>    
+                            <div class="MyNotesList">
+                                <span id='MyNoteList'></span>
+                            </div>
                         </div>
                     </div>    
 
                     <div id="pg4_page3_desc" class="pages" style="display:none;">
                         <div class="page4">
-                            <span id='bookmark' style="font-size:10pt;color:blue;"></span>
+
+
+                            <div class="notselected grey-button" onClick="BookmarkAdd()" title="Add Bookmark">
+                            <i class="material-icons">add</i>
+                            </div>
+                            <div class="notselected grey-button" onClick="BookmarkCopy()" title="Copy Bookmarks">
+                            <i class="material-icons">content_copy</i>
+                            </div>
+                            <div class="notselected grey-button" onClick="BookmarkClear('Select')" title="Clear Selected">
+                            <i class="material-icons">delete_sweep</i>
+                            </div>
+                            <div class="notselected grey-button" onClick="BookmarkClear('All')" title="Clear All">
+                            <i class="material-icons">delete</i>
+                            </div>
+
+
+                            <span id='bookmark' style="font-size:12pt;color:blue;"></span>
+
                         </div>
                     </div>  
                 </div>   
@@ -647,11 +697,40 @@
 
             <div id="page5_desc" class="pages2" style="display:none;">
                 <div class="pages">
+
                     <img src='images/b_browse.png'>Dictionary History
+                    <br>
+
+                    <div class="notselected grey-button" onClick="DictHistoryCopy()" title="Copy History">
+                    <i class="material-icons">content_copy</i>
+                    </div>
+                    <div class="notselected grey-button" onClick="DictHistoryClear('Select')" title="Clear Selected">
+                    <i class="material-icons">delete_sweep</i>
+                    </div>
+                    <div class="notselected grey-button" onClick="DictHistoryClear('All')" title="Clear All">
+                    <i class="material-icons">delete</i>
+                    </div>
+
+
                     <span id='dicthistory' style="font-size:11pt;color:blue;"></span>&nbsp;&nbsp;
                 </div>
-                <br>
+                <div class="pages">  
+                    <img src='images/b_browse.png'>Anki Functions for selected words above 
+                    <br>
 
+                    <div class="notselected grey-button" onClick="AnkiAdd()" title="Export to Anki File">
+                    <img src="images/Anki-icon.svg.png" width="35">
+                    </div>
+
+                    <div class="notselected grey-button" onClick="AnkiCopy()" title="Copy Anki">
+                    <i class="material-icons">content_copy</i>
+                    </div>
+
+                    <div class="notselected grey-button" onClick="AnkiClear()" title="Clear Anki">
+                    <i class="material-icons">delete</i>
+                    </div>
+                </div>
+                <br>
                 <div class="pages">
                     <img src='images/b_ftext.png' width="24">Copy Text
                     &nbsp;
@@ -676,21 +755,6 @@
                 </div>
                 <br>
 
-                <div class="pages">  
-                    <img src='images/Anki-icon.svg.png' width="24">Anki
-                    &nbsp;
-                    <a href="javascript:void(0);" onClick="AnkiCopy()" style="font-size:11pt;">
-                        <img src="images/b_ftext.png" width="16">Copy
-                    </a>
-                    &nbsp;&nbsp;
-                    <a href="javascript:void(0);" onClick="AnkiAdd()" style="font-size:11pt;">
-                        <img src="images/Anki-icon.svg.png" width="16">Add to Anki
-                    </a>
-                    &nbsp;&nbsp;
-                    <a href="javascript:void(0);" onClick="AnkiClear()" style="font-size:11pt;">
-                        <img src="images/b_drop.png" width="16">Delete All
-                    </a>
-                </div>
             </div>
         </div>
     </div>
@@ -929,8 +993,11 @@
             <br>
                 <img src="images/asoka.png" alt="asoka" > 
             </span>
+            <h1>Project is located here:</h1>
             <a href="https://github.com/bksubhuti/Tipitaka-Pali-Projector"><u><h1>https://github.com/bksubhuti/Tipitaka-Pali-Projector</h1></u></a>
-            <a href="https://www.youtube.com/channel/UCMKjBJT7vMjyWt8RU4lpiDg"><h1>Visit and subscribe to the Tipitaka Pāḷi Projector Youtube Channel <u>here.</u></h1></a>
+            <br>
+            <h1>Visit and subscribe to the Tipitaka Pāḷi Projector Youtube Channel</h1>
+            <a href="https://www.youtube.com/channel/UCMKjBJT7vMjyWt8RU4lpiDg"><u><h1>https://www.youtube.com/channel/UCMKjBJT7vMjyWt8RU4lpiDg</h1></u></a>
 
 
         </div>
@@ -1128,7 +1195,8 @@
         'function5_history.js',
         'function5_anki.js',
         'z_tipitaka_Maps.js',
-        'z_search_navigator.js'
+        'z_search_navigator.js',
+        'pali-script.js'
     ];
 
     // This is a global jQuery getString override.
@@ -1254,10 +1322,11 @@
                                    checked>
                             <label for="SearchType1" style="color:blue;font-size:12pt;">&nbsp;Tipiṭaka&nbsp;</label>
 
-                            <input type="submit" onClick="Start_Fuzzy()" name="Submit" value="Fuzzy">&nbsp;&nbsp;
-                            <input type="submit" onClick="Start_Exact()" name="Submit" value="Exact">&nbsp;&nbsp;
-                            <input type="submit" onClick="Start_Prefix()" name="Submit" value="Prefix">&nbsp;&nbsp;
-                            <input type="submit" onClick="Start_Suffix()" name="Submit" value="Suffix"><br>
+                            <input type="submit" onClick="Start_Fuzzy()" name="Submit" value="Fuzzy" title="Find words in any position... beginning or middle or ending">&nbsp;&nbsp;
+                            <input type="submit" onClick="Start_Exact()" name="Submit" value="Exact" title="Find words with exact spelling">&nbsp;&nbsp;
+                            <input type="submit" onClick="Start_Prefix()" name="Submit" value="Prefix" title="Find words starting with ...">&nbsp;&nbsp;
+                            <input type="submit" onClick="Start_Suffix()" name="Submit" value="Suffix" title="Find words ending with ...">&nbsp;&nbsp;
+                            <input type="submit" onClick="Start_Sentence()" name="Submit" value="Sentence" title="Search multiple words in a row"><br>
                         </td>
                         <td width="10%"></td>
                     </tr>
@@ -1265,9 +1334,9 @@
                         <td></td>
                         <td>
                             <input name="SearchType" id="SearchType2" type="radio" onChange="SetSelect();Keyin()">
-                            <label for="SearchType2" style="color:blue;font-size:12pt;">&nbsp;Fuzzy Title&nbsp;</label>
+                            <label for="SearchType2" title="Search titles anywhere in the words of the titles" style="color:blue;font-size:12pt;">&nbsp;Fuzzy Title&nbsp;</label>
                             <input name="SearchType" id="SearchType3" type="radio" onChange="SetSelect();Keyin()">
-                            <label for="SearchType3" style="color:blue;font-size:12pt;">&nbsp;Prefix Title&nbsp;</label>
+                            <label for="SearchType3" title="Search titles where it begins with ..." style="color:blue;font-size:12pt;">&nbsp;Prefix Title&nbsp;</label>
                         </td>
                         <td>
                             <span style="color:blue;cursor: pointer;font-size:12pt;" onClick="Clear();">Clear</span><br>
@@ -1871,7 +1940,7 @@
                                 <tr>
                                     <td valign="top" width="46%" align="left">
                                         <strong style="color:#880000;">Disabled Pali Dictionaries</strong>
-                                        <span id="DisableCount" style="font-size:10pt;color:gray;"></span>
+                                        <span id="DisableCount" style="font-size:12pt;color:gray;"></span>
                                         <select style="width:100%;font-size:12pt;line-height:175%;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;"
                                                 multiple name="DictionaryDisable" id="DictionaryDisable" size="10"
                                                 ondblclick="DictionaryMoveOption(document.form1.DictionaryDisable, document.form1.DictionaryEnable)"
@@ -1896,7 +1965,7 @@
                                     <td valign="top" width="46%" align="left">
 
                                         <strong style="color:#880000;">Enabled Pali Dictionaries</strong>
-                                        <span id="EnableCount" style="font-size:10pt;color:gray;"></span>
+                                        <span id="EnableCount" style="font-size:12pt;color:gray;"></span>
                                         <select style="width:100%;font-size:12pt;line-height:175%;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;"
                                                 multiple name="DictionaryEnable" id="DictionaryEnable" size="10"
                                                 ondblclick="DictionaryMoveOption(document.form1.DictionaryEnable, document.form1.DictionaryDisable)"
@@ -2221,23 +2290,20 @@
                     setSearchNavigator();
 
                     $('#search').dialog('close');
+
+                    // fix for android partial select
+                    document.onselectionchange = function() {
+                        var selection = document.getSelection();
+                        //console.log('New selection made --- ' + selection);
+                        word_click();
+                    };
+
                 });
             }
         }
 
     } );
 
-    //<script src="dictionary/z_search_pali_words.js"></ script>
-    function Put(val) {
-        var key = $('#key').val().trim();
-        var pos = key.lastIndexOf(' ');
-        if (pos != -1) {
-            $('#key').val(key.substr(0, pos) + ' ' + val);
-        } else {
-            $('#key').val(val + ' ');
-        }
-        Start_Fuzzy();
-    }
 
     function replacei(str, sub, f) {
         let A = str.toLowerCase().split(sub.toLowerCase());
@@ -2602,6 +2668,125 @@
 
         ipcRenderer.send('check-for-update');
     }
+</script>
+
+<script>
+//
+// New Selection Algorithm
+//
+// Highly experimental
+//
+// To test:
+// - In the Settings make sure "Left Text" is set to "Sinhala"
+// - Load up "පාරාජික පාළි" (Pārājika Pāḷi)
+// - Click "නළෙරුපුචිමන්දමූලෙ" ( naḷerupucimandamūle)
+// - It should be selected, where as the older selection would not select it
+//
+// * The selected word itself is returned in the wordInfo object (wordInfo.word) and
+// * can be used to trigger the dictionary etc.
+//
+// The code is based on spliting clear text by ' ' (spaces) which means a word might
+// contain punctuation (for example .,!?‘), which should be removed from the word 
+// before it's used in a dictionary lookup or elsewhere.
+//
+// Note this hasn't been tested on Electron yet.
+//
+
+const USE_EXPERIMENTAL_SELECTION = true;
+
+const onParagraphClicked = function onParagraphClicked(event, paragraph) {
+    const selection = window.getSelection();
+    if (selection && !selection.isCollapsed) {
+        return;
+    }
+    if (!USE_EXPERIMENTAL_SELECTION) {
+        return;
+    }
+    event.preventDefault();
+    event.stopPropagation();
+
+    const $p = $(paragraph);
+    const offset = $p.offset();
+
+    const clone = $p.clone();
+    clone.css({
+        position: 'absolute',
+        'z-index': 123456789,
+        left: 0,
+        top: 0,
+        width: $p.outerWidth(),
+        height: $p.outerHeight(),
+        background: 'red'
+    });
+
+    const contents = clone.contents().toArray();
+
+    let nodes = '';
+    let index = 0;
+    let nodeIndex = 0;
+
+    for (const node of contents) {
+        if (node.nodeType === Node.TEXT_NODE) {
+            const words = node.data.split(' ');
+            const spanWords = [];
+            index = 0;
+            for (const word of words) {
+                const wordLength = word.length;
+                const spanWord = '<span class="clickable word" data-node="' + nodeIndex + '" data-word="' + word + '" data-index="' + index + '" data-length="' + wordLength + '">' + word + '</span>';
+                index += wordLength;
+                index++; // 1 for ' '
+                spanWords.push(spanWord);
+            }
+            nodes += spanWords.join(' ');
+        } else {
+            const $node = $(node);
+            const $nodeWithParent = $('<div></div>').html($node);
+            index += $nodeWithParent.text().length;
+            nodes += $nodeWithParent.html();
+        }
+        nodeIndex++;
+    }
+    clone.html(nodes);
+
+    const parent = $p.parent();
+    parent.css('position', 'relative').append(clone);
+
+    const x = offset.left + event.offsetX;
+    const y = offset.top + event.offsetY;
+
+    const element = document.elementFromPoint(x, y);
+
+    if (element && element.classList.contains('clickable') && element.classList.contains('word')) {
+        const wordInfo = Object.assign({}, element.dataset);
+
+        if (!wordInfo) {
+            return;
+        }
+
+        const targetTextNode = paragraph.childNodes[parseInt(wordInfo.node)];
+
+        const range = document.createRange();
+        const start = parseInt(wordInfo.index);
+        const end = start + parseInt(wordInfo.length);
+
+        range.setStart(targetTextNode, start);
+        range.setEnd(targetTextNode, end);
+
+        document.getSelection().removeAllRanges();
+        document.getSelection().addRange(range);
+
+        afterWordClicked(wordInfo.word, paragraph.parentElement);
+    }
+    clone.remove();
+};
+
+$('#main_table').on('click', 'td.r1 > p', function onParagraphClick(event) {
+    try {
+        onParagraphClicked(event, this);
+    } catch (e) {
+        console.log('error selecting word', e);
+    }
+});
 </script>
 
 </body>

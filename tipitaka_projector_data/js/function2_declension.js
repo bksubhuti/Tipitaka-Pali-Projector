@@ -19,6 +19,11 @@ function GetKeys(ary, dname, key, ret_key) {
 		tag = '!';
 	}
 
+	
+	str =  key.replace(/[atnidlm]/g, (m) => variations[m]);
+	filterRegex = new RegExp(str);
+
+
 	var result = '#';
 	var key_len = key.length;
 	for (var i in ary) {
@@ -28,7 +33,7 @@ function GetKeys(ary, dname, key, ret_key) {
 			v2 = i.slice(-key_len);
 			v3 = i.indexOf(key);
 
-			if (((v1 == key) && (key_x.substring(0, 1) == '0')) || ((v2 == key) && (key_x == '10')) || ((v3 != -1) && (key_x == '11'))) {
+			if (i.search(filterRegex)==0 ){ // && (key_x.substring(0, 1) == '0')) || ((v2 == key) && (key_x == '10')) || ((v3 != -1) && (key_x == '11'))) {
 				result = result + tag + i + '#';
 				dict_records = dict_records +1;
 				if (100 < dict_records) {

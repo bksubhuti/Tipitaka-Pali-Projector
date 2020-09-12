@@ -1,3 +1,184 @@
+
+		function Start_Sentence() {
+			document.getElementById('SearchType1').checked = true;
+			SetSelect();
+			
+			var startDate = new Date();
+			var strTopResult ='';
+			$('#SearchResult').html(strTopResult);
+
+
+			var Str_Pali = 'abcdefghijklmnopqrstuvwxyzāīūṅñṭḍṇḷṃABCDEFGHIJKLMNOPQRSTUVWXYZĀĪŪṄÑṬḌHṆḶṂ';
+
+			$('#msg').html('');
+
+			localStorage.setItem("Sr_type", 'E');
+			var strKey = $('#key').val();
+			strKey = toRoman(strKey);
+			var key = toUniRegEx(strKey).trim().toLowerCase();
+			if ( 1 < key.length) {
+				localStorage.setItem("Sr_key", key);
+
+				var i, x , y;
+                var ResultSpan ='';
+
+				var ary_key = [];
+				var tmp = '';
+				var ary = key.split(' ');
+				for (i in ary) {
+					if (i.trim() != '') {
+						tmp = tmp + ' ' + ary[i];
+					}
+				}
+				ary_key[tmp.substr(1)] = tmp.substr(1);
+
+
+				var max_length = 0;
+				for (x=1; x<=3; x++) {
+				  for (y=1; y<=8; y++) {
+				    $('#Out' + y + x).html('');
+				    localStorage.setItem('Sr_Out' + y + x, '');
+				  }
+				}
+
+				for (i in pws_no) {
+					localStorage.setItem('Sr_id' + i, '');
+				}
+
+				var total_file = 0;
+				var total_hit = 0;
+
+				for (x=1; x<=3; x++) {
+					for (y=1; y<=8; y++) {
+						var name1 = 'Nikaya' + y + x;
+						var cx_file = 0;
+						var cx_hit = 0;
+
+						var pali = '';
+						if (document.getElementById(name1).checked) {
+							name1 = name1.substring(6);
+
+							for (i in pws_no) {
+								//alert(i.substring(0, 2) + "  =  " + name1);
+
+								if (i.substring(0, 2) == name1) {
+									var file = 'pali/' + i + 'a.js';
+
+									var Sr_id = '';
+									//alert(file);
+
+									//**********
+									// read file
+									//**********
+									var flag = '0'
+									var rawFile = new XMLHttpRequest();
+									rawFile.open("GET", file, false);
+									rawFile.onreadystatechange = function () {
+										if (rawFile.readyState === 4) {
+											if (rawFile.status === 200 || rawFile.status == 0) {
+												//diffrent here 
+												var data =' ' +  rawFile.responseText + ' ';
+
+												var ary_source = data.split( "\n" );
+												data = data.toLowerCase();
+
+												var ary = data.split( "\n" );
+
+												for(index = 0; index < ary.length; index++) {
+													var flag_ary = '1';
+													//var sno = ary[index].substring(6);
+													//sno = parseInt(sno);
+
+													for (j in ary_key) {
+														var pos = ary[index].indexOf(j);
+														var tmp = ary[index].substr(pos + j.length, 1);
+														if ( pos == -1) {
+															flag_ary = '0';
+															j = 999;
+														} else {
+															var tmp = ary[index].substr(pos + j.length, 1);
+															if (Str_Pali.indexOf(tmp) != -1) {
+																flag_ary = '0';
+																j = 999;
+															} else {
+																var tmp = ary[index].substr(pos-1, 1);
+																if (Str_Pali.indexOf(tmp) != -1) {
+																	flag_ary = '0';
+																	j = 999;
+																}
+															}
+														}
+													}
+													if (flag_ary == '1') {
+														if (flag == '0') {
+															flag = '1';
+                                                            cx_file = cx_file + 1;
+                                                            ResultSpan = setResultSpan(i);
+                                                            pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + toSelectedScript(T_Book[i]) + "</span><br>";
+                                                        }
+
+														cx_hit = cx_hit + 1;
+
+														var tmp = ary_source[index];
+
+														tmp = tmp.replace(/\*/g, '') + "<br><br>";
+														tmp = tmp.replace(/\';/, '');
+														var pos = tmp.indexOf("='");
+														var tmp_id = tmp.substring(6, pos-1);
+														tmp = tmp.substring(pos + 2);
+														tmp = toSelectedScript(tmp);
+														tmp += "<br><br>";
+
+														for (j in ary_key) {
+															tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + toSelectedScript(j)  + "</a>");
+														}
+
+														pali = pali + tmp;
+														Sr_id = Sr_id + tmp_id + ";";
+													}
+												}
+											}
+										}
+									}
+									rawFile.send(null);
+									//*****************
+									// end read file
+									//*****************
+									if (Sr_id != '') {
+										//alert(i +" =  " + Sr_id);
+										localStorage.setItem('Sr_id' + i, ';' + Sr_id);
+									}
+								}
+
+							}
+						}
+						if (cx_file != 0) {
+							max_length = max_length + pali.length;
+							if (5200000<max_length) {
+								$('#Out' + y + x).html('<label onClick="Show_Detail(\'Out' + y + x + '\')" style="color:blue;">' + cx_file + " Files, " + cx_hit + " Paragraphs.</label>" + '<b style="color:red">&nbsp;Out of Memory</b>');
+							} else {
+								$('#Out' + y + x).html('<label onClick="Show_Detail(\'Out' + y + x + '\')" style="color:blue;">' + cx_file + " Files, " + cx_hit + " Paragraphs.</label>");
+							}
+							total_file = total_file + cx_file;
+							total_hit = total_hit + cx_hit;
+							localStorage.setItem('Sr_Out' + y + x, pali);
+							strTopResult = strTopResult + pali;
+							
+						} else {
+							$('#Out' + y + x).html('0 Hits.');
+						}
+
+					}
+				}
+			}
+			var endDate = new Date();
+			var seconds = (endDate.getTime() - startDate.getTime())/1000;
+			$('#msg').html('Exact Search : ' + total_file +' Files, ' + total_hit + ' Paragraphs, ' + seconds + " Seconds");
+		
+			// write the final string.
+			$('#SearchResult').html(strTopResult);				
+		}
+
     function Start_Fuzzy() {
         document.getElementById('SearchType1').checked = true;
         SetSelect();
@@ -11,9 +192,11 @@
 
         $('#msg').html('');
 
-        localStorage.setItem("Sr_type", 'F');
-
-        var key = toUniRegEx($('#key').val()).trim().toLowerCase();
+		localStorage.setItem("Sr_type", 'F');
+		
+		var strKey = $('#key').val();
+		strKey = toRoman(strKey);
+        var key = toUniRegEx(strKey).trim().toLowerCase();
         if ( 1 < key.length) {
             localStorage.setItem("Sr_key", key);
 
@@ -102,21 +285,25 @@
                                                         flag = '1';
                                                         cx_file = cx_file + 1;
                                                         ResultSpan = setResultSpan(i);
-                                                        pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + T_Book[i] + "</span><br>";
+                                                        pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + toSelectedScript(T_Book[i]) + "</span><br>";
                                                     }
 
                                                     cx_hit = cx_hit + 1;
 
                                                     var tmp = ary_source[index];
 
-                                                    tmp = tmp.replace(/\*/g, '') + "<br><br>";
+
+                                                    tmp = tmp.replace(/\*/g, '');
                                                     tmp = tmp.replace(/\';/, '');
                                                     var pos = tmp.indexOf("='");
                                                     var tmp_id = tmp.substring(6, pos-1);
                                                     tmp = tmp.substring(pos + 2);
+                                                    tmp = toSelectedScript(tmp);
+                                                    tmp += "<br><br>";
+
 
                                                     for (j in ary_key) {
-                                                        tmp = replacei(tmp, j, sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + j  + "</a>");
+                                                    	tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + toSelectedScript(j)  + "</a>");
                                                     }
 
                                                     pali = pali + tmp;
@@ -184,7 +371,10 @@
 
 			localStorage.setItem("Sr_type", 'E');
 
-			var key = toUniRegEx($('#key').val()).trim().toLowerCase();
+			var strKey = $('#key').val();
+			strKey = toRoman(strKey);
+			var key = toUniRegEx(strKey).trim().toLowerCase();
+			
 			if ( 1 < key.length) {
 				localStorage.setItem("Sr_key", key);
 
@@ -281,7 +471,7 @@
 															flag = '1';
                                                             cx_file = cx_file + 1;
                                                             ResultSpan = setResultSpan(i);
-                                                            pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + T_Book[i] + "</span><br>";
+                                                            pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + toSelectedScript(T_Book[i]) + "</span><br>";
                                                         }
 
 														cx_hit = cx_hit + 1;
@@ -293,9 +483,11 @@
 														var pos = tmp.indexOf("='");
 														var tmp_id = tmp.substring(6, pos-1);
 														tmp = tmp.substring(pos + 2);
+														tmp = toSelectedScript(tmp);
+														tmp += "<br><br>";
 
 														for (j in ary_key) {
-															tmp = replacei(tmp, j, sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + j  + "</a>");
+															tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + toSelectedScript(j)  + "</a>");
 														}
 
 														pali = pali + tmp;
@@ -362,8 +554,10 @@
 
 			localStorage.setItem("Sr_type", 'S');
 
-			var key = toUniRegEx($('#key').val()).trim().toLowerCase();
-
+			var strKey = $('#key').val();
+			strKey = toRoman(strKey);
+			var key = toUniRegEx(strKey).trim().toLowerCase();
+	
 			if ( 1 < key.length) {
 				localStorage.setItem("Sr_key", key);
 
@@ -460,7 +654,7 @@
 															flag = '1';
                                                             cx_file = cx_file + 1;
                                                             ResultSpan = setResultSpan(i);
-                                                            pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + T_Book[i] + "</span><br>";
+                                                            pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + toSelectedScript(T_Book[i]) + "</span><br>";
                                                         }
 
 														cx_hit = cx_hit + 1;
@@ -472,9 +666,11 @@
 														var pos = tmp.indexOf("='");
 														var tmp_id = tmp.substring(6, pos-1);
 														tmp = tmp.substring(pos + 2);
+														tmp = toSelectedScript(tmp);
+														tmp += "<br><br>";
 
 														for (j in ary_key) {
-															tmp = replacei(tmp, j, sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + j  + "</a>");
+															tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + toSelectedScript(j)  + "</a>");
 														}
 
 														pali = pali + tmp;
@@ -539,7 +735,10 @@
 
 			localStorage.setItem("Sr_type", 'P');
 
-			var key = toUniRegEx($('#key').val()).trim().toLowerCase();
+			var strKey = $('#key').val();
+			strKey = toRoman(strKey);
+			var key = toUniRegEx(strKey).trim().toLowerCase();
+
 			if ( 1 < key.length) {
 				localStorage.setItem("Sr_key", key);
 
@@ -635,7 +834,7 @@
 															flag = '1';
                                                             cx_file = cx_file + 1;
                                                             ResultSpan = setResultSpan(i);
-                                                            pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + T_Book[i] + "</span><br>";
+                                                            pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + toSelectedScript(T_Book[i]) + "</span><br>";
                                                         }
 
 														cx_hit = cx_hit + 1;
@@ -647,9 +846,11 @@
 														var pos = tmp.indexOf("='");
 														var tmp_id = tmp.substring(6, pos-1);
 														tmp = tmp.substring(pos + 2);
+														tmp = toSelectedScript(tmp);
+														tmp += "<br><br>";
 
 														for (j in ary_key) {
-															tmp = replacei(tmp, j, sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + j  + "</a>");
+															tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + toSelectedScript(j)  + "</a>");
 														}
 
 														pali = pali + tmp;
@@ -726,11 +927,18 @@ function setResultSpan(i){
             
 }
 
+function toSelectedScript(input, script) {
+	return toTranslate(input);
+
+}
+
 
 function Keyin() {
     var key = toUniRegEx($('#key').val());
     $('#key').val(key);
-    key = key.trim().toLowerCase();
+    key = toRoman(key.trim().toLowerCase());
+
+
 
     if (document.getElementById('SearchType1').checked == true) {
         key_ary = key.split(' ');
@@ -738,6 +946,9 @@ function Keyin() {
 
         var out = "";
         var key_notfound = "";
+
+        const currentScript = localStorage.getItem("view_left");
+
         for (key_i = 0; key_i < key_ary_length; key_i++) {
             key = key_ary[key_i].trim();
             var len = key.length;
@@ -754,10 +965,16 @@ function Keyin() {
                     cx = 0;
                     var out_tmp = "";
 
+
+					str =  key.replace(/[autnidlm]/g, (m) => variations[m]);
+					filterRegex = new RegExp(str);
+				
+				
+
                     for (var i in pws) {
-                        if (i.substring(0, len) == key) {
+                        if (i.search(filterRegex)==0 ) {
                             cx = cx + 1;
-                            out_tmp = out_tmp + '<a hef="javascript:void(0)" style="color:blue;" onClick="Put(\'' + i + '\');">' + i + '</a>' + " <span style='font-size:9pt;color:#800080;'>" + pws[i] + "</span>,&nbsp;&nbsp;&nbsp;";
+                            out_tmp = out_tmp + '<a hef="javascript:void(0)" style="color:blue;" onClick="Put(\'' + i + '\');">' + toSelectedScript(i, currentScript) + '</a>' + " <span style='font-size:9pt;color:#800080;'>" + pws[i] + "</span>,&nbsp;&nbsp;&nbsp;";
                             if (cx > 99) {
                                 out_tmp = out_tmp + " <span style='font-size:12pt;color:red;'>> 99...</span>";
                                 break;
@@ -928,3 +1145,16 @@ function Jump(url) {
 	id = url.substring(4);
 	PaliHistoryGoUrl(html + "#p"+id);
 }
+
+// copied from index.htm when the search word is clicked on 
+function Put(input) {
+	var strKey = toSelectedScript(input.trim());
+	var pos = strKey.lastIndexOf(' ');
+	if (pos != -1) {
+		$('#key').val(strKey.substr(0, pos) + ' ' + input);
+	} else {
+		$('#key').val(strKey + ' ');
+	}
+	Start_Fuzzy();
+}
+

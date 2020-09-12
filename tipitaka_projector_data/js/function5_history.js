@@ -5,11 +5,6 @@ function DictHistoryList() {
 
 	if (strDictInfoArr){
 		var url = '<br>';
-		url += '<a href="javascript:void(0);" onClick="DictHistoryCopy();" style="font-size:11pt;"><img src="images/b_ftext.png" width="16">Copy</a>&nbsp;&nbsp;';
-		url += '<a href="javascript:void(0);" onClick="DictHistoryClear(\'Select\')" style="font-size:11pt;"><img src="images/b_drop.png" width="16">Delete Select</a>&nbsp;&nbsp;'
-		url += '<a href="javascript:void(0);" onClick="DictHistoryClear(\'All\')" style="font-size:11pt;"><img src="images/b_drop.png" width="16">Delete All</a>';
-		url += '<br>';
-		
 
 		DictInfoArr = JSON.parse(strDictInfoArr);
 		var len = DictInfoArr.length;
