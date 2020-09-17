@@ -280,6 +280,7 @@ function onWordSelected(t) {
 	localStorage.setItem('DictionaryKey', tdict);
 	$("#DeclensionKey").val(tdict);
 	document.write = localStorage.setItem('DeclensionKey', tdict);
+	DictionaryGo();
 
 	return t;
 }
