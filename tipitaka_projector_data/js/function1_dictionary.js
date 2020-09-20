@@ -246,3 +246,30 @@ const str = key.replace(/[atnidlm]/g, (m) => variations[m])
 const filterRegex = new RegExp(str)
 something.match(filterRegex)==null;
 */
+
+/**
+ * Checks if one properly spelled Pali word contains another (if the target contains the source) and returns the index
+ * where the source is contained within the target. The source word can contain spelling mistakes whereas the target
+ * word is considered to be spelled properly. Comparison is done via 'fuzzy letter search'. Here's an example which will
+ * return 6:
+ * -> Source: 'sankhara'
+ * -> Target: 'sabbe saṅkhārā aniccā'
+ *
+ * @param source {string} a pali word to be compared
+ * @param target {string} a properly spelled Pali word to compare the source to
+ * @returns {number}
+ */
+const fuzzyLetterIndexOf = (target, source) => {
+	const fuzzySource =  source.replace(/[autnidlm]/gi, (m) => variations[m]);
+	const fuzzySourceRegExp = new RegExp(fuzzySource);
+	return target.search(fuzzySourceRegExp);
+}
+
+
+const fuzzyLetterContains = (target, source) => {
+	return fuzzyLetterIndexOf(target, source) >= 0;
+}
+
+const fuzzyLetterStartsWith = (target, source) => {
+	return fuzzyLetterIndexOf(target, source) === 0;
+}
