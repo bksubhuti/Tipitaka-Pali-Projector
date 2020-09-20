@@ -1012,22 +1012,42 @@ function Keyin() {
             old = 'x';
             cx = 0;
             for (i in P_TNO) {
-                sutta = i.substring(0, 4)
-                no = i.substring(0, 2);
-                var sub = i.substr(8, lenx);
-                //chk = document.getElementById('Nikaya' + no).checked;
-                //if ((i.indexOf(key) != -1) && (chk == true)) {
-                if (((i.indexOf(key) != -1) && type2) || ((sub == key) && !type2)) {
+
+				//
+				// Sample variable values:
+				//
+				// i: 6102_001dhammapadapāḷi
+				// key: dhammapad
+				//
+				// key is what the user typed in, i.e. the search term
+				// i is the title item
+				//
+
+
+
+
+				const actualTitle = i.slice(8);
+				let matchedAt = fuzzyLetterIndexOf(actualTitle, key);
+
+            	if (!type2 && matchedAt !== 0) {
+           			// If not 'type2' then this is a "Prefix Title" search
+					//
+					matchedAt = -1;
+				}
+
+            	if (matchedAt >= 0) {
+					sutta = i.substring(0, 4)
+					no = i.substring(0, 2);
 
                     if (old != sutta) {
                         ary[no] = ary[no] + '<hr style="border: 1pt dashed gray;"><b style="color:brown;">' + sutta + " " + T_Book[sutta] + "</b><br>";
                     }
                     cx = cx + 1;
 
-                    name = i.substring(8);
-                    name = name.replace(key, '<span style="background:yellow">' + key + '</span>');
+                    const properMatch = actualTitle.substr(matchedAt, key.length);
+                    const renderedTitle = actualTitle.replace(properMatch, '<span style="background:yellow">' + properMatch + '</span>');
 
-                    ary[no] = ary[no] + cx + ' ' + '<a href="javascript:void(0);" onClick="Jump(\'' + sutta + P_TNO[i] + '\')" title="' + P_TNO[i] + '">' + name + '<span></a><br>';
+                    ary[no] = ary[no] + cx + ' ' + '<a href="javascript:void(0);" onClick="Jump(\'' + sutta + P_TNO[i] + '\')" title="' + P_TNO[i] + '">' + renderedTitle + '<span></a><br>';
 					old = sutta;
                 }
             }
