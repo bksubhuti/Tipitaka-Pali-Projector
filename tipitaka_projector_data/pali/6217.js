@@ -2868,9 +2868,9 @@ var TOC_Dropdown_Items = [
 	'__10. Littavaggo',
 	'__11. Parosatavaggo',
 	'__12. Haṃcivaggo',
-	'____[111] 1. Gadrabhapañhajātakavaṇṇanā',
-	'____[112] 2. Amarādevīpañhajātakavaṇṇanā',
-	'____[113] 3. Siṅgālajātakavaṇṇanā',
+	'____-111- 1. Gadrabhapañhajātakavaṇṇanā',
+	'____-112- 2. Amarādevīpañhajātakavaṇṇanā',
+	'____-113- 3. Siṅgālajātakavaṇṇanā',
 	'__13. Kusanāḷivaggo',
 	'__14. Asampadānavaggo',
 	'__15. Kakaṇṭakavaggo'

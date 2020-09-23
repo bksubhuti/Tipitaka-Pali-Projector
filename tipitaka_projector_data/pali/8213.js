@@ -7158,7 +7158,7 @@ var TOC_Dropdown_Items = [
 	'____Ūkārantitthiliṅgarāsi',
 	'____Okārantarāsi',
 	'____Pulliṅgarāsi',
-	'____[^]Akāranta pulliṅgapurisādirāsi[/^]',
+	'____--Akāranta pulliṅgapurisādirāsi--',
 	'____Manogaṇarāsi',
 	'____Manādigaṇarāsi',
 	'____Guṇavādigaṇarāsi',
