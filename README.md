@@ -1,5 +1,17 @@
 # Tipitaka-Pali-Projector TPP.
 
+Please see the main webpage:
+https://americanmonk.org/tipitaka-pali-projector/
+
+Videos can be seen here:
+
+https://www.youtube.com/channel/UCMKjBJT7vMjyWt8RU4lpiDg
+
+You can look at the release section for the windows, Mac and Deb files..
+
+For cloning , read below:
+
+
 You can download this program in the clone or download zip section of this github.  Top right of this page.
 Soon there will be a release section.
 Then open up index.htm and start.
