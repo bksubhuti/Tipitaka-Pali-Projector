@@ -1,6 +1,6 @@
 {
   "name": "tipitaka-pali-projector",
-  "version": "1.0.5",
+  "version": "1.0.0",
   "description": "Application for reading the Pali Tipitaka with English translationsa and multi-language dictionary support",
   "main": "index.js",
   "icon": "build/tpp-icon.ico",
@@ -30,16 +30,29 @@
     "electron-updater": "^4.0.0"
   },
   "build": {
-    "icon": "build/tpp-icon.png",
-    "appId": "com.pa-auk.electron.exchange.stream",
+    "icon": "build/tpp-icon.icns",
+    "appId": "org.americanmonk.tipitaka",
     "productName": "Tipitaka Pali Projector",
-    "copyright": "Copyright © 2018 according to license in github",
+    "copyright": "Copyright © 2020 according to license in github",
     "publish": [
       "github"
     ],
     "linux": {
-        "target": "deb"
-    }
+      "target": "deb"
+    },
+    "mac": {
+    	"target": [
+        	"mas"
+      	]
+	},
+	"mas": {
+		"hardenedRuntime": false,
+    	"provisioningProfile": "build/embedded.provisionprofile",
+    	"entitlements": "build/entitlements.mas.plist",
+    	"entitlementsInherit": "build/entitlements.mas.inherit.plist",
+    	"gatekeeperAssess": false,
+    	"asarUnpack": []
+  	}
   },
   "win": {
     "icon": "build/tpp-icon.png",
@@ -60,7 +73,9 @@
   "dmg": {
     "icon": "build/tpp-icon.png",
     "title": "Tipitaka Pali Projector",
-    "target": ["dmg"]
+    "target": [
+      "dmg"
+    ]
   },
   "nsis": {
     "oneClick": false,
