@@ -13,6 +13,7 @@ app.on('ready', () => {
     mainWindow = new BrowserWindow({
         width: 1200,
         height: 720,
+        fullscreen: true,
         webPreferences: {
             nodeIntegration: true
         }
@@ -41,9 +42,7 @@ app.on('ready', () => {
 });
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
+  app.quit()
   globalShortcut.unregister('CommandOrControl+F')
 })
 
