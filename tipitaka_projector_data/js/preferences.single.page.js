@@ -572,7 +572,19 @@ function SavePreferences() {
     $('#preferences').val(dat);
 
     var blob = new Blob([dat], {type: "text/plain;charset=utf-8"});
-    saveAs(blob, 'preferences.txt');
+//    saveAs(blob, 'preferences.txt');
+
+    const element = document.createElement("a");
+    element.href = URL.createObjectURL(blob);
+    element.download = "preferences.txt";
+    element.click();
+
+
+
+
+
+
+
 }
 
 
