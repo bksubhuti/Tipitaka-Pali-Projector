@@ -17,6 +17,7 @@ app.on('ready', () => {
             nodeIntegration: true
         }
     });
+    mainWindow.maximize();
     mainWindow.loadURL(`file://${__dirname}/tipitaka_projector_data/index.htm`);
 
     mainWindow.on('focus', () => {
