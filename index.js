@@ -1,5 +1,6 @@
 const { app, BrowserWindow, globalShortcut, ipcMain, shell } = require('electron')
 const electron = require("electron");
+//const os = require("os");
 const { autoUpdater } = require('electron-updater');
 
 // Setup the Auto Updater
@@ -13,12 +14,19 @@ app.on('ready', () => {
     mainWindow = new BrowserWindow({
         width: 1200,
         height: 720,
-        fullscreen: true,
         webPreferences: {
             nodeIntegration: true
         }
     });
-    mainWindow.maximize();
+
+    if(process.platform == 'darwin'){
+        mainWindow.setFullScreen(true);
+    }
+    else{
+        mainWindow.maximize();
+    }
+    
+
     mainWindow.loadURL(`file://${__dirname}/tipitaka_projector_data/index.htm`);
 
     mainWindow.on('focus', () => {
