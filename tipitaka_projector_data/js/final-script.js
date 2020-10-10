@@ -10,7 +10,6 @@ function afterWordClicked(word, tdr1) {
 	GetTrId($(tdr1).attr('id').substring(1));
 
 	word_click(word);
-	console.log(t +'  ' +word);
 	if (word.length > 0) {
 		//lookupCoordinator(t, 0);	//$changecolor = $ns % 2; /
 		$('#main_div').css('display', 'inline');
@@ -22,6 +21,20 @@ function afterWordClicked(word, tdr1) {
 				change_tab('page2');
 			} else {
 				if (localStorage.getItem('main_content') == 'page3') {
+					var Chars = 'abcdefghijklmnopqrstuvwxyzāīūṅñṭḍṇḷṃABCDEFGHIJKLMNOPQRSTUVWXYZĀĪŪṄÑṬḌHṆḶṂ';
+					var p2 = '';
+					for (var i in word) {
+						var p1 = word[i];
+						if (Chars.indexOf(p1) != -1) {
+							p2 = p2 + p1;
+						} else {
+							if (p2 != '') {
+								break;
+							}
+						}
+					}
+					word = p2;
+
 					ParagraphAnalysis();
 					window.location= '#G_' + word.toLowerCase();
 				}

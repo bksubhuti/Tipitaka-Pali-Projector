@@ -3,7 +3,6 @@ var P_Par = [];
 var P_Toc = [];
 P_Tag[1]='<p class="c3">&nbsp;*</p>*';
 P_Tag[2]='<p class="c4">&nbsp;*</p>*';
-P_Toc[0]='p2';
 P_Tag[3]='<p class="g5">&nbsp;*</p>*';
 P_Tag[4]='<p class="g8">&nbsp;*</p>*';
 P_Tag[5]='<p class="g5">&nbsp;*</p>*';
@@ -2461,8 +2460,14 @@ P_Tag[2456]='<p class="g8">&nbsp;*</p>*';
 P_Tag[2457]='<p class="g5">&nbsp;*</p>*';
 P_Tag[2458]='<p class="g8">&nbsp;*</p>*';
 
+
+
+
+P_Toc[0]='p2';
+
+
 var TOC_Dropdown_Items = [
-	'Buddhaguṇagāthāvalī'
-	];
-    
-    SetupToc();
+	'Buddhaguṇagāthāvalī',
+];
+
+SetupToc();

@@ -1,56 +1,76 @@
 var P_Tag = [];
 var P_Par = [];
 var P_Toc = [];
-P_Tag[1]='<p class="c4">&nbsp;*<a name="O0.0001">*</a>*</p>*';
-P_Toc[0]='p1';
+P_Tag[1]='<p class="c4">&nbsp;*</p>*';
 P_Tag[2]='<p class="c3">&nbsp;*</p>*';
+P_Tag[3]='<p class="h9">&nbsp;*</p>*';
 P_Tag[4]='<p class="g5">&nbsp;*</p>*';
 P_Tag[5]='<p class="g8">&nbsp;*</p>*';
+P_Tag[6]='<p class="h9">&nbsp;*</p>*';
 P_Tag[7]='<p class="g5">&nbsp;*</p>*';
 P_Tag[8]='<p class="g8">&nbsp;*</p>*';
+P_Tag[9]='<p class="h9">&nbsp;*</p>*';
 P_Tag[10]='<p class="g5">&nbsp;*</p>*';
 P_Tag[11]='<p class="g8">&nbsp;*</p>*';
+P_Tag[12]='<p class="h9">&nbsp;*</p>*';
 P_Tag[13]='<p class="g5">&nbsp;*</p>*';
 P_Tag[14]='<p class="g8">&nbsp;*</p>*';
 P_Tag[15]='<p class="c3">&nbsp;*</p>*';
+P_Tag[16]='<p class="h9">&nbsp;*</p>*';
 P_Tag[17]='<p class="g5">&nbsp;*</p>*';
 P_Tag[18]='<p class="g8">&nbsp;*</p>*';
+P_Tag[19]='<p class="h9">&nbsp;*</p>*';
 P_Tag[20]='<p class="g5">&nbsp;*</p>*';
 P_Tag[21]='<p class="g8">&nbsp;*</p>*';
+P_Tag[22]='<p class="h9">&nbsp;*</p>*';
 P_Tag[23]='<p class="g5">&nbsp;*</p>*';
 P_Tag[24]='<p class="g8">&nbsp;*</p>*';
+P_Tag[25]='<p class="h9">&nbsp;*</p>*';
 P_Tag[26]='<p class="g5">&nbsp;*</p>*';
 P_Tag[27]='<p class="g8">&nbsp;*</p>*';
+P_Tag[28]='<p class="h9">&nbsp;*</p>*';
 P_Tag[29]='<p class="g5">&nbsp;*</p>*';
 P_Tag[30]='<p class="g8">&nbsp;*</p>*';
 P_Tag[31]='<p class="c3">&nbsp;*</p>*';
+P_Tag[32]='<p class="h9">&nbsp;*</p>*';
 P_Tag[33]='<p class="g5">&nbsp;*</p>*';
 P_Tag[34]='<p class="g8">&nbsp;*</p>*';
+P_Tag[35]='<p class="h9">&nbsp;*</p>*';
 P_Tag[36]='<p class="g5">&nbsp;*</p>*';
 P_Tag[37]='<p class="g8">&nbsp;*</p>*';
+P_Tag[38]='<p class="h9">&nbsp;*</p>*';
 P_Tag[39]='<p class="g5">&nbsp;*</p>*';
 P_Tag[40]='<p class="g8">&nbsp;*</p>*';
 P_Tag[41]='<p class="c3">&nbsp;*</p>*';
+P_Tag[42]='<p class="h9">&nbsp;*</p>*';
 P_Tag[43]='<p class="g5">&nbsp;*</p>*';
 P_Tag[44]='<p class="g8">&nbsp;*</p>*';
+P_Tag[45]='<p class="h9">&nbsp;*</p>*';
 P_Tag[46]='<p class="g5">&nbsp;*</p>*';
 P_Tag[47]='<p class="g8">&nbsp;*</p>*';
 P_Tag[48]='<p class="c3">&nbsp;*</p>*';
+P_Tag[49]='<p class="h9">&nbsp;*</p>*';
 P_Tag[50]='<p class="g5">&nbsp;*</p>*';
 P_Tag[51]='<p class="g8">&nbsp;*</p>*';
 P_Tag[52]='<p class="c3">&nbsp;*</p>*';
+P_Tag[53]='<p class="h9">&nbsp;*</p>*';
 P_Tag[54]='<p class="g5">&nbsp;*</p>*';
 P_Tag[55]='<p class="g8">&nbsp;*</p>*';
+P_Tag[56]='<p class="h9">&nbsp;*</p>*';
 P_Tag[57]='<p class="g5">&nbsp;*</p>*';
 P_Tag[58]='<p class="g8">&nbsp;*</p>*';
 P_Tag[59]='<p class="c3">&nbsp;*</p>*';
+P_Tag[60]='<p class="h9">&nbsp;*</p>*';
 P_Tag[61]='<p class="g5">&nbsp;*</p>*';
 P_Tag[62]='<p class="g8">&nbsp;*</p>*';
 P_Tag[63]='<p class="c3">&nbsp;*</p>*';
+P_Tag[64]='<p class="h9">&nbsp;*</p>*';
 P_Tag[65]='<p class="g5">&nbsp;*</p>*';
 P_Tag[66]='<p class="g8">&nbsp;*</p>*';
+P_Tag[67]='<p class="h9">&nbsp;*</p>*';
 P_Tag[68]='<p class="g5">&nbsp;*</p>*';
 P_Tag[69]='<p class="g8">&nbsp;*</p>*';
+P_Tag[70]='<p class="h9">&nbsp;*</p>*';
 P_Tag[71]='<p class="g5">&nbsp;*</p>*';
 P_Tag[72]='<p class="g6">&nbsp;*</p>*';
 P_Tag[73]='<p class="g7">&nbsp;*</p>*';
@@ -65,8 +85,35 @@ P_Tag[81]='<p class="g6">&nbsp;*</p>*';
 P_Tag[82]='<p class="g7">&nbsp;*</p>*';
 P_Tag[83]='<p class="g8">&nbsp;*</p>*';
 
+
+P_Par[1]='p3';
+P_Par[2]='p6';
+P_Par[3]='p9';
+P_Par[4]='p12';
+P_Par[5]='p16';
+P_Par[6]='p19';
+P_Par[7]='p22';
+P_Par[8]='p25';
+P_Par[9]='p28';
+P_Par[10]='p32';
+P_Par[11]='p35';
+P_Par[12]='p38';
+P_Par[13]='p42';
+P_Par[14]='p45';
+P_Par[15]='p49';
+P_Par[16]='p53';
+P_Par[17]='p56';
+P_Par[18]='p60';
+P_Par[19]='p64';
+P_Par[20]='p67';
+P_Par[21]='p70';
+
+
+P_Toc[0]='p1';
+
+
 var TOC_Dropdown_Items = [
-	'Saddabindu '
-	];
-    
-    SetupToc();
+	'Saddabindu  pakaraṇaṃ',
+];
+
+SetupToc();

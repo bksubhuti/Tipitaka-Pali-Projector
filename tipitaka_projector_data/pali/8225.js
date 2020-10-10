@@ -4,7 +4,6 @@ var P_Toc = [];
 P_Tag[1]='<p class="c3">&nbsp;*</p>*';
 P_Tag[2]='<p class="b2">&nbsp;*</p>*';
 P_Tag[3]='<p class="c4">&nbsp;*</p>*';
-P_Toc[0]='p3';
 P_Tag[4]='<p class="g5">&nbsp;*</p>*';
 P_Tag[5]='<p class="g8">&nbsp;*</p>*';
 P_Tag[6]='<p class="g5">&nbsp;*</p>*';
@@ -27,7 +26,6 @@ P_Tag[22]='<p class="b1">&nbsp;*</p>*';
 P_Tag[23]='<p class="b1">&nbsp;*</p>*';
 P_Tag[24]='<p class="b1">&nbsp;*</p>*';
 P_Tag[25]='<p class="c4">&nbsp;*</p>*';
-P_Toc[1]='p25';
 P_Tag[26]='<p class="b1">&nbsp;*</p>*';
 P_Tag[27]='<p class="b1">&nbsp;*</p>*';
 P_Tag[28]='<p class="b1">&nbsp;*</p>*';
@@ -40,25 +38,20 @@ P_Tag[34]='<p class="b1">&nbsp;*</p>*';
 P_Tag[35]='<p class="b1">&nbsp;*</p>*';
 P_Tag[36]='<p class="b1">&nbsp;*</p>*';
 P_Tag[37]='<p class="c4">&nbsp;*</p>*';
-P_Toc[2]='p37';
 P_Tag[38]='<p class="b1">&nbsp;*</p>*';
 P_Tag[39]='<p class="b1">&nbsp;*</p>*';
 P_Tag[40]='<p class="b1">&nbsp;*</p>*';
 P_Tag[41]='<p class="b1">&nbsp;*</p>*';
 P_Tag[42]='<p class="c4">&nbsp;*</p>*';
-P_Toc[3]='p42';
 P_Tag[43]='<p class="b1">&nbsp;*</p>*';
 P_Tag[44]='<p class="sc">&nbsp;*</p>*';
-P_Toc[4]='p44';
 P_Tag[45]='<p class="b1">&nbsp;*</p>*';
 P_Tag[46]='<p class="c3">&nbsp;*</p>*';
 P_Tag[47]='<p class="sc">&nbsp;*</p>*';
-P_Toc[5]='p47';
 P_Tag[48]='<p class="b1">&nbsp;*</p>*';
 P_Tag[49]='<p class="c3">&nbsp;*</p>*';
 P_Tag[50]='<p class="b1">&nbsp;*</p>*';
 P_Tag[51]='<p class="sc">&nbsp;*</p>*';
-P_Toc[6]='p51';
 P_Tag[52]='<p class="b1">&nbsp;*</p>*';
 P_Tag[53]='<p class="c3">&nbsp;*</p>*';
 P_Tag[54]='<p class="b1">&nbsp;*</p>*';
@@ -74,7 +67,6 @@ P_Tag[63]='<p class="b1">&nbsp;*</p>*';
 P_Tag[64]='<p class="b1">&nbsp;*</p>*';
 P_Tag[65]='<p class="b1">&nbsp;*</p>*';
 P_Tag[66]='<p class="c4">&nbsp;*</p>*';
-P_Toc[7]='p66';
 P_Tag[67]='<p class="b1">&nbsp;*</p>*';
 P_Tag[68]='<p class="b1">&nbsp;*</p>*';
 P_Tag[69]='<p class="g5">&nbsp;*</p>*';
@@ -162,6 +154,19 @@ P_Tag[150]='<p class="b1">&nbsp;*</p>*';
 P_Tag[151]='<p class="b1">&nbsp;*</p>*';
 P_Tag[152]='<p class="c3">&nbsp;*</p>*';
 
+
+
+
+P_Toc[0]='p3';
+P_Toc[1]='p25';
+P_Toc[2]='p37';
+P_Toc[3]='p42';
+P_Toc[4]='p44';
+P_Toc[5]='p47';
+P_Toc[6]='p51';
+P_Toc[7]='p66';
+
+
 var TOC_Dropdown_Items = [
 	'1. Piṭakattayaparicchedo',
 	'2. Ganthakārakācariya-paricchedo',
@@ -170,7 +175,7 @@ var TOC_Dropdown_Items = [
 	'____Ka. buddhaghosācariya-ganthadīpanā',
 	'____Kha. buddhadattācariya-ganthadīpanā',
 	'____Ga. dhammapālācariyena-ganthadīpanā',
-	'5. Pakiṇṇaka-paricchedo'
-	];
-    
-    SetupToc();
+	'5. Pakiṇṇaka-paricchedo',
+];
+
+SetupToc();

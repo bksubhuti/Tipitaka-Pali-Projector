@@ -196,12 +196,12 @@ function PaliHistoryGoUrl(val) {
 
 	if (val.substring(0,2) == 'qj')
 	{
-		Booktoload= val.substring(2,7);
+		Booktoload= val.substring(2,6);
 		if (tocnum < 9000){
 			loadBook(Booktoload, () => {
 					PositionToGo =  P_Toc[tocnum];
 					str = 	TOC_Dropdown_Items[tocnum];//direct array that filled drop down items
-					gPaliHistoryItem.Toc_Name = str.replace(/_/g,''); 				
+					gPaliHistoryItem.Toc_Name = str.replace(/_/g,''); 
 					window.location = "#" + PositionToGo;
 					gPaliHistoryItem.paraNo = PositionToGo;
 					writeHistoryStorage();
@@ -212,14 +212,16 @@ function PaliHistoryGoUrl(val) {
 		else{  // AN book
 			// it is angutara  .. subtract 10,000 to get paragraph number.
 			tocnum = tocnum -10000;
-			PositionToGo =  "para" +  tocnum.toString();
+			//PositionToGo =  "para" +  tocnum.toString();
 			loadBook(Booktoload, () => {
 				// set the title as "Number + para" instead of name... no TOC
-				gPaliHistoryItem.Toc_Name = "Number "+ tocnum.toString(); 			
-				window.location = "#" + PositionToGo;});
+				gPaliHistoryItem.Toc_Name = "Number "+ tocnum.toString(); 
+				window.location = "#" + P_Par[tocnum];
 				gPaliHistoryItem.paraNo = PositionToGo;
 				setMyanmarParaInStorage(PositionToGo);		
 				writeHistoryStorage();		
+			});
+				
 		}
 	}else{ // not quick jump
 
@@ -240,7 +242,11 @@ function PaliHistoryGoUrl(val) {
 		}
 		else{
 			loadBook(Booktoload, () => {
-				window.location = "#" + PositionToGo;
+				if (PositionToGo.substring(0, 4) == 'para') {
+					window.location = "#" + P_Par[parseInt(PositionToGo.substring(4))];
+				} else {
+					window.location = "#" + PositionToGo;
+				}
 				gPaliHistoryItem.paraNo = PositionToGo;
 				writeHistoryStorage();
 
@@ -417,7 +423,7 @@ function QuickJump() {
 		
 		filenum = 5100 + parseInt(book);  // 5101 is book of ones , 5102 is book of twos
 		tocnum = 10000 + parseInt(sutta); // 10,000 is a code to look for
-		PaliHistoryGoUrl("qj"+ filenum); // test for quick jump works..
+		PaliHistoryGoUrl("qj"+ filenum + 'para' + sutta); // test for quick jump works..
 
 	}
 	else{

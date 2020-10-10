@@ -264,7 +264,6 @@ function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
 
 	if (tr_id !=""){
 		 strpara = GetMyanmarParaNo();
-
 	}
 	else{
 		strpara = localStorage.getItem("MyanmarParaNum");
@@ -292,29 +291,18 @@ function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
 }	
 
 
-function GetMyanmarParaNo(pnum = ""){
+function GetMyanmarParaNo(){
+	var tr_id = localStorage.getItem('tr_id');
+	tr_id = 'p' + tr_id;
 
-	if (pnum ==""){
-		var tr_id = localStorage.getItem('tr_id');
-		} else{
-			// remove the letters etc.
-			tr_id = pnum.match(/\d+/) +"";
+	for (var para in P_Par) {
+		if (P_Par[para] == tr_id) {
+			break;
 		}
-		
-	tr_id = parseInt(tr_id) + 1;
-	// tr_id convert into Myanmar paragraph no.
-	var para = 1;
-	for (para=(P_Par.length-1); 0<para; para--) {
-		if (P_Par[para] != null) {
-			v1 = parseInt(P_Par[para].substring(1));
-			if (v1<=  tr_id) {
-				break;
-			}
-		}	
-	} 	 
+	}
+ 
 	para = parseInt(para);
 	return "para" + para.toString();
-
 }
 
 

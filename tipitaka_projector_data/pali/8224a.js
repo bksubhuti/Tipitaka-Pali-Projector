@@ -1,5 +1,4 @@
 var P_HTM = [];
-
 P_HTM[1]='*Namo tassa bhagavato arahato sammāsambuddhassa*';
 P_HTM[2]='*Buddhaguṇagāthāvalī*';
 P_HTM[3]='*Yatheva puppharāsimhā, gantheyya mālā sobhanā;*';
