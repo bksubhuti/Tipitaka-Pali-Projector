@@ -254,7 +254,7 @@ function cleanSelectedWord(t) {
 			}
 		}
 	}
-	console.log('cleaned', t);
+	//console.log('cleaned', t);
 	return t;
 }
 

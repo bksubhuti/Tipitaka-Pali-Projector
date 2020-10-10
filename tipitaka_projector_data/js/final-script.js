@@ -10,7 +10,8 @@ function afterWordClicked(word, tdr1) {
 	GetTrId($(tdr1).attr('id').substring(1));
 
 	word_click(word);
-	if (t.length > 0) {
+	console.log(t +'  ' +word);
+	if (word.length > 0) {
 		//lookupCoordinator(t, 0);	//$changecolor = $ns % 2; /
 		$('#main_div').css('display', 'inline');
 
@@ -22,7 +23,7 @@ function afterWordClicked(word, tdr1) {
 			} else {
 				if (localStorage.getItem('main_content') == 'page3') {
 					ParagraphAnalysis();
-					window.location= '#G_' + t;
+					window.location= '#G_' + word.toLowerCase();
 				}
 			}
 		}
@@ -74,6 +75,7 @@ function registerListeners() {
 		}
 		if (localStorage.getItem('main_content') <= 'page3') {
 			word_click();
+			console.log(t);
 			if (t.length > 0) {
 				DictionaryKeyGo();
 				change_tab('page1');
