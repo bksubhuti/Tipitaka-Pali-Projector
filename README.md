@@ -29,6 +29,13 @@ https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoe
 Python also has a web browser as well.
 If you have Python installed, then you can simply open a terminal in the downloaded root project directory and type the following command:  python -m SimpleHTTPServer
 
+if you are upgraded... 
+{
+    python -m SimpleHTTPServer
+    becomes
+    python3.8 -m http.server
+}
+
 then you can go to the web address http://localhost:8080
 
 
