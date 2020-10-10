@@ -1,78 +1,38 @@
-function RestorePreferences() {
-    var def = [];
-    def['bg_color'] = '@';
-    def['contentdisplay'] = '@';
-    def['contentfontname'] = '@';
-    def['contentfontsize'] = '@';
-    def['contentlineheight'] = '@';
-    def['contentposition'] = '@';
-    def['font_left'] = '@';
-    def['font_right'] = '@'; 
-    def['DictData'] = '@';
-    //********************
+console.log("checking prefs ");
+checkPrefsExist();
 
-    def['main_height'] = '@';
-    def['main_left'] = '@';
-    def['main_top'] = '@';
-    def['main_width'] = '@';
-    def['Pali_note'] = '@';
-    def['size_left'] = '@';
-    def['size_right'] = '@';
-    def['speech_repeat'] = '@';
-    def['speech_speed']='@';
-    def['view_left'] = '@';
-    def['view_right'] = '@';
-    def['width_left'] = '@';
-    def['width_right'] = '@';
-    def['Show_Numbers']='@';
-    def['r1']='@';
-    def['m1']='@';
-    def['b1']='@';
-    def['PaliFontSize'] ='@';
-    def['panel_bg_color'] ='@';
-    def['ShowOnTop']='@';
+
+function RestorePreferences() {
 
     file = 'preferences.txt';
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function () {
-        if (rawFile.readyState === 4) {
-            if (rawFile.status === 200 || rawFile.status == 0) {
-                var data = rawFile.responseText;
-                data = data.replace(/<[^>]+>/gm, '');
 
-                var ary = data.split( "\n" );
-                for (i in ary) {
-                    var ary2 = ary[i].split('\t');
+    if ( isElectron() ){
+        const { remote, ipcRenderer } = require('electron');
 
-                    if ((ary2[0] != null) && (ary2[1] != null)) {
-                        var key = ary2[0].trim();
-                        var val = ary2[1].trim();
+        var data = ipcRenderer.sendSync('read-electron-blob', 'preferences.txt'); // prints "pong"
 
-                        if ((key != '') && (val != '')) {
-                            if (def[key] == '@') {
-                                def[key] = val;
-                            }
-                        }
-                    }
+        //ipcRenderer.on('blob-read-reply', (event, arg) => {
+//        });
+         console.log("got it back"); // prints "pong"
+          writePrefDataToStorage(data);
+
+    }
+    else{
+
+        var rawFile = new XMLHttpRequest();
+        rawFile.open("GET", file, false);
+        rawFile.onreadystatechange = function () {
+            if (rawFile.readyState === 4) {
+                if (rawFile.status === 200 || rawFile.status == 0) {
+                    var data = rawFile.responseText;
+                    writePrefDataToStorage(data);
+
                 }
-
-                for (i in def) {
-                    if (def[i] != '@') {
-                        document.write  = localStorage.setItem(i, def[i]);
-                    }
-                }
-                // reload the values.
-
-                initPreferences();
-                // window.location.reload();
             }
         }
+        rawFile.send(null);
     }
-    rawFile.send(null);
-
-
-
+    
 }// end restore..
 
 var Dicts = [];
@@ -571,16 +531,24 @@ function SavePreferences() {
     }
     $('#preferences').val(dat);
 
-    var blob = new Blob([dat], {type: "text/plain;charset=utf-8"});
-//    saveAs(blob, 'preferences.txt');
 
-    const element = document.createElement("a");
-    element.href = URL.createObjectURL(blob);
-    element.download = "preferences.txt";
-    element.click();
+    if ( isElectron() ){
+        const { remote, ipcRenderer } = require('electron');
+        ipcRenderer.send('write-electron-blob', dat, "preferences.txt");
+        alert("file has been written to the user data folder");
+
+    }
+    else{
+        var blob = new Blob([dat], {type: "text/plain;charset=utf-8"});
+    //    saveAs(blob, 'preferences.txt');
+
+        const element = document.createElement("a");
+        element.href = URL.createObjectURL(blob);
+        element.download = "preferences.txt";
+        element.click();
 
 
-
+    }
 
 
 
@@ -1088,5 +1056,122 @@ function PanelFontColorChange(color){
     localStorage.setItem("panel_font_color", color);
     updatePanelColors();
 }
+
+
+function isElectron() {
+    // Renderer process
+    if (typeof window !== 'undefined' && typeof window.process === 'object' && window.process.type === 'renderer') {
+        return true;
+    }
+
+    // Main process
+    if (typeof process !== 'undefined' && typeof process.versions === 'object' && !!process.versions.electron) {
+        return true;
+    }
+
+    // Detect the user agent when the `nodeIntegration` option is set to true
+    if (typeof navigator === 'object' && typeof navigator.userAgent === 'string' && navigator.userAgent.indexOf('Electron') >= 0) {
+        return true;
+    }
+
+    return false;
+}
+
+
+
+function writePrefDataToStorage(data){
+    var def = [];
+    def['bg_color'] = '@';
+    def['contentdisplay'] = '@';
+    def['contentfontname'] = '@';
+    def['contentfontsize'] = '@';
+    def['contentlineheight'] = '@';
+    def['contentposition'] = '@';
+    def['font_left'] = '@';
+    def['font_right'] = '@'; 
+    def['DictData'] = '@';
+    //********************
+
+    def['main_height'] = '@';
+    def['main_left'] = '@';
+    def['main_top'] = '@';
+    def['main_width'] = '@';
+    def['Pali_note'] = '@';
+    def['size_left'] = '@';
+    def['size_right'] = '@';
+    def['speech_repeat'] = '@';
+    def['speech_speed']='@';
+    def['view_left'] = '@';
+    def['view_right'] = '@';
+    def['width_left'] = '@';
+    def['width_right'] = '@';
+    def['Show_Numbers']='@';
+    def['r1']='@';
+    def['m1']='@';
+    def['b1']='@';
+    def['PaliFontSize'] ='@';
+    def['panel_bg_color'] ='@';
+    def['ShowOnTop']='@';
+
+    if (data == "") 
+        return 0;
+
+    data = data.replace(/<[^>]+>/gm, '');
+    
+    var ary = data.split( "\n" );
+    for (i in ary) {
+        var ary2 = ary[i].split('\t');
+
+        if ((ary2[0] != null) && (ary2[1] != null)) {
+            var key = ary2[0].trim();
+            var val = ary2[1].trim();
+
+            if ((key != '') && (val != '')) {
+                if (def[key] == '@') {
+                    def[key] = val;
+                }
+            }
+        }
+    }
+
+    for (i in def) {
+        if (def[i] != '@') {
+            document.write  = localStorage.setItem(i, def[i]);
+        }
+    }
+    // reload the values.
+
+    initPreferences();
+    // window.location.reload();
+    alert("settings have been imported");
+
+
+}
+
+function checkPrefsExist(){
+    if ( isElectron() ){
+
+        var rawFile = new XMLHttpRequest();
+        rawFile.open("GET", "preferences.txt", false);
+        rawFile.onreadystatechange = function () {
+            if (rawFile.readyState === 4) {
+                if (rawFile.status === 200 || rawFile.status == 0) {
+                    var data = rawFile.responseText + "";
+                    console.log("sending message to check for prefs");
+                    const { remote, ipcRenderer } = require('electron');
+                    
+                    ipcRenderer.send('check-prefs-exist', data); 
+            
+                }
+            }
+        }
+        rawFile.send(null);
+
+
+    }
+
+
+}
+
 
 

@@ -75,3 +75,53 @@ ipcMain.on('download-update', () => {
     }
 });
 
+ipcMain.on('write-electron-blob', (event,data, fname) => {
+    console.log (data);
+    let fs = require("fs");
+    const udpath= app.getPath("userData");
+    const strPathFile = udpath + "/" + fname;
+    console.log("about to write " + strPathFile);
+
+    fs.writeFile(strPathFile, data, "utf-8", (error, data) => {
+        if (error){
+            console.error("error: " + error);
+        }
+    });
+
+});
+
+ipcMain.on('read-electron-blob', (event, fname) => {
+    console.log ('got the read req with ' + fname);
+
+    let fs = require("fs");
+    const udpath= app.getPath("userData");
+    const strPathFile = udpath + "/" + fname;
+ 
+    var data = fs.readFileSync(strPathFile) + "";
+    console.log("reading in ipcmain:  ");
+        event.returnValue = data;
+});
+
+
+ipcMain.on('check-prefs-exist', (event, data) => {
+    let fs = require("fs");
+
+    const udpath= app.getPath("userData");
+
+    const prefsFullName = udpath + "/" + "preferences.txt";
+    // check for file exist
+    console.log("checking to see if prefs exist*****");
+    // if not exist.. read file and then send to ipcrend to write
+        if (fs.existsSync(prefsFullName) == false) {
+            console.log("creating file");
+            fs.writeFile(prefsFullName, data, "utf-8", (error, data) => {
+                if (error){
+                    console.error("error: " + error);
+                }
+            });
+        }
+
+});
+
+
+
