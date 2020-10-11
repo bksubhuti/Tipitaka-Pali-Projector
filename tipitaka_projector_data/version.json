@@ -1,4 +1,4 @@
 {
-    "versionno": "V1.05",
-    "releasenotes": "Some major fixes and better UI...Multiscript, searching bug->Dictionary fixed, fuzzy letter, Deb Dmg exe support "
+    "versionno": "V1.06",
+    "releasenotes": "fixed pali data error, M A T Buttons work better, changes to electron app for MacOS approval: save settings"
 }
