@@ -11,11 +11,25 @@ function Message(tr_no) {
 		if (P_Par[para] != null) {
 			v1 = parseInt(P_Par[para].substring(1));
 			if (v1 <= val) {
-				msg = msg + '.Para' + para;
 				break;
 			}
 		}
-	} 	  
+	} 	
+	
+	// fix for para num if it is TOC
+	// search for id in TOC if TOC is found the same as ID
+	// and ID is one less.. then increment the MyanmarParaNum
+	for (var i= 0; i<P_Toc.length; i++){
+		if (P_Toc[i] == 'p'+val){
+			para++; // it is found in toc and need to increment one more.
+			break;
+		}
+	} 
+	msg = msg + '.Para' + para;
+
+	// write local storage the myanmar paragraph number
+	localStorage.setItem("MyanmarParNum",para);
+
 	var toc = 0;		// myanmar page number;
 	for (toc=(val); 0<toc; toc--) {
 		if (P_Tag[toc] != undefined) {
@@ -205,7 +219,7 @@ function PaliHistoryGoUrl(val) {
 					window.location = "#" + PositionToGo;
 					gPaliHistoryItem.paraNo = PositionToGo;
 					writeHistoryStorage();
-					setMyanmarParaInStorage(PositionToGo);		
+					toGetScrollId();
 
 				});									// any of the load books and just have this be a drop default.
 		}
@@ -218,8 +232,9 @@ function PaliHistoryGoUrl(val) {
 				gPaliHistoryItem.Toc_Name = "Number "+ tocnum.toString(); 
 				window.location = "#" + P_Par[tocnum];
 				gPaliHistoryItem.paraNo = PositionToGo;
-				setMyanmarParaInStorage(PositionToGo);		
-				writeHistoryStorage();		
+				writeHistoryStorage();	
+				toGetScrollId();
+	
 			});
 				
 		}
@@ -237,7 +252,8 @@ function PaliHistoryGoUrl(val) {
 			window.location = "#" + PositionToGo;
 			gPaliHistoryItem.paraNo = PositionToGo;
 			writeHistoryStorage();
-			setMyanmarParaInStorage(PositionToGo);		
+			toGetScrollId();
+	
 
 		}
 		else{
@@ -249,14 +265,10 @@ function PaliHistoryGoUrl(val) {
 				}
 				gPaliHistoryItem.paraNo = PositionToGo;
 				writeHistoryStorage();
-
-				setMyanmarParaInStorage(PositionToGo);		
-
+				toGetScrollId();
 				});									// any of the load books and just have this be a drop default.
 		}
 	}
-
-
 
 /*
 		} else {	// myanmar or PTS page no jump
@@ -290,35 +302,6 @@ function PaliHistoryGoUrl(val) {
 
 }
 
-
-//////////////////////////////
-//setMyanmarParaInStorage
-/////////////////////////////////////
-//  M A T Buttons needs to know which myanmar paragraph is is on
-// but sometimes the user does not click after "jumping" to a location 
-// by TOC-navigation, quickjump, M A T buttons, UserHistoryLinks (misc tab)
-// so must keep track and convert to myanmarpara num and set tr_id to 0
-// This way, we know.. has not clicked on anything.. and use myanmarParano
-// This function needs to be called on all "location jumps"
-/////////////////////////////////////////////////////////////////
-function setMyanmarParaInStorage(PositionToGo)
-{
-
-	var MyanmarParaNo= "";
-	localStorage.setItem("tr_id", "");
-	// always set local storage for tri_id to ""
-
-	// if (pnum !="") convert pnum to myanmar
-	if (PositionToGo.includes("para") ){
-		MyanmarParaNo =PositionToGo;
-	}
-	else{
-		MyanmarParaNo =GetMyanmarParaNo(PositionToGo);
-
-	}
-	// set local storage MyanmarPara
-	localStorage.setItem("MyanmarParaNum", MyanmarParaNo);
-}
 
 
 function findquickjump(qj) {

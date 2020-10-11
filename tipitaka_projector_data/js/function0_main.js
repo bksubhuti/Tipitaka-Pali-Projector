@@ -248,7 +248,6 @@ function RedrawTable(w) {
 function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
 	var strpara= "";
 	var para=0;
-
 	// no book is loaded yet
 	if ( typeof(P_HTM) == 'undefined' ) {
 		return;
@@ -256,19 +255,20 @@ function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
 
 
 	tr_id = localStorage.getItem("tr_id");
+	var strpara = localStorage.getItem("MyanmarParNum");
 
 
 	// if it is blank that means the user jumped to a location but did not click
 	// clicking will set tr_id
 	// jump calls set tr_id to zero and set myanmarParaNum in storage. (or should)
-
+/*
 	if (tr_id !=""){
 		 strpara = GetMyanmarParaNo();
 	}
 	else{
 		strpara = localStorage.getItem("MyanmarParaNum");
 	}
-
+*/
 	strpara = strpara.match(/\d+/)+"";
 
 	para = parseInt(strpara);
