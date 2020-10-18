@@ -1,6 +1,6 @@
 {
   "name": "tipitaka-pali-projector",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "Application for reading the Pali Tipitaka with English translationsa and multi-language dictionary support",
   "main": "index.js",
   "icon": "build/tpp-icon.ico",
@@ -39,21 +39,22 @@
       "github"
     ],
     "linux": {
-      "target": "deb"
+      "target": "deb",
+      "icon": "build/tpp-icon.icns"
     },
     "mac": {
-    	"target": [
-        	"mas"
-      	]
-	},
-	"mas": {
-		"hardenedRuntime": false,
-    	"provisioningProfile": "build/embedded.provisionprofile",
-    	"entitlements": "build/entitlements.mas.plist",
-    	"entitlementsInherit": "build/entitlements.mas.inherit.plist",
-    	"gatekeeperAssess": false,
-    	"asarUnpack": []
-  	}
+      "target": [
+        "mas"
+      ]
+    },
+    "mas": {
+      "hardenedRuntime": false,
+      "provisioningProfile": "build/embedded.provisionprofile",
+      "entitlements": "build/entitlements.mas.plist",
+      "entitlementsInherit": "build/entitlements.mas.inherit.plist",
+      "gatekeeperAssess": false,
+      "asarUnpack": []
+    }
   },
   "win": {
     "icon": "build/tpp-icon.png",
@@ -66,10 +67,9 @@
     ]
   },
   "linux": {
-    "target": [
-      "deb"
-    ],
-    "category": "Education"
+    "target": ["deb","snap"],
+    "icon": "build/tpp-icon.icns"
+    
   },
   "dmg": {
     "icon": "build/tpp-icon.png",
