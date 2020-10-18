@@ -1945,36 +1945,35 @@
                                     <td valign="top" width="46%" align="left">
                                         <strong style="color:#880000;">Disabled Pali Dictionaries</strong>
                                         <span id="DisableCount" style="font-size:12pt;color:gray;"></span>
-                                        <select style="width:100%;font-size:12pt;line-height:175%;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;"
-                                                multiple name="DictionaryDisable" id="DictionaryDisable" size="10"
-                                                ondblclick="DictionaryMoveOption(document.form1.DictionaryDisable, document.form1.DictionaryEnable)"
-                                                onClick="toGetAbbr('0');">
-                                        </select>
+                                        <ul class="ping-pong-list" 
+                                            id="DictionaryDisable"
+                                            ondblclick="DictionaryMoveOption(true)">
+                                            
+                                        </ul>
                                     </td>
                                     <td valign="top" width="8%" align="center">
                                         <br>
-                                        <input type="button" value="Up" style="width:60pt;"
-                                               onclick="DictionaryChangePos(DictionaryEnable,-1)"/>
+                                        <input type="button" value="Up" style="width:100%;"
+                                               onclick="DictionaryChangePos(-1)"/>
                                         <br><br>
-                                        <input type="button" value="Down" style="width:60pt;"
-                                               onclick="DictionaryChangePos(DictionaryEnable,1)"/>
+                                        <input type="button" value="Down" style="width:100%;"
+                                               onclick="DictionaryChangePos(1)"/>
                                         <br><br>
 
-                                        <input type="button" value=">>" style="width:60pt;"
-                                               onclick="DictionaryMoveOption(document.form1.DictionaryDisable, document.form1.DictionaryEnable)"/>
+                                        <input type="button" value=">>" style="width:100%;"
+                                               onclick="DictionaryMoveOption(true)"/>
                                         <br><br>
-                                        <input type="button" value="<<" style="width:60pt;"
-                                               onclick="DictionaryMoveOption(document.form1.DictionaryEnable, document.form1.DictionaryDisable)"/>
+                                        <input type="button" value="<<" style="width:100%;"
+                                               onclick="DictionaryMoveOption(false)"/>
                                     </td>
                                     <td valign="top" width="46%" align="left">
 
                                         <strong style="color:#880000;">Enabled Pali Dictionaries</strong>
                                         <span id="EnableCount" style="font-size:12pt;color:gray;"></span>
-                                        <select style="width:100%;font-size:12pt;line-height:175%;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;"
-                                                multiple name="DictionaryEnable" id="DictionaryEnable" size="10"
-                                                ondblclick="DictionaryMoveOption(document.form1.DictionaryEnable, document.form1.DictionaryDisable)"
-                                                onClick="toGetAbbr('1')">
-                                        </select>
+                                        <ul class="ping-pong-list" 
+                                            id="DictionaryEnable"
+                                            ondblclick="DictionaryMoveOption(false)">
+                                        </ul>
                                     </td>
                                 </tr>
                                 <tr>
