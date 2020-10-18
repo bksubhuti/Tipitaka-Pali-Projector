@@ -957,3 +957,4 @@ function stopDrag3(){
 }
 
 
+setupHome();

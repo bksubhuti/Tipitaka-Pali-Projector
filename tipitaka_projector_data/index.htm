@@ -331,18 +331,23 @@
             });
         }
 
-        $(document).ready(() => {
-            initDialogs();
+        const setupHome = function setupHome() {
+             console.log('window.onload');
+             initDialogs();
 
-            $('body').on('click', '#epub-selector .epub-books li', function() {
-                const fileName = this.dataset.fileName;
-                showDialog('#epub');
-                $('#epub-selector').dialog('close');
-                loadEpubBook(fileName);
-            });
+             $('body').on('click', '#epub-selector .epub-books li', function() {
+                 const fileName = this.dataset.fileName;
+                 showDialog('#epub');
+                 $('#epub-selector').dialog('close');
+                 loadEpubBook(fileName);
+             });
 
-            loadJSONBooks();
-        });
+             loadJSONBooks();
+             
+             addEvent(document.getElementById("main_td2"), "scroll", toGetScrollId);
+             
+             onReady();
+         };
     </script>
 </head>
 
@@ -1109,7 +1114,7 @@
         }
 
         function toGetScrollId() {
-            if (P_HTM != undefined) {
+            if (typeof(P_HTM) != undefined) {
                 var container = document.getElementById("main_td2");
                 var tr = document.getElementById('main_table').getElementsByTagName("tr");
                 var td = document.getElementById('main_table').getElementsByClassName("r1");
@@ -1163,9 +1168,9 @@
             }
         }
 
-        addEvent(window, "load", function () {
-            addEvent(document.getElementById("main_td2"), "scroll", toGetScrollId);
-        });
+        //addEvent(window, "load", function () {
+        //
+        //});
     </script>
 </div>
 
@@ -2478,7 +2483,7 @@
         }
     };
 
-    $(document).ready(function() {
+    const onReady = () => {
 
         var $fontColorInput = $('#panel_font_color');
         $.farbtastic('#picker').linkTo(function(color) {
@@ -2504,7 +2509,7 @@
 
         onTabClick($('#page4')[0]);
 
-    });
+    };
 
     function EnglishModeLoadEpub(bookid){
         var ViewRight =  localStorage.getItem("view_right");
@@ -2617,8 +2622,8 @@
         window.find(str);
 
     }
-
-
+                 
+    
 </script>
 <script>if (window.module) module = window.module;</script>
 
