@@ -61,52 +61,90 @@ Dicts['se1'] = 'SE1: [223,917 entries - 28.9 MB] A Sanskrit English Dictionary -
 Dicts['ee1'] = 'EE1: [148,730 entries - 23.2 MB] Word-Net Eng-Eng dictionary'; 
 
 
-function DictionaryMoveOption(source, destination) {   // source move to dist. 
-    try { 
-        var v1 = '';
-        for(var i=0; i<source.options.length; i++){  
-            if(source.options[i].selected){ 
-                var e = source.options[i];  
+function DictionaryMoveOption(enable) {   // source move to dist.
+    const $enable = $('#DictionaryEnable');
+    const $disable = $('#DictionaryDisable');
 
-                destination.options.add(new Option(e.text, e.value)); 
-                destination.options[destination.options.length -1].title = e.title;
-                //source.remove(i);  
-                v1 = ';' + i + v1;
-            } 
-        } 
-        var ary = v1.substr(1).split(';');
-        for (var i in ary) { 
-            source.remove(ary[i]);  
-        } 
+    const $source = enable ? $disable : $enable;
+    const $destination = enable ? $enable : $disable;
+
+    const selectedInSource = $source.children().toArray().find(c => c.classList.contains('selected'));
+    if (selectedInSource) {
+        const $s = $(selectedInSource);
+        $s.removeClass('selected');
+        $s.remove();
+        $destination.append(selectedInSource);
+    }
+
+    try { 
+        // var v1 = '';
+        // for(var i=0; i<source.options.length; i++){
+        //     if(source.options[i].selected){
+        //         var e = source.options[i];
+        //
+        //         destination.options.add(new Option(e.text, e.value));
+        //         destination.options[destination.options.length -1].title = e.title;
+        //         //source.remove(i);
+        //         v1 = ';' + i + v1;
+        //     }
+        // }
+        // var ary = v1.substr(1).split(';');
+        // for (var i in ary) {
+        //     source.remove(ary[i]);
+        // }
         DictionaryRenew();
     } catch(e) {
-    } 
+        console.log(e);
+    }
 }
 
-function DictionaryChangePos(obj, index) {
-    if(index==-1){
-        if (obj.selectedIndex>0){
-            //obj.options(obj.selectedIndex).swapNode(obj.options(obj.selectedIndex-1)) //swapNode on at IE
-            obj.insertBefore(obj.options[obj.selectedIndex], obj.options[obj.selectedIndex - 1]);
-        }
-    }else if(index==1){
-        if (obj.selectedIndex<obj.options.length-1){
-            //obj.options(obj.selectedIndex).swapNode(obj.options(obj.selectedIndex+1)) //swapNode at IE
-            obj.insertBefore(obj.options[obj.selectedIndex + 1], obj.options[obj.selectedIndex]);
-        }
+function DictionaryChangePos(index) {
+    const $enabled = $('#DictionaryEnable');
+    const selectedTarget = $enabled.find('li').toArray().find(c => c.classList.contains('selected'));
+
+    if (!selectedTarget) {
+        return;
     }
+
+    const $selected = $(selectedTarget);
+
+    if(index === -1){
+        if (!$selected.is(':first-child')){
+            //obj.options(obj.selectedIndex).swapNode(obj.options(obj.selectedIndex-1)) //swapNode on at IE
+            // obj.insertBefore(obj.options[obj.selectedIndex], obj.options[obj.selectedIndex - 1]);
+
+            const $prev = $selected.prev();
+            $prev.before($selected);
+        }
+
+    } else if(index === 1) {
+        if (!$selected.is(':last-child')){
+            //obj.options(obj.selectedIndex).swapNode(obj.options(obj.selectedIndex+1)) //swapNode at IE
+            // obj.insertBefore(obj.options[obj.selectedIndex + 1], obj.options[obj.selectedIndex]);
+
+            const $next = $selected.next();
+            $next.after($selected);
+        }
+
+    }
+
     DictionaryRenew();
 }
 
 function DictionaryRenew() {
     var DictData = [];  
     var strDictData = localStorage.getItem("DictData"); 
-    DictData = JSON.parse(strDictData);  
+    DictData = JSON.parse(strDictData);
 
-    var e = document.form1.DictionaryEnable;
-    $('#EnableCount').html(e.options.length);
-    for(var i=0; i<e.options.length; i++){
-        val = e.options[i].value;
+    const $enabled = $('#DictionaryEnable');
+    const enabledChildren = $enabled.find('li').toArray();
+    const enabledCount = enabledChildren.length;
+    $('#EnableCount').html(enabledCount);
+
+    for(var i=0; i<enabledCount; i++){
+        var dictionaryItem = enabledChildren[i];
+
+        const val = dictionaryItem.dataset.value;
         inc = (i + 1) * 10;
         inc = ('000' + inc).slice(-3);
 
@@ -119,13 +157,16 @@ function DictionaryRenew() {
 
     }
 
-    var e = document.form1.DictionaryDisable;
-    $('#DisableCount').html(e.options.length);
-    var val_disable = '';
+    const $disabled = $('#DictionaryDisable');
+    const disabledChildren = $disabled.find('li').toArray();
+    const disabledCount = disabledChildren.length;
+    $('#DisableCount').text(disabledCount);
 
-    j = e.options.length-1;   // remove all options  
+    var val_disable = '';
+    j = disabledCount-1;   // remove all options
     for(var i=j; 0<=i; i--) {
-        val = e.options[i].value;
+        const dictionaryItem = disabledChildren[i];
+        const val = dictionaryItem.dataset.value;
         val_disable = val_disable + val + ';';
         
         for (j in DictData) { 
@@ -134,31 +175,33 @@ function DictionaryRenew() {
                 break;
             }    
         }
-
-        e.remove(i);
     }
+    $disabled.html('');
+
     localStorage.setItem('DictData', JSON.stringify(DictData));
     initDictionaries();
 
     for(i in Dicts) {   // add options by Dicts order
         if (val_disable.indexOf(i) != -1) {
             s1 = Dicts[i].split('] ');
-            e.options.add(new Option(s1[1], i));
-            e.options[e.length -1].title = s1[0] + ']';
+            const entry = document.createElement('li');
+            entry.dataset.text = s1[1];
+            entry.dataset.value = i;
+            entry.dataset.title =  s1[0] + ']';
+            entry.innerText = entry.dataset.text;
+            $disabled.append(entry);
+            // e.options.add(new Option(s1[1], i));
+            // e.options[e.length -1].title = s1[0] + ']';
         }
     }
 }
 
-function toGetAbbr(val) { // 0= from disabled, 1 = from enabled
+function toGetAbbr(item) { // 0= from disabled, 1 = from enabled
     var DictData = [];  
     var strDictData = localStorage.getItem("DictData"); 
     DictData = JSON.parse(strDictData);  
 
-    if (val == '0') {
-        val = $('#DictionaryDisable').val();
-    } else{
-        val = $('#DictionaryEnable').val();
-    }
+    const val = item.dataset.value;
     $('#AbbreviatedDictionary').val(val);
     $('#AbbreviatedMessage').html(Dicts[val]);
  
@@ -855,12 +898,15 @@ function initPreferences(){
     var e_enable = document.getElementById('DictionaryEnable');
     var e_disable = document.getElementById('DictionaryDisable');
 
-    for(var i=(e_enable.length -1); 0<=i; i--) { // remove all options  
-        e_enable.remove(i);
-    }
-    for(var i=(e_disable.length -1); 0<=i; i--) { // remove all options  
-        e_disable.remove(i);
-    }
+    e_enable.innerHTML = '';
+    e_disable.innerHTML = '';
+
+    // for(var i=(e_enable.length -1); 0<=i; i--) { // remove all options
+    //     e_enable.remove(i);
+    // }
+    // for(var i=(e_disable.length -1); 0<=i; i--) { // remove all options
+    //     e_disable.remove(i);
+    // }
 
     //  
     var jDictData = {key:"", order:"", abbr:""};
@@ -893,8 +939,16 @@ function initPreferences(){
 
         if (val == '000') {
             s1 = Dicts[i].split('] ');
-            e_disable.options.add(new Option(s1[1], i));
-            e_disable.options[e_disable.length -1].title = s1[0] + ']';
+
+            const entry = document.createElement('li');
+            entry.dataset.text = s1[1];
+            entry.dataset.value = i;
+            entry.dataset.title =  s1[0] + ']';
+            entry.innerText = entry.dataset.text;
+            e_disable.appendChild(entry);
+
+            // e_disable.options.add(new Option(s1[1], i));
+            // e_disable.options[e_disable.length -1].title = s1[0] + ']';
         } else {
             e_enable_options = e_enable_options + val + i + '@';
         }
@@ -908,8 +962,16 @@ function initPreferences(){
             v2 = ary[i].slice(-3);    // keys
 
             s1 = Dicts[v2].split('] ');
-            e_enable.options.add(new Option(s1[1], v2));
-            e_enable.options[e_enable.length -1].title = s1[0] + ']';
+
+            const entry = document.createElement('li');
+            entry.dataset.text = s1[1];
+            entry.dataset.value = v2;
+            entry.dataset.title =  s1[0] + ']';
+            entry.innerText = entry.dataset.text;
+            e_enable.appendChild(entry);
+
+            // e_enable.options.add(new Option(s1[1], v2));
+            // e_enable.options[e_enable.length -1].title = s1[0] + ']';
 
             inc = inc +10;
             v1 = '000' + inc;
@@ -925,8 +987,16 @@ function initPreferences(){
     } 
     localStorage.setItem('DictData', JSON.stringify(DictData));
 
-    $('#EnableCount').html(document.form1.DictionaryEnable.options.length);
-    $('#DisableCount').html(document.form1.DictionaryDisable.options.length);
+    $('#EnableCount').html(e_enable.childElementCount);
+    $('#DisableCount').html(e_disable.childElementCount);
+
+    $('.ping-pong-list').on('click', 'li', function() {
+        toGetAbbr(this);
+        const $li = $(this);
+        const $parent = $li.parent();
+        $parent.find('li').removeClass('selected');
+        $li.addClass('selected');
+    })
 
     // Speech Repeat
     var speech_repeat = localStorage.getItem("speech_repeat");

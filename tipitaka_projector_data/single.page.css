@@ -656,3 +656,40 @@ body.show-page-numbers p.b1 span.font10 {
     text-overflow: ellipsis; 
     font-size:12pt;
   }
+
+.ping-pong-list {
+    list-style: none;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: auto;
+    background: white;
+    border: 3px inset #e5e5e5;
+    box-sizing: border-box;
+    height: 240px;
+}
+
+.ping-pong-list li {
+    padding-left: 10px;
+    padding-right: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 1.5;
+    font-size: 12pt;
+    border-bottom: 1px solid #ccc;
+    user-select: none;
+}
+
+.ping-pong-list li.selected {
+    background: #007fff;
+    color: white;
+}
+
+.ping-pong-list li:hover {
+    background-color: #f2f2f2;
+}
+
+.ping-pong-list li.selected:hover {
+    background: #57abff;
+    color: white;
+}
