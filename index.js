@@ -19,12 +19,7 @@ app.on('ready', () => {
         }
     });
 
-    if(process.platform == 'darwin'){
-        mainWindow.setFullScreen(true);
-    }
-    else{
-        mainWindow.maximize();
-    }
+    mainWindow.maximize();
     
 
     mainWindow.loadURL(`file://${__dirname}/tipitaka_projector_data/index.htm`);
@@ -62,7 +57,7 @@ autoUpdater.on('update-downloaded', () => {
 });
 
 ipcMain.on('check-for-update', () => {
-    autoUpdater.checkForUpdates();
+    //autoUpdater.checkForUpdates();
 });
 ipcMain.on('restart-and-update', () => {
     autoUpdater.quitAndInstall();
