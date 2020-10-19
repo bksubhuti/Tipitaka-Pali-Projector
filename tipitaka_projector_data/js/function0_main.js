@@ -75,7 +75,8 @@ function toTranslate(input, viewLeftConfig) {
 	return(out);
 }
 
-function toTranslateRight(input) {
+function toTranslateRight(input, viewRightConfig) {
+	const view_right = localStorage.getItem("view_right");
 	var out = '';
 	input = '' + input;
 	switch (view_right) {
@@ -86,7 +87,11 @@ function toTranslateRight(input) {
 			out = toMyanmar(input);
 			break;
 		case 'Sinhala' :
-			out = romanToSinhala(input);
+			// this is the proper one to use and fixes one issue
+			// however, cannot use for other scripts because it is slow.
+			var selectedScript = Script.SI;
+			const sinhStr = TextProcessor.convertFromMixed(input);
+			out = TextProcessor.convert(sinhStr, selectedScript);
 			break;
 		case 'Thai' :
 			out = toThai(input);

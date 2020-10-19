@@ -336,10 +336,10 @@ function  displayBook() {
 			s1 = s1 + pali_left + tags[idy];
 
 			if ((viewRightConfig != 'Space') && (viewRightConfig != 'MyNote') && (viewRightConfig != 'Suttacentral')) { 
-				var pali_right = toTranslate(pali[idy], viewRightConfig);
+				var pali_right = toTranslateRight(pali[idy], viewRightConfig);
 				if (Sr_run == '1') {
 					for (const currentSr of Sr_ary) {
-						const translated = toTranslate(currentSr, viewRightConfig);
+						const translated = toTranslateRight(currentSr, viewRightConfig);
 						pali_right = replacei(pali_right, translated, sub=> '<span id="Sr' + idx + '" class="Sr_note">' + translated + "</span>");
 					}
 				} 

@@ -31,7 +31,11 @@
     }
     // Font Size
     if (!localStorage.getItem("PaliFontSize")) {
-        document.write = localStorage.setItem("PaliFontSize", '20');
+        if (isMobile){
+            document.write = localStorage.setItem("PaliFontSize", '11');
+        }else{
+            document.write = localStorage.setItem("PaliFontSize", '20');
+        }
     }
     // Dispaly Note
     // if (!localStorage.getItem("Pali_note")) {
@@ -148,7 +152,11 @@
     }  
     // Panel Font Size
     if (!localStorage.getItem("contentfontsize")) {
-        document.write = localStorage.setItem("contentfontsize", '12');
+        if(isMobile){
+            document.write = localStorage.setItem("contentfontsize", '10');
+        }else{
+            document.write = localStorage.setItem("contentfontsize", '12');
+        }
     }  
 
     if (!localStorage.getItem("panel_bg_color")) {

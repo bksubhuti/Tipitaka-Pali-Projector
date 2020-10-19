@@ -1245,3 +1245,11 @@ function checkPrefsExist(){
 
 
 
+function doMobileAdjust(){
+
+        $('#btnSave').addClass('hide');
+        $('#btnRestore').addClass('hide');
+        $('#savePrompt').addClass('hide');
+        $('#ResizeDrag').addClass('hide');
+
+}

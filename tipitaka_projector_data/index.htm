@@ -6,6 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+    <script>
+        var isMobile = true;
+    </script>
+
     <link rel="TIPITAKA PROJECTOR ICON" href="images/favico.ico"/>
     <link rel="stylesheet" type="text/css" href="js/index_style.css"/>
     <link rel="stylesheet" type="text/css" href="js/index_style2.css"/>
@@ -13,7 +18,6 @@
     <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.css"/>
     <link rel="stylesheet" type="text/css" href="single.page.css"/>
     <link rel="stylesheet" type="text/css" href="js/farbtastic12/farbtastic/farbtastic.css"  />
-
 
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 
@@ -334,6 +338,12 @@
         const setupHome = function setupHome() {
              console.log('window.onload');
              initDialogs();
+
+             if (isMobile){
+                doMobileAdjust();
+            }
+
+
 
              $('body').on('click', '#epub-selector .epub-books li', function() {
                  const fileName = this.dataset.fileName;
@@ -1843,13 +1853,13 @@
                                                         <select name="view_right" id="view_right"
                                                                 onChange='ChooseSelect("view_right")'>
                                                             <option value="Space">None</option>
+                                                            <option value="Suttacentral">English Mode</option>
+                                                            <option value="MyNote">My Note</option>
                                                             <option value="Roman">Roman</option>
                                                             <option value="Myanmar">Myanmar</option>
                                                             <option value="Sinhala">Sinhala</option>
                                                             <option value="Thai">Thai</option>
                                                             <option value="Devanagari">Devanagari</option>
-                                                            <option value="MyNote">My Note</option>
-                                                            <option value="Suttacentral">English Mode</option>
                                                         </select>
                                                         <br><br>
                                                     </td>
@@ -2175,13 +2185,14 @@
                                             style="font-size:20px;">  Reset All</button>
                                     <br>
                                     <br>
-
+                                    <div id='savePrompt'>
                                     Step 1 :<br>
                                     &nbsp;&nbsp;Save "preference.txt"
                                     <br>
                                     Step 2 :<br>
                                     &nbsp;&nbsp;Copy this text file into<br>&nbsp;&nbsp;\tipitaka_projector_data\
-                                    <br><br>
+                                </div>
+                                <br><br>
                                 </td>
                                 <td width="50%" valign="top">
                                     <textarea name="preferences" id="preferences"

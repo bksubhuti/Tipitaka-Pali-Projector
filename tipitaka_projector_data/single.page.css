@@ -2,6 +2,13 @@
     display: none;
 }
 
+.ui-dialog-titlebar-close { 
+    width: 50px !important; 
+    height: 30px !important; 
+    top: 35% !important; 
+}
+
+
 
 @font-face {
     font-family: 'Material Icons';
@@ -564,8 +571,6 @@ a:link {
 #welcome .welcome-content a u h1 { color: blue; }
 
 
-.app-dialog{
-}
 
 
 
@@ -692,4 +697,9 @@ body.show-page-numbers p.b1 span.font10 {
 .ping-pong-list li.selected:hover {
     background: #57abff;
     color: white;
+}
+
+.hide {
+    display: none;
+    visibility: hidden;
 }
