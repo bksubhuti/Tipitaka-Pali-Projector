@@ -1222,7 +1222,7 @@ function checkPrefsExist(){
     if ( isElectron() ){
 
         var rawFile = new XMLHttpRequest();
-        rawFile.open("GET", "preferences.txt", false);
+        rawFile.open("GET", "preferences.template", false);
         rawFile.onreadystatechange = function () {
             if (rawFile.readyState === 4) {
                 if (rawFile.status === 200 || rawFile.status == 0) {
