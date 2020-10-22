@@ -64,6 +64,11 @@ function TmpDictionarySave(id) {
 
 function DictionaryGo() {
 	$('#lookup-results').empty();
+
+    var panel_dict_bg_color =     localStorage.getItem('panel_dict_bg_color');
+    $('.DictionaryClass').css('background-color', panel_dict_bg_color);
+
+
 	var jDictInfo = {key:"", source:"", def:""};
 	//preserve original for searching... 
 	//var strOrigKey = this.dataset.wordvalue.trim();
@@ -89,7 +94,7 @@ function DictionaryGo() {
 		if (get_data != '') {		//found in directly or declension table
 			DictionaryRet = DictionaryRet + get_data;
 		} else {		// not found
-			DictionaryRet = DictionaryRet + '<div class="DictionaryClass" style="' + DictionaryBackground + '">';
+			DictionaryRet = DictionaryRet + '<div class="DictionaryClass" >';
 			DictionaryRet = DictionaryRet + '<a href="javascript:void(0);" id="G_' + key + '" onClick="OpenOnce(\'' + key + '\')" style="font-weight:900;" >' + toTranslate(key) + '&nbsp;</a>&nbsp;&nbsp;';
 			DictionaryRet = DictionaryRet + DoAnalysis(key) + '</div>';
 		}	

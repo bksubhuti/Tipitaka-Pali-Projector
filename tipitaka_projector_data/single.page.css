@@ -227,7 +227,7 @@
 }
 
 .DictionaryClass {
-    background-color: rgba(176, 176, 176, 0.42) !important;
+    background-color: rgba(256, 256, 250, 0.42) ;
 }
 
 .dict {
@@ -703,3 +703,8 @@ body.show-page-numbers p.b1 span.font10 {
     display: none;
     visibility: hidden;
 }
+.card {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+  }

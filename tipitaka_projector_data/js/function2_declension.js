@@ -46,13 +46,20 @@ function GetKeys(ary, dname, key, ret_key) {
 }
 
 function GetValues(aryVal, dname, key) {
+
+    var panel_dict_bg_color =     localStorage.getItem('panel_dict_bg_color');
+
+    $('.DictionaryClass').css('background-color', panel_dict_bg_color);
+
+
+
 	this.aryVal = aryVal;
 	var meaning_from_dict = "" + aryVal[key];
 	if (meaning_from_dict != "undefined") {
 		if (dname.indexOf('pm') != -1) {	//myanmar class="ZawgyiFont"
-			return ('<div class="DictionaryClass" style="' + DictionaryBackground + '"><b style="color:#777777">[' + aryAbbr[dname] + ']</b>&nbsp;<span class="ZawgyiFont">' + meaning_from_dict + '</span></div>');
+			return ('<div class="card DictionaryClass">[' + aryAbbr[dname] + ']</b>&nbsp;<span class="ZawgyiFont">' + meaning_from_dict + '</span></div>');
 		} else {
-			return ('<div class="DictionaryClass" style="' + DictionaryBackground + '"><b style="color:#777777">[' + aryAbbr[dname] + ']</b>&nbsp;' + meaning_from_dict + '</div>');
+			return ('<div class="card DictionaryClass">[' + aryAbbr[dname] + ']</b>&nbsp;' + meaning_from_dict + '</div>');
 		}
 	} else {
 		return ('');

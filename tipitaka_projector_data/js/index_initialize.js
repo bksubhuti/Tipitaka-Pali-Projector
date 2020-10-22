@@ -163,6 +163,10 @@
         document.write = localStorage.setItem("panel_bg_color", '#f0f0f0'); 
     }
 
+    if (!localStorage.getItem("panel_dict_bg_color")) {
+        document.write = localStorage.setItem("panel_dict_bg_color", '#fffff8'); 
+    }
+    
 
 
     // Panel FontColor

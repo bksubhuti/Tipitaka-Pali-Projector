@@ -521,6 +521,15 @@ function ChooseRange(key) {
         localStorage.setItem('contentfontcolorB', b);
     }
 }
+function onChangePanel_dict_bg_color(){
+
+    var panel_dict_bg_color = $('#panel_dict_bg_color').val();
+
+    localStorage.setItem('panel_dict_bg_color', panel_dict_bg_color);
+    $('.DictionaryClass').css('background-color', panel_dict_bg_color);
+
+
+}
 
 function SavePreferences() {
     def = [];
@@ -614,6 +623,11 @@ var setPanelBackgroundColorInput = function setPanelBackgroundColorInput() {
     $('#panel_bg_color').val(panel_bg_color);
     return panel_bg_color;
 }
+var setPanelDictBackgroundColorInput = function setPanelDictBackgroundColorInput (){
+    var panel_dict_bg_color = localStorage.getItem("panel_dict_bg_color");
+    $('#panel_dict_bg_color').val(panel_dict_bg_color);
+    return panel_bg_color;
+} 
 
 var updatePanelColors = function updatePanelColors(panel_bg_color, panel_font_color) {
     var panel_bg_color = setPanelBackgroundColorInput();

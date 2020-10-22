@@ -161,7 +161,6 @@ var html_no = _ary[0].slice(-4);
 
 M_LOC = [];
 M_SCT = [];		// sutta_center;
-DictionaryBackground = '';
 
 function GetTrId(val) {
 	val = Math.max(1, val);
