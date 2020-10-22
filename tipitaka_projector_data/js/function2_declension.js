@@ -47,10 +47,7 @@ function GetKeys(ary, dname, key, ret_key) {
 
 function GetValues(aryVal, dname, key) {
 
-    var panel_dict_bg_color =     localStorage.getItem('panel_dict_bg_color');
-
-    $('.DictionaryClass').css('background-color', panel_dict_bg_color);
-
+	SetDictionaryClassColor();
 
 
 	this.aryVal = aryVal;

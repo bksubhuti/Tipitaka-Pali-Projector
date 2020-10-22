@@ -164,7 +164,7 @@
     }
 
     if (!localStorage.getItem("panel_dict_bg_color")) {
-        document.write = localStorage.setItem("panel_dict_bg_color", '#fffff8'); 
+        document.write = localStorage.setItem("panel_dict_bg_color", '#rgba(176, 176, 176, 0.42)'); 
     }
     
 

@@ -65,8 +65,7 @@ function TmpDictionarySave(id) {
 function DictionaryGo() {
 	$('#lookup-results').empty();
 
-    var panel_dict_bg_color =     localStorage.getItem('panel_dict_bg_color');
-    $('.DictionaryClass').css('background-color', panel_dict_bg_color);
+	SetDictionaryClassColor();
 
 
 	var jDictInfo = {key:"", source:"", def:""};
@@ -277,4 +276,9 @@ const fuzzyLetterContains = (target, source) => {
 
 const fuzzyLetterStartsWith = (target, source) => {
 	return fuzzyLetterIndexOf(target, source) === 0;
+}
+
+function SetDictionaryClassColor(){
+	var panel_dict_bg_color =     localStorage.getItem('panel_dict_bg_color');
+    $('.DictionaryClass').css('background-color',panel_dict_bg_color);
 }

@@ -67,9 +67,11 @@
     ]
   },
   "linux": {
-    "target": ["deb","snap"],
+    "target": [
+      "deb",
+      "snap"
+    ],
     "icon": "build/tpp-icon.icns"
-    
   },
   "dmg": {
     "icon": "build/tpp-icon.png",
