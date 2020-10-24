@@ -246,12 +246,13 @@
 }
 
 header.panel-header {
-    height: 30px;
-    width: calc(100% + 10px);
+    border: 3px solid #777;
+    margin-top: -4px;
+    height: 32px;
+    width: calc(100% );
     display: flex;
     font-family: sans-serif;
     align-items: center;
-    border-bottom: 3px solid #777;
     margin-left: -5px;
     padding-left: 5px;
     cursor: grab;

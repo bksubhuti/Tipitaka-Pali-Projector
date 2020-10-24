@@ -399,3 +399,12 @@ if (SingleLoad) {
 loadInSequence(toLoad);
 
 
+
+
+function onHeaderDropUp(){
+	document.getElementById("main_div").style.visibility = "hidden";
+	document.getElementById("panel-header").style.visibility = "visible";
+}
+function onHeaderDropDown(){
+	document.getElementById("main_div").style.visibility = "visible";
+}

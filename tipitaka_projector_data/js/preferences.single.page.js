@@ -808,8 +808,12 @@ function initPreferences(){
     var contentdisplay = localStorage.getItem("contentdisplay");        // 0=onclick, 1=always
     if (contentposition == '0') {
         document.getElementById('positionfloat').checked = true;
+        $('#btnHeaderDropUp').show();
+        $('#btnHeaderDropDown').show();
     } else {
         document.getElementById('positionfixed').checked = true;
+        $('#btnHeaderDropUp').hide();
+        $('#btnHeaderDropDown').hide();
 
         contentdisplay = '1';
         document.write = localStorage.setItem("contentdisplay", '1');

@@ -13,6 +13,7 @@ function afterWordClicked(word, tdr1) {
 	if (word.length > 0) {
 		//lookupCoordinator(t, 0);	//$changecolor = $ns % 2; /
 		$('#main_div').css('display', 'inline');
+		onHeaderDropDown();
 
 		if (localStorage.getItem('main_content') == 'page1') {
 			DictionaryKeyGo();
