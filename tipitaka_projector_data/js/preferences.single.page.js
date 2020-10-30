@@ -43,21 +43,21 @@ Dicts['pe1'] = 'PE1: [23,850 entries - 1.34 MB ] Pali English Suttacentral Offli
 Dicts['pe2'] = 'PE2: [20,968 entries - 1.10 MB] Pali English Extracted From Digital Pali Reader (DPR)';
 Dicts['pe3'] = 'PE3: [16,274 entries - 6.91 MB] Pali English Dictionary (PTS)';
 Dicts['pe4'] = 'PE4: [381,754 entries - 37.1 MB] Pali English Declension Dict @DPR 2018';
-Dicts['pe5'] = 'PE5: [330,972entries - 14.5 MB] Pali Grammar Dictionary@DPR 2018';
-Dicts['pe6'] = 'PE6: [5,775 entries - 4.0 MB] Pali Proper Names G P Malalasekera@2018';
+Dicts['pe5'] = 'PE5: [330,972entries - 14.5 MB] Pali English Grammar Dictionary@DPR 2018';
+Dicts['pe6'] = 'PE6: [5,775 entries - 4.0 MB] Pali English Proper Names G P Malalasekera@2018';
 Dicts['pe7'] = 'PE7: [27,730 entries - 22.8 MB] Pali English Dictionary extract@Janaka 2020';
 Dicts['pg1'] = 'PG1: [22,729 entries - 1.27 MB] Pali Germany Suttacentral Offline 2016';
 Dicts['pi1'] = 'PI1: [16,183 entries - 1.2 MB] Pali India Dictionary @Janaka 2020';
-Dicts['pm1'] = 'PM1: [153,527 entries - 37.8 MB] Pali Word Grammar @2018';
-Dicts['pm2'] = 'PM2: [153,527 entries - 23.9 MB] Tipitaka Pali Myanmar @2018';
+Dicts['pm1'] = 'PM1: [153,527 entries - 37.8 MB] Pali Myanmar Word Grammar @2018';
+Dicts['pm2'] = 'PM2: [153,527 entries - 23.9 MB] Pali Myanmar Tipitaka Pali  @2018';
 Dicts['pm3'] = 'PM3: [58,095 entries - 7.01 MB] Pali Myanmar Dictionary @U Hau Sein 2018';
-Dicts['pm4'] = 'PM4: [1,882 entries - 441 KB] Pali Roots Dictionary @2018';
+Dicts['pm4'] = 'PM4: [1,882 entries - 441 KB] Pali Myanmar Roots Dictionary @2018';
 Dicts['ps1'] = 'PS1: [18,993 entries - 1.6 MB] Pali Sinhala by Buddhadatta@Janaka 2020';
 Dicts['ps2'] = 'PS2: [23,118 entries - 2.9 MB] Pali Sinhala by Sumanagala@Janaka 2020';
 Dicts['pv1'] = 'PV1: [17,423 entries - 902 KB] Pali Viet Dictionary Bản dịch của ngài Bửu Chơn';
 Dicts['pv2'] = 'PV2: [3,827 entries - 214 KB] Pali Viet Abhidhamma Terms - ngài Tịnh Sự (phần ghi chú thuật ngữ)';
 Dicts['pv3'] = 'PV3: [914 entries - 253 KB] Pali Viet Vinaya Terms - Từ điển các thuật ngữ về luật do tỳ khưu Giác Nguyên sưu tầm';
-Dicts['se1'] = 'SE1: [223,917 entries - 28.9 MB] A Sanskrit English Dictionary - Monier Williams@1899';
+Dicts['se1'] = 'SE1: [223,917 entries - 28.9 MB] Sanskrit English Dictionary - Monier Williams@1899';
 Dicts['ee1'] = 'EE1: [148,730 entries - 23.2 MB] Word-Net Eng-Eng dictionary'; 
 
 
