@@ -366,10 +366,10 @@
 <div id="main_div">
 
     <header class="panel-header" id="panel-header">
-        <div id="btnHeaderDropUp" class="notselected grey-button" onClick="onHeaderDropUp()" title="Expand">
+        <div id="btnHeaderDropUp" class="notselected grey-button" title="Expand">
             <i class="material-icons">arrow_drop_up</i>
         </div>
-        <div id="btnHeaderDropDown" class="notselected grey-button" onClick="onHeaderDropDown()" title="Expand">
+        <div id="btnHeaderDropDown" class="notselected grey-button" title="Expand">
             <i class="material-icons">arrow_drop_down</i>
         </div>
         <img src="images/dhammacakka.svg" height="22" width="22"/>
@@ -2818,6 +2818,9 @@ $('#main_table').on('click', 'td.r1 > p', function onParagraphClick(event) {
         console.log('error selecting word', e);
     }
 });
+
+$('#btnHeaderDropUp').on('click touchstart', e => onHeaderDropUp())
+$('#btnHeaderDropDown').on('click touchstart', e => onHeaderDropDown())
 </script>
 
 </body>
