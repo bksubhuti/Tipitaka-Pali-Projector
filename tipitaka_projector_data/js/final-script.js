@@ -13,8 +13,14 @@ function afterWordClicked(word, tdr1) {
 	if (word.length > 0) {
 		//lookupCoordinator(t, 0);	//$changecolor = $ns % 2; /
 		$('#main_div').css('display', 'inline');
-		onHeaderDropDown();
-
+		// test to see if in dictionary mode and call or show whole thing
+		if ($('.first-nav').hasClass('hideMe')){
+			onHeaderDictionary();
+		}
+		else{
+			onHeaderDropDown();
+		}
+	
 		if (localStorage.getItem('main_content') == 'page1') {
 			DictionaryKeyGo();
 		} else {

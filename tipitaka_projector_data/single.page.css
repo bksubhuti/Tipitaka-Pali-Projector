@@ -700,7 +700,7 @@ body.show-page-numbers p.b1 span.font10 {
     color: white;
 }
 
-.hide {
+.hideMe {
     display: none;
     visibility: hidden;
 }

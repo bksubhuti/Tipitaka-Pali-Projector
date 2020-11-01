@@ -404,22 +404,24 @@ loadInSequence(toLoad);
 function onHeaderDropUp(){
 	$("#main_div").css('visibility', "hidden");
 	$("#panel-header").css('visibility', "visible");
-
-
 }
+
+
 function onHeaderDropDown(){
 	$("#main_div").css('visibility', "visible");
-	$('.tabs').removeClass('hide');
-	$('.first-nav').removeClass('hide');
-	$('.dict').removeClass('hide');
+	$('.tabs').removeClass('hideMe');
+	$('.first-nav').removeClass('hideMe');
+	$('.dict').removeClass('hideMe');
+	$('.helpers').removeClass('hideMe');
 	$('#tab-content').css('margin-top', '');
 }
 
 function onHeaderDictionary(){
 	$("#main_div").css('visibility', "visible");
-	$('.tabs').addClass('hide');
-	$('.first-nav').addClass('hide');
-	$('.dict').addClass('hide');
+	$('.tabs').addClass('hideMe');
+	$('.first-nav').addClass('hideMe');
+	$('.dict').addClass('hideMe');
+	$('.helpers').addClass('hideMe');
 	$('#tab-content').css("margin-top", "3px");
 	
 }

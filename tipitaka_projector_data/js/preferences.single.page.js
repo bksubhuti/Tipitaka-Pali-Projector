@@ -1268,7 +1268,7 @@ function checkPrefsExist(){
 
 function doMobileAdjust(){
 
-        $('#btnSave').addClass('hide');
-        $('#btnRestore').addClass('hide');
-        $('#savePrompt').addClass('hide');
+        $('#btnSave').addClass('hideMe');
+        $('#btnRestore').addClass('hideMe');
+        $('#savePrompt').addClass('hideMe');
 }
