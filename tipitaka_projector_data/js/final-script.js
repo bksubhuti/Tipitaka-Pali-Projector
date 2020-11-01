@@ -888,7 +888,10 @@ function stopDrag(){
 	}
 	else{
 		document.removeEventListener("mousemove",doDrag,true);
+		document.removeEventListener("touchmove", doDrag,true);
+
 		document.removeEventListener("mouseup",stopDrag,true);
+		document.removeEventListener("touchend",stopDrag,true);
 	}
 };
 
