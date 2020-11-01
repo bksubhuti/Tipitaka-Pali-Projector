@@ -525,12 +525,7 @@ if (p == '0') {		// floating
 // 6. Background-Color
 $('#main_div').css('backgroundColor', localStorage.getItem('bg_color'));
 
-
-if (localStorage.getItem('contentdisplay') == '0') {
-	$('#main_div').css('display', 'none');
-} else {
-	$('#main_div').css('display', 'inline');
-}
+$('#main_div').css('display', 'inline');
 
 
 var panel_bg_color  = localStorage.getItem('panel_bg_color');

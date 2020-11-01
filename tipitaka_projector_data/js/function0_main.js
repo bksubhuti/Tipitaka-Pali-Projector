@@ -402,9 +402,24 @@ loadInSequence(toLoad);
 
 
 function onHeaderDropUp(){
-	document.getElementById("main_div").style.visibility = "hidden";
-	document.getElementById("panel-header").style.visibility = "visible";
+	$("#main_div").css('visibility', "hidden");
+	$("#panel-header").css('visibility', "visible");
+
+
 }
 function onHeaderDropDown(){
-	document.getElementById("main_div").style.visibility = "visible";
+	$("#main_div").css('visibility', "visible");
+	$('.tabs').removeClass('hide');
+	$('.first-nav').removeClass('hide');
+	$('.dict').removeClass('hide');
+	$('#tab-content').css('margin-top', '');
+}
+
+function onHeaderDictionary(){
+	$("#main_div").css('visibility', "visible");
+	$('.tabs').addClass('hide');
+	$('.first-nav').addClass('hide');
+	$('.dict').addClass('hide');
+	$('#tab-content').css("margin-top", "3px");
+	
 }

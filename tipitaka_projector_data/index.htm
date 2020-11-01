@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+    
     <script>
         var isMobile = false;
     </script>
@@ -367,10 +367,13 @@
 
     <header class="panel-header" id="panel-header">
         <div id="btnHeaderDropUp" class="notselected grey-button" title="Expand">
-            <i class="material-icons">arrow_drop_up</i>
+            <i class="material-icons">remove</i>
+        </div>
+        <div id="btnHeaderDictionary" class="notselected grey-button" title="Expand">
+            <i class="material-icons">crop_16_9</i>
         </div>
         <div id="btnHeaderDropDown" class="notselected grey-button" title="Expand">
-            <i class="material-icons">arrow_drop_down</i>
+            <i class="material-icons">crop_portrait</i>
         </div>
         <img src="images/dhammacakka.svg" height="22" width="22"/>
         <span>Tipiṭaka  Pāḷi Projector</span>
@@ -2061,7 +2064,7 @@
                             </tr>
 
                             <tr>
-                                <td width="50%" valign="top" style="visibility:hidden">
+                                <td width="50%" valign="top" style="visibility:visible">
                                     <strong style="color:#880000;">Panel Display</strong>
                                     <br>
                                     <input name="contentdisplay" id="displayalways" value="1" type="radio"
@@ -2507,6 +2510,8 @@
     };
 
     const onReady = () => {
+        $('#main_div').css('display', 'inline');
+
 
         var $fontColorInput = $('#panel_font_color');
         $.farbtastic('#picker').linkTo(function(color) {
@@ -2821,6 +2826,7 @@ $('#main_table').on('click', 'td.r1 > p', function onParagraphClick(event) {
 
 $('#btnHeaderDropUp').on('click touchstart', e => onHeaderDropUp())
 $('#btnHeaderDropDown').on('click touchstart', e => onHeaderDropDown())
+$('#btnHeaderDictionary').on('click touchstart', e => onHeaderDictionary())
 </script>
 
 </body>
