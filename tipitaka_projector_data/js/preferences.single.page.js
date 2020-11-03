@@ -809,10 +809,12 @@ function initPreferences(){
     if (contentposition == '0') {
         document.getElementById('positionfloat').checked = true;
         $('#btnHeaderDropUp').show();
+        $('#btnHeaderDictionary').show();
         $('#btnHeaderDropDown').show();
     } else {
         document.getElementById('positionfixed').checked = true;
         $('#btnHeaderDropUp').hide();
+        $('#btnHeaderDictionary').hide();
         $('#btnHeaderDropDown').hide();
 
         contentdisplay = '1';
