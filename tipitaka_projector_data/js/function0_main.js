@@ -165,7 +165,7 @@ M_SCT = [];		// sutta_center;
 function GetTrId(val) {
 	val = Math.max(1, val);
 	document.write = localStorage.setItem('tr_id', val);
-	document.write = localStorage.setItem('LastHistory', html_no + '/' + val);
+	document.write = localStorage.setItem('LastHistory', html_no + val);
 
 	h = parseInt($('#main_div').css('height')) - Math.max(34, parseInt($('#main_div').css('top'))) + parseInt($('#main_content').css('offsetTop'));
 
@@ -424,4 +424,21 @@ function onHeaderDictionary(){
 	$('.helpers').addClass('hideMe');
 	$('#tab-content').css("margin-top", "3px");
 	
+}
+
+function goConfirmGoToLatest(){
+
+	var strLastHistory = localStorage.getItem('LastHistory');
+
+
+	if (strLastHistory){
+
+		if (confirm('Would you like to restore your session?')) {
+			// Save it!
+			PaliHistoryGoUrl(strLastHistory);
+		} else {
+			// Do nothing!
+		}
+	}
+
 }

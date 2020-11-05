@@ -112,8 +112,9 @@ function PaliHistoryList() {
 	var url = '';
 	var strLastHistory = localStorage.getItem('LastHistory');
 	if (strLastHistory) {
-		url += '<img src="images/reset.png" width="16">';
-		url += '<a href="index.htm#/book/' + strLastHistory + '">Lastest</a>&nbsp;';
+
+		url += '<img src="images/reset.png" width="16">' 
+		url +='<a href="javascript:void(0);"style="white-space: nowrap;\" onClick="PaliHistoryGoUrl(\'' + strLastHistory + '\');"> Latest</a>';
 	} 
 	$('#LastHistory').html(url);	
 
@@ -203,6 +204,8 @@ function PaliHistoryGoUrl(val) {
 	var MyanmarParaNo = "";
 	var PositionToGo  = "";
 	var str ="";
+	gPaliHistoryItem.Toc_name = "id/para num";
+
 
 	var today = new Date();
 	var date = ('0' + (today.getMonth() + 1)).slice(-2) + ('0' + today.getDate()).slice(-2)  + " "+ ('0' + today.getHours()).slice(-2)  + ('0' + today.getMinutes()).slice(-2);
@@ -241,7 +244,11 @@ function PaliHistoryGoUrl(val) {
 	}else{ // not quick jump
 
 		Booktoload = val.substring(0,4);
-		PositionToGo = val.substring(5);
+		if (val.search("#")== -1){
+			PositionToGo = val.substring(4);
+		}else{
+			PositionToGo = val.substring(5);
+		}
 
 		// now load the book if needed
 		// set scroll position
@@ -261,7 +268,7 @@ function PaliHistoryGoUrl(val) {
 				if (PositionToGo.substring(0, 4) == 'para') {
 					window.location = "#" + P_Par[parseInt(PositionToGo.substring(4))];
 				} else {
-					window.location = "#" + PositionToGo;
+					window.location = "#p" + PositionToGo;
 				}
 				gPaliHistoryItem.paraNo = PositionToGo;
 				writeHistoryStorage();
@@ -585,7 +592,8 @@ function writeHistoryStorage(){
 		for (i in  HistoryJSONArray){
 			if ( (HistoryJSONArray[i].html_no == gPaliHistoryItem.html_no) &&  ( HistoryJSONArray[i].paraNo == gPaliHistoryItem.paraNo ) ){
 				//found.. take it out and push to beginning later. 
-				 HistoryJSONArray.splice(i,1);	
+				 var ar =  HistoryJSONArray.splice(i,1);
+				 gPaliHistoryItem = ar[0];	
 			} 
 		}
 		// new item goes to beginning

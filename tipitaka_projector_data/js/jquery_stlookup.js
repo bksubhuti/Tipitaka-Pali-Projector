@@ -525,8 +525,11 @@ $(document).ready(function () {
 	setTimeout(() => {
 		$('#welcome').css('opacity', 1)
 		$('#loader').remove();
+		goConfirmGoToLatest();
+
 	}, 2200);
 
 	// give extra 2.5 seconds for data ready
 	$('#loader').addClass('fade-out');
+
 });

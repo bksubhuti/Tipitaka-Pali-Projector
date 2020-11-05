@@ -709,3 +709,16 @@ body.show-page-numbers p.b1 span.font10 {
     transition: 0.3s;
     border-radius: 5px; /* 5px rounded corners */
   }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+  
+    .ui-dialog-titlebar-close {
+        width: 90px !important;
+        height: 43px !important;
+        top: 23% !important;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .ui-dialog .ui-dialog-titlebar, .ui-dialog .ui-dialog-buttonpane { font-size: 1.25em; }
+    }
