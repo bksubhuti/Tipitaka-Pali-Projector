@@ -430,8 +430,26 @@ function goConfirmGoToLatest(){
 
 	var strLastHistory = localStorage.getItem('LastHistory');
 
-
 	if (strLastHistory){
+
+		$.confirm({
+			title: 'Tpp',
+			content: 'Reload Session?',
+			boxWidth: '30%',
+			escapeKey: true,
+			escapeKey: 'cancel',
+			buttons: {
+				confirm: function () {
+					PaliHistoryGoUrl(strLastHistory);
+				},
+				cancel: function () {
+					;
+				}
+			}
+		});
+	}
+	/*
+
 
 		if (confirm('Would you like to restore your session?')) {
 			// Save it!
@@ -440,5 +458,5 @@ function goConfirmGoToLatest(){
 			// Do nothing!
 		}
 	}
-
+*/
 }
