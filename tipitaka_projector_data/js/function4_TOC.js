@@ -112,9 +112,8 @@ function PaliHistoryList() {
 	var url = '';
 	var strLastHistory = localStorage.getItem('LastHistory');
 	if (strLastHistory) {
-
 		url += '<img src="images/reset.png" width="16">' 
-		url +='<a href="javascript:void(0);"style="white-space: nowrap;\" onClick="PaliHistoryGoUrl(\'' + strLastHistory + '\');"> Latest</a>';
+		url +='<a href="javascript:void(0); onClick="PaliHistoryGoUrl(\'' + strLastHistory + '\');"> Latest</a>';
 	} 
 	$('#LastHistory').html(url);	
 
@@ -125,12 +124,14 @@ function PaliHistoryList() {
 		url += '<br>';
 
 		for (i in PaliHistoryArray) {
+			url += '<span style="white-space: pre;">';
 			url += '<input type="checkbox" id="PaliHist' + i + '" unchecked value="' + PaliHistoryArray[i].html_no + '"/>';
-			url += '<a href="javascript:void(0);" style="white-space: nowrap;\" onClick="PaliHistoryGoUrl(\'' + PaliHistoryArray[i].html_no + "#" + PaliHistoryArray[i].paraNo +  '\');" title="' + T_Book[PaliHistoryArray[i].html_no] + '">' 
+			url += '<a href="javascript:void(0);" onClick="PaliHistoryGoUrl(\'' + PaliHistoryArray[i].html_no + "#" + PaliHistoryArray[i].paraNo +  '\');" title="' + T_Book[PaliHistoryArray[i].html_no] + '">' 
 			url += toTranslate(T_Book[PaliHistoryArray[i].html_no]); //pass html_no to get the title of book
 			url += '&nbsp;' +'/ '  + toTranslate(PaliHistoryArray[i].Toc_Name);
 			url += '&nbsp;#';
 			url += PaliHistoryArray[i].paraNo + '</a><br>';
+			url += '</span>';
 		} 
 		$("#palihistory").html(url);
 	}
@@ -245,7 +246,7 @@ function PaliHistoryGoUrl(val) {
 
 		Booktoload = val.substring(0,4);
 		if (val.search("#")== -1){
-			PositionToGo = val.substring(4);
+			PositionToGo = "p" + val.substring(4);
 		}else{
 			PositionToGo = val.substring(5);
 		}
@@ -268,7 +269,7 @@ function PaliHistoryGoUrl(val) {
 				if (PositionToGo.substring(0, 4) == 'para') {
 					window.location = "#" + P_Par[parseInt(PositionToGo.substring(4))];
 				} else {
-					window.location = "#p" + PositionToGo;
+					window.location = "#" + PositionToGo;
 				}
 				gPaliHistoryItem.paraNo = PositionToGo;
 				writeHistoryStorage();
