@@ -2149,11 +2149,6 @@
                                     <label for="positionfloat" onclick='ChooseRadio("positionfloat")'>Moveable</label>
                                     <br>
                                     <br>
-
-                                    <input type="color" id="panel_dict_bg_color" name="panel_dict_bg_color" onchange="onChangePanel_dict_bg_color()"
-                                        value="#FFFff5">
-                                        <label for="panel_dict_bg_color">Dictionary Shade</label>
-
                                 </td>
                                 <td width="50%">
                                 </td>
@@ -2171,6 +2166,13 @@
                                            onclick='ChooseRadio("displayclick")'>
                                     <label for="displayclick" onclick='ChooseRadio("displayclick")'>On Click</label>
                                     <br><br>
+                                    <strong style="color:#880000;">Dictionary Shade</strong>
+                                    <br>
+                                    <input type="color" id="panel_dict_bg_color" name="panel_dict_bg_color" onchange="onChangePanel_dict_bg_color()"
+                                        value="#FFFff5">
+                                        <br>
+
+
                                 </td>
                                 <td width="50%" valign="top">
                                     <strong style="color:#880000;">Panel Position & Size</strong>
@@ -2306,6 +2308,28 @@
                                 <br><br>
                                 </td>
                                 <td width="50%" valign="top">
+                                    <strong style="color:#880000;">Prompt Restore</strong>
+                                    <br>
+                                    <input name="RestorePromptRadio" id="noPrompt" value="0" type="radio"
+                                           onclick='onPromptRestoreSwitch("off")'>
+                                    <label for="RestorePromptRadio" onclick='onPromptRestoreSwitch("off")'>No</label>
+                                    &nbsp;&nbsp;
+                                    <input name="RestorePromptRadio" id="yesPrompt" value="1" type="radio"
+                                           onclick='onPromptRestoreSwitch("on")'>
+                                    <label for="RestorePromptRadio" onclick='onPromptRestoreSwitch("on")'>Yes</label>
+                                    <br>
+                                    <strong style="color:#880000;">Auto Restore</strong>
+                                    <br>
+                                    <input name="AutoRestore" id="AutoRestoreOff" value="0" type="radio"
+                                           onclick='onAutoRestoreSwitch("off")'>
+                                    <label for="AutoRestore" onclick='onAutoRestoreSwitch("off")'>No</label>
+                                    &nbsp;&nbsp;
+                                    <input name="AutoRestore" id="AutoRestoreOn" value="1" type="radio"
+                                        onclick='onAutoRestoreSwitch("on")'>
+                                    <label for="RestorePromptRadio" onclick='onAutoRestoreSwitch("on")'>Yes</label>
+                                    <br>
+                                    <br>
+                                    
                                     <textarea name="preferences" id="preferences"
                                               style="border:none;display:inline;font-size:9.0pt;line-height:120%;width:90%;max-width:90%x;height:100pt;background-color:#ffff88;"></textarea>
                                 </td>
@@ -2856,6 +2880,7 @@ $('#btnHeaderDictionary').on('click touchstart', e => onHeaderDictionary())
         <i>~  mahāparinibbāna sutta (par.218) ~</i></p>
         <hr>
         <i style="margin-top: 10px; display: block">Starting...</i>
+        <img src="images/Spinner-1.4s-98px.gif" alt="spinner">
     </div>
 </div>
 

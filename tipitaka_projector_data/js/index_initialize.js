@@ -37,6 +37,15 @@
             document.write = localStorage.setItem("PaliFontSize", '20');
         }
     }
+
+    if (!localStorage.getItem("PromptConfirm")) {
+        document.write = localStorage.setItem("PromptConfirm", 'on');
+    }
+
+    if (!localStorage.getItem("AutoRestore")) {
+        document.write = localStorage.setItem("AutoRestore", 'off');
+    }
+
     // Dispaly Note
     // if (!localStorage.getItem("Pali_note")) {
     //     document.write = localStorage.setItem("Pali_note", 'none');

@@ -429,34 +429,34 @@ function onHeaderDictionary(){
 function goConfirmGoToLatest(){
 
 	var strLastHistory = localStorage.getItem('LastHistory');
+	var strPromptConfirm = localStorage.getItem('PromptConfirm');
+	var strAutoRestore = localStorage.getItem('AutoRestore');
 
 	if (strLastHistory){
+		if (strPromptConfirm == "on"){
 
-		$.confirm({
-			title: 'Tpp',
-			content: 'Reload Session?',
-			boxWidth: '30%',
-			escapeKey: true,
-			escapeKey: 'cancel',
-			buttons: {
-				confirm: function () {
+				$.confirm({
+					title: 'Tpp',
+					content: 'Reload Session?',
+					boxWidth: '30%',
+					escapeKey: true,
+					escapeKey: 'cancel',
+					buttons: {
+						Resume: function () {
+							PaliHistoryGoUrl(strLastHistory);
+						},
+						cancel: function () {
+							;
+						}
+					}
+				});
+			}else{
+				if (strAutoRestore == "on" ){
 					PaliHistoryGoUrl(strLastHistory);
-				},
-				cancel: function () {
-					;
 				}
 			}
-		});
-	}
-	/*
-
-
-		if (confirm('Would you like to restore your session?')) {
-			// Save it!
-			PaliHistoryGoUrl(strLastHistory);
-		} else {
-			// Do nothing!
 		}
-	}
-*/
+	
 }
+
+

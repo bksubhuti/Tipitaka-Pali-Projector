@@ -831,6 +831,17 @@ function initPreferences(){
     } else {
         document.getElementById('displayalways').checked = true;
     }
+
+// confirm
+    var strPromptConfirm = localStorage.getItem("PromptConfirm");      // 0=moveable, 1=fixed
+    var AutoRestore = localStorage.getItem("AutoRestore");        // 0=onclick, 1=always
+
+    // call the logic to enable and switch etc.
+    onPromptRestoreSwitch(strPromptConfirm);
+    onAutoRestoreSwitch(AutoRestore);
+
+
+
     // panel position & size
     var main_top = localStorage.getItem("main_top");
     $('#main_top').html(main_top);
@@ -1273,4 +1284,23 @@ function doMobileAdjust(){
         $('#btnSave').addClass('hideMe');
         $('#btnRestore').addClass('hideMe');
         $('#savePrompt').addClass('hideMe');
+}
+
+function onPromptRestoreSwitch(key){
+
+    localStorage.setItem("PromptConfirm", key);    
+    // if prompt is on . grey the autorestore.
+    // turn off and set storage as well.
+    if (key == "on"){
+            document.getElementById('AutoRestoreOn').disabled = true;
+            document.getElementById('AutoRestoreOff').checked = true;
+            localStorage.setItem('AutoRestore', "off");
+
+        }else{
+            document.getElementById('AutoRestoreOn').disabled = false;
+        }
+}
+
+function onAutoRestoreSwitch(key){
+    localStorage.setItem("AutoRestore", key);      
 }
