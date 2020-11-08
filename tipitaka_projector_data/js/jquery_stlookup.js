@@ -30,28 +30,28 @@ var deleChars = /[\[\]01234567890.,-;\+\"\’\?_]/;
 */ 
 var loader = document.getElementById("loader");
 
-loader.innerHTML = `
-<div align="center" style="
-	z-index: 9999;
-	padding-top: 30px;
-	padding-bottom: 15px;
-	position: absolute;
-	background: orange;
-	border: 2px solid white;
-	top: 35%;
-	left: 3%;
-	right: 3%;
-	font-size: x-large;
-	box-shadow: -8px -2px 8px 8px white, -8px 8px 8px 8px #D9D9D9, 8px 12px 12px 12px white;">
-
-	<strong style="display: block; margin-bottom: 10px; font-weight: bolder">
-		"vayadhammā saṅkhārā appamādena sampādethā"
-	</strong>
-
-	<i>~  mahāparinibbāna sutta (par.218) ~</i></p>
-	<hr>
-	<i style="margin-top: 10px; display: block">Starting...</i>
-</div>`;
+// loader.innerHTML = `
+// <div align="center" style="
+// 	z-index: 9999;
+// 	padding-top: 30px;
+// 	padding-bottom: 15px;
+// 	position: absolute;
+// 	background: orange;
+// 	border: 2px solid white;
+// 	top: 35%;
+// 	left: 3%;
+// 	right: 3%;
+// 	font-size: x-large;
+// 	box-shadow: -8px -2px 8px 8px white, -8px 8px 8px 8px #D9D9D9, 8px 12px 12px 12px white;">
+//
+// 	<strong style="display: block; margin-bottom: 10px; font-weight: bolder">
+// 		"vayadhammā saṅkhārā appamādena sampādethā"
+// 	</strong>
+//
+// 	<i>~  mahāparinibbāna sutta (par.218) ~</i></p>
+// 	<hr>
+// 	<i style="margin-top: 10px; display: block">Starting...</i>
+// </div>`;
 
 var divheight = localStorage.getItem("divheight");
 
@@ -520,16 +520,12 @@ function toDevar(l) { l = l.toLowerCase() + " "; var m = { a: " अ", i: " इ",
 function toThai(m) { m = m.toLowerCase() + " "; var n = { a: "1", "ā": "1", i: "1", "ī": "1", "iṃ": "1", u: "1", "ū": "1", e: "2", o: "2" }; var j = { a: "อ", "ā": "า", i: "ิ", "ī": "ี", "iṃ": "ึ", u: "ุ", "ū": "ู", e: "เ", o: "โ", "ṃ": "ํ", k: "ก", kh: "ข", g: "ค", gh: "ฆ", "ṅ": "ง", c: "จ", ch: "ฉ", j: "ช", jh: "ฌ", "ñ": "ญ", "ṭ": "ฏ", "ṭh": "ฐ", "ḍ": "ฑ", "ḍh": "ฒ", "ṇ": "ณ", t: "ต", th: "ถ", d: "ท", dh: "ธ", n: "น", p: "ป", ph: "ผ", b: "พ", bh: "ภ", m: "ม", y: "ย", r: "ร", l: "ล", "ḷ": "ฬ", v: "ว", s: "ส", h: "ห" }; var a = { k: "1", g: "1", "ṅ": "1", c: "1", j: "1", "ñ": "1", "ṭ": "1", "ḍ": "1", "ṇ": "1", t: "1", d: "1", n: "1", p: "1", b: "1", m: "1", y: "1", r: "1", l: "1", "ḷ": "1", v: "1", s: "1", h: "1" }; var l, h, g, f, e, d, b; var c = ""; var k = 0; m = m.replace(/\&quot;/g, "`"); while (k < m.length) { l = m.charAt(k - 2); h = m.charAt(k - 1); g = m.charAt(k); f = m.charAt(k + 1); e = m.charAt(k + 2); d = m.charAt(k + 3); b = m.charAt(k + 4); if (n[g]) { if (g == "o" || g == "e") { c += j[g] + j.a; k++ } else { if (k == 0) { c += j.a } if (g == "i" && f == "ṃ") { c += j[g + f]; k++ } else { if (g != "a") { c += j[g] } } k++ } } else { if (j[g + f] && f == "h") { if (e == "o" || e == "e") { c += j[e]; k++ } c += j[g + f]; if (a[e]) { c += "ฺ" } k = k + 2 } else { if (j[g] && g != "a") { if (f == "o" || f == "e") { c += j[f]; k++ } c += j[g]; if (a[f] && g != "ṃ") { c += "ฺ" } k++ } else { if (!j[g]) { c += g; if (a[h] || (h == "h" && a[l])) { c += "ฺ" } k++; if (f == "o" || f == "e") { c += j[f]; k++ } if (n[f]) { c += j.a } } else { k++ } } } } } if (a[g]) { c += "ฺ" } c = c.replace(/\`+/g, '"'); pthai = c.slice(0, -1); return c.slice(0, -1); };
   
 //$(document).ready(function () = when DOM & all images are rendered. So it seems better than $(window).on('load',function ()
-$(document).ready(function () {
-
+const hideLoader = () => {
+	$('.loader-content').addClass('fade-out');
 	setTimeout(() => {
-		$('#welcome').css('opacity', 1)
-		$('#loader').remove();
+		$('body').removeClass('loading');
+		$('#welcome').css('opacity', 1);
+		$('.loader').remove();
 		goConfirmGoToLatest();
-
-	}, 2200);
-
-	// give extra 2.5 seconds for data ready
-	$('#loader').addClass('fade-out');
-
-});
+	}, 2500);
+}

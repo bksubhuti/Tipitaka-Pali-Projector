@@ -541,17 +541,8 @@ a:link {
     padding: 0;
 }
 
-#loader.fade-out{
-    opacity: 0;
-}
 
-#loader {
-    -webkit-transition: opacity 2.5s linear;
-    -moz-transition: opacity 2.5s linear;
-    -ms-transition: opacity 2.5s linear;
-    -o-transition: opacity 2.5s linear;
-     opacity: 1;
-}
+
 
 #welcome {
     opacity: 0;
@@ -722,3 +713,42 @@ body.show-page-numbers p.b1 span.font10 {
   @media (min-width: 768px) and (max-width: 1024px) {
     .ui-dialog .ui-dialog-titlebar, .ui-dialog .ui-dialog-buttonpane { font-size: 1.25em; }
     }
+
+
+body.loading div#main_div {
+    display: none !important;
+}
+
+.loader {
+    position: absolute;
+    display: flex;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 123456789;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-content {
+    text-align: center;
+    padding: 30px 15px 15px;
+    background: orange;
+    border: 2px solid white;
+    font-size: x-large;
+    box-shadow: -8px -2px 8px 8px white, -8px 8px 8px 8px #D9D9D9, 8px 12px 12px 12px white;
+}
+.loader-content {
+    -webkit-transition: opacity 2.5s linear;
+    -moz-transition: opacity 2.5s linear;
+    -ms-transition: opacity 2.5s linear;
+    -o-transition: opacity 2.5s linear;
+    opacity: 1;
+}
+
+.loader-content.fade-out{
+    opacity: 0;
+}

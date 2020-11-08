@@ -961,5 +961,9 @@ function stopDrag3(){
 	}
 }
 
+if (document.readyState ==='complete') {
+	setupHome();
+} else {
+	window.addEventListener("load", event => { setupHome() }, true);
+}
 
-setupHome();

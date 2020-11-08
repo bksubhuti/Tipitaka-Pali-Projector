@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    
+
     <script>
         var isMobile = false;
     </script>
@@ -38,15 +38,15 @@
     <script src="js/farbtastic12/farbtastic/farbtastic.js"></script>
 
     <script src="js/epublib/jszip.min.js"></script>
-    <script src="js/epublib/epub.min.js"></script> 
-    <script src="js/jqconfirm/jquery-confirm.min.js"></script> 
+    <script src="js/epublib/epub.min.js"></script>
+    <script src="js/jqconfirm/jquery-confirm.min.js"></script>
 
 
     <script>
         var version = '3.3.4';
     </script>
-   
- 
+
+
 
 
     <script>
@@ -348,6 +348,91 @@
             });
         }
 
+        var hexToHSL = function hexToHSL(H) {
+            // Convert hex to RGB first
+            let r = 0, g = 0, b = 0;
+            if (H.length == 4) {
+                r = "0x" + H[1] + H[1];
+                g = "0x" + H[2] + H[2];
+                b = "0x" + H[3] + H[3];
+            } else if (H.length == 7) {
+                r = "0x" + H[1] + H[2];
+                g = "0x" + H[3] + H[4];
+                b = "0x" + H[5] + H[6];
+            }
+            // Then to HSL
+            r /= 255;
+            g /= 255;
+            b /= 255;
+            let cmin = Math.min(r,g,b),
+                cmax = Math.max(r,g,b),
+                delta = cmax - cmin,
+                h = 0,
+                s = 0,
+                l = 0;
+
+            if (delta == 0)
+                h = 0;
+            else if (cmax == r)
+                h = ((g - b) / delta) % 6;
+            else if (cmax == g)
+                h = (b - r) / delta + 2;
+            else
+                h = (r - g) / delta + 4;
+
+            h = Math.round(h * 60);
+
+            if (h < 0)
+                h += 360;
+
+            l = (cmax + cmin) / 2;
+            s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+            s = +(s * 100).toFixed(1);
+            l = +(l * 100).toFixed(1);
+
+            return {hue: h, saturation: s, lightness: l};
+        };
+
+        var ensureTextIsRedable = (backgroundColor, $element) => {
+            const hsl = hexToHSL(backgroundColor);
+            if (hsl.lightness > 50) {
+                $element.css('color', '#000000');
+            } else {
+                $element.css('color', '#FFFfff');
+            }
+        };
+
+        const onReady = () => {
+            $('#main_div').css('display', 'inline');
+
+
+            var $fontColorInput = $('#panel_font_color');
+            $.farbtastic('#picker').linkTo(function(color) {
+                ensureTextIsRedable(color, $fontColorInput);
+                $fontColorInput.css('background-color', color);
+                PanelFontColorChange(color);
+            });
+
+            var $backgroundColorInput = $('#panel_bg_color');
+            $.farbtastic('#picker2').linkTo(function(color) {
+                ensureTextIsRedable(color, $backgroundColorInput);
+                $backgroundColorInput.css('background-color', color);
+                PanelBGColorChange(color);
+            });
+
+            const colorInputs = [$fontColorInput, $backgroundColorInput];
+            for (const $colorInput of colorInputs) {
+                $colorInput.css('background-color', $colorInput.val());
+                ensureTextIsRedable($colorInput.val(), $colorInput);
+            }
+
+            getCurrentVersion();
+
+            onTabClick($('#page4')[0]);
+
+            hideLoader();
+        };
+
         const setupHome = function setupHome() {
              console.log('window.onload');
              initDialogs();
@@ -355,8 +440,6 @@
              if (isMobile){
                 doMobileAdjust();
             }
-
-
 
              $('body').on('click', '#epub-selector .epub-books li', function() {
                  const fileName = this.dataset.fileName;
@@ -366,15 +449,15 @@
              });
 
              loadJSONBooks();
-             
+
              addEvent(document.getElementById("main_td2"), "scroll", toGetScrollId);
-             
+
              onReady();
          };
     </script>
 </head>
 
-<body style="background-color: black; margin-top:0.0pt;margin-right:0in;margin-bottom:0in;margin-left:0in;margin-bottom:0pt;">
+<body class="loading" style="background-color: black; margin-top:0.0pt;margin-right:0in;margin-bottom:0in;margin-left:0in;margin-bottom:0pt;">
 
 <div id="main_div">
 
@@ -484,7 +567,7 @@
 
             if (tab.id === 'pg4_page2') {
                 MyNoteList();
-            } 
+            }
         };
     </script>
 
@@ -611,7 +694,7 @@
 
                     <input type="Textbox" name="QuickJump" id="QuickJump" value=""
                            style="font-size:12pt;width:100%;max-width:60pt;" onKeyup="QuickJumpTips()">
-                    <input type="button" id="QuickJumpBtn" value="Quick Jump" onClick="QuickJump()"></button> 
+                    <input type="button" id="QuickJumpBtn" value="Quick Jump" onClick="QuickJump()"></button>
                     <span onClick="$('#QuickJumpTipsShow').css('display', 'inline-block');"
                          style="color:blue;">
                         <img src="images/s_info.png">Tips<br>
@@ -623,11 +706,11 @@
                          MN22 is Majjhima Nikāya 22nd Sutta<br>
                          SN1.22 is Saṃyutta 1 and 22nd Sutta <Br>
                          an5.20 is Aṅguttara Nikāya "Book of Fives", 20th Sutta
-                    </div> 
+                    </div>
                     <div id="QuickJumpTips" style="color:#440000;text-align: left;display: inline-block;line-height: 16pt;"></div>
                 </div>
                 <br>
- 
+
                 <ul class="tabs">
                     <li class="selected" id="pg4_page1" onclick="onTabClick(this)">
                         History
@@ -641,8 +724,8 @@
                         Bookmarks
                     </li>
                 </ul>
-                <br> 
- 
+                <br>
+
                 <div style="border: 1px #aaaaaa solid;margin-left: -5px;padding:10px;margin-right: -10px;">
                     <div id="pg4_page1_desc" class="pages">
                         <div class="page4">
@@ -660,11 +743,11 @@
                             <span id='LastHistory' style="font-size:12pt;color:blue;"></span>
                             <span id='palihistory' style="font-size:12pt;color:blue;"></span>
                         </div>
-                    </div>    
+                    </div>
 
-                    <div id="pg4_page2_desc" class="pages" style="display:none;"> 
+                    <div id="pg4_page2_desc" class="pages" style="display:none;">
                         <input type="hidden" id="MyNoteIds" value="">
-                        <div class="page4"> 
+                        <div class="page4">
                                 <div class="notselected grey-button" onClick="MyNoteEdit()" title="Add Notes">
                                 <i class="material-icons">mode_edit</i>
                                 </div>
@@ -677,14 +760,14 @@
                                 <div class="notselected grey-button" onClick="MyNoteClear('All')" title="Clear All">
                                 <i class="material-icons">delete</i>
                                 </div>
-                                
+
                                 <label class="switch">
                                 <input id="AllBooksMyNotes" type="checkbox"  onClick="MyNoteList()" >
                                 <span class="slider round"></span>
                                 </label>
                                 <label for="AllBooksMyNotes" style="color:black;font-size:12pt;">&nbsp;All Books&nbsp;</label>
 
-                                <div id ="MyNoteSave" style="display:none;font-size:12pt;"> 
+                                <div id ="MyNoteSave" style="display:none;font-size:12pt;">
                                 <br>
 
                                     <div class="notselected grey-button" onClick="MyNoteSaveCancel('Save')" title="Save">
@@ -697,13 +780,13 @@
                                 </div>
                                 <br>
 
-                            <div id="MyNoteEditable">   
-                            </div>    
+                            <div id="MyNoteEditable">
+                            </div>
                             <div class="MyNotesList">
                                 <span id='MyNoteList'></span>
                             </div>
                         </div>
-                    </div>    
+                    </div>
 
                     <div id="pg4_page3_desc" class="pages" style="display:none;">
                         <div class="page4">
@@ -726,8 +809,8 @@
                             <span id='bookmark' style="font-size:12pt;color:blue;"></span>
 
                         </div>
-                    </div>  
-                </div>   
+                    </div>
+                </div>
 
                 <br>
             </div>
@@ -751,8 +834,8 @@
 
                     <span id='dicthistory' style="font-size:11pt;color:blue;"></span>&nbsp;&nbsp;
                 </div>
-                <div class="pages">  
-                    <img src='images/b_browse.png'>Anki Functions for selected words above 
+                <div class="pages">
+                    <img src='images/b_browse.png'>Anki Functions for selected words above
                     <br>
 
                     <div class="notselected grey-button" onClick="AnkiAdd()" title="Export to Anki File">
@@ -1120,7 +1203,7 @@
                 // Set Theme Colors
                 //
                 setThemeStyling();
- 
+
                 // scroll by id
                 var loc = '' + window.location;
                 var arySplit = loc.split('index.htm#/book/' + bookId + '/');
@@ -1150,7 +1233,7 @@
                 var container = document.getElementById("main_td2");
                 var tr = document.getElementById('main_table').getElementsByTagName("tr");
                 var td = document.getElementById('main_table').getElementsByClassName("r1");
-                var i = 0;    
+                var i = 0;
                 var tr_len = tr.length;
                 if (0 < tr_len) {
                     // get curOldTrId
@@ -1159,7 +1242,7 @@
                     if (strOldTrId == 'NaN') {
                         OldTrId = 1;
                         strOldTrId= '1';
-                    } 
+                    }
                     var i1 = Math.max(0, OldTrId -5);
                     var i2 = Math.min(tr_len -1, OldTrId + 5);
                     for (i=i1; i<=i2; i++) {
@@ -1172,24 +1255,24 @@
                             strOldTrId = i3;
                             break;
                         }
-                    }    
+                    }
 
-                    var parRect = container.getBoundingClientRect(); 
+                    var parRect = container.getBoundingClientRect();
                     var oldCurect = curOldTrId.getBoundingClientRect();
                     if ((oldCurect.top <= parRect.height) && (0 <= (oldCurect.top + oldCurect.height))) {
                         // in range 
-                    } else { 
+                    } else {
                         for (var i = 0; i < tr_len; i++) {
                             var cur = td[i];
-                            if (isElementPartiallyInViewport(container, cur)) { 
+                            if (isElementPartiallyInViewport(container, cur)) {
                                 break;
-                            }  
-                        }  
+                            }
+                        }
                         GetTrId(parseInt((cur.id).substr(1)));
                         //$('#m' + i).click();
-                    } 
+                    }
                 }
-            }    
+            }
         }
 
         function addEvent(element, eventName, callback) {
@@ -1982,10 +2065,10 @@
                                     <td valign="top" width="46%" align="left">
                                         <strong style="color:#880000;">Disabled Pali Dictionaries</strong>
                                         <span id="DisableCount" style="font-size:12pt;color:gray;"></span>
-                                        <ul class="ping-pong-list" 
+                                        <ul class="ping-pong-list"
                                             id="DictionaryDisable"
                                             ondblclick="DictionaryMoveOption(true)">
-                                            
+
                                         </ul>
                                     </td>
                                     <td valign="top" width="8%" align="center">
@@ -2007,7 +2090,7 @@
 
                                         <strong style="color:#880000;">Enabled Pali Dictionaries</strong>
                                         <span id="EnableCount" style="font-size:12pt;color:gray;"></span>
-                                        <ul class="ping-pong-list" 
+                                        <ul class="ping-pong-list"
                                             id="DictionaryEnable"
                                             ondblclick="DictionaryMoveOption(false)">
                                         </ul>
@@ -2064,9 +2147,9 @@
                                     <input name="contentposition" id="positionfloat" value="0" type="radio"
                                            onclick='ChooseRadio("positionfloat")'>
                                     <label for="positionfloat" onclick='ChooseRadio("positionfloat")'>Moveable</label>
-                                    <br>                                    
                                     <br>
-                                                                        
+                                    <br>
+
                                     <input type="color" id="panel_dict_bg_color" name="panel_dict_bg_color" onchange="onChangePanel_dict_bg_color()"
                                         value="#FFFff5">
                                         <label for="panel_dict_bg_color">Dictionary Shade</label>
@@ -2468,89 +2551,11 @@
         if (e.keyCode == 27) history.back();
     }, false);
 
-    var hexToHSL = function hexToHSL(H) {
-        // Convert hex to RGB first
-        let r = 0, g = 0, b = 0;
-        if (H.length == 4) {
-            r = "0x" + H[1] + H[1];
-            g = "0x" + H[2] + H[2];
-            b = "0x" + H[3] + H[3];
-        } else if (H.length == 7) {
-            r = "0x" + H[1] + H[2];
-            g = "0x" + H[3] + H[4];
-            b = "0x" + H[5] + H[6];
-        }
-        // Then to HSL
-        r /= 255;
-        g /= 255;
-        b /= 255;
-        let cmin = Math.min(r,g,b),
-            cmax = Math.max(r,g,b),
-            delta = cmax - cmin,
-            h = 0,
-            s = 0,
-            l = 0;
-
-        if (delta == 0)
-            h = 0;
-        else if (cmax == r)
-            h = ((g - b) / delta) % 6;
-        else if (cmax == g)
-            h = (b - r) / delta + 2;
-        else
-            h = (r - g) / delta + 4;
-
-        h = Math.round(h * 60);
-
-        if (h < 0)
-            h += 360;
-
-        l = (cmax + cmin) / 2;
-        s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
-        s = +(s * 100).toFixed(1);
-        l = +(l * 100).toFixed(1);
-
-        return {hue: h, saturation: s, lightness: l};
-    };
-
-    var ensureTextIsRedable = (backgroundColor, $element) => {
-        const hsl = hexToHSL(backgroundColor);
-        if (hsl.lightness > 50) {
-            $element.css('color', '#000000');
-        } else {
-            $element.css('color', '#FFFfff');
-        }
-    };
-
-    const onReady = () => {
-        $('#main_div').css('display', 'inline');
 
 
-        var $fontColorInput = $('#panel_font_color');
-        $.farbtastic('#picker').linkTo(function(color) {
-            ensureTextIsRedable(color, $fontColorInput);
-            $fontColorInput.css('background-color', color);
-            PanelFontColorChange(color);
-        });
 
-        var $backgroundColorInput = $('#panel_bg_color');
-        $.farbtastic('#picker2').linkTo(function(color) {
-            ensureTextIsRedable(color, $backgroundColorInput);
-            $backgroundColorInput.css('background-color', color);
-            PanelBGColorChange(color);
-        });
 
-        const colorInputs = [$fontColorInput, $backgroundColorInput];
-        for (const $colorInput of colorInputs) {
-            $colorInput.css('background-color', $colorInput.val());
-            ensureTextIsRedable($colorInput.val(), $colorInput);
-        }
 
-        getCurrentVersion();
-
-        onTabClick($('#page4')[0]);
-
-    };
 
     function EnglishModeLoadEpub(bookid){
         var ViewRight =  localStorage.getItem("view_right");
@@ -2663,8 +2668,8 @@
         window.find(str);
 
     }
-                 
-    
+
+
 </script>
 <script>if (window.module) module = window.module;</script>
 
@@ -2735,7 +2740,7 @@
 // * can be used to trigger the dictionary etc.
 //
 // The code is based on spliting clear text by ' ' (spaces) which means a word might
-// contain punctuation (for example .,!?‘), which should be removed from the word 
+// contain punctuation (for example .,!?‘), which should be removed from the word
 // before it's used in a dictionary lookup or elsewhere.
 //
 // Note this hasn't been tested on Electron yet.
@@ -2841,6 +2846,18 @@ $('#btnHeaderDropUp').on('click touchstart', e => onHeaderDropUp())
 $('#btnHeaderDropDown').on('click touchstart', e => onHeaderDropDown())
 $('#btnHeaderDictionary').on('click touchstart', e => onHeaderDictionary())
 </script>
+
+<div class="loader">
+    <div class="loader-content">
+        <strong style="display: block; margin-bottom: 10px; font-weight: bolder">
+            "vayadhammā saṅkhārā appamādena sampādethā"
+        </strong>
+
+        <i>~  mahāparinibbāna sutta (par.218) ~</i></p>
+        <hr>
+        <i style="margin-top: 10px; display: block">Starting...</i>
+    </div>
+</div>
 
 </body>
 </html>
