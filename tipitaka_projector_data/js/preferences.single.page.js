@@ -836,6 +836,13 @@ function initPreferences(){
     var strPromptConfirm = localStorage.getItem("PromptConfirm");      // 0=moveable, 1=fixed
     var AutoRestore = localStorage.getItem("AutoRestore");        // 0=onclick, 1=always
 
+    if (strPromptConfirm == "on"){
+        document.getElementById('yesPrompt').checked = true;
+    }else{
+            document.getElementById('noPrompt').checked = false;
+    }
+
+
     // call the logic to enable and switch etc.
     onPromptRestoreSwitch(strPromptConfirm);
     onAutoRestoreSwitch(AutoRestore);
@@ -1292,6 +1299,7 @@ function onPromptRestoreSwitch(key){
     // if prompt is on . grey the autorestore.
     // turn off and set storage as well.
     if (key == "on"){
+
             document.getElementById('AutoRestoreOn').disabled = true;
             document.getElementById('AutoRestoreOff').checked = true;
             localStorage.setItem('AutoRestore', "off");
