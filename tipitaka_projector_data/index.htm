@@ -465,7 +465,7 @@
         <div id="btnHeaderDropUp" class="notselected grey-button" title="Expand">
             <i class="material-icons">remove</i>
         </div>
-        <div id="btnHeaderDictionary" class="notselected grey-button" title="Expand">
+        <div id="btnHeaderDictionary" class="notselected grey-button" title="Only Definitions">
             <i class="material-icons">crop_16_9</i>
         </div>
         <div id="btnHeaderDropDown" class="notselected grey-button" title="Expand">
@@ -1434,7 +1434,7 @@
                     <input id="ShowOnTop" type="checkbox" onClick="ShowOnTopClick(checked)" >
                     <span class="slider round"></span>
                 </label>
-                <label for="ShowOnTop" style="color:blue;font-size:12pt;">&nbsp;Results On Top&nbsp;</label>
+                <label for="ShowOnTop" style="color:blue;font-size:12pt;">&nbsp;Results Outside Table&nbsp;</label>
 
                 <table border="0" width="80%">
                     <tr>
@@ -1480,12 +1480,6 @@
             <!--  onClick="document.getElementById('out').innerHTML= '';" -->
             <td colspan="3" id="suggest">
                 <span id="out"></span>
-            </td>
-        </tr>
-        <tr style="line-height: 150%">
-            <td></td>
-            <td colspan="3" id="SearchResultTD" style="font-size:14pt;line-height:150%;">
-                <span id="SearchResult" style="display: none;"></span>
             </td>
         </tr>
 
@@ -1668,6 +1662,13 @@
                 <span id="Out83"></span>
             </td>
         </tr>
+        <tr style="line-height: 150%">
+            <td></td>
+            <td colspan="3" id="SearchResultTD" style="font-size:14pt;line-height:150%;">
+                <span id="SearchResult" style="display: none;"></span>
+            </td>
+        </tr>
+
         </tbody>
     </table>
 

@@ -813,9 +813,9 @@ function initPreferences(){
         $('#btnHeaderDropDown').show();
     } else {
         document.getElementById('positionfixed').checked = true;
-        $('#btnHeaderDropUp').hide();
-        $('#btnHeaderDictionary').hide();
-        $('#btnHeaderDropDown').hide();
+        //$('#btnHeaderDropUp').hide();
+        //$('#btnHeaderDictionary').hide();
+        //$('#btnHeaderDropDown').hide();
 
         contentdisplay = '1';
         document.write = localStorage.setItem("contentdisplay", '1');
