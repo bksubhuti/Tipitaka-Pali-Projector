@@ -545,6 +545,7 @@ if (!panel_font_color) {
 
 
 $('#main_div').css('backgroundColor', panel_bg_color);
+$('#main_div .panel-header').css('backgroundColor', panel_bg_color);
 
 var colorobj = new RGBColor(panel_bg_color);
 colorobj.r = parseInt(colorobj.r * 0.8);
