@@ -2803,27 +2803,56 @@ const onParagraphClicked = function onParagraphClicked(event, paragraph) {
     let nodes = '';
     let index = 0;
     let nodeIndex = 0;
+    let subNodeIndex = 0;
 
-    for (const node of contents) {
+    const handleContents = (node, wrapper, classes, pni) => {
+        const w = wrapper || 'span';
+        const c = (classes || []).join(' ');
+        const ni = pni === undefined ? nodeIndex : pni;
+
         if (node.nodeType === Node.TEXT_NODE) {
             const words = node.data.split(' ');
             const spanWords = [];
             index = 0;
             for (const word of words) {
                 const wordLength = word.length;
-                const spanWord = '<span class="clickable word" data-node="' + nodeIndex + '" data-word="' + word + '" data-index="' + index + '" data-length="' + wordLength + '">' + word + '</span>';
+
+                const spanWord = '<' + w + ' class="clickable word ' + c +
+                    '" data-node="' + ni +
+                    (wrapper ? '" data-sub-node="' + subNodeIndex : '') +
+                    '" data-word="' + word +
+                    '" data-index="' + index +
+                    '" data-length="' + wordLength + '">' +
+                    word +
+                    '</' + w + '>';
+
                 index += wordLength;
                 index++; // 1 for ' '
                 spanWords.push(spanWord);
             }
             nodes += spanWords.join(' ');
+            nodeIndex++;
+            subNodeIndex++;
         } else {
             const $node = $(node);
-            const $nodeWithParent = $('<div></div>').html($node);
-            index += $nodeWithParent.text().length;
-            nodes += $nodeWithParent.html();
+            const subNodeContents = $node.contents().toArray();
+
+            // const $nodeWithParent = $('<div></div>').html($node);
+            // index += $nodeWithParent.text().length;
+            // nodes += $nodeWithParent.html();
+
+            const tag = node.tagName;
+            const classes = (node.className || '').split(/\s+/);
+            for (const n of subNodeContents) {
+                subNodeIndex = 0;
+                handleContents(n,tag, classes, nodeIndex);
+            }
         }
-        nodeIndex++;
+
+    }
+console.log('contents', contents);
+    for (const node of contents) {
+        handleContents(node);
     }
     clone.html(nodes);
 
@@ -2843,13 +2872,15 @@ const onParagraphClicked = function onParagraphClicked(event, paragraph) {
         }
 
         const targetTextNode = paragraph.childNodes[parseInt(wordInfo.node)];
+        const targetSubNode = wordInfo.subNode ? targetTextNode.childNodes[parseInt(wordInfo.subNode)] : undefined;
 
         const range = document.createRange();
         const start = parseInt(wordInfo.index);
         const end = start + parseInt(wordInfo.length);
 
-        range.setStart(targetTextNode, start);
-        range.setEnd(targetTextNode, end);
+        const targetNode = targetSubNode || targetTextNode;
+        range.setStart(targetNode, start);
+        range.setEnd(targetNode, end);
 
         document.getSelection().removeAllRanges();
         document.getSelection().addRange(range);
@@ -2878,7 +2909,7 @@ $('#btnHeaderDictionary').on('click touchstart', e => onHeaderDictionary())
             "vayadhammā saṅkhārā appamādena sampādethā"
         </strong>
 
-        <i>~  mahāparinibbāna sutta (par.218) ~</i></p>
+        <i>~  mahāparinibbāna sutta (par.218) ~</i>
         <hr>
         <i style="margin-top: 10px; display: block">Starting...</i>
         <img src="images/Spinner-1.4s-98px.gif" alt="spinner">
