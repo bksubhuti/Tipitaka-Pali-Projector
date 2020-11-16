@@ -1,4 +1,4 @@
 {
-    "versionno": "V1.06",
-    "releasenotes": "fixed pali data error, M A T Buttons work better, changes to electron app for MacOS approval: save settings"
+    "versionno": "V1.0.7",
+    "releasenotes": "close dialogs work better in touch, better layout choices for panel header buttons"
 }
