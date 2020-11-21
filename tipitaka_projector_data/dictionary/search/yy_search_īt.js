@@ -1,0 +1,3 @@
+pws = {
+'īti':'25=C2P4Q6S1V11W1','ītito':'18=P9Q2S1V5W1','ītī':'12=P6Q4V2','ītiyo':'8=O2P1Q4U1','ītiṃ':'6=B1C1F1P1Q2','ītihā':'4=O2Q2','īttaṃ':'4=V4','ītīhi':'4=O1Q2W1','ītipaṭippassaddhiṃ':'3=P3','ītippahānaṃ':'3=P3','ītivūpasamaṃ':'3=P3','ītigāthāvaṇṇanā':'2=Q2','ītihanti':'2=O1Q1','ītihaṃ':'2=O1Q1','ītihāti':'2=O1Q1','ītinti':'2=C2','ītipaṭinissaggaṃ':'2=P2','ītīnipātena':'2=P1Q1','īthānaṃ':'1=V1','ītiatthena':'1=Q1','īticuto':'1=V1','ītijāte':'1=P1','ītijāteti':'1=Q1','ītimutto':'1=V1','ītirahitaṃ':'1=L1','ītisuñño':'1=V1','ītitoti':'1=P1','ītiyā':'1=W1','ītiādeso':'1=V1','īto':'1=V1','ītopi':'1=V1','ītoti':'1=V1','īttañca':'1=V1','ītyādayo':'1=V1','ītīnaṃ':'1=W1','ītīnipātenāti':'1=Q1','ītīti':'1=V1'
+};

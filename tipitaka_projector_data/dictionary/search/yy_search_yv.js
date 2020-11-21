@@ -1,0 +1,3 @@
+pws = {
+'yvāyaṃ':'578=A11B38C31D8E6F11G63H13I9J55K7L5M84N3O14P6Q107R2S25T24U26V11W19','yvāhaṃ':'47=A4B3C1D2E2G2H3J12K2N2Q8T2V4','yvāssa':'27=G9H1N2P1Q4T3U2V4W1','yvāyanti':'11=C3E1F1H1I1K1Q2T1','yvāya':'9=C5L1U1V1W1','yvādo':'6=V6','yvālapanassa':'4=V4','yvappaṭhamo':'3=V3','yvādīsu':'3=V3','yveko':'2=V2','yvekoti':'2=V2','yvassa':'1=V1','yvā':'1=V1','yvābhiññāto':'1=V1','yvādoti':'1=V1','yvāhanti':'1=F1','yvākāsi':'1=V1','yvālapanassavevo':'1=V1','yvāmalampi':'1=V1','yvāssu':'1=G1','yvāssāti':'1=W1','yvāsubhaṃ':'1=V1','yvāyamanukkamena':'1=F1','yvāyamattho':'1=W1','yvāyamārambhadhātuādiko':'1=R1','yvāyamāyasmā':'1=Q1','yvāyantiādimāha':'1=Q1','yvāyaṃ</span>':'1=Q1'
+};

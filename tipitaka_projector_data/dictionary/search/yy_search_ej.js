@@ -1,0 +1,3 @@
+pws = {
+'ejā':'53=D4E1F2J6K1L1P17Q3S4T2V12','ejāya':'15=E1K1N1P7Q3V2','ejāsaṅkhātāya':'14=C1F2I1K1O1Q6U1V1','ejaṃ':'6=P4Q2','ejānugā':'6=P6','ejati':'4=L1V3','ejāti':'4=E1K2V1','eja':'2=V2','ejānugo':'2=P1Q1','ejānugāti':'2=P1Q1','ejadhātu':'1=V1','ejatāya':'1=Q1','ejena':'1=J1','ejjā':'1=V1','ejābhaggo':'1=V1','ejāhetūnaṃ':'1=Q1','ejākhinno':'1=V1','ejāmutto':'1=V1','ejānaṃ':'1=Q1','ejānugatā':'1=P1','ejānugatāti':'1=Q1','ejānugoti':'1=Q1','ejānusaṭā':'1=P1','ejānusaṭāti':'1=Q1','ejāsamugghātaṃ':'1=V1','ejāsamugghātoyeva':'1=V1','ejāsaṅkhatāya':'1=V1','ejāsaṅkhātataṇhāvirahitaṃ':'1=V1','ejāsuñño':'1=V1'
+};

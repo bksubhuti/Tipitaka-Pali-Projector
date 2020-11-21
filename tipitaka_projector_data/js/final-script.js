@@ -7,7 +7,9 @@ function afterWordClicked(word, tdr1) {
 	$(this).addClass("recentClickedCSSright");
 	latestElementClickedJqueryObject = $(tdr1);
 
-	GetTrId($(tdr1).attr('id').substring(1));
+	if ($(tdr1).attr('id') != undefined) {
+		GetTrId($(tdr1).attr('id').substring(1));
+	}
 
 	word_click(word);
 	if (word.length > 0) {
