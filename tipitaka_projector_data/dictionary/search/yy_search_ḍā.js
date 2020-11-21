@@ -1,0 +1,3 @@
+pws = {
+'ḍāho':'38=B2G9J1M2P9Q11T1V3','ḍāhabhayena':'8=O1Q5T2','ḍākaṃ':'7=A1B1P1Q3V1','ḍāhena':'6=P5Q1','ḍākañca':'6=A5V1','ḍākanti':'2=B1Q1','ḍākarasa':'2=B1C1','ḍākehi':'2=A1C1','ḍādese':'1=V1','ḍādeso':'1=V1','ḍāhacuto':'1=V1','ḍāhadanto':'1=V1','ḍāhadukkhaṃ':'1=Q1','ḍāhakaṃ':'1=Q1','ḍāhake':'1=Q1','ḍāhamutto':'1=V1','ḍāhe':'1=V1','ḍāhoti':'1=Q1','ḍāhuppādanaṃ':'1=C1','ḍākabyañjanaṃ':'1=Q1','ḍākabyañjane':'1=Q1','ḍākapiṭṭhaṃ':'1=A1','ḍākarasanti':'1=B1','ḍākarasasaṅkhyameva':'1=B1','ḍākarasaṃ':'1=A1','ḍākasadisova':'1=Q1','ḍākañceva':'1=Q1','ḍākena':'1=N1','ḍāko':'1=V1','ḍākādīnaṃ':'1=T1','ḍānehā':'1=V1','ḍāpayati':'1=V1','ḍāpeti':'1=V1','ḍāvaggino':'1=C1'
+};

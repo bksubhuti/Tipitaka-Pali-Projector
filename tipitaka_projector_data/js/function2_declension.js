@@ -2,15 +2,14 @@ var dict_records = 0;
 
 function GetKeys(ary, dname, key, ret_key) {
 	key_x = '0';
-	if (key.slice(-1) == '*') {
+	if (key.slice(-1) == '*') {		
 		key = key.substring(0, key.length-1);
-		key_x = '1';
-	}
-	if (key.substring(0, 1) == '*') {
-		key = key.substring(1);
-		key_x = '1' + key_x;
+		key_x = '2';
 	} else {
-		key_x = '0' + key_x;
+		if (key.substring(0, 1) == '*') {	//fuzzy
+			key = key.substring(1);
+			key_x = '1';
+		}
 	}
 
 	this.ary = ary;
@@ -19,28 +18,53 @@ function GetKeys(ary, dname, key, ret_key) {
 		tag = '!';
 	}
 
-	
-	str =  key.replace(/[atnidlm]/g, (m) => variations[m]);
-	filterRegex = new RegExp(str);
+	if (key_x == '0') {
+		str =  key.replace(/[atnidlm]/g, (m) => variations[m]);
+		filterRegex = new RegExp(str);
 
 
-	var result = '#';
-	var key_len = key.length;
-	for (var i in ary) {
-		var s1 = '#' + tag + i + '#';
-		if (ret_key.indexOf(s1) == -1) {
-			v1 = i.substring(0, key_len);
-			v2 = i.slice(-key_len);
-			v3 = i.indexOf(key);
-
-			if (i.search(filterRegex)==0 ){ // && (key_x.substring(0, 1) == '0')) || ((v2 == key) && (key_x == '10')) || ((v3 != -1) && (key_x == '11'))) {
-				result = result + tag + i + '#';
-				dict_records = dict_records +1;
-				if (100 < dict_records) {
-					break;
-				}
-			}	
+		var result = '#';
+		var key_len = key.length;
+		for (var i in ary) {
+			var s1 = '#' + tag + i + '#';
+			if (ret_key.indexOf(s1) == -1) {
+				if (i.search(filterRegex)==0 ){ // && (key_x.substring(0, 1) == '0')) || ((v2 == key) && (key_x == '10')) || ((v3 != -1) && (key_x == '11'))) {
+					result = result + tag + i + '#';
+					dict_records = dict_records +1;
+					if (300 < dict_records) {
+						break;
+					}
+				}	
+			}
 		}
+	} else {
+		var result = '#';
+		var key_len = key.length;
+		for (var i in ary) {
+			var s1 = '#' + tag + i + '#';
+			if (ret_key.indexOf(s1) == -1) {
+				if (key_x == '1') {		// fuzzy
+					v2 = i.indexOf(key);
+					if (v2 != -1) {
+						result = result + tag + i + '#';
+						dict_records = dict_records +1;
+						if (300 < dict_records) {
+							break;
+						}
+					}	
+				} else {
+					v1 = i.slice(-key_len);	//suffix
+					if (v1 == key) {
+						result = result + tag + i + '#';
+						dict_records = dict_records +1;
+						if (300 < dict_records) {
+							break;
+						}
+					}	
+				}
+			}
+		}
+
 	}
 	return (result.trim());
 }

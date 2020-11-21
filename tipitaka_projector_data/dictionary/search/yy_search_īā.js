@@ -1,0 +1,3 @@
+pws = {
+'īādimhi':'44=V44','īādīsu':'23=V23','īādo':'22=V22','īādayo':'8=V8','īāgamo':'4=V4','īādīnaṃ':'3=V3','īāgamassa':'3=V3','īāādi':'3=V3','īādissesu':'2=V2','īādisu':'2=V2','īādoti':'2=V2','īāgame':'2=V2','īāādī':'2=V2','īādi':'1=V1','īādinaṃ':'1=V1','īādipaccayanayo':'1=V1','īādisambandhinameva':'1=V1','īādisambandhīnameva':'1=V1','īādisaṅkhātāsu':'1=V1','īādissa':'1=V1','īādisuvacassa':'1=V1','īādovacassoma':'1=V1','īādīnampi':'1=V1','īādīnaṃssādīnañca':'1=V1','īādīsucāti':'1=V1','īādīsūti':'1=V1','īādīti':'1=V1','īāgamaṃ':'1=V1'
+};

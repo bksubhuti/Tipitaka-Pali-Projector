@@ -1,0 +1,3 @@
+pws = {
+'hya':'2=V2','hyasamānānaṃ':'2=C1F1','hyabhinnarūpattā':'1=V1','hyamarakose':'1=V1','hyamarasīho':'1=V1','hyarogo':'1=V1','hyassa':'1=V1','hyatra':'1=V1','hyatrāpi':'1=V1','hyavikateheva':'1=V1','hyayamasaṅkhyasamāso':'1=V1','hyaññaṃ':'1=V1','hyekena':'1=V1','hyekāgāraṃ':'1=V1','hyete':'1=V1','hyettha':'1=V1','hyevamācikkhanti':'1=V1','hyevaṃ':'1=V1','hyuccamāne':'1=V1','hyāko':'1=V1','hyānayanakiriyārabhyate':'1=V1'
+};

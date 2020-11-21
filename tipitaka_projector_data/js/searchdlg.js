@@ -952,11 +952,11 @@ function Keyin() {
         for (key_i = 0; key_i < key_ary_length; key_i++) {
             key = key_ary[key_i].trim();
             var len = key.length;
-            if (1 <= len) {
-                if ((pws[key.substring(0, 1)] == undefined) && ('abcdeghijklmnoprstuvyñāīūḍḷṃṅṇṭ'.indexOf(key.substring(0, 1)) != -1)) {
+            if (2 <= len) {
+                if ((pws[key.substring(0, 2)] == undefined) && ('abcdeghijklmnoprstuvyñāīūḍḷṃṅṇṭ'.indexOf(key.substring(0, 1)) != -1) && ('abcdeghijklmnoprstuvyñāīūḍḷṃṅṇṭ'.indexOf(key.substring(1, 1)) != -1)) {
                     var newscript = document.createElement('script');
                     newscript.setAttribute('type', 'text/javascript');
-                    newscript.setAttribute('src', 'dictionary/zz_search_' + key.substring(0, 1) + '.js');
+                    newscript.setAttribute('src', 'dictionary/search/yy_search_' + key.substring(0, 2) + '.js');
                     var head = document.getElementsByTagName('head')[0];
                     head.appendChild(newscript);
                 }
@@ -973,8 +973,10 @@ function Keyin() {
 
                     for (var i in pws) {
                         if (i.search(filterRegex)==0 ) {
+                        	var pws2 = pws[i].split('=');
+
                             cx = cx + 1;
-                            out_tmp = out_tmp + '<a hef="javascript:void(0)" style="color:blue;" onClick="Put(\'' + i + '\');">' + toSelectedScript(i, currentScript) + '</a>' + " <span style='font-size:9pt;color:#800080;'>" + pws[i] + "</span>,&nbsp;&nbsp;&nbsp;";
+                            out_tmp = out_tmp + '<a hef="javascript:void(0)" style="color:blue;" onClick="Put(\'' + i + '\');">' + toSelectedScript(i, currentScript) + '</a>' + " <span style='font-size:9pt;color:#800080;'>" + pws2[0] + "</span>,&nbsp;&nbsp;&nbsp;";
                             if (cx > 99) {
                                 out_tmp = out_tmp + " <span style='font-size:12pt;color:red;'>> 99...</span>";
                                 break;
@@ -1099,6 +1101,8 @@ function Clear() {
     document.getElementById('key').focus();
     for (x = 1; x <= 3; x++) {
         for (y = 1; y <= 8; y++) {
+            var name1 = 'Kex' + y + x;
+            $('#' + name1).html('');
             var name1 = 'Out' + y + x;
             $('#' + name1).html('');
         }
@@ -1168,6 +1172,40 @@ function Jump(url) {
 
 // copied from index.htm when the search word is clicked on 
 function Put(input) {
+	var v1 = pws[input].split('=')[1];
+	var ary = {
+		'A':11, 'B':12, 'C':13,
+		'D':21, 'E':22, 'F':23,
+		'G':31, 'H':32, 'I':33,
+		'J':41, 'K':42, 'L':43,
+		'M':51, 'N':52, 'O':53,
+		'P':61, 'Q':62, 'R':63,
+		'S':71, 'T':72, 'U':73,
+				'V':82, 'W':83};
+	for (var i=65; i<=87; i++) {
+		var v2 = String.fromCharCode(i);
+		var v3 = ';' + ary[v2] + ';';
+		v1 = v1.replace(v2, v3);
+	}
+	var ary3 = [];
+	ary2 = v1.split(';');
+	for (i=1; i<=ary2.length; i=i+2) {
+		ary3[ary2[i]] = ary2[i +1];
+	}
+	console.log(ary3);
+
+	for (i=1; i<=8; i++) {
+		for (j=1; j<=3; j++) {
+			var ij = i + '' + j;
+			if (ary3[ij] == undefined) {
+				$('#Kex' + ij).html('');
+			} else {
+				$('#Kex' + ij).html(ary3[ij] + ',');
+			}
+		}
+	}
+
+
 	var strKey = toSelectedScript(input.trim());
 	var pos = strKey.lastIndexOf(' ');
 	if (pos != -1) {

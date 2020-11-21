@@ -213,7 +213,7 @@ function WordListLookup(target) {
 	const uniqueKeys = [...new Set(cleanKeys)];
 	uniqueKeys.sort();
 
-	const usableKeys = uniqueKeys.slice(0, 20);
+	const usableKeys = uniqueKeys.slice(0, 500);
 	return usableKeys;
 };
 

@@ -1109,7 +1109,7 @@
             <span class="center"> <!-- Inline parent element -->
                 <b>Pa-Auk Forest Monastery Presents</b> 
                 <br>
-                    <b>Tipiṭaka Pāḷi Projector v1.07</b> 
+                    <b>Tipiṭaka Pāḷi Projector v1.08</b> 
             <br>
                 <img src="images/asoka.png" alt="asoka" > 
             </span>
@@ -1126,9 +1126,24 @@
                 </span>
         </div>
     </div>
-    <table id="main_table" bgcolor="#010101" width=100% border=0 align="left" cellspacing=3 cellpadding=7
-           style="padding-left: 15px;">
-    </table>
+    <div id="MAT_table1" style="width:100%;display:inline-flex;overflow-x: hidden;overflow-y: auto;">
+        <table id="main_table" bgcolor="#010101" width=100% border=0 align="left" cellspacing=3 cellpadding=7
+               style="padding-left: 15px;">
+        </table>
+    </div>
+
+    <div id="MAT_table2" style="width:0%;display: inline-flex;overflow-x: hidden;overflow-y: auto;min-height: 101%;vertical-align: top;height:100%;display:none;">
+        <table id="main_table2" bgcolor="#010101" width=100% border=0 align="left" cellspacing=3 cellpadding=7
+               style="padding-left: 15px;">
+        </table>
+    </div>
+
+    <div id="MAT_table3" style="width:33%;display: inline-flex;overflow-x: hidden;overflow-y: auto;min-height: 101%;vertical-align: top;height:100%;display:none;">
+        <table id="main_table3" bgcolor="#010101" width=100% border=0 align="left" cellspacing=3 cellpadding=7
+               style="padding-left: 15px;">
+        </table>
+    </div>
+    
     <script type="text/javascript">
         var loadBook = function loadBook(bookId, onBookLoadingDone) {
             $('#welcome').remove();
@@ -1411,21 +1426,20 @@
 </div>
 
 <div id="search" title="Search" class="app-dialog">
-    <table align="center" bgcolor="#ffffc0" border="0" width="100%" cellpadding="0" cellspacing="0">
+    <table align="center" bgcolor="#ffffc0" border="0" width="100%" cellpadding="10" cellspacing="0">
         <tbody>
         <tr>
-            <td width="2%"></td>
-            <td align="right" valign="center" width="10%">
-                <img src="images/asoka.png" draggable="false">
+            <td align="right" valign="center" width="20%">
+                <img src="images/asoka.png" width="80%" draggable="false">
             </td>
-            <td align="center" width="76%">
+            <td align="center" width="80%">
                 <span style='line-height:140%;color:brown;font-size:15pt;'><b>Tipiṭaka Pāḷi Projector</b></span> -
-                20200330 (TG)
+                20201122 (TG)
 
-                <hr style="border: 1pt dashed gray; width:50%;">
+                <br>
                 Entry <a href="#Velthuis" onClick="Velthuis()" title="Show Velthuis">
                 <span style="color:blue;">Velthuis Pali</span></a> word&nbsp;
-                <input type="textbox" name="key" id="key" style="font-size:12pt;width:100%;max-width:280px;"
+                <input type="textbox" name="key" id="key" style="font-size:12pt;width:100%;max-width:380px;"
                        onkeyup="Keyin()" value="">
                 <input type="hidden" id="id1">
                 <input type="hidden" id="id2">
@@ -1435,50 +1449,33 @@
                     <span class="slider round"></span>
                 </label>
                 <label for="ShowOnTop" style="color:blue;font-size:12pt;">&nbsp;Results Outside Table&nbsp;</label>
+ 
+                <br><br>
+                <input name="SearchType" id="SearchType1" type="radio" onChange="SetSelect();Keyin()"
+                       checked>
+                <label for="SearchType1" style="color:blue;font-size:12pt;">&nbsp;Tipiṭaka&nbsp;</label>
 
-                <table border="0" width="80%">
-                    <tr>
-                        <td width="20%" align="right">
-                            Search in :&nbsp;
-                        </td>
-                        <td width="70%">
-                            <input name="SearchType" id="SearchType1" type="radio" onChange="SetSelect();Keyin()"
-                                   checked>
-                            <label for="SearchType1" style="color:blue;font-size:12pt;">&nbsp;Tipiṭaka&nbsp;</label>
+                <input type="submit" onClick="Start_Fuzzy()" name="Submit" value="Fuzzy" title="Find words in any position... beginning or middle or ending">&nbsp;&nbsp;
+                <input type="submit" onClick="Start_Exact()" name="Submit" value="Exact" title="Find words with exact spelling">&nbsp;&nbsp;&nbsp;
+                <input type="submit" onClick="Start_Prefix()" name="Submit" value="Prefix" title="Find words starting with ...">&nbsp;&nbsp;&nbsp;
+                <input type="submit" onClick="Start_Suffix()" name="Submit" value="Suffix" title="Find words ending with ...">&nbsp;&nbsp;&nbsp;
+                <input type="submit" onClick="Start_Sentence()" name="Submit" value="Sentence" title="Search multiple words in a row">&nbsp;&nbsp;&nbsp;
 
-                            <input type="submit" onClick="Start_Fuzzy()" name="Submit" value="Fuzzy" title="Find words in any position... beginning or middle or ending">&nbsp;&nbsp;
-                            <input type="submit" onClick="Start_Exact()" name="Submit" value="Exact" title="Find words with exact spelling">&nbsp;&nbsp;
-                            <input type="submit" onClick="Start_Prefix()" name="Submit" value="Prefix" title="Find words starting with ...">&nbsp;&nbsp;
-                            <input type="submit" onClick="Start_Suffix()" name="Submit" value="Suffix" title="Find words ending with ...">&nbsp;&nbsp;
-                            <input type="submit" onClick="Start_Sentence()" name="Submit" value="Sentence" title="Search multiple words in a row"><br>
-                        </td>
-                        <td width="10%"></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <input name="SearchType" id="SearchType2" type="radio" onChange="SetSelect();Keyin()">
-                            <label for="SearchType2" title="Search titles anywhere in the words of the titles" style="color:blue;font-size:12pt;">&nbsp;Fuzzy Title&nbsp;</label>
-                            <input name="SearchType" id="SearchType3" type="radio" onChange="SetSelect();Keyin()">
-                            <label for="SearchType3" title="Search titles where it begins with ..." style="color:blue;font-size:12pt;">&nbsp;Prefix Title&nbsp;</label>
-                        </td>
-                        <td>
-                            <span style="color:blue;cursor: pointer;font-size:12pt;" onClick="Clear();">Clear</span><br>
-                        </td>
+                <span style="color:blue;cursor: pointer;font-size:12pt;" onClick="Clear();">Clear</span><br> 
 
-                    </tr>
-                </table>
+                <br>
+                <input name="SearchType" id="SearchType2" type="radio" onChange="SetSelect();Keyin()">
+                <label for="SearchType2" title="Search titles anywhere in the words of the titles" style="color:blue;font-size:12pt;">&nbsp;Fuzzy Title&nbsp;</label>
+                &nbsp;&nbsp;&nbsp;
+                <input name="SearchType" id="SearchType3" type="radio" onChange="SetSelect();Keyin()">
+                <label for="SearchType3" title="Search titles where it begins with ..." style="color:blue;font-size:12pt;">&nbsp;Prefix Title&nbsp;</label>
+                <br>
                 <span id="msg"></span>
             </td>
-            <td align="center" width="10%">
-                <br></span>Seach Tipiṭaka
-            </td>
-            <td width="2%"></td>
         </tr>
         <tr style="line-height: 150%">
-            <td></td>
             <!--  onClick="document.getElementById('out').innerHTML= '';" -->
-            <td colspan="3" id="suggest">
+            <td colspan="2" id="suggest">
                 <span id="out"></span>
             </td>
         </tr>
@@ -1517,14 +1514,17 @@
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x11">
                 <input id="Nikaya11" type="checkbox" name="Nikaya11" onclick='choosePali("11")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex11"></span>
                 <span id="Out11"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x12">
                 <input id="Nikaya12" type="checkbox" name="Nikaya12" onclick='choosePali("12")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex12"></span>
                 <span id="Out12"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x13">
                 <input id="Nikaya13" type="checkbox" name="Nikaya13" onclick='choosePali("13")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex13"></span>
                 <span id="Out13"></span>
             </td>
         </tr>
@@ -1536,14 +1536,17 @@
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x21">
                 <input id="Nikaya21" type="checkbox" name="Nikaya21" onclick='choosePali("21")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex21"></span>
                 <span id="Out21"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x22">
                 <input id="Nikaya22" type="checkbox" name="Nikaya22" onclick='choosePali("22")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex22"></span>
                 <span id="Out22"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x23">
                 <input id="Nikaya23" type="checkbox" name="Nikaya23" onclick='choosePali("23")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex23"></span>
                 <span id="Out23"></span>
             </td>
         </tr>
@@ -1555,14 +1558,17 @@
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x31">
                 <input id="Nikaya31" type="checkbox" name="Nikaya31" onclick='choosePali("31")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex31"></span>
                 <span id="Out31"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x32">
                 <input id="Nikaya32" type="checkbox" name="Nikaya32" onclick='choosePali("32")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex32"></span>
                 <span id="Out32"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x33">
                 <input id="Nikaya33" type="checkbox" name="Nikaya33" onclick='choosePali("33")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex33"></span>
                 <span id="Out33"></span>
             </td>
         </tr>
@@ -1574,14 +1580,17 @@
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x41">
                 <input id="Nikaya41" type="checkbox" name="Nikaya41" onclick='choosePali("41")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex41"></span>
                 <span id="Out41"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x42">
                 <input id="Nikaya42" type="checkbox" name="Nikaya42" onclick='choosePali("42")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex42"></span>
                 <span id="Out42"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x43">
                 <input id="Nikaya43" type="checkbox" name="Nikaya43" onclick='choosePali("43")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex43"></span>
                 <span id="Out43"></span>
             </td>
         </tr>
@@ -1593,14 +1602,17 @@
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x51">
                 <input id="Nikaya51" type="checkbox" name="Nikaya51" onclick='choosePali("51")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex51"></span>
                 <span id="Out51"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x52">
                 <input id="Nikaya52" type="checkbox" name="Nikaya52" onclick='choosePali("52")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex52"></span>
                 <span id="Out52"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x53">
                 <input id="Nikaya53" type="checkbox" name="Nikaya53" onclick='choosePali("53")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex53"></span>
                 <span id="Out53"></span>
             </td>
         </tr>
@@ -1612,14 +1624,17 @@
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x61">
                 <input id="Nikaya61" type="checkbox" name="Nikaya61" onclick='choosePali("61")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex61"></span>
                 <span id="Out61"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x62">
                 <input id="Nikaya62" type="checkbox" name="Nikaya62" onclick='choosePali("62")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex62"></span>
                 <span id="Out62"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x63">
                 <input id="Nikaya63" type="checkbox" name="Nikaya63" onclick='choosePali("63")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex63"></span>
                 <span id="Out63"></span>
             </td>
         </tr>
@@ -1631,14 +1646,17 @@
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x71">
                 <input id="Nikaya71" type="checkbox" name="Nikaya71" onclick='choosePali("71")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex71"></span>
                 <span id="Out71"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x72">
                 <input id="Nikaya72" type="checkbox" name="Nikaya72" onclick='choosePali("72")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex72"></span>
                 <span id="Out72"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x73">
                 <input id="Nikaya73" type="checkbox" name="Nikaya73" onclick='choosePali("73")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex73"></span>
                 <span id="Out73"></span>
             </td>
         </tr>
@@ -1651,14 +1669,17 @@
             <td bgcolor="#ffe0b0" valign="top" id="x81">
                 <input id="Nikaya81" type="checkbox" name="Nikaya81" onclick='choosePali("81")'
                        style="visibility:hidden;"/></input>
+                <span style="color:red;font-weight:900;" id="Kex81" style="visibility:hidden;"></span>
                 <span id="Out81" style="visibility:hidden;"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x82">
                 <input id="Nikaya82" type="checkbox" name="Nikaya82" onclick='choosePali("82")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex82"></span>
                 <span id="Out82"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x83">
                 <input id="Nikaya83" type="checkbox" name="Nikaya83" onclick='choosePali("83")'/></input>
+                <span style="color:red;font-weight:900;" id="Kex83"></span>
                 <span id="Out83"></span>
             </td>
         </tr>
@@ -2918,3 +2939,4 @@ $('#btnHeaderDictionary').on('click touchstart', e => onHeaderDictionary())
 
 </body>
 </html>
+
