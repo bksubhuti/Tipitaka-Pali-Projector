@@ -33,8 +33,8 @@
   },
   "build": {
     "icon": "build/tpp-icon.icns",
-    "appId": "org.americanmonk.tipitaka",
-    "buildVersion": "3",
+    "appId": "org.americanmonk.tpp",
+    "buildVersion": "8",
     "productName": "Tipitaka Pali Projector",
     "copyright": "Copyright © 2020 according to license in github",
     "publish": [

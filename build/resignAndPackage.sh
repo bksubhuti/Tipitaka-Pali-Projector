@@ -1,7 +1,8 @@
 #!/bin/bash
 # Name of your app.
 # To generate the .pkg. $ electron-builder && bash build/resignAndPackage.sh
-APP="Tipitaka Pāḷi Projector"
+# $ export CSC_NAME="<CERTIFICATE NAME (TEAM_DEVELOPER_ID)>"
+APP="Tipitaka Pali Projector"
 # The path of your app to sign.
 APP_PATH="dist/mas/$APP_PATH.app"
 # The path to the location you want to put the signed package.
