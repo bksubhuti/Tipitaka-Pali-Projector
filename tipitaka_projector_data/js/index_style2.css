@@ -147,8 +147,8 @@ h1 p
 }
 #ResizeDrag{
   position:absolute;
-  right:0px;
-  bottom:-10px;
+  right: 0;
+  bottom: 0;
   cursor:nw-resize;
   overflow:hidden;
   float:right;
@@ -184,6 +184,10 @@ h1 p
 #divDragIcon{
   cursor:move;
   overflow:hidden;
+
+}
+#divDragIcon img {
+  display: block;
 }
 
 .pages {height:auto;}

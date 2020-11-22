@@ -548,6 +548,7 @@ loadInSequence(toLoad);
 function onHeaderDropUp(){
 	$("#main_div").css('visibility', "hidden");
 	$("#panel-header").css('visibility', "visible").addClass('stand-alone');
+	doAdjustTabContent();
 }
 
 
@@ -559,6 +560,7 @@ function onHeaderDropDown(){
 	$('.helpers').removeClass('hideMe');
 	$('#tab-content').css('margin-top', '');
 	$("#panel-header").removeClass('stand-alone');
+	doAdjustTabContent();
 }
 
 function onHeaderDictionary(){
@@ -569,6 +571,7 @@ function onHeaderDictionary(){
 	$('.helpers').addClass('hideMe');
 	$('#tab-content').css("margin-top", "3px");
 	$("#panel-header").removeClass('stand-alone');
+	doAdjustTabContent();
 	
 }
 

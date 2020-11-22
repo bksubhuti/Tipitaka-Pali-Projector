@@ -525,21 +525,31 @@
             Dict.
         </li>
 
+        <span class="space"></span>
+
         <li class="notselected" id="page2" onclick="onTabClick(this);" data-helper="decl">
             Decl.
         </li>
+
+        <span class="space"></span>
 
         <li class="notselected" id="page3" onclick="onTabClick(this);">
             Par.
         </li>
 
+        <span class="space"></span>
+
         <li class="notselected" id="page4" onclick="onTabClick(this);">
             Nav.
         </li>
 
+        <span class="space"></span>
+
         <li class="notselected" id="page5" onclick="onTabClick(this);">
             Misc.
         </li>
+
+        <span class="filler"></span>
     </ul>
 
     <script>
@@ -716,17 +726,23 @@
                         History
                     </li>
 
+                    <span class="space"></span>
+                    
                     <li class="notselected" id="pg4_page2" onclick="onTabClick(this);">
                         My Notes
                     </li>
 
+                    <span class="space"></span>
+
                     <li class="notselected" id="pg4_page3" onclick="onTabClick(this);BookmarkList();">
                         Bookmarks
                     </li>
+
+                    <span class="filler"></span>
                 </ul>
                 <br>
 
-                <div style="border: 1px #aaaaaa solid;margin-left: -5px;padding:10px;margin-right: -10px;">
+                <div style="border: 1px #aaaaaa solid;margin-left: -5px;padding:10px;margin-right: -10px; border-top: 0;">
                     <div id="pg4_page1_desc" class="pages">
                         <div class="page4">
                             <div class="notselected grey-button" onClick="PaliHistoryCopy()" title="Copy Pali History">
@@ -895,9 +911,9 @@
         bottom: 5px;
         width: 24px;
         height:24px;">
-                <img src="images/drag.png">
+                <img draggable="false" src="images/drag.png">
             </div>
-            <div id="ResizeDrag"><img src="images/resize.png" width="35"></div>
+            <div id="ResizeDrag"><img draggable="false" src="images/resize.png" width="35"></div>
         </div>
     </div>
 
