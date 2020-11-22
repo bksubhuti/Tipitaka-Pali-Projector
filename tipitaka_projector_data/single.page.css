@@ -72,6 +72,10 @@
     display: flex;
 }
 
+.tabs.main {
+    margin-right: 5px;
+}
+
 .tabs .filler {
     flex-grow: 1;
 }
@@ -113,9 +117,8 @@
 .tab-content {
     /* background-color: #fafafa;*/
     border: 2px solid #777;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    margin-top: 32px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 0px;
     float: left;
     width: 100%;
     box-sizing: border-box;
@@ -124,6 +127,7 @@
     position: relative;
     padding: 0 10px 10px;
     border-top: 0;
+    margin-top: 30px;
 }
 
 #main_div li {
