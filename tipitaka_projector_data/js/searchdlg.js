@@ -944,59 +944,109 @@ function Keyin() {
         key_ary = key.split(' ');
         key_ary_length = key_ary.length;
 
-        var out = "";
-        var key_notfound = "";
-
         const currentScript = localStorage.getItem("view_left");
 
-        for (key_i = 0; key_i < key_ary_length; key_i++) {
-            key = key_ary[key_i].trim();
-            var len = key.length;
-            if (2 <= len) {
-                if ((pws[key.substring(0, 2)] == undefined) && ('abcdeghijklmnoprstuvyñāīūḍḷṃṅṇṭ'.indexOf(key.substring(0, 1)) != -1) && ('abcdeghijklmnoprstuvyñāīūḍḷṃṅṇṭ'.indexOf(key.substring(1, 1)) != -1)) {
-                    var newscript = document.createElement('script');
-                    newscript.setAttribute('type', 'text/javascript');
-                    newscript.setAttribute('src', 'dictionary/search/yy_search_' + key.substring(0, 2) + '.js');
-                    var head = document.getElementsByTagName('head')[0];
-                    head.appendChild(newscript);
-                }
+        key = key_ary[key_ary_length -1].trim();
+        var len = key.length;
+        var abc = 'abcdeghijklmnoprstuvyñāīūḍḷṃṅṇṭ';
+        if (2 <= len) {
+            if ((abc.indexOf(key.substr(0, 1)) != -1) && (abc.indexOf(key.substr(1, 1)) != -1)) {
+                var newscript = document.createElement('script');
+                newscript.setAttribute('type', 'text/javascript');
+                newscript.setAttribute('src', 'dictionary/search/yy_search_' + key.substr(0, 2) + '.js');
+                var head = document.getElementsByTagName('head')[0];
+                head.appendChild(newscript);
 
-                if ((key_i + 1) == key_ary_length) {
-                    cx = 0;
-                    var out_tmp = "";
+                //****************************************************
+                // word count 
+                var chk = 0;
 
+                for (x=1; x<=3; x++) {
+					for (y=1; y<=8; y++) {
 
-					str =  key.replace(/[autnidlm]/g, (m) => variations[m]);
-					filterRegex = new RegExp(str);
-				
-				
+						var name1 = 'Nikaya' + y + x;
+						if (document.getElementById(name1).checked) {
+							if (name1 != 'Nikaya81') {
+								chk = chk +1;
+							}
+						}
+					}
+				}
 
-                    for (var i in pws) {
-                        if (i.search(filterRegex)==0 ) {
-                        	var pws2 = pws[i].split('=');
+                //****************************************************
+	            cx = 0;
+	            var out_tmp = "";
 
-                            cx = cx + 1;
-                            out_tmp = out_tmp + '<a hef="javascript:void(0)" style="color:blue;" onClick="Put(\'' + i + '\');">' + toSelectedScript(i, currentScript) + '</a>' + " <span style='font-size:9pt;color:#800080;'>" + pws2[0] + "</span>,&nbsp;&nbsp;&nbsp;";
-                            if (cx > 99) {
-                                out_tmp = out_tmp + " <span style='font-size:12pt;color:red;'>> 99...</span>";
-                                break;
-                            }
-                        }
-                    }
+				str =  key.replace(/[autnidlm]/g, (m) => variations[m]);
+				filterRegex = new RegExp(str);
+			
+				if ((chk == 0) || (23 <= chk)) {
+		            for (var i in pws) {
+		                if (i.search(filterRegex)==0 ) {
+		                	var pws2 = pws[i].split('=');
 
-                    if (out_tmp == "") {
-                        key_notfound = key_notfound + key + " ";
-                    } else {
-                        out = out + out_tmp;
-                    }
-                } else {
-                    if (pws[key] == undefined) {
-                        key_notfound = key_notfound + key + ".... ";
-                    }
-                }
+		                    cx = cx + 1;
+		                    out_tmp = out_tmp + '<a hef="javascript:void(0)" style="color:blue;" onClick="Put(\'' + i + '\');">' + toSelectedScript(i, currentScript) + '</a>' + " <span style='font-size:9pt;color:#800080;'>" + pws2[0] + "</span>,&nbsp;&nbsp;&nbsp;";
+		                    if (cx > 99) {
+		                        out_tmp = out_tmp + " <span style='font-size:12pt;color:red;'>> 99...</span>";
+		                        break;
+		                    }
+		                }
+		            }
+	       		} else {
+					var ary = {
+						'A':11, 'B':12, 'C':13,
+						'D':21, 'E':22, 'F':23,
+						'G':31, 'H':32, 'I':33,
+						'J':41, 'K':42, 'L':43,
+						'M':51, 'N':52, 'O':53,
+						'P':61, 'Q':62, 'R':63,
+						'S':71, 'T':72, 'U':73,
+								'V':82, 'W':83};
+
+					var pws2 = [];
+		            for (var k in pws) {
+		                if (k.search(filterRegex)==0 ) {
+							var v0 = k.split('	')[0];
+							var v1 = pws[k].split('=')[1];
+							for (var i=65; i<=87; i++) {
+								var v2 = String.fromCharCode(i);
+								var v3 = ';' + ary[v2] + ';';
+								v1 = v1.replace(v2, v3);
+							}
+							ary2 = v1.split(';');
+							var newtotal = 0 ;
+							for (i=1; i<ary2.length; i=i+2) {
+								if (document.getElementById('Nikaya' + ary2[i]).checked) {
+									newtotal = newtotal + parseInt(ary2[i +1]);
+								}
+							}
+							if (0 < newtotal) {
+								cx = cx +1
+								pws2[cx] = (1000000 - Number(newtotal)) + v0;
+							}
+						}
+					}
+					pws2.sort();
+
+					cx = 0;
+					for (i in pws2) {
+						cx = cx + 1;
+						v1 = 1000000 - parseInt(pws2[i].substr(0, 6));
+						v2 = pws2[i].substr(6);
+
+	                    out_tmp = out_tmp + '<a hef="javascript:void(0)" style="color:blue;" onClick="Put(\'' + v2 + '\');">' + toSelectedScript(v2, currentScript) + '</a>' + " <span style='font-size:9pt;color:#800080;'>" + v1 + "</span>,&nbsp;&nbsp;&nbsp;";
+	                    if (cx > 99) {
+	                        out_tmp = out_tmp + " <span style='font-size:12pt;color:red;'>> 99...</span>";
+	                        break;
+	                    }
+					}
+	       		}
+	            $('#out').html(out_tmp);
             }
         }
-        $('#out').html(out);
+        
+
     } else {
         if (2 < key.length) {
             var ary = [];
@@ -1192,7 +1242,6 @@ function Put(input) {
 	for (i=1; i<=ary2.length; i=i+2) {
 		ary3[ary2[i]] = ary2[i +1];
 	}
-	console.log(ary3);
 
 	for (i=1; i<=8; i++) {
 		for (j=1; j<=3; j++) {
@@ -1205,7 +1254,6 @@ function Put(input) {
 		}
 	}
 
-
 	var strKey = toSelectedScript(input.trim());
 	var pos = strKey.lastIndexOf(' ');
 	if (pos != -1) {
@@ -1215,4 +1263,3 @@ function Put(input) {
 	}
 	Start_Fuzzy();
 }
-
