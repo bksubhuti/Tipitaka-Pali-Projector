@@ -70,6 +70,13 @@
     right: 0;
     height: 32px;
     display: flex;
+
+}
+
+.tabs * {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
 
 .tabs.main {
@@ -266,7 +273,7 @@ header.panel-header {
     border-bottom: 3px solid #777;
     border-top: 3px solid transparent;
     height: 44px;
-    width: calc(100% + 10px);
+    width: calc(100% + 5px);
     display: flex;
     font-family: sans-serif;
     align-items: center;
@@ -812,4 +819,10 @@ input[type="text"], input[type="Textbox"] {
     padding: 4px;
     width: 32px;
     height: 32px;
+    box-sizing: border-box;
+}
+
+#main_div {
+    box-sizing: border-box;
+    overflow: hidden;
 }

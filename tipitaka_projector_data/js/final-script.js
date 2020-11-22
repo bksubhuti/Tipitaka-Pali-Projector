@@ -799,7 +799,7 @@ function doResizeBottom(ev){
 	var h = t + oDiv.offsetHeight;
 
 	tx = parseInt($('#main_div').css('top'));
-	h = Math.max(100, Math.min(h, window.innerHeight -tx -30));
+	h = Math.max(100, Math.min(h, window.innerHeight -tx));
 
 	omain_div.style.height=h+"px";
 	document.write = localStorage.setItem('main_height', h);
@@ -873,7 +873,7 @@ function doDrag(ev){
 	tx = parseInt($('#main_div').css('top'));
 
 	w = Math.max(250, Math.min(w, window.innerWidth -lx -20));
-	h = Math.max(100, Math.min(h, window.innerHeight -tx -30));
+	h = Math.max(100, Math.min(h, window.innerHeight -tx));
 
 	omain_div.style.width=w+"px";
 	omain_div.style.height=h+"px";

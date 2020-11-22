@@ -20,9 +20,16 @@
     <link rel="stylesheet" type="text/css" href="js/farbtastic12/farbtastic/farbtastic.css"  />
     <link rel="stylesheet" type="text/css" href="js/jqconfirm/jquery-confirm.min.css"  />
 
-    <link rel="stylesheet"   id="bs-stylesheet"  href="js/jqconfirm/bs3.css">
+    <link rel="stylesheet"   id="bs-stylesheet"  href="js/jqconfirm/bs3.css" />
 
-
+    <style>
+        /* This reverts bs3.css box sizing: */
+        * {
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+        }
+    </style>
 
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 

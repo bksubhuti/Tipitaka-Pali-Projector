@@ -241,7 +241,7 @@ function RedrawTable(w) {
 		$('#main_div').css('left', "0px");
 		$('#main_div').css('top', "0px");
 		$('#main_div').css('width', w1 + "px");
-		$('#main_div').css('height', (window.innerHeight -30) + "px");
+		$('#main_div').css('height', (window.innerHeight) + "px");
 		$('#main_td2').css('left', w1 + "px");
 		$('#main_td2').css('width', w2 + "px");
 	} 
