@@ -1478,11 +1478,11 @@
                        checked>
                 <label for="SearchType1" style="color:blue;font-size:12pt;">&nbsp;Tipiṭaka&nbsp;</label>
 
-                <input type="submit" onClick="Start_Fuzzy()" name="Submit" value="Fuzzy" title="Find words in any position... beginning or middle or ending">&nbsp;&nbsp;
-                <input type="submit" onClick="Start_Exact()" name="Submit" value="Exact" title="Find words with exact spelling">&nbsp;&nbsp;&nbsp;
-                <input type="submit" onClick="Start_Prefix()" name="Submit" value="Prefix" title="Find words starting with ...">&nbsp;&nbsp;&nbsp;
-                <input type="submit" onClick="Start_Suffix()" name="Submit" value="Suffix" title="Find words ending with ...">&nbsp;&nbsp;&nbsp;
-                <input type="submit" onClick="Start_Sentence()" name="Submit" value="Sentence" title="Search multiple words in a row">&nbsp;&nbsp;&nbsp;
+                <input type="submit" onClick="SearchPali('F')" name="Submit" value="Fuzzy" title="Find words in any position... beginning or middle or ending">&nbsp;&nbsp;
+                <input type="submit" onClick="SearchPali('E')" name="Submit" value="Exact" title="Find words with exact spelling">&nbsp;&nbsp;&nbsp;
+                <input type="submit" onClick="SearchPali('P')" name="Submit" value="Prefix" title="Find words starting with ...">&nbsp;&nbsp;&nbsp;
+                <input type="submit" onClick="SearchPali('S')" name="Submit" value="Suffix" title="Find words ending with ...">&nbsp;&nbsp;&nbsp;
+                <input type="submit" onClick="SearchPali('T')" name="Submit" value="Sentence" title="Search multiple words in a row">&nbsp;&nbsp;&nbsp;
 
                 <span style="color:blue;cursor: pointer;font-size:12pt;" onClick="Clear();">Clear</span><br> 
 
@@ -2542,12 +2542,17 @@
         var dsp = 'none';
         if (document.getElementById('SearchType1').checked == true) {
             dsp = 'inline';
+        } else {
+            $('#msg').html('');
         }
         for (i = 1; i <= 3; i++) {
             for (j = 1; j <= 8; j++) {
                 no = '' + j + '' + i;
                 $('#Nikaya' + no).css('display', dsp);
                 $('#Out' + no).html('');
+                if (document.getElementById('SearchType1').checked != true) {
+                    $('#Kex' + no).html('');
+                }
             }
         }
         // document.getElementById('out').innerHTML = '';
@@ -2894,7 +2899,7 @@ const onParagraphClicked = function onParagraphClicked(event, paragraph) {
         }
 
     }
-console.log('contents', contents);
+
     for (const node of contents) {
         handleContents(node);
     }
@@ -2962,4 +2967,3 @@ $('#btnHeaderDictionary').on('click touchstart', e => onHeaderDictionary())
 
 </body>
 </html>
-
