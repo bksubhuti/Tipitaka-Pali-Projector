@@ -1,822 +1,125 @@
+function SearchPali(SrhType) {
+	document.getElementById('SearchType1').checked = true;
+	SetSelect();
+	
+	var startDate = new Date();
 
-		function Start_Sentence() {
-			document.getElementById('SearchType1').checked = true;
-			SetSelect();
-			
-			var startDate = new Date();
-			var strTopResult ='';
-			$('#SearchResult').html(strTopResult);
+	var Str_Pali = 'abcdefghijklmnopqrstuvwxyzāīūṅñṭḍṇḷṃABCDEFGHIJKLMNOPQRSTUVWXYZĀĪŪṄÑṬḌHṆḶṂ';
+	var strTopResult ='';
+	$('#SearchResult').html(strTopResult);
 
+	$('#msg').html('');
 
-			var Str_Pali = 'abcdefghijklmnopqrstuvwxyzāīūṅñṭḍṇḷṃABCDEFGHIJKLMNOPQRSTUVWXYZĀĪŪṄÑṬḌHṆḶṂ';
+	localStorage.setItem("Sr_type", SrhType);
 
-			$('#msg').html('');
+	var strKey = $('#key').val();
+	strKey = toRoman(strKey);
+	var key = toUniRegEx(strKey).trim().toLowerCase();
 
-			localStorage.setItem("Sr_type", 'E');
-			var strKey = $('#key').val();
-			strKey = toRoman(strKey);
-			var key = toUniRegEx(strKey).trim().toLowerCase();
-			if ( 1 < key.length) {
-				localStorage.setItem("Sr_key", key);
+	if ( 1 < key.length) {
+		localStorage.setItem("Sr_key", key);
 
-				var i, x , y;
-                var ResultSpan ='';
+		var i, x , y;
+		var ResultSpan ='';
 
-				var ary_key = [];
-				var tmp = '';
-				var ary = key.split(' ');
-				for (i in ary) {
-					if (i.trim() != '') {
-						tmp = tmp + ' ' + ary[i];
-					}
+		var ary_key = [];
+		var ary = key.split(' ');
+		var tmp = '';
+		for (i in ary) {
+			if (i.trim() != '') {
+				if (SrhType != 'T') {
+					ary_key[ary[i]] = ary_key[i];
+				} else {
+					tmp = tmp + ' ' + ary[i];
 				}
-				ary_key[tmp.substr(1)] = tmp.substr(1);
-
-
-				var max_length = 0;
-				for (x=1; x<=3; x++) {
-				  for (y=1; y<=8; y++) {
-				    $('#Out' + y + x).html('');
-				    localStorage.setItem('Sr_Out' + y + x, '');
-				  }
-				}
-
-				for (i in pws_no) {
-					localStorage.setItem('Sr_id' + i, '');
-				}
-
-				var total_file = 0;
-				var total_hit = 0;
-
-				for (x=1; x<=3; x++) {
-					for (y=1; y<=8; y++) {
-						var name1 = 'Nikaya' + y + x;
-						var cx_file = 0;
-						var cx_hit = 0;
-
-						var pali = '';
-						if (document.getElementById(name1).checked) {
-							name1 = name1.substring(6);
-
-							for (i in pws_no) {
-								//alert(i.substring(0, 2) + "  =  " + name1);
-
-								if (i.substring(0, 2) == name1) {
-									var file = 'pali/' + i + 'a.js';
-
-									var Sr_id = '';
-									//alert(file);
-
-									//**********
-									// read file
-									//**********
-									var flag = '0'
-									var rawFile = new XMLHttpRequest();
-									rawFile.open("GET", file, false);
-									rawFile.onreadystatechange = function () {
-										if (rawFile.readyState === 4) {
-											if (rawFile.status === 200 || rawFile.status == 0) {
-												//diffrent here 
-												var data =' ' +  rawFile.responseText + ' ';
-
-												var ary_source = data.split( "\n" );
-												data = data.toLowerCase();
-
-												var ary = data.split( "\n" );
-
-												for(index = 0; index < ary.length; index++) {
-													var flag_ary = '1';
-													//var sno = ary[index].substring(6);
-													//sno = parseInt(sno);
-
-													for (j in ary_key) {
-														var pos = ary[index].indexOf(j);
-														var tmp = ary[index].substr(pos + j.length, 1);
-														if ( pos == -1) {
-															flag_ary = '0';
-															j = 999;
-														} else {
-															var tmp = ary[index].substr(pos + j.length, 1);
-															if (Str_Pali.indexOf(tmp) != -1) {
-																flag_ary = '0';
-																j = 999;
-															} else {
-																var tmp = ary[index].substr(pos-1, 1);
-																if (Str_Pali.indexOf(tmp) != -1) {
-																	flag_ary = '0';
-																	j = 999;
-																}
-															}
-														}
-													}
-													if (flag_ary == '1') {
-														if (flag == '0') {
-															flag = '1';
-                                                            cx_file = cx_file + 1;
-                                                            ResultSpan = setResultSpan(i);
-                                                            pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + toSelectedScript(T_Book[i]) + "</span><br>";
-                                                        }
-
-														cx_hit = cx_hit + 1;
-
-														var tmp = ary_source[index];
-
-														tmp = tmp.replace(/\*/g, '') + "<br><br>";
-														tmp = tmp.replace(/\';/, '');
-														var pos = tmp.indexOf("='");
-														var tmp_id = tmp.substring(6, pos-1);
-														tmp = tmp.substring(pos + 2);
-														tmp = toSelectedScript(tmp);
-														tmp += "<br><br>";
-
-														for (j in ary_key) {
-															tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + toSelectedScript(j)  + "</a>");
-														}
-
-														pali = pali + tmp;
-														Sr_id = Sr_id + tmp_id + ";";
-													}
-												}
-											}
-										}
-									}
-									rawFile.send(null);
-									//*****************
-									// end read file
-									//*****************
-									if (Sr_id != '') {
-										//alert(i +" =  " + Sr_id);
-										localStorage.setItem('Sr_id' + i, ';' + Sr_id);
-									}
-								}
-
-							}
-						}
-						if (cx_file != 0) {
-							max_length = max_length + pali.length;
-							if (5200000<max_length) {
-								$('#Out' + y + x).html('<label onClick="Show_Detail(\'Out' + y + x + '\')" style="color:blue;">' + cx_file + " Files, " + cx_hit + " Paragraphs.</label>" + '<b style="color:red">&nbsp;Out of Memory</b>');
-							} else {
-								$('#Out' + y + x).html('<label onClick="Show_Detail(\'Out' + y + x + '\')" style="color:blue;">' + cx_file + " Files, " + cx_hit + " Paragraphs.</label>");
-							}
-							total_file = total_file + cx_file;
-							total_hit = total_hit + cx_hit;
-							localStorage.setItem('Sr_Out' + y + x, pali);
-							strTopResult = strTopResult + pali;
-							
-						} else {
-							$('#Out' + y + x).html('0 Hits.');
-						}
-
-					}
-				}
+				
 			}
-			var endDate = new Date();
-			var seconds = (endDate.getTime() - startDate.getTime())/1000;
-			$('#msg').html('Exact Search : ' + total_file +' Files, ' + total_hit + ' Paragraphs, ' + seconds + " Seconds");
-		
-			// write the final string.
-			$('#SearchResult').html(strTopResult);				
+		}
+		if (SrhType == 'T') {
+			ary_key[tmp.substr(1)] = tmp.substr(1);
 		}
 
-    function Start_Fuzzy() {
-        document.getElementById('SearchType1').checked = true;
-        SetSelect();
-        
-        var startDate = new Date();
-        var strTopResult ='';
-        $('#SearchResult').html(strTopResult);
+		var max_length = 0;
+		for (x=1; x<=3; x++) {
+			for (y=1; y<=8; y++) {
+			$('#Out' + y + x).html('');
+			localStorage.setItem('Sr_Out' + y + x, '');
+			}
+		}
 
+		for (i in pws_no) {
+			localStorage.setItem('Sr_id' + i, '');
+		}
 
-        //var Chars = 'abcdefghijklmnopqrstuvwxyzāīūṅñṭḍṇḷṃABCDEFGHIJKLMNOPQRSTUVWXYZĀĪŪṄÑṬḌHṆḶṂ';
+		var total_file = 0;
+		var total_hit = 0;
 
-        $('#msg').html('');
+		for (x=1; x<=3; x++) {
+			for (y=1; y<=8; y++) {
+				var name1 = 'Nikaya' + y + x;
+				var cx_file = 0;
+				var cx_hit = 0;
 
-		localStorage.setItem("Sr_type", 'F');
-		
-		var strKey = $('#key').val();
-		strKey = toRoman(strKey);
-        var key = toUniRegEx(strKey).trim().toLowerCase();
-        if ( 1 < key.length) {
-            localStorage.setItem("Sr_key", key);
+				var pali = '';
+				if (document.getElementById(name1).checked) {
+					name1 = name1.substring(6);
 
-            var i, x , y;
-            var ResultSpan ='';
+					for (i in pws_no) {
 
-            var ary_key = [];
-            var ary = key.split(' ');
-            for (i in ary) {
-                if (i.trim() != '') {
-                    //alert(i);
-                    ary_key[ary[i]] = ary_key[i];
-                }
-            }
+						if (i.substring(0, 2) == name1) {
+							var file = 'pali/' + i + 'a.js';
 
-            var max_length = 0;
-            for (x=1; x<=3; x++) {
-                for (y=1; y<=8; y++) {
-                $('#Out' + y + x).html('');
-                localStorage.setItem('Sr_Out' + y + x, '');
-                }
-            }
+							var Sr_id = '';
+							//**********
+							// read file
+							//**********
+							var flag = '0'
+							var rawFile = new XMLHttpRequest();
+							rawFile.open("GET", file, false);
+							rawFile.onreadystatechange = function () {
+								if (rawFile.readyState === 4) {
+									if (rawFile.status === 200 || rawFile.status == 0) {
+										
+										var data =' ' +  rawFile.responseText + ' ';
 
-            for (i in pws_no) {
-                localStorage.setItem('Sr_id' + i, '');
-            }
+										var ary_source = data.split( "\n" );
+										data = data.toLowerCase();
 
-            var total_file = 0;
-            var total_hit = 0;
+										data = data.replace(/\*/g, '');
+										var ary = data.split( "\n" );
 
-            for (x=1; x<=3; x++) {
-                for (y=1; y<=8; y++) {
-                    var name1 = 'Nikaya' + y + x;
-                    var cx_file = 0;
-                    var cx_hit = 0;
+										for(index = 0; index < ary.length; index++) {
+											var flag_ary = '1';
 
-                    var pali = '';
-                    if (document.getElementById(name1).checked) {
-                        name1 = name1.substring(6);
-
-                        for (i in pws_no) {
-                            //alert(i.substring(0, 2) + "  =  " + name1);
-
-                            if (i.substring(0, 2) == name1) {
-                                var file = 'pali/' + i + 'a.js';
-
-                                var Sr_id = '';
-                                //alert(file);
-
-                                //**********
-                                // read file
-                                //**********
-                                var flag = '0'
-                                var rawFile = new XMLHttpRequest();
-                                rawFile.open("GET", file, false);
-                                rawFile.onreadystatechange = function () {
-                                    if (rawFile.readyState === 4) {
-                                        if (rawFile.status === 200 || rawFile.status == 0) {
-                                            var data = rawFile.responseText;
-
-                                            var ary_source = data.split( "\n" );
-                                            data = data.toLowerCase();
-
-                                            var ary = data.split( "\n" );
-
-                                            for(index = 0; index < ary.length; index++) {
-                                                var flag_ary = '1';
-                                                //var sno = ary[index].substring(6);
-                                                //sno = parseInt(sno);
-                                                for (j in ary_key) {
-                                                    if (ary[index].indexOf(j) == -1) {
-                                                        flag_ary = '0';
-                                                        j = 999;
-                                                    }
-                                                    //} else {
-                                                    //	//var ary_tmp = ary[index].split(j);
-                                                    //	//var regex = new RegExp( '(' + j + ')', 'i' );
-                                                    //	//var ary_tmp = ary_source[index].split(regex);
-                                                    //
-                                                    //	tmp = replacei(ary_source[index], j, sub=> '<a href="' + i + '.htm?n=' + sno + '"  target=_blank style="background:yellow">' + j + "</a>");
-                                                    //
-                                                    //	ary_source[index] = tmp;
-                                                }
-                                                if (flag_ary == '1') {
-                                                    if (flag == '0') {
-                                                        flag = '1';
-                                                        cx_file = cx_file + 1;
-                                                        ResultSpan = setResultSpan(i);
-                                                        pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + toSelectedScript(T_Book[i]) + "</span><br>";
-                                                    }
-
-                                                    cx_hit = cx_hit + 1;
-
-                                                    var tmp = ary_source[index];
-
-
-                                                    tmp = tmp.replace(/\*/g, '');
-                                                    tmp = tmp.replace(/\';/, '');
-                                                    var pos = tmp.indexOf("='");
-                                                    var tmp_id = tmp.substring(6, pos-1);
-                                                    tmp = tmp.substring(pos + 2);
-                                                    tmp = toSelectedScript(tmp);
-                                                    tmp += "<br><br>";
-
-
-                                                    for (j in ary_key) {
-                                                    	tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + toSelectedScript(j)  + "</a>");
-                                                    }
-
-                                                    pali = pali + tmp;
-                                                    Sr_id = Sr_id + tmp_id + ";";
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                rawFile.send(null);
-                                //*****************
-                                // end read file
-                                //*****************
-                                if (Sr_id != '') {
-                                    //alert(i +" =  " + Sr_id);
-                                    localStorage.setItem('Sr_id' + i, ';' + Sr_id);
-                                }
-                            }
-
-                        }
-                    }
-                    if (cx_file != 0) {
-                        max_length = max_length + pali.length;
-                        if (5200000<max_length) {
-                            $('#Out' + y + x).html('<label onClick="Show_Detail(\'Out' + y + x + '\')" style="color:blue;">' + cx_file + " Files, " + cx_hit + " Paragraphs.</label>" + '<b style="color:red">&nbsp;Out of Memory</b>');
-                        } else {
-                            $('#Out' + y + x).html('<label onClick="Show_Detail(\'Out' + y + x + '\')" style="color:blue;">' + cx_file + " Files, " + cx_hit + " Paragraphs.</label>");
-                        }
-                        total_file = total_file + cx_file;
-                        total_hit = total_hit + cx_hit;
-                        localStorage.setItem('Sr_Out' + y + x, pali);
-                        strTopResult = strTopResult + pali;
-
-                        //alert(pali.length);
-                    } else {
-                        $('#Out' + y + x).html('0 Hits.') ;
-                    }
-                }
-            }
-        }
-        var endDate = new Date();
-        var seconds = (endDate.getTime() - startDate.getTime())/1000;
-        $('#msg').html('Fuzzy Search : ' + total_file +' Files, ' + total_hit + ' Paragraphs, ' + seconds + " Seconds");
-
-        // write the final string.
-        $('#SearchResult').html(strTopResult);
-    }
-
-
-
-
-
-		function Start_Exact() {
-			document.getElementById('SearchType1').checked = true;
-			SetSelect();
-			
-			var startDate = new Date();
-			var strTopResult ='';
-			$('#SearchResult').html(strTopResult);
-
-
-			var Str_Pali = 'abcdefghijklmnopqrstuvwxyzāīūṅñṭḍṇḷṃABCDEFGHIJKLMNOPQRSTUVWXYZĀĪŪṄÑṬḌHṆḶṂ';
-
-			$('#msg').html('');
-
-			localStorage.setItem("Sr_type", 'E');
-
-			var strKey = $('#key').val();
-			strKey = toRoman(strKey);
-			var key = toUniRegEx(strKey).trim().toLowerCase();
-			
-			if ( 1 < key.length) {
-				localStorage.setItem("Sr_key", key);
-
-				var i, x , y;
-                var ResultSpan ='';
-
-				var ary_key = [];
-				var ary = key.split(' ');
-				for (i in ary) {
-					if (i.trim() != '') {
-						//alert(i);
-						ary_key[ary[i]] = ary_key[i];
-					}
-				}
-
-				var max_length = 0;
-				for (x=1; x<=3; x++) {
-				  for (y=1; y<=8; y++) {
-				    $('#Out' + y + x).html('');
-				    localStorage.setItem('Sr_Out' + y + x, '');
-				  }
-				}
-
-				for (i in pws_no) {
-					localStorage.setItem('Sr_id' + i, '');
-				}
-
-				var total_file = 0;
-				var total_hit = 0;
-
-				for (x=1; x<=3; x++) {
-					for (y=1; y<=8; y++) {
-						var name1 = 'Nikaya' + y + x;
-						var cx_file = 0;
-						var cx_hit = 0;
-
-						var pali = '';
-						if (document.getElementById(name1).checked) {
-							name1 = name1.substring(6);
-
-							for (i in pws_no) {
-								//alert(i.substring(0, 2) + "  =  " + name1);
-
-								if (i.substring(0, 2) == name1) {
-									var file = 'pali/' + i + 'a.js';
-
-									var Sr_id = '';
-									//alert(file);
-
-									//**********
-									// read file
-									//**********
-									var flag = '0'
-									var rawFile = new XMLHttpRequest();
-									rawFile.open("GET", file, false);
-									rawFile.onreadystatechange = function () {
-										if (rawFile.readyState === 4) {
-											if (rawFile.status === 200 || rawFile.status == 0) {
-												//diffrent here 
-												var data =' ' +  rawFile.responseText + ' ';
-
-												var ary_source = data.split( "\n" );
-												data = data.toLowerCase();
-
-												var ary = data.split( "\n" );
-
-												for(index = 0; index < ary.length; index++) {
-													var flag_ary = '1';
-													//var sno = ary[index].substring(6);
-													//sno = parseInt(sno);
-
-													for (j in ary_key) {
-														var pos = ary[index].indexOf(j);
-														var tmp = ary[index].substr(pos + j.length, 1);
-														if ( pos == -1) {
-															flag_ary = '0';
-															j = 999;
-														} else {
-															var tmp = ary[index].substr(pos + j.length, 1);
-															if (Str_Pali.indexOf(tmp) != -1) {
-																flag_ary = '0';
-																j = 999;
-															} else {
-																var tmp = ary[index].substr(pos-1, 1);
-																if (Str_Pali.indexOf(tmp) != -1) {
-																	flag_ary = '0';
-																	j = 999;
-																}
-															}
-														}
-													}
-													if (flag_ary == '1') {
-														if (flag == '0') {
-															flag = '1';
-                                                            cx_file = cx_file + 1;
-                                                            ResultSpan = setResultSpan(i);
-                                                            pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + toSelectedScript(T_Book[i]) + "</span><br>";
-                                                        }
-
-														cx_hit = cx_hit + 1;
-
-														var tmp = ary_source[index];
-
-														tmp = tmp.replace(/\*/g, '') + "<br><br>";
-														tmp = tmp.replace(/\';/, '');
-														var pos = tmp.indexOf("='");
-														var tmp_id = tmp.substring(6, pos-1);
-														tmp = tmp.substring(pos + 2);
-														tmp = toSelectedScript(tmp);
-														tmp += "<br><br>";
-
-														for (j in ary_key) {
-															tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + toSelectedScript(j)  + "</a>");
-														}
-
-														pali = pali + tmp;
-														Sr_id = Sr_id + tmp_id + ";";
+											for (j in ary_key) {
+												if (SrhType == 'F') {
+	                                                if (ary[index].indexOf(j) == -1) {
+	                                                    flag_ary = '0';
+	                                                    j = 999;
+	                                                }
+												} else {
+													var pos = ary[index].indexOf(j);
+													var tmp = ary[index].substr(pos + j.length, 1);
 														
 
-													}
-												}
-											}
-										}
-									}
-									rawFile.send(null);
-									//*****************
-									// end read file
-									//*****************
-									if (Sr_id != '') {
-										//alert(i +" =  " + Sr_id);
-										localStorage.setItem('Sr_id' + i, ';' + Sr_id);
-									}
-								}
-
-							}
-						}
-						if (cx_file != 0) {
-							max_length = max_length + pali.length;
-							if (5200000<max_length) {
-								$('#Out' + y + x).html('<label onClick="Show_Detail(\'Out' + y + x + '\')" style="color:blue;">' + cx_file + " Files, " + cx_hit + " Paragraphs.</label>" + '<b style="color:red">&nbsp;Out of Memory</b>');
-							} else {
-								$('#Out' + y + x).html('<label onClick="Show_Detail(\'Out' + y + x + '\')" style="color:blue;">' + cx_file + " Files, " + cx_hit + " Paragraphs.</label>");
-							}
-							total_file = total_file + cx_file;
-							total_hit = total_hit + cx_hit;
-							localStorage.setItem('Sr_Out' + y + x, pali);
-							strTopResult = strTopResult + pali;
-							
-						} else {
-							$('#Out' + y + x).html('0 Hits.');
-						}
-
-					}
-				}
-			}
-			var endDate = new Date();
-			var seconds = (endDate.getTime() - startDate.getTime())/1000;
-			$('#msg').html('Exact Search : ' + total_file +' Files, ' + total_hit + ' Paragraphs, ' + seconds + " Seconds");
-		
-			// write the final string.
-			$('#SearchResult').html(strTopResult);				
-		}
-
-
-        function Start_Suffix() {
-			document.getElementById('SearchType1').checked = true;
-			SetSelect();
-
-			var startDate = new Date();
-
-			var Str_Pali = 'abcdefghijklmnopqrstuvwxyzāīūṅñṭḍṇḷṃABCDEFGHIJKLMNOPQRSTUVWXYZĀĪŪṄÑṬḌHṆḶṂ';
-
-			$('#msg').html('');
-
-			var strTopResult ='';
-			$('#SearchResult').html(strTopResult);
-
-			localStorage.setItem("Sr_type", 'S');
-
-			var strKey = $('#key').val();
-			strKey = toRoman(strKey);
-			var key = toUniRegEx(strKey).trim().toLowerCase();
-	
-			if ( 1 < key.length) {
-				localStorage.setItem("Sr_key", key);
-
-				var i, x , y;
-                var ResultSpan ='';
-
-				var ary_key = [];
-				var ary = key.split(' ');
-				for (i in ary) {
-					if (i.trim() != '') {
-						//alert(i);
-						ary_key[ary[i]] = ary_key[i];
-					}
-				}
-
-				var max_length = 0;
-				for (x=1; x<=3; x++) {
-				  for (y=1; y<=8; y++) {
-				    $('#Out' + y + x).html('');
-				    localStorage.setItem('Sr_Out' + y + x, '');
-				  }
-				}
-
-				for (i in pws_no) {
-					localStorage.setItem('Sr_id' + i, '');
-				}
-
-				var total_file = 0;
-				var total_hit = 0;
-
-				for (x=1; x<=3; x++) {
-					for (y=1; y<=8; y++) {
-						var name1 = 'Nikaya' + y + x;
-						var cx_file = 0;
-						var cx_hit = 0;
-
-						var pali = '';
-						if (document.getElementById(name1).checked) {
-							name1 = name1.substring(6);
-
-							for (i in pws_no) {
-								//alert(i.substring(0, 2) + "  =  " + name1);
-
-								if (i.substring(0, 2) == name1) {
-									var file = 'pali/' + i + 'a.js';
-
-									var Sr_id = '';
-									//alert(file);
-
-									//**********
-									// read file
-									//**********
-									var flag = '0'
-									var rawFile = new XMLHttpRequest();
-									rawFile.open("GET", file, false);
-									rawFile.onreadystatechange = function () {
-										if (rawFile.readyState === 4) {
-											if (rawFile.status === 200 || rawFile.status == 0) {
-												var data =' ' +  rawFile.responseText + ' ';
-
-												var ary_source = data.split( "\n" );
-												data = data.toLowerCase();
-
-												var ary = data.split( "\n" );
-
-												for(index = 0; index < ary.length; index++) {
-													var flag_ary = '1';
-													//var sno = ary[index].substring(6);
-													//sno = parseInt(sno);
-
-													for (j in ary_key) {
-														//alert(j);
-														var pos = ary[index].indexOf(j);
+													if ( pos == -1) {
+														flag_ary = '0'; break;
+													} else {
 														var tmp = ary[index].substr(pos + j.length, 1);
-														if ( pos == -1) {
-															flag_ary = '0';
-															j = 999;
-														} else {
-															var tmp = ary[index].substr(pos + j.length, 1);
-															if (0 <= Str_Pali.indexOf(tmp)) {
+														if ((SrhType == 'E') || (SrhType == 'T')) {
+															if (Str_Pali.indexOf(tmp) != -1) {
 																flag_ary = '0';
 																j = 999;
 															} else {
 																var tmp = ary[index].substr(pos-1, 1);
-																if (Str_Pali.indexOf(tmp) < 0) {
+																if (Str_Pali.indexOf(tmp) != -1) {
 																	flag_ary = '0';
 																	j = 999;
 																}
 															}
 														}
-													}
-													if (flag_ary == '1') {
-														if (flag == '0') {
-															flag = '1';
-                                                            cx_file = cx_file + 1;
-                                                            ResultSpan = setResultSpan(i);
-                                                            pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + toSelectedScript(T_Book[i]) + "</span><br>";
-                                                        }
 
-														cx_hit = cx_hit + 1;
-
-														var tmp = ary_source[index];
-
-														tmp = tmp.replace(/\*/g, '') + "<br><br>";
-														tmp = tmp.replace(/\';/, '');
-														var pos = tmp.indexOf("='");
-														var tmp_id = tmp.substring(6, pos-1);
-														tmp = tmp.substring(pos + 2);
-														tmp = toSelectedScript(tmp);
-														tmp += "<br><br>";
-
-														for (j in ary_key) {
-															tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + toSelectedScript(j)  + "</a>");
-														}
-
-														pali = pali + tmp;
-														Sr_id = Sr_id + tmp_id + ";";
-														strTopResult = strTopResult + pali;
-
-													}
-												}
-											}
-										}
-									}
-									rawFile.send(null);
-									//*****************
-									// end read file
-									//*****************
-									if (Sr_id != '') {
-										//alert(i +" =  " + Sr_id);
-										localStorage.setItem('Sr_id' + i, ';' + Sr_id);
-									}
-								}
-
-							}
-						}
-						if (cx_file != 0) {
-							max_length = max_length + pali.length;
-							if (5200000<max_length) {
-								$('#Out' + y + x).html('<label onClick="Show_Detail(\'Out' + y + x + '\')" style="color:blue;">' + cx_file + " Files, " + cx_hit + " Paragraphs.</label>" + '<b style="color:red">&nbsp;Out of Memory</b>');
-							} else {
-								$('#Out' + y + x).html('<label onClick="Show_Detail(\'Out' + y + x + '\')" style="color:blue;">' + cx_file + " Files, " + cx_hit + " Paragraphs.</label>");
-							}
-							total_file = total_file + cx_file;
-							total_hit = total_hit + cx_hit;
-							localStorage.setItem('Sr_Out' + y + x, pali);
-						} else {
-							$('#Out' + y + x).html('0 Hits.');
-						}
-
-					}
-				}
-			}
-			var endDate = new Date();
-			var seconds = (endDate.getTime() - startDate.getTime())/1000;
-			$('#msg').html('Suffix Search : ' + total_file +' Files, ' + total_hit + ' Paragraphs, ' + seconds + " Seconds");
-		
-		
-			// write the final string.
-			$('#SearchResult').html(strTopResult);		
-		}
-
-
-        function Start_Prefix() {
-			document.getElementById('SearchType1').checked = true;
-			SetSelect();
-			
-			var startDate = new Date();
-
-			var Str_Pali = 'abcdefghijklmnopqrstuvwxyzāīūṅñṭḍṇḷṃABCDEFGHIJKLMNOPQRSTUVWXYZĀĪŪṄÑṬḌHṆḶṂ';
-			var strTopResult ='';
-			$('#SearchResult').html(strTopResult);
-
-			$('#msg').html('');
-
-			localStorage.setItem("Sr_type", 'P');
-
-			var strKey = $('#key').val();
-			strKey = toRoman(strKey);
-			var key = toUniRegEx(strKey).trim().toLowerCase();
-
-			if ( 1 < key.length) {
-				localStorage.setItem("Sr_key", key);
-
-				var i, x , y;
-                var ResultSpan ='';
-
-				var ary_key = [];
-				var ary = key.split(' ');
-				for (i in ary) {
-					if (i.trim() != '') {
-						//alert(i);
-						ary_key[ary[i]] = ary_key[i];
-					}
-				}
-
-				var max_length = 0;
-				for (x=1; x<=3; x++) {
-				  for (y=1; y<=8; y++) {
-				    $('#Out' + y + x).html('');
-				    localStorage.setItem('Sr_Out' + y + x, '');
-				  }
-				}
-
-				for (i in pws_no) {
-					localStorage.setItem('Sr_id' + i, '');
-				}
-
-				var total_file = 0;
-				var total_hit = 0;
-
-				for (x=1; x<=3; x++) {
-					for (y=1; y<=8; y++) {
-						var name1 = 'Nikaya' + y + x;
-						var cx_file = 0;
-						var cx_hit = 0;
-
-						var pali = '';
-						if (document.getElementById(name1).checked) {
-							name1 = name1.substring(6);
-
-							for (i in pws_no) {
-								//alert(i.substring(0, 2) + "  =  " + name1);
-
-								if (i.substring(0, 2) == name1) {
-									var file = 'pali/' + i + 'a.js';
-
-									var Sr_id = '';
-									//alert(file);
-
-									//**********
-									// read file
-									//**********
-									var flag = '0'
-									var rawFile = new XMLHttpRequest();
-									rawFile.open("GET", file, false);
-									rawFile.onreadystatechange = function () {
-										if (rawFile.readyState === 4) {
-											if (rawFile.status === 200 || rawFile.status == 0) {
-												var data =' ' +  rawFile.responseText + ' ';
-
-												var ary_source = data.split( "\n" );
-												data = data.toLowerCase();
-
-												var ary = data.split( "\n" );
-
-												for(index = 0; index < ary.length; index++) {
-													var flag_ary = '1';
-													//var sno = ary[index].substring(6);
-													//sno = parseInt(sno);
-
-													for (j in ary_key) {
-														var pos = ary[index].indexOf(j);
-														var tmp = ary[index].substr(pos + j.length, 1);
-														if ( pos == -1) {
-															flag_ary = '0';
-															j = 999;
-														} else {
-															var tmp = ary[index].substr(pos + j.length, 1);
+														if (SrhType == 'P') {
 															if (Str_Pali.indexOf(tmp) < 0) {
 																flag_ary = '0';
 																j = 999;
@@ -828,77 +131,93 @@
 																}
 															}
 														}
-													}
-													if (flag_ary == '1') {
-														if (flag == '0') {
-															flag = '1';
-                                                            cx_file = cx_file + 1;
-                                                            ResultSpan = setResultSpan(i);
-                                                            pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + toSelectedScript(T_Book[i]) + "</span><br>";
-                                                        }
 
-														cx_hit = cx_hit + 1;
-
-														var tmp = ary_source[index];
-
-														tmp = tmp.replace(/\*/g, '') + "<br><br>";
-														tmp = tmp.replace(/\';/, '');
-														var pos = tmp.indexOf("='");
-														var tmp_id = tmp.substring(6, pos-1);
-														tmp = tmp.substring(pos + 2);
-														tmp = toSelectedScript(tmp);
-														tmp += "<br><br>";
-
-														for (j in ary_key) {
-															tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + toSelectedScript(j)  + "</a>");
+														if (SrhType == 'S') {
+															if (0 <= Str_Pali.indexOf(tmp)) {
+																flag_ary = '0';
+																j = 999;
+															} else {
+																var tmp = ary[index].substr(pos-1, 1);
+																if (Str_Pali.indexOf(tmp) < 0) {
+																	flag_ary = '0';
+																	j = 999;
+																}
+															}
 														}
 
-														pali = pali + tmp;
-														Sr_id = Sr_id + tmp_id + ";";
-														strTopResult = strTopResult + pali;
 
 													}
 												}
 											}
+											if (flag_ary == '1') {
+												if (flag == '0') {
+													flag = '1';
+													cx_file = cx_file + 1;
+													ResultSpan = setResultSpan(i);
+													pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + toSelectedScript(T_Book[i]) + "</span><br>";
+												}
+
+												cx_hit = cx_hit + 1;
+
+												var tmp = ary_source[index];
+
+												tmp = tmp.replace(/\*/g, '');
+												tmp = tmp.replace(/\';/, '');
+												var pos = tmp.indexOf("='");
+												var tmp_id = tmp.substring(6, pos-1);
+												tmp = tmp.substring(pos + 2);
+												tmp = toSelectedScript(tmp);
+												tmp += "<br><br>";
+
+												for (j in ary_key) {
+													tmp = replacei(tmp, toSelectedScript(j), sub=> '<a class="grey-button search" href="#/book/' + i + '/' + tmp_id + '" style="background:yellow">' + toSelectedScript(j)  + "</a>");
+												}
+
+												pali = pali + tmp;
+												Sr_id = Sr_id + tmp_id + ";";
+												
+											}
 										}
 									}
-									rawFile.send(null);
-									//*****************
-									// end read file
-									//*****************
-									if (Sr_id != '') {
-										//alert(i +" =  " + Sr_id);
-										localStorage.setItem('Sr_id' + i, ';' + Sr_id);
-									}
 								}
-
 							}
-						}
-						if (cx_file != 0) {
-							max_length = max_length + pali.length;
-							if (5200000<max_length) {
-								$('#Out' + y + x).html('<label onClick="Show_Detail(\'Out' + y + x + '\')" style="color:blue;">' + cx_file + " Files, " + cx_hit + " Paragraphs.</label>" + '<b style="color:red">&nbsp;Out of Memory</b>');
-							} else {
-								$('#Out' + y + x).html('<label onClick="Show_Detail(\'Out' + y + x + '\')" style="color:blue;">' + cx_file + " Files, " + cx_hit + " Paragraphs.</label>");
+							rawFile.send(null);
+							//*****************
+							// end read file
+							//*****************
+							if (Sr_id != '') {
+								localStorage.setItem('Sr_id' + i, ';' + Sr_id);
 							}
-							total_file = total_file + cx_file;
-							total_hit = total_hit + cx_hit;
-							localStorage.setItem('Sr_Out' + y + x, pali);
-						} else {
-							$('#Out' + y + x).html('0 Hits.');
 						}
 
 					}
 				}
-			}
-			var endDate = new Date();
-			var seconds = (endDate.getTime() - startDate.getTime())/1000;
-			$('#msg').html('Prefix Search : ' + total_file +' Files, ' + total_hit + ' Paragraphs, ' + seconds + " Seconds");
-		
-			// write the final string.
-			$('#SearchResult').html(strTopResult);
-		}
+				if (cx_file != 0) {
+					max_length = max_length + pali.length;
+					if (5200000<max_length) {
+						$('#Out' + y + x).html('<label onClick="Show_Detail(\'Out' + y + x + '\')" style="color:blue;">' + cx_file + " Files, " + cx_hit + " Paragraphs.</label>" + '<b style="color:red">&nbsp;Out of Memory</b>');
+					} else {
+						$('#Out' + y + x).html('<label onClick="Show_Detail(\'Out' + y + x + '\')" style="color:blue;">' + cx_file + " Files, " + cx_hit + " Paragraphs.</label>");
+					}
+					total_file = total_file + cx_file;
+					total_hit = total_hit + cx_hit;
+					localStorage.setItem('Sr_Out' + y + x, pali);
+					strTopResult = strTopResult + pali;
 
+				} else {
+					$('#Out' + y + x).html('');
+				}
+			}
+		}
+	}
+	var endDate = new Date();
+	var seconds = (endDate.getTime() - startDate.getTime())/1000;
+	$('#msg').html('Search Result: <b>' + total_file + '</b> Files, <b>' + total_hit + '</b> Paragraphs, ' + seconds + " Seconds");
+
+	// write the final string.
+	$('#SearchResult').html(strTopResult);
+}
+ 
 
 function setResultSpan(i){
     var strSpan = '';
@@ -936,8 +255,8 @@ function toSelectedScript(input, script) {
 function Keyin() {
     var key = toUniRegEx($('#key').val());
     $('#key').val(key);
-    key = toRoman(key.trim().toLowerCase());
-
+	key = toRoman(key.trim().toLowerCase());
+	
 
 
     if (document.getElementById('SearchType1').checked == true) {
@@ -1092,14 +411,14 @@ function Keyin() {
 					no = i.substring(0, 2);
 
                     if (old != sutta) {
-                        ary[no] = ary[no] + '<hr style="border: 1pt dashed gray;"><b style="color:brown;">' + sutta + " " + T_Book[sutta] + "</b><br>";
+                        ary[no] = ary[no] + '<hr style="border: 1pt dashed gray;"><b style="color:brown;">' + sutta + " " + toTranslate(T_Book[sutta]) + "</b><br>";
                     }
                     cx = cx + 1;
 
                     const properMatch = actualTitle.substr(matchedAt, key.length);
-                    const renderedTitle = actualTitle.replace(properMatch, '<span style="background:yellow">' + properMatch + '</span>');
+                    const renderedTitle = actualTitle.replace(properMatch, '@!@' + properMatch + '#!#');
 
-                    ary[no] = ary[no] + cx + ' ' + '<a href="javascript:void(0);" onClick="Jump(\'' + sutta + P_TNO[i] + '\')" title="' + P_TNO[i] + '">' + renderedTitle + '<span></a><br>';
+                    ary[no] = ary[no] + cx + ' ' + '<a href="javascript:void(0);" onClick="Jump(\'' + sutta + P_TNO[i] + '\')" title="' + P_TNO[i] + '">' + toTranslate(renderedTitle).replace(/@!@/g, '<span style="background:yellow">').replace(/#!#/g, '</span>') + '</a><br>';
 					old = sutta;
                 }
             }
@@ -1261,5 +580,5 @@ function Put(input) {
 	} else {
 		$('#key').val(strKey + ' ');
 	}
-	Start_Fuzzy();
+	SearchPali('F');
 }
