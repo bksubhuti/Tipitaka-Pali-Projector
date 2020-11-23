@@ -113,7 +113,7 @@ function PaliHistoryList() {
 	var strLastHistory = localStorage.getItem('LastHistory');
 	if (strLastHistory) {
 		url += '<img src="images/reset.png" width="16">' 
-		url +='<a href="javascript:void(0); onClick="PaliHistoryGoUrl(\'' + strLastHistory + '\');"> Latest</a>';
+		url +='<a href="javascript:void(0);" onClick="PaliHistoryGoUrl(\'' + strLastHistory + '\');"> Latest</a>';
 	} 
 	$('#LastHistory').html(url);	
 
