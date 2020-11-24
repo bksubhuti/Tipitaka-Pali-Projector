@@ -368,6 +368,12 @@ function Keyin() {
 
     } else {
         if (2 < key.length) {
+        	//***************************************
+        	// open search_Title_No.js in here 
+        	//
+    		addScriptToHead('js/search_Title_No.js');
+
+
             var ary = [];
             for (i = 1; i <= 3; i++) {
                 for (j = 1; j <= 8; j++) {
@@ -476,7 +482,9 @@ function Clear() {
             $('#' + name1).html('');
         }
     }
+    $('#msg').html('');
     $('#out').html('');
+    $('#SearchResult').html('');
 }
 
 function choosePali(val) {
