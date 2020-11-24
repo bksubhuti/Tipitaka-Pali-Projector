@@ -1452,10 +1452,15 @@
     <table align="center" bgcolor="#ffffc0" border="0" width="100%" cellpadding="10" cellspacing="0">
         <tbody>
         <tr>
-            <td align="right" valign="center" width="20%">
+            <td width="20%"></td>
+            <td width="10%"></td>
+            <td width="60%"></td>
+            <td width="10%"></td>
+        <tr>
+            <td align="right" valign="center" rowspan="3">
                 <img src="images/asoka.png" width="80%" draggable="false">
             </td>
-            <td align="center" width="80%">
+            <td align="center" colspan="3">
                 <span style='line-height:140%;color:brown;font-size:15pt;'><b>Tipiṭaka Pāḷi Projector</b></span> -
                 20201122 (TG)
 
@@ -1467,38 +1472,60 @@
                 <input type="hidden" id="id1">
                 <input type="hidden" id="id2">
 
+
                 <label class="switch">
                     <input id="ShowOnTop" type="checkbox" onClick="ShowOnTopClick(checked)" >
                     <span class="slider round"></span>
                 </label>
                 <label for="ShowOnTop" style="color:blue;font-size:12pt;">&nbsp;Results Outside Table&nbsp;</label>
- 
-                <br><br>
+            </td>
+        </tr>
+
+        <tr>
+            <td align="right">
                 <input name="SearchType" id="SearchType1" type="radio" onChange="SetSelect();Keyin()"
                        checked>
                 <label for="SearchType1" style="color:blue;font-size:12pt;">&nbsp;Tipiṭaka&nbsp;</label>
+            </td>
 
-                <input type="submit" onClick="SearchPali('F')" name="Submit" value="Fuzzy" title="Find words in any position... beginning or middle or ending">&nbsp;&nbsp;
-                <input type="submit" onClick="SearchPali('E')" name="Submit" value="Exact" title="Find words with exact spelling">&nbsp;&nbsp;&nbsp;
-                <input type="submit" onClick="SearchPali('P')" name="Submit" value="Prefix" title="Find words starting with ...">&nbsp;&nbsp;&nbsp;
-                <input type="submit" onClick="SearchPali('S')" name="Submit" value="Suffix" title="Find words ending with ...">&nbsp;&nbsp;&nbsp;
-                <input type="submit" onClick="SearchPali('T')" name="Submit" value="Sentence" title="Search multiple words in a row">&nbsp;&nbsp;&nbsp;
+            <td>
+                <input type="submit" onClick="SearchPali('F')" id="SubmitF" value="Fuzzy" title="Find words in any position... beginning or middle or ending">&nbsp;&nbsp;
+                <input type="submit" onClick="SearchPali('E')" id="SubmitE" value="Exact" title="Find words with exact spelling">&nbsp;&nbsp;&nbsp;
+                <input type="submit" onClick="SearchPali('P')" id="SubmitP" value="Prefix" title="Find words starting with ...">&nbsp;&nbsp;&nbsp;
+                <input type="submit" onClick="SearchPali('S')" id="SubmitS" value="Suffix" title="Find words ending with ...">&nbsp;&nbsp;&nbsp;
+                <input type="submit" onClick="SearchPali('T')" id="SubmitT" value="Sentence" title="Search multiple words in a row">
 
-                <span style="color:blue;cursor: pointer;font-size:12pt;" onClick="Clear();">Clear</span><br> 
+                <!--
+                <label class="switch">
+                    <input id="SearchBold" type="checkbox" onClick="SearchBold()" >
+                    <span class="slider round"></span>
+                </label>
+                <label for="SearchBold" style="color:blue;font-size:12pt;">&nbsp;Bold Only&nbsp;</label>
+                -->
+            </td>
+            <td>
+            </td>
+        </tr>
 
+        <tr>
+            <td></td>
+            <td>
                 <br>
                 <input name="SearchType" id="SearchType2" type="radio" onChange="SetSelect();Keyin()">
                 <label for="SearchType2" title="Search titles anywhere in the words of the titles" style="color:blue;font-size:12pt;">&nbsp;Fuzzy Title&nbsp;</label>
-                &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;
                 <input name="SearchType" id="SearchType3" type="radio" onChange="SetSelect();Keyin()">
                 <label for="SearchType3" title="Search titles where it begins with ..." style="color:blue;font-size:12pt;">&nbsp;Prefix Title&nbsp;</label>
                 <br>
                 <span id="msg"></span>
             </td>
+            <td>
+                <span style="color:blue;cursor: pointer;font-size:12pt;" onClick="Clear();"><img src="images/b_drop.png">Clear</span>
+            </td>
         </tr>
         <tr style="line-height: 150%">
             <!--  onClick="document.getElementById('out').innerHTML= '';" -->
-            <td colspan="2" id="suggest">
+            <td colspan="4" id="suggest">
                 <span id="out"></span>
             </td>
         </tr>
@@ -2447,7 +2474,7 @@
 <script src="js/z_search_pali_no.js"></script>
 <script src="js/z_tipitaka_Maps.js"></script>
 <script src="js/searchdlg.js"></script>
-<script src="js/search_Title_No.js"></script>
+<!-- <script src="js/search_Title_No.js"></script> -->
 
 <script>
 
