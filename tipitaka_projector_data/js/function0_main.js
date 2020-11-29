@@ -291,8 +291,8 @@ function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
 		}
 	}
 	url = v1 + '#para' + para.toString();
-	PaliHistoryGoUrl(url);
-	/*
+	//PaliHistoryGoUrl(url);
+	
 
 	if (v1 != 'x') { 
  
@@ -374,68 +374,73 @@ function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
 
 			var p_tag = '';
 			var file = 'pali/' + url.substr(0, 4) + '.js';
-			var rawFile = new XMLHttpRequest();
-			rawFile.open("GET", file, false);
-			rawFile.onreadystatechange = function () {
-				if (rawFile.readyState === 4) {
-					if (rawFile.status === 200 || rawFile.status == 0) {
-						var data = ' ' +  rawFile.responseText + ' ';
-						p_tag = data.split("P_Tag[");
+			console.log(url.substr(0, 4));
 
-						for(index= 1; index < p_tag.length; index++) {
-							var tmp = p_tag[index].split("]='")[1].split("';\n")[0];
-							p_tag[index] = tmp; 
-						}
-					}
-				}
-			}
-			rawFile.send(null);
- 
-			var file = 'pali/' + url.substr(0, 4) + 'a.js';
-			//**********
-			// read file
-			//**********
-            var $table = $('#main_table' + no);
-            $table.empty();  
-            var rows = '';
-
-
-			var rawFile = new XMLHttpRequest();
-			rawFile.open("GET", file, false);
-			rawFile.onreadystatechange = function () {
-				if (rawFile.readyState === 4) {
-					if (rawFile.status === 200 || rawFile.status == 0) {
-						//diffrent here 
-						var data = ' ' +  rawFile.responseText + ' ';
-						var p_htm = data.split("P_HTM[");
-
-						//rows = rows + '<table id="main_table' + no + '" width=100% border=0 align="left" cellspacing=3 cellpadding=7 style="padding-left: 5px;">';
-
-						for(index= 1; index < p_htm.length; index++) {
-							var tmp = p_htm[index].split("]='")[1].split("';\n")[0]; 
-							if (tmp != '') {
-								var ary1 = tmp.split('*');
-								var ary2 = p_tag[index].split('*');
-								rows = rows + '<tr><td class="AT">';
-								rows = rows + ary2[0];
-								for (j=1; j<ary1.length; j++) {
-	               					rows = rows + ary1[j] + ary2[j];
-	               				}
-	               				rows = rows + '</td></tr>';
-							}
-						}
-						//rows = rows + '</table>';
-					}
-				}
-			}
-			rawFile.send(null);
-
-            $table.html(rows);
-            setTableStyling();
+			const tableId = 'main_table' + no;
+			console.log(tableId, 'tableId');
+			loadBook(parseInt(url.substr(0, 4)), () => {}, tableId);
+			// var rawFile = new XMLHttpRequest();
+			// rawFile.open("GET", file, false);
+			// rawFile.onreadystatechange = function () {
+			// 	if (rawFile.readyState === 4) {
+			// 		if (rawFile.status === 200 || rawFile.status == 0) {
+			// 			var data = ' ' +  rawFile.responseText + ' ';
+			// 			p_tag = data.split("P_Tag[");
+			//
+			// 			for(index= 1; index < p_tag.length; index++) {
+			// 				var tmp = p_tag[index].split("]='")[1].split("';\n")[0];
+			// 				p_tag[index] = tmp;
+			// 			}
+			// 		}
+			// 	}
+			// }
+			// rawFile.send(null);
+			//
+			// var file = 'pali/' + url.substr(0, 4) + 'a.js';
+			// //**********
+			// // read file
+			// //**********
+            // var $table = $('#main_table' + no);
+            // $table.empty();
+            // var rows = '';
+			//
+			//
+			// var rawFile = new XMLHttpRequest();
+			// rawFile.open("GET", file, false);
+			// rawFile.onreadystatechange = function () {
+			// 	if (rawFile.readyState === 4) {
+			// 		if (rawFile.status === 200 || rawFile.status == 0) {
+			// 			//diffrent here
+			// 			var data = ' ' +  rawFile.responseText + ' ';
+			// 			var p_htm = data.split("P_HTM[");
+			//
+			// 			//rows = rows + '<table id="main_table' + no + '" width=100% border=0 align="left" cellspacing=3 cellpadding=7 style="padding-left: 5px;">';
+			//
+			// 			for(index= 1; index < p_htm.length; index++) {
+			// 				var tmp = p_htm[index].split("]='")[1].split("';\n")[0];
+			// 				if (tmp != '') {
+			// 					var ary1 = tmp.split('*');
+			// 					var ary2 = p_tag[index].split('*');
+			// 					rows = rows + '<tr><td class="AT">';
+			// 					rows = rows + ary2[0];
+			// 					for (j=1; j<ary1.length; j++) {
+	        //        					rows = rows + ary1[j] + ary2[j];
+	        //        				}
+	        //        				rows = rows + '</td></tr>';
+			// 				}
+			// 			}
+			// 			//rows = rows + '</table>';
+			// 		}
+			// 	}
+			// }
+			// rawFile.send(null);
+			//
+            // $table.html(rows);
+            // setTableStyling();
             //$('#MAT_table' + no).html(rows);
 		}
 	}
-	 */
+	 
 }	
 
 

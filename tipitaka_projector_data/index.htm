@@ -1155,20 +1155,20 @@
         </table>
     </div>
 
-    <div id="MAT_table2" style="width:0%;display: inline-flex;overflow-x: hidden;overflow-y: auto;min-height: 101%;vertical-align: top;height:100%;display:none;">
+    <div id="MAT_table2" style="width:0%;display: inline-flex;overflow-x: hidden;overflow-y: auto;min-height: 101%;vertical-align: top;display:none;">
         <table id="main_table2" bgcolor="#010101" width=100% border=0 align="left" cellspacing=3 cellpadding=7
                style="padding-left: 15px;">
         </table>
     </div>
 
-    <div id="MAT_table3" style="width:33%;display: inline-flex;overflow-x: hidden;overflow-y: auto;min-height: 101%;vertical-align: top;height:100%;display:none;">
+    <div id="MAT_table3" style="width:33%;display: inline-flex;overflow-x: hidden;overflow-y: auto;min-height: 101%;vertical-align: top;display:none;">
         <table id="main_table3" bgcolor="#010101" width=100% border=0 align="left" cellspacing=3 cellpadding=7
                style="padding-left: 15px;">
         </table>
     </div>
     
     <script type="text/javascript">
-        var loadBook = function loadBook(bookId, onBookLoadingDone) {
+        var loadBook = function loadBook(bookId, onBookLoadingDone, inTableId) {
             $('#welcome').remove();
             var bookInfo = bookData.flat[bookId];
             var start = new Date();
@@ -1189,7 +1189,7 @@
             // Empty the table showing the book contents in case
             // it was showing another book previously
             //
-            var $table = $('#main_table');
+            var $table = $(`#${ inTableId || 'main_table'}`);
             $table.empty();
 
             // Create empty rows to be filled with the book content later on
@@ -1233,7 +1233,7 @@
                 // Load the book text content, paragraph data etc
                 //
                 console.time('display book');
-                displayBook();
+                displayBook(inTableId);
                 console.timeEnd('display book');
 
                 EnglishModeLoadEpub(bookInfo.bookId);

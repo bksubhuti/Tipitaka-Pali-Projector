@@ -273,7 +273,7 @@ if (Sr_key) {
 }
 var Sr_id = localStorage.getItem('Sr_id'+ html_no);
 
-function  displayBook() {
+function  displayBook(inTableId) {
 	const viewLeftConfig = localStorage.getItem("view_left");
 	const viewRightConfig = localStorage.getItem("view_right");
 
@@ -384,11 +384,12 @@ function  displayBook() {
 			}
 		}	
 
+		const inTable = inTableId ? `#${inTableId}` : '';
 
-		$('#p' +idx).html(s1);
+		$(`${inTable} #p${idx}`).html(s1);
 
 		//if (viewRightConfig != 'Space') {
-		$('#m' +idx).html(s2); 
+		$(`${inTable} #m${idx}`).html(s2);
 		//}	 
 			//document.getElementById('m' +idx).innerHTML = s2; 
 	}
