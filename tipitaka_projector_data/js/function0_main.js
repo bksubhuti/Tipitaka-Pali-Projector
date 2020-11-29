@@ -378,7 +378,15 @@ function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
 
 			const tableId = 'main_table' + no;
 			console.log(tableId, 'tableId');
-			loadBook(parseInt(url.substr(0, 4)), () => {}, tableId);
+			loadBook(parseInt(url.substr(0, 4)), () => {
+
+				var pa2= '#para' + para.toString();
+				const element = $('#MAT_table2 ' + pa2)[0];
+				if (element) { element.scrollIntoView(); }
+	
+
+			}, tableId);
+
 			// var rawFile = new XMLHttpRequest();
 			// rawFile.open("GET", file, false);
 			// rawFile.onreadystatechange = function () {
