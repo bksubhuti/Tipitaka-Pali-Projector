@@ -825,3 +825,8 @@ input[type="text"], input[type="Textbox"] {
 #main_div {
     box-sizing: border-box;
 }
+
+.ping-pong-buttons input {
+    box-sizing: border-box;
+    padding: 0;
+}
