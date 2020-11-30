@@ -257,7 +257,6 @@ function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
 		return;
 	}
 
-
 	tr_id = localStorage.getItem("tr_id");
 	var strpara = localStorage.getItem("MyanmarParNum");
 
@@ -291,7 +290,8 @@ function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
 		}
 	}
 	url = v1 + '#para' + para.toString();
-	//PaliHistoryGoUrl(url);
+	PaliHistoryGoUrl(url);
+/*
 	
 
 	if (v1 != 'x') { 
@@ -319,7 +319,6 @@ function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
 				ary[i] = 0;
 			}
 		}
-		
 
 
 		var wA = '0';
@@ -371,22 +370,26 @@ function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
 		}
 
 		if (((no == '2') && (wA == '1')) || ((no == '3') && (wT == '1'))) {
-
+*/  /*
 			var p_tag = '';
 			var file = 'pali/' + url.substr(0, 4) + '.js';
 			console.log(url.substr(0, 4));
 
 			const tableId = 'main_table' + no;
 			console.log(tableId, 'tableId');
-			loadBook(parseInt(url.substr(0, 4)), () => {
+			var pa2= '#' + P_Par[parseInt(para)];
+			element =  $('#MAT_table1 ' + pa2)[0];
+			if (element) { element.scrollIntoView();}
 
-				var pa2= '#para' + para.toString();
-				const element = $('#MAT_table2 ' + pa2)[0];
-				if (element) { element.scrollIntoView(); }
+			loadBook(parseInt(url.substr(0, 4)), () => {
+				var pa2= '#' + P_Par[parseInt(para)];
+				var element = $('#MAT_table2 ' + pa2)[0];
+				if (element) { element.scrollIntoView();
+				}
 	
 
 			}, tableId);
-
+*/
 			// var rawFile = new XMLHttpRequest();
 			// rawFile.open("GET", file, false);
 			// rawFile.onreadystatechange = function () {
@@ -446,8 +449,8 @@ function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
             // $table.html(rows);
             // setTableStyling();
             //$('#MAT_table' + no).html(rows);
-		}
-	}
+	//	}
+//	}
 	 
 }	
 
