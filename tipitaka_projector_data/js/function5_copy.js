@@ -59,41 +59,42 @@ function CopyExport(key) {
 		var s2 = Math.max(copy1, copy2);
 
 		if (key == '2') {
-			val = '';
+			txt = '';
 			for (i=s1; i<=s2; i++) { 
-				val = val + $('#p' + i).html().replace(/<[^>]+>/gm ,'') + '\n';
+				txt = txt + $('#p' + i).html().replace(/<[^>]+>/gm ,'') + '\n';
 				$('#m' + i).html = $('#m' + i).html().replace('<input type="checkbox" checked>', '');
 			} 
-			val = val.replace(/\&nbsp;/g, '')
-			$('#CopyText').val(val);
+			txt = txt.replace(/\&nbsp;/g, '')
+			$('#CopyText').val(txt);
 			CopyText();
 		}
 		if (key == '3') {
-			format = '<html>\n';
-			format = format + '	<head>\n';
-			format = format + '		<style>\n';
-			format = format + '			.b1	{ font-size: 24pt; text-indent: 2em;}\n';
-			format = format + '			.b2	{ font-size: 33pt; text-align:center; font-weight: bold;}\n';
-			format = format + '			.c3	{ font-size: 24pt; text-align:center;}\n';
-			format = format + '			.c4	{ font-size: 30pt; text-align:center; font-weight: bold;}\n';
-			format = format + '			.g5	{ font-size: 24pt; margin-bottom: 0em; margin-left: 4em;}\n';
-			format = format + '			.g6	{ font-size: 24pt; margin-bottom: 0em; margin-left: 4em;}\n';
-			format = format + '			.g7	{ font-size: 24pt; margin-bottom: 0em; margin-left: 4em;}\n';
-			format = format + '			.g8	{ font-size: 24pt; margin-bottom: 0.5cm; margin-left: 4em;}\n';
-			format = format + '			.h9	{ font-size: 24pt; text-indent: 2em;}\n';
-			format = format + '			.ia	{ font-size: 24pt; text-indent: 2em; margin-left: 3em;}\n';
-			format = format + '			.nb	{ font-size: 36pt; text-align:center; font-weight: bold;}\n';
-			format = format + '			.sc	{ font-size: 24pt; text-align:center; font-weight: bold;}\n';
-			format = format + '			.sd	{ font-size: 24pt; text-align:center; font-weight: bold;}\n';
-			format = format + '			.te	{ font-size: 24pt; text-align:center; font-weight: bold;}\n';
-			format = format + '			.uf	{ font-size: 24pt;}\n';
-			format = format + '		</style>\n';
-			format = format + '	</head>\n';
-			format = format + '\n';
-			format = format + '	<body>\n';
-			format = format + '		{!@#body#@!}\n';
-			format = format + '	</body>\n';
-			format = format + '</html>\n';
+			doc = '<html>\n';
+			doc = doc + '	<head>\n';
+			doc = doc + '		<meta charset="utf-8">\n';
+			doc = doc + '		<style>\n';
+			doc = doc + '			.b1	{ font-size: 24pt; text-indent: 2em;}\n';
+			doc = doc + '			.b2	{ font-size: 33pt; text-align:center; font-weight: bold;}\n';
+			doc = doc + '			.c3	{ font-size: 24pt; text-align:center;}\n';
+			doc = doc + '			.c4	{ font-size: 30pt; text-align:center; font-weight: bold;}\n';
+			doc = doc + '			.g5	{ font-size: 24pt; margin-bottom: 0em; margin-left: 4em;}\n';
+			doc = doc + '			.g6	{ font-size: 24pt; margin-bottom: 0em; margin-left: 4em;}\n';
+			doc = doc + '			.g7	{ font-size: 24pt; margin-bottom: 0em; margin-left: 4em;}\n';
+			doc = doc + '			.g8	{ font-size: 24pt; margin-bottom: 0.5cm; margin-left: 4em;}\n';
+			doc = doc + '			.h9	{ font-size: 24pt; text-indent: 2em;}\n';
+			doc = doc + '			.ia	{ font-size: 24pt; text-indent: 2em; margin-left: 3em;}\n';
+			doc = doc + '			.nb	{ font-size: 36pt; text-align:center; font-weight: bold;}\n';
+			doc = doc + '			.sc	{ font-size: 24pt; text-align:center; font-weight: bold;}\n';
+			doc = doc + '			.sd	{ font-size: 24pt; text-align:center; font-weight: bold;}\n';
+			doc = doc + '			.te	{ font-size: 24pt; text-align:center; font-weight: bold;}\n';
+			doc = doc + '			.uf	{ font-size: 24pt;}\n';
+			doc = doc + '		</style>\n';
+			doc = doc + '	</head>\n';
+			doc = doc + '\n';
+			doc = doc + '	<body>\n';
+			doc = doc + '		{!@#body#@!}\n';
+			doc = doc + '	</body>\n';
+			doc = doc + '</html>\n';
 
 
 			val = '';
@@ -102,9 +103,9 @@ function CopyExport(key) {
 				$('#m' + i).html($('#m' + i).html().replace('<input type="checkbox" checked="">', ''));
 
 			} 
-			format = format.replace('{!@#body#@!}', val);
-			format = format.replace(/\&nbsp;/g, '') 
-			$('#CopyText').val(format)
+			doc = doc.replace('{!@#body#@!}', val);
+			doc = doc.replace(/\&nbsp;/g, '') 
+			$('#CopyText').val(doc)
 			CopyText(); 
 		}
 		if (key == '0') { 
@@ -122,6 +123,16 @@ function CopyExport(key) {
 		$('#copyunformat').css('display','none');
 		$('#copyformat').css('display','none');
 		$('#copycancel').css('display','none');
+
+		if (key == '2') {
+			var blob = new Blob([txt], {type: "text/plain;charset=utf-8"});
+			saveAs(blob, html_no + '.txt');
+		}
+
+		if (key == '3') {
+			var blob = new Blob([doc], {type: "text/plain;charset=utf-8"});
+			saveAs(blob, html_no + '.doc');
+		}
 
 	} 
 }

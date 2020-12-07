@@ -159,7 +159,14 @@ var _ary = window.location.toString().split('.htm');
 var html_file = _ary[0].slice(-4) + '.htm';
 var html_no = _ary[0].slice(-4);
 
+M_FNOTE = [];
 M_LOC = [];
+M_QUE = [];
+M_RANGE = [];
+M_RANGX = [];
+M_SEC = [];
+M_SECTION = '';
+
 M_SCT = [];		// sutta_center;
 
 function GetTrId(val) {
@@ -291,8 +298,7 @@ function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
 	}
 	url = v1 + '#para' + para.toString();
 	PaliHistoryGoUrl(url);
-/*
-	
+	/*
 
 	if (v1 != 'x') { 
  
@@ -319,6 +325,7 @@ function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
 				ary[i] = 0;
 			}
 		}
+		
 
 
 		var wA = '0';
@@ -368,26 +375,22 @@ function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
 			$('#MAT_table2').css('width', '30.1%');
 			$('#MAT_table3').css('width', '30%');
 		}
-
 		if (((no == '2') && (wA == '1')) || ((no == '3') && (wT == '1'))) {
 */  /*
 			var p_tag = '';
 			var file = 'pali/' + url.substr(0, 4) + '.js';
 			console.log(url.substr(0, 4));
-
 			const tableId = 'main_table' + no;
 			console.log(tableId, 'tableId');
 			var pa2= '#' + P_Par[parseInt(para)];
 			element =  $('#MAT_table1 ' + pa2)[0];
 			if (element) { element.scrollIntoView();}
-
 			loadBook(parseInt(url.substr(0, 4)), () => {
 				var pa2= '#' + P_Par[parseInt(para)];
 				var element = $('#MAT_table2 ' + pa2)[0];
 				if (element) { element.scrollIntoView();
 				}
 	
-
 			}, tableId);
 */
 			// var rawFile = new XMLHttpRequest();
@@ -451,7 +454,7 @@ function MATurlGo(no) {		// id = id number , no=1=mula, 2=att, 3=tika 4= anutika
             //$('#MAT_table' + no).html(rows);
 	//	}
 //	}
-	 
+
 }	
 
 
@@ -588,7 +591,7 @@ function onHeaderDictionary(){
 	$('#tab-content').css("margin-top", "3px");
 	$("#panel-header").removeClass('stand-alone');
 	doAdjustTabContent();
-	
+
 }
 
 function goConfirmGoToLatest(){
@@ -623,5 +626,3 @@ function goConfirmGoToLatest(){
 		}
 	
 }
-
-

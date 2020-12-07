@@ -67,7 +67,11 @@ function SearchPali(SrhType) {
 					for (i in pws_no) {
 
 						if (i.substring(0, 2) == name1) {
-							var file = 'pali/' + i + 'a.js';
+							if (document.getElementById('SearchBold').checked == false) {
+								var file = 'pali/' + i + 'a.js';
+							} else {
+								var file = 'dictionary/bold_search/bold_pali_' + i + 'a.txt';
+							}
 
 							var Sr_id = '';
 							//**********
@@ -154,7 +158,7 @@ function SearchPali(SrhType) {
 													flag = '1';
 													cx_file = cx_file + 1;
 													ResultSpan = setResultSpan(i);
-													pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + toSelectedScript(T_Book[i]) + "</span><br>";
+													pali = pali + '<hr style="border: 1pt dashed gray;">' + ResultSpan + i + " " + toSelectedScript(bookData.flat[i].title) + "</span><br>";
 												}
 
 												cx_hit = cx_hit + 1;
@@ -163,9 +167,16 @@ function SearchPali(SrhType) {
 
 												tmp = tmp.replace(/\*/g, '');
 												tmp = tmp.replace(/\';/, '');
-												var pos = tmp.indexOf("='");
-												var tmp_id = tmp.substring(6, pos-1);
-												tmp = tmp.substring(pos + 2);
+
+												if (document.getElementById('SearchBold').checked == true) {
+													var pos = tmp.indexOf("=");
+													var tmp_id = tmp.substring(0, pos);
+													tmp = tmp.substring(pos + 1);
+												} else {
+													var pos = tmp.indexOf("='");
+													var tmp_id = tmp.substring(6, pos-1);
+													tmp = tmp.substring(pos + 2);
+												}
 												tmp = toSelectedScript(tmp);
 												tmp += "<br><br>";
 
@@ -189,7 +200,6 @@ function SearchPali(SrhType) {
 								localStorage.setItem('Sr_id' + i, ';' + Sr_id);
 							}
 						}
-
 					}
 				}
 				if (cx_file != 0) {
@@ -251,6 +261,17 @@ function toSelectedScript(input, script) {
 
 }
 
+function SearchBold() {
+
+    if (document.getElementById('SearchBold').checked == true) {
+		$('#SubmitT').css('visibility', 'hidden');
+	} else {
+		$('#SubmitT').css('visibility', '');
+	}
+
+	Keyin();
+}
+
 
 function Keyin() {
     var key = toUniRegEx($('#key').val());
@@ -269,7 +290,20 @@ function Keyin() {
         var len = key.length;
         var abc = 'abcdeghijklmnoprstuvyñāīūḍḷṃṅṇṭ';
         if (2 <= len) {
+
+
             if ((abc.indexOf(key.substr(0, 1)) != -1) && (abc.indexOf(key.substr(1, 1)) != -1)) {
+
+				//*********************************************
+				// bold 
+				//
+	
+				var newscript = document.createElement('script');
+				newscript.setAttribute('type', 'text/javascript');
+				newscript.setAttribute('src', 'dictionary/bold_search/bold_search_' + key.substr(0, 1) + '.js');
+				var head = document.getElementsByTagName('head')[0];
+				head.appendChild(newscript);
+
                 var newscript = document.createElement('script');
                 newscript.setAttribute('type', 'text/javascript');
                 newscript.setAttribute('src', 'dictionary/search/yy_search_' + key.substr(0, 2) + '.js');
@@ -298,69 +332,118 @@ function Keyin() {
 
 				str =  key.replace(/[autnidlm]/g, (m) => variations[m]);
 				filterRegex = new RegExp(str);
-			
+
+				var chkAll = false;
 				if ((chk == 0) || (23 <= chk)) {
-		            for (var i in pws) {
-		                if (i.search(filterRegex)==0 ) {
-		                	var pws2 = pws[i].split('=');
+					chkAll = true;
+				}
+ 
+				var ary = {
+					'A':11, 'B':12, 'C':13,
+					'D':21, 'E':22, 'F':23,
+					'G':31, 'H':32, 'I':33,
+					'J':41, 'K':42, 'L':43,
+					'M':51, 'N':52, 'O':53,
+					'P':61, 'Q':62, 'R':63,
+					'S':71, 'T':72, 'U':73,
+							'V':82, 'W':83};
 
-		                    cx = cx + 1;
-		                    out_tmp = out_tmp + '<a hef="javascript:void(0)" style="color:blue;" onClick="Put(\'' + i + '\');">' + toSelectedScript(i, currentScript) + '</a>' + " <span style='font-size:9pt;color:#800080;'>" + pws2[0] + "</span>,&nbsp;&nbsp;&nbsp;";
-		                    if (cx > 99) {
-		                        out_tmp = out_tmp + " <span style='font-size:12pt;color:red;'>> 99...</span>";
-		                        break;
-		                    }
-		                }
-		            }
-	       		} else {
-					var ary = {
-						'A':11, 'B':12, 'C':13,
-						'D':21, 'E':22, 'F':23,
-						'G':31, 'H':32, 'I':33,
-						'J':41, 'K':42, 'L':43,
-						'M':51, 'N':52, 'O':53,
-						'P':61, 'Q':62, 'R':63,
-						'S':71, 'T':72, 'U':73,
-								'V':82, 'W':83};
-
-					var pws2 = [];
-		            for (var k in pws) {
-		                if (k.search(filterRegex)==0 ) {
-							var v0 = k.split('	')[0];
-							var v1 = pws[k].split('=')[1];
+				var pwsSorted = [];
+				if (document.getElementById('SearchBold').checked == false) {
+					for (var k in pws) {
+						if (k.search(filterRegex)==0 ) {
+							var paliKey = k.split('	')[0];
+							var paliCount = pws[k];
 							for (var i=65; i<=87; i++) {
 								var v2 = String.fromCharCode(i);
 								var v3 = ';' + ary[v2] + ';';
-								v1 = v1.replace(v2, v3);
+								paliCount = paliCount.replace(v2, v3);
 							}
-							ary2 = v1.split(';');
+							ary2 = paliCount.split(';');
 							var newtotal = 0 ;
 							for (i=1; i<ary2.length; i=i+2) {
-								if (document.getElementById('Nikaya' + ary2[i]).checked) {
+								if ((chkAll == true) || 
+									(document.getElementById('Nikaya' + ary2[i]).checked)) {
 									newtotal = newtotal + parseInt(ary2[i +1]);
 								}
 							}
 							if (0 < newtotal) {
 								cx = cx +1
-								pws2[cx] = (1000000 - Number(newtotal)) + v0;
+								pwsSorted[cx] = (999999 - Number(newtotal)) + paliKey;
+								pws[paliKey] = Number(newtotal);
 							}
 						}
 					}
-					pws2.sort();
+					//pwsSorted.sort();
+				}
 
-					cx = 0;
-					for (i in pws2) {
-						cx = cx + 1;
-						v1 = 1000000 - parseInt(pws2[i].substr(0, 6));
-						v2 = pws2[i].substr(6);
-
-	                    out_tmp = out_tmp + '<a hef="javascript:void(0)" style="color:blue;" onClick="Put(\'' + v2 + '\');">' + toSelectedScript(v2, currentScript) + '</a>' + " <span style='font-size:9pt;color:#800080;'>" + v1 + "</span>,&nbsp;&nbsp;&nbsp;";
-	                    if (cx > 99) {
-	                        out_tmp = out_tmp + " <span style='font-size:12pt;color:red;'>> 99...</span>";
-	                        break;
-	                    }
+				//
+				var pwsBoldSorted = [];
+				for (var k in pwsBold) {
+					if (k.search(filterRegex)==0 ) {
+						var paliKey = k.split('	')[0];
+						var paliCount = pwsBold[k];
+						for (var i=65; i<=87; i++) {
+							var v2 = String.fromCharCode(i);
+							var v3 = ';' + ary[v2] + ';';
+							paliCount = paliCount.replace(v2, v3);
+						}
+						ary2 = paliCount.split(';');
+						var newtotal = 0 ;
+						for (i=1; i<ary2.length; i=i+2) {
+							if ((chkAll == true) || 
+								(document.getElementById('Nikaya' + ary2[i]).checked)) {
+								newtotal = newtotal + parseInt(ary2[i +1]);
+							}
+						}
+						if (0 < newtotal) {
+							cx = cx +1
+							pwsBoldSorted[cx] = (999999 - Number(newtotal)) + paliKey;
+							pwsBold[paliKey] = Number(newtotal); 
+						} 
 					}
-	       		}
+				}
+				//pwsBoldSorted.sort();
+
+				// merge array
+				var aryLast = pwsSorted.concat(pwsBoldSorted);
+				aryLast.sort();
+
+				cx = 0;
+				for (i in aryLast) {
+					v2 = aryLast[i].substr(6);
+					
+					var out_tmp1 = '';
+					if ((pws[v2] != undefined) && (pws[v2] != null)) {
+						if (0 < pws[v2]) {
+							out_tmp1 += " <span style='font-size:9.5pt;color:#800080;'>";
+							out_tmp1 += pws[v2] + "</span>"; 
+							pws[v2] = 0; 
+						}
+					}
+
+					if ((pwsBold[v2] != undefined) && (pwsBold[v2] != null)) {
+						if (0 < pwsBold[v2]) {
+							out_tmp1 += ',<b style="font-size:10pt;background-color:black;color:white;">&nbsp;';
+							out_tmp1 += ('' + pwsBold[v2]);
+							out_tmp1 += '&nbsp;</b>';
+							pwsBold[v2] = 0; 
+						}
+					}
+
+					if (out_tmp1 != '') {
+						cx = cx + 1;
+						out_tmp += '<a hef="javascript:void(0)" style="color:blue;" onClick="Put(\'' + v2 + '\');">' + toSelectedScript(v2, currentScript) + '</a>';
+						
+						out_tmp += out_tmp1; 
+						out_tmp += ",&nbsp;&nbsp;&nbsp;";
+
+						if (cx > 99) {
+							out_tmp += " <span style='font-size:12pt;color:red;'>> 99...</span>";
+							break;
+						} 
+					}
+				}
 	            $('#out').html(out_tmp);
             }
         }
@@ -417,7 +500,7 @@ function Keyin() {
 					no = i.substring(0, 2);
 
                     if (old != sutta) {
-                        ary[no] = ary[no] + '<hr style="border: 1pt dashed gray;"><b style="color:brown;">' + sutta + " " + toTranslate(T_Book[sutta]) + "</b><br>";
+                        ary[no] = ary[no] + '<hr style="border: 1pt dashed gray;"><b style="color:brown;">' + sutta + " " + toTranslate(bookData.flat[sutta].title) + "</b><br>";
                     }
                     cx = cx + 1;
 
@@ -549,7 +632,16 @@ function Jump(url) {
 
 // copied from index.htm when the search word is clicked on 
 function Put(input) {
-	var v1 = pws[input].split('=')[1];
+	var v1 = '';
+	if ((pws[input] != undefined) && (pws[input] != null)) {
+		v1 = pws[input];
+	}
+
+	var v1Bold = '';
+	if ((pwsBold[input] != undefined) && (pwsBold[input] != null)) {
+		v1Bold = pwsBold[input];
+	}
+	
 	var ary = {
 		'A':11, 'B':12, 'C':13,
 		'D':21, 'E':22, 'F':23,
@@ -563,6 +655,7 @@ function Put(input) {
 		var v2 = String.fromCharCode(i);
 		var v3 = ';' + ary[v2] + ';';
 		v1 = v1.replace(v2, v3);
+		v1Bold = v1Bold.replace(v2, v3);
 	}
 	var ary3 = [];
 	ary2 = v1.split(';');
@@ -570,14 +663,26 @@ function Put(input) {
 		ary3[ary2[i]] = ary2[i +1];
 	}
 
+	//
+	var aryBold3 = [];
+	aryBold2 = v1Bold.split(';');
+	for (i=1; i<=aryBold2.length; i=i+2) {
+		aryBold3[aryBold2[i]] = aryBold2[i +1];
+	} 
+
 	for (i=1; i<=8; i++) {
 		for (j=1; j<=3; j++) {
 			var ij = i + '' + j;
-			if (ary3[ij] == undefined) {
-				$('#Kex' + ij).html('');
-			} else {
-				$('#Kex' + ij).html(ary3[ij] + ',');
+			out = '';
+			if (ary3[ij] != undefined) {
+				out = out + ary3[ij] + ',';
 			}
+
+			if (aryBold3[ij] != undefined) {
+				out = out + '<b style="background-color:black;color:white">&nbsp;' + aryBold3[ij] + '&nbsp;</b>,';
+			}
+
+			$('#Kex' + ij).html(out); 
 		}
 	}
 

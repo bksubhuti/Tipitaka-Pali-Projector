@@ -149,7 +149,7 @@ function DoAnalysis(key) {
 function WordAnalysis3(key, fallBackToWordAnalysis2) {
 	// the DPR word break up data is based on an algorithm ran on words (tokens) as directly used in the texts, so no
 	// additional processing is needed other than making the key lowercase
-	//
+	// 
 	const entry = dprBreakup[key.toLowerCase()];
 	if (entry) {
 		// entries in the dprBreakup data look like this:

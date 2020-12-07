@@ -109,31 +109,33 @@ function goUrl() {
 }
 
 function PaliHistoryList() {
-	var url = '';
-	var strLastHistory = localStorage.getItem('LastHistory');
-	if (strLastHistory) {
-		url += '<img src="images/reset.png" width="16">' 
-		url +='<a href="javascript:void(0);" onClick="PaliHistoryGoUrl(\'' + strLastHistory + '\');"> Latest</a>';
-	} 
-	$('#LastHistory').html(url);	
-
-	var PaliHistoryArray = [];
-	PaliHistoryArray = JSON.parse(localStorage.getItem('PaliHistoryJSON'));
-	if (PaliHistoryArray != null){// use JSON objects instead
+	if (isNaN(html_no) === false) {
 		var url = '';
-		url += '<br>';
-
-		for (i in PaliHistoryArray) {
-			url += '<span style="white-space: pre;">';
-			url += '<input type="checkbox" id="PaliHist' + i + '" unchecked value="' + PaliHistoryArray[i].html_no + '"/>';
-			url += '<a href="javascript:void(0);" onClick="PaliHistoryGoUrl(\'' + PaliHistoryArray[i].html_no + "#" + PaliHistoryArray[i].paraNo +  '\');" title="' + T_Book[PaliHistoryArray[i].html_no] + '">' 
-			url += toTranslate(T_Book[PaliHistoryArray[i].html_no]); //pass html_no to get the title of book
-			url += '&nbsp;' +'/ '  + toTranslate(PaliHistoryArray[i].Toc_Name);
-			url += '&nbsp;#';
-			url += PaliHistoryArray[i].paraNo + '</a><br>';
-			url += '</span>';
+		var strLastHistory = localStorage.getItem('LastHistory');
+		if (strLastHistory) {
+			url += '<img src="images/reset.png" width="16">' 
+			url +='<a href="javascript:void(0);" onClick="PaliHistoryGoUrl(\'' + strLastHistory + '\');"> Latest</a>';
 		} 
-		$("#palihistory").html(url);
+		$('#LastHistory').html(url);	
+
+		var PaliHistoryArray = [];
+		PaliHistoryArray = JSON.parse(localStorage.getItem('PaliHistoryJSON'));
+		if (PaliHistoryArray != null){// use JSON objects instead
+			var url = '';
+			url += '<br>';
+
+			for (i in PaliHistoryArray) {
+				url += '<span style="white-space: pre;">';
+				url += '<input type="checkbox" id="PaliHist' + i + '" unchecked value="' + PaliHistoryArray[i].html_no + '"/>';
+				url += '<a href="javascript:void(0);" onClick="PaliHistoryGoUrl(\'' + PaliHistoryArray[i].html_no + "#" + PaliHistoryArray[i].paraNo +  '\');" title="' + bookData.flat[PaliHistoryArray[i].html_no].title + '">' 
+				url += toTranslate(bookData.flat[PaliHistoryArray[i].html_no].title); //pass html_no to get the title of book
+				url += '&nbsp;' +'/ '  + toTranslate(PaliHistoryArray[i].Toc_Name);
+				url += '&nbsp;#';
+				url += PaliHistoryArray[i].paraNo + '</a><br>';
+				url += '</span>';
+			} 
+			$("#palihistory").html(url);
+		}
 	}
 
 }
@@ -184,7 +186,7 @@ function PaliHistoryCopy() {
             if (e == true){        
                 strHistory = strHistory + PaliHistoryArr[i].date + "\t";
                 strHistory = strHistory + PaliHistoryArr[i].html_no + "\t";
-                strHistory = strHistory + toTranslate(T_Book[PaliHistoryArr[i].html_no]) + "\t";
+                strHistory = strHistory + toTranslate(bookData.flat[PaliHistoryArr[i].html_no].title) + "\t";
                 strHistory = strHistory + PaliHistoryArr[i].paraNo + "\t";
                 strHistory = strHistory + PaliHistoryArr[i].Toc_Name + "\n";  
             }
