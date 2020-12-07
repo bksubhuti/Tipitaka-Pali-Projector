@@ -353,7 +353,12 @@ function Keyin() {
 					for (var k in pws) {
 						if (k.search(filterRegex)==0 ) {
 							var paliKey = k.split('	')[0];
-							var paliCount = pws[k];
+							//******************************
+							// need to modify dictionary/search files
+							//
+							//var paliCount = pws[k];
+							var paliCount = pws[k].split('=')[1];
+
 							for (var i=65; i<=87; i++) {
 								var v2 = String.fromCharCode(i);
 								var v3 = ';' + ary[v2] + ';';
