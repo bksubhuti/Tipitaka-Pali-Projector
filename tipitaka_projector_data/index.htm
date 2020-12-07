@@ -770,42 +770,64 @@
 
                     <div id="pg4_page2_desc" class="pages" style="display:none;">
                         <input type="hidden" id="MyNoteIds" value="">
+                        <input type="hidden" id="MyNoteSection" value="">
                         <div class="page4">
-                                <div class="notselected grey-button" onClick="MyNoteEdit()" title="Add Notes">
-                                <i class="material-icons">mode_edit</i>
-                                </div>
-                                <div class="notselected grey-button" onClick="MyNoteCopy()" title="Copy Notes">
-                                <i class="material-icons">content_copy</i>
-                                </div>
-                                <div class="notselected grey-button" onClick="MyNoteClear('Select')" title="Clear Selected">
-                                <i class="material-icons">delete_sweep</i>
-                                </div>
-                                <div class="notselected grey-button" onClick="MyNoteClear('All')" title="Clear All">
-                                <i class="material-icons">delete</i>
-                                </div>
+							<div class="notselected grey-button" id="MyNoteSaveBtn" onClick="MyNoteSaveCancel('Save')" title="Save" style="display:none;">
+								<i class="material-icons">save</i>
+							</div>
 
-                                <label class="switch">
-                                <input id="AllBooksMyNotes" type="checkbox"  onClick="MyNoteList()" >
-                                <span class="slider round"></span>
-                                </label>
-                                <label for="AllBooksMyNotes" style="color:black;font-size:12pt;">&nbsp;All Books&nbsp;</label>
+							<div class="notselected grey-button" id="MyNoteEditBtn" onClick="MyNoteEdit()" title="Add Notes">
+								<i class="material-icons">mode_edit</i>
+							</div>
+							&nbsp;
 
-                                <div id ="MyNoteSave" style="display:none;font-size:12pt;">
-                                <br>
+							<div class="notselected grey-button" id="MyNoteCopyBtn" onClick="MyNoteCopy()" title="Copy Notes">
+								<i class="material-icons">content_copy</i>
+							</div>
 
-                                    <div class="notselected grey-button" onClick="MyNoteSaveCancel('Save')" title="Save">
-                                    <i class="material-icons">save</i>
-                                    </div>
-                                    &nbsp;&nbsp;
-                                    <div class="notselected grey-button" onClick="MyNoteSaveCancel('Cancel')" title="Cancel">
-                                    <i class="material-icons">cancel</i>
-                                    </div>
-                                </div>
-                                <br>
+							<div class="notselected grey-button" id="MyNoteCancelBtn" onClick="MyNoteSaveCancel('Cancel')" title="Cancel" style="display:none;">
+								<i class="material-icons">cancel</i>
+							</div>
+							&nbsp;
 
-                            <div id="MyNoteEditable">
-                            </div>
-                            <div class="MyNotesList">
+							<div class="notselected grey-button" id="MyNoteClearBtn" onClick="MyNoteClear('Select')" title="Clear Selected">
+								<i class="material-icons" id="MyNoteClrBtn">delete_sweep</i>
+							</div>
+							&nbsp;
+
+							<div class="notselected grey-button" id="MyNoteClearABtn" onClick="MyNoteClear('All')" title="Clear All">
+								<i class="material-icons">delete</i>
+							</div>
+
+							<span id="AllBooksSelect">
+								<label class="switch">
+									<input id="AllBooksMyNote" type="checkbox" onClick="MyNoteList()" >
+									<span class="slider round"></span>
+								</label>
+								<label for="AllBooksMyNote" style="color:black;font-size:12pt;">
+									&nbsp;All Books&nbsp;
+								</label>
+							</span>
+
+							<br>
+
+							<div class="notselected grey-button" id="MyNoteExportBtnJs" onClick="MyNoteExport('js')" title="Export as Js">
+								<i class="material-icons">save</i>
+							</div>
+							&nbsp;&nbsp;
+
+							<div class="notselected grey-button" id="MyNoteExportBtnDoc" onClick="MyNoteExport('doc')" title="Export as Doc">
+								<i class="material-icons">save</i>
+							</div>
+							&nbsp;&nbsp;
+
+							<div class="notselected grey-button" id="MyNoteExportBtnDoc2" onClick="MyNoteExport('doc2')" title="Export as Doc (2 Columns)">
+								<i class="material-icons">save</i>
+							</div>
+
+							<br>
+
+                            <div class="MyNoteList">
                                 <span id='MyNoteList'></span>
                             </div>
                         </div>
@@ -882,12 +904,12 @@
                       <input type="hidden" id="copy1" value="">
                     </a>
                     <a href="javascript:void(0);" id="copyunformat" onClick="CopyExport(2)" style="display:none;font-size:11pt;">
-                      <img src="images/b_sbrowse.png" width="16">&nbsp;UnFormat TXT
+                      <img src="images/b_sbrowse.png" width="16">&nbsp;Text Fromat (.txt)
                       <input type="hidden" id="copy2" value="">
                       <input type="hidden" id="copystatus" value="stop">
                     </a>
                     <a href="javascript:void(0);" id="copyformat" onClick="CopyExport(3)" style="display:none;font-size:11pt;">
-                      <img src="images/b_report.png" width="16">&nbsp;Format HTML
+                      <img src="images/b_report.png" width="16">&nbsp;Document (.doc)
                       <input type="hidden" id="copy3" value="">
                     </a>
                     <a href="javascript:void(0);" id="copycancel" onClick="CopyExport(0)" style="display:none;font-size:11pt;">
@@ -1165,7 +1187,10 @@
         <table id="main_table3" bgcolor="#010101" width=100% border=0 align="left" cellspacing=3 cellpadding=7
                style="padding-left: 15px;">
         </table>
-    </div>
+	</div>
+
+	<div id="MyNotePanel" style="display:scroll;position:fixed;top:0px;right:0px;width:480px;z-index:999;background-color:#dddddd;padding:3px;border: 0px;border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;-o-border-radius:10px;text-align:center;display:none;color:blue;"></div>
+	
     
     <script type="text/javascript">
         var loadBook = function loadBook(bookId, onBookLoadingDone, inTableId) {
@@ -1190,7 +1215,7 @@
             // it was showing another book previously
             //
             var $table = $(`#${ inTableId || 'main_table'}`);
-            $table.empty();
+        	$table.empty();
 
             // Create empty rows to be filled with the book content later on
             //
@@ -1209,6 +1234,11 @@
             aryLoadFiles.push(bookMetaFile);
             aryLoadFiles.push(bookParagraphsFile);
             if (localStorage.getItem('view_right') == 'MyNote') {
+				M_LOC = [];
+				M_QUE = [];
+				M_FNOTE = [];
+				M_RANGE = [];
+				M_RANGX = [];
                 aryLoadFiles.push('pali/MyNote/' + bookId + '.js');
             }
             if (localStorage.getItem('view_right') == 'Suttacentral') {
@@ -1495,14 +1525,14 @@
                 <input type="submit" onClick="SearchPali('S')" id="SubmitS" value="Suffix" title="Find words ending with ...">&nbsp;&nbsp;&nbsp;
                 <input type="submit" onClick="SearchPali('T')" id="SubmitT" value="Sentence" title="Search multiple words in a row">
 
-                <!--
+				
                 <label class="switch">
                     <input id="SearchBold" type="checkbox" onClick="SearchBold()" >
                     <span class="slider round"></span>
                 </label>
-                <label for="SearchBold" style="color:blue;font-size:12pt;">&nbsp;Bold Only&nbsp;</label>
-                -->
-            </td>
+                <label for="SearchBold" style="color:blue;font-size:12pt;">&nbsp;Search Bold&nbsp;</label>
+				
+			</td>
             <td>
             </td>
         </tr>
@@ -2031,7 +2061,7 @@
                                                                 onChange='ChooseSelect("view_right")'>
                                                             <option value="Space">None</option>
                                                             <option value="Suttacentral">English Mode</option>
-                                                            <option value="MyNote">My Note</option>
+                                                            <option value="MyNote">My Notes</option>
                                                             <option value="Roman">Roman</option>
                                                             <option value="Myanmar">Myanmar</option>
                                                             <option value="Sinhala">Sinhala</option>
@@ -2431,7 +2461,7 @@
                                 <td width="50%" valign="top">
                              <span style="color:blue;" onClick="window.location='export.htm'">  
                                 <img src="images/save.png">
-                                Export My Note
+                                Export My Notes
                              </span><br><br>
 
                                     <span style="color:blue;" onClick="window.location='notfound.htm'">
@@ -2589,6 +2619,7 @@
 
 
     pws = [];
+    pwsBold = [];
 
 
     window.onload = function () {

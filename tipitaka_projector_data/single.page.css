@@ -69,63 +69,41 @@
     left: 5px;
     right: 0;
     height: 32px;
-    display: flex;
-
-}
-
-.tabs * {
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-}
-
-.tabs.main {
-    margin-right: 5px;
-}
-
-.tabs .filler {
-    flex-grow: 1;
 }
 
 #main_div .tabs > li {
-    padding: 0 12px;
+    border: 2px solid #00000024;
+    padding: 0 10px;
+    line-height: 32px;
     float: left;
+    border-bottom: 0;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    margin-right: 5px;
     color: #555;
     text-decoration: none;
     font-size: 14px;
     position: relative;
+    height: 30px;
     user-select: none;
+    background-color: transparent;
     font-weight: normal;
     font-family: sans-serif;
-    background: rgba(0, 0, 0, 0.05);
-    border-top: 2px solid transparent;
-    border-bottom: 2px solid #777;
-    line-height: 28px;
-    margin: 0;
-}
-
-#main_div .tabs .space, #main_div .tabs .filler {
-    border-bottom: 2px solid #777;
-    width: 5px;
 }
 
 #main_div .tabs > li.selected {
-    padding: 0 10px;
+    border-color: #777;
     height: 32px;
-    background-color: transparent;
+    /* background-color: #fafafa;*/
     font-weight: bold;
-    border: 2px solid #777;
-    border-bottom-color: transparent;
-    /*line-height: 30px;*/
 }
 
 .tab-content {
     /* background-color: #fafafa;*/
     border: 2px solid #777;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-top: 32px;
     float: left;
     width: 100%;
     box-sizing: border-box;
@@ -133,8 +111,6 @@
     overflow-y: scroll;
     position: relative;
     padding: 0 10px 10px;
-    border-top: 0;
-    margin-top: 30px;
 }
 
 #main_div li {
@@ -273,7 +249,7 @@ header.panel-header {
     border-bottom: 3px solid #777;
     border-top: 3px solid transparent;
     height: 44px;
-    width: calc(100% + 5px);
+    width: calc(100% + 10px);
     display: flex;
     font-family: sans-serif;
     align-items: center;
@@ -694,7 +670,7 @@ body.show-page-numbers p.b1 span.font10 {
 }
 
 
-.MyNotesList{
+.MyNoteList{
     white-space: nowrap; 
     width: 380px; 
     overflow: hidden;
@@ -767,10 +743,6 @@ body.loading div#main_div {
     display: none !important;
 }
 
-#main_div {
-    border-radius: 5px;
-}
-
 .loader {
     position: absolute;
     display: flex;
@@ -803,30 +775,4 @@ body.loading div#main_div {
 
 .loader-content.fade-out{
     opacity: 0;
-}
-
-input[type="button"] {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-input[type="text"], input[type="Textbox"] {
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-#ResizeDrag img {
-    padding: 4px;
-    width: 32px;
-    height: 32px;
-    box-sizing: border-box;
-}
-
-#main_div {
-    box-sizing: border-box;
-}
-
-.ping-pong-buttons input {
-    box-sizing: border-box;
-    padding: 0;
 }

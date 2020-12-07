@@ -1,200 +1,241 @@
 <!DOCTYPE html PUBLIC "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <title>TPP Export</title>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <link rel="TIPITAKA PROJECTOR ICON" href="images/favico.ico">
-  <style>
-    body {
-      cursor:pointer;
-    }
-    span label{
-      cursor:pointer;
+	<title>TPP Export</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link rel="TIPITAKA PROJECTOR ICON" href="images/favico.ico">
+	<style>
+		body {
+			cursor:pointer;
+		}
+		span label{
+			cursor:pointer;
+		}
+		.tinysetting {
+			text-align: center;
+			font-size: small;
+			color: red;
+		}
 
-    }
-    .tinysetting {
-      text-align: center;
-      font-size: small;
-      color: red;
-    }
+		a:hover {
+			color: #0000ff;
+			text-decoration: none;
+		}
 
-    a:hover {
-      color: #0000ff;
-      text-decoration: none;
-    }
+		a:visited {
+			color: #0000ff;
+			text-decoration: none;
+		}
 
-    a:visited {
-      color: #0000ff;
-      text-decoration: none;
-    }
-
-    a:link {
-      color: #0000ff;
-      text-decoration: none;
-    }
-  </style> 
+		a:link {
+			color: #0000ff;
+			text-decoration: none;
+		}
+	</style> 
 	<script src="js/jquery-3.5.1.js"></script>
-  <script src="js/z_tipitaka_Maps.js"></script>  
-  <script src="js/savefile.js"></script>
-  <script>
+	<script src="js/z_tipitaka_Maps.js"></script>  
+	<script src="js/savefile.js"></script>
+	<script>
 
     ary_local = [];
-    notex = '';
-    for (i =0; i<localStorage.length; i++) {
-      k1 = localStorage.key(i);
-      if (('MyNote1000'<k1) && (k1<'MyNote8999')) {
-        notex = notex + k1.substr(6) + ';';
-        ary_local[k1.substr(6)] = '1';
-      }
-    }
-    console.log(notex); 
-    console.log(ary_local);
-    
+	notex = '';
+	
+	var MyNoteArray = [];
+	var strMyNotes = localStorage.getItem('MyNotes');
+	if (strMyNotes!= null){
+		MyNoteArray = JSON.parse(strMyNotes);  
+		if (MyNoteArray != null){// use JSON objects instead  
+			for (i in MyNoteArray) { 
+				if (notex.indexOf(MyNoteArray[i].html_no) == -1) {
+					notex = notex + MyNoteArray[i].html_no + ';';
+					ary_local[MyNoteArray[i].html_no] = '1';
+				}
+			} 
+		}	
+	}
+ 
     function OpenMenu(t1) {
-      var T_Tip0 = [];
-      T_Tip0[1] = 'Mūla';   
-      T_Tip0[2] = 'Aṭṭhakathā';   
-      T_Tip0[3] = 'Ṭīkā';
+		var T_Tip0 = [];
+		T_Tip0[1] = 'Mūla';   
+		T_Tip0[2] = 'Aṭṭhakathā';   
+		T_Tip0[3] = 'Ṭīkā';
 
-      var t0 = '';
-      var htm = '';
-      var i;
-      for (i in T_Book) {
-        if (i.substring(0, 1) == t1) {
-          //var my_note = localStorage.getItem('note' + i);
-          if (ary_local[i] != undefined) {
-            if (t0 != i.substring(2, 1)) {
-              t0 = i.substring(2, 1);
-              htm= htm + '<br><b style="color:#880000">' + T_Tip0[t0] + '</b><br>';    
-            }
-            htm = htm + '<img src="images/2rightarrow.png"><span onClick="Export(\'' + i + '\')" style="color:blue;">' + i + ' ' + T_Book[i] + '</span><br>';
-          }
-        }
-      }
-      $('#menu').html(htm); 
-    	
-    	for (i=1; i<=8; i++) {
-        document.getElementById('menu' + i).style = '';
-    	} 
-    	document.getElementById('menu' + t1).style = 'background:yellow;mso-highlight:yellow;mso-ansi-language:EN-US';
+		var t0 = '';
+		var htm = '';
+		var i;
+		for (i in T_Book) {
+			if (i.substring(0, 1) == t1) {
+				//var my_note = localStorage.getItem('note' + i);
+				if (ary_local[i] != undefined) {
+					if (t0 != i.substring(2, 1)) {
+						t0 = i.substring(2, 1);
+						htm= htm + '<br><b style="color:#880000">' + T_Tip0[t0] + '</b><br>';    
+					}
+					htm = htm + '<img src="images/2rightarrow.png"><span onClick="Export(\'' + i + '\', 1)" style="color:blue;">' + i + ' ' + T_Book[i] + '</span>--JS [ MyNotes ] Format<br>';
+					htm = htm + '<img src="images/2rightarrow.png"><span onClick="Export(\'' + i + '\', 2)" style="color:blue;">' + i + ' ' + T_Book[i] + '</span>--HTML [ MyNotes ] Format<br>';
+					htm = htm + '<img src="images/2rightarrow.png"><span onClick="Export(\'' + i + '\' ,3)" style="color:blue;">' + i + ' ' + T_Book[i] + '</span>--HTML [ Pali + MyNotes ] Format<br>';
+				}
+			}
+		}
+		$('#menu').html(htm); 
+
+		for (i=1; i<=8; i++) {
+			document.getElementById('menu' + i).style = '';
+		} 
+		document.getElementById('menu' + t1).style = 'background:yellow;mso-highlight:yellow;mso-ansi-language:EN-US';
     }
   
-    function Export(t1) {  
-      var MyNoteArray = [];
-      MyNoteArray = JSON.parse(localStorage.getItem('MyNote' + t1));
-      if (MyNoteArray != null) {// use JSON objects instead
-        if (0 < MyNoteArray.length) { 
-          var js = 'M_LOC = [];\n\n';
+    function Export(t1, type) {  
+		var MyNoteArray = [];
+		var strMyNotes = localStorage.getItem('MyNotes');
+		if (strMyNotes!= null){
+			MyNoteArray = JSON.parse(strMyNotes);  
+			if (MyNoteArray != null){// use JSON objects instead  
 
-          for (i in MyNoteArray) {  
-            js = js + 'M_LOC[' + MyNoteArray[i].TrId +'] = "' + MyNoteArray[i].val + '";\n';
-          } 
+				if (type == '1') {
+					var js = 'M_LOC = [];\n\n';
 
-        	$('#export_js').html(js);
+					for (i in MyNoteArray) { 
+						if (MyNoteArray[i].html_no == t1) {  
+							js = js + 'M_LOC[' + MyNoteArray[i].TrId +'] = "' + MyNoteArray[i].val + '";\n';
+						}
+					} 
 
-        	var msg = '';
-        	msg = msg + 'Step 1. Save to <span style="font-size:14pt;color:red;">pali/MyNote/</span> filename : <span style="font-size:14pt;color:red;">' + t1 + '.js</span><br>';
+					js = js.replace(/\]\ \=\ \"\　\　/g, '] = "');
+	
+					$('#export_js').html(js);
 
-        	$('#message').html(msg); 
-          var blob = new Blob([js], {type: "text/plain;charset=utf-8"});
-          saveAs(blob, t1 + '.js');
-        } else {
-          $('#message').html('No Data'); 
-        }  
-      } else {
-          $('#message').html('No Data'); 
-      }
+					var msg = '';
+					msg = msg + 'Step 1. Save to <span style="font-size:14pt;color:red;">pali/MyNote/</span> filename : <span style="font-size:14pt;color:red;">' + t1 + '.js</span><br>';
+
+					$('#message').html(msg); 
+					var blob = new Blob([js], {type: "text/plain;charset=utf-8"});
+					saveAs(blob, t1 + '.js');
+				}
+			} else {
+         		$('#message').html('No Data'); 
+			}
+      	} else {
+        	$('#message').html('No Data'); 
+      	}
+
+		var MyNoteArray = [];
+		MyNoteArray = JSON.parse(localStorage.getItem('MyNote' + t1));
+		if (MyNoteArray != null) {// use JSON objects instead
+			if (0 < MyNoteArray.length) { 
+				var js = 'M_LOC = [];\n\n';
+
+				for (i in MyNoteArray) {  //
+					js = js + 'M_LOC[' + MyNoteArray[i].TrId +'] = "' + MyNoteArray[i].val + '";\n';
+				} 
+
+				$('#export_js').html(js);
+
+				var msg = '';
+				msg = msg + 'Step 1. Save to <span style="font-size:14pt;color:red;">pali/MyNote/</span> filename : <span style="font-size:14pt;color:red;">' + t1 + '.js</span><br>';
+
+				$('#message').html(msg); 
+
+				var blob = new Blob([js], {type: "text/plain;charset=utf-8"});
+				saveAs(blob, t1 + '.js');
+			} else {
+			$('#message').html('No Data'); 
+			}  
+		} else {
+			$('#message').html('No Data'); 
+		}
     } 
 
-  </script>
+  	</script>
 </head>
 
-<body style="margin-top:0.0pt;margin-right:0in;margin-bottom:0in;margin-left:0in;margin-bottom:0pt;font-size:12.0pt;line-height:200%;font-family:Palatino, sans-serif;" bgcolor="#ffffc0">
-  <script>
-    window.onload = function () {
-      var T_Tip1 = [];
-      T_Tip1[1] = 'Vinayapiṭaka';
-      T_Tip1[2] = 'Dīghanikāya';
-      T_Tip1[3] = 'Majjhimanikāya';
-      T_Tip1[4] = 'Saṃyuttanikāya';
-      T_Tip1[5] = 'Aṅguttaranikāya';
-      T_Tip1[6] = 'Khuddakanikāya';
-      T_Tip1[7] = 'Abhidhammapiṭaka';
-      T_Tip1[8] = 'Añña';
-      
-      var i;
-      var ary = [0, 0, 0, 0, 0, 0, 0, 0, 0]; 
-      for (i in T_Book) {
-        var s1 = i.substring(0, 1) ; 
-        if (ary_local[i] != undefined) {
-          ary[s1] = ary[s1] +1; 
-        }  
-        //console.log(ary_local[i] + '\n');
-      } 
-      console.log(ary);
-      for (i=1; i<=8; i++) {
-        $('#menu' + i).html(T_Tip1[i] + ' (' + ary[i] + ')');
-      }
-    }
-  </script>
+<body style="margin-top:0.0pt;margin-right:0in;margin-bottom:0in;margin-left:0in;margin-bottom:0pt;font-size:12.0pt;line-height:200%;font-family:Tahoma, sans-serif;" bgcolor="#ffffc0">
+	<script>
+		window.onload = function () {
+		var T_Tip1 = [];
+		T_Tip1[1] = 'Vinayapiṭaka';
+		T_Tip1[2] = 'Dīghanikāya';
+		T_Tip1[3] = 'Majjhimanikāya';
+		T_Tip1[4] = 'Saṃyuttanikāya';
+		T_Tip1[5] = 'Aṅguttaranikāya';
+		T_Tip1[6] = 'Khuddakanikāya';
+		T_Tip1[7] = 'Abhidhammapiṭaka';
+		T_Tip1[8] = 'Añña';
+		
+		var i;
+		var ary = [0, 0, 0, 0, 0, 0, 0, 0, 0]; 
+		for (i in T_Book) {
+			var s1 = i.substring(0, 1) ; 
+			if (ary_local[i] != undefined) {
+			ary[s1] = ary[s1] +1; 
+			}  
+			//console.log(ary_local[i] + '\n');
+		} 
 
-  <table align="center" bgcolor="#ffffc0" border="0" width="100%">
+		for (i=1; i<=8; i++) {
+			$('#menu' + i).html(T_Tip1[i] + ' (' + ary[i] + ')');
+		}
+		}
+	</script>
+
+  <table align="center" bgcolor="#ffffc0" border="1" width="100%">
     <tbody>
-      <tr>
-        <td align="right" valign="center" width="20%">
-          <a href="index.htm" id="asoka">
-            <img src="images/asoka.png">
-          </a>
-        </td>
-        <td align="center" width="60%">
-          <h3 style='margin-top:0pt;color:brown;'><strong>Tipiṭaka Pāḷi Projector</strong> - 20200801 (AG)</h3> 
+     	<tr>
+			<td align="right" valign="center" width="20%">
+			<a href="index.htm" id="asoka">
+				<img src="images/asoka.png">
+			</a>
+			</td>
+			<td align="center" width="60%">
+				<h3 style='margin-top:0pt;color:brown;'><strong>Tipiṭaka Pāḷi Projector</strong> - 20201130 (AG)</h3> 
 
-          <h2>Export My Notes</h2> 
-        </td>
-        <td align="center" width="20%" valign="bottom">
-          <span align="center" style="color:blue;">
-            <a href="index.htm"><img src="images/home.png"> Home </a>
-          </span>
-          <br> 
-        </td>
-      </tr>
+				<h1>Export My Notes</h1>  
+			</td>
+			<td align="center" width="20%" valign="bottom">
+				<span align="center" style="color:blue;">
+				<a href="index.htm"><img src="images/home.png"> Home </a>
+				</span>
+				<br> 
+			</td>
+      	</tr>
     </tbody>
   </table>
 
-  <table align="left" bgcolor="#ffffc0" border="0" cellpadding="3" width="100%">
-    <tbody>
-      <tr>
-        <td width="5%"></td>
-        <td align="center" width="20%"></td>
-        <td width="25%"></td>
-        <td width="45%"></td> 
-        <td width="5%"></td>
-      </tr>
-      <tr>
-        <td align="center" valign="top"></td>
-        <td bgcolor="#dfd090" valign="top" style="line-height:180%;font-size:13pt;color:blue;">
-          <ul>
-            <li><span id="menu1" onClick="OpenMenu(1)" >Vinayapiṭaka</span></li>
-            <li><span id="menu2" onClick="OpenMenu(2)" >Dīghanikāya</span></li>
-            <li><span id="menu3" onClick="OpenMenu(3)" >Majjhimanikāya</span></li>
-            <li><span id="menu4" onClick="OpenMenu(4)" >Saṃyuttanikāya</span></li>
-            <li><span id="menu5" onClick="OpenMenu(5)" >Aṅguttaranikāya</span></li>
-            <li><span id="menu6" onClick="OpenMenu(6)" >Khuddakanikāya</span></li>
-            <li><span id="menu7" onClick="OpenMenu(7)" >Abhidhammapiṭaka</span></li>
-            <li><span id="menu8" onClick="OpenMenu(8)" >Añña</span></li>
-          </ul>
-        </td>
-        <td bgcolor="#ffe0b0" valign="top">
-          <span id="menu"><span>
-        </td>
-        <td bgcolor="#ffe0b0" valign="top">
-		      <textarea name='export_js' id='export_js' style='font-size:11.0pt;line-height:180%;width:100%;height:100%;min-height:240pt;font-family: Tahoma;color:red;background-color:#000000;'></textarea><br>
-          <span id="message"><span>
-        </td>
-        <td></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-<br><br>
-</body></html>
+  	<table align="left" bgcolor="#ffffc0" border="0" cellpadding="3" width="100%">
+		<tbody>
+			<tr>
+				<td width="5%"></td>
+				<td align="center" width="20%"></td>
+				<td width="25%"></td>
+				<td width="45%"></td> 
+				<td width="5%"></td>
+			</tr>
+			<tr>
+				<td align="center" valign="top"></td>
+				<td bgcolor="#dfd090" valign="top" style="line-height:180%;font-size:13pt;color:blue;">
+					<ul>
+						<li><span id="menu1" onClick="OpenMenu(1)" >Vinayapiṭaka</span></li>
+						<li><span id="menu2" onClick="OpenMenu(2)" >Dīghanikāya</span></li>
+						<li><span id="menu3" onClick="OpenMenu(3)" >Majjhimanikāya</span></li>
+						<li><span id="menu4" onClick="OpenMenu(4)" >Saṃyuttanikāya</span></li>
+						<li><span id="menu5" onClick="OpenMenu(5)" >Aṅguttaranikāya</span></li>
+						<li><span id="menu6" onClick="OpenMenu(6)" >Khuddakanikāya</span></li>
+						<li><span id="menu7" onClick="OpenMenu(7)" >Abhidhammapiṭaka</span></li>
+						<li><span id="menu8" onClick="OpenMenu(8)" >Añña</span></li>
+					</ul>
+				</td>
+				<td bgcolor="#ffe0b0" valign="top">
+				<span id="menu"><span>
+				</td>
+				<td bgcolor="#ffe0b0" valign="top">
+					<textarea name='export_js' id='export_js' style='font-size:11.0pt;line-height:180%;width:100%;height:100%;min-height:240pt;font-family: Tahoma;color:white;background-color:#000000;'></textarea><br>
+				<span id="message"><span>
+				</td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+	<br><br>
+</body>
+</html>
