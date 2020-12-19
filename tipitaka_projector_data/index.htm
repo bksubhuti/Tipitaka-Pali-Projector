@@ -5,18 +5,18 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--this is a comment for ven ariyavamsa-->
+
 
     <script>
         var isMobile = false;
     </script>
 
     <link rel="TIPITAKA PROJECTOR ICON" href="images/favico.ico"/>
-    <link rel="stylesheet" type="text/css" href="js/index_style.css"/>
-    <link rel="stylesheet" type="text/css" href="js/index_style2.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index_style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index_style2.css"/>
     <link rel="stylesheet" type="text/css" href="css/js.tree.style.min.css"/>
     <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.css"/>
-    <link rel="stylesheet" type="text/css" href="single.page.css"/>
+    <link rel="stylesheet" type="text/css" href="css/single.page.css"/>
     <link rel="stylesheet" type="text/css" href="js/farbtastic12/farbtastic/farbtastic.css"  />
     <link rel="stylesheet" type="text/css" href="js/jqconfirm/jquery-confirm.min.css"  />
 
@@ -466,7 +466,7 @@
 
 <body class="loading" style="background-color: black; margin-top:0.0pt;margin-right:0in;margin-bottom:0in;margin-left:0in;margin-bottom:0pt;">
 
-<div id="main_div">
+<div id="main_div" style="margin-right:15px;">
 
     <header class="panel-header" id="panel-header">
         <div id="btnHeaderDropUp" class="notselected grey-button" title="Expand">
@@ -799,14 +799,23 @@
 								<i class="material-icons">delete</i>
 							</div>
 
-							<span id="AllBooksSelect">
-								<label class="switch">
-									<input id="AllBooksMyNote" type="checkbox" onClick="MyNoteList()" >
-									<span class="slider round"></span>
-								</label>
-								<label for="AllBooksMyNote" style="color:black;font-size:12pt;">
-									&nbsp;All Books&nbsp;
-								</label>
+							<span id="AllBooksSelect" style="vertical-align: top;"> 
+								<select id="AllBooksMyNote" onChange="MyNoteList()" style="vertical-align: top;">
+									<option value="Only_This">Only this.</option>
+									<option value="All_This">All this.</option>
+									<option value="All_All">All Notes</option>
+
+									<option value="English_This">English this.</option>
+									<option value="English_All">English All</option>
+									<option value="SuttaCentral_This">SuttaCentral this.</option>
+									<option value="SuttaCentral_All">SuttaCentral All</option>
+									<option value="Taiwan_This">T. Chinese this.</option>
+									<option value="Taiwan_All">T. Chinese All</option>
+									<option value="Chinese_This">S. Chinese this.</option>
+									<option value="Chinese_All">S. Chinese All</option>
+									<option value="MyNote_This">My Note this.</option>
+									<option value="MyNote_All">My Note All</option>
+								</select>
 							</span>
 
 							<br>
@@ -814,17 +823,23 @@
 							<div class="notselected grey-button" id="MyNoteExportBtnJs" onClick="MyNoteExport('js')" title="Export as Js">
 								<i class="material-icons">save</i>
 							</div>
-							&nbsp;&nbsp;
+							&nbsp;
 
 							<div class="notselected grey-button" id="MyNoteExportBtnDoc" onClick="MyNoteExport('doc')" title="Export as Doc">
 								<i class="material-icons">save</i>
 							</div>
-							&nbsp;&nbsp;
+							&nbsp;
 
 							<div class="notselected grey-button" id="MyNoteExportBtnDoc2" onClick="MyNoteExport('doc2')" title="Export as Doc (2 Columns)">
 								<i class="material-icons">save</i>
-							</div>
+							</div>&nbsp;
 
+							<span style="vertical-align: top;">
+								<input type="textbox" id="MyNoteSearch" style="max-width: 120px;width:110px;"> 
+
+								</span><div class="notselected grey-button" id="MyNoteClearABtn" onClick="MyNoteList()" title="Search Note">
+									<i class="material-icons">search</i>
+								</div>
 							<br>
 
                             <div class="MyNoteList">
@@ -1172,26 +1187,31 @@
         </div>
     </div>
     <div id="MAT_table1" style="width:100%;display:inline-flex;overflow-x: hidden;overflow-y: auto;">
-        <table id="main_table" bgcolor="#010101" width=100% border=0 align="left" cellspacing=3 cellpadding=7
-               style="padding-left: 15px;">
+        <table id="main_table" bgcolor="#010101" width=100% border=0 align="left" cellspacing=3 cellpadding=7>
         </table>
     </div>
 
     <div id="MAT_table2" style="width:0%;display: inline-flex;overflow-x: hidden;overflow-y: auto;min-height: 101%;vertical-align: top;height:100%;display:none;">
-        <table id="main_table2" bgcolor="#010101" width=100% border=0 align="left" cellspacing=3 cellpadding=7
-               style="padding-left: 15px;">
+        <table id="main_table2" bgcolor="#010101" width=100% border=0 align="left" cellspacing=3 cellpadding=7>
         </table>
     </div>
 
     <div id="MAT_table3" style="width:33%;display: inline-flex;overflow-x: hidden;overflow-y: auto;min-height: 101%;vertical-align: top;height:100%;display:none;">
-        <table id="main_table3" bgcolor="#010101" width=100% border=0 align="left" cellspacing=3 cellpadding=7
-               style="padding-left: 15px;">
+        <table id="main_table3" bgcolor="#010101" width=100% border=0 align="left" cellspacing=3 cellpadding=7>
         </table>
 	</div>
 
-	<div id="MyNotePanel" style="display:scroll;position:fixed;top:0px;right:0px;width:480px;z-index:999;background-color:#dddddd;padding:3px;border: 0px;border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;-o-border-radius:10px;text-align:center;display:none;color:blue;"></div>
+	<div id="MyNoteLeftPanel" style="display:scroll;position:fixed;top:0px;right:0px;width:60px;height: 50px;z-index:88;background-color:#cccccc;padding:3px;text-align:center;display:none;">
+		<div class="notselected grey-button" id="MyNoteEditBtn" onClick="MyNoteEdit()" title="Add Notes">
+			<i class="material-icons" style="font-size:32px">mode_edit</i>
+		</div>
+	</div>
+
+	<div id="MyNotePanel" style="display:scroll;position:fixed;top:0px;right:0px;width:480px;max-height: 680px;z-index:8;background-color:#dddddd;padding:3px;text-align:center;display:none;color:blue;"></div>
 	
-    
+	<div id="MyNoteLinkMessage" style="display:scroll;position:fixed;top:284px;right:0px;width:480px;max-height: 550px;overflow-x:hidden;overflow-y:scroll; z-index:7;background-color:rgb(198, 221, 205);padding:3px;text-align:left;color:black;display:none"></div>
+ 
+	
     <script type="text/javascript">
         var loadBook = function loadBook(bookId, onBookLoadingDone, inTableId) {
             $('#welcome').remove();
@@ -1232,17 +1252,15 @@
             var bookMetaFile = 'pali/' + bookId + '.js';
             var bookParagraphsFile = 'pali/' + bookId + 'a.js';
             aryLoadFiles.push(bookMetaFile);
-            aryLoadFiles.push(bookParagraphsFile);
-            if (localStorage.getItem('view_right') == 'MyNote') {
+			aryLoadFiles.push(bookParagraphsFile);
+			
+			if ('English;SuttaCentral/Taiwan;Chinese;MyNote'.indexOf(localStorage.getItem('view_right')) != -1) {
 				M_LOC = [];
 				M_QUE = [];
 				M_FNOTE = [];
 				M_RANGE = [];
-				M_RANGX = [];
-                aryLoadFiles.push('pali/MyNote/' + bookId + '.js');
-            }
-            if (localStorage.getItem('view_right') == 'Suttacentral') {
-                aryLoadFiles.push('pali/SuttaCentral/' + bookId + '.js');
+				M_START = 1;
+                aryLoadFiles.push('pali/' + localStorage.getItem('view_right') + '/' + bookId + '.js'); 
             }
 
             if (DEBUG) {
@@ -2060,8 +2078,13 @@
                                                         <select name="view_right" id="view_right"
                                                                 onChange='ChooseSelect("view_right")'>
                                                             <option value="Space">None</option>
-                                                            <option value="Suttacentral">English Mode</option>
-                                                            <option value="MyNote">My Notes</option>
+                                                            <option value="Space">---------</option>
+                                                            <option value="English">English</option>
+                                                            <option value="SuttaCentral">SuttaCentral</option>
+                                                            <option value="Taiwan">Traditional Chinese</option>
+                                                            <option value="Chinese">Simplied Chinese</option>
+															<option value="MyNote">My Note</option>
+                                                            <option value="Space">---------</option>
                                                             <option value="Roman">Roman</option>
                                                             <option value="Myanmar">Myanmar</option>
                                                             <option value="Sinhala">Sinhala</option>
@@ -2159,80 +2182,83 @@
                         </div>
                     </div>
 
-                    <div id="Dictionaries" class="tabcontent"
-                         style="margin-top:1%;line-height: 150%;padding:8px;background-color: #ccc; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
-                        <table border="0" width="100%" cellspacing="0" cellpadding="0">
-                            <form method="post" name="form1" action="" style="text-align:center;">
-                                <tr>
-                                    <td valign="top" width="46%" align="left">
-                                        <strong style="color:#880000;">Disabled Pali Dictionaries</strong>
-                                        <span id="DisableCount" style="font-size:12pt;color:gray;"></span>
-                                        <ul class="ping-pong-list"
-                                            id="DictionaryDisable"
-                                            ondblclick="DictionaryMoveOption(true)">
 
-                                        </ul>
-                                    </td>
-                                    <td valign="top" width="8%" align="center" class="ping-pong-buttons">
-                                        <br>
-                                        <input type="button" value="Up" style="width:100%;"
-                                               onclick="DictionaryChangePos(-1)"/>
-                                        <br><br>
-                                        <input type="button" value="Down" style="width:100%;"
-                                               onclick="DictionaryChangePos(1)"/>
-                                        <br><br>
+                    <div id="Dictionaries" class="tabcontent" style="display:inline;">
+						<div 
+							style="margin-top:1%;line-height: 150%;padding:8px;background-color: #ccc; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
+							<table border="0" width="100%" cellspacing="0" cellpadding="0">
+								<form method="post" name="form1" action="" style="text-align:center;">
+									<tr>
+										<td valign="top" width="45%" align="left">
+											<strong style="color:#880000;">Disabled Pali Dictionaries</strong>
+											<span id="DisableCount" style="font-size:12pt;color:gray;"></span>
+											<ul class="ping-pong-list"
+												id="DictionaryDisable"
+												ondblclick="DictionaryMoveOption(true)">
 
-                                        <input type="button" value=">>" style="width:100%;"
-                                               onclick="DictionaryMoveOption(true)"/>
-                                        <br><br>
-                                        <input type="button" value="<<" style="width:100%;"
-                                               onclick="DictionaryMoveOption(false)"/>
-                                    </td>
-                                    <td valign="top" width="46%" align="left">
+											</ul>
+										</td>
+										<td valign="top" width="10%" align="center" class="ping-pong-buttons">
+											<br>
+											<input type="button" value="Up" style="width:40%;max-width:120px;"
+												onclick="DictionaryChangePos(-1)"/>
+											<br><br>
+											<input type="button" value="Down" style="width:40%;max-width:120px;"
+												onclick="DictionaryChangePos(1)"/>
+											<br><br>
 
-                                        <strong style="color:#880000;">Enabled Pali Dictionaries</strong>
-                                        <span id="EnableCount" style="font-size:12pt;color:gray;"></span>
-                                        <ul class="ping-pong-list"
-                                            id="DictionaryEnable"
-                                            ondblclick="DictionaryMoveOption(false)">
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3">
-                                        <br>
-                                        <strong style="color:#880000;">Abbreviated of Dictionary</strong>
-                                        <input type="textbox" id="Abbreviated"
-                                               style="max-width:100%;width:120pt;font-size:12pt;"
-                                               onBlur="toSaveAbbr();">
-                                        <input type="hidden" id="AbbreviatedDictionary" value="">
-                                        <span>1-8 Chars&nbsp;</span><br>
-                                        <span id="AbbreviatedMessage"></span>
-                                    </td>
-                                </tr>
-                            </form>
-                        </table>
-                        <br>
+											<input type="button" value=">>" style="width:40%;max-width:120px;"
+												onclick="DictionaryMoveOption(true)"/>
+											<br><br>
+											<input type="button" value="<<" style="width:40%;max-width:120px;"
+												onclick="DictionaryMoveOption(false)"/>
+										</td>
+										<td valign="top" width="45%" align="left">
 
-                        <strong style="color:#880000;">English Dictionary</strong>
-                        <br>
+											<strong style="color:#880000;">Enabled Pali Dictionaries</strong>
+											<span id="EnableCount" style="font-size:12pt;color:gray;"></span>
+											<ul class="ping-pong-list"
+												id="DictionaryEnable"
+												ondblclick="DictionaryMoveOption(false)">
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="3">
+											<br>
+											<strong style="color:#880000;">Abbreviated of Dictionary</strong>
+											<input type="textbox" id="Abbreviated"
+												style="max-width:100%;width:120pt;font-size:12pt;"
+												onBlur="toSaveAbbr();">
+											<input type="hidden" id="AbbreviatedDictionary" value="">
+											<span>1-8 Chars&nbsp;</span><br>
+											<span id="AbbreviatedMessage"></span>
+										</td>
+									</tr>
+								</form>
+							</table>
+							<br>
+
+							<strong style="color:#880000;">English Dictionary</strong>
+							<br>
 
 
-                        <label style="color:red;">Speech Repeat=</label>
-                        <select name="speech_repeat" id="speech_repeat" onChange="ChooseSelect('speech_repeat');">
-                            <option value="0">Off</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select>
-                        ,&nbsp;&nbsp;
-                        <label id="showspeed" style="color:red;">Speed=</label>
-                        <input type="range" min=0.5 max=1.5 step=0.1 name="speech_speed" id="speech_speed"
-                               onChange="ChooseRange('speech_speed')" style="background:gray;">
-                    </div>
+							<label style="color:red;">Speech Repeat=</label>
+							<select name="speech_repeat" id="speech_repeat" onChange="ChooseSelect('speech_repeat');">
+								<option value="0">Off</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+							</select>
+							,&nbsp;&nbsp;
+							<label id="showspeed" style="color:red;">Speed=</label>
+							<input type="range" min=0.5 max=1.5 step=0.1 name="speech_speed" id="speech_speed"
+								onChange="ChooseRange('speech_speed')" style="background:gray;">
+						</div>
+					</div>
                 </div>
 
                 <div id="Panel" class="tabcontent" style="display:inline;">
@@ -2413,7 +2439,7 @@
                                     <strong style="color:#880000;">Prompt Restore</strong>
                                     <br>
                                     <input name="RestorePromptRadio" id="noPrompt" value="0" type="radio"
-                                           onclick='onPromptRestoreSwitch("off")'>
+                                           onclick='onPromptRestoreSwitch("off")' selected>
                                     <label for="RestorePromptRadio" onclick='onPromptRestoreSwitch("off")'>No</label>
                                     &nbsp;&nbsp;
                                     <input name="RestorePromptRadio" id="yesPrompt" value="1" type="radio"
@@ -2427,7 +2453,7 @@
                                     <label for="AutoRestore" onclick='onAutoRestoreSwitch("off")'>No</label>
                                     &nbsp;&nbsp;
                                     <input name="AutoRestore" id="AutoRestoreOn" value="1" type="radio"
-                                        onclick='onAutoRestoreSwitch("on")'>
+                                        onclick='onAutoRestoreSwitch("on")' selected>
                                     <label for="RestorePromptRadio" onclick='onAutoRestoreSwitch("on")'>Yes</label>
                                     <br>
                                     <br>
@@ -2472,6 +2498,7 @@
                         </table>
                     </div>
                 </div>
+
                 <div id="About" class="tabcontent" style="display:inline;">
                     <div style="margin-top:1%;line-height: 150%;padding:8px;background-color: #ccc; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
                         <img src="images/asoka.png">
@@ -2619,7 +2646,6 @@
 
 
     pws = [];
-    pwsBold = [];
 
 
     window.onload = function () {
@@ -2694,7 +2720,7 @@
 
         var filetoload = "";
 
-        if (ViewRight == 'Suttacentral'){
+        if (ViewRight == 'English'){
 
 
             // buddhist legends and jatakaA will not match totally correct.

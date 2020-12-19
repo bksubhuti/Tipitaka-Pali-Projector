@@ -1,0 +1,3 @@
+pws = {
+'ṇya':'C1R1V32#V28','ṇyadi':'V1','ṇyadiccādīhi':'V1','ṇyaggahaṇaṃ':'V1','ṇyamhi':'V12','ṇyantatopi':'V1','ṇyanto':'V1','ṇyantā':'V1','ṇyapaccayassa':'C4F1V2','ṇyapaccayatāpaccayesu':'C1','ṇyapaccayavasena':'F1V2','ṇyapaccaye':'C1V2','ṇyapaccayena':'V1','ṇyapaccayo':'C4V3','ṇyappaccayassa':'V2','ṇyappaccaye':'V4','ṇyappaccayo':'V9','ṇyappaccayoyaṃ':'V1','ṇyappaccayādimhi':'V1','ṇyariyaṇa':'V1','ṇyariyaṇryāpi':'V1','ṇyasaddo':'C1','ṇyassa':'V2','ṇyattattana':'#V1','ṇyattattanantānaṃ':'V1','ṇyattatā':'V4#V4','ṇyattatāiccete':'V2','ṇye':'V2#V1','ṇyenapi':'V1','ṇyeti':'V1','ṇyo':'V77#V3','ṇyocā':'V1','ṇyova':'V1','ṇyyo':'V1','ṇyā':'#V1','ṇyādayo':'V1','ṇyādipaccayarāsi':'V2','ṇyādyantehi':'V1','ṇyādīsupi':'V1'
+}

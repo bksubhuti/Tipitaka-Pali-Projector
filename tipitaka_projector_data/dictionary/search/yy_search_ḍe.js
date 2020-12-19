@@ -1,3 +1,0 @@
-pws = {
-'ḍeti':'36=C1D4G12L1M4O2Q2S2V7W1','ḍenti':'12=C4P4Q1V3','ḍetīti':'8=C1E1H1N1T1V2W1','ḍe':'4=V4','ḍemāna':'4=P1Q1V2','ḍemāno':'3=V3','ḍentīti':'3=K1L1V1','ḍemānāti':'2=Q2','ḍento':'2=V2','ḍessāmī':'2=J2','ḍetuṃ':'2=F1W1','ḍemānoti':'1=V1','ḍepare':'1=V1','ḍepati':'1=V1','ḍepayati':'1=V1','ḍepeti':'1=V1','ḍesa':'1=V1','ḍessāmīti':'1=K1','ḍetinimittenopādinne':'1=V1','ḍetukāmo':'1=K1','ḍetukāmoti':'1=L1','ḍetvā':'1=F1','ḍeḍḍubhenāpi':'1=A1','ḍeṇḍimā':'1=P1'
-};

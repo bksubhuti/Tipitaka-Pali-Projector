@@ -1,0 +1,3 @@
+pws = {
+'kya':'V2','kyacvānāmako':'V1','kyacvārājāti':'V1','kyacvāti':'V1','kyalope':'V3','kyalopo':'V2','kyalādayobhavantīti':'V1','kyalādīnaṃ':'V3','kyamhi':'V10','kyamhīti':'V1','kyapaccayasahitassa':'V1','kyapaccayasahito':'V1','kyassa':'J1Q2V28#V2','kyassati':'V1','kyassu':'J1Q1V1','kyassā':'V3#K1','kyassāti':'K1','kyavikaraṇalavikaraṇā':'V1','kye':'V30#V1','kyecvā':'V1','kyo':'V29#V1','kyotā':'V1','kyova':'V1','kyuṅgaranagare':'V1','kyā':'V1','kyādayo':'V2','kyādi':'V1#V1','kyādigaṇa':'V1','kyādigaṇo':'V2','kyādinayo':'V1','kyādipāṭhā':'V2','kyādito':'V1','kyādīhi':'V6#V1','kyādīhī':'V1','kyādīna':'#V1','kyādīnanti':'V1','kyāha':'#B1Q2','kyāhanti':'B1Q2','kyāhaṃ':'A17B1G2J1M2N1P6Q8V16#B1N1Q4','kyāssa':'P5Q4#P2Q2','kyāssassu':'P5#P2'
+}

@@ -615,7 +615,7 @@ var gDNJSON;
 ///////////  global variables
 
 $.ajax({
-	url: 'js/quickjump.json',
+	url: 'quickjump.json',
 	dataType: "text",
 	type: "GET",
 	mimeType: 'text/json; charset=utf-8',

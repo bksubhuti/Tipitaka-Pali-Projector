@@ -772,7 +772,7 @@
 }
 .jstree-default-large .jstree-node,
 .jstree-default-large .jstree-icon {
-  background-image: url("32px.png");
+  background-image: url("images/32px.png");
 }
 .jstree-default-large .jstree-node {
   background-position: -288px 0px;

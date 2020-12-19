@@ -1,3 +1,0 @@
-pws = {
-'īritaṃ':'18=F1Q1U6V10','īro':'16=V16','īraye':'12=C1U7V4','īra':'11=S1V10','īrito':'11=V11','īrayitabbaṃ':'10=O1Q4T1U2V2','īrati':'9=C2Q1V6','īritā':'8=U4V4','īretabbaṃ':'5=I1O1U1W2','īritoti':'4=V4','īrayitabbato':'3=H1N1Q1','īranti':'2=V2','īrayati':'2=V2','īrayeti':'2=U1V1','īrayitabbatoti':'2=I1O1','īreti':'2=V2','īriso':'2=V2','īritanti':'2=U1V1','īriyoti':'2=C2','īrantī':'1=V1','īratīti':'1=V1','īrayamāno':'1=G1','īrayanti':'1=V1','īrayaṃ':'1=C1','īraṇato':'1=Q1','īretabbato':'1=L1','īretabbattā':'1=L1','īretīti':'1=I1','īritāni':'1=V1','īritāti':'1=C1','īriyanaṃ':'1=W1','īriṇe':'1=P1'
-};

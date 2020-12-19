@@ -1,0 +1,3 @@
+pws = {
+'īha':'V6#V2','īhadhātu':'V2','īhanaṃ':'C1U1V2W1','īhanti':'T1V3','īhanādīnaṃ':'Q1','īhanīyaṭṭhena':'V1','īhatha':'P1Q1V2','īhathā':'Q1#Q1','īhathāti':'Q1','īhati':'C2E1F3H1K1L1Q1U1V6#F1','īhatī':'F1#F1','īhatīti':'F1I1L1O1V3','īhavirahitaṃ':'U1','īhaṃ':'U1V1W1','īhikā':'L1','īhitanti':'C1','īhitasaddoyaṃ':'C1','īhitassa':'C1','īhitaṃ':'B3C3V1#C1','īhiti':'K1','īhā':'B1U2V19W2#U1V3','īhābhogavivajjitā':'U2','īhābhāvato':'Q1R1#R1','īhābyāpārarahitānaṃ':'U1W1','īhābyāpārānaṃ':'V2','īhāca':'V1','īhāmi':'P1Q1','īhāmigopi':'V1','īhāmī':'#Q1','īhāmīti':'Q2','īhāphiya':'#V1','īhāphiyanti':'V1','īhāphiyaṃ':'V5','īhāsaṅkhātaṃ':'V1','īhāsaṅkhātena':'V1','īhāti':'V1','īhāvasā':'V1','īhāvā':'V1','īhāya':'V1','īhāyaṃ':'V2#V1'
+}

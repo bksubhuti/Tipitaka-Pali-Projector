@@ -1,11 +1,49 @@
 function MyNoteList() {
-	if (1){ 
-		$('#pg4_page2_desc').css('display', 'inline');
-		if (typeof P_HTM != 'undefined') {	// lines
-			var ShowAll = $('#AllBooksMyNote').is(":checked");
-			var url = '';
-			var MyNoteArray = [];
-			MyNoteArray = JSON.parse(localStorage.getItem('MyNote'));
+	$('#pg4_page2_desc').css('display', 'inline');
+	if (typeof P_HTM != 'undefined') {	// lines
+		//var ShowAll = $('#AllBooksMyNote').is(":checked");
+		var url = '';
+		var ary = [];
+		var ary2 = [];
+
+		right_Selected = $('#AllBooksMyNote').val().split('_')[0];	// English, SuttaCentral, Taiwan, Chinese, MyNote
+		right_Range = $('#AllBooksMyNote').val().split('_')[1];		// this or All
+
+		if (right_Range == 'All') {
+			ShowAll = true;
+		} else {
+			ShowAll = false;
+		}
+
+		if ('English, SuttaCentral, Taiwan, Chinese, MyNote'.indexOf(right_Selected) != -1) {
+			ary[0] = right_Selected;
+		} else {
+			if (right_Selected == 'All') {
+				ary[0] = 'English';
+				ary[1] = 'SuttaCentral';
+				ary[2] = 'Taiwan';
+				ary[3] = 'Chinese';
+				ary[4] = 'MyNote';
+			} else {
+				ary[0]= localStorage.getItem('view_right');
+			}
+		}
+
+		// font color
+		ary2['English'] = "color:rgb(255, 0, 0)";
+		ary2['SuttaCentral'] = "color:rgb(0, 128, 0)";
+		ary2['Taiwan'] = "color:rgb(0, 0, 255)";
+		ary2['Chinese'] = "color:rgb(128, 0, 0)";
+		ary2['MyNote'] = "color:rgb(0, 0, 0)";
+
+		// 
+		search = $('#MyNoteSearch').val().trim().toLowerCase();
+		$('#MyNoteSearch').val(search);
+
+
+		for (j in ary) {
+			var MyNoteArray = [];		//localStorage.getItem("view_right")
+			MyNoteArray = JSON.parse(localStorage.getItem(ary[j]));
 			if (MyNoteArray != null) {// use JSON objects instead
 				if (0 < MyNoteArray.length) {
 
@@ -19,34 +57,42 @@ function MyNoteList() {
 							content = MyNoteArray[i].val.replace(/<br>　　/g, '').replace(/<\/?[^>]+(>|$)/g, '').trim();
 
 							if (content != '') {
-								url += '<input type="checkbox" id="MyNoteSel' + MyNoteArray[i].html_no + MyNoteArray[i].TrId + '" unchecked value="' + MyNoteArray[i].TrId + '"/>'; 
-								url += '<a href="javascript:MyNoteGoURL(\'' + MyNoteArray[i].html_no + '#p' + MyNoteArray[i].TrId +'\');">&nbsp;&nbsp;';
-								url +=  toTranslate(bookData.flat[MyNoteArray[i].html_no].title) + ",Id=" + MyNoteArray[i].TrId + "&nbsp;";
-								url += content;
+								if ((search == '') || ((search != '') && (content.indexOf(search) !== -1))) {
+									url += '<input type="checkbox" id="MyNoteSel' + MyNoteArray[i].html_no + MyNoteArray[i].TrId + '" unchecked value="' + MyNoteArray[i].TrId + '"/>'; 
+									url += '<a href="javascript:MyNoteGoURL(\'' + ary[j] + '_' + MyNoteArray[i].html_no + '#p' + MyNoteArray[i].TrId +'\');" style="' + ary2[ary[j]] + '">&nbsp;&nbsp;';
+									url +=  toTranslate(bookData.flat[MyNoteArray[i].html_no].title) + "@" + MyNoteArray[i].TrId + "&nbsp;";
+									url += content;
 
-								url += '</a><br>';
+									url += '</a><br>';
+								}
 							}
 						}
 					} 
 				}	
 			} 
-			$('#MyNoteList').html(url);
-		}	 
-	} else {
-		//$('#pg4_page2_desc').css('display', 'none');
-	}	
+		}
+
+
+		$('#MyNoteList').html(url);
+	}
 }
 
 
-function MyNoteEdit() { 	
+function isEditable() {
+	if ('English;SuttaCentral;Taiwan;Chinese;MyNote'.indexOf(localStorage.getItem('view_right')) == -1) {
+		alert('You must set right_view in preferences to "English / SuttaCentral / Traditional Chinese / Simpled Chinese / MyNote" to make notes');
+		return (false);
+	} 
+	return (true)
+}
 
-	if (localStorage.getItem("view_right") != 'MyNote')
-	{
-		alert('You must set right_view in preferences to "MyNote" to make notes');
-		return;
-	}
+function MyNoteEdit() { 
+	if (isEditable() == false) {return;}	 
+	
 
 	if (typeof(P_HTM) != 'undefined') {	// lines
+
+		$('#MyNoteLeftPanel').css('display', 'none');
 
 		$('#MyNoteSaveBtn').css('display', 'inline-block');
 		$('#MyNoteEditBtn').css('display', 'none');
@@ -69,19 +115,19 @@ function MyNoteEdit() {
 
 		var tr_ids = '';
 		var first = '';
-		var k1 = 300;
+		var k1 = 20;
 		var s1 = Number(localStorage.getItem('tr_id'));
 		var s2 = P_HTM.length;
 
 		var sec = '0';
 		for (i in M_RANGE) {
-			if (s1 <= M_RANGE[i]) {
+			if ((parseInt(M_RANGE[i]) <= s1) && (s1 <= parseInt(i))) {
 				sec = i;
 				break;
 			}
 		} 
 		if (sec != '0') {
-			s2 = Math.min(parseInt(M_RANGE[sec]), parseInt(s2));
+			s2 = Math.min(parseInt(sec), parseInt(s2));
 		}
 		$('#MyNoteSection').val(sec);
 
@@ -100,6 +146,7 @@ function MyNoteEdit() {
 					first = i;
 				}  
 				
+				$('#MyNoteCheckbox' + i).css('display', 'inline'); 
 				$('#m1_' + i).css('display', 'none');
 				if ($('#noteH' + i).val() == '0') {
 					$('#note' + i).css('height', tr[i -1].offsetHeight + 'px');
@@ -107,7 +154,6 @@ function MyNoteEdit() {
 					//$('#p' + i).html($('#p' + i).html() + tr[i -1].offsetHeight );
 				}
 				$('#note' + i).css('display', 'inline'); 
-				$('#MyNoteCheckbox' + i).css('display', 'inline'); 
 
 				k1 = k1 -1;
 				if (k1 == 0) {
@@ -120,7 +166,7 @@ function MyNoteEdit() {
 
 		//
 		var MyNoteArray = [];
-		MyNoteArray = JSON.parse(localStorage.getItem('MyNote'));
+		MyNoteArray = JSON.parse(localStorage.getItem(localStorage.getItem("view_right")));
 		if (MyNoteArray != null) {// use JSON objects instead
 			for (i in MyNoteArray) { 
 				if (MyNoteArray[i].html_no == html_no) {
@@ -139,6 +185,7 @@ function MyNoteEdit() {
 
 function MyNoteSaveCancel(key) { 	// Save or Cancel
  
+	$('#MyNoteLeftPanel').css('display', 'inline');
 
 	$('#MyNoteSaveBtn').css('display', 'none');
 	$('#MyNoteEditBtn').css('display', 'inline-block');
@@ -152,21 +199,30 @@ function MyNoteSaveCancel(key) { 	// Save or Cancel
 	$('#MyNoteExportBtnDoc').css('display', 'inline-block');
 	$('#MyNoteExportBtnDoc2').css('display', 'inline-block');
 
+	$('#MyNoteLinkStart').css('display', 'inline'); 
+	$('#MyNoteLinkEnd').css('display', 'none'); 
+	$('#MyNoteLinkOff').css('display', 'inline'); 
+	$('#MyNoteLinkId').css('display', 'none'); 
+	$('#MyNoteLinkSave').css('display', 'none'); 
+	$('#MyNoteLinkCancel').css('display', 'none'); 
+	$('#LinkIdFrom').html('');
+	$('#LinkIdTo').html('');
+	$('#MyNoteLinkMessage').css('display', 'none');
+	$('#MyNoteLinkMessage').html('');
 	$('#MyNotePanel').css('display', 'none'); 
 
 	//
 	var tr_ids = ';' + $('#MyNoteIds').val() + ';';
 	var ary_Ids = $('#MyNoteIds').val().split(';');	
 	for (i in ary_Ids) {
+		$('#MyNoteCheckbox' + ary_Ids[i]).css('display', 'none'); 
 		$('#m1_' + ary_Ids[i]).css('display', 'inline');
 		$('#note' + ary_Ids[i]).css('display', 'none');
-		$('#MyNoteCheckbox' + ary_Ids[i]).css('display', 'none'); 
 	}
 
 	var MyNoteSection = $('#MyNoteSection').val();
 
 	$('#MyNoteQueueMoveUp' + MyNoteSection).css('display', 'none'); 
-
 
 	if ((MyNoteSection != '0') && (typeof $('#MyNoteQueueMoveUp' + MyNoteSection) !== 'undefined')) {
 		$('#MyNoteQueueMoveUp' + MyNoteSection).css('display', 'none');
@@ -177,15 +233,15 @@ function MyNoteSaveCancel(key) { 	// Save or Cancel
 			start = 1;
 			end = P_HTM.length;
 		} else {						// only in section
-			start = parseInt(M_RANGE[MyNoteSection -1]) +1;
-			end = M_RANGE[MyNoteSection];
+			start = parseInt(M_RANGE[MyNoteSection]);
+			end = MyNoteSection;
 		}
 
 		for (i=start; i<=end; i++) {
 			if ($('#note' + i).length > 0) {		// !undefined && !null
 				v2 = RemoveSpace($('#note' + i).val(), '<br>');
-				v2 = v2.replace(/\<supA\>/g, "<sup stAddSpaceyle='color:blue;' onClick=\"DspNote(");
-				v2 = v2.replace(/\<supB\>/g, ')\">');
+				v2 = v2.replace(/\<supA\>/g, "<sup stAddSpaceyle='color:blue;' onClick=\"DspNote('");
+				v2 = v2.replace(/\<supB\>/g, "')\">");
 				v2 = v2.replace(/\<supC\>/g, "</sup>");
 				v2 = AddSpace(v2, '<br>');
 				$('#m1_' + i).html(v2); 
@@ -205,7 +261,7 @@ function MyNoteSaveCancel(key) { 	// Save or Cancel
 		// html_no and then rewrite them again. easiest way to code but not so elegant.
 		
 		// get from MyNote from local storage
-		var strMyNote = localStorage.getItem('MyNote');
+		var strMyNote = localStorage.getItem(localStorage.getItem("view_right"));
 		if (strMyNote != null){
 			 MyNoteData=JSON.parse(strMyNote);
 			 // now delete all from that book that matches this current html_no
@@ -218,9 +274,7 @@ function MyNoteSaveCancel(key) { 	// Save or Cancel
  
 
         for (var i in P_HTM) { 
-			console.log('#note' + i + '.length=' + $('#note' + i).length);
 			if ($('#note' + i).length > 0) {
-				console.log('Val : ' + $('#note' + i).val());
 				if ($('#note' + i).val().trim() != '') {  
 					v1 = RemoveSpace($('#note' + i).val(), '<br>');
 
@@ -232,13 +286,9 @@ function MyNoteSaveCancel(key) { 	// Save or Cancel
 					// add all the elements for this book.  
 					MyNewNoteData.push(jMyNoteData);   
 
-					console.log(html_no);
-					console.log(i);
-					console.log(v1);
-
 					var m1 = $('#note' + i).val();
-					m1 = m1.replace(/\<supA\>/g, "<sup style='color:blue;' onClick=\"DspNote(");
-					m1 = m1.replace(/\<supB\>/g, ')\">');
+					m1 = m1.replace(/\<supA\>/g, "<sup style='color:blue;' onClick=\"DspNote('");
+					m1 = m1.replace(/\<supB\>/g, "')\">");
 					m1 = m1.replace(/\<supC\>/g, "</sup>");
 
 					$('#m1_' + i).html(AddSpace(m1, '<br>'));
@@ -247,15 +297,14 @@ function MyNoteSaveCancel(key) { 	// Save or Cancel
 				}
 			}
 		} 
-		localStorage.setItem('MyNote', JSON.stringify(MyNewNoteData));
-		console.log(MyNewNoteData);
+		localStorage.setItem(localStorage.getItem("view_right"), JSON.stringify(MyNewNoteData));
 
 		//*****************************************
 		// save MyNoteQueue
 	    var jMyNoteNewQueue = {html_no:"", section:"", val:""};
 		var MyNoteNewQueue = [];
 
-		var strMyNoteQueue = localStorage.getItem('MyNoteQueue');
+		var strMyNoteQueue = localStorage.getItem(localStorage.getItem("view_right") + 'Queue');
 		if (strMyNoteQueue != null){
 			 MyNoteQueue=JSON.parse(strMyNoteQueue);
 			 // now delete all from that book that matches this current html_no
@@ -280,14 +329,14 @@ function MyNoteSaveCancel(key) { 	// Save or Cancel
 				}
 			}
         } 
-		localStorage.setItem('MyNoteQueue', JSON.stringify(MyNoteNewQueue));
+		localStorage.setItem(localStorage.getItem("view_right") + 'Queue', JSON.stringify(MyNoteNewQueue));
 
 		setTableStyling();
 
 	 } else {	// Cancel 
 
 		var MyNoteArray = [];
-		MyNoteArray = JSON.parse(localStorage.getItem('MyNote'));
+		MyNoteArray = JSON.parse(localStorage.getItem(localStorage.getItem("view_right")));
 		if (MyNoteArray != null) {// use JSON objects instead
 			for (i in MyNoteArray) { 
 				if (MyNoteArray[i].html_no == html_no) {
@@ -304,7 +353,7 @@ function MyNoteSaveCancel(key) { 	// Save or Cancel
 	    var jMyNoteNewQueue = {html_no:"", section:"", val:""};
 		var MyNoteNewQueue = [];
 
-		var strMyNoteQueue = localStorage.getItem('MyNoteQueue');
+		var strMyNoteQueue = localStorage.getItem(localStorage.getItem("view_right") + 'Queue');
 		if (strMyNoteQueue != null){
 			 MyNoteQueue=JSON.parse(strMyNoteQueue);
 			 // now delete all from that book that matches this current html_no
@@ -332,9 +381,13 @@ function MyNoteClear(type) {
 		return;
 	}
 
+	if (isEditable() == false) {return;}	 
+	
+
 	if (type == 'All') {
+
 		$.confirm({
-			title: html_no + ' ' + bookData.flat[html_no].title,
+			title: '<b>' + localStorage.getItem("view_right") + '</b><br><br>' + html_no + ' ' + bookData.flat[html_no].title,
 			content: 'Confirm to Clear all notes?',
 			boxWidth: '30%',
 			escapeKey: true,
@@ -355,7 +408,7 @@ function MyNoteClear(type) {
 
 
 function MyNoteClearConfirmed(type) {
-	var strMyNote = localStorage.getItem('MyNote');
+	var strMyNote = localStorage.getItem(localStorage.getItem("view_right"));
 	var MyNoteArr = [];
 	var MyNewNoteArr = [];
 	if (strMyNote) {
@@ -369,6 +422,7 @@ function MyNoteClearConfirmed(type) {
 
 					$('#m1_' + MyNoteArr[i].TrId).html(''); 
 					$('#note' + MyNoteArr[i].TrId).val(''); 
+					$('#MyNoteQueueDsp' + MyNoteArr[i].TrId).css('display', 'none');
 
 					// don't add to the new array
 
@@ -384,12 +438,12 @@ function MyNoteClearConfirmed(type) {
 		}
 
 		if (MyNewNoteArr.length > 0 ){
-			localStorage.setItem('MyNote', JSON.stringify(MyNewNoteArr));
+			localStorage.setItem(localStorage.getItem("view_right"), JSON.stringify(MyNewNoteArr));
 
 		}
 		else{
-			localStorage.removeItem('MyNote'); 
-			localStorage.removeItem('MyNoteQueue'); 
+			localStorage.removeItem(localStorage.getItem("view_right")); 
+			localStorage.removeItem(localStorage.getItem("view_right") + 'Queue'); 
 
 		}
 	} 
@@ -401,8 +455,11 @@ function MyNoteClearConfirmed(type) {
 
 
 function MyNoteCopy() {
+	if (isEditable() == false) {return;}	 
+	
+
 	var MyNoteArray = [];
-	MyNoteArray = JSON.parse(localStorage.getItem('MyNote'));
+	MyNoteArray = JSON.parse(localStorage.getItem(localStorage.getItem("view_right")));
 	if (MyNoteArray != null) {// use JSON objects instead
 		if (0 < MyNoteArray.length) {		 
 			var strMyNote = '';
@@ -425,12 +482,17 @@ function MyNoteCopy() {
 
 function MyNoteGoURL(url) { 
 
+	viewRight = url.split('_')[0];
+
+	url = url.split('_')[1];
 	// change to mynotes mode.
 		// View Right
-	if (localStorage.getItem("view_right") != 'MyNote') { 
+	
+	if ((isEditable() == false) || (localStorage.getItem("view_right") != viewRight)) { 
 
-		var view_right = localStorage.setItem("view_right", "MyNote");
-		$('#view_right').val('MyNote');
+		localStorage.setItem("view_right", viewRight);
+		$('#view_right').val(viewRight);
+
 		initPreferences();
 
 		if (url.substring(0,4)==html_no){
@@ -446,11 +508,9 @@ function MyNoteGoURL(url) {
 
 
 function MyNoteExport(type) {
-	if (localStorage.getItem("view_right") != 'MyNote')
-	{
-		alert('You must set right_view in preferences to "MyNote" to make notes');
-		return;
-	}
+	if (isEditable() == false) {return;}	 
+	
+	
 
 	if (typeof P_HTM != 'undefined') {	// lines
 
@@ -458,7 +518,7 @@ function MyNoteExport(type) {
 		MyNoteData[0] = '';
 
 		var MyNoteArray = [];
-		MyNoteArray = JSON.parse(localStorage.getItem('MyNote'));
+		MyNoteArray = JSON.parse(localStorage.getItem(localStorage.getItem("view_right")));
 		if (MyNoteArray != null) {// use JSON objects instead
 			if (0 < MyNoteArray.length) {
 				for (i in MyNoteArray) { 
@@ -471,11 +531,11 @@ function MyNoteExport(type) {
 
 		var is_QueueData = '0';
 		var MyNoteQueueData = [];
-		if (M_RANGE != null) {
-			var MyNoteQueueData = Array(M_RANGE.length).fill('');
-		}
+		//if (M_RANGE != null) {
+		//	var MyNoteQueueData = Array(M_RANGE.length).fill('');
+		//}
 		var MyNoteQueueArray = [];
-		MyNoteQueueArray = JSON.parse(localStorage.getItem('MyNote'));
+		MyNoteQueueArray = JSON.parse(localStorage.getItem(localStorage.getItem("view_right") + 'Queue'));
 		if (MyNoteQueueArray != null) {// use JSON objects instead
 			if (0 < MyNoteQueueArray.length) {
 				for (i in MyNoteQueueArray) { 
@@ -609,15 +669,6 @@ function MyNoteExport(type) {
 				}
 				ExportJs += '\n';
 
-				if (is_QueueData == '1') {
-					for (i in MyNoteQueueData) {
-						if (0 < i) {
-							ExportJs += 'M_QUE[' + i + '] = "' + M_QUE[i] + '";\n';
-						}
-					}
-					ExportJs += '\n';
-				}
-
 
 				if (M_FNOTE != null) {
 					for (i in M_FNOTE) {
@@ -626,58 +677,24 @@ function MyNoteExport(type) {
 					ExportJs += '\n';
 				}
 
+				ExportJs += 'M_START = ' + M_START + ';\n\n';
 
-				if (M_RANGE != null) {
-					for (i in M_RANGE) {
-						ExportJs += 'M_RANGE[' + i + '] = "' + M_RANGE[i] + '";\n';
+				if (is_QueueData == '1') {
+					for (i in MyNoteQueueData) {
+						if (0 < i) {
+							ExportJs += 'M_QUE[' + i + '] = "' + MyNoteQueueData[i] + '";\n';
+						}
 					}
 					ExportJs += '\n';
 				}
 
-				if (M_RANGX != null) {
-					for (i in M_RANGX) {
-						ExportJs += 'M_RANGX[' + i + '] = "' + M_RANGX[i] + '";\n';
-					}
-				}
+
 				ExportJs = ExportJs.trim();
 
 			}
 
 			var blob = new Blob([ExportJs], {type: "text/plain;charset=utf-8"});
-			saveAs(blob, html_no + '.js');
-
-			/*
-			out = '';
-			for (i=1; i<=M_LOC.length -1; i++) {
-				out += i + '\n';
-				if ((typeof M_LOC[i] == 'undefined') || (typeof M_LOC[i] == 'null')) {
-					out += 'M_LOC=undefined\n';
-				} else {
-					out += 'M_LOC=' + '\t' + M_LOC[i].trim()+ '\n';
-				}
-
-				if ((typeof  $('#note' + i) == 'undefined') || (typeof  $('#note' + i) == 'null')) {
-					out += 'note=undefined\n';
-				} else {
-					out += 'note=' + '\t' + $('#note' + i).val().trim() + '\n';
-				}
-
-				if ((typeof MyNoteData[i] === 'undefined') || (typeof MyNoteData[i] === 'null')) {
-					out += 'Local=undefined\n';
-				} else {
-					out += 'Local=' + '\t' + MyNoteData[i].trim() + '\n';
-				}
-
-				if ((typeof $('#m1_' +i) === 'undefined') || (typeof $('#m1_' +i) === 'null')) {
-					out += 'html=undefined\n\n';
-				} else {
-					out += 'html=' + '\t' + $('#m1_' +i).html() + '\n\n';
-				}
-			}
-			var blob = new Blob([out], {type: "text/plain;charset=utf-8"});
-			saveAs(blob, html_no + '_MyNote_Chk.txt');
-			*/
-
+			saveAs(blob, html_no + '.js'); 
 		}
 
 	}
@@ -697,25 +714,8 @@ function DspQue(id) {
 	if ($('#notex' + id).html() != '') {
 		$('#notex' + id).html('');
 	} else {
-		var MyNoteSection = M_RANGX[id];
-
-		/*
-		var htm = '';
-		var MyNoteQUeueArray = [];
-		var strMyNoteQueue = localStorage.getItem('MyNoteQueue');
-		if (strMyNoteQueue != null){
-			MyNoteQUeueArray = JSON.parse(strMyNoteQueue);  
-			if (MyNoteQUeueArray != null){	// use JSON objects instead			
-				for (i in MyNoteQUeueArray) { 
-					if ((MyNoteQUeueArray[i].html_no === html_no) && 
-						(MyNoteQUeueArray[i].Section == MyNoteSection)) {
-
-							htm = MyNoteQUeueArray[i].val;
-					} 
-				} 
-			}	
-		} 
-		*/
+		var MyNoteSection = id;
+ 
 		htm = $('#MyNoteQueue' + MyNoteSection).val();
 
 		htm = AddSpace(htm, '<br>');
@@ -731,29 +731,6 @@ function MyNoteCheckClear() {
 			document.getElementById('Notechk' + i).checked = false;
 		}
 	}
-
-
-	/*
-
-	if (localStorage.getItem("view_right") == 'MyNote') {
-		if (M_LOC != null) {
-			if (0 < M_LOC.length) {
-				var start = 1;
-				var end = P_HTM.length -1;
-				if (M_RANGE[1] != undefined) {
-					start = M_RANGE[1];
-					end = M_RANGE[M_RANGE.length -1];
-				}
-
-				for (i=start; i<=end; i++) {
-					if ($('#Notechk' +i) != null) {
-						document.getElementById('Notechk' + i).checked = false;
-					}
-				}
-			}
-		}
-	}
-	*/
 }
 
 
@@ -780,8 +757,10 @@ function MyNoteExec(type) {
 	var ary_Ids = $('#MyNoteIds').val().split(';'); 
 	var start = parseInt(ary_Ids[0]);
 	var end = parseInt(ary_Ids[ary_Ids.length -1]);
-	if ((id < start) || (id > end)) {
-		return;
+	if ((type != 'Cancel') && (type != 'Save')) {
+		if ((id < start) || (id > end)) {
+			return;
+		}
 	}
 
 	MyNoteSection = $('#MyNoteSection').val();
@@ -792,10 +771,8 @@ function MyNoteExec(type) {
 
 
 	//
-
-
 	if (type == "AddRow") {    // Add row
-		if ((id == M_RANGE[MyNoteSection]) || (id == end)) {
+		if ((id == MyNoteSection) || (id == end)) {
 			$('#MyNoteErrMessage').css('display', 'inline').html('Can not add a new row!').delay(4000).fadeOut(400);
 			return;
 		} 
@@ -806,7 +783,7 @@ function MyNoteExec(type) {
 		var last_note = $('#note' + (P_HTM.length -1)).val();
 		if (MyNoteSection != '0') {		// section only
 			start = id;
-			end = M_RANGE[MyNoteSection];
+			end = MyNoteSection;
 			last_note = $('#note' + end).val();
 		} 
 		last_note = RemoveSpace(last_note, '\n').trim();
@@ -848,7 +825,7 @@ function MyNoteExec(type) {
 
 
 	if (type == "Cancel") {    // Cancel
-		MyNoteSaveCancel();
+		MyNoteSaveCancel('Cancel');
 	} 
 	//************************************************************
 
@@ -982,7 +959,7 @@ function MyNoteExec(type) {
 			if (MyNoteSection == '0') {
 				last = P_HTM.length -1;
 			} else {
-				last = M_RANGE[MyNoteSection];
+				last = MyNoteSection;
 				aryMyNoteQueue = $('#MyNoteQueue' + MyNoteSection).val().split('\n');
 			}
  
@@ -1062,7 +1039,7 @@ function MyNoteExec(type) {
 
 
 	if (type == "DeleteRow") {    // Remove space lines
-		if ($('#note' + i).val().trim() != '') {
+		if ($('#note' + id).val().trim() != '') {
 			$('#MyNoteErrMessage').css('display', 'inline').html('Can not delete this row!').delay(4000).fadeOut(400);
 		return;
 		} 
@@ -1092,7 +1069,7 @@ function MyNoteExec(type) {
 			if (MyNoteSection == '0') {
 				last = P_HTM.length -1;
 			} else {
-				last = M_RANGE[MyNoteSection];
+				last = MyNoteSection;
 			}
 
 
@@ -1134,6 +1111,196 @@ function MyNoteExec(type) {
 		MyNoteCheckClear(); 
 	}
 
+
+}
+
+
+function MyNoteExecLink(type) {
+	var id = localStorage.getItem('tr_id');
+	if (id == undefined) { return; }
+	id = parseInt(id);
+
+	var ary_Ids = $('#MyNoteIds').val().split(';'); 
+
+	var start = parseInt(ary_Ids[0]);
+	var end = parseInt(ary_Ids[ary_Ids.length -1]);
+	
+	for (i in M_RANGE) {
+		if ((M_RANGE[i] <= start) && (start <= i)) {
+			start = parseInt(M_RANGE[i]);
+			end = parseInt(i);
+			break;
+		}
+	}
+
+	if ((type != 'LinkStart') && (type != 'LinkOff')) {
+		if ((id <= start) || (end <= id)) { 
+			$('#MyNoteErrMessage').css('display', 'inline').html('Id range should be ' + (start +1) + ' - ' + (end -1) + ' !').delay(4000).fadeOut(400);
+			return;
+		} 
+	}
+
+
+	if (type == "LinkStart") { 
+		$('#MyNoteLinkStart').css('display', 'none');
+		$('#MyNoteLinkEnd').css('display', 'inline');
+		$('#MyNoteLinkCancel').css('display', 'inline');
+		$('#MyNoteLinkOff').css('display', 'none');
+		$('#MyNoteLinkId').css('display', 'inline');
+		$('#LinkIdFrom').html(id);
+
+		out = '';
+		for (i=(start +1); i<=(end -1); i++) {
+			if ($('#note' +i).val().trim() != '') {
+				out += '<input name="linkx" id="linkx' + i + '" type="radio"';
+				if (id == i) {
+					out += ' checked';
+				}
+				out += ' onClick="$(\'#LinkIdFrom\').html(this.id.substr(5))">' + i + '<br>';
+				out += '<label for="linkx' + i + '">' + $('#note' +i).val().replace(/\n/g, '') + '</label>';
+				out += '<br><br>';
+			}
+		}
+		$('#MyNoteLinkMessage').css('display', 'inline');
+		$('#MyNoteLinkMessage').html(out);
+
+
+	}
+
+	if (type == "LinkEnd") { 
+		if (id == $('#LinkIdFrom').html()) {
+			$('#MyNoteErrMessage').css('display', 'inline').html('Id range should not be the same!').delay(4000).fadeOut(400);
+			return;
+		} 
+		$('#LinkIdTo').html(id);
+
+		$('#MyNoteLinkEnd').css('display', 'none');
+		$('#MyNoteLinkSave').css('display', 'inline');
+		$('#MyNoteLinkCancel').css('display', 'inline');
+	}
+
+	if (type == "LinkSave") { 
+		IdFrom = parseInt($('#LinkIdFrom').html());
+		IdTo = parseInt($('#LinkIdTo').html());
+
+		IdToPrevious = IdTo -1;
+		if (IdTo < IdFrom) {
+			out = '';
+			for (i=IdTo; i<IdFrom; i++) {
+				out = out + $('#note' + i).val() + '\n';
+				$('#note' +i).val('');
+				ResetAreaTextHeight(i);
+
+				$('#m1_' +i).html('');
+			}
+			$('#MyNoteQueue' + IdToPrevious).val(AddSpace(out, '\n'));
+			$('#MyNoteQueueDsp' + IdToPrevious).css('display', 'inline');
+
+
+			cx = IdTo;
+			for (i=IdFrom; i<=end; i++) {
+				$('#note' +cx).val($('#note' +i).val());
+				$('#m1_' +cx).html($('#m1_' +i).html());
+				ResetAreaTextHeight(cx);
+
+				$('#note' +i).val('');
+				$('#m1_' +i).html('');
+				ResetAreaTextHeight(i);
+				cx = cx +1;
+			}
+
+			// add M_RANGE
+			M_RANGE[end] = IdTo;
+			M_RANGE[IdToPrevious] = start; 
+		} else {
+			out = '';
+			for (i=(end - IdTo + IdFrom +1); i<=end; i++) {
+				out = out + $('#note' + i).val() + '\n';
+				$('#note' +i).val('');
+				ResetAreaTextHeight(i);
+
+				$('#m1_' +i).html('');
+			}
+			out = out + $('#MyNoteQueue' + end).val();
+			$('#MyNoteQueue' + end).val(AddSpace(out, '\n'));
+			$('#MyNoteQueueDsp' + IdToPrevious).css('display', 'inline');
+
+
+			cx = end;
+			for (i=(end - IdTo + IdFrom); IdFrom<=i; i--) {
+				$('#note' +cx).val($('#note' +i).val());
+				$('#m1_' +cx).html($('#m1_' +i).html());
+				ResetAreaTextHeight(cx);
+
+				$('#note' +i).val('');
+				$('#m1_' +i).html('');
+				ResetAreaTextHeight(i);
+				cx = cx -1;
+			}
+
+			// add M_RANGE
+			M_RANGE[end] = IdTo;
+			M_RANGE[IdToPrevious] = start;
+		}
+
+		// save previous section
+		var tr_ids = '';
+		s1 = Math.min(start, IdToPrevious);
+		s2 = Math.max(start, IdToPrevious);
+		for(i=s1; i<=s2; i++) {
+			tr_ids += ';' + i;
+			$('#note' + i).css('display', 'none');
+		}
+		tr_ids = tr_ids.substr(1);
+		$('#MyNoteIds').val(tr_ids);
+		$('#MyNoteSection').val(IdToPrevious);
+		MyNoteSaveCancel('Save');
+
+		// save Next section
+		var tr_ids = '';
+		for(i=IdTo; i<=end; i++) {
+			tr_ids += ';' + i;
+			$('#note' + i).css('display', 'none');
+		}			
+		tr_ids = tr_ids.substr(1);
+		$('#MyNoteIds').val(tr_ids);
+		$('#MyNoteSection').val(end);
+		MyNoteSaveCancel('Save');   
+	}
+
+
+	if (type == "LinkCancel") { 
+		$('#MyNoteLinkStart').css('display', 'inline'); 
+		$('#MyNoteLinkEnd').css('display', 'none'); 
+		$('#MyNoteLinkOff').css('display', 'inline'); 
+		$('#MyNoteLinkId').css('display', 'none'); 
+		$('#MyNoteLinkSave').css('display', 'none'); 
+		$('#MyNoteLinkCancel').css('display', 'none'); 
+		$('#LinkIdFrom').html('');
+		$('#LinkIdTo').html('');
+		$('#MyNoteLinkMessage').css('display', 'none');
+		$('#MyNoteLinkMessage').html('');
+	}
+
+	if (type == "LinkOff") {
+		if (M_RANGE[id] == undefined) {
+			$('#MyNoteErrMessage').css('display', 'inline').html('This row can not unlink!').delay(4000).fadeOut(400);
+			return;
+		}
+		M_RANGE.splice(id, 1);
+
+		val = $('#note' +id).val() + '\n' + $('#MyNoteQueue' + id).val();
+		$('#note' +id).val(AddSpace(val, '\n'));
+		ResetAreaTextHeight(id);
+
+		$('#MyNoteQueue' + id).val('');
+		$('#MyNoteQueueDsp' + id).css('display', 'none');
+	}
+
+}
+
+function MyNoteLink(v1) {
+	$('#LinkIdFrom').html(v1.id.substr(5));
 }
 
 function MyNoteAdjust(id) {

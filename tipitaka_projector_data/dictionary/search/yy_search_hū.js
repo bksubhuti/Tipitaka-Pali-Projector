@@ -1,3 +1,0 @@
-pws = {
-'hū':'26=C1P1V24','hūto':'11=V11','hūssa':'7=V7','hūyate':'6=V6','hūdhātussa':'3=C1V2','hūhū':'3=V3','hūyati':'3=V3','hūiccetassa':'2=V2','hūyataṃ':'2=V2','hūyateti':'2=V2','hūyetha':'2=V2','hūbhi':'1=V1','hūdhātu':'1=C1','hūdhātuto':'1=V1','hūiccādi':'1=V1','hūssahehehihohī':'1=V1','hūtapati':'1=V1','hūti':'1=V1','hūtā':'1=V1','hūvaraḷañjase':'1=V1','hūvādi':'1=V1','hūvādinayo':'1=V1','hūyamānassa':'1=Q1','hūyamāno':'1=V1','hūyante':'1=V1','hūyanti':'1=V1','hūyatu':'1=V1','hūyatīti':'1=V1','hūyeyya':'1=V1','hūyissate':'1=V1'
-};

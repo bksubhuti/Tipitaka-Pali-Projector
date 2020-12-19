@@ -1,0 +1,3 @@
+pws = {
+'aā':'V2','aādasu':'V1','aādayo':'V26#V1','aādayoti':'V3','aādese':'V1','aādeso':'V1','aādi':'V1','aādimhi':'V1','aādipaccayarāsi':'V2','aādipaccaye':'V1','aādiparokkhāyañca':'V1','aādisaddassa':'V3','aādisaddeyeva':'V1','aādisaddo':'V2','aādissa':'V1','aādisu':'V5','aādisvādibhutesu':'V1','aādisvādimhi':'V1','aādisvāho':'V1','aādittādi':'V1','aādiyesanti':'V1','aādiyu':'V1','aādo':'V2','aādyapekkheti':'V1','aādyādisaddānaṃ':'V2','aādīnamādesānaṃ':'V1','aādīnaṃ':'V4','aādīsu':'V7','aādīsvā':'V4','aādīsvāho':'V3#V1','aādīsūti':'V1','aāgamo':'V1','aāssaādisu':'V1','aāssaādīsu':'V1','aāssādīsu':'V1#V1','aāssāādīsu':'V1','aāsvādimesu':'V1'
+}

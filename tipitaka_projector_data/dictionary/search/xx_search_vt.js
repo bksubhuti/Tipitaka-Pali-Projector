@@ -1,0 +1,3 @@
+pws = {
+'vtiṇṇakaṅkhaṃ':'V1'
+};

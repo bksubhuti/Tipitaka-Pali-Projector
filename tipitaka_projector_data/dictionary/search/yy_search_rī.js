@@ -1,3 +1,0 @@
-pws = {
-'rīrikkhakesu':'15=V15','rī':'13=V13','rīrikkhakā':'8=V8','rīti':'7=V7','rīva':'4=V4','rīvataka':'4=V4','rīho':'3=V3','rīrikkhakantato':'3=V3','rīsano':'3=V3','rīvanto':'3=V3','rīrikkhakesvetasseṭa':'2=V2','rīrikkhakesū':'2=V2','rīrikkhādipaccayarāsi':'2=V2','rītibhaṅgo':'2=V2','rītīnaṃ':'2=V2','rīvībhāhi':'2=V2','rīhi':'1=V1','rīnaṃ':'1=V1','rīrikkakesu':'1=V1','rīrikkakesūti':'1=V1','rīrikkhake':'1=V1','rīrikkhakesusabbādīnamā':'1=V1','rīrikkhakesutumhaamhānaṃ':'1=V1','rīrī':'1=V1','rītibhaṅgadosāpi':'1=V1','rītipi':'1=V1','rīvantu':'1=V1','rīvantumhi':'1=V1','rīvarīvataka':'1=V1','rīvikkhakesu':'1=V1','rīyati':'1=V1','rīṇaṃ':'1=V1'
-};

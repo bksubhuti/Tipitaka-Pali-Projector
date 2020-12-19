@@ -1,0 +1,3 @@
+pws = {
+'yvappaṭhamo':'V3#V2','yvassa':'V1','yveko':'V2#V1','yvekoti':'V2','yvā':'V1#V1','yvābhiññāto':'V1','yvādo':'V6#V1','yvādoti':'V1','yvādīsu':'V3','yvāha':'#F1','yvāhanti':'F1','yvāhaṃ':'A4B3C1D2E2G2H3J12K2N2Q8T2V4#Q1','yvākāsi':'V1','yvālapanassa':'V4#V2','yvālapanassavevo':'V1','yvāmalampi':'V1','yvāssa':'G9H1N2P1Q4T3U2V4W1','yvāssu':'G1','yvāssā':'#W1','yvāssāti':'W1','yvāsubhaṃ':'V1','yvāya':'C5L1U1V1W1#C6E1F1H1I1K1L1Q3T1U1W1','yvāyamanukkamena':'F1','yvāyamattho':'W1','yvāyamārambhadhātuādiko':'R1','yvāyamāyasmā':'Q1','yvāyanti':'C3E1F1H1I1K1Q2T1','yvāyantiādimāha':'Q1','yvāyaṃ':'A11B38C31D8E6F11G63H13I9J55K7L5M84N3O14P6Q107R2S25T24U26V11W19#B1C2H2I1Q2','yvāyaṃ</span>':'Q1','yvāyaṃpe':'#C1'
+}

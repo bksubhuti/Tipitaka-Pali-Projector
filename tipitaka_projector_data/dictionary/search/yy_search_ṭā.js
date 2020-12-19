@@ -1,3 +1,0 @@
-pws = {
-'ṭā':'85=V85','ṭāṭe':'34=V34','ṭādese':'17=V17','ṭānubandho':'12=V12','ṭānubandhānekavaṇṇā':'11=V11','ṭādeso':'9=V9','ṭākīṭī':'6=V6','ṭānubandhe':'2=V2','ṭānubandhā':'2=V2','ṭāva':'2=V2','ṭāvantu':'2=V2','ṭādayo':'1=V1','ṭādesamuttapakkhaṃ':'1=V1','ṭādesanisedho':'1=V1','ṭādesena':'1=V1','ṭādesā':'1=V1','ṭādesābhāvo':'1=V1','ṭādi':'1=V1','ṭādiādesā':'1=V1','ṭāma':'1=V1','ṭānu':'1=V1','ṭānubandhamanekavaṇṇañca':'1=V1','ṭānubandhamanekavaṇṇaṃ':'1=V1','ṭānubandheti':'1=V1','ṭānubandhonekavaṇṇo':'1=V1','ṭānubandhoti':'1=V1','ṭānubandhādikāriyaṃ':'1=V1','ṭānubandhātyādinā':'1=V1','ṭānāsmāna':'1=V1','ṭāvantumhi':'1=V1','ṭāṭeti':'1=V1','ṭāṭetivāti':'1=V1','ṭāṭeādesā':'1=V1','ṭāṭeādesānaṃ':'1=V1','ṭāṭeāyā':'1=V1','ṭāṭñāyā':'1=V1'
-};

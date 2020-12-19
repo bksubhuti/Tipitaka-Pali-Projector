@@ -1,3 +1,0 @@
-pws = {
-'īhā':'24=B1U2V19W2','īhati':'17=C2E1F3H1K1L1Q1U1V6','īhatīti':'7=F1I1L1O1V3','īhitaṃ':'7=B3C3V1','īha':'6=V6','īhanaṃ':'5=C1U1V2W1','īhāphiyaṃ':'5=V5','īhanti':'4=T1V3','īhatha':'4=P1Q1V2','īhaṃ':'3=U1V1W1','īhadhātu':'2=V2','īhābhogavivajjitā':'2=U2','īhābhāvato':'2=Q1R1','īhābyāpārarahitānaṃ':'2=U1W1','īhābyāpārānaṃ':'2=V2','īhāmi':'2=P1Q1','īhāmīti':'2=Q2','īhāyaṃ':'2=V2','īhanādīnaṃ':'1=Q1','īhanīyaṭṭhena':'1=V1','īhathā':'1=Q1','īhathāti':'1=Q1','īhatī':'1=F1','īhavirahitaṃ':'1=U1','īhikā':'1=L1','īhitanti':'1=C1','īhitasaddoyaṃ':'1=C1','īhitassa':'1=C1','īhiti':'1=K1','īhāca':'1=V1','īhāmigopi':'1=V1','īhāphiyanti':'1=V1','īhāsaṅkhātaṃ':'1=V1','īhāsaṅkhātena':'1=V1','īhāti':'1=V1','īhāvasā':'1=V1','īhāvā':'1=V1','īhāya':'1=V1'
-};

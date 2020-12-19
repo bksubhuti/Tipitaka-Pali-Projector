@@ -1,0 +1,3 @@
+pws = {
+'ṅga':'V5','ṅgadītyādyanuvādarūpamākhyānaṃ':'V1','ṅgalo':'V1','ṅgamaddako':'V1','ṅgamaddana':'V1','ṅgame':'V1','ṅgamo':'V1','ṅganā':'V2','ṅganānaṃ':'V1','ṅganāsiṅgāravibbhamo':'V2','ṅgapaccaṅgajīve':'V1','ṅgate':'C1','ṅgato':'V2','ṅgatotthesu':'V1','ṅgavikkhepo':'V1','ṅgaṃ':'V1#V1','ṅgaṇa':'V1#V1','ṅgaṇanikkhittaṃ':'V1','ṅgaṇathūpantike':'V1','ṅgaṇaṃ':'V2','ṅgesu':'V1','ṅghipaṅkaje':'V1','ṅghītalanakhasikhākantippabandhāmbhasi':'V1','ṅgo':'V1','ṅgula':'V1#V1','ṅguli':'V1','ṅgulimañjarīhi':'V1','ṅgulimuddā':'V1','ṅgulipallavadvayaṃ':'V1','ṅgulito':'V1','ṅgulyā':'V2','ṅgulī':'V1','ṅguṭṭhe':'V1','ṅguṭṭho':'V1','ṅgā':'V2','ṅgāna':'V1','ṅgārapūritaṃ':'V1','ṅgāro':'V1','ṅgārādisāmañña':'V1','ṅgāvayavo':'V1','ṅgīraso':'V1'
+}

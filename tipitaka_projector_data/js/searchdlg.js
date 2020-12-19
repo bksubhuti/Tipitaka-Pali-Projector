@@ -298,15 +298,9 @@ function Keyin() {
 				// bold 
 				//
 	
-				var newscript = document.createElement('script');
-				newscript.setAttribute('type', 'text/javascript');
-				newscript.setAttribute('src', 'dictionary/bold_search/bold_search_' + key.substr(0, 1) + '.js');
-				var head = document.getElementsByTagName('head')[0];
-				head.appendChild(newscript);
-
                 var newscript = document.createElement('script');
                 newscript.setAttribute('type', 'text/javascript');
-                newscript.setAttribute('src', 'dictionary/search/yy_search_' + key.substr(0, 2) + '.js');
+                newscript.setAttribute('src', 'dictionary/search/xx_search_' + key.substr(0, 2) + '.js');
                 var head = document.getElementsByTagName('head')[0];
                 head.appendChild(newscript);
 
@@ -349,15 +343,16 @@ function Keyin() {
 							'V':82, 'W':83};
 
 				var pwsSorted = [];
-				if (document.getElementById('SearchBold').checked == false) {
-					for (var k in pws) {
-						if (k.search(filterRegex)==0 ) {
-							var paliKey = k.split('	')[0];
-							//******************************
-							// need to modify dictionary/search files
-							//
-							//var paliCount = pws[k];
-							var paliCount = pws[k].split('=')[1];
+				var pwsBoldSorted = [];
+				var pwsBold = [];
+				for (var k in pws) {
+					if (k.search(filterRegex)==0 ) {
+						var paliKey = k.split('	')[0];
+						val = '' + pws[k];
+
+						// pali search
+						if (document.getElementById('SearchBold').checked == false) {
+							var paliCount = val.split('#')[0];
 
 							for (var i=65; i<=87; i++) {
 								var v2 = String.fromCharCode(i);
@@ -378,37 +373,31 @@ function Keyin() {
 								pws[paliKey] = Number(newtotal);
 							}
 						}
-					}
-					//pwsSorted.sort();
-				}
 
-				//
-				var pwsBoldSorted = [];
-				for (var k in pwsBold) {
-					if (k.search(filterRegex)==0 ) {
-						var paliKey = k.split('	')[0];
-						var paliCount = pwsBold[k];
-						for (var i=65; i<=87; i++) {
-							var v2 = String.fromCharCode(i);
-							var v3 = ';' + ary[v2] + ';';
-							paliCount = paliCount.replace(v2, v3);
-						}
-						ary2 = paliCount.split(';');
-						var newtotal = 0 ;
-						for (i=1; i<ary2.length; i=i+2) {
-							if ((chkAll == true) || 
-								(document.getElementById('Nikaya' + ary2[i]).checked)) {
-								newtotal = newtotal + parseInt(ary2[i +1]);
+						// bold search
+						if (val.indexOf('#') != -1) {
+							var paliCount = val.split('#')[1];
+							for (var i=65; i<=87; i++) {
+								var v2 = String.fromCharCode(i);
+								var v3 = ';' + ary[v2] + ';';
+								paliCount = paliCount.replace(v2, v3);
 							}
+							ary2 = paliCount.split(';');
+							var newtotal = 0 ;
+							for (i=1; i<ary2.length; i=i+2) {
+								if ((chkAll == true) || 
+									(document.getElementById('Nikaya' + ary2[i]).checked)) {
+									newtotal = newtotal + parseInt(ary2[i +1]);
+								}
+							}
+							if (0 < newtotal) {
+								cx = cx +1
+								pwsBoldSorted[cx] = (999999 - Number(newtotal)) + paliKey;
+								pwsBold[paliKey] = Number(newtotal); 
+							} 
 						}
-						if (0 < newtotal) {
-							cx = cx +1
-							pwsBoldSorted[cx] = (999999 - Number(newtotal)) + paliKey;
-							pwsBold[paliKey] = Number(newtotal); 
-						} 
 					}
 				}
-				//pwsBoldSorted.sort();
 
 				// merge array
 				var aryLast = pwsSorted.concat(pwsBoldSorted);
@@ -638,13 +627,10 @@ function Jump(url) {
 // copied from index.htm when the search word is clicked on 
 function Put(input) {
 	var v1 = '';
-	if ((pws[input] != undefined) && (pws[input] != null)) {
-		v1 = pws[input];
-	}
-
 	var v1Bold = '';
-	if ((pwsBold[input] != undefined) && (pwsBold[input] != null)) {
-		v1Bold = pwsBold[input];
+	if ((pws[input] != undefined) && (pws[input] != null)) {
+		v1 = pws[input].split('#')[0];
+		v1Bold = pws[input].split('#')[1];
 	}
 	
 	var ary = {
@@ -679,8 +665,11 @@ function Put(input) {
 		for (j=1; j<=3; j++) {
 			var ij = i + '' + j;
 			out = '';
-			if (ary3[ij] != undefined) {
-				out = out + ary3[ij] + ',';
+			
+			if (document.getElementById('SearchBold').checked == false) {
+				if (ary3[ij] != undefined) {
+					out = out + ary3[ij] + ',';
+				}
 			}
 
 			if (aryBold3[ij] != undefined) {

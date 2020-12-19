@@ -1,3 +1,0 @@
-pws = {
-'ḍha':'33=C4V29','ḍho':'11=V11','ḍhakāre':'5=V5','ḍhadhenū':'2=V2','ḍhakārantadhāturūpāni':'2=V2','ḍhasanniyogena':'2=V2','ḍhaṇaḷā':'2=V2','ḍhā':'2=V2','ḍhādesarāsi':'2=V2','ḍhakārantadhātu':'1=V1','ḍhakārena':'1=V1','ḍhakāreti':'1=V1','ḍhantā':'1=V1','ḍhasitiratanu':'1=V1','ḍhattaṃ':'1=V1','ḍhattāpavādoyaṃ':'1=V1','ḍhayogapajjenāti':'1=V1','ḍhaṭhā':'1=V1','ḍhubbaripetavatthuvaṇṇanā':'1=Q1','ḍhādesasambandhe':'1=V1','ḍhādesā':'1=V1'
-};

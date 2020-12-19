@@ -1,0 +1,3 @@
+pws = {
+'yya':'B8C12F1O1V3#B6C13V7','yyaiccete':'V1','yyake':'V1','yyakārappattavasena':'C1','yyakārappatteti':'C1','yyakārappattāya':'C2','yyakārappattāyāti':'C1','yyakārasahiteyeva':'V1','yyakārasmi':'C1#C1','yyakārassa':'V1','yyakārassaakārassa':'V1','yyakārato':'C1','yyakāraṃ':'V1','yyakāre':'C5V3#C4','yyakāreti':'C1','yyamavhaya':'V1','yyannaṃ':'V1','yyaputto':'V1','yyassa':'V3','yyasse':'V1','yyassu':'V1','yyassā':'V1','yyatārappattāya':'C1','yyaṃ':'V3','yye':'P1V2','yyessa':'V1','yyo':'V4','yyodo':'V1','yyogaṃ':'W1','yyogena':'W1','yyoti':'V1','yyummattako':'V1','yyumādīnaṃ':'V1','yyā':'V3','yyādicchannaṃ':'V1','yyādī':'V1','yyāma':'V1','yyānamu':'V1','yyānamālā':'V2','yyānavimānabhusaṇa':'V1','yyānu':'V1','yyāsaddassa':'V1','yyāse':'V1','yyāssa':'M4V1'
+}

@@ -1,0 +1,3 @@
+pws = {
+'gñāṇayugantavāyunā':'V1'
+};

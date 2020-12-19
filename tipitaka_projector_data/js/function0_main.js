@@ -163,7 +163,6 @@ M_FNOTE = [];
 M_LOC = [];
 M_QUE = [];
 M_RANGE = [];
-M_RANGX = [];
 M_SEC = [];
 M_SECTION = '';
 
@@ -230,7 +229,7 @@ function sel_on_off() {
 function RedrawTable(w) {
 	//sc = screen.width;
 	w1 = w;		//parseInt(w /screen.width * 100);
-	w2 = document.body.getBoundingClientRect().width - w1 - 15; 	// class="main_td2" margin-left:15px;
+	w2 = document.body.getBoundingClientRect().width - w1; 	// class="main_td2" margin-left:15px;
 
 	if (localStorage.getItem('contentposition') == '0') {  // float panel
 		$('#main_td2').css('left', '0px');
@@ -241,7 +240,7 @@ function RedrawTable(w) {
 
 		w1 = parseInt($('#main_div').css('width')) + parseInt($('#main_div').css('height'));
 		if (w1 < 600) {
-			$('#main_div').css('style.width', '300px');
+			$('#main_div').css('width', '300px');
 			$('#main_div').css('height', '300px');
 		}
 	} else {	// fixed panel
@@ -249,8 +248,11 @@ function RedrawTable(w) {
 		$('#main_div').css('top', "0px");
 		$('#main_div').css('width', w1 + "px");
 		$('#main_div').css('height', (window.innerHeight) + "px");
-		$('#main_td2').css('left', w1 + "px");
-		$('#main_td2').css('width', w2 + "px");
+
+		$('#main_td2').css('left', (w1 + 25)+ "px");
+		$('#main_td2').css('width', (w2 - 25)+ "px");
+		$('#main_td2').css('height', (window.innerHeight) + "px");
+
 	} 
 
 	adjustTabContent();

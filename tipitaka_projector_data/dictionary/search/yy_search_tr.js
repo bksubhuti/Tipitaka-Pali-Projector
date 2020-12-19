@@ -1,3 +1,0 @@
-pws = {
-'tra':'31=V31','tratthā':'7=V7','trajo':'6=V6','tre':'6=V6','traṇa':'5=V5','trapaccayo':'3=C3','tratha':'3=V3','tratothesu':'3=V3','trajaṃ':'2=V2','trattaṃ':'2=V2','traṇapaccaye':'2=V2','trimuṭṭhi':'2=V2','trabhothesu':'1=V1','tradissati':'1=V1','trajassa':'1=V1','trakve':'1=V1','trapaccaye':'1=V1','traraññā':'1=V1','trasa':'1=V1','trastā':'1=V1','trathaiccete':'1=V1','trathappaccayā':'1=V1','trathādipaccayantā':'1=V1','trato':'1=V1','tratotha':'1=V1','trattā':'1=V1','traṇamhi':'1=V1','treva':'1=C1','tribhavanādityādhipatimahādhammarājādhirājāti':'1=V1','tro':'1=V1','trā':'1=V1','trādhippeto':'1=V1','trālamattho':'1=V1','trāmītyattho':'1=V1','trāpīti':'1=V1','trāyuttatthatāya':'1=V1'
-};

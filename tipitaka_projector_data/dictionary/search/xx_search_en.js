@@ -1,0 +1,3 @@
+pws = {
+'ena':'F6I1Q1#C1F4I1Q1V4','enaiti':'C1','enaitipadena':'C1','enanti':'C1Q1','enantādīni':'V1','enasaddena':'C4F1','enasaddo':'F1','enassāpi':'V1','enattaṃ':'V1','enayogassa':'F1','enayogavasena':'V1','enayogaṃ':'V1','enayogo':'V1','enaṃ':'C3K1Q2R1U1V9#C2','ene':'V7','enesa':'Q1','eneyyakampi':'V1','eneyyā':'V1','eno':'I1V8','entamhi':'V1','entassa':'V1','entaṃ':'V1','ente':'Q1','entesu':'V3#V1','enti':'B6C6E3J3K1P4Q5V8#K1','entiyevā':'B1','ento':'V2','entu':'V2','entī':'#F1O1Q1','entīti':'E1F1O1Q2V1','enā':'#V4','enābhāvo':'V1','enādesakaraṇato':'V1','enādesassāsambhavāti':'V1','enādeso':'V8','enādesābhāvato':'V1','enāti':'V1'
+}

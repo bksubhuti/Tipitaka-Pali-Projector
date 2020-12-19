@@ -1,0 +1,3 @@
+pws = {
+'pya':'V21','pyabhayādivāsī':'W1','pyahaṃ':'V1','pyalaṃ':'V1','pyamāvāsī':'V1','pyanuttaranaradammasārathi':'V1','pyapagatakhalanaṃ':'V1','pyarattanādiṇṇakappaṃ':'C1','pyassa':'V1','pyasulabhataddhita':'V1','pyatha':'V57','pyathavā':'V1','pyatho':'V1','pyatikaruṇaṃ':'V1','pyatimahanīyassa':'V1','pyatisantoso':'V1','pyatthavantaṃ':'V1','pyatthe':'V1','pyatthī':'V1','pyavataṃ':'V1','pyayaṃ':'V2#V2','pye':'V12#V1','pyekadabbasamavāyittābhiyyotyadhippāyo':'V1','pyo':'V15#V1','pyu':'V1','pyābhinandatha':'V1','pyādese':'V6'
+}

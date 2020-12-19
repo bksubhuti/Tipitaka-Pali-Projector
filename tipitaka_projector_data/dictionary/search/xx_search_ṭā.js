@@ -1,0 +1,3 @@
+pws = {
+'ṭā':'V85#V5','ṭādayo':'V1','ṭādesamuttapakkhaṃ':'V1','ṭādesanisedho':'V1','ṭādese':'V17','ṭādesena':'V1','ṭādeso':'V9','ṭādesā':'V1','ṭādesābhāvo':'V1','ṭādi':'V1','ṭādiādesā':'V1','ṭākīṭī':'V6#V1','ṭāma':'V1','ṭānu':'V1','ṭānubandhamanekavaṇṇañca':'V1','ṭānubandhamanekavaṇṇaṃ':'V1','ṭānubandhe':'V2','ṭānubandheti':'V1','ṭānubandho':'V12','ṭānubandhonekavaṇṇo':'V1#V1','ṭānubandhoti':'V1','ṭānubandhā':'V2','ṭānubandhādikāriyaṃ':'V1','ṭānubandhānekavaṇṇā':'V11','ṭānubandhātyādinā':'V1','ṭānāsmāna':'V1','ṭāva':'V2','ṭāvantu':'V2#V1','ṭāvantumhi':'V1','ṭāṭe':'V34#V1','ṭāṭeti':'V1','ṭāṭetivāti':'V1','ṭāṭeādesā':'V1','ṭāṭeādesānaṃ':'V1','ṭāṭeāyā':'V1','ṭāṭñāyā':'V1'
+}

@@ -1,3 +1,0 @@
-pws = {
-'pyatha':'57=V57','pya':'21=V21','pyo':'15=V15','pye':'12=V12','pyādese':'6=V6','pyayaṃ':'2=V2','pyabhayādivāsī':'1=W1','pyahaṃ':'1=V1','pyalaṃ':'1=V1','pyamāvāsī':'1=V1','pyanuttaranaradammasārathi':'1=V1','pyapagatakhalanaṃ':'1=V1','pyarattanādiṇṇakappaṃ':'1=C1','pyassa':'1=V1','pyasulabhataddhita':'1=V1','pyathavā':'1=V1','pyatho':'1=V1','pyatikaruṇaṃ':'1=V1','pyatimahanīyassa':'1=V1','pyatisantoso':'1=V1','pyatthavantaṃ':'1=V1','pyatthe':'1=V1','pyatthī':'1=V1','pyavataṃ':'1=V1','pyekadabbasamavāyittābhiyyotyadhippāyo':'1=V1','pyu':'1=V1','pyābhinandatha':'1=V1'
-};

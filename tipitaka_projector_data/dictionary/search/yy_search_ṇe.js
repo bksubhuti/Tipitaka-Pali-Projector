@@ -1,3 +1,0 @@
-pws = {
-'ṇe':'67=C1V66','ṇeyyo':'31=V31','ṇeyya':'27=V27','ṇeyyaka':'8=V8','ṇeyyaṇerā':'8=V8','ṇena':'7=V7','ṇera':'4=V4','ṇeṇayā':'3=V3','ṇere':'2=V2','ṇeti':'2=V2','ṇeyyamayā':'2=V2','ṇeyyamhi':'2=V2','ṇeyyappaccayo':'2=V2','ṇeyyaṇiya':'2=V2','ṇeyye':'2=V2','ṇeyyoti':'2=V2','ṇehi':'1=V1','ṇehoti':'1=V1','ṇeneva':'1=V1','ṇenevāpaccatthassa':'1=V1','ṇerapaccayo':'1=V1','ṇerappaccayo':'1=V1','ṇero':'1=V1','ṇetīti':'1=V1','ṇeyyakayyā':'1=V1','ṇeyyako':'1=V1','ṇeyyapaccayo':'1=V1','ṇeyyaṇantūhī':'1=V1','ṇeyyaṇerappaccayā':'1=V1','ṇeṇaya':'1=V1','ṇeṇayamattena':'1=V1','ṇeṇayantā':'1=V1','ṇeṇayappaccayā':'1=V1','ṇeṇayappaccayānaṃ':'1=V1','ṇeṇayatā':'1=V1','ṇeṇayādayo':'1=V1'
-};

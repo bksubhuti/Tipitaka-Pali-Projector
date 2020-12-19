@@ -1,0 +1,3 @@
+pws = {
+'nda':'#V4','ndahetisu':'V1','ndajāyāsu':'V1','ndakhīlācalaṭṭhā':'V1','ndanīla':'V1','ndayavo':'V1','ndesu':'V1','ndha':'V2','ndhandha':'#V1','ndhatamaharaṃ':'V2','ndirāmandirindivarābhaṃahāsi':'V1','ndirāpati':'V1','ndissati':'P1','ndivaravaṇṇasantibhā':'V1','ndiyasmiṃ':'W1#W1','ndo':'V1#V2','ndriyadhammā':'U1','ndriyagopako':'V1','ndriyasaṃvarena':'V1','ndriyaṃ':'V4','ndriyo':'V1','ndriyā':'#U1','ndriyānañca':'V2','ndriyāni':'W1','ndu':'V3','ndudvayaṃ':'V1','nduko':'V1','nduno':'V2','ndunā':'V2','ndusu':'V1','nduvibbhama':'V1','nduyuttena':'V1','ndīvaradalasiriṃ':'V1','ndīvarajjuti':'V1','ndīvarajjutiṃ':'V1','ndīvaraṃ':'V1#V1','ndīvaro':'V1','ndīvarāva':'V1'
+}
