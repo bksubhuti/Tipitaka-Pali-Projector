@@ -1,4 +1,4 @@
 {
-    "versionno": "V1.0.7",
-    "releasenotes": "close dialogs work better in touch, better layout choices for panel header buttons"
+    "versionno": "V1.0.8",
+    "releasenotes": "Faster loading implemented"
 }
