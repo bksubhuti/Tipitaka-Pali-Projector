@@ -515,9 +515,7 @@ function  displayBook(inTableId) {
 				MyNoteUnformat = M_LOC[idx];
 			}
 			MyNoteWithTags = MyNoteUnformat;
-			MyNoteWithTags = MyNoteWithTags.replace(/\<supA\>/g, "<sup style='color:blue;' onClick=\"DspNote('");
-			MyNoteWithTags = MyNoteWithTags.replace(/\<supB\>/g, "')\">");
-			MyNoteWithTags = MyNoteWithTags.replace(/\<supC\>/g, "</sup>");
+			MyNoteWithTags = MyNoteSup(MyNoteWithTags);
 
 			right_viewHtml = '<p class="b1" id="m1_' + idx + '">' + AddSpace(MyNoteWithTags, '<br>') + '</p>';
 

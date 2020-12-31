@@ -734,16 +734,24 @@ function MyNoteCheckClear() {
 }
 
 
+function MyNoteSup(val) {
+	val = val.replace(/\<supA\>/g, "<sup style='color:blue;' onClick=\"DspNote('");
+	val = val.replace(/\<supB\>/g, "')\">");
+	val = val.replace(/\<supC\>/g, "</sup>");
+	return(val);
+}
+
 function MyNoteQueueMoveUp(id) {
 	var MyNoteSection = $('#MyNoteSection').val();
 	var pos = $('#MyNoteQueue' + MyNoteSection).val().indexOf('\n');
 
 	var MoveUpData = $('#MyNoteQueue' + MyNoteSection).val().substr(0, pos);
 	MoveUpData = AddSpace($('#note' + id).val() + '\n' + MoveUpData, '\n');
+	$('#m1_' + id).html(MyNoteSup(AddSpace(MoveUpData, '<br>')));
 	$('#note' + id).val(MoveUpData);
+	M_LOC[id] = MoveUpData;
 
 	ResetAreaTextHeight(id);
-
 
 	$('#MyNoteQueue' + MyNoteSection).val($('#MyNoteQueue' + MyNoteSection).val().substr(pos +1));
 }
@@ -790,10 +798,12 @@ function MyNoteExec(type) {
 		last_note = last_note.replace(/\n/g, '<br>')
 
 		for (i=end; start<i; i--) {
+			$('#m1_' + i).html( MyNoteSup(AddSpace($('#note' + (i -1)).val(), '<br>')));
 			$('#note' + i).val( $('#note' + (i -1)).val());
 			M_LOC[i] = $('#note' + (i -1)).val();
 			ResetAreaTextHeight(id);
 		}
+		$('#m1_' + id).html('');
 		$('#note' + id).val('');
 		M_LOC[id] = '';
 

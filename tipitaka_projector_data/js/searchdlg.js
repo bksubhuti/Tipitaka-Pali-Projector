@@ -47,8 +47,8 @@ function SearchPali(SrhType) {
 			}
 		}
 
-		for (i in pws_no) {
-			localStorage.setItem('Sr_id' + i, '');
+		for (i in bookData.flat) {
+			localStorage.setItem('Sr_id' + bookData.flat[i].bookId, '');
 		}
 
 		var total_file = 0;
@@ -64,13 +64,14 @@ function SearchPali(SrhType) {
 				if (document.getElementById(name1).checked) {
 					name1 = name1.substring(6);
 
-					for (i in pws_no) {
+					for (i in bookData.flat) {
+						bookId = '' + bookData.flat[i].bookId;
 
-						if (i.substring(0, 2) == name1) {
+						if (bookId.substring(0, 2) == name1) {
 							if (document.getElementById('SearchBold').checked == false) {
-								var file = 'pali/' + i + 'a.js';
+								var file = 'pali/' + bookId + 'a.js';
 							} else {
-								var file = 'dictionary/bold_search/bold_pali_' + i + 'a.txt';
+								var file = 'dictionary/bold_search/bold_pali_' + bookId + 'a.txt';
 							}
 
 							var Sr_id = '';

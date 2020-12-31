@@ -39,11 +39,11 @@
     }
 
     if (!localStorage.getItem("PromptConfirm")) {
-        document.write = localStorage.setItem("PromptConfirm", 'on');
+        document.write = localStorage.setItem("PromptConfirm", 'off');
     }
 
     if (!localStorage.getItem("AutoRestore")) {
-        document.write = localStorage.setItem("AutoRestore", 'off');
+        document.write = localStorage.setItem("AutoRestore", 'on');
     }
 
     // Dispaly Note

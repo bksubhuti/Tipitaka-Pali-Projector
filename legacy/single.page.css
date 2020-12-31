@@ -1,0 +1,778 @@
+.app-dialog {
+    display: none;
+}
+
+.ui-dialog-titlebar-close { 
+    width: 50px !important; 
+    height: 30px !important; 
+    top: 35% !important; 
+}
+
+
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(./fonts/material/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(./fonts/material/MaterialIcons-Regular.woff2) format('woff2'),
+    url(./fonts/material/MaterialIcons-Regular.woff) format('woff'),
+    url(./fonts/material/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px; /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+.first-nav {
+    margin-bottom: 5px;
+    padding-top: 5px;
+    line-height: 1;
+}
+
+.helpers {
+    position: sticky;
+    top: 0;
+    padding-top: 10px;
+}
+
+.helpers > * {
+    display: none;
+}
+
+.tabs {
+    position: absolute;
+    z-index: 1000;
+    left: 5px;
+    right: 0;
+    height: 32px;
+}
+
+#main_div .tabs > li {
+    border: 2px solid #00000024;
+    padding: 0 10px;
+    line-height: 32px;
+    float: left;
+    border-bottom: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-right: 5px;
+    color: #555;
+    text-decoration: none;
+    font-size: 14px;
+    position: relative;
+    height: 30px;
+    user-select: none;
+    background-color: transparent;
+    font-weight: normal;
+    font-family: sans-serif;
+}
+
+#main_div .tabs > li.selected {
+    border-color: #777;
+    height: 32px;
+    /* background-color: #fafafa;*/
+    font-weight: bold;
+}
+
+.tab-content {
+    /* background-color: #fafafa;*/
+    border: 2px solid #777;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-top: 32px;
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    overflow-y: scroll;
+    position: relative;
+    padding: 0 10px 10px;
+}
+
+#main_div li {
+
+}
+
+.grey-button {
+    box-shadow: inset 0px 1px 0px 0px #ffffff;
+    /*      background: linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+          background-color: #ededed;*/
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    cursor: pointer;
+    color: #777;
+    line-height: 1;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #ffffff;
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    overflow: hidden;
+    text-align: center;
+}
+.grey-button.search{
+    width: auto;
+    height: 20px;
+    vertical-align: bottom;
+
+
+}
+
+.grey-button.letter {
+    line-height: 36px;
+    font-family: sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+
+}
+.grey-button.letter.free {
+    margin-left: 20px;
+}
+
+.grey-button.letter.selected {
+    background: linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+    background-color: #dfdfdf;
+
+}
+
+.grey-button i {
+    margin: 5px;
+}
+
+.grey-button span {
+    width: 24px;
+    height: 24px;
+    margin: 5px;
+    font-weight: bold;
+    display: inline-block;
+    line-height: 24px;
+    text-align: center;
+}
+
+.grey-button:hover {
+    background: linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+    background-color: #dfdfdf;
+}
+
+.grey-button:active {
+    position: relative;
+    top: 1px;
+}
+
+.sep {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 1px;
+    display: inline-block;
+    height: 23px;
+    background: #aaa;
+    margin-bottom: 5px;
+}
+
+.generous-input {
+    font-size: 16px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 3px;
+}
+
+.input-label {
+    font-size: 14px;
+}
+
+.search-area {
+    display: flex;
+    margin-top: 5px;
+    align-items: center;
+}
+
+.search-area i {
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #b3b3b3;
+    color: #515151;
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+    user-select: none;
+}
+
+.search-area i:hover {
+    border-color: #aaa;
+    color: #000;
+}
+
+.DictionaryClass {
+    background-color: rgba(176, 176, 176, 0.42) ;
+}
+
+.dict {
+    font-family: sans-serif;
+}
+
+.dictionary-item {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+#TmpDictionary:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+header.panel-header {
+    border-bottom: 3px solid #777;
+    border-top: 3px solid transparent;
+    height: 44px;
+    width: calc(100% + 10px);
+    display: flex;
+    font-family: sans-serif;
+    align-items: center;
+    margin-left: -5px;
+    margin-right: -5px;
+    padding-left: 5px;
+    cursor: grab;
+    user-select: none;
+}
+
+header.panel-header.stand-alone {
+    border: 3px solid #777;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.29);
+}
+
+header.panel-header * {
+    display: flex;
+}
+
+header.panel-header img {
+    margin-right: 5px;
+}
+
+header.panel-header .grey-button {
+    margin-right: 5px;
+    width: 32px;
+    height: 28px;
+}
+
+header.panel-header .grey-button i {
+    width: 32px;
+    height: 27px;
+    line-height: 27px;
+    font-size: 22px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+
+
+#ResizeLeft {
+    width: 10px;
+    height: 100%;
+    position: absolute;
+    left: -8px;
+    top: 0;
+    cursor: e-resize;
+    overflow: hidden;
+    z-index: 3;
+}
+
+#ResizeTop {
+    width: 100%;
+    height: 10px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -8px;
+    cursor: n-resize;
+    overflow: hidden;
+    z-index: 3;
+}
+
+.lookup-result {
+    font-weight: bold;
+    color: dodgerblue;
+
+}
+
+.lookup-result:hover {
+    text-decoration: underline;
+}
+
+/*///////////////////////*/
+/*for the preferences dlg*/
+/*///////////////////////*/
+
+
+.ui-widget-header, .ui-state-default, ui-button {
+    border: 1px solid #2f302d;
+    font-weight: bold;
+}
+
+body {
+    cursor: pointer;
+    background-color: #ffffc0;
+    font-family: Arial;
+    width: auto;
+    height: auto;
+}
+
+.tinysetting {
+    text-align: center;
+    font-size: small;
+    color: red;
+}
+
+a:hover {
+    color: #0000ff;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #0000ff;
+    text-decoration: none;
+}
+
+a:link {
+    color: #0000ff ;
+    text-decoration: none;
+}
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -o-border-radius: 8px;
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-bottom: -16px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 15px 15px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s;
+}
+
+/* Fade in tabs */
+@-webkit-keyframes fadeEffect {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeEffect {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+#book-area {
+            width: 100%;
+            height: calc(100% - 58px);
+            padding: 0;
+            position: relative;
+            margin: 10px auto;
+            background: white url(ajax-loader.gif) center center no-repeat;
+            overflow: hidden;
+            margin: 0;
+        }
+        a.arrow {
+          position: absolute;
+          top: 50%;
+          margin-top: -32px;
+          font-size: 1px;
+          color: #E2E2E2;
+          font-family: arial, sans-serif;
+          font-weight: bold;
+          cursor: pointer;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          user-select: none;
+          text-decoration: none;
+        }
+        a.arrow:active {
+            color: #999;
+        }
+        #prev {
+          left: 8px;
+        }
+
+        #next {
+          right: 8px;
+        }
+        
+        .epub-books {
+            list-style-type: none;
+        }
+        
+        .epub-books li {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+        
+        .epub-books li:hover {
+            background: #f2f2f2;
+        }
+
+        .epub-container{
+             overflow-x: hidden !important; 
+        }
+
+        #epub-selector {
+            padding: 0;
+        }
+
+        /* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 26px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  
+  
+  #epub {
+      padding: 0;
+  }
+
+#epub select#toc {
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+}
+
+#search {
+    padding: 0;
+}
+
+
+
+
+#welcome {
+    opacity: 0;
+    font-size: 35px;
+    
+    padding: 30px;
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+#welcome .welcome-content * {
+    color: black;
+}
+#welcome .welcome-content a u h1 { color: blue; }
+
+
+
+
+
+body table#main_table .note {
+    display: none;
+}
+
+body.show-notes table#main_table .note {
+    display: inline;
+}
+.center {
+    display: block;
+    text-align: center;
+  }
+  
+#Sr_Div {
+     position: fixed;
+     top: 110px;
+     right: 0px;
+     visibility: hidden;
+     z-index: 1234567;
+     max-height: 90px;
+     width: 100px;
+     text-align: center;
+     padding: 3px;
+     margin-left: 1%;
+     margin-right: 1%;
+     background: #F7DBD0;
+     color: black;
+     border: 1px dashed orange;
+     border-radius: 3px;
+}
+
+.center.epub-arrows {
+    height: 28px;
+}
+
+p.b1 span.font10 {
+    display: none;
+}
+
+body.show-page-numbers p.b1 span.font10 {
+    display: inline;
+}
+
+#electron-notification {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    top: 0;
+    display: none;
+    background: white;
+    z-index: 12345;
+    padding: 5px;
+    box-sizing: border-box;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    color: black;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#electron-notification #update-message {
+    
+}
+
+#electron-notification button {
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#electron-notification i { 
+    margin-left: 10px;
+}
+
+#electron-notification b { 
+    flex-grow: 1;
+}
+
+
+.MyNoteList{
+    white-space: nowrap; 
+    width: 380px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    font-size:12pt;
+  }
+
+.ping-pong-list {
+    list-style: none;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: auto;
+    background: white;
+    border: 3px inset #e5e5e5;
+    box-sizing: border-box;
+    height: 240px;
+}
+
+.ping-pong-list li {
+    padding-left: 10px;
+    padding-right: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 1.5;
+    font-size: 12pt;
+    border-bottom: 1px solid #ccc;
+    user-select: none;
+}
+
+.ping-pong-list li.selected {
+    background: #007fff;
+    color: white;
+}
+
+.ping-pong-list li:hover {
+    background-color: #f2f2f2;
+}
+
+.ping-pong-list li.selected:hover {
+    background: #57abff;
+    color: white;
+}
+
+.hideMe {
+    display: none;
+    visibility: hidden;
+}
+.card {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+  
+    .ui-dialog-titlebar-close {
+        width: 90px !important;
+        height: 43px !important;
+        top: 23% !important;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .ui-dialog .ui-dialog-titlebar, .ui-dialog .ui-dialog-buttonpane { font-size: 1.25em; }
+    }
+
+
+body.loading div#main_div {
+    display: none !important;
+}
+
+.loader {
+    position: absolute;
+    display: flex;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 123456789;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-content {
+    text-align: center;
+    padding: 30px 15px 15px;
+    background: orange;
+    border: 2px solid white;
+    font-size: x-large;
+    box-shadow: -8px -2px 8px 8px white, -8px 8px 8px 8px #D9D9D9, 8px 12px 12px 12px white;
+}
+.loader-content {
+    -webkit-transition: opacity 2.5s linear;
+    -moz-transition: opacity 2.5s linear;
+    -ms-transition: opacity 2.5s linear;
+    -o-transition: opacity 2.5s linear;
+    opacity: 1;
+}
+
+.loader-content.fade-out{
+    opacity: 0;
+}

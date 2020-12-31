@@ -153,7 +153,6 @@ $.getScript("js/z_grammar.js");
 $.getScript("js/z_inflect.js");
 $.getScript("js/z_translit.js");
 $.getScript("js/z_tipitaka_Maps.js");
-$.getScript("js/pali_sutta_no.js");
 
 var _ary = window.location.toString().split('.htm');
 var html_file = _ary[0].slice(-4) + '.htm';
@@ -162,11 +161,8 @@ var html_no = _ary[0].slice(-4);
 M_FNOTE = [];
 M_LOC = [];
 M_QUE = [];
-M_RANGE = [];
-M_SEC = [];
-M_SECTION = '';
+M_RANGE = []; 
 
-M_SCT = [];		// sutta_center;
 
 function GetTrId(val) {
 	val = Math.max(1, val);

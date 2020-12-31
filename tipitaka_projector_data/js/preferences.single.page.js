@@ -4,12 +4,12 @@ checkPrefsExist();
 
 function RestorePreferences() {
 
-    file = 'preferences.txt';
+    file = 'preferences.template';
 
     if ( isElectron() ){
         const { remote, ipcRenderer } = require('electron');
 
-        var data = ipcRenderer.sendSync('read-electron-blob', 'preferences.txt'); // prints "pong"
+        var data = ipcRenderer.sendSync('read-electron-blob', 'preferences.template'); // prints "pong"
 
         //ipcRenderer.on('blob-read-reply', (event, arg) => {
 //        });
@@ -501,9 +501,9 @@ function ChooseRange(key) {
         x[0].style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
         $('#showbackground').html('Background = RGB(' + r +', ' + g + ', ' + b +')');
 
-        localStorage.setItem('contentbackgroundR', r);
-        localStorage.setItem('contentbackgroundG', g);
-        localStorage.setItem('contentbackgroundB', b);
+        //localStorage.setItem('contentbackgroundR', r);
+        //localStorage.setItem('contentbackgroundG', g);
+        //localStorage.setItem('contentbackgroundB', b);
     }
 
     if (key.indexOf('fontcolor') != -1) {
@@ -516,9 +516,9 @@ function ChooseRange(key) {
         $('#showfontcolor').css('color', 'rgb(' + r + ',' + g + ',' + b + ')');
         $('#showfontcolor').html('Font Color = RGB(' + r +', ' + g + ', ' + b +')');
 
-        localStorage.setItem('contentfontcolorR', r);
-        localStorage.setItem('contentfontcolorG', g);
-        localStorage.setItem('contentfontcolorB', b);
+        //localStorage.setItem('contentfontcolorR', r);
+        //localStorage.setItem('contentfontcolorG', g);
+        //localStorage.setItem('contentfontcolorB', b);
     }
 }
 function onChangePanel_dict_bg_color(){
@@ -539,41 +539,54 @@ function onChangePanel_dict_bg_color(){
 
 function SavePreferences() {
     def = [];
+
+    //**********************
+    def['AutoRestore']='';
+    def['b1']='';
     def['bg_color'] = '';
-    def['contentbackgroundR'] = '';
-    def['contentbackgroundG'] = '';
-    def['contentbackgroundB'] = '';
+    //	def['contentbackgroundB'] = '';
+    //	def['contentbackgroundG'] = '';
+    //	def['contentbackgroundR'] = '';
     def['contentdisplay'] = '';
-    def['contentfontcolorR'] = '';
-    def['contentfontcolorG'] = '';
-    def['contentfontcolorB'] = '';
+    //	def['contentfontcolorB'] = '';
+   	// def['contentfontcolorG'] = '';
+    // def['contentfontcolorR'] = '';
     def['contentfontname'] = '';
     def['contentfontsize'] = '';
     def['contentlineheight'] = '';
     def['contentposition'] = '';
+    def['current-theme'] = '';
+    def['DictData'] = '';
+    def['divwidth'] = '';
     def['font_left'] = '';
     def['font_right'] = '';
-    def['DictData'] = '';
-    //**********************
-
+    def['m1']='';
+    def['main_content'] = '';
     def['main_height'] = '';
     def['main_left'] = '';
     def['main_top'] = '';
     def['main_width'] = '';
     def['Pali_note'] = '';
+    def['PaliFontSize']='';
+    def['panel_bg_color']='';
+    def['panel_dict_bg_color']='';
+    def['panel_font_color']='';
+    def['PromptConfirm']='';
+    def['r1']='';
+    def['Show_Numbers']='';
+    def['ShowAlternateReading']='';
+    def['ShowOnTop']='';
+    def['ShowPageNumbers']='';
     def['size_left'] = '';
     def['size_right'] = '';
     def['speech_repeat'] = '';
     def['speech_speed']='';
+    def['Themes'] = '';
+    def['versionno'] = '';
     def['view_left'] = '';
     def['view_right'] = '';
     def['width_left'] = '';
     def['width_right'] = '';
-    def['Show_numbers']='';
-    def['r1']='';
-    def['m1']='';
-    def['b1']='';
-    def['PaliFontSize']='';
 
     for (i in localStorage) {
         if (def[i] != null) {
@@ -592,17 +605,17 @@ function SavePreferences() {
 
     if ( isElectron() ){
         const { remote, ipcRenderer } = require('electron');
-        ipcRenderer.send('write-electron-blob', dat, "preferences.txt");
+        ipcRenderer.send('write-electron-blob', dat, "preferences.template");
         alert("file has been written to the user data folder");
 
     }
     else{
         var blob = new Blob([dat], {type: "text/plain;charset=utf-8"});
-    //    saveAs(blob, 'preferences.txt');
+    //    saveAs(blob, 'preferences.template');
 
         const element = document.createElement("a");
         element.href = URL.createObjectURL(blob);
-        element.download = "preferences.txt";
+        element.download = "preferences.template";
         element.click();
 
 
@@ -1119,6 +1132,7 @@ function getCurrentVersion(){
             if (rawJson) {
                 var versiontxt = JSON.parse(rawJson) ;
                 $('#currentversion').html('<b>' + versiontxt.versionno +'</b>');
+                $('#versionwelcome').html(versiontxt.versionno);
                 localStorage.setItem('versionno', versiontxt.versionno);
             }
         },
@@ -1192,37 +1206,54 @@ function isElectron() {
 
 function writePrefDataToStorage(data){
     var def = [];
+   
+    //**********************
+    def['AutoRestore']='@';
+    def['b1']='@';
     def['bg_color'] = '@';
+    //	def['contentbackgroundB'] = '@';
+    //	def['contentbackgroundG'] = '@';
+    //	def['contentbackgroundR'] = '@';
     def['contentdisplay'] = '@';
+    //	def['contentfontcolorB'] = '@';
+   	// def['contentfontcolorG'] = '@';
+    // def['contentfontcolorR'] = '@';
     def['contentfontname'] = '@';
     def['contentfontsize'] = '@';
     def['contentlineheight'] = '@';
     def['contentposition'] = '@';
-    def['font_left'] = '@';
-    def['font_right'] = '@'; 
+    def['current-theme'] = '@';
     def['DictData'] = '@';
-    //********************
-
+    def['divwidth'] = '@';
+    def['font_left'] = '@';
+    def['font_right'] = '@';
+    def['m1']='@';
+    def['main_content'] = '@';
     def['main_height'] = '@';
     def['main_left'] = '@';
     def['main_top'] = '@';
     def['main_width'] = '@';
     def['Pali_note'] = '@';
+    def['PaliFontSize']='@';
+    def['panel_bg_color']='@';
+    def['panel_dict_bg_color']='@';
+    def['panel_font_color']='@';
+    def['PromptConfirm']='@';
+    def['r1']='@';
+    def['Show_Numbers']='@';
+    def['ShowAlternateReading']='@';
+    def['ShowOnTop']='@';
+    def['ShowPageNumbers']='@';
     def['size_left'] = '@';
     def['size_right'] = '@';
     def['speech_repeat'] = '@';
     def['speech_speed']='@';
+    def['Themes'] = '@';
+    def['versionno'] = '@';
     def['view_left'] = '@';
     def['view_right'] = '@';
     def['width_left'] = '@';
     def['width_right'] = '@';
-    def['Show_Numbers']='@';
-    def['r1']='@';
-    def['m1']='@';
-    def['b1']='@';
-    def['PaliFontSize'] ='@';
-    def['panel_bg_color'] ='@';
-    def['ShowOnTop']='@';
 
     if (data == "") 
         return 0;
