@@ -62,8 +62,12 @@ function afterWordClicked(word, tdr1) {
 function registerListeners() {
 
 	$(document.body).on('click', '.r1', function () {
-		// copy from stlooku_jquery.js designed by Ven. Paññindriya(Vietnam)
 
+		word_click();
+		if (t.length > 0) {
+			DictionaryKeyGo();
+			change_tab('page1'); 
+		}
 	});
 
 	$(document.body).on('click', '.m1', function () {
@@ -524,7 +528,7 @@ function  displayBook(inTableId) {
 			right_viewHtml += '<label for="Notechk' + idx + '" style="color:880000">Select</label>';
 			right_viewHtml += '</span>';
 
-			right_viewHtml += '<textarea id="note' + idx +'" style="font-size:13.0pt;line-height:170%;width:99%;height:33px;color:' + color + ';background-color:' + bgcolor + ';display:none;" onblur="MyNoteAdjust(' + idx + ')">' + AddSpace(MyNoteUnformat, '\n') + '</textarea><input type="hidden" id="noteH' + idx + '" value="0"><br><br>';
+			right_viewHtml += '<textarea id="note' + idx +'" style="font-size:16.0pt;line-height:170%;width:99%;height:33px;color:' + color + ';background-color:' + bgcolor + ';display:none;" onblur="MyNoteAdjust(' + idx + ')">' + AddSpace(MyNoteUnformat, '\n') + '</textarea><input type="hidden" id="noteH' + idx + '" value="0"><br><br>';
 			
 			//
 			var que_valid = 'none';
@@ -543,7 +547,7 @@ function  displayBook(inTableId) {
 
 				right_viewHtml += "<br><span id='notex" + idx + "' style='font-size:10pt;backgroundColor:yellow;' onClick=\"this.innerHTML='';\"></span>";
 
-				right_viewHtml += '<textarea id="MyNoteQueue' + idx +'" style="font-size:8pt;line-height:125%;width:99%;height:50px;color:white;background-color:black;display:inline;">' + que_value + '</textarea>';
+				right_viewHtml += '<textarea id="MyNoteQueue' + idx +'" style="font-size:10pt;line-height:125%;width:99%;height:100px;color:white;background-color:black;display:inline;">' + que_value + '</textarea>';
 			right_viewHtml  += '</span>'; 
 		}	
 
@@ -693,7 +697,6 @@ window.addEventListener('resize', function() {
 	const rect = mtd2.getBoundingClientRect();
 	const available = document.body.getBoundingClientRect().width - rect.x;
 	mtd2.style.width = `${available}px`;
-	console.log('available=' + available);
 });
 
 tx = parseInt($('#main_div').css('top'));
