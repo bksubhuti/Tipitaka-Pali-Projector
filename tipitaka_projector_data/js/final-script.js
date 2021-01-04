@@ -63,10 +63,12 @@ function registerListeners() {
 
 	$(document.body).on('click', '.r1', function () {
 
-		word_click();
-		if (t.length > 0) {
-			DictionaryKeyGo();
-			change_tab('page1'); 
+		if (navigator.appCodeName == 'Mozilla') {
+			word_click();
+			if (t.length > 0) {
+				DictionaryKeyGo();
+				change_tab('page1'); 
+			}
 		}
 	});
 
@@ -316,6 +318,7 @@ function  displayBook(inTableId) {
 		}
 
 		if (strMyNote.indexOf('"html_no":"' + html_no + '"') == -1) {
+			console.log(M_LOC);
 			for (i in M_LOC) {
 				var jMyNoteData = {};
 				jMyNoteData.html_no = html_no;

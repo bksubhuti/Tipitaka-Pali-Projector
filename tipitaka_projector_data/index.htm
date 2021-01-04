@@ -1254,17 +1254,20 @@
             aryLoadFiles.push(bookMetaFile);
 			aryLoadFiles.push(bookParagraphsFile);
 			
-			if ('English;SuttaCentral/Taiwan;Chinese;MyNote'.indexOf(localStorage.getItem('view_right')) != -1) {
+			console.log('view_right == ' + localStorage.getItem('view_right'));
+			var bookMyNote = '';
+			if ('English;SuttaCentral;Taiwan;Chinese;MyNote'.indexOf(localStorage.getItem('view_right')) != -1) {
 				M_LOC = [];
 				M_QUE = [];
 				M_FNOTE = [];
 				M_RANGE = [];
 				M_START = 1;
-                aryLoadFiles.push('pali/' + localStorage.getItem('view_right') + '/' + bookId + '.js'); 
-            }
+				bookMyNote = 'pali/' + localStorage.getItem('view_right') + '/' + bookId + '.js';
+				aryLoadFiles.push(bookMyNote); 
+			}
 
             if (DEBUG) {
-                console.log('Will load book contents:', [bookMetaFile, bookParagraphsFile].map(e => `'${e}'`).join(', '));
+                console.log('Will load book contents:', [bookMetaFile, bookParagraphsFile, bookMyNote].map(e => `'${e}'`).join(', '));
             }
 
             start = new Date();
@@ -2882,7 +2885,7 @@
     }
 </script>
 
-<script>
+<script> 
 //
 // New Selection Algorithm
 //
@@ -2903,135 +2906,135 @@
 //
 // Note this hasn't been tested on Electron yet.
 //
-/*
+if (navigator.appCodeName != 'Mozilla') {
 
-const USE_EXPERIMENTAL_SELECTION = true;
+    const USE_EXPERIMENTAL_SELECTION = true;
 
-const onParagraphClicked = function onParagraphClicked(event, paragraph) {
-    const selection = window.getSelection();
-    if (selection && !selection.isCollapsed) {
-        return;
-    }
-    if (!USE_EXPERIMENTAL_SELECTION) {
-        return;
-    }
-    event.preventDefault();
-    event.stopPropagation();
-
-    const $p = $(paragraph);
-    const offset = $p.offset();
-
-    const clone = $p.clone();
-    clone.css({
-        position: 'absolute',
-        'z-index': 123456789,
-        left: 0,
-        top: 0,
-        width: $p.outerWidth(),
-        height: $p.outerHeight(),
-        background: 'red'
-    });
-
-    const contents = clone.contents().toArray();
-
-    let nodes = '';
-    let index = 0;
-    let nodeIndex = 0;
-    let subNodeIndex = 0;
-
-    const handleContents = (node, wrapper, classes, pni) => {
-        const w = wrapper || 'span';
-        const c = (classes || []).join(' ');
-        const ni = pni === undefined ? nodeIndex : pni;
-
-        if (node.nodeType === Node.TEXT_NODE) {
-            const words = node.data.split(' ');
-            const spanWords = [];
-            index = 0;
-            for (const word of words) {
-                const wordLength = word.length;
-
-                const spanWord = '<' + w + ' class="clickable word ' + c +
-                    '" data-node="' + ni +
-                    (wrapper ? '" data-sub-node="' + subNodeIndex : '') +
-                    '" data-word="' + word +
-                    '" data-index="' + index +
-                    '" data-length="' + wordLength + '">' +
-                    word +
-                    '</' + w + '>';
-
-                index += wordLength;
-                index++; // 1 for ' '
-                spanWords.push(spanWord);
-            }
-            nodes += spanWords.join(' ');
-            nodeIndex++;
-            subNodeIndex++;
-        } else {
-            const $node = $(node);
-            const subNodeContents = $node.contents().toArray();
-
-            // const $nodeWithParent = $('<div></div>').html($node);
-            // index += $nodeWithParent.text().length;
-            // nodes += $nodeWithParent.html();
-
-            const tag = node.tagName;
-            const classes = (node.className || '').split(/\s+/);
-            for (const n of subNodeContents) {
-                subNodeIndex = 0;
-                handleContents(n,tag, classes, nodeIndex);
-            }
-        }
-
-    }
-
-    for (const node of contents) {
-        handleContents(node);
-    }
-    clone.html(nodes);
-
-    const parent = $p.parent();
-    parent.css('position', 'relative').append(clone);
-
-    const x = offset.left + event.offsetX;
-    const y = offset.top + event.offsetY;
-
-    const element = document.elementFromPoint(x, y);
-
-    if (element && element.classList.contains('clickable') && element.classList.contains('word')) {
-        const wordInfo = Object.assign({}, element.dataset);
-
-        if (!wordInfo) {
+    const onParagraphClicked = function onParagraphClicked(event, paragraph) {
+        const selection = window.getSelection();
+        if (selection && !selection.isCollapsed) {
             return;
         }
+        if (!USE_EXPERIMENTAL_SELECTION) {
+            return;
+        }
+        event.preventDefault();
+        event.stopPropagation();
 
-        const targetTextNode = paragraph.childNodes[parseInt(wordInfo.node)];
-        const targetSubNode = wordInfo.subNode ? targetTextNode.childNodes[parseInt(wordInfo.subNode)] : undefined;
+        const $p = $(paragraph);
+        const offset = $p.offset();
 
-        const range = document.createRange();
-        const start = parseInt(wordInfo.index);
-        const end = start + parseInt(wordInfo.length);
+        const clone = $p.clone();
+        clone.css({
+            position: 'absolute',
+            'z-index': 123456789,
+            left: 0,
+            top: 0,
+            width: $p.outerWidth(),
+            height: $p.outerHeight(),
+            background: 'red'
+        });
 
-        const targetNode = targetSubNode || targetTextNode;
-        range.setStart(targetNode, start);
-        range.setEnd(targetNode, end);
+        const contents = clone.contents().toArray();
 
-        document.getSelection().removeAllRanges();
-        document.getSelection().addRange(range);
+        let nodes = '';
+        let index = 0;
+        let nodeIndex = 0;
+        let subNodeIndex = 0;
 
-        afterWordClicked(wordInfo.word, paragraph.parentElement);
-    }
-    clone.remove();
-};
+        const handleContents = (node, wrapper, classes, pni) => {
+            const w = wrapper || 'span';
+            const c = (classes || []).join(' ');
+            const ni = pni === undefined ? nodeIndex : pni;
 
-$('#main_table').on('click', 'td.r1 > p', function onParagraphClick(event) {
-    try {
-        onParagraphClicked(event, this);
-    } catch (e) {
-        console.log('error selecting word', e);
-    }
-});
-*/
+            if (node.nodeType === Node.TEXT_NODE) {
+                const words = node.data.split(' ');
+                const spanWords = [];
+                index = 0;
+                for (const word of words) {
+                    const wordLength = word.length;
+
+                    const spanWord = '<' + w + ' class="clickable word ' + c +
+                        '" data-node="' + ni +
+                        (wrapper ? '" data-sub-node="' + subNodeIndex : '') +
+                        '" data-word="' + word +
+                        '" data-index="' + index +
+                        '" data-length="' + wordLength + '">' +
+                        word +
+                        '</' + w + '>';
+
+                    index += wordLength;
+                    index++; // 1 for ' '
+                    spanWords.push(spanWord);
+                }
+                nodes += spanWords.join(' ');
+                nodeIndex++;
+                subNodeIndex++;
+            } else {
+                const $node = $(node);
+                const subNodeContents = $node.contents().toArray();
+
+                // const $nodeWithParent = $('<div></div>').html($node);
+                // index += $nodeWithParent.text().length;
+                // nodes += $nodeWithParent.html();
+
+                const tag = node.tagName;
+                const classes = (node.className || '').split(/\s+/);
+                for (const n of subNodeContents) {
+                    subNodeIndex = 0;
+                    handleContents(n,tag, classes, nodeIndex);
+                }
+            }
+
+        }
+
+        for (const node of contents) {
+            handleContents(node);
+        }
+        clone.html(nodes);
+
+        const parent = $p.parent();
+        parent.css('position', 'relative').append(clone);
+
+        const x = offset.left + event.offsetX;
+        const y = offset.top + event.offsetY;
+
+        const element = document.elementFromPoint(x, y);
+
+        if (element && element.classList.contains('clickable') && element.classList.contains('word')) {
+            const wordInfo = Object.assign({}, element.dataset);
+
+            if (!wordInfo) {
+                return;
+            }
+
+            const targetTextNode = paragraph.childNodes[parseInt(wordInfo.node)];
+            const targetSubNode = wordInfo.subNode ? targetTextNode.childNodes[parseInt(wordInfo.subNode)] : undefined;
+
+            const range = document.createRange();
+            const start = parseInt(wordInfo.index);
+            const end = start + parseInt(wordInfo.length);
+
+            const targetNode = targetSubNode || targetTextNode;
+            range.setStart(targetNode, start);
+            range.setEnd(targetNode, end);
+
+            document.getSelection().removeAllRanges();
+            document.getSelection().addRange(range);
+
+            afterWordClicked(wordInfo.word, paragraph.parentElement);
+        }
+        clone.remove();
+    };
+
+    $('#main_table').on('click', 'td.r1 > p', function onParagraphClick(event) {
+        try {
+            onParagraphClicked(event, this);
+        } catch (e) {
+            console.log('error selecting word', e);
+        }
+    });
+}
 
 $('#btnHeaderDropUp').on('click touchstart', e => onHeaderDropUp())
 $('#btnHeaderDropDown').on('click touchstart', e => onHeaderDropDown())
