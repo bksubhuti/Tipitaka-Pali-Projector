@@ -422,7 +422,6 @@ function MyNoteClearConfirmed(type) {
 
 					$('#m1_' + MyNoteArr[i].TrId).html(''); 
 					$('#note' + MyNoteArr[i].TrId).val(''); 
-					$('#MyNoteQueueDsp' + MyNoteArr[i].TrId).css('display', 'none');
 
 					// don't add to the new array
 
@@ -443,10 +442,48 @@ function MyNoteClearConfirmed(type) {
 		}
 		else{
 			localStorage.removeItem(localStorage.getItem("view_right")); 
-			localStorage.removeItem(localStorage.getItem("view_right") + 'Queue'); 
 
 		}
 	} 
+
+
+	// MyNoteQueue
+
+	var strMyNoteQueue = localStorage.getItem(localStorage.getItem("view_right") + 'Queue');
+	var MyNoteQueueArr = [];
+	var MyNewNoteQueueArr = [];
+	if (strMyNoteQueue) {
+		MyNoteQueueArr = JSON.parse(strMyNoteQueue); 
+
+		for (var i in MyNoteQueueArr) {
+			if (MyNoteQueueArr[i].val.trim() != '') {
+				var strSection = MyNoteQueueArr[i].html_no + MyNoteQueueArr[i].section +"";
+				if ((($('#MyNoteSel' + strSection).prop('checked') == true) && (type != 'All')) 
+					|| ((html_no == MyNoteQueueArr[i].html_no) && (type == 'All'))) { 
+					$('#MyNoteQueue' + MyNoteQueueArr[i].section).css('display', 'none');
+
+					// don't add to the new array
+
+				} else {
+
+					var jMyNoteQueueData = {};
+					jMyNoteQueueData.html_no = MyNoteQueueArr[i].html_no;
+					jMyNoteQueueData.section = MyNoteQueueArr[i].section; 
+					jMyNoteQueueData.val = MyNoteQueueArr[i].val;
+					MyNewNoteQueueArr.push(jMyNoteQueueData); 
+				}
+			}
+		}
+
+		if (MyNewNoteQueueArr.length > 0 ){
+			localStorage.setItem(localStorage.getItem("view_right") + 'Queue', JSON.stringify(MyNewNoteQueueArr));
+		}
+		else{
+			localStorage.removeItem(localStorage.getItem("view_right") + 'Queue'); 
+		}
+	} 
+
+
 
 	MyNoteCheckClear();
 
@@ -672,7 +709,7 @@ function MyNoteExport(type) {
 
 				if (M_FNOTE != null) {
 					for (i in M_FNOTE) {
-						ExportJs += 'M_FNOTE[' + i + '] = "' + M_FNOTE[i] + '";\n';
+						ExportJs += 'M_FNOTE["' + i + '"] = "' + M_FNOTE[i] + '";\n';
 					}
 					ExportJs += '\n';
 				}
@@ -1049,74 +1086,80 @@ function MyNoteExec(type) {
 
 
 	if (type == "DeleteRow") {    // Remove space lines
-		if ($('#note' + id).val().trim() != '') {
-			$('#MyNoteErrMessage').css('display', 'inline').html('Can not delete this row!').delay(4000).fadeOut(400);
-		return;
-		} 
 
 		var AryRemove = [];
-		var count = 0;
-		if ((document.getElementById('Notechk' + id).checked == false) && ($('#note' + id).val().trim() == '')) {
-			AryRemove.push(('0000' + id).substr(-4));
-			count = count +1;
-		}
 
+		var count = 0;
 		for (i=start; i<=end; i++) {
-			if (document.getElementById('Notechk' + i).checked == true) {
-				if ($('#note' + i).val().trim() == '') {
+			if ($('#note' + i).val().trim() == '') {
+				if (document.getElementById('Notechk' + i).checked == true) {
 					AryRemove.push(('0000' + i).substr(-4));
 					count = count +1;
+				} else {
+					if (i == id) {
+						AryRemove.push(('0000' + i).substr(-4));
+						count = count +1;
+					}
 				}
 			}
 		}
+
+		
+		if (count == 0) {
+			$('#MyNoteErrMessage').css('display', 'inline').html('No empty rows can be deleted!').delay(4000).fadeOut(400);
+			return;
+		} else {
+			$('#MyNoteErrMessage').css('display', 'inline').html('There are ' + count + ' rows will be deleted!').delay(4000).fadeOut(400);
+		}
+
+
 		AryRemove.sort();
 		remove = ';';
 		for (i in AryRemove) {
 			remove = remove + parseInt(AryRemove[i]) + ';'
 		}
 
-		if (0 < count) {
-			if (MyNoteSection == '0') {
-				last = P_HTM.length -1;
-			} else {
-				last = MyNoteSection;
+		if (MyNoteSection == '0') {
+			last = P_HTM.length -1;
+		} else {
+			last = MyNoteSection;
+		}
+
+		var first = parseInt(remove.split(';')[1]);
+		var valid = [];
+		for (i=first; i<=last; i++) {
+			var cond = ';' + i + ';';
+			if (remove.indexOf(cond) == -1) {
+				valid[i] = $('#note' + i).val();
 			}
+		}
 
+		for (i in valid) {
+			$('#m1_' + first).html(MyNoteSup(AddSpace(valid[i], '<br>')));
+			$('#note' + first).val(valid[i]);
+			M_LOC[first] = valid[i];
+			ResetAreaTextHeight(i);
+			first = first +1;
+		} 
 
-			var first = parseInt(remove.split(';')[1]);
-			var valid = [];
-			for (i=first; i<=last; i++) {
-				var cond = ';' + i + ';';
-				if (remove.indexOf(cond) == -1) {
-					valid[i] = $('#note' + i).val();
-				}
+		cx = 0;
+		for (i=(last - count +1); i<=last; i++) {
+			$('#m1_' + i).html('');
+			$('#note' + i).val('');
+			M_LOC[i] = '';
+			if ((MyNoteSection != '0') && (aryMyNoteQueue[cx] != null) && (aryMyNoteQueue[cx] != undefined)) {
+				$('#m1_' + i).html(MyNoteSup(AddSpace(aryMyNoteQueue[cx], '<br>')));
+				$('#note' + i).val(aryMyNoteQueue[cx]);
+				M_LOC[i] = aryMyNoteQueue[cx];
+				aryMyNoteQueue[cx] = '';
 			}
+			ResetAreaTextHeight(i);
+			cx = cx +1;
+		}
 
-			for (i in valid) {
-				$('#note' + first).val(valid[i]);
-				M_LOC[first] = valid[i];
-				ResetAreaTextHeight(i);
-				first = first +1;
-			} 
-
-			cx = 0;
-			for (i=(last - count); i<=last; i++) {
-				$('#note' + i).val('');
-				M_LOC[i] = '';
-				if ((MyNoteSection != '0') && (aryMyNoteQueue[cx] != null) && (aryMyNoteQueue[cx] != undefined)) {
-					$('#note' + i).val(aryMyNoteQueue[cx]);
-					M_LOC[i] = aryMyNoteQueue[cx];
-					aryMyNoteQueue[cx] = '';
-				}
-				ResetAreaTextHeight(i);
-				cx = cx +1;
-			}
-
-			if (MyNoteSection != '0') {
-				$('#MyNoteQueue' + MyNoteSection).val(AddSpace(aryMyNoteQueue.join('\n'), '\n'));
-			}
-		}  
-
+		if (MyNoteSection != '0') {
+			$('#MyNoteQueue' + MyNoteSection).val(AddSpace(aryMyNoteQueue.join('\n'), '\n'));
+		}
 
 		MyNoteCheckClear(); 
 	}

@@ -75,14 +75,14 @@ to add:
 ***************************************/
 var wordbreakdata = "";
 $.getScript("dictionary/000_wordbreakdata_Pali_Pali_grammar_Dictionary_extract_DPR_2018.js");
-//$.getScript("dictionary/dpr-breakup.js");
-dprBreakup = '';
+$.getScript("dictionary/dpr-breakup.js");
+//dprBreakup = '';
 
 
 // this var declaration has lines by language..
 var pc1 = ''; var pc2 = '';
 var pd1 = '';
-var pe1 = ''; var pe2 = ''; var pe3 = ''; var pe4 = ''; var pe5 = ''; var pe6 = ''; var pe7 = '';
+var pe1 = ''; var pe2 = ''; var pe3 = ''; var pe4 = ''; var pe5 = ''; var pe6 = ''; var pe7 = ''; var pe8 = '';
 var pg1 = '';
 var pi1 = '';
 var pm1 = ''; var pm2 = ''; var pm3 = ''; var pm4 = '';
@@ -144,6 +144,7 @@ function initDictionaries(){
 			if ( name == 'hpe5') {$.getScript("dictionary/pe5_Pali_Grammar_Dictionary@DPR_2018.js"); }
 			if ( name == 'hpe6') {$.getScript("dictionary/pe6_Pali_Proper_Names_G_P_Malalasekera@2018.js"); }
 			if ( name == 'hpe7') {$.getScript("dictionary/pe7_Pali_English_Dictionary_extract@Janaka_2020.js"); }
+			if ( name == 'hpe8') {$.getScript("dictionary/pe8_uped.js"); }
 			if ( name == 'hpg1') {$.getScript("dictionary/pg1_Pali_Germany_sc2016_pi2de-maindata-v1.2.js"); }
 			if ( name == 'hpi1') {$.getScript("dictionary/pi1_Pali_India_Dictionary@Janaka_2020.js"); }
 			if ( name == 'hpm1') {$.getScript("dictionary/pm1_Pali_Word_Grammar_@2018.js"); }
@@ -255,7 +256,6 @@ function cleanSelectedWord(t) {
 			}
 		}
 	}
-	//console.log('cleaned', t);
 	return t;
 }
 
@@ -295,6 +295,7 @@ function selectWord(word) {
 }
 
 function word_click(word) {
+
 	if (word) {
 		selectWord(word);
 	} else {
@@ -352,10 +353,10 @@ function word_click2() {
         var ary_tmp = t0.split(' '); 
         t = ary_tmp[ary_tmp.length -1];
 
-        if (ary_tmp.length != 1) {
-        	console.log(t_backward + '  ' + t_forward);
-        	console.log('*** t ***  ' + t);
-        }	
+        //if (ary_tmp.length != 1) {
+        //	console.log(t_backward + '  ' + t_forward);
+        //	console.log('*** t ***  ' + t);
+        //}	
 
 		// Selection so far:
 		//

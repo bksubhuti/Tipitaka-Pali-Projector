@@ -114,6 +114,7 @@ function DeclensionSearch() {
 			if (ary_dict[i] == 'hpe5') {get_keys = get_keys + GetKeys(pe5, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hpe6') {get_keys = get_keys + GetKeys(pe6, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hpe7') {get_keys = get_keys + GetKeys(pe7, d_name, key, get_keys);}
+			if (ary_dict[i] == 'hpe8') {get_keys = get_keys + GetKeys(pe8, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hpg1') {get_keys = get_keys + GetKeys(pg1, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hpi1') {get_keys = get_keys + GetKeys(pi1, d_name, key, get_keys);}
 			if (ary_dict[i] == 'hpm1') {get_keys = get_keys + GetKeys(pm1, d_name, key, get_keys);}

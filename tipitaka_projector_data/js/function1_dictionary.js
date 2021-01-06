@@ -166,6 +166,7 @@ function dictionaryMap() {
 		hpe5: pe5,
 		hpe6: pe6,
 		hpe7: pe7,
+		hpe8: pe8,
 		hpg1: pg1,
 		hpi1: pi1,
 		hpm1: pm1,

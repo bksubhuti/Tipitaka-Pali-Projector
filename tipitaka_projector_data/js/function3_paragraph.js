@@ -119,6 +119,7 @@ function LookupDictionary(key) {
 		if ((ary_dict[i] == 'hpe5') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe5, d_name, key);}
 		if ((ary_dict[i] == 'hpe6') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe6, d_name, key);}
 		if ((ary_dict[i] == 'hpe7') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe7, d_name, key);}
+		if ((ary_dict[i] == 'hpe8') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe8, d_name, key);}
 		if ((ary_dict[i] == 'hpg1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pg1, d_name, key);}
 		if ((ary_dict[i] == 'hpi1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pi1, d_name, key);}
 		if ((ary_dict[i] == 'hpm1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pm1, d_name, key);}
@@ -150,12 +151,9 @@ function WordAnalysis3(key, fallBackToWordAnalysis2) {
 	// the DPR word break up data is based on an algorithm ran on words (tokens) as directly used in the texts, so no
 	// additional processing is needed other than making the key lowercase
 	// 
-	console.log(typeof dprBreakup);
-	if (typeof dprBreakup !== 'object') {
-		$.getScript("dictionary/dpr-breakup.js");
-	}
-
-
+	//if (typeof dprBreakup !== 'object') {
+	//	$.getScript("dictionary/dpr-breakup.js");
+	//}
 
 	const entry = dprBreakup[key.toLowerCase()];
 	if (entry) {
@@ -226,7 +224,6 @@ function WordAnalysis2(key) {
 			ary[i] = ary[i] + 'ṃ';
 			ary[i+1] = ary[i+1].substring(1);
 		}
-		//console.log(ary[i] + '   ');
 	}  
 	ary[lenx] = ' ';
 	ary[lenx +1] = ' '; 

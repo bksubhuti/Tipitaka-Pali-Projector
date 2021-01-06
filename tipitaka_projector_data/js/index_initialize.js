@@ -66,6 +66,7 @@
         'pe5':'PGD',
         'pe6':'PPN',
         'pe7':'PES',
+        'pe8':'PEU',
         'pg1':'PGeD',
         'pi1':'PInD',
         'pm1':'MmG',
