@@ -1,4 +1,4 @@
-console.log("checking prefs ");
+console.log("checking prefs "); 
 checkPrefsExist();
 
 

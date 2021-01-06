@@ -1,4 +1,4 @@
-//global variable ;
+//global variable ; 
 var gbJustLookingBack = false;
 
 function paliGoBack() { 

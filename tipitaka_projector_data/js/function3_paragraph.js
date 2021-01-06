@@ -1,4 +1,4 @@
-function ParagraphAnalysis() {
+function ParagraphAnalysis() { 
 	if (typeof P_HTM == 'undefined') { 
 		return;
 	}

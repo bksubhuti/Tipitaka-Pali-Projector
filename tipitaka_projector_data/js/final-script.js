@@ -1,4 +1,4 @@
-function afterWordClicked(word, tdr1) {
+function afterWordClicked(word, tdr1) { 
 
 	if (latestElementClickedJqueryObject) {
 		$(latestElementClickedJqueryObject).removeClass("recentClickedCSSleft");

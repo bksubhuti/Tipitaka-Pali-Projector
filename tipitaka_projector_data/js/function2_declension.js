@@ -8,7 +8,7 @@ function GetKeys(ary, dname, key, ret_key) {
 	} else {
 		if (key.substring(0, 1) == '*') {	//fuzzy
 			key = key.substring(1);
-			key_x = '1';
+			key_x = '1'; 
 		}
 	}
 
