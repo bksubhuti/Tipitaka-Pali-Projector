@@ -104,6 +104,13 @@ function toTranslateRight(input, viewRightConfig) {
 }
 
 function change_tab(id) {
+	if (id === 'page1') {
+		$('.helper').hide();
+		const tab = $(`li#${id}`)[0];
+		if (tab.dataset.helper) {
+			$(`.helper.${tab.dataset.helper}`).show();
+		}
+	}
 	if (id.indexOf('pg4_') == -1) {
 		document.write = localStorage.setItem('main_content', id);
 		for (var i =1; i<=5; i++) {
