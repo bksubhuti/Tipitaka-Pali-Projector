@@ -1319,46 +1319,16 @@
 
         function toGetScrollId() {
             if (typeof(P_HTM) != undefined) {
-                var container = document.getElementById("main_td2");
                 var tr = document.getElementById('main_table').getElementsByTagName("tr");
-                var td = document.getElementById('main_table').getElementsByClassName("r1");
-                var i = 0;
-                var tr_len = tr.length;
-                if (0 < tr_len) {
-                    // get curOldTrId
-                    var OldTrId = parseInt(localStorage.getItem('tr_id'));
-                    var strOldTrId = '' + OldTrId;
-                    if (strOldTrId == 'NaN') {
-                        OldTrId = 1;
-                        strOldTrId= '1';
-                    }
-                    var i1 = Math.max(0, OldTrId -5);
-                    var i2 = Math.min(tr_len -1, OldTrId + 5);
-                    for (i=i1; i<=i2; i++) {
-                        var curOldTrId = td[i];
-                        var i3 = (curOldTrId.id).substr(1)
-                        if (i3 == strOldTrId) {
-                            break;
-                        }
-                        if (strOldTrId < i3) {
-                            strOldTrId = i3;
-                            break;
-                        }
-                    }
 
-                    var parRect = container.getBoundingClientRect();
-                    var oldCurect = curOldTrId.getBoundingClientRect();
-                    if ((oldCurect.top <= parRect.height) && (0 <= (oldCurect.top + oldCurect.height))) {
-                        // in range 
-                    } else {
-                        for (var i = 0; i < tr_len; i++) {
-                            var cur = td[i];
-                            if (isElementPartiallyInViewport(container, cur)) {
-                                break;
-                            }
-                        }
-                        GetTrId(parseInt((cur.id).substr(1)));
-                        //$('#m' + i).click();
+                const trCount = tr.length;
+                for (let i = 0; i < trCount; i++) {
+                    const element = tr[i];
+                    const top = element.getBoundingClientRect().top;
+                    if (top > 0) {
+                        const id = parseInt(element.firstChild.id.slice(1))
+                        GetTrId(id);
+                        break;
                     }
                 }
             }
