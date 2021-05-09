@@ -643,6 +643,7 @@ function Put(input) {
 		'P':61, 'Q':62, 'R':63,
 		'S':71, 'T':72, 'U':73,
 				'V':82, 'W':83};
+	v1Bold = v1Bold || '';
 	for (var i=65; i<=87; i++) {
 		var v2 = String.fromCharCode(i);
 		var v3 = ';' + ary[v2] + ';';
@@ -657,6 +658,7 @@ function Put(input) {
 
 	//
 	var aryBold3 = [];
+	v1Bold = v1Bold || '';
 	aryBold2 = v1Bold.split(';');
 	for (i=1; i<=aryBold2.length; i=i+2) {
 		aryBold3[aryBold2[i]] = aryBold2[i +1];
