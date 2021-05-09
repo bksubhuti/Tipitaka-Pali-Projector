@@ -65,6 +65,9 @@ function TmpDictionarySave(id) {
 function DictionaryGo() {
 	$('#lookup-results').empty();
 
+
+
+
 	SetDictionaryClassColor();
 
 
@@ -76,7 +79,7 @@ function DictionaryGo() {
 
 	jDictInfo.key = key;
 
- 
+
 	if (key == '') { return(''); } 
 	$('#DictionaryKey').val(toTranslate(key));
 
@@ -97,6 +100,15 @@ function DictionaryGo() {
 			DictionaryRet = DictionaryRet + '<a href="javascript:void(0);" id="G_' + key + '" onClick="OpenOnce(\'' + key + '\')" style="font-weight:900;" >' + toTranslate(key) + '&nbsp;</a>&nbsp;&nbsp;';
 			DictionaryRet = DictionaryRet + DoAnalysis(key) + '</div>';
 		}	
+	}
+
+	const peuIsSelected = $('#jpe8:checked').length > 0;
+	let inUpedKey = undefined;
+	if (peuIsSelected) {
+		inUpedKey = CheckInUped(key);
+		if (inUpedKey) {
+			DictionaryRet = inUpedKey + DictionaryRet;
+		}
 	}
 
 

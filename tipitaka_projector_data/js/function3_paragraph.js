@@ -74,6 +74,27 @@ function OpenOnce(key) {
 	var winref = window.open('analysis.htm?k=' + key, 'analysis', '', false); 
 }
 
+function CheckInUped(key) {
+	const len = key.length;
+	if (len < 5) {
+		return undefined;
+	}
+	// first try to direct match
+	for (let i = 0; i < 5; i++) {
+		const word = key.slice(0, len-i);
+		const keys = GetKeys(pe8, 'pe8', word, '');
+		if (keys.length > 2) {
+			const cleanKeys = keys
+				.replace(/##/g, '#')
+				.split('#')
+				.filter(key => key)
+				.map(key => key.slice(1));
+			return LookupDictionary(cleanKeys[0]);
+		}
+	}
+	return undefined;
+}
+
 function LookupTwoMethod(key, tail) {
 	var ret = '';
 	var get_data = LookupDictionary(key); 
