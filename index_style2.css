@@ -1,0 +1,219 @@
+/* static - don't move these */
+
+.div_selectx {
+  font-family:Tahoma;visibility:hidden;display:scroll;position:fixed;width:100%;height:220px;top:0px;right:0px;background-color:#ffffc0;overflow-y:scroll;max-height:50%;
+}
+
+.div_selectx_Dict {
+  font-family:Tahoma;visibility:hidden;display:scroll;position:fixed;width:100%;height:220px;top:0px;right:0px;background-color:#ffffc0;overflow-y:scroll;max-height:100%;
+}
+
+.div_border {
+  color:blue;padding:4px;margin-left:1%;margin-right:1%;background:#F7DBD0; border:1px dashed orange;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;
+}
+
+p {
+  border-top: 0in; border-bottom: 0in;
+  padding-top: 0in; padding-bottom: 0in;
+  margin-top: 0in; margin-bottom: 0.5cm;
+}
+/*.note {color:#880000}*/
+.BookTip {
+  position: absolute; display: none;
+  z-index: 999; outline: none;
+  font-size:13pt;
+  padding:5px;margin-left:0%;margin-right:0%;background:#F7DBD0;color:black;
+  border:1px dashed orange;border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;-o-border-radius:10px;
+}
+
+.font10 {
+  font-size:10pt;
+}
+
+/*  */
+/*.b1	{ font-size: 24pt; text-indent: 2em;}*/
+.b2	{ text-align:center; font-weight: bold;}
+.c3	{  text-align:center;}						/* Namo tassa, and nitthita -- no unique structural distinction */
+.c4	{  text-align:center; font-weight: bold;}
+.g5	{  margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 1 */
+.g6	{  margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 2 */
+.g7	{  margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 3 */
+.g8	{  margin-bottom: 0.5em; margin-left: 4em;}	/* Gatha last line */
+.h9	{  text-indent: 2em;}
+.ia	{  text-indent: 2em; margin-left: 3em;}
+.nb	{  text-align:center; font-weight: bold;}
+.sc	{  text-align:center; font-weight: bold;}
+.sd	{  text-align:center; font-weight: bold;}
+.te	{  text-align:center; font-weight: bold;}
+.uf	{ }
+
+/*  */
+.m_b1 { text-indent: 2em;}
+.m_b2 {  text-align:center; font-weight: bold;}
+.m_c3 {  text-align:center;}						/* Namo tassa, and nitthita -- no unique structural distinction */
+.m_c4 {  text-align:center; font-weight: bold;}
+.m_g5 {  margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 1 */
+.m_g6 {  margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 2 */
+.m_g7 {  margin-bottom: 0em; margin-left: 4em;}	/* Gatha line 3 */
+.m_g8 {  margin-bottom: 0.5em; margin-left: 4em;}	/* Gatha last line */
+.m_h9 {  text-indent: 2em;}
+.m_ia {  text-indent: 2em; margin-left: 3em;}
+.m_nb {  text-align:center; font-weight: bold;}
+.m_sc {  text-align:center; font-weight: bold;}
+.m_sd {  text-align:center; font-weight: bold;}
+.m_te {  text-align:center; font-weight: bold;}
+.m_uf { }
+
+.blue { color:blue;}
+
+h1
+{
+  text-align:center;
+  font-size:25px;
+  margin-top:25px;
+  color:#BEF781;
+}
+h1 p
+{
+  text-align:center;
+  margin:0px;
+  font-size:12px;
+  text-decoration:underline;
+  color:white;
+}
+#main_div
+{
+  -moz-border-radius:8px;
+  -o-border-radius:8px;
+  -webkit-border-radius:8px;
+  background-color: #cfff80;
+  border-radius:8px 8px 8px 8px;
+  border-top-right-radius: 0px;
+  border:5px solid #777777;
+  bottom:0px;
+  display:none;
+  height:99%;
+  left:0px;
+  line-height: 28px;
+  margin-left:0px;
+  margin-top: 0px;
+  padding-top: 0px;
+  padding-right: 5px;
+  padding-bottom:20pt;
+  padding-left:5px;
+  position:fixed;
+  z-index:99;
+}
+#main_div li
+{
+  display:inline;
+  list-style-type:none;
+  background-color:#88aA88;
+  padding:5px;
+  border-radius:5px 5px 0px 0px;
+  color:#292A0A;
+  padding-top: 3px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-right: 5px;
+}
+#main_div li.notselected
+{
+  padding-top: 3px;
+  background-color:#88aA88;
+  color:#292A0A;
+}
+#main_div li.selected
+{
+  padding-top: 3px;
+  background-color:#ddffdd;
+  color:#ff0000;
+}
+#main_div .hidden_desc
+{
+  display:none;
+  visibility:hidden;
+}
+
+#main_content
+{
+  /*height:99%;*/
+}
+
+
+*{
+  margin:0;
+  padding:0;
+}
+#ResizeDrag{
+  position:absolute;
+  right: 0;
+  bottom: 0;
+  cursor:nw-resize;
+  overflow:hidden;
+  float:right;
+  z-index:3;
+}
+
+#ResizeRight{
+  width:10px;
+  height:100%;
+  background:#f00;
+  position:absolute;
+  right:0;
+  top:0;
+  cursor: e-resize;
+  overflow:hidden;
+  filter:alpha(opacity:0);
+  opacity:0;
+  z-index:3;
+}
+#ResizeBottom{
+  width:100%;
+  height:10px;
+  background:#f00;
+  position:absolute;
+  left:0;
+  bottom:0;
+  cursor:n-resize;
+  overflow:hidden;
+  filter:alpha(opacity: 0;);
+  opacity: 0;
+  z-index:3;
+}
+#divDragIcon{
+  cursor:move;
+  overflow:hidden;
+
+}
+#divDragIcon img {
+  display: block;
+}
+
+.pages {height:auto;}
+.pages2 {display:inline-block;height: auto;}
+
+.DeclensionSelect {font-size:12pt;width: inherit;color:blue;}
+.DeclensionResult {
+  display:inline-block;
+  /*overflow-x:scroll;*/
+  /*overflow-y: scroll;*/
+  vertical-align: top;
+  border: 0px solid #555555;
+  height:98%;
+  width:inherit;
+  line-height: 150%;
+  font-size:12pt;
+  padding:3px;
+}
+
+.page3_desc {display:inline-block;overflow-x:scroll;overflow-y:scroll;vertical-align: top;padding:5px; border: 0px solid #555555;height:98%;width:98%;z-index: 9}
+
+
+.page5 {display:inline-block;overflow-x:scroll;vertical-align: top;border: 0.5px solid #555555;width:100%; line-height: 150%;font-size:13pt;padding-left: 3px;}
+
+.main_td1 {display:auto;overflow-x:scroll;vertical-align: top;border: 0.5px solid #555555;height:100%; width:49%; line-height: 150%;font-size:13pt;padding-left: 3px;}
+
+.main_td2 {overflow-x: hidden;overflow-y: auto;min-height: 101%; position: fixed;top: 0px;left: 300px;z-index: 3;display:inline-block;vertical-align: top;height:100%;margin-left: 15px;}
+
+.DictionaryClass {padding:3px;margin-bottom: 5px;}
