@@ -117,27 +117,31 @@ function PaliHistoryList() {
 			url +='<a href="javascript:void(0);" onClick="PaliHistoryGoUrl(\'' + strLastHistory + '\');"> Latest</a>';
 		} 
 		$('#LastHistory').html(url);	
-
-		var PaliHistoryArray = [];
-		PaliHistoryArray = JSON.parse(localStorage.getItem('PaliHistoryJSON'));
-		if (PaliHistoryArray != null){// use JSON objects instead
-			var url = '';
-			url += '<br>';
-
-			for (i in PaliHistoryArray) {
-				url += '<span style="white-space: pre;">';
-				url += '<input type="checkbox" id="PaliHist' + i + '" unchecked value="' + PaliHistoryArray[i].html_no + '"/>';
-				url += '<a href="javascript:void(0);" onClick="PaliHistoryGoUrl(\'' + PaliHistoryArray[i].html_no + "#" + PaliHistoryArray[i].paraNo +  '\');" title="' + bookData.flat[PaliHistoryArray[i].html_no].title + '">' 
-				url += toTranslate(bookData.flat[PaliHistoryArray[i].html_no].title); //pass html_no to get the title of book
-				url += '&nbsp;' +'/ '  + toTranslate(PaliHistoryArray[i].Toc_Name);
-				url += '&nbsp;#';
-				url += PaliHistoryArray[i].paraNo + '</a><br>';
-				url += '</span>';
-			} 
-			$("#palihistory").html(url);
-		}
 	}
 
+	var PaliHistoryArray = [];
+	PaliHistoryArray = JSON.parse(localStorage.getItem('PaliHistoryJSON'));
+
+	if (PaliHistoryArray != null){// use JSON objects instead
+		var url = '';
+		url += '<br>';
+
+		for (const history of PaliHistoryArray) {
+			const bookDataInfo = bookData.flat[history.html_no];
+			if (!bookDataInfo) {
+				continue;
+			}
+			url += '<span style="white-space: pre;">';
+			url += '<input type="checkbox" id="PaliHist' + i + '" unchecked value="' + history.html_no + '"/>';
+			url += '<a href="javascript:void(0);" onClick="PaliHistoryGoUrl(\'' + history.html_no + "#" + history.paraNo +  '\');" title="' + bookDataInfo.title + '">'
+			url += toTranslate(bookDataInfo.title); //pass html_no to get the title of book
+			url += '&nbsp;' +'/ '  + toTranslate(history.Toc_Name);
+			url += '&nbsp;#';
+			url += history.paraNo + '</a><br>';
+			url += '</span>';
+		}
+		$("#palihistory").html(url);
+	}
 }
 
 function PaliHistoryClear(type) {
