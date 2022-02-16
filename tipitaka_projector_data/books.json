@@ -1707,6 +1707,167 @@
 				]
 			 }
 		  ]
-	   }
+	   },
+	   {
+		"name":"Pāḷi/English",
+		"sets":[
+		   {
+			  "name":"Dīghanikāya",
+			  "texts":[
+				{
+					"index":1,
+					"bookId":9201,
+					"title":"1. Sīlakkhandhavagga",
+					"rows":4243
+				 },
+				 {
+					"index":2,
+					"bookId":9202,
+					"title":"2. Mahāvagga (Dīgha)",
+					"rows":6673
+				 }, 
+				 {
+					"index":3,
+					"bookId":9203,
+					"title":"3. Pāthikavagga",
+					"rows":5376
+				 }
+			  ]
+		   },
+		   {
+			"name":"Majjhimanikāya",
+			"texts":[
+			   {
+				  "index":1,
+				  "bookId":9301,
+				  "title":"1. Mūlapaṇṇāsa",
+				  "rows":8720
+			   },
+			   {
+				  "index":2,
+				  "bookId":9302,
+				  "title":"2. Majjhimapaṇṇāsa",
+				  "rows":9804
+			   },
+			   {
+				  "index":3,
+				  "bookId":9303,
+				  "title":"3. Uparipaṇṇāsa",
+				  "rows":8374
+			   }
+			]
+		 },
+		 {
+			"name":"Saṃyuttanikāya",
+			"texts":[
+				{
+				   "index":1,
+				   "bookId":4101,
+				   "title":"1. Sagāthāvagga",
+				   "rows":3498
+				},
+				{
+				   "index":2,
+				   "bookId":4102,
+				   "title":"2. Nidānavagga",
+				   "rows":1427
+				},
+				{
+				   "index":3,
+				   "bookId":4103,
+				   "title":"3. Khandhavagga",
+				   "rows":1467
+				},
+				{
+				   "index":4,
+				   "bookId":4104,
+				   "title":"4. Saḷāyatanavagga",
+				   "rows":2020
+				},
+				{
+				   "index":5,
+				   "bookId":4105,
+				   "title":"5. Mahāvagga (Saṃyutta)",
+				   "rows":2852
+				}
+			 ]
+	  },
+
+		 {
+			"name":"Aṅguttaranikāya",
+			"texts":[
+				{
+				   "index":1,
+				   "bookId":5101,
+				   "title":"1. Ekakanipāta",
+				   "rows":400
+				},
+				{
+				   "index":2,
+				   "bookId":5102,
+				   "title":"2. Dukanipāta",
+				   "rows":318
+				},
+				{
+				   "index":3,
+				   "bookId":5103,
+				   "title":"3. Tikanipāta",
+				   "rows":1336
+				},
+				{
+				   "index":4,
+				   "bookId":5104,
+				   "title":"4. Catukkanipāta",
+				   "rows":1950
+				},
+				{
+				   "index":5,
+				   "bookId":5105,
+				   "title":"5. Pañcakanipāta",
+				   "rows":1632
+				},
+				{
+				   "index":6,
+				   "bookId":5106,
+				   "title":"6. Chakkanipāta",
+				   "rows":857
+				},
+				{
+				   "index":7,
+				   "bookId":5107,
+				   "title":"7. Sattakanipāta",
+				   "rows":791
+				},
+				{
+				   "index":8,
+				   "bookId":5108,
+				   "title":"8. Aṭṭhakanipāta",
+				   "rows":1041
+				},
+				{
+				   "index":9,
+				   "bookId":5109,
+				   "title":"9. Navakanipāta",
+				   "rows":502
+				},
+				{
+				   "index":10,
+				   "bookId":5110,
+				   "title":"10. Dasakanipāta",
+				   "rows":1604
+				},
+				{
+				   "index":11,
+				   "bookId":5111,
+				   "title":"11. Ekādasakanipāta",
+				   "rows":245
+				}
+			 ]
+	  }
+
+		   
+		]
+	 }
+
 	]
  }
