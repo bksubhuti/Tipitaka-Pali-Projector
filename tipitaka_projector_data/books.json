@@ -1762,33 +1762,33 @@
 			"texts":[
 				{
 				   "index":1,
-				   "bookId":4101,
+				   "bookId":9401,
 				   "title":"1. Sagāthāvagga",
-				   "rows":3498
+				   "rows":7206
 				},
 				{
 				   "index":2,
-				   "bookId":4102,
+				   "bookId":9402,
 				   "title":"2. Nidānavagga",
-				   "rows":1427
+				   "rows":6292
 				},
 				{
 				   "index":3,
-				   "bookId":4103,
+				   "bookId":9403,
 				   "title":"3. Khandhavagga",
-				   "rows":1467
+				   "rows":7541
 				},
 				{
 				   "index":4,
-				   "bookId":4104,
+				   "bookId":9404,
 				   "title":"4. Saḷāyatanavagga",
-				   "rows":2020
+				   "rows":8983
 				},
 				{
 				   "index":5,
-				   "bookId":4105,
+				   "bookId":9405,
 				   "title":"5. Mahāvagga (Saṃyutta)",
-				   "rows":2852
+				   "rows":9746
 				}
 			 ]
 	  },

@@ -2,9 +2,9 @@ var P_Tag = [];
 var P_Par = [];
 var P_Toc = [];
 P_Tag[1]='c3';
-P_Tag[2]='nb';
-P_Tag[3]='nb';
-P_Tag[4]='nb';
+P_Tag[2]='nx';
+P_Tag[3]='nx';
+P_Tag[4]='nx';
 P_Tag[5]='nb';
 P_Tag[6]='b1';
 P_Tag[7]='b1';
@@ -1591,7 +1591,7 @@ P_Tag[1587]='bx';
 P_Tag[1588]='bx';
 P_Tag[1589]='bx';
 P_Tag[1590]='bx';
-P_Tag[1591]='nb';
+P_Tag[1591]='nx';
 P_Tag[1592]='nb';
 P_Tag[1593]='b1';
 P_Tag[1594]='b1';
@@ -3345,7 +3345,7 @@ P_Tag[3341]='bx';
 P_Tag[3342]='bx';
 P_Tag[3343]='bx';
 P_Tag[3344]='bx';
-P_Tag[3345]='nb';
+P_Tag[3345]='nx';
 P_Tag[3346]='nb';
 P_Tag[3347]='b1';
 P_Tag[3348]='b1';
@@ -5047,7 +5047,7 @@ P_Tag[5043]='bx';
 P_Tag[5044]='bx';
 P_Tag[5045]='bx';
 P_Tag[5046]='bx';
-P_Tag[5047]='nb';
+P_Tag[5047]='nx';
 P_Tag[5048]='nb';
 P_Tag[5049]='b1';
 P_Tag[5050]='b1';
@@ -6919,7 +6919,7 @@ P_Tag[6915]='bx';
 P_Tag[6916]='bx';
 P_Tag[6917]='bx';
 P_Tag[6918]='bx';
-P_Tag[6919]='nb';
+P_Tag[6919]='nx';
 P_Tag[6920]='nb';
 P_Tag[6921]='b1';
 P_Tag[6922]='b1';
@@ -8377,134 +8377,28 @@ P_Tag[8373]='bx';
 P_Tag[8374]='b1';
 
 
-for (var xx=1; xx<=8374; xx++) {
-	if (P_Tag[xx] == 'b1') {
-		P_Tag[xx] = '<p class="b1">&nbsp;<b>*</b><br>*<span style="color:maroon">&nbsp;*</span><br><br></p>*';
-	} else {
-		if (P_Tag[xx] == 'bx') {
+for (var xx=1; xx<=8374; xx++) { 
+	switch (P_Tag[xx]) { 
+		case 'b1' :
+			P_Tag[xx] = '<p class="b1">&nbsp;<b>*</b><br>*<span style="color:maroon">&nbsp;*</span><br><br></p>*';
+			break;
+		case 'bx' : 	// no English
 			P_Tag[xx] = '<p class="b1">&nbsp;*</p>* **';
-		} else {
-			if (P_Tag[xx] == 'nb') {
-				P_Tag[xx] = '<p class="nb">&nbsp;*</p>* **';
-			} else {
-				P_Tag[xx] = '<p class="c3">&nbsp;*</p>* **';
-			}
-		}
-	}
+			break;
+		case 'nb' :
+			P_Tag[xx] = '<p class="nb">&nbsp;*</p>*<p class="b1" align="center"><span style="color:maroon">&nbsp;*</span></p>*';
+			break; 
+		case 'nx' : 	// no English
+			P_Tag[xx] = '<p class="nb">&nbsp;*</p>* **';
+			break;
+		case 'c3' :
+			P_Tag[xx] = '<p class="c3">&nbsp;*</p>* **';
+			break;
+	} 
+
 	P_Par[xx]='p' + xx;
 }
 
-
-P_Toc[0]='p3';
-P_Toc[1]='p5';
-P_Toc[2]='p338';
-P_Toc[3]='p456';
-P_Toc[4]='p583';
-P_Toc[5]='p746';
-P_Toc[6]='p948';
-P_Toc[7]='p982';
-P_Toc[8]='p1128';
-P_Toc[9]='p1297';
-P_Toc[10]='p1530';
-P_Toc[11]='p1753';
-P_Toc[12]='p1755';
-P_Toc[13]='p1886';
-P_Toc[14]='p2241';
-P_Toc[15]='p2391';
-P_Toc[16]='p2534';
-P_Toc[17]='p2796';
-P_Toc[18]='p2878';
-P_Toc[19]='p2960';
-P_Toc[20]='p3109';
-P_Toc[21]='p3231';
-P_Toc[22]='p3315';
-P_Toc[23]='p3317';
-P_Toc[24]='p3543';
-P_Toc[25]='p3901';
-P_Toc[26]='p4004';
-P_Toc[27]='p4142';
-P_Toc[28]='p4340';
-P_Toc[29]='p4705';
-P_Toc[30]='p4905';
-P_Toc[31]='p5070';
-P_Toc[32]='p5250';
-P_Toc[33]='p5410';
-P_Toc[34]='p5412';
-P_Toc[35]='p5558';
-P_Toc[36]='p5725';
-P_Toc[37]='p5842';
-P_Toc[38]='p5893';
-P_Toc[39]='p6127';
-P_Toc[40]='p6486';
-P_Toc[41]='p6595';
-P_Toc[42]='p7039';
-P_Toc[43]='p7229';
-P_Toc[44]='p7297';
-P_Toc[45]='p7299';
-P_Toc[46]='p7420';
-P_Toc[47]='p7541';
-P_Toc[48]='p7723';
-P_Toc[49]='p7860';
-P_Toc[50]='p7956';
-P_Toc[51]='p8131';
-P_Toc[52]='p8214';
-P_Toc[53]='p8323';
-P_Toc[54]='p8485';
-P_Toc[0]='p3';
-P_Toc[1]='p5';
-P_Toc[2]='p194';
-P_Toc[3]='p267';
-P_Toc[4]='p366';
-P_Toc[5]='p574';
-P_Toc[6]='p653';
-P_Toc[7]='p1034';
-P_Toc[8]='p1147';
-P_Toc[9]='p1241';
-P_Toc[10]='p1351';
-P_Toc[11]='p1642';
-P_Toc[12]='p1644';
-P_Toc[13]='p1777';
-P_Toc[14]='p1898';
-P_Toc[15]='p2079';
-P_Toc[16]='p2201';
-P_Toc[17]='p2411';
-P_Toc[18]='p2612';
-P_Toc[19]='p2740';
-P_Toc[20]='p2916';
-P_Toc[21]='p3019';
-P_Toc[22]='p3219';
-P_Toc[23]='p3221';
-P_Toc[24]='p3266';
-P_Toc[25]='p3426';
-P_Toc[26]='p3549';
-P_Toc[27]='p3652';
-P_Toc[28]='p3914';
-P_Toc[29]='p4153';
-P_Toc[30]='p4504';
-P_Toc[31]='p4665';
-P_Toc[32]='p4864';
-P_Toc[33]='p4962';
-P_Toc[34]='p4964';
-P_Toc[35]='p5161';
-P_Toc[36]='p5594';
-P_Toc[37]='p5774';
-P_Toc[38]='p5944';
-P_Toc[39]='p6496';
-P_Toc[40]='p6703';
-P_Toc[41]='p6852';
-P_Toc[42]='p6979';
-P_Toc[43]='p7137';
-P_Toc[44]='p7306';
-P_Toc[45]='p7308';
-P_Toc[46]='p7615';
-P_Toc[47]='p7819';
-P_Toc[48]='p8062';
-P_Toc[49]='p8264';
-P_Toc[50]='p8568';
-P_Toc[51]='p8710';
-P_Toc[52]='p8941';
-P_Toc[53]='p9233';
-P_Toc[54]='p9502';
 P_Toc[0]='p3';
 P_Toc[1]='p5';
 P_Toc[2]='p366';

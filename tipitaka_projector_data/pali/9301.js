@@ -2,9 +2,9 @@ var P_Tag = [];
 var P_Par = [];
 var P_Toc = [];
 P_Tag[1]='c3';
-P_Tag[2]='nb';
-P_Tag[3]='nb';
-P_Tag[4]='nb';
+P_Tag[2]='nx';
+P_Tag[3]='nx';
+P_Tag[4]='nx';
 P_Tag[5]='nb';
 P_Tag[6]='b1';
 P_Tag[7]='b1';
@@ -1754,7 +1754,7 @@ P_Tag[1750]='bx';
 P_Tag[1751]='bx';
 P_Tag[1752]='bx';
 P_Tag[1753]='bx';
-P_Tag[1754]='nb';
+P_Tag[1754]='nx';
 P_Tag[1755]='nb';
 P_Tag[1756]='b1';
 P_Tag[1757]='b1';
@@ -3316,7 +3316,7 @@ P_Tag[3312]='bx';
 P_Tag[3313]='bx';
 P_Tag[3314]='bx';
 P_Tag[3315]='bx';
-P_Tag[3316]='nb';
+P_Tag[3316]='nx';
 P_Tag[3317]='nb';
 P_Tag[3318]='b1';
 P_Tag[3319]='b1';
@@ -5411,7 +5411,7 @@ P_Tag[5407]='bx';
 P_Tag[5408]='bx';
 P_Tag[5409]='bx';
 P_Tag[5410]='bx';
-P_Tag[5411]='nb';
+P_Tag[5411]='nx';
 P_Tag[5412]='nb';
 P_Tag[5413]='b1';
 P_Tag[5414]='b1';
@@ -7298,7 +7298,7 @@ P_Tag[7294]='bx';
 P_Tag[7295]='bx';
 P_Tag[7296]='bx';
 P_Tag[7297]='bx';
-P_Tag[7298]='nb';
+P_Tag[7298]='nx';
 P_Tag[7299]='nb';
 P_Tag[7300]='b1';
 P_Tag[7301]='b1';
@@ -8723,23 +8723,27 @@ P_Tag[8719]='bx';
 P_Tag[8720]='bx';
 
 
-for (var xx=1; xx<=8720; xx++) {
-	if (P_Tag[xx] == 'b1') {
-		P_Tag[xx] = '<p class="b1">&nbsp;<b>*</b><br>*<span style="color:maroon">&nbsp;*</span><br><br></p>*';
-	} else {
-		if (P_Tag[xx] == 'bx') {
+for (var xx=1; xx<=8720; xx++) { 
+	switch (P_Tag[xx]) { 
+		case 'b1' :
+			P_Tag[xx] = '<p class="b1">&nbsp;<b>*</b><br>*<span style="color:maroon">&nbsp;*</span><br><br></p>*';
+			break;
+		case 'bx' : 	// no English
 			P_Tag[xx] = '<p class="b1">&nbsp;*</p>* **';
-		} else {
-			if (P_Tag[xx] == 'nb') {
-				P_Tag[xx] = '<p class="nb">&nbsp;*</p>* **';
-			} else {
-				P_Tag[xx] = '<p class="c3">&nbsp;*</p>* **';
-			}
-		}
-	}
+			break;
+		case 'nb' :
+			P_Tag[xx] = '<p class="nb">&nbsp;*</p>*<p class="b1" align="center"><span style="color:maroon">&nbsp;*</span></p>*';
+			break; 
+		case 'nx' : 	// no English
+			P_Tag[xx] = '<p class="nb">&nbsp;*</p>* **';
+			break;
+		case 'c3' :
+			P_Tag[xx] = '<p class="c3">&nbsp;*</p>* **';
+			break;
+	} 
+
 	P_Par[xx]='p' + xx;
 }
-
 
 P_Toc[0]='p3';
 P_Toc[1]='p5';
