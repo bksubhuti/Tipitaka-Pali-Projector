@@ -1718,19 +1718,19 @@
 					"index":1,
 					"bookId":9201,
 					"title":"1. Sīlakkhandhavagga",
-					"rows":4243
+					"rows":4244
 				 },
 				 {
 					"index":2,
 					"bookId":9202,
 					"title":"2. Mahāvagga (Dīgha)",
-					"rows":6673
+					"rows":6094
 				 }, 
 				 {
 					"index":3,
 					"bookId":9203,
 					"title":"3. Pāthikavagga",
-					"rows":5376
+					"rows":5957
 				 }
 			  ]
 		   },
@@ -1798,69 +1798,69 @@
 			"texts":[
 				{
 				   "index":1,
-				   "bookId":5101,
+				   "bookId":9501,
 				   "title":"1. Ekakanipāta",
-				   "rows":400
+				   "rows":1129
 				},
 				{
 				   "index":2,
-				   "bookId":5102,
+				   "bookId":9502,
 				   "title":"2. Dukanipāta",
-				   "rows":318
+				   "rows":1461
 				},
 				{
 				   "index":3,
-				   "bookId":5103,
+				   "bookId":9503,
 				   "title":"3. Tikanipāta",
-				   "rows":1336
+				   "rows":46666
 				},
 				{
 				   "index":4,
-				   "bookId":5104,
+				   "bookId":9504,
 				   "title":"4. Catukkanipāta",
-				   "rows":1950
+				   "rows":6474
 				},
 				{
 				   "index":5,
-				   "bookId":5105,
+				   "bookId":9505,
 				   "title":"5. Pañcakanipāta",
-				   "rows":1632
+				   "rows":5671
 				},
 				{
 				   "index":6,
-				   "bookId":5106,
+				   "bookId":9506,
 				   "title":"6. Chakkanipāta",
-				   "rows":857
+				   "rows":3290
 				},
 				{
 				   "index":7,
-				   "bookId":5107,
+				   "bookId":9507,
 				   "title":"7. Sattakanipāta",
-				   "rows":791
+				   "rows":2918
 				},
 				{
 				   "index":8,
-				   "bookId":5108,
+				   "bookId":9508,
 				   "title":"8. Aṭṭhakanipāta",
-				   "rows":1041
+				   "rows":3868
 				},
 				{
 				   "index":9,
-				   "bookId":5109,
+				   "bookId":9509,
 				   "title":"9. Navakanipāta",
-				   "rows":502
+				   "rows":2103
 				},
 				{
 				   "index":10,
-				   "bookId":5110,
+				   "bookId":9510,
 				   "title":"10. Dasakanipāta",
-				   "rows":1604
+				   "rows":6170
 				},
 				{
 				   "index":11,
-				   "bookId":5111,
+				   "bookId":9511,
 				   "title":"11. Ekādasakanipāta",
-				   "rows":245
+				   "rows":966
 				}
 			 ]
 	  }
