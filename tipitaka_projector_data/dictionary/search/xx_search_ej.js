@@ -1,3 +1,3 @@
-pws = {
-'eja':'V2#V2','ejadhātu':'V1','ejati':'L1V3','ejatāya':'Q1','ejaṃ':'P4Q2#Q2','ejena':'J1','ejjā':'V1','ejā':'D4E1F2J6K1L1P17Q3S4T2V12#E1K1L1P3Q3T1V2','ejābhaggo':'V1','ejāhetūnaṃ':'Q1','ejākhinno':'V1','ejāmutto':'V1','ejānaṃ':'Q1','ejānugatā':'P1#Q1','ejānugatāti':'Q1','ejānugo':'P1Q1#Q1','ejānugoti':'Q1','ejānugā':'P6#P3Q1','ejānugāti':'P1Q1','ejānusaṭā':'P1#Q1','ejānusaṭāti':'Q1','ejāsamugghātaṃ':'V1#V1','ejāsamugghātoyeva':'V1','ejāsaṅkhatāya':'V1','ejāsaṅkhātataṇhāvirahitaṃ':'V1','ejāsaṅkhātāya':'C1F2I1K1O1Q6U1V1','ejāsuñño':'V1','ejāti':'E1K2V1','ejāya':'E1K1N1P7Q3V2#Q1V1'
+pwsEn = {
+'ejected':'[2'
 }

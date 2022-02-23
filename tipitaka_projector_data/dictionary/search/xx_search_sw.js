@@ -1,0 +1,3 @@
+pwsEn = {
+'sword':'X29Y56Z16[38','swift':'X10Y1Z25[40','sweet':'X13Y10Z19[16','sway':'X8Y10Z25[7','swords':'X16Y15Z4[3','swamped':'Y19Z2[11','swiftly':'X5Z1[25','sweat':'X2Y13Z2[11','swept':'X1Y12Z2[9','swallow':'X2Y3Z4[8','swimming':'X4Y6Z4[2','swallowed':'X2Y2Z9','swell':'X7Z2[3','sweep':'X1Y2Z2[7','swamp':'X1Y4Z1[2','sweetest':'Y1Z4[2','sweeps':'Y4Z1[2','swelling':'Z6','swollen':'X1[5','swiftness':'Y6','sweetness':'[4','swirling':'Z2[2','swallowing':'Y3Z1','swells':'X1[2','swordsmanship':'[3','sweating':'X1Y2','swallows':'X1Y1','sweltering':'Z2','sweets':'[2','switched':'Y2','swooped':'Z2','swayed':'[1','sworn':'Z1','swindlers':'X1','swineherd':'X1','swaddling':'Y1','sweaty':'Z1','swear':'Z1','swans':'Z1','swam':'Z1','swoop':'X1','swelled':'X1'
+}

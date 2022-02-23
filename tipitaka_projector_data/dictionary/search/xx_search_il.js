@@ -1,3 +1,3 @@
-pws = {
-'ila':'V16#V16','ilanti':'V1','ilati':'F1V6','ilatīti':'V2','ilayati':'V1','ilayatīti':'V1','ilaṅgorājavaṃsajo':'V1','ileti':'V1','ille':'V3','illigho':'V1','illisa':'Q3','illisabhāvaṃ':'Q2','illisajātakavaṇṇanā':'Q2','illisajātakaṃ':'P2Q1#Q1','illisamahāseṭṭhi':'Q1','illisanti':'P1','illisaseṭṭhi':'Q2','illisaseṭṭhino':'Q2','illisaseṭṭhinā':'Q1','illisaseṭṭhissa':'Q1','illisaseṭṭhivatthusmiṃ':'V1#V1','illisaseṭṭhiṃ':'Q1','illisassa':'Q1','illisato':'P1','illiso':'Q5V1','illisopi':'Q1','illiyañca':'Q2','illiyā':'Q1#Q1','illiyācāpadhāribhi':'P7Q5','illiyācāpadhāribhī':'#Q2','illiyācāpadhāribhīti':'Q2','illiyācāpadhārine':'P1Q1','illiyācāpadhārino':'P1Q1','illiyāvudhañca':'Q1','illo':'V1','illī':'V2#V1','illīhatthā':'P1Q1','ilo':'V22','ilope':'V1','ilopo':'V13','ilī':'#V1','ilīpi':'V1'
+pwsEn = {
+'ill':'X95Y152Z103[187','illness':'X22Y3Z12[35','illegitimate':'X2Z18[23','illustrious':'X12Y6Z4[12','illicit':'X3[3','illegitimately':'X5','illuminated':'Y2Z2','illuminating':'X2Y1','illusion':'Y1Z1[1','illustrate':'Z1[1','illnesses':'[2','illuminates':'X1','illuminate':'Z1','illusions':'Z1'
 }

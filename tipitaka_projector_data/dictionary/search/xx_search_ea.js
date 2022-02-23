@@ -1,0 +1,3 @@
+pwsEn = {
+'earth':'X61Y171Z137[124','ear':'X31Y118Z251[69','each':'X64Y144Z66[148','eat':'X26Y108Z56[124','easy':'X23Y59Z52[91','eating':'X39Y112Z23[43','east':'X33Y20Z70[11','eager':'X21Y21Z1[65','easily':'X14Y26Z34[20','ears':'X10Y46Z9[24','eastern':'X16Y21Z15[28','ease':'X2Y32Z22[15','eaten':'X13Y26Z7[9','eats':'X1Y20Z4[26','earn':'X16Y10Z8[6','earthquake':'X21Z1[17','early':'X5Y8Z12[13','earns':'X1Y4Z1[16','earned':'X1Y1Z1[15','earrings':'X1Y5Z2[4','earnings':'X1[6','earlier':'X1Y3Z1[1','eagerly':'Y3[2','eater':'Y1Z1[3','earthquakes':'X1[2','earning':'Y2','earnest':'Z2','earthworms':'Y1','eagles':'Z1','earring':'Z1','eagerness':'[1'
+}

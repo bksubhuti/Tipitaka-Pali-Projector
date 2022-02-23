@@ -1,3 +1,3 @@
-pws = {
-'slā':'V1'
-};
+pwsEn = {
+'slopes':'X5Y4Z95[6','sleep':'X5Y3Z29[68','slants':'X1Y3Z85[6','slightest':'X7Y6Z2[45','sleeping':'X9Y22Z11[15','slow':'X12Y12Z3[29','slack':'Y16Z1[22','slacking':'X4Y4Z3[26','slope':'Y1Z31[3','slant':'Y1Z28[1','slanting':'Y1Z26[1','slowly':'X2Y2Z8[11','slit':'X1Y7Z14','slaughtered':'X4Y3Z1[12','slaughter':'X4Y5Z1[9','sluggishness':'Z4[11','sluggish':'Z11[3','slough':'X8Y4','sloth':'Y2Z6[3','slain':'X2Y2Z3[4','sleeps':'Y1Z2[7','sleepiness':'Z6[3','slicing':'Y6Z1[1','slighted':'Z6','slept':'X1Z1[4','slanderer':'Z2[3','slip':'X2Z1[2','slave':'Y4','sloping':'Y2Z1[1','slightly':'[3','slanted':'Z3','slays':'[3','sloped':'Z3','slide':'Y1Z1[1','slaughterer':'Y2[1','slavery':'X2Y1','sloshing':'Y2','sliced':'X1Y1','slay':'[2','slackly':'[2','slumber':'Z2','slammed':'Y2','slaughters':'Y2','slipping':'Z2','slipped':'Z1[1','slitting':'Y1Z1','slither':'Z1','slanders':'Z1','slimmed':'Z1','slice':'Y1','sleepyhead':'Z1','slackness':'[1','slaughterers':'[1','slices':'Y1','slaying':'Z1','sly':'[1'
+}

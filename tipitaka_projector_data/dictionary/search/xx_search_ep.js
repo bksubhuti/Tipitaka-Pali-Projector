@@ -1,0 +1,3 @@
+pwsEn = {
+'epilepsy':'[1'
+}

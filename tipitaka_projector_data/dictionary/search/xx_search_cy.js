@@ -1,3 +1,3 @@
-pws = {
-'cyanto':'V1','cyantā':'V1','cyatthe':'V4','cyatthoccāsaṅkiya':'V1'
-};
+pwsEn = {
+'cycle':'X6Y10Z33[12','cymbals':'Y1[5','cylindrical':'X4Y1','cycles':'Y1'
+}

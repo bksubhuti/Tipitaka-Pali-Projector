@@ -1,0 +1,3 @@
+pwsEn = {
+'furthermore':'X206Y236Z54[483','fully':'X209Y181Z214[272','full':'X137Y229Z207[302','future':'X100Y252Z298[220','fulfilled':'X9Y11Z24[301','fulfill':'X1Y33Z44[84','fuel':'Y26Z74[51','further':'X29Y41Z28[35','fuels':'Y3Z58','fueled':'Z10[35','fulfills':'Y9Z9[24','fundamentals':'X6Y10Z15[5','fullness':'X4[22','fun':'Y5Z4[10','fundamental':'X6[10','fulfilling':'Z1[14','funeral':'X9Z1[1','fuming':'Y3Z5','fulfillment':'X2Y4','furious':'X1Z5','fumes':'Y1[4','fume':'[4','furrows':'Y1Z1[2','fury':'Z2','fullest':'X1[1','fussy':'X2','furrow':'Z1','funding':'X1','futile':'Z1','furnace':'[1'
+}

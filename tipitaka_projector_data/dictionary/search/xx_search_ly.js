@@ -1,3 +1,3 @@
-pws = {
-'lyapalopotyaviseso':'V1','lyaplope':'V1','lyaplopo':'V1','lyappaccayassa':'V1','lyattaṃ':'V1','lyatthā':'V1','lyā':'V2#V1'
+pwsEn = {
+'lying':'X33Y63Z34[79','lye':'Z2[1','lyrics':'X1'
 }
