@@ -688,8 +688,8 @@ function Clear() {
     localStorage.setItem("Sr_key", '');
     $('#key').val('');
     document.getElementById('key').focus();
-    for (x = 1; x <= 3; x++) {
-        for (y = 1; y <= 8; y++) {
+    for (x = 1; x <= 5; x++) {
+        for (y = 1; y <= 9; y++) {
             var name1 = 'Kex' + y + x;
             $('#' + name1).html('');
             var name1 = 'Out' + y + x;
