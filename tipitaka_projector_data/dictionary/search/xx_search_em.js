@@ -1,3 +1,3 @@
-pwsEn = {
-'empty':'X20Y58Z54[44','emotional':'X10Y31Z1[60','emptiness':'X1Y40Z12[4','emerge':'X17Y15Z3[14','embracing':'X4Y7Z5[32','emancipating':'X23Y10Z10[3','emerging':'X7Y3Z24[8','emerged':'X13Y12Z8[6','emerges':'X9Y8Z1[19','eminent':'X5Y15Z3[10','embarrassed':'X3Y5Z1[12','emotions':'Y10[4','embroidered':'X5Y1Z1[7','employees':'X2Y3Z2[6','embryo':'X3Y7[1','emerald':'X10','emetic':'[9','embryos':'X3Y3Z3','embedded':'X1Z5[3','embrace':'X2Y5Z1','emergence':'Y1Z1[5','embankments':'X2Z4[1','emaciated':'Y7','emissaries':'X6','emancipation':'X2Y1Z3','employ':'Z4','emetics':'X3Y1','emotionally':'Y4','emancipators':'Y4','empties':'[3','emancipated':'X2Y1','emulate':'[3','embers':'X3','embraces':'X1[2','embodiment':'X2','emphasizing':'Y1[1','employee':'Y2','emulating':'Y2','embody':'Z2','empowered':'[2','embraced':'X1Z1','emit':'[2','emeralds':'[2','emigrated':'X1','employed':'Z1','empathize':'Z1','emblems':'Z1','empathy':'Z1'
+pws = {
+'ema':'V3','emamettha':'E1','emantā':'V1','emava':'V1','emha':'Q1','emhe':'V2#V1','emi':'P2Q1V3','emu':'V4','emutte':'V1','emī':'Q1'
 }

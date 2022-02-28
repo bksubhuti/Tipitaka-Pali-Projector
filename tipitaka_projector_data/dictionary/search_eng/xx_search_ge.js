@@ -1,0 +1,3 @@
+pwsEn = {
+'get':'X121Y235Z262[460','getting':'X13Y38Z48[88','generosity':'X9Y34Z11[119','gets':'X14Y35Z40[74','gentleman':'X15Y48Z14[83','gentlemen':'X27Y66Z25[27','generate':'X10Y22Z23[21','generous':'X1Y4Z10[29','general':'X3Y16[20','generation':'X12Y11Z2[9','genuine':'X8Y12Z3[5','generates':'X2Y6Z9[7','gentle':'X2Y3Z13[6','gem':'X8Y10Z1[4','gems':'X4Y2Z5[9','gently':'X1Y2Z3[13','genuinely':'X14Z1','gentleness':'X2Z3[9','generally':'Y6Z5[2','generated':'Y1Z9','generating':'Y6','generations':'Y3Z1[1','generals':'X4','generalizations':'Y2[1','generalization':'Y1[2','geomancy':'X2Z1','gender':'X1Y1','germinate':'[2','genitals':'Y1','geese':'Z1','gesticulates':'[1'
+}

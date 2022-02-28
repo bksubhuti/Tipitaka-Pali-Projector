@@ -1,0 +1,3 @@
+pwsEn = {
+'over':'X125Y201Z293[252','overcome':'X2Y24Z50[107','overflowing':'Z63[45','overwhelming':'X6Y22Z8[21','overturned':'X15Y19Z12[9','overwhelmed':'X1Y6Z20[15','overexertion':'Y16Z2[3','overcoming':'X1Y4Z4[6','overjoyed':'X9Z2[2','overlord':'Y13','overwhelm':'Y4Z6[2','overly':'Y10Z1','overestimation':'Y3[6','overseer':'[8','overturn':'Z8','overrun':'Z1[6','override':'Y7','overstaying':'[5','overgrown':'Z2[2','overestimate':'[4','overseen':'[4','overspend':'[4','overflow':'Y1[2','overlooking':'[3','overriding':'Y2','overflows':'Y1Z1','overestimates':'[2','overstep':'Y1Z1','overhang':'Z1','overthrow':'Z1','ovens':'Y1','overcame':'[1','overcomes':'[1','overpowers':'X1'
+}

@@ -1,0 +1,3 @@
+pwsEn = {
+'irritable':'X4Y14Z3[43','iron':'X10Y14Z16[22','irrefutable':'X8Y3[10','irrelevant':'Y8[7','irredeemable':'Y1[10','irrational':'Y10','irreverent':'[9','irrationally':'X7Y1','irreproachable':'[8','irritability':'Y6','irreversible':'Y4','irrigation':'[4','ironed':'Z2','irritation':'X2','irrigate':'[2','irrigators':'Y1','irrationality':'Z1','irregular':'Z1','irresistible':'Z1','irreversibly':'[1'
+}

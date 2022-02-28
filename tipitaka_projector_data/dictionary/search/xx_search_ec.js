@@ -1,3 +1,3 @@
-pwsEn = {
-'eclipse':'X2[1','eczema':'[1'
-}
+pws = {
+'eccevaṃ':'K1','ecāti':'V1'
+};

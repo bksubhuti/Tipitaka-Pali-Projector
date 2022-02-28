@@ -1,0 +1,3 @@
+pwsEn = {
+'kinds':'X154Y296Z358[569','king':'X528Y346Z214[275','kind':'X147Y239Z135[300','killing':'X37Y64Z41[113','kill':'X15Y26Z24[120','kings':'X49Y30Z22[75','kills':'X1Y21Z10[47','kindness':'X13Y19Z7[39','kingship':'X4Y4[55','killed':'X8Y12Z10[19','kin':'X13Y26[9','killer':'Y7Z21[10','kindly':'X16Y6Z2[13','kimbila':'Y13Z7[13','kinsman':'X8Y3Z6[5','kindling':'Y1Z2[10','kidneys':'X2Y5Z2[2','kisses':'Y2Z3[1','kindled':'X1Y3[1','kingdoms':'X2Y2','kisa':'Y2[1','kingdom':'Y3','kiln':'Z1[1','kindle':'[2','kick':'Z2','killers':'X1Y1','kids':'Z1','kicked':'X1'
+}

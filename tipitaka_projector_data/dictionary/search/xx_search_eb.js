@@ -1,3 +1,3 @@
-pwsEn = {
-'ebony':'X3Y2[1'
+pws = {
+'ebhi':'V10#V1'
 }

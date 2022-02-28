@@ -1,0 +1,3 @@
+pwsEn = {
+'ubiquitous':'[2'
+}

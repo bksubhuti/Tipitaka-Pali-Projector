@@ -1,0 +1,3 @@
+pwsEn = {
+'his':'X732Y834Z698[697','him':'X476Y614Z695[511','higher':'X20Y32Z60[229','himself':'X41Y43Z39[50','high':'X51Y29Z27[51','hindrances':'X30Y28Z58[42','highest':'X20Y26Z35[15','hidden':'X17Y22Z22[13','hide':'X11Y20Z6[29','hill':'X5Y23Z3[13','hindered':'X1Y2Z25[9','himalayas':'X4Y4Z22[4','highway':'X5Y7Z7[4','hint':'X7Z12[2','hindrance':'Y2Z16','hit':'Y10Z3[4','hind':'Y8[7','hip':'X4Y4[2','hills':'Y3Z4[1','himalaya':'Z2[6','hinders':'[7','hinting':'X3Y1[2','hinder':'[5','highly':'Y4[1','hiding':'X1Y1[3','hilly':'Y1[2','highways':'X2Z1','hissed':'Z2','hides':'Z1[1','highness':'X2','hints':'[1','hiri':'X1','hiss':'Z1','himalayan':'Z1','hid':'Y1','hitching':'[1'
+}

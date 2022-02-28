@@ -1,0 +1,3 @@
+pwsEn = {
+'rules':'X16Y14Z9[109','rulers':'X24Y13Z13[26','ruin':'X18Y2Z17[15','run':'Y30Z10[8','running':'X10Y14Z7[4','ruler':'X4Y4Z9[14','rule':'X4Y8Z11[6','rude':'X2Y5Z7[11','runs':'X1Y1Z9[7','rub':'Y10Z3[3','ruined':'X1Y6Z4[5','rugged':'X1Y2Z3[9','rubbed':'Y11[1','rubbish':'X1Y7Z1[3','rug':'Y7Z2[1','ruby':'X10','rushes':'X3Z3[2','rubbing':'X3Y5','rugs':'X5[3','ruminate':'Y4[3','ruling':'Y1Z4[1','ruses':'Y1[4','rumor':'Z5','rush':'Z4','ruled':'X2Y2','ruminates':'Y4','rushed':'X1Z2','rudder':'Z1[2','rustle':'Y3','rusty':'Z2','rutting':'X1Y1','rubies':'[2','rustling':'Y2','ruining':'Z1','ruins':'Z1','rustled':'Y1','rumors':'X1','ruciras':'X1'
+}

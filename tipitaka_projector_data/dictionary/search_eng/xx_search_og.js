@@ -1,0 +1,3 @@
+pwsEn = {
+'oghavagga':'Z2'
+}

@@ -1,0 +1,3 @@
+pwsEn = {
+'escape':'X50Y82Z195[80','established':'X14Y61Z87[66','esteemed':'X17Y14Z13[50','establish':'X11Y19Z11[52','esteem':'X6Y6Z3[35','establishes':'Y5Z11[14','essential':'X1Y2Z3[23','establishing':'Y9Z6[13','escorted':'X3Y4Z3[6','escaped':'Y1Z6[9','essence':'Z1[11','escaping':'X5Y1[3','essentials':'[8','establishment':'Y6','esteeming':'[5','esteems':'[2','especially':'Y1[1','estimable':'Z1','estimation':'[1'
+}

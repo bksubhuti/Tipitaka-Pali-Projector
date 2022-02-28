@@ -1,3 +1,3 @@
-pwsEn = {
-'nymphs':'Y6Z4','nymph':'Y1'
+pws = {
+'nya':'V2#V5','nyakkehisattahi':'V1','nyantasamaṃ':'V1','nyasanaṃ':'V1','nyassa':'V5','nyassate':'V1','nyassañakāro':'V1','nyassañādeso':'V1','nyasyate':'V1','nyethavacanaṃ':'V1','nyetā':'V1','nyupāyā':'V1#V1','nyā':'V1','nyādayo':'V6','nyādi':'V2','nyādigaṇattā':'C1','nyādimhi':'V1','nyāsaganthamakāsi':'V1','nyāsaganthassaporāṇaṭīkaṃ':'V1','nyāsampanne':'V1','nyāsapakaraṇassa':'V1','nyāsapakaraṇaṭīkaṃ':'V1','nyāsappakaraṇaṃ':'V1','nyāsappaṇe':'V2#V1','nyāsasampannattho':'V1','nyāsasaṃ':'V1','nyāsasaṃvaṇṇanaṃ':'V1','nyāsasaṅkhāto':'V1','nyāsassa':'V3','nyāsassappane':'V1','nyāsayati':'V1','nyāsaṃ':'#V1','nyāsaṃpubbo':'F1V1','nyāse':'V1','nyāso':'V4','nyāsoti':'V1','nyāsādīnaṃ':'V2#V1','nyāsāropanasandhisu':'V1#V1','nyāsāropanasandhisū':'F1','nyāyabhāssa':'V1','nyāyadassane':'F1','nyāyamadhīte':'V1','nyāyamadhīteti':'V1','nyāyasiddhaṃ':'V1','nyāyasiddhaṃva':'V1','nyāyaṃ':'V1','nyāye':'V1','nyāyena':'C1V2','nyāyo':'V2#V1','nyāyogo':'V1','nyāyogā':'V1','nyāyopi':'V1','nyāyoti':'V1','nyūnamapi':'V1#V1','nyūnamapyatra':'V2'
 }

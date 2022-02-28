@@ -1,3 +1,3 @@
-pwsEn = {
-'glorious':'X50Y4Z29[16','glory':'X32Y28Z14[17','glowing':'X4Y32Z19[21','glorify':'X6Y42[3','gladdening':'Y5Z11[5','glows':'Y2Z7[3','glow':'Y4Z2[5','gladly':'Y3Z3[4','gladness':'X3Y4Z1','gleam':'Y8','glorifying':'Y7','glutton':'Y5[1','glen':'X2Y1[1','glob':'Y1[2','glance':'X1[1','glare':'X2','gluttony':'Y1[1','gluttonous':'[2','glowed':'X1','glanced':'Y1','glean':'Y1','glorifies':'Y1','gleaming':'X1','gleanings':'Z1','glides':'Z1','glue':'[1'
-}
+pws = {
+'gloso':'V1','glā':'V1'
+};

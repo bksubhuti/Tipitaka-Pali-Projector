@@ -1,0 +1,3 @@
+pwsEn = {
+'much':'X93Y123Z61[286','must':'X55Y61Z57[43','multiplying':'X5Y6Z18[8','murder':'X4Y11Z2[13','music':'X12Y6Z3[7','mustard':'Y2Z20[1','mutilating':'X1Y3Z15','mung':'X2Y9Z7[1','mustn':'X3Z9[4','mutilation':'X3Y6Z1[2','mud':'Y9Z1[1','mussel':'X4Y4[2','muddy':'X2Z3[5','murdered':'Z7[2','musila':'Z9','mutilate':'X1Y3Z5','mule':'Y3Z4[2','musicians':'X4Y1[2','murky':'X4Z1[2','murdering':'Y4[1','mutual':'X1Y4','mum':'X1Y2Z2','muscles':'X4Y1','murderer':'Z4[1','musical':'X2Z1[1','mucus':'X2Y2','muster':'Y4','multiplied':'Z4','mussels':'[3','mutters':'Z2','mutually':'[2','multitude':'Z1[1','multiplication':'X2','mushrooms':'X1','muzzle':'Z1','multiply':'[1','murders':'[1','mucalinda':'X1'
+}

@@ -1,0 +1,3 @@
+pwsEn = {
+'time':'X391Y651Z862[918','times':'X29Y19Z25[63','tint':'X40Y16[27','tied':'X10Y35Z17[21','tissa':'X12Y1Z24[14','tiny':'Y2Z39[4','tip':'X6Y5Z15[13','tired':'X23Y4Z1[6','tireless':'X6Y6Z5[16','tight':'X3Y23Z1[5','timely':'X6Y11Z1[13','ties':'X4Y1Z20[3','tie':'X2Y8Z9[6','timber':'X2Y1Z5[3','tightly':'X3Y1Z5[1','tips':'X2Y3Z2[2','tightening':'Y6Z1[1','timbaruka':'Z7','tigers':'X2Y3[2','timidity':'[6','tire':'X4Y2','tipped':'X1Y1Z1[2','timed':'X1[4','tighten':'Z1[4','timid':'X2[2','timbaru':'X4','ticket':'[4','tirelessly':'[4','tin':'X1Z1[1','tiles':'X3','title':'Z3','tivaras':'Z3','tittiriya':'X2','tidy':'Y2','timidly':'Z2','tilled':'[2','tiger':'X1[1','tidying':'Y1','tipcat':'Y1','tipping':'[1'
+}

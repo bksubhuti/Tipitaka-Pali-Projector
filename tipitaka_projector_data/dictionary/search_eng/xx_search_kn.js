@@ -1,0 +1,3 @@
+pwsEn = {
+'know':'X209Y463Z316[593','knowledge':'X210Y301Z391[500','known':'X92Y298Z239[230','knowing':'X47Y123Z164[156','knows':'X58Y138Z82[178','knower':'X20Y32Z18[39','knew':'X19Y48Z21[16','knowledges':'X13Y9Z17[37','knowledgeable':'X2Y5Z18[13','knife':'X1Y9Z8[6','knee':'X3Y9Z4[4','knelt':'X2Y6Z4[3','knees':'X5Y4[2','knowable':'Y6Z4','knot':'Y6Z3','knead':'X2Y3[1','knotted':'X1Z3[2','knives':'[6','knocked':'X1Y2[2','knock':'X1Y2[2','knocking':'Y1Z3','knowingly':'Y1[3','knitting':'[4','knotless':'X1','kneads':'Z1','knots':'Z1'
+}

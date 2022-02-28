@@ -1,0 +1,3 @@
+pwsEn = {
+'ojasi':'X1'
+}

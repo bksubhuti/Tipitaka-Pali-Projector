@@ -1,3 +1,3 @@
-pwsEn = {
-'oars':'Z1[2'
-}
+pws = {
+'oaaṃtthatthovhoka':'V2','oavādesā':'V1'
+};

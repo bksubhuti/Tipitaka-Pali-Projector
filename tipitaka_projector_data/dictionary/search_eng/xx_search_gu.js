@@ -1,0 +1,3 @@
+pwsEn = {
+'guide':'X24Y41Z29[67','guard':'X18Y16Z16[24','guarded':'X4Y2Z14[21','guarding':'X11Y6Z5[17','guest':'X10Y1Z15[10','guaranteed':'Y14Z1[10','guests':'X4Y4Z2[10','guards':'X3Y3Z3[8','guild':'Y4[13','guardian':'Y9[6','guides':'Y11[3','guardsmen':'X11','guarantee':'X1[7','gulpers':'[8','guilt':'Z1[5','guiding':'Z4[2','guided':'X2Y2[1','guidelines':'Y4','guessing':'X4','gulper':'[4','guilty':'Y2[1','gunda':'Y2[1','gullible':'[3','gutter':'[2','gushed':'Y2','gutted':'Y1[1','guttijita':'Y1','guidance':'X1','guardians':'Y1'
+}

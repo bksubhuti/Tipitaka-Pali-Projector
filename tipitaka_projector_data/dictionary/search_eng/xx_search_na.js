@@ -1,0 +1,3 @@
+pwsEn = {
+'name':'X82Y88Z221[28','named':'X139Y97Z64[59','namely':'X51Y42Z1[1','nature':'X7Y35Z21[22','natural':'X16Y4Z16[36','naked':'X21Y23Z12[3','nanda':'Y2Z15[42','native':'Y6Z23[14','nakula':'Z9[28','nandaka':'Y16Z4[16','naturally':'X8Y9Z13[4','nasty':'Y2Z3[26','nandiya':'Y12Z11[6','natured':'Z7[13','nails':'X2Y11Z4[2','names':'X8Y6Z2[3','nation':'X5Y3Z4','naivety':'X6[2','nagaraka':'Y4Z2','nagaravinda':'Y6','nap':'X4Y1','nail':'Z4','nations':'X3[1','nasal':'X3Y1','narrow':'X2Z1','nandana':'X1Z2','namuci':'X1Z1[1','nakedness':'Z2','nala':'X2','naught':'Z2','navel':'[2','nandas':'Y1','navanavutiya':'X1','nappy':'Z1'
+}
