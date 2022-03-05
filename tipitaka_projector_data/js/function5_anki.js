@@ -29,11 +29,13 @@ function AnkiAdd() {
         $('#CopyText').val(strAnkiLine);
 
         var blob = new Blob([strAnkiLine], {type: "text/plain;charset=utf-8"});
-        //saveAs(blob, 'AnkiImportFromTPP.tsv');
-        const element = document.createElement("a");
-        element.href = URL.createObjectURL(blob);
-        element.download = "AnkiImportFromTPP.tsv";
-        element.click();
+        
+        
+        fileDownload(strAnkiLine, 'AnkiImportFromTPP.tsv');
+        //const element = document.createElement("a");
+        //element.href = URL.createObjectURL(blob);
+        //element.download = "AnkiImportFromTPP.tsv";
+        //element.click();
     
 
 
