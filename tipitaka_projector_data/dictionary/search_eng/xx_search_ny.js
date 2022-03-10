@@ -1,3 +1,3 @@
 pwsEn = {
-'nymphs':'Y6Z4','nymph':'Y1'
+'nymphs':'Y6Z4\1','nymph':'Y1\1'
 }

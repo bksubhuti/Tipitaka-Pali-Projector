@@ -1,0 +1,3 @@
+pwsEn = {
+'ukkhepakatavaccha':'\1'
+}

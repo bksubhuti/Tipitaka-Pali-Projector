@@ -1791,8 +1791,7 @@
 				   "rows":9746
 				}
 			 ]
-	  },
-
+	 	 },
 		 {
 			"name":"Aṅguttaranikāya",
 			"texts":[
@@ -1863,11 +1862,47 @@
 				   "rows":966
 				}
 			 ]
+	  	},
+		  {
+			"name":"Khuddakanikāya",
+			"texts":[
+				{
+				   "index":1,
+				   "bookId":9608,
+				   "title":"Theragāthāpāḷi",
+				   "rows":6596
+				},
+				{
+				   "index":2,
+				   "bookId":9609,
+				   "title":"Therīgāthāpāḷi",
+				   "rows":2408
+				}
+			 ]
 	  }
-
-		   
-		]
-	 }
-
 	]
- }
+},
+	  {
+		"name":"English Texts",
+		"sets":[
+		   {
+			  "name":"Dhammapada Commentary",
+			  "texts":[
+				{
+					"index":1,
+					"bookId":6202,
+					"title":"Book 1",
+					"rows":2059
+				 },
+				 {
+					"index":1,
+					"bookId":6203,
+					"title":"Book 2",
+					"rows":3173
+				 }
+				]
+			}
+		]
+	}	
+  ] 
+}

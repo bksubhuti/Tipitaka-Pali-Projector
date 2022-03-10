@@ -1,3 +1,3 @@
 pwsEn = {
-'ivory':'X9Y3Z2'
+'ivory':'X9Y3Z2\1'
 }

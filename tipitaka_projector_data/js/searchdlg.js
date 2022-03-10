@@ -41,10 +41,14 @@ function SearchPali(SrhType) {
 
 		var max_length = 0;
 		for (x=1; x<=3; x++) {
-			for (y=1; y<=9; y++) {
+			for (y=1; y<=8; y++) {
 				$('#Out' + y + x).html('');
 				localStorage.setItem('Sr_Out' + y + x, '');
 			}
+		}
+		for (x=2; x<=6; x++) { 
+			$('#Out9' + x).html('');
+			localStorage.setItem('Sr_Out9' + x, ''); 
 		}
 
 		for (i in bookData.flat) {
@@ -56,7 +60,7 @@ function SearchPali(SrhType) {
 
 		//********************
 		// Pali Search
-		for (x=1; x<=5; x++) {
+		for (x=1; x<=6; x++) {
 			for (y=1; y<=9; y++) {
 				var name1 = 'Nikaya' + y + x;
 				var cx_file = 0;
@@ -81,12 +85,13 @@ function SearchPali(SrhType) {
 								//**********
 								// read file
 								//**********
-								var flag = '0'
-								var rawFile = new XMLHttpRequest();
+								var flag = '0' 
+								var rawFile = new XMLHttpRequest(); 
 								rawFile.open("GET", file, false);
-								rawFile.onreadystatechange = function () {
-									if (rawFile.readyState === 4) {
-										if (rawFile.status === 200 || rawFile.status == 0) {
+								rawFile.overrideMimeType("text/html"); 
+								rawFile.onreadystatechange = function () { 
+									if (rawFile.readyState === 4) { 
+										if (rawFile.status === 200 || rawFile.status == 0) { 
 											
 											var data =' ' +  rawFile.responseText + ' ';
 											var ary_source = data.split( "\n" );
@@ -318,9 +323,7 @@ function Keyin() {
         var len = key.length;
         var abc = 'abcdeghijklmnoprstuvyñāīūḍḷṃṅṇṭ';
         var eng = 'abcdefghijklmnopqrstuvwxyz';
-        if (2 <= len) {
-
- 
+        if (2 <= len) { 
             var out_tmp = "";
             if ((abc.indexOf(key.substr(0, 1)) != -1) && (abc.indexOf(key.substr(1, 1)) != -1)) {
 
@@ -339,7 +342,6 @@ function Keyin() {
             	var chk = 0;
                 for (x=1; x<=3; x++) {
 					for (y=1; y<=8; y++) {
-
 						var name1 = 'Nikaya' + y + x;
 						if (document.getElementById(name1).checked) {
 							if (name1 != 'Nikaya81') {
@@ -350,7 +352,7 @@ function Keyin() {
 				}
 
 				var chkEn = 0;
-				for (y=2; y<=5; y++) { 
+				for (y=2; y<=6; y++) { 
 					var name1 = 'Nikaya9' + y;
 					if (document.getElementById(name1).checked) { 
 						chkEn = chkEn +1; 
@@ -485,12 +487,13 @@ function Keyin() {
                 newscript.setAttribute('src', 'dictionary/search_eng/xx_search_' + key.substr(0, 2) + '.js');
                 var head = document.getElementsByTagName('head')[0];
                 head.appendChild(newscript);
+
  
-                if (pwsEn.length != 0) {
+                if (pwsEn.length != 0) { 
 	                //****************************************************
 	                // word count 
 	                var chk = 0;
-					for (y=2; y<=5; y++) { 
+					for (y=2; y<=6; y++) { 
 						var name1 = 'Nikaya9' + y;
 						if (document.getElementById(name1).checked) { 
 							chk = chk +1; 
@@ -504,7 +507,7 @@ function Keyin() {
 					//filterRegex = new RegExp(str);
 
 					var chkAll = false;
-					if ((chk == 0) || (4 <= chk)) {
+					if ((chk == 0) || (5 <= chk)) {
 						chkAll = true;
 					}
 	 
@@ -512,7 +515,8 @@ function Keyin() {
 						'X':92,
 						'Y':93,
 						'Z':94,
-						'[':95};
+						'[':95,
+						'\\':96};
 
 					var pwsSorted = [];
 					for (var k in pwsEn) { 
@@ -523,7 +527,7 @@ function Keyin() {
 							// eng search 
 							var paliCount = val.split('#')[0];
 
-							for (var i=88; i<=91; i++) {
+							for (var i=88; i<=92; i++) {
 								var v2 = String.fromCharCode(i);
 								var v3 = ';' + ary[v2] + ';';
 								paliCount = paliCount.replace(v2, v3);
@@ -573,7 +577,7 @@ function Keyin() {
 								break;
 							} 
 						}
-					}
+					} 
 		        	$('#out').html(out_tmp);
 		        }
             }
@@ -688,7 +692,7 @@ function Clear() {
     localStorage.setItem("Sr_key", '');
     $('#key').val('');
     document.getElementById('key').focus();
-    for (x = 1; x <= 5; x++) {
+    for (x = 1; x <= 6; x++) {
         for (y = 1; y <= 9; y++) {
             var name1 = 'Kex' + y + x;
             $('#' + name1).html('');
@@ -715,7 +719,7 @@ function choosePali(val) {
             }
         }
  
-        for (y = 2; y <= 5; y++) {
+        for (y = 2; y <= 6; y++) {
             key = 'Nikaya9' + y;
             document.getElementById(key).checked = chk;
         }  
@@ -728,7 +732,7 @@ function choosePali(val) {
         }
 
         if (v2 == '1') {
-	        for (y = 2; y <= 5; y++) {
+	        for (y = 2; y <= 6; y++) {
 	            key = 'Nikaya9' + y;
 	            document.getElementById(key).checked = chk;
 	        }  

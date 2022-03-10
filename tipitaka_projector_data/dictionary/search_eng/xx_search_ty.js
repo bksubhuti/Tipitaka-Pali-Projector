@@ -1,3 +1,3 @@
 pwsEn = {
-'type':'Y6','typically':'Y1Z2[2','typical':'X3','tying':'X2'
+'type':'Y6\1','typically':'Y1Z2[2','tying':'X2\1','typical':'X3'
 }

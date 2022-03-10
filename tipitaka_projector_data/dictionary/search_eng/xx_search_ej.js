@@ -1,3 +1,3 @@
 pwsEn = {
-'ejected':'[2'
+'ejected':'[2\1'
 }

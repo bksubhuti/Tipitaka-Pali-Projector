@@ -1,3 +1,3 @@
 pwsEn = {
-'pyre':'X10Y1Z1[1'
+'pyre':'X10Y1Z1[1\2'
 }

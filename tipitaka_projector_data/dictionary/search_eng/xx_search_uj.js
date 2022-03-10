@@ -1,3 +1,3 @@
 pwsEn = {
-'ujjaya':'Y1[4'
+'ujjaya':'Y1[4\1'
 }
