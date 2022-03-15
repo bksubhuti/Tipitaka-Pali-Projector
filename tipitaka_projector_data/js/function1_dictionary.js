@@ -136,14 +136,11 @@ function DictionaryGo() {
 							newtotal = newtotal + parseInt(ary2[i +1]); 
 						}
 
-						// yang
-						//showDialog('#search') 
-                        url = "onClick=\"showDialog('#search');$('#key').val('" + key +"');$('#key').focus();$('#key').trigger('keyup');\"";
-
+ 						//1111
 						if (DictionaryRet.indexOf('</b><br>') != -1) {
-							DictionaryRet = DictionaryRet.replace('</b><br>', '</b>&nbsp;<span ' + url + '>(' + newtotal +')</span><br>')
+							DictionaryRet = DictionaryRet.replace('</b><br>', '</b>&nbsp;<span onClick="OpenSearchDlg()">🔍 ' + newtotal +'</span><br>')
 						} else {
-							DictionaryRet = DictionaryRet.replace('</a>&nbsp;&nbsp;', '</a>&nbsp;<span ' + url + '>(' + newtotal +')</span>&nbsp;&nbsp;')	
+							DictionaryRet = DictionaryRet.replace('</a>&nbsp;&nbsp;', '</a>&nbsp;<span onClick="OpenSearchDlg()">🔍 ' + newtotal +'</span>&nbsp;&nbsp;')	
 						}
 					}
 				}
@@ -189,6 +186,86 @@ function DictionaryGo() {
 		}
 
 	}
+}
+
+function OpenSearchDlg() {
+	var key = $('#DictionaryKey').val().toLowerCase().trim();
+
+	showDialog('#search');
+	Clear();
+	$('#key').val(key);
+	$('#key').focus(); 
+
+	var rawFile = new XMLHttpRequest(); 
+	rawFile.open("GET", 'dictionary/search/xx_search_' + key.substr(0, 2) + '.js', false);
+	rawFile.overrideMimeType("text/html"); 
+	rawFile.onreadystatechange = function () { 
+		if (rawFile.readyState === 4) { 
+			if (rawFile.status === 200 || rawFile.status == 0) { 
+				var data = ' ' + rawFile.responseText.trim(); 
+
+				var ary = data.split("'" + key); 
+				var ary2 = ';'.split(';');
+				var ary3 = ';'.split(';');
+				var ary4 = ';'.split(';');
+				result = '';
+				cx = 0;
+				for (i=1; i<ary.length; i++) {
+					var ary2 = ary[i].split("':'");
+					tail = ary2[0];
+					tmp = ary2[1].split("'")[0];
+
+					//
+					for (var j=65; j<=87; j++) {
+						var v2 = String.fromCharCode(j);
+						var v3 = ';'
+						tmp = tmp.replace(v2, v3);
+						tmp = tmp.replace(v2, v3);
+					} 
+
+					ary3[0] = ';0' + tmp.split('#')[0];
+					ary3[1] = '' + tmp.split('#')[1];
+					if (ary3[1] == 'undefined') { 
+						ary3[1] = ';0'; 
+					}
+
+					for (j=0; j<=1; j++) { 
+						ary4 = ary3[j].split(';');
+						var newtotal = 0 ;
+						for (k=1; k<ary4.length; k++) { 
+							newtotal = newtotal + parseInt(ary4[k]); 
+						}
+						ary2[j] = newtotal;
+					}
+					paliCount = ary2[0];
+					boldCount = ary2[1]; 
+
+					result = result + '<a hef="javascript:void(0)" style="color:blue;" onclick="Put(\'' + key + tail + '\');">';
+					result = result + key + tail;
+					result = result + '</a>&nbsp;';
+
+					if (ary2[0] != 0) {
+						result = result + '<span style="font-size:9.5pt;color:#800080;">';
+						result = result + ary2[0];
+						result = result + '</span>,'; 
+					} 
+					if (ary2[1] != 0) {
+						result = result + '<b style="font-size:10pt;background-color:black;color:white;">';
+						result = result + '&nbsp;' + ary2[1] + '&nbsp;';
+						result = result + '</b>,';  
+					} 
+					result = result + '&nbsp;&nbsp;&nbsp;';
+					cx = cx +1;
+					if (cx > 99) {
+						result += " <span style='font-size:12pt;color:red;'>> 99...</span>";
+						break;
+					} 
+				} 
+		        $('#out').html(result); 
+			}
+		}
+	}
+	rawFile.send(null); 
 }
 
 function DictionaryKeyGo() {

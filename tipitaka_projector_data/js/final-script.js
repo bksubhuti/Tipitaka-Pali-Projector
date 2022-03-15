@@ -318,7 +318,7 @@ function  displayBook(inTableId) {
 		}
 
 		if (strMyNote.indexOf('"html_no":"' + html_no + '"') == -1) {
-			console.log(M_LOC);
+			//console.log(M_LOC);
 			for (i in M_LOC) {
 				var jMyNoteData = {};
 				jMyNoteData.html_no = html_no;
@@ -564,7 +564,7 @@ function  displayBook(inTableId) {
 			right_viewHtml = right_viewHtml.substr(20); // remove  <p class="g5">&nbsp;
 			right_viewHtml = '<p>' + right_viewHtml + '</p>';
 		}
-		console.log(idx + '  ' + right_viewHtml);
+		//console.log(idx + '  ' + right_viewHtml);
 		$(`${inTable} #m${idx}`).html(right_viewHtml);
 
 		if (viewRightConfig == "MyNote") {
