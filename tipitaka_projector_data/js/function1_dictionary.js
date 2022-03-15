@@ -111,6 +111,46 @@ function DictionaryGo() {
 		}
 	}
 
+	if (2 <= key.length) { 
+		var rawFile = new XMLHttpRequest(); 
+		rawFile.open("GET", 'dictionary/search/xx_search_' + key.substr(0, 2) + '.js', false);
+		rawFile.overrideMimeType("text/html"); 
+		rawFile.onreadystatechange = function () { 
+			if (rawFile.readyState === 4) { 
+				if (rawFile.status === 200 || rawFile.status == 0) { 
+					var data = ' ' + rawFile.responseText.trim(); 
+
+					if (data.indexOf("'" + key + "':'") != -1) {
+						var paliCount = data.split("'" + key + "':'")[1];
+						paliCount = paliCount.split("'")[0];
+						paliCount = paliCount.split("#")[0]; 
+
+						for (var i=65; i<=87; i++) {
+							var v2 = String.fromCharCode(i);
+							var v3 = ';' + ary[v2] + ';';
+							paliCount = paliCount.replace(v2, v3);
+						}
+						ary2 = paliCount.split(';');
+						var newtotal = 0 ;
+						for (i=1; i<ary2.length; i=i+2) { 
+							newtotal = newtotal + parseInt(ary2[i +1]); 
+						}
+
+						// yang
+						//showDialog('#search') 
+                        url = "onClick=\"showDialog('#search');$('#key').val('" + key +"');$('#key').focus();$('#key').trigger('keyup');\"";
+
+						if (DictionaryRet.indexOf('</b><br>') != -1) {
+							DictionaryRet = DictionaryRet.replace('</b><br>', '</b>&nbsp;<span ' + url + '>(' + newtotal +')</span><br>')
+						} else {
+							DictionaryRet = DictionaryRet.replace('</a>&nbsp;&nbsp;', '</a>&nbsp;<span ' + url + '>(' + newtotal +')</span>&nbsp;&nbsp;')	
+						}
+					}
+				}
+			}
+		}
+		rawFile.send(null);
+	}
 
 	$('#page1_desc').html(DictionaryRet);
 

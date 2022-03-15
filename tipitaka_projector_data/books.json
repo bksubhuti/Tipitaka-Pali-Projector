@@ -1867,15 +1867,22 @@
 			"name":"Khuddakanikāya",
 			"texts":[
 				{
-				   "index":1,
+					"index":1,
+					"bookId":6102,
+					"title":"Dhammapada",
+					"rows":1394
+				 },
+
+				{
+				   "index":2,
 				   "bookId":9608,
-				   "title":"Theragāthāpāḷi",
+				   "title":"Theragāthā",
 				   "rows":6596
 				},
 				{
-				   "index":2,
+				   "index":3,
 				   "bookId":9609,
-				   "title":"Therīgāthāpāḷi",
+				   "title":"Therīgāthā",
 				   "rows":2408
 				}
 			 ]
@@ -1895,13 +1902,60 @@
 					"rows":2059
 				 },
 				 {
-					"index":1,
+					"index":2,
 					"bookId":6203,
 					"title":"Book 2",
 					"rows":3173
 				 }
 				]
-			}
+			},
+			{
+				"name":"Jātaka Commentary",
+				"texts":[
+					{
+						"index":1,
+						"bookId":6217,
+						"title":"Jātaka Commentary-1",
+						"rows":3117
+					 },
+					 {
+						"index":2,
+						"bookId":6218,
+						"title":"Jātaka Commentary-2",
+						"rows":2997
+					 },
+					 {
+						"index":3,
+						"bookId":6219,
+						"title":"Jātaka Commentary-3",
+						"rows":4868
+					 },
+					 {
+						"index":4,
+						"bookId":6220,
+						"title":"Jātaka Commentary-4",
+						"rows":6738
+					 },
+					 {
+						"index":5,
+						"bookId":6221,
+						"title":"Jātaka Commentary-5",
+						"rows":5079
+					 },
+					 {
+						"index":6,
+						"bookId":6222,
+						"title":"Jātaka Commentary-6",
+						"rows":3688
+					 },
+					 {
+						"index":7,
+						"bookId":6223,
+						"title":"Jātaka Commentary-7",
+						"rows":6463
+					 }				  ]
+			  }
+  
 		]
 	}	
   ] 

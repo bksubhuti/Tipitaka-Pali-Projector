@@ -326,7 +326,6 @@ function Keyin() {
         if (2 <= len) { 
             var out_tmp = "";
             if ((abc.indexOf(key.substr(0, 1)) != -1) && (abc.indexOf(key.substr(1, 1)) != -1)) {
-
 				//*********************************************
 				// bold 
 				//
@@ -474,10 +473,10 @@ function Keyin() {
 							out_tmp += " <span style='font-size:12pt;color:red;'>> 99...</span>";
 							break;
 						} 
-					}
+					} 
 				}
-	        	$('#out').html(out_tmp);
-            }
+	        	$('#out').html(out_tmp); 
+            } 
 
             // english
             if ((eng.indexOf(key.substr(0, 1)) != -1) && (eng.indexOf(key.substr(1, 1)) != -1)) {
@@ -579,6 +578,7 @@ function Keyin() {
 						}
 					} 
 		        	$('#out').html(out_tmp);
+
 		        }
             }
         }
@@ -730,13 +730,6 @@ function choosePali(val) {
             key = 'Nikaya' + y + v2;
             document.getElementById(key).checked = chk;
         }
-
-        if (v2 == '1') {
-	        for (y = 2; y <= 6; y++) {
-	            key = 'Nikaya9' + y;
-	            document.getElementById(key).checked = chk;
-	        }  
-        }
     }
     if (v2 == 'x') {
         chk = document.getElementById('Nikaya' + v1).checked;
@@ -745,6 +738,16 @@ function choosePali(val) {
             document.getElementById(key).checked = chk;
         }
     }
+
+
+    if (v1 == 'e') {
+        chk = document.getElementById('ENG' + v2).checked;
+        for (y = 2; y <= 6; y++) {
+            key = 'Nikaya9' + y;
+            document.getElementById(key).checked = chk;
+        }  
+    }
+
 }
 
 function ShowOnTopClick(checked)
