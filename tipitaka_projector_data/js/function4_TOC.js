@@ -126,11 +126,13 @@ function PaliHistoryList() {
 		var url = '';
 		url += '<br>';
 
+		var i = -1;
 		for (const history of PaliHistoryArray) {
 			const bookDataInfo = bookData.flat[history.html_no];
 			if (!bookDataInfo) {
 				continue;
 			}
+			i = i +1;
 			url += '<span style="white-space: pre;">';
 			url += '<input type="checkbox" id="PaliHist' + i + '" unchecked value="' + history.html_no + '"/>';
 			url += '<a href="javascript:void(0);" onClick="PaliHistoryGoUrl(\'' + history.html_no + "#" + history.paraNo +  '\');" title="' + bookDataInfo.title + '">'

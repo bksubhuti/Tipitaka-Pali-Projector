@@ -244,6 +244,8 @@ function SearchPali(SrhType) {
 						localStorage.setItem('Sr_Out' + y + x, pali);
 						strTopResult = strTopResult + pali;
 
+						WriteSearchStorage(SrhType);
+
 					} else {
 						$('#Out' + y + x).html('');
 					}
@@ -847,3 +849,5 @@ function Put(input) {
 	}
 	SearchPali('F');
 }
+
+

@@ -146,7 +146,7 @@ function change_tab(id) {
 			DictHistoryList();
 		}
 	} else {
-		for (var i =1; i<=3; i++) {
+		for (var i =1; i<=4; i++) {
 			$("#pg4_page" + i +"_desc").css('display', "none");
 			document.getElementById("pg4_page" + i).className="notselected";
 		}

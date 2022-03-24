@@ -747,6 +747,12 @@
                         Bookmarks
                     </li>
 
+                    <span class="space"></span>
+
+                    <li class="notselected" id="pg4_page4" onclick="onTabClick(this);PaliSearchList();">
+                        Search
+                    </li>
+
                     <span class="filler"></span>
                 </ul>
                 <br>
@@ -852,8 +858,6 @@
 
                     <div id="pg4_page3_desc" class="pages" style="display:none;">
                         <div class="page4">
-
-
                             <div class="notselected grey-button" onClick="BookmarkAdd()" title="Add Bookmark">
                             <i class="material-icons">add</i>
                             </div>
@@ -870,6 +874,23 @@
 
                             <span id='bookmark' style="font-size:12pt;color:blue;"></span>
 
+                        </div>
+                    </div>
+
+                    <div id="pg4_page4_desc"  class="pages" style="display:none;">
+                        <div class="page4">
+                            <div class="notselected grey-button" onClick="PaliSearchCopy()" title="Copy Search History">
+                            <i class="material-icons">content_copy</i>
+                            </div>
+                            <div class="notselected grey-button" onClick="PaliSearchClear('Select')" title="Clear Selected">
+                            <i class="material-icons">delete_sweep</i>
+                            </div>
+                            <div class="notselected grey-button" onClick="PaliSearchClear('All')" title="Clear All">
+                            <i class="material-icons">delete</i>
+                            </div>
+                            <br>
+ 
+                            <span id='searchhistory' style="font-size:12pt;color:blue;"></span>
                         </div>
                     </div>
                 </div>
@@ -1379,6 +1400,7 @@
         'function4_TOC.js',
         'function4_mynote.js',
         'function4_bookmark.js',
+        'function4_search.js',
         'function5_copy.js',
         'function5_history.js',
         'function5_anki.js',
@@ -1617,7 +1639,7 @@
                 <input id="Nikaya21" type="checkbox" name="Nikaya21" onclick='choosePali("21")'/></input>
                 &nbsp;
                 <input id="Nikaya92" type="checkbox" name="Nikaya92" onclick='choosePali("92")'/></input>
-                <label for="Nikaya92">English</label>
+                <label for="Nikaya92" id="Label92">English</label>
                 <span style="color:red;font-weight:900;" id="Kex21"></span>
                 <span id="Out21"></span>
                 <span style="color:red;font-weight:900;" id="Kex92"></span>
@@ -1644,7 +1666,7 @@
                 <input id="Nikaya31" type="checkbox" name="Nikaya31" onclick='choosePali("31")'/></input>
                 &nbsp;
                 <input id="Nikaya93" type="checkbox" name="Nikaya93" onclick='choosePali("93")'/></input>
-                <label for="Nikaya93">English</label>
+                <label for="Nikaya93" id="Label93">English</label>
                 <span style="color:red;font-weight:900;" id="Kex31"></span>
                 <span id="Out31"></span>
                 <span style="color:red;font-weight:900;" id="Kex93"></span>
@@ -1671,7 +1693,7 @@
                 <input id="Nikaya41" type="checkbox" name="Nikaya41" onclick='choosePali("41")'/></input>
                 &nbsp;
                 <input id="Nikaya94" type="checkbox" name="Nikaya94" onclick='choosePali("94")'/></input>
-                <label for="Nikaya94">English</label>
+                <label for="Nikaya94" id="Label94">English</label>
                 <span style="color:red;font-weight:900;" id="Kex41"></span>
                 <span id="Out41"></span>
                 <span style="color:red;font-weight:900;" id="Kex94"></span>
@@ -1698,7 +1720,7 @@
                 <input id="Nikaya51" type="checkbox" name="Nikaya51" onclick='choosePali("51")'/></input>
                 &nbsp;
                 <input id="Nikaya95" type="checkbox" name="Nikaya95" onclick='choosePali("95")'/></input>
-                <label for="Nikaya95">English</label>
+                <label for="Nikaya95" id="Label95">English</label>
                 <span style="color:red;font-weight:900;" id="Kex51"></span>
                 <span id="Out51"></span>
                 <span style="color:red;font-weight:900;" id="Kex95"></span>
@@ -1725,7 +1747,7 @@
                 <input id="Nikaya61" type="checkbox" name="Nikaya61" onclick='choosePali("61")'/></input>
                 &nbsp;
                 <input id="Nikaya96" type="checkbox" name="Nikaya96" onclick='choosePali("96")'/></input>
-                <label for="Nikaya96">English</label>
+                <label for="Nikaya96" id="Label96">English</label>
                 <span style="color:red;font-weight:900;" id="Kex61"></span>
                 <span id="Out61"></span>
                 <span style="color:red;font-weight:900;" id="Kex96"></span>
@@ -2724,6 +2746,16 @@ The VRI pāḷi/Hindi dictionaries are not public domain and are copyrighted and
                 }
             }
         }
+
+        for (j = 2; j <= 6; j++) {
+            no = '' + j;
+            $('#Nikaya9' + no).css('display', dsp);
+            $('#Label9' + no).css('display', dsp);
+            $('#Out9' + no).html('');
+            if (document.getElementById('SearchType1').checked != true) {
+                $('#Kex9' + no).html('');
+            }
+        } 
         // document.getElementById('out').innerHTML = '';
     }
 
