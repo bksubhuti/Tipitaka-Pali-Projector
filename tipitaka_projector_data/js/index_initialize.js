@@ -38,12 +38,18 @@
         }
     }
 
+    /*
     if (!localStorage.getItem("PromptConfirm")) {
         document.write = localStorage.setItem("PromptConfirm", 'off');
     }
 
     if (!localStorage.getItem("AutoRestore")) {
         document.write = localStorage.setItem("AutoRestore", 'on');
+    }
+    */
+
+    if (!localStorage.getItem("RestoreType")) {
+        document.write = localStorage.setItem("RestoreType", 'auto');
     }
 
     // Dispaly Note
@@ -121,6 +127,7 @@
     } 
     localStorage.setItem('DictData', JSON.stringify(DictData));
 
+    /*
     // Speech Repeat
     if (!localStorage.getItem("speech_repeat")) {
         document.write = localStorage.setItem("speech_repeat", '0');
@@ -129,20 +136,17 @@
     if (!localStorage.getItem("speech_speed")) {
         document.write = localStorage.setItem("speech_speed", '1');
     }
+    */
 
     //-----------------------
     // Panel
     //-----------------------
-    // Panel Position
+    // Panel Position / Display
     var _init = '0';
-    if (!localStorage.getItem("contentposition")) {
-        document.write = localStorage.setItem("contentposition", '1');      // Floating
+    if (!localStorage.getItem("contentPosDisp")) {
+        document.write = localStorage.setItem("contentPosDisp", 'LeftFixed');
         var _init = '1';
     }
-    // Panel Display
-    if (!localStorage.getItem("contentdisplay")) {
-        document.write = localStorage.setItem("contentdisplay", '1');       // onClick
-    } 
     // panel position & size
     if (!localStorage.getItem("main_top")) {
         document.write = localStorage.setItem("main_top", '0px'); 

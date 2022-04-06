@@ -1,0 +1,3 @@
+pws = {
+'up':'D674G1486J1872M2408P161','upon':'D34G76J60M67P9','upset':'D8G23J18M26P3','uplifted':'D15G2J2M15P2','uprooting':'D2G2J23M4','upstream':'D1G1J9M11P1','upside':'D2G7M13','upper':'D6G3J8M4','upright':'D8G2J3M6P2','upaka':'G8J2M7','uproar':'D9G5M2','upwards':'D2G4J7M1','uprooted':'D2J5M6','uplifting':'D4J2M5P1','upstairs':'D5G3J1','upavattana':'D6J1M1','upasena':'J5M1P1','uproot':'G1J1M4P1','uplands':'G2J2P1','upatissa':'G2J1','upholstered':'D1J1M1','upsetting':'G2','upholstery':'J2','upwind':'J2','upanandas':'G1','upanemi':'G1','upananda':'G1','uposatha':'G1','uppala':'G1','upasanta':'D1','upanisinnavagga':'J1','uplift':'M1','upsets':'M1'
+}

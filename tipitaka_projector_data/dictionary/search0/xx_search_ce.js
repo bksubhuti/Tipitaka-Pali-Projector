@@ -1,0 +1,3 @@
+pws = {
+'cessation':'D108G327J817M327P4','ceases':'D53G146J459M74P2','cease':'D56G78J219M33P1','certain':'D54G86J94M111P2','ceased':'D19G11J28M24','celibate':'D9G25J4M25P2','certainly':'G20J27M16','central':'D17G1J4M4','ceremony':'D2M23','celibacy':'G1J6M11','cemeteries':'D2J4P2','cemetery':'D2G3J1P2','celestial':'D2J5','century':'D3J3','cessations':'D2M3','centipede':'M5','ceremonial':'D2G1M2','ceti':'M4','cetis':'J1M3','celebrate':'D3M1','celebrated':'D4','center':'D4','cesspool':'G1M1P1','ceasing':'J2M1','certainty':'J1M1P1','centipedes':'M3','celebrates':'D3','centuries':'G1','cetaka':'D1','censure':'M1','celebrity':'P1','cesspit':'P1'
+}

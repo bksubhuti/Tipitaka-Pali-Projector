@@ -1,0 +1,3 @@
+pws = {
+'or':'D1224G2330J2387M3240P104','origin':'D93G126J369M93P8','ordinary':'D40G52J88M73P10','order':'D22G26J59M71P1','ordination':'D19G33J27M20P8','originate':'D16G20J60M1','originates':'D2G16J69M3','originated':'D2G18J32M27P1','oral':'G25J18M14','origination':'D10G10J29M3','orders':'D6G8J10M21','organic':'G26','organized':'D8G5M11P1','ordained':'D4G3J5M12P1','original':'D4G1J4M13','orchid':'J2M18','organize':'D2M13','ornament':'G2J1M6P1','originating':'G4J5','ordinarily':'G2M4','ordain':'G1M2','ordered':'D3','oriole':'M3','orchestra':'G2','oracle':'D2','orientated':'J2','ornaments':'J1P1','orifices':'M2','organizing':'D1','orchard':'G1','orderly':'M1','origins':'M1','ornamentation':'P1','orpiment':'P1'
+}

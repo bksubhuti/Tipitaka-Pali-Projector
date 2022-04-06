@@ -1,0 +1,3 @@
+pws = {
+'out':'D264G563J441M437P82','our':'D72G152J139M91P19','outcome':'D9G25J22M56P1','outer':'D15G30J22M18P9','outside':'D19G9J6M46P6','ought':'D26G4M5P4','outstanding':'M31P1','outlines':'D2G2M13','ourselves':'D1G8J5','outcastes':'G3J3M8','ours':'D6G4J2M1','outcomes':'G7M5','outcaste':'J1M9','outshines':'D4J2M3P1','outshine':'D5J2','outsiders':'J1M4','outshone':'D1J2M1','outsider':'G1J2M1','outlets':'M2','outcast':'M2','outwards':'D2','outright':'J1','outward':'J1','outdoes':'G1','outermost':'D1','outdid':'D1','outcasts':'P1','outstretched':'P1'
+}

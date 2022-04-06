@@ -1,0 +1,3 @@
+pws = {
+'furthermore':'D206G236J54M483','full':'D137G229J207M302P65','future':'D100G252J298M220P38','fully':'D209G181J214M272P22','fulfilled':'D9G11J24M301P52','fulfill':'D1G33J44M84P1','fuel':'G26J74M51P1','further':'D29G41J28M35P2','fuels':'G3J58','fueled':'J10M35','fulfills':'G9J9M24','fundamentals':'D6G10J15M5','fullness':'D4M22','fun':'G5J4M10P1','fundamental':'D6M10','fulfilling':'J1M14','funeral':'D9J1M1P2','fuming':'G3J5P1','furious':'D1J5','fulfillment':'D2G4','fumes':'G1M4','furrows':'G1J1M2','fume':'M4','fullest':'D1M1','fussy':'D2','fury':'J2','funding':'D1','furrow':'J1','futile':'J1','furnace':'M1','funnel':'P1','fur':'P1'
+}

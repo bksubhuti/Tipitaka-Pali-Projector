@@ -1,0 +1,3 @@
+pws = {
+'open':'D31G82J57M77P8','opportunity':'D34G9J5M18P1','oppressed':'D5G2J22P4','opening':'G9J1M14','oppose':'D1G8M14P1','opposing':'D7G8J4M5','opened':'D2G11J5M2P1','opposite':'D3G8M5','oppressive':'G7J3M4','opportunities':'D6M6P1','opinions':'D4J2M2P1','openness':'M9','oppress':'D1G3J5','openly':'J1M3P1','openings':'D2G2','opulent':'M3P1','opposes':'M3','opposition':'D2','opponents':'G1P1','oppresses':'J2','opinion':'D1','operate':'G1','opponent':'M1','oppressing':'J1','oppression':'P1'
+}

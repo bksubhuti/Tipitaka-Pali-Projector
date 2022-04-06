@@ -1,0 +1,3 @@
+pws = {
+'guide':'D24G41J29M67P6','guard':'D18G16J16M24','guarded':'D4G2J14M21P10','guarding':'D11G6J5M17P1','guest':'D10G1J15M10','guaranteed':'G14J1M10P1','guests':'D4G4J2M10','guild':'G4M13','guards':'D3G3J3M8','guides':'G11M3P2','guardian':'G9M6','guardsmen':'D11','guarantee':'D1M7','gulpers':'M8','guided':'D2G2M1P2','guilt':'J1M5','guiding':'J4M2','gulper':'M4','guidelines':'G4','guessing':'D4','guilty':'G2M1P1','gunda':'G2M1','gullible':'M3','gushed':'G2','gutted':'G1M1','gutter':'M2','guttijita':'G1','guardians':'G1','guidance':'D1','gulping':'P1'
+}

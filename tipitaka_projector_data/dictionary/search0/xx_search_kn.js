@@ -1,0 +1,3 @@
+pws = {
+'know':'D209G463J316M593P49','knowledge':'D210G301J391M500P19','known':'D92G298J239M230P14','knowing':'D47G123J164M156P23','knows':'D58G138J82M178P12','knowledges':'D13G9J17M37P55','knower':'D20G32J18M39P1','knew':'D19G48J21M16P4','knowledgeable':'D2G5J18M13','knife':'D1G9J8M6P4','knee':'D3G9J4M4P1','knees':'D5G4M2P4','knelt':'D2G6J4M3','knowable':'G6J4','knot':'G6J3P1','knives':'M6','knead':'D2G3M1','knotted':'D1J3M2','knocking':'G1J3P1','knocked':'D1G2M2','knock':'D1G2M2','knowingly':'G1M3','knitting':'M4','knobbly':'P2','knocks':'P2','knotless':'D1','kneads':'J1','knots':'J1'
+}

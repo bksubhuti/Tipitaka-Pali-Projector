@@ -13,6 +13,8 @@ function afterWordClicked(word, tdr1) {
 
 	word_click(word);
 	if (word.length > 0) {
+		console.log(word);
+		
 		//lookupCoordinator(t, 0);	//$changecolor = $ns % 2; /
 		$('#main_div').css('display', 'inline');
 		// test to see if in dictionary mode and call or show whole thing
@@ -83,7 +85,7 @@ function registerListeners() {
 
 		GetTrId($(this).attr('id').substring(1));
 
-		if ((localStorage.getItem('contentdisplay') == '0') && (localStorage.getItem('contentposition') == '0')) {
+		if (localStorage.getItem('contentPosDisp') == 'OnClicked') {
 			if ($('#main_div').css('display') == 'none') {
 				$('#main_div').css('display', 'inline');
 			} else {
@@ -107,11 +109,13 @@ function registerListeners() {
 			if (t.length > 0) {
 				DictionaryKeyGo();
 				change_tab('page1');
+				/*
 				if ((localStorage.getItem('hee1') != '000') && (localStorage.getItem("speech_repeat") != '0')) {
 					for (var idx=1; idx<=localStorage.getItem("speech_repeat"); idx++) {
 						speakSynthesis(t);//repeat 2 times
 					}
 				}
+				*/
 			}
 		}	
 	});
@@ -631,17 +635,17 @@ if (!SingleLoad) {
 // }
 
 
-p = localStorage.getItem('contentposition');
-if (!p) {
-	p = '0';		// floating
-	document.write = localStorage.setItem('contentposition', '0');
+PosDisp = localStorage.getItem('contentPosDisp');
+if (!PosDisp) {
+	PosDisp = 'Moveable';		// floating
+	document.write = localStorage.setItem('contentPosDisp', 'Moveable');
 }
 
 t = localStorage.getItem('main_top');
 l = localStorage.getItem('main_left');
 w = localStorage.getItem('main_width');
 h = localStorage.getItem('main_height');
-if (p == '0') {		// floating
+if (PosDisp != 'LeftFixed') {		// floating
 	if (!t) {
 		t = 0;
 	}
@@ -711,7 +715,7 @@ window.addEventListener('resize', function() {
 tx = parseInt($('#main_div').css('top'));
 tx2 = $('#main_content').css('offsetTop');
 
-if (p == '0') {		// floating
+if (PosDisp != 'LeftFixed') {		// floating
 	RedrawTable(0);
 
 //	$('.page4').css('height', '98%');
@@ -1137,7 +1141,7 @@ function doDrag3(ev){
 		t=document.documentElement.clientHeight-omain_div.offsetHeight;
 	}
 
-	if (localStorage.getItem('contentposition') == '1') {
+	if (localStorage.getItem('contentPosDisp') == 'LeftFixed') {
 		l = 0;
 		t = 0;
 	}

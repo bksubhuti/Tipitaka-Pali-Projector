@@ -1,0 +1,3 @@
+pws = {
+'even':'D155G309J219M350P73','every':'D19G39J19M81P20','ever':'D15G33J29M29P6','evident':'G21J76M15','everything':'D8G28J29M32P2','everywhere':'D13G22J20M28P11','evening':'D11G23J13M20P1','everlasting':'D7G12J32M1','evil':'D5G15J24M2P5','everyone':'D4G14J11M2P1','eventually':'G15J6M2','evasiveness':'D15G4','evaporated':'J16','evasions':'G4J7','evidence':'G5J1','evenly':'D5','evaporate':'G2J1M2','evaporates':'J2M1','event':'J1M1','evils':'J1P1','evaluation':'D2','evildoer':'M2','evoke':'J2','evolution':'M2','evaluated':'D1','evolved':'D1','evades':'M1','evidently':'D1','evened':'D1','everyday':'P1'
+}

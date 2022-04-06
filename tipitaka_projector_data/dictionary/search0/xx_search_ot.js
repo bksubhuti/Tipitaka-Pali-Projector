@@ -1,0 +1,3 @@
+pws = {
+'others':'D147G372J151M486P38','other':'D261G325J205M369P28','otherwise':'D32G21J5M31'
+}

@@ -425,27 +425,12 @@ function ChooseRadio(key) {
         setPreferenceFlag(PreferenceKeys.showPageNumbers, display);
     }
 
+    if (key.indexOf('contentPosDisp') != -1) { 
+        document.write  = localStorage.setItem('contentPosDisp', val);
+    } 
 
-    if (key.indexOf('position') != -1) {
-
-
-
-        if (val == 1){
-            // left fixed will set Always (display)
-            // disable click to show
-            document.getElementById('displayclick').disabled = true;
-            document.getElementById('displayalways').checked = true;
-
-        }
-        else{
-            document.getElementById('displayclick').disabled = false;
-        }
-
-        document.write  = localStorage.setItem('contentposition', val);
-    }
-
-    if (key.indexOf('display') != -1) {
-        document.write  = localStorage.setItem('contentdisplay', val);
+    if (key.indexOf('RestoreType') != -1) {
+        document.write  = localStorage.setItem('RestoreType', val);
     }
 }
 
@@ -542,20 +527,12 @@ function SavePreferences() {
     def = [];
 
     //**********************
-    def['AutoRestore']='';
     def['b1']='';
     def['bg_color'] = '';
-    //	def['contentbackgroundB'] = '';
-    //	def['contentbackgroundG'] = '';
-    //	def['contentbackgroundR'] = '';
-    def['contentdisplay'] = '';
-    //	def['contentfontcolorB'] = '';
-   	// def['contentfontcolorG'] = '';
-    // def['contentfontcolorR'] = '';
     def['contentfontname'] = '';
     def['contentfontsize'] = '';
     def['contentlineheight'] = '';
-    def['contentposition'] = '';
+    def['contentPosDisp'] = '';
     def['current-theme'] = '';
     def['DictData'] = '';
     def['divwidth'] = '';
@@ -571,17 +548,15 @@ function SavePreferences() {
     def['PaliFontSize']='';
     def['panel_bg_color']='';
     def['panel_dict_bg_color']='';
-    def['panel_font_color']='';
-    def['PromptConfirm']='';
+    def['panel_font_color']=''; 
     def['r1']='';
+    def['RestoreType']='';
     def['Show_Numbers']='';
     def['ShowAlternateReading']='';
     def['ShowOnTop']='';
     def['ShowPageNumbers']='';
     def['size_left'] = '';
     def['size_right'] = '';
-    def['speech_repeat'] = '';
-    def['speech_speed']='';
     def['Themes'] = '';
     def['versionno'] = '';
     def['view_left'] = '';
@@ -618,13 +593,7 @@ function SavePreferences() {
         element.href = URL.createObjectURL(blob);
         element.download = "preferences.template";
         element.click();
-
-
     }
-
-
-
-
 }
 
 
@@ -817,72 +786,54 @@ function initPreferences(){
     //--------------------------------------------------------------------------------
     // Start of Panel
     //--------------------------------------------------------------------------------
-    // Panel Position
-    var contentposition = localStorage.getItem("contentposition");      // 0=moveable, 1=fixed
-    var contentdisplay = localStorage.getItem("contentdisplay");        // 0=onclick, 1=always
-    if (contentposition == '0') {
-        document.getElementById('positionfloat').checked = true;
+    // Panel Position 
+    var contentPosDisp = localStorage.getItem("contentPosDisp");        // 0=onclick, 1=always
+    if (contentPosDisp == 'Moveable') {
+        document.getElementById('contentPosDispMoveable').checked = true;
         $('#btnHeaderDropUp').show();
         $('#btnHeaderDictionary').show();
         $('#btnHeaderDropDown').show();
     } else {
-        document.getElementById('positionfixed').checked = true;
-        //$('#btnHeaderDropUp').hide();
-        //$('#btnHeaderDictionary').hide();
-        //$('#btnHeaderDropDown').hide();
-
-        contentdisplay = '1';
-        document.write = localStorage.setItem("contentdisplay", '1');
-        document.getElementById('displayalways').checked = true;
-        //disable the choice to show by click if left fixed.
-        document.getElementById('displayclick').disabled = true;
+        if (contentPosDisp == 'OnClicked') {
+            document.getElementById('contentPosDispOnClicked').checked = true;
+        } else {
+            document.getElementById('contentPosDispLeftFixed').checked = true;
+        }
+    } 
 
 
-    }
-    // Panel Display
-    if (contentdisplay == '0') {
-        document.getElementById('displayclick').checked = true;
+    var strPromptConfirm = localStorage.getItem("RestoreType");      // auto, prompt, disable 
+    if (strPromptConfirm == "auto"){
+        document.getElementById('RestoreType2').checked = true;
     } else {
-        document.getElementById('displayalways').checked = true;
-    }
-
-// confirm
-    var strPromptConfirm = localStorage.getItem("PromptConfirm");      // 0=moveable, 1=fixed
-    var AutoRestore = localStorage.getItem("AutoRestore");        // 0=onclick, 1=always
-
-    if (strPromptConfirm == "on"){
-        document.getElementById('yesPrompt').checked = true;
-    }else{
-            document.getElementById('noPrompt').checked = false;
-    }
-
-
-    // call the logic to enable and switch etc.
-    onPromptRestoreSwitch(strPromptConfirm);
-    onAutoRestoreSwitch(AutoRestore);
-
+        if (strPromptConfirm == "prompt"){
+            document.getElementById('RestoreType1').checked = true;
+        } else {
+            document.getElementById('RestoreType0').checked = true;
+        }
+    } 
 
 
     // panel position & size
     var main_top = localStorage.getItem("main_top");
-    $('#main_top').html(main_top);
+    //$('#main_top').html(main_top);
 
     var main_left = localStorage.getItem("main_left");
-    $('#main_left').html(main_left);
+    //$('#main_left').html(main_left);
 
     var main_width = localStorage.getItem("main_width");
-    $('#main_width').html(main_width);
+    //$('#main_width').html(main_width);
 
     var main_height = localStorage.getItem("main_height");
     if (_init == '1') {
-        if (contentposition == '0') {       // floating
+        if (contentPosDisp == 'Moveable') {       // floating
             main_height = '200px';
         } else {
             main_height = '100%';
         }
         document.write = localStorage.setItem("main_height", main_height);
     }
-    $('#main_height').html(main_height);
+    //$('#main_height').html(main_height);
 
     // Panel Font Family
     var contentfontname = localStorage.getItem("contentfontname");
@@ -1053,6 +1004,7 @@ function initPreferences(){
         $li.addClass('selected');
     })
 
+    /*
     // Speech Repeat
     var speech_repeat = localStorage.getItem("speech_repeat");
     $('#speech_repeat').val(speech_repeat);
@@ -1060,6 +1012,7 @@ function initPreferences(){
     // Speed
     var speech_speed = localStorage.getItem("speech_speed");
     $('#showspeed').html('Speed=' + speech_speed);
+    */
 
     setThemeStyling();
 
@@ -1208,21 +1161,12 @@ function isElectron() {
 function writePrefDataToStorage(data){
     var def = [];
    
-    //**********************
-    def['AutoRestore']='@';
+    //********************** 
     def['b1']='@';
-    def['bg_color'] = '@';
-    //	def['contentbackgroundB'] = '@';
-    //	def['contentbackgroundG'] = '@';
-    //	def['contentbackgroundR'] = '@';
-    def['contentdisplay'] = '@';
-    //	def['contentfontcolorB'] = '@';
-   	// def['contentfontcolorG'] = '@';
-    // def['contentfontcolorR'] = '@';
+    def['bg_color'] = '@'; 
     def['contentfontname'] = '@';
     def['contentfontsize'] = '@';
-    def['contentlineheight'] = '@';
-    def['contentposition'] = '@';
+    def['contentPosDisp'] = '@';
     def['current-theme'] = '@';
     def['DictData'] = '@';
     def['divwidth'] = '@';
@@ -1239,7 +1183,8 @@ function writePrefDataToStorage(data){
     def['panel_bg_color']='@';
     def['panel_dict_bg_color']='@';
     def['panel_font_color']='@';
-    def['PromptConfirm']='@';
+    //def['PromptConfirm']='@';
+    def['RestoreType']='@';
     def['r1']='@';
     def['Show_Numbers']='@';
     def['ShowAlternateReading']='@';
@@ -1247,8 +1192,6 @@ function writePrefDataToStorage(data){
     def['ShowPageNumbers']='@';
     def['size_left'] = '@';
     def['size_right'] = '@';
-    def['speech_repeat'] = '@';
-    def['speech_speed']='@';
     def['Themes'] = '@';
     def['versionno'] = '@';
     def['view_left'] = '@';
@@ -1325,6 +1268,7 @@ function doMobileAdjust(){
         $('#savePrompt').addClass('hideMe');
 }
 
+/*
 function onPromptRestoreSwitch(key){
 
     localStorage.setItem("PromptConfirm", key);    
@@ -1344,3 +1288,4 @@ function onPromptRestoreSwitch(key){
 function onAutoRestoreSwitch(key){
     localStorage.setItem("AutoRestore", key);      
 }
+*/

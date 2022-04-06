@@ -1,0 +1,3 @@
+pws = {
+'am':'D99G273J342M222P41','among':'D88G77J45M147P34','amazing':'D32G46J42M135P5','amid':'G12J3M12','amuse':'D4G11J1','ambition':'M15','amount':'G2J3M6P1','amuses':'D5G2J4M1','amusing':'D1G5J2M4','amenable':'G10M2','amused':'D6G1J1M2P1','amass':'J9','ample':'G5J1','ambitious':'M4','amazement':'G3J1','amongst':'J1P2','amassing':'D2','ambiguous':'D1M1','amputated':'G2','ambrosial':'J2','amending':'M1','amiable':'P1','amniotic':'G1','amplify':'J1','ambrosia':'J1','ambaravatiya':'D1','ambara':'D1','amounted':'P1'
+}

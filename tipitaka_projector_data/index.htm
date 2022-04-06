@@ -82,7 +82,7 @@
                 for (const set of book.sets) {
                     for (const text of set.texts) {
                         const extraInfo = {set: set.name, book: book.name};
-                        bookData.flat[text.bookId] = Object.assign(extraInfo, text);
+                        bookData.flat[text.bookId] = Object.assign(extraInfo, text); 
                     }
                 }
             }
@@ -472,7 +472,7 @@
 
     <header class="panel-header" id="panel-header">
         <div id="btnHeaderDropUp" class="notselected grey-button" title="Expand">
-            <i class="material-icons">remove</i>
+            <i class="material-icons">remove</i> 
         </div>
         <div id="btnHeaderDictionary" class="notselected grey-button" title="Only Definitions">
             <i class="material-icons">crop_16_9</i>
@@ -516,7 +516,7 @@
 
         <div class="notselected grey-button letter free" title="English Books" onClick="showEpubDemo()">
             E
-        </div>
+        </div> 
 
     </div>
 
@@ -1129,7 +1129,7 @@
         document.addEventListener('touchmove', onMove);
 
         const down = function (which, e) {
-            if (localStorage.getItem('contentposition') === '0') {
+            if (localStorage.getItem('contentPosDisp') === 'Moveable') {
                 interfaceFlags[which] = true;
                 moveInfo[which] = {
                     x: e.clientX || e.touches[0].clientX,
@@ -1510,7 +1510,7 @@
             </td>
             <td align="center" colspan="3">
                 <span style='line-height:140%;color:brown;font-size:15pt;'><b>Tipiṭaka Pāḷi Projector</b></span> -
-                20220222 (TG)
+                20220331 (TG)
 
                 <br>
                 Entry <a href="#Velthuis" onClick="Velthuis()" title="Show Velthuis">
@@ -1519,7 +1519,6 @@
                        onkeyup="Keyin()" value="">
                 <input type="hidden" id="id1">
                 <input type="hidden" id="id2">
-
 
                 <label class="switch">
                     <input id="ShowOnTop" type="checkbox" onClick="ShowOnTopClick(checked)" >
@@ -1542,7 +1541,6 @@
                 <input type="submit" onClick="SearchPali('P')" id="SubmitP" value="Prefix" title="Find words starting with ...">&nbsp;&nbsp;&nbsp;
                 <input type="submit" onClick="SearchPali('S')" id="SubmitS" value="Suffix" title="Find words ending with ...">&nbsp;&nbsp;&nbsp;
                 <input type="submit" onClick="SearchPali('T')" id="SubmitT" value="Sentence" title="Search multiple words in a row">
-
 				
                 <label class="switch">
                     <input id="SearchBold" type="checkbox" onClick="SearchBold()" >
@@ -1594,12 +1592,15 @@
                 <input id="MAT1" type="checkbox" name="MAT1" onclick='choosePali("x1")'/></input>
                 <label for="MAT1" onclick='choosePali("x1")'>1 Mūla</label>
                 &nbsp;
-                <input id="ENG1" type="checkbox" name="ENG1" onclick='choosePali("e1")'/></input>
-                <label for="ENG1" onclick='choosePali("e1")'>English</label>
+                <input id="y1" type="checkbox" name="y1" onclick='choosePali("y1")'/></input>
+                <label for="y1" onclick='choosePali("y1")'>English</label>
             </td>
             <td width="23%" bgcolor="#dfd090">
                 <input id="MAT2" type="checkbox" name="MAT2" onclick='choosePali("x2")'/></input>
                 <label for="MAT2" onclick='choosePali("x2")'>2 Aṭṭhakathā</label>
+                &nbsp;
+                <input id="y2" type="checkbox" name="y2" onclick='choosePali("y2")'/></input>
+                <label for="y2" onclick='choosePali("y2")'>English</label>
             </td>
             <td width="23%" bgcolor="#dfd090">
                 <input id="MAT3" type="checkbox" name="MAT3" onclick='choosePali("x3")'/></input>
@@ -1638,12 +1639,12 @@
             <td bgcolor="#ffe0b0" valign="top" id="x21">
                 <input id="Nikaya21" type="checkbox" name="Nikaya21" onclick='choosePali("21")'/></input>
                 &nbsp;
-                <input id="Nikaya92" type="checkbox" name="Nikaya92" onclick='choosePali("92")'/></input>
-                <label for="Nikaya92" id="Label92">English</label>
+                <input id="Nikaya210" type="checkbox" name="Nikaya210" onclick='choosePali("210")'/></input>
+                <label for="Nikaya210" id="Label210">English</label>
                 <span style="color:red;font-weight:900;" id="Kex21"></span>
                 <span id="Out21"></span>
-                <span style="color:red;font-weight:900;" id="Kex92"></span>
-                <span id="Out92"></span>
+                <span style="color:red;font-weight:900;" id="Kex210"></span>
+                <span id="Out210"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x22">
                 <input id="Nikaya22" type="checkbox" name="Nikaya22" onclick='choosePali("22")'/></input>
@@ -1665,12 +1666,13 @@
             <td bgcolor="#ffe0b0" valign="top" id="x31">
                 <input id="Nikaya31" type="checkbox" name="Nikaya31" onclick='choosePali("31")'/></input>
                 &nbsp;
-                <input id="Nikaya93" type="checkbox" name="Nikaya93" onclick='choosePali("93")'/></input>
-                <label for="Nikaya93" id="Label93">English</label>
+
+                <input id="Nikaya310" type="checkbox" name="Nikaya310" onclick='choosePali("310")'/></input>
+                <label for="Nikaya310" id="Label310">English</label>
                 <span style="color:red;font-weight:900;" id="Kex31"></span>
                 <span id="Out31"></span>
-                <span style="color:red;font-weight:900;" id="Kex93"></span>
-                <span id="Out93"></span>
+                <span style="color:red;font-weight:900;" id="Kex310"></span>
+                <span id="Out310"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x32">
                 <input id="Nikaya32" type="checkbox" name="Nikaya32" onclick='choosePali("32")'/></input>
@@ -1692,12 +1694,12 @@
             <td bgcolor="#ffe0b0" valign="top" id="x41">
                 <input id="Nikaya41" type="checkbox" name="Nikaya41" onclick='choosePali("41")'/></input>
                 &nbsp;
-                <input id="Nikaya94" type="checkbox" name="Nikaya94" onclick='choosePali("94")'/></input>
-                <label for="Nikaya94" id="Label94">English</label>
+                <input id="Nikaya410" type="checkbox" name="Nikaya410" onclick='choosePali("410")'/></input>
+                <label for="Nikaya410" id="Label410">English</label>
                 <span style="color:red;font-weight:900;" id="Kex41"></span>
                 <span id="Out41"></span>
-                <span style="color:red;font-weight:900;" id="Kex94"></span>
-                <span id="Out94"></span>
+                <span style="color:red;font-weight:900;" id="Kex410"></span>
+                <span id="Out410"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x42">
                 <input id="Nikaya42" type="checkbox" name="Nikaya42" onclick='choosePali("42")'/></input>
@@ -1719,12 +1721,12 @@
             <td bgcolor="#ffe0b0" valign="top" id="x51">
                 <input id="Nikaya51" type="checkbox" name="Nikaya51" onclick='choosePali("51")'/></input>
                 &nbsp;
-                <input id="Nikaya95" type="checkbox" name="Nikaya95" onclick='choosePali("95")'/></input>
-                <label for="Nikaya95" id="Label95">English</label>
+                <input id="Nikaya510" type="checkbox" name="Nikaya510" onclick='choosePali("510")'/></input>
+                <label for="Nikaya510" id="Label510">English</label>
                 <span style="color:red;font-weight:900;" id="Kex51"></span>
                 <span id="Out51"></span>
-                <span style="color:red;font-weight:900;" id="Kex95"></span>
-                <span id="Out95"></span>
+                <span style="color:red;font-weight:900;" id="Kex510"></span>
+                <span id="Out510"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x52">
                 <input id="Nikaya52" type="checkbox" name="Nikaya52" onclick='choosePali("52")'/></input>
@@ -1746,17 +1748,24 @@
             <td bgcolor="#ffe0b0" valign="top" id="x61">
                 <input id="Nikaya61" type="checkbox" name="Nikaya61" onclick='choosePali("61")'/></input>
                 &nbsp;
-                <input id="Nikaya96" type="checkbox" name="Nikaya96" onclick='choosePali("96")'/></input>
-                <label for="Nikaya96" id="Label96">English</label>
+
+                <input id="Nikaya610" type="checkbox" name="Nikaya610" onclick='choosePali("610")'/></input>
+                <label for="Nikaya610" id="Label610">English</label>
                 <span style="color:red;font-weight:900;" id="Kex61"></span>
                 <span id="Out61"></span>
-                <span style="color:red;font-weight:900;" id="Kex96"></span>
-                <span id="Out96"></span>
+                <span style="color:red;font-weight:900;" id="Kex610"></span>
+                <span id="Out610"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x62">
                 <input id="Nikaya62" type="checkbox" name="Nikaya62" onclick='choosePali("62")'/></input>
                 <span style="color:red;font-weight:900;" id="Kex62"></span>
                 <span id="Out62"></span>
+                &nbsp;
+
+                <input id="Nikaya620" type="checkbox" name="Nikaya620" onclick='choosePali("620")'/></input>
+                <label for="Nikaya620" id="Label620">English</label>
+                <span style="color:red;font-weight:900;" id="Kex620"></span>
+                <span id="Out620"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x63">
                 <input id="Nikaya63" type="checkbox" name="Nikaya63" onclick='choosePali("63")'/></input>
@@ -1797,6 +1806,11 @@
                        style="visibility:hidden;"/></input>
                 <span style="color:red;font-weight:900;" id="Kex81" style="visibility:hidden;"></span>
                 <span id="Out81" style="visibility:hidden;"></span>
+
+                <input id="Nikaya810" type="checkbox" name="Nikaya810" onclick='choosePali("810")'
+                       style="visibility:hidden;"/></input>
+                <span style="color:red;font-weight:900;" id="Kex810" style="visibility:hidden;"></span>
+                <span id="Out810" style="visibility:hidden;"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x82">
                 <input id="Nikaya82" type="checkbox" name="Nikaya82" onclick='choosePali("82")'/></input>
@@ -1984,6 +1998,7 @@
 <div id="prefsDialog"
      class="app-dialog"
      title="Preferences"
+     style="overflow-x: hidden;"
      width="auto">
 
     <table border="0" width="100%">
@@ -2276,63 +2291,59 @@
                     <div id="Dictionaries" class="tabcontent" style="display:inline;">
 						<div 
 							style="margin-top:1%;line-height: 150%;padding:8px;background-color: #ccc; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
-							<table border="0" width="100%" cellspacing="0" cellpadding="0">
-								<form method="post" name="form1" action="" style="text-align:center;">
-									<tr>
-										<td valign="top" width="45%" align="left">
-											<strong style="color:#880000;">Disabled Pali Dictionaries</strong>
-											<span id="DisableCount" style="font-size:12pt;color:gray;"></span>
-											<ul class="ping-pong-list"
-												id="DictionaryDisable"
-												ondblclick="DictionaryMoveOption(true)">
+							<table border="0" width="100%" cellspacing="0" cellpadding="0"> 
+								<tr>
+									<td valign="top" width="45%" align="left">
+										<strong style="color:#880000;">Disabled Pali Dictionaries</strong>
+										<span id="DisableCount" style="font-size:12pt;color:gray;"></span>
+										<ul class="ping-pong-list"
+											id="DictionaryDisable"
+											ondblclick="DictionaryMoveOption(true)">
+										</ul>
+									</td>
+									<td valign="top" width="10%" align="center" class="ping-pong-buttons">
+										<br>
+										<input type="button" value="Up" style="width:40%;max-width:120px;"
+											onclick="DictionaryChangePos(-1)"/>
+										<br><br>
+										<input type="button" value="Down" style="width:40%;max-width:120px;"
+											onclick="DictionaryChangePos(1)"/>
+										<br><br>
 
-											</ul>
-										</td>
-										<td valign="top" width="10%" align="center" class="ping-pong-buttons">
-											<br>
-											<input type="button" value="Up" style="width:40%;max-width:120px;"
-												onclick="DictionaryChangePos(-1)"/>
-											<br><br>
-											<input type="button" value="Down" style="width:40%;max-width:120px;"
-												onclick="DictionaryChangePos(1)"/>
-											<br><br>
+										<input type="button" value=">>" style="width:40%;max-width:120px;"
+											onclick="DictionaryMoveOption(true)"/>
+										<br><br>
+										<input type="button" value="<<" style="width:40%;max-width:120px;"
+											onclick="DictionaryMoveOption(false)"/>
+									</td>
+									<td valign="top" width="45%" align="left">
 
-											<input type="button" value=">>" style="width:40%;max-width:120px;"
-												onclick="DictionaryMoveOption(true)"/>
-											<br><br>
-											<input type="button" value="<<" style="width:40%;max-width:120px;"
-												onclick="DictionaryMoveOption(false)"/>
-										</td>
-										<td valign="top" width="45%" align="left">
-
-											<strong style="color:#880000;">Enabled Pali Dictionaries</strong>
-											<span id="EnableCount" style="font-size:12pt;color:gray;"></span>
-											<ul class="ping-pong-list"
-												id="DictionaryEnable"
-												ondblclick="DictionaryMoveOption(false)">
-											</ul>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="3">
-											<br>
-											<strong style="color:#880000;">Abbreviated of Dictionary</strong>
-											<input type="textbox" id="Abbreviated"
-												style="max-width:100%;width:120pt;font-size:12pt;"
-												onBlur="toSaveAbbr();">
-											<input type="hidden" id="AbbreviatedDictionary" value="">
-											<span>1-8 Chars&nbsp;</span><br>
-											<span id="AbbreviatedMessage"></span>
-										</td>
-									</tr>
-								</form>
+										<strong style="color:#880000;">Enabled Pali Dictionaries</strong>
+										<span id="EnableCount" style="font-size:12pt;color:gray;"></span>
+										<ul class="ping-pong-list"
+											id="DictionaryEnable"
+											ondblclick="DictionaryMoveOption(false)">
+										</ul>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3">
+										<br>
+										<strong style="color:#880000;">Abbreviated of Dictionary</strong>
+										<input type="textbox" id="Abbreviated"
+											style="max-width:100%;width:120pt;font-size:12pt;"
+											onBlur="toSaveAbbr();">
+										<input type="hidden" id="AbbreviatedDictionary" value="">
+										<span>1-8 Chars&nbsp;</span><br>
+										<span id="AbbreviatedMessage"></span>
+									</td>
+								</tr> 
 							</table>
 							<br>
 
+                            <!--
 							<strong style="color:#880000;">English Dictionary</strong>
 							<br>
-
-
 							<label style="color:red;">Speech Repeat=</label>
 							<select name="speech_repeat" id="speech_repeat" onChange="ChooseSelect('speech_repeat');">
 								<option value="0">Off</option>
@@ -2347,6 +2358,7 @@
 							<label id="showspeed" style="color:red;">Speed=</label>
 							<input type="range" min=0.5 max=1.5 step=0.1 name="speech_speed" id="speech_speed"
 								onChange="ChooseRange('speech_speed')" style="background:gray;">
+                            -->
 						</div>
 					</div>
                 </div>
@@ -2355,103 +2367,52 @@
                     <div style="margin-top:1%;line-height: 150%;padding:8px;background-color: #ccc; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
                         <table border="0" width="100%">
                             <tr>
-                                <td width="50%">
-                                    <strong style="color:#880000;">Panel Position</strong>
+                                <td width="100%" valign="top" colspan="2">
+                                    <strong style="color:#880000;">Panel Position / Display</strong>
                                     <br>
-                                    <input name="contentposition" id="positionfixed" value="1" type="radio"
-                                           onclick='ChooseRadio("positionfixed")'>
-                                    <label for="positionfixed" onclick='ChooseRadio("positionfixed")'>Left Fixed (Default)</label>
+                                    <input name="contentPosDisp" id="contentPosDispLeftFixed" value="LeftFixed" 
+                                        type="radio" onclick='ChooseRadio("contentLeftFixed")'>
+                                    <label for="contentPosDispLeftFixed" 
+                                        onclick='ChooseRadio("contentPosDispLeftFixed")'>
+                                        Left Fixed / Always (Default)
+                                    </label>
                                     &nbsp;&nbsp;
-                                    <input name="contentposition" id="positionfloat" value="0" type="radio"
-                                           onclick='ChooseRadio("positionfloat")'>
-                                    <label for="positionfloat" onclick='ChooseRadio("positionfloat")'>Moveable</label>
+
+                                    <input name="contentPosDisp" id="contentPosDispMoveable" value="Moveable" 
+                                        type="radio" onclick='ChooseRadio("contentMoveable")'>
+                                    <label for="contentPosDispMoveable" 
+                                        onclick='ChooseRadio("contentPosDispMoveable")'>
+                                        Moveable / Always
+                                    </label>
+                                    &nbsp;&nbsp;
+
+                                    <input name="contentPosDisp" id="contentPosDispOnClicked" value="OnClicked" 
+                                        type="radio" onclick='ChooseRadio("contentOnClicked")'>
+                                    <label for="contentPosDispOnClicked" 
+                                        onclick='ChooseRadio("contentPosDispOnClicked")'>Moveable / On Click
+                                    </label> 
+
                                     <br>
                                     <br>
-                                </td>
-                                <td width="50%">
                                 </td>
                             </tr>
 
                             <tr>
                                 <td width="50%" valign="top" style="visibility:visible">
-                                    <strong style="color:#880000;">Panel Display</strong>
-                                    <br>
-                                    <input name="contentdisplay" id="displayalways" value="1" type="radio"
-                                           onclick='ChooseRadio("displayalways")'>
-                                    <label for="displayalways" onclick='ChooseRadio("displayalways")'>Always (Default)</label>
-                                    &nbsp;&nbsp;
-                                        <input name="contentdisplay" id="displayclick" value="0" type="radio"
-                                           onclick='ChooseRadio("displayclick")'>
-                                    <label for="displayclick" onclick='ChooseRadio("displayclick")'>On Click</label>
-                                    <br><br>
                                     <strong style="color:#880000;">Dictionary Shade</strong>
                                     <br>
                                     <input type="color" id="panel_dict_bg_color" name="panel_dict_bg_color" onchange="onChangePanel_dict_bg_color()"
                                         value="#FFFff5">
-                                        <br>
-
-
                                 </td>
                                 <td width="50%" valign="top">
+                                    <!--
                                     <strong style="color:#880000;">Panel Position & Size</strong>
                                     <br>
                                     Top:&nbsp;<span id="main_top"></span>&nbsp;&nbsp;
-                                    Left:&nbsp;<span id="main_left"></span><br>
+                                    Left:&nbsp;<span id="main_left"></span>&nbsp;&nbsp;
                                     Width:&nbsp;<span id="main_width"></span>&nbsp;&nbsp;
-                                    Height:&nbsp;<span id="main_height"></span>&nbsp;&nbsp;
-                                    <br><br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="50%" valign="top">
-                                    <strong style="color:#880000;">Font Family</strong>
-                                    <br>
-                                    <select name="contentfontname" id="contentfontname"
-                                            onchange="ChooseSelect('contentfontname')">
-                                        <option value="Calibri Light">Calibri Light</option>
-                                        <option value="DejaVuSansCondensed">DejaVuSansCondensed</option>
-                                        <option value="Myanmar Text">Myanmar Text</option>
-                                        <option value="Palatino Linotype">Palatino Linotype</option>
-                                        <option value="Pyidaungsu">Pyidaungsu</option>
-                                        <option value="Tahoma">Tahoma</option>
-                                        <option value="Times New Roman">Times New Roman</option>
-                                        <option value="Verdana">Verdana</option>
-                                    </select>
-                                    <br><br>
-                                </td>
-                                <td width="50%" valign="top">
-                                    <strong style="color:#880000;">Font Size</strong>
-                                    <br>
-                                    <input type="range" min=10 max=24 step=0.5 value=12 name="contentfontsize"
-                                           id="contentfontsize" onChange="ChooseRange('contentfontsize')"
-                                           style="background:gray;">
-                                    <br><br>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td valign="top">
-                                    <strong style="color:#880000;">Select Background Color:</strong>
-                                    <br>
-                                    <form action="" style="width: 400px;">
-                                        <div class="form-item"><label for="color2">Color:</label><input type="text"id="panel_bg_color" name="panel_bg_color" value="#f0f0f0" /></div><div id="picker2"></div>
-                                    </form>
-
-                                </td>
-                                <td valign="top">
-                                    <strong style="color:#880000;">Select Font Color:</strong>
-                                    <br>
-                                    <form action="" style="width: 400px;">
-                                        <div class="form-item"><label for="color">:</label><input type="text"id="panel_font_color" name="panel_font_color" value="#123456" /></div><div id="picker"></div>
-                                    </form>
-
-
-                                    <br>
-                                    <br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="50%" valign="top">
+                                    Height:&nbsp;<span id="main_height"></span> 
+                                    -->
                                     <strong style="color:#880000;">Line Height</strong>
                                     <br>
                                     <select name="contentlineheight" id="contentlineheight"
@@ -2474,18 +2435,68 @@
                                         <option value="300">300%</option>
                                     </select>
                                 </td>
-                                <td width="50%" valign="middle" align="center">
+                            </tr>
+                            <tr>
+                                <td width="50%" valign="top">
+                                    <strong style="color:#880000;">Font Family</strong>
+                                    <br>
+                                    <select name="contentfontname" id="contentfontname"
+                                            onchange="ChooseSelect('contentfontname')">
+                                        <option value="Calibri Light">Calibri Light</option>
+                                        <option value="DejaVuSansCondensed">DejaVuSansCondensed</option>
+                                        <option value="Myanmar Text">Myanmar Text</option>
+                                        <option value="Palatino Linotype">Palatino Linotype</option>
+                                        <option value="Pyidaungsu">Pyidaungsu</option>
+                                        <option value="Tahoma">Tahoma</option>
+                                        <option value="Times New Roman">Times New Roman</option>
+                                        <option value="Verdana">Verdana</option>
+                                    </select>
+                                    <br>
+                                </td>
+                                <td width="50%" valign="top">
+                                    <strong style="color:#880000;">Font Size</strong>
+                                    <br>
+                                    <input type="range" min=10 max=24 step=0.5 value=12 name="contentfontsize"
+                                           id="contentfontsize" onChange="ChooseRange('contentfontsize')"
+                                           style="background:gray;">
+                                    <br>
+                                </td>
+                            </tr>
+                        </table> 
+                    </div>
+
+                    <div style="margin-top:1%;line-height: 150%;padding:8px;background-color: #acacac; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
+
+                        <table border="0" width="100%">
+                            <tr>
+                                <td width="30%" valign="top">  
+                                    <form action="" style="width: 400px;">
+                                        <strong style="color:#880000;">Select Background Color</strong> 
+                                        <div class="form-item"><input type="text"id="panel_bg_color" name="panel_bg_color" value="#f0f0f0" /></div><div id="picker2"></div>
+                                    </form>
+                                </td>
+                                <td width="34%" valign="middle" align="center">
                                     <table border="0" width="100%" id="colortable">
                                         <tr>
                                             <td width="100%" id="contentbackground" style="background-color: RGB(207, 255, 128);" align="center" valign="middle">
+                                                <br><br>
                                                 <label id="showfontnamesize" style="font-family:DejaVuSansCondensed;font-size:12pt">DejaVuSansCondensed 12pt</label><br>
                                                 <span id="showbackground" style="font-family:DejaVuSansCondensed;font-size:12pt">BackGround = RGB(207, 255, 128)</span><br>
-                                                <span id="showfontcolor" style="font-family:DejaVuSansCondensed;font-size:12pt">FontColor = RGB(0, 0, 0)</span><br>
+                                                <span id="showfontcolor" style="font-family:DejaVuSansCondensed;font-size:12pt">FontColor = RGB(0, 0, 0)</span>
+                                                <br><br><br>
                                             </td>
                                         </tr>
                                     </table>
                                 </td>
-                            </tr>
+                                <td width="6%" valign="top">
+                                </td>  
+                                <td width="30%" valign="top">  
+                                    <form action="" style="width: 400px;">
+                                        <strong style="color:#880000;">Select Font Color</strong> 
+                                        <div class="form-item"><input type="text"id="panel_font_color" name="panel_font_color" value="#123456" /></div><div id="picker"></div>
+                                    </form>
+                                </td>
+                            </tr> 
                         </table>
                     </div>
                 </div>
@@ -2493,66 +2504,95 @@
                 <div id="SaveSettings" class="tabcontent" style="display:inline;">
                     <div style="margin-top:1%;line-height: 150%;padding:8px;background-color: #ccc; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
                         <br>
-                        <button id="btnRestore" onclick="RestorePreferences()"><img src="images/restorePref.png"
-                                                                                    width="50" height="50"
-                                                                                    border="0"><span
-                                style="font-size:20px;">Restore Prefs</span></button>
-                        <br><br>
-                        <br>
-
                         <table border="0" width="100%" cellpadding="0" cellspacing="0" id="TablePreference"
                                style="line-height: 150%;">
                             <tr>
-                                <td width="50%" valign="top" style="line-height: 150%;">
-                                    <button id="btnSave" onclick="SavePreferences()"><img src="images/savePref.png"
-                                                                                          width="50" height="50"
-                                                                                          border="0"><span
-                                            style="font-size:20px;">  Save Prefs</button>
+                                <td width="50%" valign="top" style="line-height: 150%;"> 
+                                    <button id="btnRestore" onclick="RestorePreferences()">
+                                        <img src="images/restorePref.png" width="50" height="50" border="0">
+                                        <span style="font-size:20px;"> Restore Prefs&nbsp;</span>
+                                    </button>
                                     <br><br>
                                     <br>
-                                    <button id="btnReset" onclick="ResetPreferences()"><img src="images/reset2.png"
-                                                                                            width="50" height="50"
-                                                                                            border="0"><span
-                                            style="font-size:20px;">  Reset All</button>
-                                    <br>
-                                    <br>
-                                    <div id='savePrompt'>
-                                    Step 1 :<br>
-                                    &nbsp;&nbsp;Save "preferences.template"
-                                    <br>
-                                    Step 2 :<br>
-                                    &nbsp;&nbsp;Copy this text file into<br>&nbsp;&nbsp;\tipitaka_projector_data\
-                                </div>
-                                <br><br>
                                 </td>
-                                <td width="50%" valign="top">
+                                <td width="50%" valign="top" style="line-height: 150%;">  
+                                    <strong style="color:#880000;">Restore Type</strong>
+                                    <br>
+                                    <input name="RestoreType" id="RestoreType2" type="radio" value="auto"
+                                           onclick='ChooseRadio("RestoreType2")'>
+                                    <label for="RestoreType2">Auto (Default)</label>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+
+                                    <input name="RestoreType" id="RestoreType1" type="radio" value="prompt"
+                                           onclick='ChooseRadio("RestoreType1")'>
+                                    <label for="RestoreType1">Prompt</label>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+
+                                    <input name="RestoreType" id="RestoreType0" type="radio" value="disable"
+                                           onclick='ChooseRadio("RestoreType0")'>
+                                    <label for="RestoreType0">Disable</label>  
+                                    <br>
+                                </td>
+                            </tr> 
+                                    <!--
                                     <strong style="color:#880000;">Prompt Restore</strong>
                                     <br>
-                                    <input name="RestorePromptRadio" id="noPrompt" value="0" type="radio"
+                                    <input name="RestorePromptRadio" id="noPrompt" value="off" type="radio"
                                            onclick='onPromptRestoreSwitch("off")' selected>
                                     <label for="RestorePromptRadio" onclick='onPromptRestoreSwitch("off")'>No</label>
                                     &nbsp;&nbsp;
-                                    <input name="RestorePromptRadio" id="yesPrompt" value="1" type="radio"
+                                    <input name="RestorePromptRadio" id="yesPrompt" value="on" type="radio"
                                            onclick='onPromptRestoreSwitch("on")'>
                                     <label for="RestorePromptRadio" onclick='onPromptRestoreSwitch("on")'>Yes</label>
                                     <br><br>
                                     <strong style="color:#880000;">Auto Restore</strong>
                                     <br>
-                                    <input name="AutoRestore" id="AutoRestoreOff" value="0" type="radio"
+                                    <input name="AutoRestore" id="AutoRestoreOff" value="off" type="radio"
                                            onclick='onAutoRestoreSwitch("off")'>
                                     <label for="AutoRestore" onclick='onAutoRestoreSwitch("off")'>No</label>
                                     &nbsp;&nbsp;
-                                    <input name="AutoRestore" id="AutoRestoreOn" value="1" type="radio"
+                                    <input name="AutoRestore" id="AutoRestoreOn" value="on" type="radio"
                                         onclick='onAutoRestoreSwitch("on")' selected>
                                     <label for="RestorePromptRadio" onclick='onAutoRestoreSwitch("on")'>Yes</label>
                                     <br>
+                                    <br> 
+                                    -->
+                            <tr>
+                                <td valign="top" style="line-height: 150%;">
+                                    <button id="btnSave" onclick="SavePreferences()">
+                                        <img src="images/savePref.png" width="50" height="50" border="0">
+                                        <span style="font-size:20px;">  Save Prefs&nbsp;</span>
+                                    </button>
+                                    <br><br>
                                     <br>
-                                    
+                                </td>
+                                <td valign="top" style="line-height: 150%;">
                                     <textarea name="preferences" id="preferences"
-                                              style="border:none;display:inline;font-size:9.0pt;line-height:120%;width:90%;max-width:90%x;height:100pt;background-color:#ffff88;"></textarea>
+                                        style="border:none;display:inline;font-size:9.0pt;line-height:120%;width:90%;max-width:90%x;height:60pt;background-color:#ffff88;"></textarea>
                                 </td>
                             </tr>
+
+                            <tr>
+                                <td style="line-height: 150%;">
+                                    <button id="btnReset" onclick="ResetPreferences()">
+                                        <img src="images/reset2.png" width="50" height="50" border="0">
+                                        <span style="font-size:20px;">  Reset All&nbsp;</span>
+                                    </button>
+                                    <br>
+                                    <br>
+                                </td>
+                                <td valign="top" style="line-height: 150%;"> 
+                                    <div id='savePrompt'>
+                                        Step 1 :<br>
+                                        &nbsp;&nbsp;Save "preferences.template"
+                                        <br>
+                                        Step 2 :<br>
+                                        &nbsp;&nbsp;Copy this text file into&nbsp;<b>\tipitaka_projector_data\</b>
+                                    </div>
+                                </td>
+                            </tr> 
                         </table>
+
                         <strong style="color:#880000;">Testing</strong>
                         <br>
                         <table border="0" width="100%" cellpadding="0" cellspacing="0" id="TablePreference">
@@ -2591,33 +2631,44 @@
 
                 <div id="About" class="tabcontent" style="display:inline;">
                     <div style="margin-top:1%;line-height: 150%;padding:8px;background-color: #ccc; border: 2px solid #acacac;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;">
-                        <img src="images/asoka.png">
-                        <br>
-                        Your Current Version is:
-                        <div id="currentversion"></div>
-                        <br>
-                        This project is open source and according to licenses on the github project page.<br>
-
-                        <br><bold> VRI Copyright Notice</bold><br>
-                        ====
-The Pāli texts used in this software are copyright Vipassana Research Institute (VRI), and they were copied from VRI's text originally found on tipitaka.org website several years ago. As the texts on the tipitaka.org website are updated from time to time, the texts used in this software are out of date. To access the latest versions of the texts, please visit https://tipitaka.org.
-<br>
-The Hindi language dictionaries used in this software are also copyright VRI.
-====
-<br><br><bold>Comment on VRI Copyright Notice</bold><br>
-VRI is the keeper of the Golden Copy and tipitaka.org should be referenced for the latest updated copy.  They have placed a copyright on ancient public domain texts and I have checked with a copyright lawyer on this issue.  Because there is no claim by VRI for original work on this text and they strive to digitally match the original texts as accurately as possible, there is no case for a copyright claim if this is so.  Nevertheless, we are just monks and cannot get into legal issues and have sought permission.  VRI is a good organization and has good intentions nor do we want the responsibility for keeping the texts up to date which they do a great job on.  
-<br>
-The VRI pāḷi/Hindi dictionaries are not public domain and are copyrighted and protected.
-<br>
-<br>
-
-
-
-                        <br>
-                        Check Repository for Latest Version:
-                        <button type="button" id="btnGetVersion" onclick="getVersion()">Check Repo</button>
-                        <br>
-                        <div id="versioninfo"></div>
+                        <table border="0" width="100%">
+                            <tr>
+                                <td valign="top" width="35%">
+                                    <img src="images/asoka.png">
+                                    <br>
+                                    Your Current Version is:
+                                    <div id="currentversion"></div>
+                                </td> 
+                                <td valign="top" width="65%">
+                                    This project is open source and according to licenses on the github project page.
+                                    <br><br>
+                                    <bold> VRI Copyright Notice</bold>
+                                    <br>
+                                    ====<br>
+                                    The Pāli texts used in this software are copyright Vipassana Research Institute (VRI), and they were copied from VRI's text originally found on tipitaka.org website several years ago. As the texts on the tipitaka.org website are updated from time to time, the texts used in this software are out of date. To access the latest versions of the texts, please visit https://tipitaka.org.
+                                    <br>
+                                    The Hindi language dictionaries used in this software are also copyright VRI.
+                                    <br>
+                                    ====
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" colspan="2"> 
+                                    <br><br>
+                                    <bold>Comment on VRI Copyright Notice</bold>
+                                    <br>
+                                    VRI is the keeper of the Golden Copy and tipitaka.org should be referenced for the latest updated copy.  They have placed a copyright on ancient public domain texts and I have checked with a copyright lawyer on this issue.  Because there is no claim by VRI for original work on this text and they strive to digitally match the original texts as accurately as possible, there is no case for a copyright claim if this is so.  Nevertheless, we are just monks and cannot get into legal issues and have sought permission.  VRI is a good organization and has good intentions nor do we want the responsibility for keeping the texts up to date which they do a great job on.<br>
+                                    The VRI pāḷi/Hindi dictionaries are not public domain and are copyrighted and protected.
+                                    <br>
+                                    <br>
+                                    <br>
+                                    Check Repository for Latest Version:
+                                    <button type="button" id="btnGetVersion" onclick="getVersion()">Check Repo</button>
+                                    <br>
+                                    <div id="versioninfo"></div>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
 
@@ -2735,35 +2786,37 @@ The VRI pāḷi/Hindi dictionaries are not public domain and are copyrighted and
             dsp = 'inline';
         } else {
             $('#msg').html('');
-        }
+        } 
+
+        var aryz = ';0'.split(';');     // 0 = english
         for (i = 1; i <= 3; i++) {
-            for (j = 1; j <= 8; j++) {
-                no = '' + j + '' + i;
-                $('#Nikaya' + no).css('display', dsp);
-                $('#Out' + no).html('');
-                if (document.getElementById('SearchType1').checked != true) {
-                    $('#Kex' + no).html('');
+            for (j = 1; j <= 8; j++) {  
+                no = 'Nikaya' + j + i + aryz[0];
+                if (document.getElementById(no)) { 
+                    $('#Nikaya' + j + i).css('display', dsp);
+                    $('#Out' + j + i).html('');
+                    if (document.getElementById('SearchType1').checked != true) {
+                        $('#Kex' + j + i).html('');
+                    }
+                }
+
+                no = 'Nikaya' + j + i + aryz[1];
+                if (document.getElementById(no)) { 
+                     $('#Nikaya' + j + i + '0').css('display', dsp);
+                    $('#Label' + j + i + '0').css('display', dsp);
+                    $('#Out' + j + i + '0').html('');
+                    if (document.getElementById('SearchType1').checked != true) {
+                        $('#Kex' + j + i + '0').html('');
+                    } 
                 }
             }
-        }
-
-        for (j = 2; j <= 6; j++) {
-            no = '' + j;
-            $('#Nikaya9' + no).css('display', dsp);
-            $('#Label9' + no).css('display', dsp);
-            $('#Out9' + no).html('');
-            if (document.getElementById('SearchType1').checked != true) {
-                $('#Kex9' + no).html('');
-            }
         } 
-        // document.getElementById('out').innerHTML = '';
     }
 
 
 
 
     pws = [];
-    pwsEn = [];
 
 
     window.onload = function () {

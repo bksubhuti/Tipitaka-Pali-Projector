@@ -1,0 +1,3 @@
+pws = {
+'smells':'D24G54J124M60P8','smell':'D5G21J25M17P4','small':'D11G19J10M27P3','smoke':'G8J6M12','smeared':'D4G10J2M4P5','smelling':'D5G3J2M12P1','smooth':'D1G13J4M3P1','smoothed':'D12G4M4','smith':'D7G1J1M4P3','smiled':'G6J5M3P2','smile':'G4M4','smokes':'G3M4','smiling':'D2G2J1P1','smithy':'G6','smears':'G2J1M1P1','smashing':'M5','smoked':'G2J2','smash':'M4','smashed':'G1M1P2','smiles':'M3','smart':'J2P1','smoothly':'J3','smelled':'G1J1M1','smear':'D1M2','smolder':'M2','smoking':'D1','smashes':'P1','smack':'P1','smolders':'M1','smoky':'M1','smelt':'M1','smiths':'M1','smelting':'M1','smelly':'M1','smallpox':'M1','smaller':'M1','smoldering':'J1','smothered':'P1'
+}

@@ -81,6 +81,7 @@ function DictionaryGo() {
 
 
 	if (key == '') { return(''); } 
+	key = key.replace('…', '');
 	$('#DictionaryKey').val(toTranslate(key));
 
 

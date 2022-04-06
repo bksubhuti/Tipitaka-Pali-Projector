@@ -1,0 +1,3 @@
+pws = {
+'night':'D50G177J133M188P37','nine':'D36G4J5M77P14','nice':'D18G10J25M9P3','nigrodha':'D44P1','nimble':'D4G19M2','nights':'D1G4J11M5P4','nicely':'D5G4J7M5','nimi':'G15','ninety':'D6G4J2M3','ninth':'D4G1J1M5','nines':'D1G1M1P3','nikata':'D2J2','nihilism':'D1G1J1M1','nigrodhakappa':'J4','nirabbuda':'J2M2','nilgai':'D3','nicest':'G3','nihilists':'J2','nihilist':'G1','nirodhavagga':'J1','nisabha':'P1','nitaka':'P1'
+}

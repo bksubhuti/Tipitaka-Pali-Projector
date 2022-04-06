@@ -1,0 +1,3 @@
+pws = {
+'wrong':'D181G249J236M804P19','wrapped':'D10G9J5M4P11','wrists':'D1G8J15P1','wrongly':'G4J11M7','wrap':'D7G3M3','wretched':'G1J4M3P3','wriggle':'D11','wrapping':'D2G4M4','wrinkly':'D1G2J4P1','wrinkled':'G2J2M2','wreathed':'D2J1M1P1','wronged':'D3','writhe':'G2J1','wrought':'G1J1M1','wrongs':'J3','wrinkles':'P3','wrestling':'D2','wretch':'G2','wreck':'M2','wriggling':'G1','wrecking':'J1','wrestle':'J1'
+}

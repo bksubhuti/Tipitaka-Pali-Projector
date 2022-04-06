@@ -1,0 +1,3 @@
+pws = {
+'epilepsy':'M1'
+}

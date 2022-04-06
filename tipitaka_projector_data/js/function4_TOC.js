@@ -219,7 +219,6 @@ function PaliHistoryGoUrl(val) {
 	var today = new Date();
 	var date = ('0' + (today.getMonth() + 1)).slice(-2) + ('0' + today.getDate()).slice(-2)  + " "+ ('0' + today.getHours()).slice(-2)  + ('0' + today.getMinutes()).slice(-2);
 
-
 	if (val.substring(0,2) == 'qj')
 	{
 		Booktoload= val.substring(2,6);
@@ -252,12 +251,13 @@ function PaliHistoryGoUrl(val) {
 		}
 	}else{ // not quick jump
 
-		Booktoload = val.substring(0,4);
-		if (val.search("#")== -1){
-			PositionToGo = "p" + val.substring(4);
-		}else{
-			PositionToGo = val.substring(5);
-		}
+		var ary = val.split('#');
+		if (ary.length == 1) {		// no '#' 
+			PositionToGo = "p" + val.substring(ary[0].length);
+		} else {
+			PositionToGo = ary[1];
+		} 
+		Booktoload = ary[0];
 
 		// now load the book if needed
 		// set scroll position

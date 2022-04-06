@@ -1,0 +1,3 @@
+pws = {
+'of':'D5324G8295J9689M12204P1583','off':'D96G255J182M216P49','offense':'D1G35J1M167','offerings':'D24G20J19M133P5','often':'D11G18J8M116','offering':'D26G12J22M24P4','offensiveness':'G8M47','offered':'D2G7J7M16P7','offer':'D3G6J7M19P1','offenses':'D2G12J1M19','offensive':'D3G5M8P1','officers':'D11J5','officials':'D11G1M3','offender':'G8','offending':'M8','offers':'G4J1','official':'J1M4','offended':'D2J2','offspring':'M2','offend':'G1'
+}

@@ -1,0 +1,3 @@
+pws = {
+'ukkhepakatavaccha':'P1'
+}

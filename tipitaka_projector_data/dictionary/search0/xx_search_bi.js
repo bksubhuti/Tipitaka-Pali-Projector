@@ -1,0 +1,3 @@
+pws = {
+'birth':'D29G39J47M22P16','big':'D7G28J17M13P6','bitter':'D2G13J23M14P6','bird':'D14G11J15M10P4','bit':'G9J16M17P2','bitterness':'D3G18M20','birds':'D8G1J8M8P8','bidding':'D1G1J3M2P20','bile':'D2G5J5M14','bind':'D9J5M2P3','bite':'G1J5M9','binds':'G3J4M6','birthplace':'D1G3J9','births':'D1G1J1M1P9','bits':'J6P1','biggest':'G1J4M2','bigger':'G3J3','bier':'D3G1J1','billabong':'M5','bin':'G4','bipeds':'J2M2','binding':'D3P1','bitten':'G2M1','bites':'G1J1','bides':'J1','billionfold':'M1','bide':'P1','bitch':'P1'
+}

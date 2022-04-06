@@ -1,0 +1,3 @@
+pws = {
+'after':'D313G499J612M679P51','afterlife':'D41G22J10M26','afternoon':'D4G22J42M23','affliction':'G11J8M66','affluent':'D9G7J11M27P1','afraid':'G12J11M17P6','affect':'D7G5J2M22','affection':'G14J5M6','afterwards':'D5G3J2M7P6','afar':'D4J3M5P1','afflictions':'D3G3M4','affected':'G6J1M1P1','affairs':'D7J1','affirms':'D1G4J1','afflicted':'J3M1P2','affects':'D4','afflict':'M2','afflicts':'M1','aflame':'P1'
+}

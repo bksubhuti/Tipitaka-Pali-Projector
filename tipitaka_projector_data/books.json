@@ -338,55 +338,38 @@
 
 		{"name":"Pāḷi/English","sets":[
 			{"name":"Dīghanikāya","texts":[
-				{"index":1,"bookId":9201,"title":"1. Sīlakkhandhavagga","rows":4244},
-				{"index":2,"bookId":9202,"title":"2. Mahāvagga (Dīgha)","rows":6094}, 
-				{"index":3,"bookId":9203,"title":"3. Pāthikavagga","rows":5957}
+				{"index":1,"bookId":21010,"title":"1. Sīlakkhandhavagga","rows":4244},
+				{"index":2,"bookId":21020,"title":"2. Mahāvagga (Dīgha)","rows":6094}, 
+				{"index":3,"bookId":21030,"title":"3. Pāthikavagga","rows":5957}
 			]},
 			{"name":"Majjhimanikāya","texts":[
-				{"index":1,"bookId":9301,"title":"1. Mūlapaṇṇāsa","rows":8720},
-				{"index":2,"bookId":9302,"title":"2. Majjhimapaṇṇāsa","rows":9804},
-				{"index":3,"bookId":9303,"title":"3. Uparipaṇṇāsa","rows":8374}
+				{"index":1,"bookId":31010,"title":"1. Mūlapaṇṇāsa","rows":8720},
+				{"index":2,"bookId":31020,"title":"2. Majjhimapaṇṇāsa","rows":9804},
+				{"index":3,"bookId":31030,"title":"3. Uparipaṇṇāsa","rows":8374}
 			]},
 			{"name":"Saṃyuttanikāya","texts":[
-				{"index":1,"bookId":9401,"title":"1. Sagāthāvagga","rows":7206},
-				{"index":2,"bookId":9402,"title":"2. Nidānavagga","rows":6292},
-				{"index":3,"bookId":9403,"title":"3. Khandhavagga","rows":7541},
-				{"index":4,"bookId":9404,"title":"4. Saḷāyatanavagga","rows":8983},
-				{"index":5,"bookId":9405,"title":"5. Mahāvagga (Saṃyutta)","rows":9746}
+				{"index":1,"bookId":41010,"title":"1. Sagāthāvagga","rows":7206},
+				{"index":2,"bookId":41020,"title":"2. Nidānavagga","rows":6292},
+				{"index":3,"bookId":41030,"title":"3. Khandhavagga","rows":7541},
+				{"index":4,"bookId":41040,"title":"4. Saḷāyatanavagga","rows":8983},
+				{"index":5,"bookId":41050,"title":"5. Mahāvagga (Saṃyutta)","rows":9746}
 			]},
 			{"name":"Aṅguttaranikāya","texts":[
-				{"index":1,"bookId":9501,"title":"1. Ekakanipāta","rows":1129},
-				{"index":2,"bookId":9502,"title":"2. Dukanipāta","rows":1461},
-				{"index":3,"bookId":9503,"title":"3. Tikanipāta","rows":46666},
-				{"index":4,"bookId":9504,"title":"4. Catukkanipāta","rows":6474},
-				{"index":5,"bookId":9505,"title":"5. Pañcakanipāta","rows":5671},
-				{"index":6,"bookId":9506,"title":"6. Chakkanipāta","rows":3290},
-				{"index":7,"bookId":9507,"title":"7. Sattakanipāta","rows":2918},
-				{"index":8,"bookId":9508,"title":"8. Aṭṭhakanipāta","rows":3868},
-				{"index":9,"bookId":9509,"title":"9. Navakanipāta","rows":2103},
-				{"index":10,"bookId":9510,"title":"10. Dasakanipāta","rows":6170},
-				{"index":11,"bookId":9511,"title":"11. Ekādasakanipāta","rows":966}
+				{"index":1,"bookId":51010,"title":"1. Ekakanipāta","rows":1129},
+				{"index":2,"bookId":51020,"title":"2. Dukanipāta","rows":1461},
+				{"index":3,"bookId":51030,"title":"3. Tikanipāta","rows":46666},
+				{"index":4,"bookId":51040,"title":"4. Catukkanipāta","rows":6474},
+				{"index":5,"bookId":51050,"title":"5. Pañcakanipāta","rows":5671},
+				{"index":6,"bookId":51060,"title":"6. Chakkanipāta","rows":3290},
+				{"index":7,"bookId":51070,"title":"7. Sattakanipāta","rows":2918},
+				{"index":8,"bookId":51080,"title":"8. Aṭṭhakanipāta","rows":3868},
+				{"index":9,"bookId":51090,"title":"9. Navakanipāta","rows":2103},
+				{"index":10,"bookId":51100,"title":"10. Dasakanipāta","rows":6170},
+				{"index":11,"bookId":51110,"title":"11. Ekādasakanipāta","rows":966}
 			]},
-			{"name":"Khuddakanikāya","texts":[
-				{"index":1,"bookId":6102,"title":"Dhammapada","rows":1394},
-				{"index":2,"bookId":9608,"title":"Theragāthā","rows":6596},
-				{"index":3,"bookId":9609,"title":"Therīgāthā","rows":2408}
-			]}
-		]},
-
-		{"name":"English Texts","sets":[
-			{"name":"Dhammapada Commentary","texts":[
-				{"index":1,"bookId":6202,"title":"Book 1","rows":2059},
-				{"index":2,"bookId":6203,"title":"Book 2","rows":3173}
-			]},
-			{"name":"Jātaka Commentary","texts":[
-				{"index":1,"bookId":6217,"title":"Jātaka Commentary-1","rows":3117},
-				{"index":2,"bookId":6218,"title":"Jātaka Commentary-2","rows":2997},
-				{"index":3,"bookId":6219,"title":"Jātaka Commentary-3","rows":4868},
-				{"index":4,"bookId":6220,"title":"Jātaka Commentary-4","rows":6738},
-				{"index":5,"bookId":6221,"title":"Jātaka Commentary-5","rows":5079},
-				{"index":6,"bookId":6222,"title":"Jātaka Commentary-6","rows":3688},
-				{"index":7,"bookId":6223,"title":"Jātaka Commentary-7","rows":6463}
+			{"name":"Khuddakanikāya","texts":[  
+				{"index":2,"bookId":61080,"title":"Theragāthā","rows":6616},
+				{"index":3,"bookId":61090,"title":"Therīgāthā","rows":2494}
 			]}
 		]}
 	] 

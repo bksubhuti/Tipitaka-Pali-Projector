@@ -1,0 +1,3 @@
+pws = {
+'rules':'D16G14J9M109P1','rulers':'D24G13J13M26','ruin':'D18G2J17M15P4','run':'G30J10M8P2','running':'D10G14J7M4P5','ruler':'D4G4J9M14','rule':'D4G8J11M6P1','rude':'D2G5J7M11','runs':'D1G1J9M7P2','ruined':'D1G6J4M5P2','rub':'G10J3M3','rubbish':'D1G7J1M3P4','rugged':'D1G2J3M9','rubbed':'G11M1P1','rug':'G7J2M1','ruby':'D10','ruling':'G1J4M1P2','rubbing':'D3G5','rushes':'D3J3M2','rugs':'D5M3','ruminate':'G4M3','rutting':'D1G1P4','rumor':'J5','ruses':'G1M4','rush':'J4P1','ruled':'D2G2','ruminates':'G4','rushed':'D1J2','rustle':'G3','rudder':'J1M2','rubies':'M2','rustling':'G2','rusty':'J2','ruination':'P1','rustled':'G1','ruins':'J1','ruining':'J1','ruciras':'D1','rumors':'D1','rumbles':'P1'
+}

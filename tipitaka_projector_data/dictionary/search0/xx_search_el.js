@@ -1,0 +1,3 @@
+pws = {
+'element':'D8G168J332M36','else':'D48G81J55M116P9','elements':'D41G71J145M37P6','elephant':'D25G97J35M112P25','elephants':'D22G24J16M27P7','eliminated':'D12G25J5M31','eleven':'G16M39P10','eliminate':'D2G8J7M33','elderly':'D16G10J6M18','elders':'D8G9J8M6','eliminates':'D1G1J8M15','eldest':'D1G1J1M16','eloquence':'D1M13','elated':'D2G2M7P3','elucidator':'G6J2M4','eloquent':'D2G1J1M7','elsewhere':'D4G3J2P1','elder':'D1G1J1M4P1','eliminating':'D1G3M2','elected':'D3G3','elevens':'M1P3','eleventh':'G1J1M1','elaborate':'J3','elaborated':'J2','eligible':'M2','elevate':'D1','elegant':'D1','elect':'D1','elimination':'M1'
+}

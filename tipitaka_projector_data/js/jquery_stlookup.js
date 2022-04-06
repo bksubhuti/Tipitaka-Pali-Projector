@@ -430,7 +430,7 @@ function word_click2() {
 SPEECH SYNTHESIS FUNCTION
 Note: on Android, tested with Firefox Nightly (Developer version) and Chrome only.
 @ Reference: https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis
-*/
+
 function speakSynthesis (sayme) {
 	if (localStorage.getItem("speech_repeat") != '0') {
 		this.sayme = sayme;
@@ -446,7 +446,8 @@ function speakSynthesis (sayme) {
 		synthCall.speak(speakThis);
 	}
 }//end function speakSynthesis(sayme)
- 
+*/
+
 /*
 @ THESE FUNCTIONs: function toMyanmar(k) function toSinhala(l) function toDevar(l) function toThai(m)
 @ TO CONVERT Pali Roman TO pali MYANMAR, SINHALA, DEVAR AND THAI

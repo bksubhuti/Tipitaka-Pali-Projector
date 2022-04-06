@@ -19,16 +19,16 @@ function PaliSearchGo(parm) {
            		key = 'Nikaya' + no;
             	document.getElementById(key).checked = '1'; 
             }
+
+            if (x <= 2) {
+            	no = no + '0';
+		    	if (ary[2].indexOf(no) != -1) {
+		       		key = 'Nikaya' + no;
+		            document.getElementById(key).checked = '1'; 
+		        } 
+            }
         }
-    }
- 
-    for (y = 2; y <= 6; y++) {
-    	no = '9' + y;
-    	if (ary[2].indexOf(no) != -1) {
-       		key = 'Nikaya' + no;
-            document.getElementById(key).checked = '1'; 
-        }
-    }  
+    } 
 
 	$('#key').focus(); 
 	SearchPali(ary[0]); 
@@ -133,23 +133,20 @@ function WriteSearchStorage(SrhType){
 
     var chk = '';
     var all = '';
+	var aryz = ';0'.split(';');
     for (x = 1; x <= 3; x++) {
         for (y = 1; y <= 8; y++) {
-            key = 'Nikaya' + y + x;
-            if (document.getElementById(key).checked) {
-            	chk = chk + ';' + y + x;
-            }	
-        	all = all + ';' + y + x;
+			for (z in aryz) {
+	            key = 'Nikaya' + y + x + aryz[z];
+	            if (document.getElementById(key)) {
+		            if (document.getElementById(key).checked) {
+		            	chk = chk + ';' + y + x;
+		            }	
+		        	all = all + ';' + y + x;
+		        } 
+		    }
         }
-    }
- 
-    for (y = 2; y <= 6; y++) {
-        key = 'Nikaya9' + y;
-        if (document.getElementById(key).checked) {
-        	chk = chk + ';9' + y;
-        }	
-    	all = all + ';9' + y;
-    }  
+    } 
     if (chk == '') {
     	chk = all.substr(1);
     } else {

@@ -1,0 +1,3 @@
+pws = {
+'age':'D36G77J332M87P18','again':'D29G46J89M53P65','aggregates':'D15G59J152M19P22','agreeable':'D9G58J78M71','against':'D27G48J49M59P7','agreed':'D13G29J28M19P2','agree':'D18G17J18M33P1','aggivessana':'G46','ago':'D14G10J11M9P1','aggregate':'G11J10M5','aggression':'G5J2M14','agrees':'D6G6M5','agreement':'D1G8J1M1','aggravated':'D1G4M5','aggrieve':'D1G3J5','agitation':'D2G3J3','ages':'G3J3P1','agreeably':'D1M5','agreeing':'G3M3','agony':'J4','aggivessa':'M2','aggressive':'M2','ageless':'P2','agape':'G1','aggressively':'D1','aggidatta':'D1','aged':'J1','agents':'J1'
+}

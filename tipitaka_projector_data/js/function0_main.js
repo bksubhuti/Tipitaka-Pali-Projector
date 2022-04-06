@@ -163,7 +163,7 @@ $.getScript("js/z_tipitaka_Maps.js");
 
 var _ary = window.location.toString().split('.htm');
 var html_file = _ary[0].slice(-4) + '.htm';
-var html_no = _ary[0].slice(-4);
+var html_no = _ary[0].slice(-4); 
 
 M_FNOTE = [];
 M_LOC = [];
@@ -174,7 +174,7 @@ M_RANGE = [];
 function GetTrId(val) {
 	val = Math.max(1, val);
 	document.write = localStorage.setItem('tr_id', val);
-	document.write = localStorage.setItem('LastHistory', html_no + val);
+	document.write = localStorage.setItem('LastHistory', html_no + '#p'+ val);
 
 	h = parseInt($('#main_div').css('height')) - Math.max(34, parseInt($('#main_div').css('top'))) + parseInt($('#main_content').css('offsetTop'));
 
@@ -214,13 +214,13 @@ function GetTrId(val) {
 
 //=============================================================
 function sel_on_off() {
-	contentdisplay = localStorage.getItem('contentdisplay');
-	if (!contentdisplay) {
-		contentdisplay = '0';
-		document.write = localStorage.setItem('contentdisplay', contentdisplay);
+	contentPosDisp = localStorage.getItem('contentPosDisp');
+	if (!contentPosDisp) {
+		contentPosDisp = 'Moveable';
+		document.write = localStorage.setItem('contentPosDisp', contentPosDisp);
 	}
 
-	if (localStorage.getItem('contentdisplay') == '0') {
+	if (contentPosDisp == 'OnClicked') {
 		if ($('#main_div').css('display') == 'none') {
 			$('#main_div').css('display', 'inline');
 		} else {
@@ -234,7 +234,7 @@ function RedrawTable(w) {
 	w1 = w;		//parseInt(w /screen.width * 100);
 	w2 = document.body.getBoundingClientRect().width - w1; 	// class="main_td2" margin-left:15px;
 
-	if (localStorage.getItem('contentposition') == '0') {  // float panel
+	if (localStorage.getItem('contentPosDisp') != 'LeftFixed') {  // float panel
 		$('#main_td2').css('left', '0px');
 		$('#main_td2').css('top', '0px');
 		$('#main_td2').css('width', document.body.getBoundingClientRect().width + "px");
@@ -602,11 +602,12 @@ function onHeaderDictionary(){
 function goConfirmGoToLatest(){
 
 	var strLastHistory = localStorage.getItem('LastHistory');
-	var strPromptConfirm = localStorage.getItem('PromptConfirm');
-	var strAutoRestore = localStorage.getItem('AutoRestore');
+	//var strPromptConfirm = localStorage.getItem('PromptConfirm');
+	//var strAutoRestore = localStorage.getItem('AutoRestore');
+	var strRestoreType = localStorage.getItem('RestoreType');
 
 	if (strLastHistory){
-		if (strPromptConfirm == "on"){
+		if (strRestoreType == "prompt"){
 
 				$.confirm({
 					title: 'Tpp',
@@ -624,7 +625,7 @@ function goConfirmGoToLatest(){
 					}
 				});
 			}else{
-				if (strAutoRestore == "on" ){
+				if (strRestoreType == "auto" ){
 					PaliHistoryGoUrl(strLastHistory);
 				}
 			}
