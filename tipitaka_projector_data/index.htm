@@ -3024,7 +3024,8 @@
     $('#electron-notification i').click(() => displayNotification(false));
 
     if (typeof(require) !== 'undefined') {
-        const { remote, ipcRenderer } = require('electron');
+        const { ipcRenderer } = require('electron');
+        const remote = require('@electron/remote')
         const { FindInPage } = require('electron-find');
 
         let findInPage = new FindInPage(remote.getCurrentWebContents())

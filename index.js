@@ -3,6 +3,8 @@ const electron = require("electron");
 //const os = require("os");
 const { autoUpdater } = require('electron-updater');
 
+require('@electron/remote/main').initialize();
+
 // Setup the Auto Updater
 //
 autoUpdater.autoDownload = false;
@@ -15,9 +17,12 @@ app.on('ready', () => {
         width: 1200,
         height: 720,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            contextIsolation: false,
         }
     });
+    
+    require('@electron/remote/main').enable(mainWindow.webContents);
 
     mainWindow.maximize();
     
@@ -27,7 +32,7 @@ app.on('ready', () => {
     mainWindow.on('focus', () => {
         globalShortcut.register('CommandOrControl+F', function () {
             if (mainWindow && mainWindow.webContents) {
-                mainWindow.webContents.send('on-find', '')
+                mainWindow.webContents.send('on-find', '');
             }
         });
     });
