@@ -65,6 +65,10 @@
             flat: {}
         };
 
+        var ebookData = {
+            structure: {},
+            flat: {}
+        };
 
 
         //////////////////////////////////////////////////////////////////////////
@@ -120,6 +124,59 @@
             });
 
             PaliHistoryList();
+        };
+
+
+
+
+        const setEbookBookInfo = (rawBookMetaData) => {
+            const structuredData = JSON.parse(rawBookMetaData).books;
+
+            for (const book of structuredData) {
+                for (const set of book.sets) {
+                    for (const text of set.texts) {
+                        const extraInfo = {set: set.name, book: book.name};
+                        bookData.flat[text.bookId] = Object.assign(extraInfo, text); 
+                    }
+                }
+            }
+
+            const etreeData = structuredData.map(sd => {
+                return {
+                    text: toTranslate(sd.name),
+                    children: sd.sets.map(set => {
+                        return {
+                            text: toTranslate(set.name),
+                            children: set.texts.map(text => {
+                                return {
+                                    text: toTranslate(text.title),
+                                    icon: 'images/text.png',
+                                    data: text
+                                }
+                            })
+                        }
+                    })
+                }
+            });
+
+            $('#ebooks-tree').off().jstree("destroy").empty().jstree({core: {data: etreeData}});
+
+            $('#ebooks-tree').on('select_node.jstree', (event, data) => {
+                if (data && data.node && data.node.data) {
+                    // this is actual text
+                    const ebookInfo = data.node.data;
+                    // load book here  PaliHistoryGoUrl(bookInfo.bookId + "#p1");
+                    showDialog('#epub');
+
+                    loadEpubBook(ebookInfo.bookId);
+                } else {
+                    // this is an expandable entity (e.g. a book)
+                    //
+                    data.instance.toggle_node(data.selected);
+                }
+            });
+
+            // no need to enter history here.  delete line  PaliHistoryList();
         };
 
         const width = () => $(window).width() - 40;
@@ -225,6 +282,7 @@
 
         var initDialogs = () => {
             $('#index').dialog({autoOpen: false, maxHeight: $(window).height()});
+            $('#epubindex').dialog({autoOpen: false, maxHeight: $(window).height()});
             $('#epub-selector').dialog({autoOpen: false, width: 256, height: 770, resizable: false, draggable: true});
 
             $('#epub').dialog({
@@ -337,6 +395,9 @@
         var showIndex = function showIndex() {
             $('#index').dialog('open');
         };
+        var showEpubIndex = function showEpubIndex() {
+            $('#epubindex').dialog('open');
+        };
 
         var showDialog = function showDialog(dialogId) {
             $(dialogId).dialog('open');
@@ -357,6 +418,16 @@
             });
         }
 
+        var loadEpubJSONBooks = function loadEpubJSONBooks() {
+            $.ajax({
+                url: 'epubbooks.json',
+                dataType: "text",
+                type: "GET",
+                mimeType: 'text/json; charset=utf-8',
+                contentType: 'text/json; charset=UTF-8',
+                success: setEbookBookInfo
+            });
+        }
         var hexToHSL = function hexToHSL(H) {
             // Convert hex to RGB first
             let r = 0, g = 0, b = 0;
@@ -458,6 +529,7 @@
              });
 
              loadJSONBooks();
+             loadEpubJSONBooks();
 
              addEvent(document.getElementById("main_td2"), "scroll", toGetScrollId);
 
@@ -514,7 +586,7 @@
             T
         </div>
 
-        <div class="notselected grey-button letter free" title="English Books" onClick="showEpubDemo()">
+        <div class="notselected grey-button letter free" title="English Books" onClick="showEpubIndex()">
             E
         </div> 
 
@@ -1461,6 +1533,12 @@
 <div id="index" title="Books Index" class="app-dialog">
     <div id="books-tree"></div>
 </div>
+
+<div id="epubindex" title="Epub Books" class="app-dialog">
+    <div id="ebooks-tree"></div>
+</div>
+
+
 
 <div id="epub-selector" title="EPUB Books" class="app-dialog">
     <ul class="epub-books">
@@ -2775,7 +2853,7 @@
         input = input.replace(/\-.r/g, 'ṝ').replace(/\.r/g, 'ṛ').replace(/\.R/g, 'Ṛ');
         input = input.replace(/\-.l/g, 'ḹ').replace(/\.h/g, 'ḥ');
         input = input.replace(/\"S/g, 'Ś').replace(/\"s/g, 'ś').replace(/\.S/g, 'Ṣ').replace(/\.s/g, 'ṣ');
-        input = input.replace(/ee/g, 'ē').replace(/oo/g, 'ō');
+        //input = input.replace(/ee/g, 'ē').replace(/oo/g, 'ō');
 
         input = input.replace(/\"n/g, 'ṅ').replace(/aa/g, 'ā').replace(/ii/g, 'ī').replace(/uu/g, 'ū').replace(/\.t/g, 'ṭ').replace(/\.d/g, 'ḍ').replace(/\"nk/g, 'ṅk').replace(/\"ng/g, 'ṅg').replace(/\.n/g, 'ṇ').replace(/\.m/g, nigahita).replace(/\u1E41/g, nigahita).replace(/\~n/g, 'ñ').replace(/\.l/g, 'ḷ').replace(/AA/g, 'Ā').replace(/II/g, 'Ī').replace(/UU/g, 'Ū').replace(/\.T/g, 'Ṭ').replace(/\.D/g, 'Ḍ').replace(/\"N/g, 'Ṅ').replace(/\.N/g, 'Ṇ').replace(/\.M/g, Nigahita).replace(/\~N/g, 'Ñ').replace(/\.L/g, 'Ḷ');
         return input;
