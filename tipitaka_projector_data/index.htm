@@ -1695,8 +1695,13 @@
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x11">
                 <input id="Nikaya11" type="checkbox" name="Nikaya11" onclick='choosePali("11")'/></input>
+                &nbsp;
+                <input id="Nikaya110" type="checkbox" name="Nikaya110" onclick='choosePali("110")'/></input>
+                <label for="Nikaya110" id="Label110">English</label>
                 <span style="color:red;font-weight:900;" id="Kex11"></span>
                 <span id="Out11"></span>
+                <span style="color:red;font-weight:900;" id="Kex110"></span>
+                <span id="Out110"></span>
             </td>
             <td bgcolor="#ffe0b0" valign="top" id="x12">
                 <input id="Nikaya12" type="checkbox" name="Nikaya12" onclick='choosePali("12")'/></input>
@@ -2765,7 +2770,7 @@
     P_TNX = '';
 </script>
 
-<script src="js/z_search_pali_no.js"></script>
+<!-- <script src="js/z_search_pali_no.js"></script> -->
 <script src="js/z_tipitaka_Maps.js"></script>
 <script src="js/searchdlg.js"></script>
 <!-- <script src="js/search_Title_No.js"></script> -->
@@ -3053,6 +3058,37 @@
                     break;
                 case 6223:
                     filetoload = "JatakaVol.6,The-E.B.Cowell.epub";
+                    break;
+                case 7101:
+                    filetoload = "dhammasangani-eng.epub";
+                    break;
+                case 7102:
+                    filetoload = "vibhanga-en-pts.epub";
+                    break;
+                case 7103:
+                    filetoload = "dhatukatha-en-pts.epub";
+                    break;
+                case 7104:
+                    filetoload = "puggalapannyati.epub";
+                    break;
+                case 7105:
+                    filetoload = "kathavathu.epub";
+                    break;
+                case 7106:
+                case 7107:
+                case 7108:
+                    filetoload = "yamaka.epub";
+                    break;
+                case 7109:
+                case 7110:
+                case 7111:
+                case 7112:
+                case 7113:
+                    filetoload = "patthana-en-pts.epub";
+                    break;
+                case 8201:
+                case 8202:
+                    filetoload = "vism.epub";
                     break;
                 default:
                     filetoload = "";

@@ -1,3 +1,3 @@
 pws = {
-'lying':'D33G63J34M79P4','lye':'J2M1','lyrics':'D1'
+'lying':'A22D33G63J34M79P4','lye':'A2J2M1','lyrics':'D1'
 }

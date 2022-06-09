@@ -337,6 +337,10 @@
 		]},
 
 		{"name":"Pāḷi/English","sets":[
+			{"name":"Vinayapiṭaka","texts":[
+				{"index":1,"bookId":11030,"title":"Mahāvagga Pāḷi","rows":14483},
+				{"index":2,"bookId":11040,"title":"Cūḷavagga Pāḷi","rows":14704}
+			]},
 			{"name":"Dīghanikāya","texts":[
 				{"index":1,"bookId":21010,"title":"1. Sīlakkhandhavagga","rows":4244},
 				{"index":2,"bookId":21020,"title":"2. Mahāvagga (Dīgha)","rows":6094}, 

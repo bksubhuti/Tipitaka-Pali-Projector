@@ -19,7 +19,7 @@
   "homepage": "https://github.com/bksubhuti/Tipitaka-Pali-Projector#readme",
   "devDependencies": {
     "electron": "^16.0.2",
-    "electron-builder": "^22.10.5",
+    "electron-builder": "^22.14.13",
     "electron-log": "^1.3.0",
     "electron-packager": "^15.0.0",
     "electron-updater": "^4.0.0"

@@ -1,3 +1,3 @@
 pws = {
-'turning':'D72G48J19M38P2','turn':'D25G27J16M28P3','turns':'D10G16J9M28P3','turned':'D16G12J5M6P3','turtle':'G3J14P1','tuft':'D7G2J5','turmoil':'M11','tusks':'G6J1M2P1','turban':'D6G2J1','turbulence':'J8','turmeric':'G1J4M2','tudu':'J3M3','tubers':'D4','turtles':'G1J2P1','turbans':'D2M1','tuned':'M3','tusker':'G2','tusk':'G2','tureen':'G2','tuck':'M2','tusitas':'D1','tuberculosis':'M1','tucked':'M1','tusked':'P1','tuskers':'P1'
+'turning':'A6D72G48J19M38P2','turn':'A30D25G27J16M28P3','turns':'D10G16J9M28P3','turned':'A16D16G12J5M6P3','tubers':'A14D4','turtle':'G3J14P1','tubes':'A14','tuft':'D7G2J5','tusks':'A2G6J1M2P1','turmoil':'M11','tuberculosis':'A10M1','turbans':'A6D2M1','turmeric':'A2G1J4M2','turban':'D6G2J1','turbulence':'J8','tudu':'J3M3','turtles':'G1J2P1','tuned':'M3','tusker':'G2','tusk':'G2','tureen':'G2','tuck':'M2','tube':'A2','tusked':'P1','tusitas':'D1','tucked':'M1','tuskers':'P1'
 }

@@ -1,3 +1,3 @@
 pws = {
-'epilepsy':'M1'
+'epilepsy':'A10M1'
 }

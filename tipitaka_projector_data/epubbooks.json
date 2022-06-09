@@ -1,0 +1,58 @@
+{
+	"books":[
+		{"name":"Vinayapiṭaka","sets":[
+			{"name":"Mūla","texts":[
+				{"index":1,"bookId":"bod-1-parajika.epub","title":"Pārājika Pāḷi","rows":2477},
+				{"index":2,"bookId":"bod-2-pacittiya.epub","title":"Pācittiya Pāḷi","rows":3690},
+				{"index":3,"bookId":"bod-3-mahavagga.epub","title":"Mahāvagga Pāḷi","rows":2759},
+				{"index":4,"bookId":"bod-3-culavagga.epub","title":"Cūḷavagga Pāḷi","rows":2821},
+				{"index":5,"bookId":"bod-5-parivara.epub","title":"Parivāra Pāḷi","rows":3645}
+			]}
+		]},
+		
+		{"name":"Suttas","sets":[
+			{"name":"Mūla","texts":[
+				{"index":1,"bookId":"dn_en_sujato.epub","title":"Digha Nikaya","rows":1074},
+				{"index":2,"bookId":"mn_en_sujato.epub","title":"Majjhima Nikaya","rows":1797},
+				{"index":3,"bookId":"sn_en_sujato.epub","title":"Samyutta Nikaya","rows":3498},
+				{"index":4,"bookId":"an_en_sujato.epub","title":"Anguttara Nikaya","rows":400}
+			]},
+			{"name":"Commentary","texts":[
+				{"index":1,"bookId":"DN22_TheWayOfMindfulnessBySomaThera.epub","title":"DN22","rows":3498},				
+				{"index":2,"bookId":"MN9-sammaditthisutta.epub","title":"MN9","rows":400},
+				{"index":3,"bookId":"Buddhist-Legends-1.epub","title":"Dhammapada Commentary 1","rows":400},
+				{"index":4,"bookId":"Buddhist-Legends-2.epub","title":"Dhammapada Commentary 2","rows":400},
+				{"index":5,"bookId":"JatakaVol.1,The-E.B.Cowell.epub","title":"Jataka Vol1","rows":400},
+				{"index":6,"bookId":"JatakaVol.2,The-E.B.Cowell.epub","title":"Jataka Vol2","rows":400},
+				{"index":7,"bookId":"JatakaVol.3,The-E.B.Cowell.epub","title":"Jataka Vol3","rows":400},
+				{"index":8,"bookId":"JatakaVol.4,The-E.B.Cowell.epub","title":"Jataka Vol4","rows":400},
+				{"index":9,"bookId":"JatakaVol.5,The-E.B.Cowell.epub","title":"Jataka Vol5","rows":400},
+				{"index":10,"bookId":"JatakaVol.6,The-E.B.Cowell.epub","title":"Jataka Vol6","rows":400},
+				{"index":11,"bookId":"JatakaVol.7,The-E.B.Cowell.epub","title":"Jataka Vol7","rows":400}			
+			]}
+
+		]},
+		{"name":"Abhidhamma","sets":[
+			{"name":"Mūla","texts":[
+				{"index":1,"bookId":"dhammasangani-eng.epub","title":"Dhammasaṅgaṇī","rows":2477},
+				{"index":2,"bookId":"vibhanga-en-pts.epub","title":"Vibhaṅga","rows":3645},
+				{"index":3,"bookId":"dhatukatha-en-pts.epub","title":"Dhātukathā","rows":3690},
+				{"index":4,"bookId":"puggalapannyati.epub","title":"Puggalapaññatti","rows":3690},
+				{"index":5,"bookId":"kathavathu.epub","title":"Kathāvatthu","rows":2759},
+				{"index":6,"bookId":"yamaka.epub","title":"Yamaka","rows":2759},
+				{"index":7,"bookId":"patthana-en-pts.epub","title":"Paṭṭhāna","rows":2821}
+			]}
+		]},
+		{"name":"Other","sets":[
+			{"name":"Books","texts":[
+				{"index":1,"bookId":"vism.epub","title":"Path Of Purification","rows":2477},
+				{"index":2,"bookId":"Path_of_Discrimination.epub","title":"Path of Discrimination","rows":3645}
+			]}
+		]}
+
+
+
+
+		
+	] 
+}

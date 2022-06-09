@@ -1,3 +1,3 @@
 pws = {
-'ukkhepakatavaccha':'P1'
+'ukkala':'A2','ukkhepakatavaccha':'P1'
 }

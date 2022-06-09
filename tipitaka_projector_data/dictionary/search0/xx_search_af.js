@@ -1,3 +1,3 @@
 pws = {
-'after':'D313G499J612M679P51','afterlife':'D41G22J10M26','afternoon':'D4G22J42M23','affliction':'G11J8M66','affluent':'D9G7J11M27P1','afraid':'G12J11M17P6','affect':'D7G5J2M22','affection':'G14J5M6','afterwards':'D5G3J2M7P6','afar':'D4J3M5P1','afflictions':'D3G3M4','affected':'G6J1M1P1','affairs':'D7J1','affirms':'D1G4J1','afflicted':'J3M1P2','affects':'D4','afflict':'M2','afflicts':'M1','aflame':'P1'
+'after':'A612D313G499J612M679P51','afterwards':'A264D5G3J2M7P6','afterlife':'A2D41G22J10M26','afraid':'A52G12J11M17P6','affliction':'A8G11J8M66','afternoon':'D4G22J42M23','affect':'A46D7G5J2M22','affection':'A34G14J5M6','affluent':'D9G7J11M27P1','afflicted':'A14J3M1P2','afar':'D4J3M5P1','affairs':'A4D7J1','affected':'A2G6J1M1P1','afflictions':'D3G3M4','affirms':'D1G4J1','afflictive':'A4','affects':'D4','afflict':'M2','afterward':'A2','afford':'A2','afflicts':'M1','aflame':'P1'
 }

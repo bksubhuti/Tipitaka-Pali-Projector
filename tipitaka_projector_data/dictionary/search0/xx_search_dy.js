@@ -1,3 +1,3 @@
 pws = {
-'dying':'D1G17J9M8P1','dye':'D4G5J4M5','dyed':'G5P4','dyer':'G5','dysentery':'D1G1M1','dyers':'D2','dyke':'M1'
+'dye':'A70D4G5J4M5','dying':'D1G17J9M8P1','dyeing':'A22','dyed':'A4G5P4','dysentery':'A6D1G1M1','dyer':'G5','dyers':'D2','dyke':'M1'
 }
