@@ -1,3 +1,3 @@
 pws = {
-'just':'A486D132G262J165M242P44','junior':'A54D8G15J28M47','jungle':'D5G17J17P3','judgment':'A4D1G1J3M16','jujube':'G4J15M5P1','jute':'A10M8','judgments':'G15J1','justice':'D6G5M2P1','judge':'G4J2M7','judging':'D1J3M9','judgmental':'M12','judged':'D1M9P1','juice':'A8G1','justly':'G5M1','jujubes':'G4J1M1','jump':'M3P2','judges':'A2J2','july':'A4','justify':'M3','justifies':'G2','juniors':'J1','jug':'G1'
+'just':'A389D132G262J165M242P44','junior':'A32D8G15J28M47','jungle':'D5G17J17P3','jujube':'A3G4J15M5P1','judgment':'A3D1G1J3M16','judgments':'G15J1','justice':'D6G5M2P1','judge':'G4J2M7','jute':'A5M8','judging':'D1J3M9','judgmental':'M12','judged':'D1M9P1','judges':'A6J2','jujubes':'G4J1M1','justly':'G5M1','juice':'A4G1','jump':'M3P2','justify':'M3','july':'A2','justifies':'G2','jug':'G1','juniors':'J1'
 }

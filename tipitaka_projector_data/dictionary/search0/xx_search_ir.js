@@ -1,3 +1,3 @@
 pws = {
-'iron':'D10G14J16M22P3','irritable':'D4G14J3M43','irrefutable':'D8G3M10','irreversible':'A16G4','irrelevant':'G8M7','irredeemable':'G1M10','irrational':'G10','irreverent':'M9','irreproachable':'M8','irrationally':'D7G1','irritability':'G6','irrigation':'M4','irrigators':'G1P2','irresistible':'J1P2','irrigate':'M2','ironed':'J2','irritation':'D2','irregular':'J1','irreversibly':'M1','irrationality':'J1','iris':'P1','irrecoverable':'P1'
+'irreversible':'A192G4','iron':'A2D10G14J16M22P3','irritable':'D4G14J3M43','irrefutable':'D8G3M10','irrelevant':'G8M7','irredeemable':'G1M10','irrational':'G10','irreproachable':'A1M8','irreverent':'M9','irrationally':'D7G1','irritability':'G6','irrigation':'M4','irrigators':'G1P2','irresistible':'J1P2','irritation':'A1D2','ironed':'J2','irrigate':'M2','irrationality':'J1','irregular':'J1','irreversibly':'M1','iris':'P1','irrecoverable':'P1'
 }

@@ -1,3 +1,3 @@
 pws = {
-'two':'A290D187G237J179M734P31','twenty':'A46D13G34J20M44P6','twelve':'A52D6G3J15M27P12','twos':'D1G1M1P60','twentieth':'A58','twofold':'G5J12','twenties':'P16','twice':'A2D6G1J1P2','twigs':'A2G2M7','twisting':'G6M2','twist':'G1J3M3','twisted':'A4P1','twelves':'P4','twin':'D3','twig':'G3','twelfth':'G1J1','tweezers':'G1'
+'two':'A445D187G237J179M734P31','twenty':'A86D13G34J20M44P6','twelve':'A108D6G3J15M27P12','twos':'D1G1M1P60','twentieth':'A29','twofold':'G5J12','twenties':'P16','twice':'A1D6G1J1P2','twigs':'A1G2M7','twisting':'G6M2','twelfth':'A6G1J1','twist':'G1J3M3','twelves':'P4','twig':'G3','twisted':'A2P1','twin':'D3','tweezers':'G1'
 }

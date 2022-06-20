@@ -1,3 +1,3 @@
 pws = {
-'wrong':'A620D181G249J236M804P19','wrongdoing':'A50','wrapped':'A2D10G9J5M4P11','wrongly':'A4G4J11M7','wrists':'D1G8J15P1','wring':'A16','wrap':'A2D7G3M3','wriggle':'D11','wretched':'G1J4M3P3','wrapping':'D2G4M4','wrinkly':'D1G2J4P1','wrinkled':'G2J2M2','wreathed':'D2J1M1P1','wrongs':'J3','wrought':'G1J1M1','writhe':'G2J1','wronged':'D3','wrinkles':'P3','wretch':'G2','wrestling':'D2','wreck':'M2','wriggling':'G1','wrecking':'J1','wrestle':'J1'
+'wrong':'A1318D181G249J236M804P19','wrongdoing':'A79','wrapped':'A1D10G9J5M4P11','wrists':'D1G8J15P1','wrongly':'A2G4J11M7','wrap':'A11D7G3M3','wretched':'G1J4M3P3','wriggle':'D11','wrapping':'D2G4M4','wrinkly':'D1G2J4P1','wring':'A8','wrinkled':'G2J2M2','wreathed':'D2J1M1P1','wrongs':'J3','wrought':'G1J1M1','writhe':'G2J1','writing':'A3','wronged':'D3','wrinkles':'P3','wretch':'G2','wrestling':'D2','wreck':'M2','wriggling':'G1','wrecking':'J1','wrestle':'J1'
 }

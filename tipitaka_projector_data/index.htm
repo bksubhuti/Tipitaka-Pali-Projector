@@ -887,12 +887,8 @@
 
 									<option value="English_This">English this.</option>
 									<option value="English_All">English All</option>
-									<option value="SuttaCentral_This">SuttaCentral this.</option>
-									<option value="SuttaCentral_All">SuttaCentral All</option>
 									<option value="Taiwan_This">T. Chinese this.</option>
 									<option value="Taiwan_All">T. Chinese All</option>
-									<option value="Chinese_This">S. Chinese this.</option>
-									<option value="Chinese_All">S. Chinese All</option>
 									<option value="MyNote_This">My Note this.</option>
 									<option value="MyNote_All">My Note All</option>
 								</select>
@@ -1354,7 +1350,7 @@
 			aryLoadFiles.push(bookParagraphsFile);
 			
 			var bookMyNote = '';
-			if ('English;SuttaCentral;Taiwan;Chinese;MyNote'.indexOf(localStorage.getItem('view_right')) != -1) {
+			if ('English;Taiwan;MyNote'.indexOf(localStorage.getItem('view_right')) != -1) {
 				M_LOC = [];
 				M_QUE = [];
 				M_FNOTE = [];
@@ -2269,9 +2265,7 @@
                                                             <option value="Space">None</option>
                                                             <option value="Space">---------</option>
                                                             <option value="English">English</option>
-                                                            <option value="SuttaCentral">SuttaCentral</option>
                                                             <option value="Taiwan">Traditional Chinese</option>
-                                                            <option value="Chinese">Simplied Chinese</option>
 															<option value="MyNote">My Note</option>
                                                             <option value="Space">---------</option>
                                                             <option value="Roman">Roman</option>
@@ -3059,7 +3053,7 @@
                 case 6223:
                     filetoload = "JatakaVol.6,The-E.B.Cowell.epub";
                     break;
-                case 7101:
+                    case 7101:
                     filetoload = "dhammasangani-eng.epub";
                     break;
                 case 7102:

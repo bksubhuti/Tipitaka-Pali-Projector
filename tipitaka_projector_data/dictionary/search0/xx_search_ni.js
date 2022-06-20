@@ -1,3 +1,3 @@
 pws = {
-'night':'A78D50G177J133M188P37','nine':'A8D36G4J5M77P14','nice':'A14D18G10J25M9P3','nigrodha':'D44P1','nights':'D1G4J11M5P4','nimble':'D4G19M2','nicely':'D5G4J7M5','ninety':'A2D6G4J2M3','nimi':'G15','ninth':'A4D4G1J1M5','nines':'D1G1M1P3','nightmares':'A4','nihilism':'D1G1J1M1','nikata':'D2J2','nirabbuda':'J2M2','nigrodhakappa':'J4','nilgai':'D3','nicest':'G3','nihilists':'J2','nihilist':'G1','nirodhavagga':'J1','nisabha':'P1','nitaka':'P1'
+'night':'A71D50G177J133M188P37','nine':'A7D36G4J5M77P14','nice':'A15D18G10J25M9P3','nights':'A31D1G4J11M5P4','nigrodha':'D44P1','ninth':'A29D4G1J1M5','nimble':'D4G19M2','nicely':'D5G4J7M5','ninety':'A3D6G4J2M3','nimi':'G15','nines':'D1G1M1P3','nirabbuda':'J2M2','nihilism':'D1G1J1M1','nikata':'D2J2','nigrodhakappa':'J4','nilgai':'D3','nicest':'G3','nihilists':'J2','nightmares':'A2','nihilist':'G1','nirodhavagga':'J1','nisabha':'P1','nitaka':'P1'
 }

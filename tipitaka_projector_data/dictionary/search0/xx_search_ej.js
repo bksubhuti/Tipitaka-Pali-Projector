@@ -1,3 +1,3 @@
 pws = {
-'ejection':'A190','ejected':'A156M2P1','ejecting':'A62','ejects':'A32','eject':'A20'
+'ejected':'A117M2P1','ejection':'A96','ejecting':'A31','ejects':'A16','eject':'A12'
 }

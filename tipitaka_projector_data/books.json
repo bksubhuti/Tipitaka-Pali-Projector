@@ -334,11 +334,13 @@
 				{"index":67,"bookId":8267,"title":"Kaccāyanadhātumañjusā","rows":494},
 				{"index":68,"bookId":8268,"title":"Sāmantakūṭavaṇṇanā","rows":3057}
 			]}
-		]},
+		]}, 
 
 		{"name":"Pāḷi/English","sets":[
 			{"name":"Vinayapiṭaka","texts":[
-				{"index":1,"bookId":11030,"title":"Mahāvagga Pāḷi","rows":14483},
+				{"index":1,"bookId":11010,"title":"Pārājika Pāḷi","rows":12494},
+				{"index":2,"bookId":11020,"title":"Pācittiya Pāḷi","rows":14658},
+				{"index":3,"bookId":11030,"title":"Mahāvagga Pāḷi","rows":14483},
 				{"index":2,"bookId":11040,"title":"Cūḷavagga Pāḷi","rows":14704}
 			]},
 			{"name":"Dīghanikāya","texts":[

@@ -1,3 +1,3 @@
 pws = {
-'physical':'A4D88G74J72M46P2','phenomena':'A6D12G64J37M19P4','phrasing':'D17G38J27M13','phrased':'D13G16J9M44','phrases':'D4G6J10M33','phoenixes':'D2J31','phenomenon':'J32','phlegm':'D2G5J4M14','philology':'D6G8M3','phagguna':'G10J6','phonology':'D6G7M3','physician':'A10P1','physicians':'A8','physically':'D2G4J2','philosopher':'M8','phlegmagogues':'D3','phussa':'P2','phoenix':'D1','philologists':'G1','phrase':'J1','physic':'P1'
+'physical':'A83D88G74J72M46P2','phenomena':'A3D12G64J37M19P4','phrasing':'D17G38J27M13','phrased':'D13G16J9M44','phrases':'D4G6J10M33','phoenixes':'D2J31','phenomenon':'J32','phlegm':'D2G5J4M14','philology':'D6G8M3','phagguna':'G10J6','phonology':'D6G7M3','philosopher':'M8','physically':'D2G4J2','physician':'A5P1','philosophy':'A4','physicians':'A4','phrase':'A3J1','phlegmagogues':'D3','phussa':'P2','phoenix':'D1','philologists':'G1','physic':'P1'
 }

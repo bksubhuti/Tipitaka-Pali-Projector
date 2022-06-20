@@ -109,7 +109,7 @@ function MyNoteEdit() {
 		$('#MyNoteCancel').css('display', 'inline');
 
 		//
-		$('#MyNotePanel').css('display', 'inline'); 
+		$('#MyNotePanel').css('display', 'none'); 
 
 		MyNoteCheckClear();
 
