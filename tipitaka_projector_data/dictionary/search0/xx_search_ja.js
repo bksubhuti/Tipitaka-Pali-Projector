@@ -1,3 +1,3 @@
 pws = {
-'jain':'D11G47J4M14','jackal':'D9G1J19M3','jains':'A7G11J2M11','jar':'A5D4G8J7M1','jasmine':'A1G2J8M3P1','jail':'D4G3M8','jayasena':'G13','jaw':'D6G4M1','jackals':'D2G4J2M2P1','janavasabha':'D9','jantu':'A2J2M3','jaundice':'A2G2','jailed':'A4','jailer':'G3M1','jaws':'D2J1','jackets':'A2M1','janesabha':'D2','jamb':'D2','jars':'A1J1','jayanta':'G1','jailers':'M1','jacket':'P1','jambuka':'P1'
+'jain':'D11G47J4M14','jackal':'D9G1J19M3','jains':'A7G11J2M11','jar':'A8D4G8J7M1','jasmine':'A2G2J8M3P1','jail':'D4G3M8','jaw':'A4D6G4M1','jayasena':'G13','jackals':'D2G4J2M2P1','janavasabha':'D9','jantu':'A2J2M3','jailed':'A6','jack':'A5','jackets':'A4M1','jaundice':'A2G2','jailer':'G3M1','jaws':'D2J1','jamb':'D2','janesabha':'D2','jars':'A1J1','jayanta':'G1','jailers':'M1','jacket':'P1','jambuka':'P1'
 }

@@ -1,3 +1,3 @@
 pws = {
-'escape':'A4D50G82J195M80P3','established':'A17D14G61J87M66P4','esteemed':'A7D17G14J13M50P2','establish':'A8D11G19J11M52P2','esteem':'A3D6G6J3M35P1','establishes':'A21G5J11M14','essence':'A26J1M11','escaped':'A11G1J6M9P4','essential':'D1G2J3M23P2','establishing':'A2G9J6M13','escorted':'D3G4J3M6','escaping':'D5G1M3P2','establishment':'A4G6','essentials':'M8P1','esteeming':'M5','especially':'G1M1P1','esteems':'M2','estimable':'J1P1','estimate':'A1','estimation':'M1'
+'escape':'A7D50G82J195M80P3','established':'A44D14G61J87M66P4','establish':'A30D11G19J11M52P2','esteemed':'A11D17G14J13M50P2','esteem':'A17D6G6J3M35P1','establishes':'A21G5J11M14','essence':'A29J1M11','escaped':'A14G1J6M9P4','establishing':'A4G9J6M13','essential':'D1G2J3M23P2','escorted':'D3G4J3M6','escaping':'D5G1M3P2','establishment':'A4G6','essentials':'M8P1','especially':'A2G1M1P1','esteeming':'M5','estimable':'J1P1','esteems':'M2','estimate':'A1','estimation':'M1'
 }

@@ -1,3 +1,3 @@
 pws = {
-'circled':'D21G30J36M36','city':'A7D22G19J17M9P13','citta':'D11J50M18','citadel':'D12J3M36P1','cities':'D20G8J4M14P1','circumambulated':'A36','circle':'D15G8J1M2P2','circling':'D2G9J3M1P3','circumference':'D4G1J2M10','circumstance':'D1G7J1','circumstances':'A3G3','circles':'A2D1P2','circumambulating':'A1J4','civilized':'D1M2','circumspect':'A2','cittasena':'D2','circumspection':'A1','cittaka':'P1'
+'circled':'A1D21G30J36M36','citta':'A39D11J50M18','city':'A14D22G19J17M9P13','circumambulated':'A57','citadel':'D12J3M36P1','cities':'D20G8J4M14P1','circle':'A1D15G8J1M2P2','circling':'D2G9J3M1P3','circumference':'D4G1J2M10','circumstances':'A6G3','circumstance':'D1G7J1','circles':'A2D1P2','circumambulating':'A1J4','civilized':'D1M2','cittasena':'D2','cinnabar':'A2','circular':'A2','circumspect':'A2','circumspection':'A1','cittaka':'P1'
 }

@@ -1,3 +1,3 @@
 pws = {
-'joined':'A58D21G35J36M118P13','joy':'A2D48G52J33M128P7','journey':'A4D28G57J111M56P4','joyful':'A19D24G21J19M48P6','joints':'A16D4G4J5','join':'A21D1J1P1','job':'A9J1P1','joint':'A10M1','jobs':'D4G3J1M1','joke':'A3D1G3M1','joining':'D1G2J2P1','joys':'D1J4P1','jotika':'J4','joins':'A2M1','joyfully':'J2','jolted':'A1','jointly':'A1','jonogha':'D1','jotis':'D1','journeying':'M1','jot':'P1','journeyed':'P1'
+'joined':'A176D21G35J36M118P13','joy':'A10D48G52J33M128P7','journey':'A4D28G57J111M56P4','joyful':'A23D24G21J19M48P6','joints':'A19D4G4J5','joint':'A28M1','join':'A25D1J1P1','job':'A11J1P1','joke':'A4D1G3M1','jobs':'D4G3J1M1','joining':'A2D1G2J2P1','joys':'D1J4P1','jointly':'A4','joins':'A3M1','jotika':'J4','jolted':'A2','joyfully':'J2','jonogha':'D1','jotis':'D1','journeying':'M1','jot':'P1','journeyed':'P1'
 }

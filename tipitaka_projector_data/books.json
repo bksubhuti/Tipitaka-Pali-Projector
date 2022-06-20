@@ -341,7 +341,8 @@
 				{"index":1,"bookId":11010,"title":"Pārājika Pāḷi","rows":12494},
 				{"index":2,"bookId":11020,"title":"Pācittiya Pāḷi","rows":14658},
 				{"index":3,"bookId":11030,"title":"Mahāvagga Pāḷi","rows":14483},
-				{"index":2,"bookId":11040,"title":"Cūḷavagga Pāḷi","rows":14704}
+				{"index":4,"bookId":11040,"title":"Cūḷavagga Pāḷi","rows":14704},
+				{"index":5,"bookId":11040,"title":"Parivāra Pāḷi","rows":12704}
 			]},
 			{"name":"Dīghanikāya","texts":[
 				{"index":1,"bookId":21010,"title":"1. Sīlakkhandhavagga","rows":4244},
