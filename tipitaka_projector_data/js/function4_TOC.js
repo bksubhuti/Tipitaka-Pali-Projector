@@ -120,7 +120,9 @@ function PaliHistoryList() {
 	}
 
 	var PaliHistoryArray = [];
-	PaliHistoryArray = JSON.parse(localStorage.getItem('PaliHistoryJSON'));
+	if (localStorage.getItem('PaliHistoryJSON')) {
+		PaliHistoryArray = JSON.parse(localStorage.getItem('PaliHistoryJSON'));
+	}
 
 	if (PaliHistoryArray != null){// use JSON objects instead
 		var url = '';

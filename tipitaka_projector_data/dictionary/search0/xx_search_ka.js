@@ -1,3 +1,3 @@
 pws = {
-'kassapa':'A80D80G55J105M15P9','kapilavatthu':'A13D11G19J30M16','karma':'D3G8J1M60','kakusandha':'A2D11G12J4P3','kassapagotta':'A8J5M4','kakudha':'A3J2M6','kappa':'J7P1','kappita':'A8','kattika':'A7','kalanda':'A5','kapok':'D1G1J3','kandaraka':'G4','kamboja':'M4','kappina':'A1J2P1','kareri':'D3','kalandian':'A3','katamorakatissaka':'J2','kadam':'D1','karatiya':'D1','karumhas':'D1','kapila':'A1','kaddama':'M1','kakkarapatta':'M1','kalandaka':'M1','kambalas':'D1'
+'kassapa':'A80D80G55J105M15P9Q5','kapilavatthu':'A13D11G19J30M16','karma':'D3G8J1M60','kakusandha':'A2D11G12J4P3','kassapagotta':'A8J5M4','kakudha':'A3J2M6','kappa':'J7P1','kappita':'A8','kattika':'A7','kandagalaka':'Q6','kalanda':'A5','kapok':'D1G1J3','kandaraka':'G4','kappina':'A1J2P1','kamboja':'M4','kareri':'D3','kalandian':'A3','katamorakatissaka':'J2','kadam':'D1','kambalas':'D1','kapila':'A1','karatiya':'D1','karumhas':'D1','kaddama':'M1','kakkarapatta':'M1','kalandaka':'M1'
 }

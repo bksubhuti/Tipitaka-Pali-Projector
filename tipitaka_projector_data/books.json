@@ -185,8 +185,8 @@
 				{"index":17,"bookId":6217,"title":"Jātaka Aṭṭhakathā-1","rows":3117},
 				{"index":18,"bookId":6218,"title":"Jātaka Aṭṭhakathā-2","rows":2997},
 				{"index":19,"bookId":6219,"title":"Jātaka Aṭṭhakathā-3","rows":4868},
-				{"index":20,"bookId":6220,"title":"Jātaka Aṭṭhakathā-4","rows":6738},
-				{"index":21,"bookId":6221,"title":"Jātaka Aṭṭhakathā-5","rows":5079},
+				{"index":20,"bookId":6220,"title":"Jātaka Aṭṭhakathā-4","rows":5308},
+				{"index":21,"bookId":6221,"title":"Jātaka Aṭṭhakathā-5","rows":6508},
 				{"index":22,"bookId":6222,"title":"Jātaka Aṭṭhakathā-6","rows":3688},
 				{"index":23,"bookId":6223,"title":"Jātaka Aṭṭhakathā-7","rows":6463},
 				{"index":24,"bookId":6224,"title":"Mahāniddesa Aṭṭhakathā","rows":1833},
@@ -342,7 +342,7 @@
 				{"index":2,"bookId":11020,"title":"Pācittiya Pāḷi","rows":14658},
 				{"index":3,"bookId":11030,"title":"Mahāvagga Pāḷi","rows":14483},
 				{"index":4,"bookId":11040,"title":"Cūḷavagga Pāḷi","rows":14704},
-				{"index":5,"bookId":11040,"title":"Parivāra Pāḷi","rows":12704}
+				{"index":5,"bookId":11050,"title":"Parivāra Pāḷi","rows":12704}
 			]},
 			{"name":"Dīghanikāya","texts":[
 				{"index":1,"bookId":21010,"title":"1. Sīlakkhandhavagga","rows":4244},
@@ -375,9 +375,22 @@
 				{"index":11,"bookId":51110,"title":"11. Ekādasakanipāta","rows":966}
 			]},
 			{"name":"Khuddakanikāya","texts":[  
-				{"index":2,"bookId":61080,"title":"Theragāthā","rows":6616},
-				{"index":3,"bookId":61090,"title":"Therīgāthā","rows":2494}
+				{"index":1,"bookId":61080,"title":"Theragāthā","rows":6616},
+				{"index":2,"bookId":61090,"title":"Therīgāthā","rows":2494}
 			]}
-		]}
+		]},
+		{"name":"English Only","sets":[
+			{"name":"Khuddakanikāya","texts":[  
+				{"index":1,"bookId":62020,"title":"Dhammapada Aṭṭhakathā-1","rows":2526},
+				{"index":2,"bookId":62030,"title":"Dhammapada Aṭṭhakathā-2","rows":3259},
+				{"index":3,"bookId":62170,"title":"Jātaka Aṭṭhakathā-1","rows":2725},
+				{"index":4,"bookId":62180,"title":"Jātaka Aṭṭhakathā-2","rows":3592},
+				{"index":5,"bookId":62190,"title":"Jātaka Aṭṭhakathā-3","rows":4445},
+				{"index":6,"bookId":62200,"title":"Jātaka Aṭṭhakathā-4","rows":4969},
+				{"index":7,"bookId":62210,"title":"Jātaka Aṭṭhakathā-5","rows":6082},
+				{"index":8,"bookId":62220,"title":"Jātaka Aṭṭhakathā-6","rows":1690},
+				{"index":9,"bookId":62230,"title":"Jātaka Aṭṭhakathā-7","rows":3762}
+			]}
+		]}	
 	] 
-}
+} 

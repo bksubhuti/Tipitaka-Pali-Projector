@@ -1,3 +1,3 @@
 pws = {
-'lust':'A165D12G27J46M39P17','lustful':'A105D2G2M11P3','luxurious':'A47D4G6J1M28P1','luminous':'D12G3J19M12','lump':'A12G10J9M9P3','lucid':'G24J4M8','luck':'D4G1J6M9P3','lunar':'A20','lucidity':'D2G11M3','lucky':'G11J1P2','lungs':'D2G5J2M2','lute':'A7P1','luxury':'G2J2','lumps':'A1D1P2','lurking':'D2P1','lumberjack':'G3','luring':'A2','lurks':'D2','luminosity':'D2','lure':'A1','lustfully':'A1','luxuriant':'J1','lusting':'M1','lusts':'M1','lumped':'P1','lush':'P1'
+'lust':'A165D12G27J46M39P17','lustful':'A105D2G2M11P3Q6','luxurious':'A47D4G6J1M28P1','luminous':'D12G3J19M12','lump':'A12G10J9M9P3','luck':'D4G1J6M9P3Q17','lucid':'G24J4M8','lucky':'G11J1P2Q13','lunar':'A20','lucidity':'D2G11M3','lute':'A7P1Q6','lungs':'D2G5J2M2','luxury':'G2J2','lumps':'A1D1P2','lurking':'D2P1','lumberjack':'G3','luring':'A2','lurks':'D2','luminosity':'D2','lure':'A1','lustfully':'A1','luxuriant':'J1','lusting':'M1','lusts':'M1','lumped':'P1','lush':'P1'
 }

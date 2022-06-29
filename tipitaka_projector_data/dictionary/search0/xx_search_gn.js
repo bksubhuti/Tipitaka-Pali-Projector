@@ -1,3 +1,3 @@
 pws = {
-'gnawed':'D2','gnawing':'G1'
+'gnawing':'G1Q6','gnawed':'D2'
 }

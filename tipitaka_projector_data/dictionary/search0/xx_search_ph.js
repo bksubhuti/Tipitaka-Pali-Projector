@@ -1,3 +1,3 @@
 pws = {
-'physical':'A217D88G74J72M46P2','phenomena':'A8D12G64J37M19P4','phrasing':'A2D17G38J27M13','phrased':'D13G16J9M44','phrases':'D4G6J10M33','phoenixes':'D2J31','phenomenon':'J32','phlegm':'A2D2G5J4M14','philology':'D6G8M3','phonology':'D6G7M3','phagguna':'G10J6','philosophy':'A9','philosopher':'M8','physically':'D2G4J2','physician':'A5P1','physicians':'A4','phussadeva':'A4','phrase':'A3J1','phlegmagogues':'D3','phussa':'P2','phoenix':'D1','philologists':'G1','physic':'P1'
+'physical':'A217D88G74J72M46P2','phenomena':'A8D12G64J37M19P4','phrasing':'A2D17G38J27M13','phrased':'D13G16J9M44','phrases':'D4G6J10M33','phoenixes':'D2J31','phenomenon':'J32','phlegm':'A2D2G5J4M14','philology':'D6G8M3','phagguna':'G10J6','phonology':'D6G7M3','philosophy':'A9','philosopher':'M8','physically':'D2G4J2','physician':'A5P1','phussadeva':'A4','phrase':'A3J1','physicians':'A4','phandana':'Q4','phlegmagogues':'D3','phussa':'P2','phoenix':'D1','philologists':'G1','physic':'P1'
 }

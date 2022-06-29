@@ -8,7 +8,7 @@ DictData	[{"key":"pc1","order":"000","abbr":"ZhD"},{"key":"pc2","order":"000","a
 font_left	DejaVuSansCondensed
 font_right	DejaVuSansCondensed
 m1	black
-main_content	page1
+main_content	page4
 main_height	100%
 main_left	0
 main_top	0
@@ -18,7 +18,7 @@ panel_bg_color	#f3ddb6
 panel_dict_bg_color	#rgba(176, 176, 176, 0.42)
 panel_font_color	black
 r1	black
-RestoreType	auto
+RestoreType	prompt
 Show_Numbers	true
 ShowOnTop	true
 size_left	1.5

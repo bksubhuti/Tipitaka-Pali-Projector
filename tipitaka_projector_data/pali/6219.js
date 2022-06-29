@@ -4871,237 +4871,461 @@ P_Tag[4867]='<p class="c3">&nbsp;*</p>*';
 P_Tag[4868]='<p class="c3">&nbsp;*</p>*';
 
 
-P_Par[1]='p4304';
-P_Par[2]='p4308';
-P_Par[3]='p4311';
-P_Par[4]='p4315';
-P_Par[5]='p4318';
-P_Par[6]='p4321';
-P_Par[7]='p4324';
-P_Par[8]='p4327';
-P_Par[9]='p4330';
-P_Par[10]='p4343';
-P_Par[11]='p4346';
-P_Par[12]='p4349';
-P_Par[13]='p4352';
-P_Par[14]='p4355';
-P_Par[15]='p4358';
-P_Par[16]='p4361';
-P_Par[17]='p4365';
-P_Par[18]='p4368';
-P_Par[19]='p4371';
-P_Par[20]='p4386';
-P_Par[21]='p4391';
-P_Par[22]='p4396';
-P_Par[23]='p4399';
-P_Par[24]='p4404';
-P_Par[25]='p4407';
-P_Par[26]='p4412';
-P_Par[27]='p4417';
-P_Par[28]='p4422';
-P_Par[29]='p4426';
-P_Par[30]='p4434';
-P_Par[31]='p4437';
-P_Par[32]='p4440';
-P_Par[33]='p4443';
-P_Par[34]='p4446';
-P_Par[35]='p4449';
-P_Par[36]='p4452';
-P_Par[37]='p4455';
-P_Par[38]='p4458';
-P_Par[39]='p4461';
-P_Par[40]='p4475';
-P_Par[41]='p4480';
-P_Par[42]='p4485';
-P_Par[43]='p4490';
-P_Par[44]='p4495';
-P_Par[45]='p4500';
-P_Par[46]='p4505';
-P_Par[47]='p4510';
-P_Par[48]='p4516';
-P_Par[49]='p4535';
-P_Par[50]='p4540';
-P_Par[51]='p4544';
-P_Par[52]='p4549';
-P_Par[53]='p4554';
-P_Par[54]='p4559';
-P_Par[55]='p4563';
-P_Par[56]='p4570';
-P_Par[57]='p4575';
-P_Par[58]='p4580';
-P_Par[59]='p4583';
-P_Par[60]='p4594';
-P_Par[61]='p4599';
-P_Par[62]='p4602';
-P_Par[63]='p4605';
-P_Par[64]='p4608';
-P_Par[65]='p4613';
-P_Par[66]='p4616';
-P_Par[67]='p4621';
-P_Par[68]='p4626';
-P_Par[69]='p4637';
-P_Par[70]='p4642';
-P_Par[71]='p4647';
-P_Par[72]='p4652';
-P_Par[73]='p4657';
-P_Par[74]='p4660';
-P_Par[75]='p4666';
-P_Par[76]='p4669';
-P_Par[77]='p4672';
-P_Par[78]='p4682';
-P_Par[79]='p4687';
-P_Par[80]='p4691';
-P_Par[81]='p4694';
-P_Par[82]='p4697';
-P_Par[83]='p4700';
-P_Par[84]='p4703';
-P_Par[85]='p4706';
-P_Par[86]='p4709';
-P_Par[87]='p4723';
-P_Par[88]='p4728';
-P_Par[89]='p4733';
-P_Par[90]='p4738';
-P_Par[91]='p4743';
-P_Par[92]='p4746';
-P_Par[93]='p4749';
-P_Par[94]='p4752';
-P_Par[95]='p4755';
-P_Par[96]='p4768';
-P_Par[97]='p4773';
-P_Par[98]='p4778';
-P_Par[99]='p4782';
-P_Par[100]='p4787';
-P_Par[101]='p4792';
-P_Par[102]='p4797';
-P_Par[103]='p4801';
-P_Par[104]='p4806';
-P_Par[105]='p4819';
-P_Par[106]='p4824';
-P_Par[107]='p4827';
-P_Par[108]='p4832';
-P_Par[109]='p4837';
-P_Par[110]='p4842';
-P_Par[111]='p4847';
-P_Par[112]='p4850';
-P_Par[113]='p4853';
-P_Par[114]='p3528';
-P_Par[115]='p3533';
-P_Par[116]='p3536';
-P_Par[117]='p3541';
-P_Par[118]='p3544';
-P_Par[119]='p3550';
-P_Par[120]='p3553';
-P_Par[121]='p3565';
-P_Par[122]='p3568';
-P_Par[123]='p3573';
-P_Par[124]='p3577';
-P_Par[125]='p3580';
-P_Par[126]='p3583';
-P_Par[127]='p3588';
-P_Par[128]='p3600';
-P_Par[129]='p3607';
-P_Par[130]='p3610';
-P_Par[131]='p3613';
-P_Par[132]='p3616';
-P_Par[133]='p3619';
-P_Par[134]='p3622';
-P_Par[135]='p3634';
-P_Par[136]='p3639';
-P_Par[137]='p3643';
-P_Par[138]='p3647';
-P_Par[139]='p3650';
-P_Par[140]='p3653';
-P_Par[141]='p3659';
-P_Par[142]='p3673';
-P_Par[143]='p3676';
-P_Par[144]='p3696';
-P_Par[145]='p3701';
-P_Par[146]='p3704';
-P_Par[147]='p3707';
-P_Par[148]='p3710';
-P_Par[149]='p3715';
-P_Par[150]='p3723';
-P_Par[151]='p3728';
-P_Par[152]='p3733';
-P_Par[153]='p3736';
-P_Par[154]='p3755';
-P_Par[155]='p3760';
-P_Par[156]='p3765';
-P_Par[157]='p3770';
-P_Par[158]='p3775';
-P_Par[159]='p3778';
-P_Par[160]='p3783';
-P_Par[161]='p1059';
-P_Par[162]='p1062';
-P_Par[163]='p1065';
-P_Par[164]='p1068';
-P_Par[165]='p1079';
-P_Par[166]='p1084';
-P_Par[167]='p1089';
-P_Par[168]='p1094';
-P_Par[169]='p1106';
-P_Par[170]='p1111';
-P_Par[171]='p1116';
-P_Par[172]='p1121';
-P_Par[173]='p1131';
-P_Par[174]='p1136';
-P_Par[175]='p1141';
-P_Par[176]='p1144';
-P_Par[177]='p1158';
-P_Par[178]='p1163';
-P_Par[179]='p1168';
-P_Par[180]='p1173';
-P_Par[181]='p1184';
-P_Par[182]='p1189';
-P_Par[183]='p1193';
-P_Par[184]='p1196';
-P_Par[185]='p1207';
-P_Par[186]='p1212';
-P_Par[187]='p1215';
-P_Par[188]='p1218';
-P_Par[189]='p1231';
-P_Par[190]='p1234';
-P_Par[191]='p1237';
-P_Par[192]='p1240';
+P_Par[301]='p9';
+P_Par[302]='p40';
+P_Par[303]='p69';
+P_Par[304]='p93';
+P_Par[305]='p116';
+P_Par[306]='p140';
+P_Par[307]='p165';
+P_Par[308]='p190';
+P_Par[309]='p212';
+P_Par[310]='p242';
+P_Par[311]='p268';
+P_Par[312]='p295';
+P_Par[313]='p319';
+P_Par[314]='p348';
+P_Par[315]='p378';
+P_Par[316]='p404';
+P_Par[317]='p434';
+P_Par[318]='p455';
+P_Par[319]='p487';
+P_Par[320]='p514';
+P_Par[321]='p544';
+P_Par[322]='p575';
+P_Par[323]='p602';
+P_Par[324]='p625';
+P_Par[325]='p650';
+P_Par[326]='p675';
+P_Par[327]='p703';
+P_Par[328]='p728';
+P_Par[329]='p754';
+P_Par[330]='p780';
+P_Par[331]='p807';
+P_Par[332]='p829';
+P_Par[333]='p850';
+P_Par[334]='p877';
+P_Par[335]='p901';
+P_Par[336]='p925';
+P_Par[337]='p953';
+P_Par[338]='p978';
+P_Par[339]='p1005';
+P_Par[340]='p1026';
+P_Par[341]='p1053';
+P_Par[342]='p1057';
+P_Par[343]='p1077';
+P_Par[344]='p1103';
+P_Par[345]='p1129';
+P_Par[346]='p1153';
+P_Par[347]='p1182';
+P_Par[348]='p1205';
+P_Par[349]='p1228';
+P_Par[350]='p1250';
+P_Par[351]='p1277';
+P_Par[352]='p1302';
+P_Par[353]='p1337';
+P_Par[354]='p1368';
+P_Par[355]='p1416';
+P_Par[356]='p1442';
+P_Par[357]='p1473';
+P_Par[358]='p1507';
+P_Par[359]='p1542';
+P_Par[360]='p1575';
+P_Par[361]='p1606';
+P_Par[362]='p1632';
+P_Par[363]='p1658';
+P_Par[364]='p1682';
+P_Par[365]='p1687';
+P_Par[366]='p1712';
+P_Par[367]='p1736';
+P_Par[368]='p1760';
+P_Par[369]='p1787';
+P_Par[370]='p1816';
+P_Par[371]='p1849';
+P_Par[372]='p1880';
+P_Par[373]='p1913';
+P_Par[374]='p1947';
+P_Par[375]='p1991';
+P_Par[376]='p2038';
+P_Par[377]='p2076';
+P_Par[378]='p2120';
+P_Par[379]='p2175';
+P_Par[380]='p2204';
+P_Par[381]='p2245';
+P_Par[382]='p2274';
+P_Par[383]='p2365';
+P_Par[384]='p2400';
+P_Par[385]='p2431';
+P_Par[386]='p2472';
+P_Par[387]='p2510';
+P_Par[388]='p2544';
+P_Par[389]='p2598';
+P_Par[390]='p2643';
+P_Par[391]='p2678';
+P_Par[392]='p2720';
+P_Par[393]='p2760';
+P_Par[394]='p2796';
+P_Par[395]='p2826';
+P_Par[396]='p2871';
+P_Par[397]='p2909';
+P_Par[398]='p2944';
+P_Par[399]='p2984';
+P_Par[400]='p3021';
+P_Par[401]='p3082';
+P_Par[402]='p3134';
+P_Par[403]='p3190';
+P_Par[404]='p3227';
+P_Par[405]='p3258';
+P_Par[406]='p3309';
+P_Par[407]='p3358';
+P_Par[408]='p3396';
+P_Par[409]='p3445';
+P_Par[410]='p3480';
+P_Par[411]='p3523';
+P_Par[412]='p3563';
+P_Par[413]='p3598';
+P_Par[414]='p3632';
+P_Par[415]='p3667';
+P_Par[416]='p3750';
+P_Par[417]='p3801';
+P_Par[418]='p3852';
+P_Par[419]='p3902';
+P_Par[420]='p3942';
+P_Par[421]='p3984';
+P_Par[422]='p4040';
+P_Par[423]='p4113';
+P_Par[424]='p4167';
+P_Par[425]='p4208';
+P_Par[426]='p4253';
+P_Par[427]='p4302';
+P_Par[428]='p4340';
+P_Par[429]='p4384';
+P_Par[430]='p4433';
+P_Par[431]='p4472';
+P_Par[432]='p4524';
+P_Par[433]='p4592';
+P_Par[434]='p4635';
+P_Par[435]='p4681';
+P_Par[436]='p4720';
+P_Par[437]='p4765';
+P_Par[438]='p4815';
 
 
-P_Toc[0]='p4';
-P_Toc[1]='p5';
-P_Toc[2]='p6';
-P_Toc[3]='p804';
-P_Toc[4]='p1050';
-P_Toc[5]='p1273';
-P_Toc[6]='p1274';
-P_Toc[7]='p1603';
-P_Toc[8]='p1846';
-P_Toc[9]='p2034';
-P_Toc[10]='p2035';
-P_Toc[11]='p2469';
-P_Toc[12]='p2867';
-P_Toc[13]='p2868';
-P_Toc[14]='p3306';
-P_Toc[15]='p3798';
-P_Toc[16]='p4299';
+P_Toc[0]='p5';
+P_Toc[1]='p6';
+P_Toc[2]='p8';
+P_Toc[3]='p39';
+P_Toc[4]='p68';
+P_Toc[5]='p92';
+P_Toc[6]='p115';
+P_Toc[7]='p139';
+P_Toc[8]='p164';
+P_Toc[9]='p189';
+P_Toc[10]='p211';
+P_Toc[11]='p241';
+P_Toc[12]='p265';
+P_Toc[13]='p267';
+P_Toc[14]='p294';
+P_Toc[15]='p318';
+P_Toc[16]='p347';
+P_Toc[17]='p377';
+P_Toc[18]='p403';
+P_Toc[19]='p433';
+P_Toc[20]='p454';
+P_Toc[21]='p486';
+P_Toc[22]='p513';
+P_Toc[23]='p541';
+P_Toc[24]='p543';
+P_Toc[25]='p574';
+P_Toc[26]='p601';
+P_Toc[27]='p624';
+P_Toc[28]='p649';
+P_Toc[29]='p674';
+P_Toc[30]='p702';
+P_Toc[31]='p727';
+P_Toc[32]='p753';
+P_Toc[33]='p779';
+P_Toc[34]='p804';
+P_Toc[35]='p806';
+P_Toc[36]='p828';
+P_Toc[37]='p849';
+P_Toc[38]='p876';
+P_Toc[39]='p900';
+P_Toc[40]='p924';
+P_Toc[41]='p952';
+P_Toc[42]='p977';
+P_Toc[43]='p1004';
+P_Toc[44]='p1025';
+P_Toc[45]='p1050';
+P_Toc[46]='p1052';
+P_Toc[47]='p1056';
+P_Toc[48]='p1076';
+P_Toc[49]='p1102';
+P_Toc[50]='p1128';
+P_Toc[51]='p1152';
+P_Toc[52]='p1181';
+P_Toc[53]='p1204';
+P_Toc[54]='p1227';
+P_Toc[55]='p1249';
+P_Toc[56]='p1273';
+P_Toc[57]='p1274';
+P_Toc[58]='p1276';
+P_Toc[59]='p1301';
+P_Toc[60]='p1336';
+P_Toc[61]='p1367';
+P_Toc[62]='p1415';
+P_Toc[63]='p1441';
+P_Toc[64]='p1472';
+P_Toc[65]='p1506';
+P_Toc[66]='p1541';
+P_Toc[67]='p1574';
+P_Toc[68]='p1603';
+P_Toc[69]='p1605';
+P_Toc[70]='p1631';
+P_Toc[71]='p1657';
+P_Toc[72]='p1681';
+P_Toc[73]='p1686';
+P_Toc[74]='p1711';
+P_Toc[75]='p1735';
+P_Toc[76]='p1759';
+P_Toc[77]='p1786';
+P_Toc[78]='p1815';
+P_Toc[79]='p1846';
+P_Toc[80]='p1848';
+P_Toc[81]='p1879';
+P_Toc[82]='p1912';
+P_Toc[83]='p1946';
+P_Toc[84]='p1990';
+P_Toc[85]='p2034';
+P_Toc[86]='p2035';
+P_Toc[87]='p2037';
+P_Toc[88]='p2075';
+P_Toc[89]='p2119';
+P_Toc[90]='p2174';
+P_Toc[91]='p2203';
+P_Toc[92]='p2244';
+P_Toc[93]='p2273';
+P_Toc[94]='p2364';
+P_Toc[95]='p2399';
+P_Toc[96]='p2430';
+P_Toc[97]='p2469';
+P_Toc[98]='p2471';
+P_Toc[99]='p2509';
+P_Toc[100]='p2543';
+P_Toc[101]='p2597';
+P_Toc[102]='p2642';
+P_Toc[103]='p2677';
+P_Toc[104]='p2719';
+P_Toc[105]='p2759';
+P_Toc[106]='p2795';
+P_Toc[107]='p2825';
+P_Toc[108]='p2867';
+P_Toc[109]='p2868';
+P_Toc[110]='p2870';
+P_Toc[111]='p2908';
+P_Toc[112]='p2943';
+P_Toc[113]='p2983';
+P_Toc[114]='p3020';
+P_Toc[115]='p3081';
+P_Toc[116]='p3133';
+P_Toc[117]='p3189';
+P_Toc[118]='p3226';
+P_Toc[119]='p3257';
+P_Toc[120]='p3306';
+P_Toc[121]='p3308';
+P_Toc[122]='p3357';
+P_Toc[123]='p3395';
+P_Toc[124]='p3444';
+P_Toc[125]='p3479';
+P_Toc[126]='p3522';
+P_Toc[127]='p3562';
+P_Toc[128]='p3597';
+P_Toc[129]='p3631';
+P_Toc[130]='p3666';
+P_Toc[131]='p3749';
+P_Toc[132]='p3798';
+P_Toc[133]='p3800';
+P_Toc[134]='p3851';
+P_Toc[135]='p3901';
+P_Toc[136]='p3941';
+P_Toc[137]='p3983';
+P_Toc[138]='p4039';
+P_Toc[139]='p4112';
+P_Toc[140]='p4166';
+P_Toc[141]='p4207';
+P_Toc[142]='p4252';
+P_Toc[143]='p4299';
+P_Toc[144]='p4301';
+P_Toc[145]='p4339';
+P_Toc[146]='p4383';
+P_Toc[147]='p4432';
+P_Toc[148]='p4471';
+P_Toc[149]='p4523';
+P_Toc[150]='p4591';
+P_Toc[151]='p4634';
+P_Toc[152]='p4680';
+P_Toc[153]='p4719';
+P_Toc[154]='p4764';
+P_Toc[155]='p4814';
 
 
 var TOC_Dropdown_Items = [
-	'__(Tatiyo bhāgo)',
 	'4. Catukkanipāto',
 	'__1. Kāliṅgavaggo',
+	'____ [301] 1. Cūḷakāliṅgajātakavaṇṇanā',
+	'____ [302] 2. Mahāassārohajātakavaṇṇanā',
+	'____ [303] 3. Ekarājajātakavaṇṇanā',
+	'____ [304] 4. Daddarajātakavaṇṇanā',
+	'____ [305] 5. Sīlavīmaṃsanajātakavaṇṇanā',
+	'____ [306] 6. Sujātājātakavaṇṇanā',
+	'____ [307] 7. Palāsajātakavaṇṇanā',
+	'____ [308] 8. Sakuṇajātakavaṇṇanā',
+	'____ [309] 9. Chavajātakavaṇṇanā',
+	'____ [310] 10. Seyyajātakavaṇṇanā',
+	'__2. Pucimandavaggo',
+	'____ [311] 1. Pucimandajātakavaṇṇanā',
+	'____ [312] 2. Kassapamandiyajātakavaṇṇanā',
+	'____ [313] 3. Khantivādījātakavaṇṇanā',
+	'____ [314] 4. Lohakumbhijātakavaṇṇanā',
+	'____ [315] 5. Sabbamaṃsalābhajātakavaṇṇanā',
+	'____ [316] 6. Sasapaṇḍitajātakavaṇṇanā',
+	'____ [317] 7. Matarodanajātakavaṇṇanā',
+	'____ [318] 8. Kaṇaverajātakavaṇṇanā',
+	'____ [319] 9. Tittirajātakavaṇṇanā',
+	'____ [320] 10. Succajajātakavaṇṇanā',
+	'__3. Kuṭidūsakavaggo',
+	'____ [321] 1. Kuṭidūsakajātakavaṇṇanā',
+	'____ [322] 2. Duddubhajātakavaṇṇanā',
+	'____ [323] 3. Brahmadattajātakavaṇṇanā',
+	'____ [324] 4. Cammasāṭakajātakavaṇṇanā',
+	'____ [325] 5. Godharājajātakavaṇṇanā',
+	'____ [326] 6. Kakkārujātakavaṇṇanā',
+	'____ [327] 7. Kākavatījātakavaṇṇanā',
+	'____ [328] 8. Ananusociyajātakavaṇṇanā',
+	'____ [329] 9. Kāḷabāhujātakavaṇṇanā',
+	'____ [330] 10. Sīlavīmaṃsajātakavaṇṇanā',
 	'__4. Kokilavaggo',
+	'____ [331] 1. Kokilajātakavaṇṇanā',
+	'____ [332] 2. Rathalaṭṭhijātakavaṇṇanā',
+	'____ [333] 3. Pakkagodhajātakavaṇṇanā',
+	'____ [334] 4. Rājovādajātakavaṇṇanā',
+	'____ [335] 5. Jambukajātakavaṇṇanā',
+	'____ [336] 6. Brahāchattajātakavaṇṇanā',
+	'____ [337] 7. Pīṭhajātakavaṇṇanā',
+	'____ [338] 8. Thusajātakavaṇṇanā',
+	'____ [339] 9. Bāverujātakavaṇṇanā',
+	'____ [340] 10. Visayhajātakavaṇṇanā',
 	'__5. Cūḷakuṇālavaggo',
+	'____ [341] 1. Kaṇḍarījātakavaṇṇanā',
+	'____ [342] 2. Vānarajātakavaṇṇanā',
+	'____ [343] 3. Kuntinījātakavaṇṇanā',
+	'____ [344] 4. Ambajātakavaṇṇanā',
+	'____ [345] 5. Rājakumbhajātakavaṇṇanā',
+	'____ [346] 6. Kesavajātakavaṇṇanā',
+	'____ [347] 7. Ayakūṭajātakavaṇṇanā',
+	'____ [348] 8. Araññajātakavaṇṇanā',
+	'____ [349] 9. Sandhibhedajātakavaṇṇanā',
+	'____ [350] 10. Devatāpañhajātakavaṇṇanā',
 	'5. Pañcakanipāto',
 	'__1. Maṇikuṇḍalavaggo',
+	'____ [351] 1. Maṇikuṇḍalajātakavaṇṇanā',
+	'____ [352] 2. Sujātajātakavaṇṇanā',
+	'____ [353] 3. Venasākhajātakavaṇṇanā',
+	'____ [354] 4. Uragajātakavaṇṇanā',
+	'____ [355] 5. Ghaṭajātakavaṇṇanā',
+	'____ [356] 6. Koraṇḍiyajātakavaṇṇanā',
+	'____ [357] 7. Laṭukikajātakavaṇṇanā',
+	'____ [358] 8. Cūḷadhammapālajātakavaṇṇanā',
+	'____ [359] 9. Suvaṇṇamigajātakavaṇṇanā',
+	'____ [360] 10. Suyonandījātakavaṇṇanā',
 	'__2. Vaṇṇārohavaggo',
+	'____ [361] 1. Vaṇṇārohajātakavaṇṇanā',
+	'____ [362] 2. Sīlavīmaṃsajātakavaṇṇanā',
+	'____ [363] 3. Hirijātakavaṇṇanā',
+	'____ [364] 4. Khajjopanakajātakavaṇṇanā',
+	'____ [365] 5. Ahituṇḍikajātakavaṇṇanā',
+	'____ [366] 6. Gumbiyajātakavaṇṇanā',
+	'____ [367] 7. Sāḷiyajātakavaṇṇanā',
+	'____ [368] 8. Tacasārajātakavaṇṇanā',
+	'____ [369] 9. Mittavindakajātakavaṇṇanā',
+	'____ [370] 10. Palāsajātakavaṇṇanā',
 	'__3. Aḍḍhavaggo',
+	'____ [371] 1. Dīghītikosalajātakavaṇṇanā',
+	'____ [372] 2. Migapotakajātakavaṇṇanā',
+	'____ [373] 3. Mūsikajātakavaṇṇanā',
+	'____ [374] 4. Cūḷadhanuggahajātakavaṇṇanā',
+	'____ [375] 5. Kapotajātakavaṇṇanā',
 	'6. Chakkanipāto',
 	'__1. Avāriyavaggo',
+	'____ [376] 1. Avāriyajātakavaṇṇanā',
+	'____ [377] 2. Setaketujātakavaṇṇanā',
+	'____ [378] 3. Darīmukhajātakavaṇṇanā',
+	'____ [379] 4. Nerujātakavaṇṇanā',
+	'____ [380] 5. Āsaṅkajātakavaṇṇanā',
+	'____ [381] 6. Migālopajātakavaṇṇanā',
+	'____ [382] 7. Sirikāḷakaṇṇijātakavaṇṇanā',
+	'____ [383] 8. Kukkuṭajātakavaṇṇanā',
+	'____ [384] 9. Dhammadhajajātakavaṇṇanā',
+	'____ [385] 10. Nandiyamigarājajātakavaṇṇanā',
 	'__2. Kharaputtavaggo',
+	'____ [386] 1. Kharaputtajātakavaṇṇanā',
+	'____ [387] 2. Sūcijātakavaṇṇanā',
+	'____ [388] 3. Tuṇḍilajātakavaṇṇanā',
+	'____ [389] 4. Suvaṇṇakakkaṭakajātakavaṇṇanā',
+	'____ [390] 5. Mayhakajātakavaṇṇanā',
+	'____ [391] 6. Vijjādharajātakavaṇṇanā',
+	'____ [392] 7. Siṅghapupphajātakavaṇṇanā',
+	'____ [393] 8. Vighāsādajātakavaṇṇanā',
+	'____ [394] 9. Vaṭṭakajātakavaṇṇanā',
+	'____ [395] 10. Pārāvatajātakavaṇṇanā',
 	'7. Sattakanipāto',
 	'__1. Kukkuvaggo',
+	'____ [396] 1. Kukkujātakavaṇṇanā',
+	'____ [397] 2. Manojajātakavaṇṇanā',
+	'____ [398] 3. Sutanujātakavaṇṇanā',
+	'____ [399] 4. Mātuposakagijjhajātakavaṇṇanā',
+	'____ [400] 5. Dabbhapupphajātakavaṇṇanā',
+	'____ [401] 6. Paṇṇakajātakavaṇṇanā',
+	'____ [402] 7. Sattubhastajātakavaṇṇanā',
+	'____ [403] 8. Aṭṭhisenajātakavaṇṇanā',
+	'____ [404] 9. Kapijātakavaṇṇanā',
+	'____ [405] 10. Bakajātakavaṇṇanā',
 	'__2. Gandhāravaggo',
+	'____ [406] 1. Gandhārajātakavaṇṇanā',
+	'____ [407] 2. Mahākapijātakavaṇṇanā',
+	'____ [408] 3. Kumbhakārajātakavaṇṇanā',
+	'____ [409] 4. Daḷhadhammajātakavaṇṇanā',
+	'____ [410] 5. Somadattajātakavaṇṇanā',
+	'____ [411] 6. Susīmajātakavaṇṇanā',
+	'____ [412] 7. Koṭasimbalijātakavaṇṇanā',
+	'____ [413] 8. Dhūmakārijātakavaṇṇanā',
+	'____ [414] 9. Jāgarajātakavaṇṇanā',
+	'____ [415] 10. Kummāsapiṇḍijātakavaṇṇanā',
+	'____ [416] 11. Parantapajātakavaṇṇanā',
 	'8. Aṭṭhakanipāto',
+	'____ [417] 1. Kaccānijātakavaṇṇanā',
+	'____ [418] 2. Aṭṭhasaddajātakavaṇṇanā',
+	'____ [419] 3. Sulasājātakavaṇṇanā',
+	'____ [420] 4. Sumaṅgalajātakavaṇṇanā',
+	'____ [421] 5. Gaṅgamālajātakavaṇṇanā',
+	'____ [422] 6. Cetiyajātakavaṇṇanā',
+	'____ [423] 7. Indriyajātakavaṇṇanā',
+	'____ [424] 8. Ādittajātakavaṇṇanā',
+	'____ [425] 9. Aṭṭhānajātakavaṇṇanā',
+	'____ [426] 10. Dīpijātakavaṇṇanā',
 	'9. Navakanipāto',
+	'____ [427] 1. Gijjhajātakavaṇṇanā',
+	'____ [428] 2. Kosambiyajātakavaṇṇanā',
+	'____ [429] 3. Mahāsuvajātakavaṇṇanā',
+	'____ [430] 4. Cūḷasuvajātakavaṇṇanā',
+	'____ [431] 5. Haritacajātakavaṇṇanā',
+	'____ [432] 6. Padakusalamāṇavajātakavaṇṇanā',
+	'____ [433] 7. Lomasakassapajātakavaṇṇanā',
+	'____ [434] 8. Cakkavākajātakavaṇṇanā',
+	'____ [435] 9. Haliddirāgajātakavaṇṇanā',
+	'____ [436] 10. Samuggajātakavaṇṇanā',
+	'____ [437] 11. Pūtimaṃsajātakavaṇṇanā',
+	'____ [438] 12. Daddarajātakavaṇṇanā',
 ];
 
 SetupToc();
