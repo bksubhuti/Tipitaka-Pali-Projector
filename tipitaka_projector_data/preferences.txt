@@ -28,7 +28,7 @@ size_right	1.5
 speech_repeat	0
 speech_speed	1
 Themes	true
-versionno	V1.4.0
+versionno	V1.4.1
 view_left	Roman
 view_right	Space
 width_left	50

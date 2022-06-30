@@ -1,6 +1,6 @@
 {
   "name": "tipitaka-pali-projector",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Application for reading the Pali Tipitaka with English translationsa and multi-language dictionary support",
   "main": "index.js",
   "icon": "build/tpp-icon.ico",
