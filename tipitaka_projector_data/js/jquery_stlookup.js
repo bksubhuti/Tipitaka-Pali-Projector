@@ -145,7 +145,36 @@ function initDictionaries(){
 			if ( name == 'hpe6') {$.getScript("dictionary/pe6_Pali_Proper_Names_G_P_Malalasekera@2018.js"); }
 			if ( name == 'hpe7') {$.getScript("dictionary/pe7_Pali_English_Dictionary_extract@Janaka_2020.js"); }
 			if ( name == 'hpe8') {$.getScript("dictionary/pe8_uped.js"); }
-			if ( name == 'hpe9') {$.getScript("dictionary/Digital_Pāḷi_Dicitonary.js"); }
+
+			if ( name == 'hpe9') {
+				$.getText('dictionary/dpd_inflections_to_headwords.csv', (data) => {
+					// data is the raw csv
+					const converted = {};
+					const lines = data.split('\n');
+					let isFirst = true;
+					for (const line of lines) {
+						if (isFirst) {
+							isFirst = false;
+							continue;
+						}
+						// Sample of line:
+						// ababato	['ababa 1', 'ababa 2']
+						const split = line.split('\t');
+						if (split.length > 1) {
+							const headword = split[0];
+							const rawEntries = split[1].replaceAll("'", '"');
+							const entries = JSON.parse(rawEntries);
+							converted[headword] = entries;
+						}
+					}
+					// this syntax is OK as we want this to be a global variable, do not var/let/const it
+					dpdHeadwords = converted;
+					console.log('converted len', Object.keys(converted).length);
+					$.getScript("dictionary/Digital_Pāḷi_Dicitonary.js");
+				})
+
+			}
+
 			if ( name == 'hpg1') {$.getScript("dictionary/pg1_Pali_Germany_sc2016_pi2de-maindata-v1.2.js"); }
 			if ( name == 'hpi1') {$.getScript("dictionary/pi1_Pali_India_Dictionary@Janaka_2020.js"); }
 			if ( name == 'hpm1') {$.getScript("dictionary/pm1_Pali_Word_Grammar_@2018.js"); }

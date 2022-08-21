@@ -1,6 +1,15 @@
 var dict_records = 0;
 
 function GetKeys(ary, dname, key, ret_key) {
+
+	if (dname === 'pe9') {
+		const entries = dpdHeadwords[key];
+		if (entries && entries.length > 0) {
+			const first = entries[0].split(' ')[0];
+			return `#!${key}#`;
+		}
+	}
+
 	key_x = '0';
 	if (key.slice(-1) == '*') {		
 		key = key.substring(0, key.length-1);
@@ -69,22 +78,47 @@ function GetKeys(ary, dname, key, ret_key) {
 	return (result.trim());
 }
 
-function GetValues(aryVal, dname, key) {
-
+function GetExtendedValues(aryVal, dname, key) {
 	SetDictionaryClassColor();
 
+	const results = [];
+	const directMeaning = aryVal[key];
+	let dpdEntries = [];
 
-	this.aryVal = aryVal;
-	var meaning_from_dict = "" + aryVal[key];
-	if (meaning_from_dict != "undefined") {
-		if (dname.indexOf('pm') != -1) {	//myanmar class="ZawgyiFont"
-			return ('<div class="card DictionaryClass">[' + aryAbbr[dname] + ']</b>&nbsp;<span class="ZawgyiFont">' + meaning_from_dict + '</span></div>');
-		} else {
-			return ('<div class="card DictionaryClass">[' + aryAbbr[dname] + ']</b>&nbsp;' + meaning_from_dict + '</div>');
+	if (dname === 'pe9') {
+		const entries = dpdHeadwords[key] || [];
+		const dpd = [];
+		for (const entry of entries) {
+			const value = aryVal[entry];
+			if (value) {
+				dpdEntries.push(entry);
+				const htmlValue = jQuery('<div/>').html(value.replaceAll(' 🔧', ''));
+				const html = htmlValue.find('div.dpd').html();
+				dpd.push(`<li class="dpd-item">${html}</li>`);
+			}
 		}
-	} else {
-		return ('');
+		if (dpd.length > 0) {
+			results.push(`<span class="dpd-base">${entries[0].split(' ')[0]}</span><ol class="dpd-wrapper">${dpd.join('\n')}</ol>`);
+		}
+	} else if (directMeaning) {
+		results.push(`${directMeaning}`);
 	}
+
+	const html = [];
+	for (const meaning of results) {
+		if (dname.indexOf('pm') != -1) {	//myanmar class="ZawgyiFont"
+			html.push('<div class="card DictionaryClass">[' + aryAbbr[dname] + ']</b>&nbsp;<span class="ZawgyiFont">' + meaning + '</span></div>');
+		} else {
+			html.push('<div class="card DictionaryClass">[' + aryAbbr[dname] + ']</b>&nbsp;' + meaning + '</div>');
+		}
+	}
+
+	const result = html.length > 0 ? html.join('\n') : '';
+	return {result, dpdEntries};
+}
+
+function GetValues(aryVal, dname, key) {
+	return GetExtendedValues(aryVal, dname, key).result;
 }
 
 function DeclensionShow(key) {

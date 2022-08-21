@@ -1,0 +1,154 @@
+/* dpd css */
+
+span.dpd {
+    color: #00A4CC;
+    font-weight: 700;
+}
+
+summary.dpd,
+p.dpd {
+    line-height: 150%;
+    margin: 0;
+    vertical-align: middle;
+}
+
+div.dpd, .dpd-wrapper {
+    border: 2px solid #00A4CC;
+    border-radius: 5px;
+    line-height: 150%;
+    margin: 2px;
+    overflow: auto;
+    text-align: left;
+}
+
+table.dpdtable {
+    border: 1px solid transparent;
+    border-collapse: collapse;
+}
+
+table.dpdtable td,
+table.dpdtable th {
+    border: 1px solid transparent;
+    border-collapse: collapse;
+    line-height: 150%;
+    padding: 1px 5px;
+    text-align: left;
+    transition-duration: .2s;
+    vertical-align: top;
+}
+
+table.dpdtable th {
+    color: #00A4CC;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+a.dpdlink {
+    border-radius: 5px;
+    color: #00A4CC;
+    font-weight: 700;
+}
+
+p.dpdroot {
+    line-height: 150%;
+    margin: 3px 5px;
+    vertical-align: middle;
+}
+
+div.dpdroot {
+    border: 2px solid #AB3C00;
+    border-radius: 5px;
+    line-height: 150%;
+    overflow: auto;
+    text-align: left;
+}
+
+a.dpdroot {
+    border-radius: 5px;
+    color: #AB3C00;
+    font-weight: 700;
+}
+
+span.dpdroot {
+    color: #AB3C00;
+    font-weight: 700;
+}
+
+table.dpdroot {
+    border: 1px solid transparent;
+    border-collapse: collapse;
+}
+
+table.dpdroot td,
+table.dpdroot th {
+    border: 1px solid transparent;
+    border-collapse: collapse;
+    line-height: 150%;
+    padding: 1px 1px 1px 3px;
+    text-align: left;
+    vertical-align: top;
+}
+
+table.dpdroot th {
+    color: #AB3C00;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+div.dpdsandhi {
+    border: 2px solid #937b14;
+    border-radius: 5px;
+    line-height: 150%;
+    overflow: auto;
+    text-align: left;
+}
+
+p.dpdsandhi {
+    line-height: 150%;
+    margin: 3px 5px;
+    vertical-align: middle;
+}
+
+span.dpdsandhi {
+    color: #937b14;
+    font-weight: 700;
+}
+
+.dpd-wrapper ol {
+    list-style: none;
+    counter-reset: li
+}
+
+#main_div .dpd-wrapper li {
+    display: flex;
+    list-style-type: decimal;
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    color: initial;
+    font-weight: normal;
+    margin-right: 0;
+}
+
+ol.dpd-wrapper {
+    padding-left: 25px;
+    overflow-y: hidden;
+    box-sizing: border-box;
+}
+
+ol.dpd-wrapper li {
+    counter-increment: li;
+}
+
+ol.dpd-wrapper li::before {
+    content: counter(li); 
+    color: #00A4CC;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em
+}
+span.dpd-base {
+    color: #00A4CC;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+}

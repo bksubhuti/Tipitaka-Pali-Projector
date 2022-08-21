@@ -330,9 +330,12 @@ function WordListLookup(target) {
 			continue;
 		}
 		const dictionaryName = dictionary.substring(1);
+
+
 		const actualDictionary = dictionaries[dictionary];
 		if (actualDictionary) {
-			currentKeys += GetKeys(actualDictionary, dictionaryName, key, '');
+			const keys = GetKeys(actualDictionary, dictionaryName, key, '');
+			currentKeys += keys;
 		}
 	} 
 
