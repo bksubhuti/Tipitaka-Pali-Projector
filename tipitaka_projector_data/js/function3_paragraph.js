@@ -97,8 +97,9 @@ function CheckInUped(key) {
 
 function LookupTwoMethod(key, tail) {
 	var ret = '';
-	var get_data = LookupDictionary(key); 
-	if (get_data != '') {		// directly search found
+	var get_data = LookupDictionaryExtended(key);
+	let dpdIncluded = get_data.dpdEntries;
+	if (get_data.result != '') {		// directly search found
 		// word_hit = word_hit +1;
 		ret = ret + '<div>';
 			ret = ret + '<b style="color:#440000;" id="G_' + key + tail + '">';
@@ -108,12 +109,12 @@ function LookupTwoMethod(key, tail) {
 				}
 			ret = ret + '</b>';
 			ret = ret + '<br>';
-		ret = ret + get_data + '</div>';
+		ret = ret + get_data.result + '</div>';
 	} 
 	// first time use declension table searching again
 	declension = wordbreakdata[key + tail];
 	if (declension != undefined) {
-		get_data = LookupDictionary(declension);
+		get_data = LookupDictionary(declension, dpdIncluded);
 		if (get_data != '') {	// declension search found
 			// word_hit2 = word_hit2 +1;
 			ret = ret + '<div id="G_' + key + tail + '">';
@@ -125,8 +126,13 @@ function LookupTwoMethod(key, tail) {
 	return(ret);
 }
 
-function LookupDictionary(key) {
+function LookupDictionary(key, alreadyIncludedDpdEntries) {
+	return LookupDictionaryExtended(key, alreadyIncludedDpdEntries).result;
+}
+
+function LookupDictionaryExtended(key, alreadyIncludedDpdEntries) {
 	get_data = '';
+	let dpdEntries = [];
 	for (var i = 0; i<ary_dict.length; i++) {
 		var d_name = ary_dict[i].substring(1);
 		if ((ary_dict[i] == 'hee1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(ee1, d_name, key);}
@@ -141,7 +147,16 @@ function LookupDictionary(key) {
 		if ((ary_dict[i] == 'hpe6') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe6, d_name, key);}
 		if ((ary_dict[i] == 'hpe7') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe7, d_name, key);}
 		if ((ary_dict[i] == 'hpe8') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe8, d_name, key);}
-		if ((ary_dict[i] == 'hpe9') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe9, d_name, key);}
+
+		if ((ary_dict[i] == 'hpe9') && (aryTemp[d_name] == '1')) {
+			// dpdEntries
+			const extended = GetExtendedValues(pe9, d_name, key);
+			if (!alreadyIncludedDpdEntries || !extended.dpdEntries.every(e => alreadyIncludedDpdEntries.includes(e))) {
+				get_data = get_data + extended.result;
+				dpdEntries = extended.dpdEntries;
+			}
+		}
+
 		if ((ary_dict[i] == 'hpg1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pg1, d_name, key);}
 		if ((ary_dict[i] == 'hpi1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pi1, d_name, key);}
 		if ((ary_dict[i] == 'hpm1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pm1, d_name, key);}
@@ -155,7 +170,10 @@ function LookupDictionary(key) {
 		if ((ary_dict[i] == 'hpv3') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pv3, d_name, key);}
 		if ((ary_dict[i] == 'hse1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(se1, d_name, key);}
 	} 
-	return(get_data);
+	return {
+		result: get_data,
+		dpdEntries
+	}
 }
 
 function DoAnalysis(key) {
