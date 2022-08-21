@@ -152,3 +152,6 @@ span.dpd-base {
     font-weight: bold;
     letter-spacing: 0.8px;
 }
+.dpd-key {
+    padding-right: 5px;
+}
