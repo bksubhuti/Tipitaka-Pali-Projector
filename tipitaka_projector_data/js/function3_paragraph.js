@@ -141,6 +141,7 @@ function LookupDictionary(key) {
 		if ((ary_dict[i] == 'hpe6') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe6, d_name, key);}
 		if ((ary_dict[i] == 'hpe7') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe7, d_name, key);}
 		if ((ary_dict[i] == 'hpe8') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe8, d_name, key);}
+		if ((ary_dict[i] == 'hpe9') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pe9, d_name, key);}
 		if ((ary_dict[i] == 'hpg1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pg1, d_name, key);}
 		if ((ary_dict[i] == 'hpi1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pi1, d_name, key);}
 		if ((ary_dict[i] == 'hpm1') && (aryTemp[d_name] == '1')) {get_data = get_data + GetValues(pm1, d_name, key);}
