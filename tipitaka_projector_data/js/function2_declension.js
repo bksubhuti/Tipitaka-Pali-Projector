@@ -93,10 +93,8 @@ function GetExtendedValues(aryVal, dname, key) {
 			if (value) {
 				dpdEntries.push(entry);
 				const htmlValue = jQuery('<div/>').html(value.replaceAll(' 🔧', ''));
-				const $divDpd = htmlValue.find('div.dpd');
-				$divDpd.find('summary.dpd').prepend(`<span class="dpd-key">[${entry}]</span>`);
-				$divDpd.find('p.dpd').prepend(`<span class="dpd-key">[${entry}]</span>`);
-				dpd.push(`<li class="dpd-item">${$divDpd.html()}</li>`);
+				const html = htmlValue.find('div.dpd').html();
+				dpd.push(`<li class="dpd-item">${html}</li>`);
 			}
 		}
 		if (dpd.length > 0) {
