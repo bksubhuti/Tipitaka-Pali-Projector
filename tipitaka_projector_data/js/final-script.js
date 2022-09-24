@@ -1173,3 +1173,7 @@ if (document.readyState ==='complete') {
 } else {
 	window.addEventListener("load", event => { setupHome() }, true);
 }
+
+$('body').on('click', 'summary.dpd', function(e) {
+	e.stopPropagation();
+});

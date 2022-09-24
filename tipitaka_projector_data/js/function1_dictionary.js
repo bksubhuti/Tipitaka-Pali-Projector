@@ -86,6 +86,8 @@ function DictionaryGo() {
 
 
 	var DictionaryRet = '';
+	var analysis = '';
+	var analysisPlaceholder = '___ANALYSIS___';
 	var get_data = LookupTwoMethod(key, '');	//1 time directly lookup
 	if (get_data != '') {		//found in directly or declension table
 		DictionaryRet = DictionaryRet + get_data;
@@ -97,9 +99,10 @@ function DictionaryGo() {
 		if (get_data != '') {		//found in directly or declension table
 			DictionaryRet = DictionaryRet + get_data;
 		} else {		// not found
-			DictionaryRet = DictionaryRet + '<div class="DictionaryClass" >';
-			DictionaryRet = DictionaryRet + '<a href="javascript:void(0);" id="G_' + key + '" onClick="OpenOnce(\'' + key + '\')" style="font-weight:900;" >' + toTranslate(key) + '&nbsp;</a>&nbsp;&nbsp;';
-			DictionaryRet = DictionaryRet + DoAnalysis(key) + '</div>';
+			analysis = analysis + '<div class="DictionaryClass" >';
+			analysis = analysis + '<a href="javascript:void(0);" id="G_' + key + '" onClick="OpenOnce(\'' + key + '\')" style="font-weight:900;" >' + toTranslate(key) + '&nbsp;</a>&nbsp;&nbsp;';
+			analysis = analysis + DoAnalysis(key) + '</div>';
+			DictionaryRet += analysisPlaceholder;
 		}	
 	}
 
@@ -108,6 +111,7 @@ function DictionaryGo() {
 	if (peuIsSelected) {
 		inUpedKey = CheckInUped(key);
 		if (inUpedKey) {
+			analysis = '';
 			DictionaryRet = inUpedKey + DictionaryRet;
 		}
 	}
@@ -150,6 +154,7 @@ function DictionaryGo() {
 		rawFile.send(null);
 	}
 
+	DictionaryRet = DictionaryRet.replace(analysisPlaceholder, analysis);
 	$('#page1_desc').html(DictionaryRet);
 
 	// now write the jDictInfo to the localStorage and create an array to do so.

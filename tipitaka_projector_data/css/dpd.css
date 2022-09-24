@@ -17,8 +17,8 @@ div.dpd, .dpd-wrapper {
     border-radius: 5px;
     line-height: 150%;
     margin: 2px;
-    overflow: auto;
     text-align: left;
+    padding-left: 25px;
 }
 
 table.dpdtable {
@@ -114,20 +114,15 @@ span.dpdsandhi {
     font-weight: 700;
 }
 
-.dpd-wrapper ol {
-    list-style: none;
-    counter-reset: li
-}
-
 #main_div .dpd-wrapper li {
-    display: flex;
-    list-style-type: decimal;
+    list-style-type: disc;
     background-color: transparent;
     padding: 0;
     border-radius: 0;
     color: initial;
     font-weight: normal;
     margin-right: 0;
+    display: list-item;
 }
 
 ol.dpd-wrapper {
@@ -136,19 +131,18 @@ ol.dpd-wrapper {
     box-sizing: border-box;
 }
 
-ol.dpd-wrapper li {
-    counter-increment: li;
-}
-
-ol.dpd-wrapper li::before {
-    content: counter(li); 
-    color: #00A4CC;
-    display: inline-block; 
-    width: 1em;
-    margin-left: -1em
-}
 span.dpd-base {
     color: #00A4CC;
     font-weight: bold;
     letter-spacing: 0.8px;
+}
+.dpd-key {
+    padding-right: 5px;
+}
+
+details.dpd p.dpd {
+    display: none;
+}
+summary.dpd {
+    display: list-item;
 }

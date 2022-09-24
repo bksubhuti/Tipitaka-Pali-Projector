@@ -98,7 +98,7 @@ function GetExtendedValues(aryVal, dname, key) {
 			}
 		}
 		if (dpd.length > 0) {
-			results.push(`<span class="dpd-base">${entries[0].split(' ')[0]}</span><ol class="dpd-wrapper">${dpd.join('\n')}</ol>`);
+			results.push(`<span class="dpd-base">${entries[0].split(' ')[0]}</span><ul class="dpd-wrapper">${dpd.join('\n')}</ul>`);
 		}
 	} else if (directMeaning) {
 		results.push(`${directMeaning}`);
