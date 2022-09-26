@@ -18,7 +18,7 @@ div.dpd, .dpd-wrapper {
     line-height: 150%;
     margin: 2px;
     text-align: left;
-    padding-left: 25px;
+    padding-left: 5px;
 }
 
 table.dpdtable {
@@ -115,7 +115,7 @@ span.dpdsandhi {
 }
 
 #main_div .dpd-wrapper li {
-    list-style-type: disc;
+    list-style-type: none;
     background-color: transparent;
     padding: 0;
     border-radius: 0;
@@ -141,7 +141,7 @@ span.dpd-base {
 }
 
 details.dpd p.dpd {
-    display: none;
+    display: block;
 }
 summary.dpd {
     display: list-item;
