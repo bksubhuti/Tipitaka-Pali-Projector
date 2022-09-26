@@ -75,3 +75,5 @@ ts-gen
 .depshash-target
 
 dev-app-update.yml
+server.sh
+books.json
