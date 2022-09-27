@@ -170,7 +170,7 @@ function initDictionaries(){
 					// this syntax is OK as we want this to be a global variable, do not var/let/const it
 					dpdHeadwords = converted;
 					console.log('converted len', Object.keys(converted).length);
-					$.getScript("dictionary/Digital_Pāḷi_Dicitonary.js");
+					$.getScript("dictionary/pe9_dpd.js");
 				})
 
 			}
