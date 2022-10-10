@@ -136,6 +136,7 @@ span.dpd-base {
     font-weight: bold;
     letter-spacing: 0.8px;
 }
+
 .dpd-key {
     padding-right: 5px;
 }
@@ -145,4 +146,9 @@ details.dpd p.dpd {
 }
 summary.dpd {
     display: list-item;
+}
+
+p.dpdspam {
+    font-size: 70%;
+    }
 }
