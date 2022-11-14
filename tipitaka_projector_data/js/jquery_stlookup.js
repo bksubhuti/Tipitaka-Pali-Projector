@@ -147,7 +147,7 @@ function initDictionaries(){
 			if ( name == 'hpe8') {$.getScript("dictionary/pe8_uped.js"); }
 
 			if ( name == 'hpe9') {
-				$.getText('dictionary/dpd_inflections_to_headwords.csv', (data) => {
+				$.getText('dictionary/dpd_inflections_to_headwords.tsv', (data) => {
 					// data is the raw csv
 					const converted = {};
 					const lines = data.split('\n');
