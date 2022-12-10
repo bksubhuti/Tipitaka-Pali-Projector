@@ -75,3 +75,4 @@ ts-gen
 .depshash-target
 
 dev-app-update.yml
+tipitaka_projector_data/preferences.template
